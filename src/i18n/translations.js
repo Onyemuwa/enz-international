@@ -31,7 +31,11 @@ const dict = {
     navContact: 'Contact',
     navCareers: 'Careers',
     navPortal: 'Client Portal',
+    navMarkets: 'Markets',
     skipToContent: 'Skip to main content',
+    marketsTitle: 'Markets We Serve',
+    marketsSubtitle: "Local presence, backed by our sourcing hub in China — pick your market to see how we can help.",
+    marketPageBackToMarkets: 'All markets',
 
     // Common CTAs
     ctaBooking: 'Book Consultation',
@@ -188,7 +192,11 @@ const dict = {
     navContact: 'Wasiliana',
     navCareers: 'Kazi',
     navPortal: 'Lango la Mteja',
+    navMarkets: 'Masoko',
     skipToContent: 'Rukia yaliyomo',
+    marketsTitle: 'Masoko Tunayohudumia',
+    marketsSubtitle: 'Uwepo wa ndani, ukiungwa mkono na kituo chetu cha ugavi nchini China.',
+    marketPageBackToMarkets: 'Masoko yote',
 
     ctaBooking: 'Panga Ushauriano',
     ctaPortal: 'Ingia Mteja',
@@ -328,7 +336,11 @@ const dict = {
     navContact: 'Contact',
     navCareers: 'Carrières',
     navPortal: 'Portail Client',
+    navMarkets: 'Marchés',
     skipToContent: 'Aller au contenu principal',
+    marketsTitle: 'Marchés que nous desservons',
+    marketsSubtitle: 'Présence locale, appuyée par notre hub d\'approvisionnement en Chine.',
+    marketPageBackToMarkets: 'Tous les marchés',
 
     ctaBooking: 'Réserver une consultation',
     ctaPortal: 'Connexion client',
@@ -468,7 +480,11 @@ const dict = {
     navContact: '联系我们',
     navCareers: '招聘',
     navPortal: '客户门户',
+    navMarkets: '服务市场',
     skipToContent: '跳转到主要内容',
+    marketsTitle: '我们服务的市场',
+    marketsSubtitle: '本地服务，由我们在中国的采购中心提供支持。',
+    marketPageBackToMarkets: '所有市场',
 
     ctaBooking: '预约咨询',
     ctaPortal: '客户登录',

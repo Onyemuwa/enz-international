@@ -11,13 +11,18 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives",
     "test": "vitest run",
     "test:watch": "vitest",
-    "generate:sitemap": "node scripts/generate-sitemap.mjs"
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
+    "cy:open": "cypress open",
+    "cy:run": "cross-env ELECTRON_EXTRA_LAUNCH_ARGS=\"--disable-gpu --disable-software-rasterizer --no-sandbox\" cypress run",
+    "e2e:build-and-serve": "npm run build && vite preview --port 4173 --host 127.0.0.1",
+    "e2e": "start-server-and-test e2e:build-and-serve http://127.0.0.1:4173 cy:run"
   },
   "dependencies": {
+    "@sentry/react": "^8.40.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.2",
-    "react-helmet-async": "^2.0.5"
+    "react-helmet-async": "^2.0.5",
+    "react-router-dom": "^6.30.6"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.5.0",
@@ -25,13 +30,16 @@
     "@testing-library/user-event": "^14.5.2",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
+    "cross-env": "^10.1.0",
+    "cypress": "^13.17.0",
     "eslint": "^8.57.1",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-react": "^7.37.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.12",
-    "eslint-plugin-jsx-a11y": "^6.10.0",
     "jsdom": "^25.0.1",
     "postcss": "^8.4.47",
+    "start-server-and-test": "^3.0.12",
     "tailwindcss": "^3.4.13",
     "vite": "^5.4.8",
     "vitest": "^2.1.2"

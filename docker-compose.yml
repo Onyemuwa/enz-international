@@ -1,0 +1,37 @@
+# Local/self-hosted deployment. On Vercel/Netlify (see SETUP.md) you'd typically
+# only need the frontend image (or none — they build straight from the repo);
+# this compose file is for deploying the full stack together, e.g. a VPS.
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8080:80'
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - '4000:4000'
+    environment:
+      - PORT=4000
+      - FRONTEND_ORIGIN=http://localhost:8080
+      - JWT_SECRET=${JWT_SECRET:?Set JWT_SECRET in a .env file before running}
+      - SMTP_HOST=${SMTP_HOST:-}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USER=${SMTP_USER:-}
+      - SMTP_PASS=${SMTP_PASS:-}
+      - MAIL_FROM=${MAIL_FROM:-no-reply@enzinternational.com}
+      - MAIL_TO=${MAIL_TO:-info@enzinternational.com}
+    volumes:
+      - backend-data:/app/data
+      - backend-uploads:/app/uploads
+
+volumes:
+  backend-data:
+  backend-uploads:

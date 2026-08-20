@@ -6,12 +6,15 @@ import StickyCTA from '../components/StickyCTA';
 import CookieConsent from '../components/CookieConsent';
 import BookingModal from '../components/BookingModal';
 import PortalModal from '../components/PortalModal';
+import ExitIntentPopup from '../components/ExitIntentPopup';
+import AnalyticsRouteListener from '../components/AnalyticsRouteListener';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const MainLayout = () => {
   const { t } = useLanguage();
   return (
     <div className="font-inter antialiased bg-gray-bg min-h-screen flex flex-col">
+      <AnalyticsRouteListener />
       <a href="#main-content" className="skip-link">
         {t('skipToContent')}
       </a>
@@ -25,6 +28,7 @@ const MainLayout = () => {
       <CookieConsent />
       <BookingModal />
       <PortalModal />
+      <ExitIntentPopup />
     </div>
   );
 };

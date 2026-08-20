@@ -7,6 +7,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { insights } from '../src/data/insights.js';
+import { markets } from '../src/data/markets.js';
 
 const SITE_URL = 'https://www.enzinternational.com'; // TODO: keep in sync with src/lib/siteConfig.js
 const LANGUAGES = ['en', 'sw', 'fr', 'zh'];
@@ -15,6 +16,7 @@ const staticPaths = [
   { path: '', priority: '1.0', changefreq: 'weekly' },
   { path: '/about', priority: '0.8', changefreq: 'monthly' },
   { path: '/services', priority: '0.9', changefreq: 'monthly' },
+  { path: '/markets', priority: '0.7', changefreq: 'monthly' },
   { path: '/insights', priority: '0.8', changefreq: 'weekly' },
   { path: '/contact', priority: '0.7', changefreq: 'monthly' },
   { path: '/careers', priority: '0.5', changefreq: 'monthly' },
@@ -26,7 +28,13 @@ const blogPaths = insights.map((p) => ({
   changefreq: 'monthly',
 }));
 
-const allPaths = [...staticPaths, ...blogPaths];
+const marketPaths = markets.map((m) => ({
+  path: `/markets/${m.slug}`,
+  priority: '0.7',
+  changefreq: 'monthly',
+}));
+
+const allPaths = [...staticPaths, ...blogPaths, ...marketPaths];
 
 const alternatesFor = (p) =>
   LANGUAGES.map((lng) => `    <xhtml:link rel="alternate" hreflang="${lng}" href="${SITE_URL}/${lng}${p}" />`).join('\n') +

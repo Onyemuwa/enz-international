@@ -15,4 +15,11 @@ module.exports = {
     'react/prop-types': 'off',
     'react-refresh/only-export-components': 'warn',
   },
+  overrides: [
+    {
+      files: ['cypress/**/*.js', 'cypress.config.js'],
+      env: { node: true, mocha: true },
+      globals: { cy: 'readonly', Cypress: 'readonly' },
+    },
+  ],
 };

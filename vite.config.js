@@ -18,5 +18,8 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: './src/test/setup.js',
+    // Scope to the frontend test dir — server/ has its own Node-native test
+    // runner (see server/package.json) and must never be picked up here.
+    include: ['src/**/*.test.{js,jsx}'],
   },
 });

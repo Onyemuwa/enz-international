@@ -8,6 +8,7 @@ import { LANGUAGE_LABELS, SUPPORTED_LANGUAGES } from '../i18n/translations';
 const NAV_ITEMS = [
   { to: '', key: 'navHome' },
   { to: '/services', key: 'navServices' },
+  { to: '/markets', key: 'navMarkets' },
   { to: '/about', key: 'navAbout' },
   { to: '/insights', key: 'navInsights' },
   { to: '/contact', key: 'navContact' },

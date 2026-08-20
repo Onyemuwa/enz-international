@@ -122,6 +122,46 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.enzinternational.com/en/markets</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/sw/markets</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/fr/markets</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/zh/markets</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.enzinternational.com/en/insights</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/insights" />
     <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/insights" />
@@ -360,5 +400,205 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/insights/commodity-trading-outlook-copper-cobalt" />
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/en/markets/tanzania</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/tanzania" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/sw/markets/tanzania</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/tanzania" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/fr/markets/tanzania</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/tanzania" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/zh/markets/tanzania</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/tanzania" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/tanzania" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/en/markets/kenya</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/kenya" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/sw/markets/kenya</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/kenya" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/fr/markets/kenya</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/kenya" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/zh/markets/kenya</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/kenya" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/kenya" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/en/markets/drc</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/drc" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/sw/markets/drc</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/drc" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/fr/markets/drc</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/drc" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/zh/markets/drc</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/drc" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/drc" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/en/markets/usa</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/usa" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/sw/markets/usa</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/usa" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/fr/markets/usa</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/usa" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/zh/markets/usa</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/usa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/usa" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/en/markets/uk</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/uk" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/sw/markets/uk</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/uk" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/fr/markets/uk</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/uk" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.enzinternational.com/zh/markets/uk</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.enzinternational.com/en/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://www.enzinternational.com/sw/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.enzinternational.com/fr/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.enzinternational.com/zh/markets/uk" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.enzinternational.com/en/markets/uk" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

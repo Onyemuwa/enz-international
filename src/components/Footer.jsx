@@ -42,6 +42,7 @@ const Footer = () => {
           <h2 className="text-white font-semibold text-sm mb-3">{t('footerCompany')}</h2>
           <ul className="text-sm space-y-2">
             <li><Link to={linkTo('/about')} className="hover:text-gold transition">{t('navAbout')}</Link></li>
+            <li><Link to={linkTo('/markets')} className="hover:text-gold transition">{t('navMarkets')}</Link></li>
             <li><Link to={linkTo('/insights')} className="hover:text-gold transition">{t('navInsights')}</Link></li>
             <li><Link to={linkTo('/careers')} className="hover:text-gold transition">{t('navCareers')}</Link></li>
             <li><Link to={linkTo('/contact')} className="hover:text-gold transition">{t('navContact')}</Link></li>

@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
-
-const STORAGE_KEY = 'enz_cookie_consent'; // 'all' | 'essential'
+import { CONSENT_KEY as STORAGE_KEY, setConsent as broadcastConsent } from '../lib/consent';
 
 /**
- * GDPR-style consent banner. Analytics scripts (GA4/GTM/Pixel) must only be
- * loaded after consent === 'all' — see SETUP.md "Analytics" for the gating
- * pattern to use once those integrations are added (Phase 2).
+ * GDPR-style consent banner. Broadcasts the decision via lib/consent.js so
+ * lib/analytics.js and lib/monitoring.js can load GA4/GTM/Sentry only once
+ * the visitor has accepted ("all") — see SETUP.md "Analytics".
  */
 const CookieConsent = () => {
   const { t } = useLanguage();
   const [consent, setConsent] = useState(() => localStorage.getItem(STORAGE_KEY));
 
   useEffect(() => {
-    if (consent) localStorage.setItem(STORAGE_KEY, consent);
+    if (consent) broadcastConsent(consent);
   }, [consent]);
 
   if (consent) return null;
