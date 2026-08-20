@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /*/portal
+Disallow: /*/privacy
+Disallow: /*/terms
+
+Sitemap: https://www.enzinternational.com/sitemap.xml

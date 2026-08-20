@@ -1,0 +1,603 @@
+// Central translation dictionary.
+// Nav/footer/forms/CTAs are fully localized for all 4 languages.
+// Long-form page copy (About story, blog posts) is authored in English first;
+// sw/fr/zh translations for that deep content are a follow-up phase — see SETUP.md.
+// t() falls back to English automatically when a key is missing in the active language.
+
+export const SUPPORTED_LANGUAGES = ['en', 'sw', 'fr', 'zh'];
+export const DEFAULT_LANGUAGE = 'en';
+
+export const LANGUAGE_LABELS = {
+  en: 'English',
+  sw: 'Kiswahili',
+  fr: 'Français',
+  zh: '中文',
+};
+
+export const LOCALE_MAP = {
+  en: 'en_US',
+  sw: 'sw_TZ',
+  fr: 'fr_FR',
+  zh: 'zh_CN',
+};
+
+const dict = {
+  en: {
+    // Nav
+    navHome: 'Home',
+    navServices: 'Services',
+    navAbout: 'About',
+    navInsights: 'Insights',
+    navContact: 'Contact',
+    navCareers: 'Careers',
+    navPortal: 'Client Portal',
+    skipToContent: 'Skip to main content',
+
+    // Common CTAs
+    ctaBooking: 'Book Consultation',
+    ctaPortal: 'Client Login',
+    ctaLearnMore: 'Learn more',
+    ctaReadMore: 'Read more',
+    ctaViewAll: 'View all',
+    ctaSubmit: 'Submit',
+    ctaSubscribe: 'Subscribe',
+    ctaBackHome: 'Back to homepage',
+
+    // Hero
+    heroTitle: 'Global Sourcing & Industrial Excellence',
+    heroSub:
+      'Your trusted partner for commodities trading, factory setup, and China market entry. Serving East Africa, DRC, US, UK and beyond.',
+    heroBadge1: 'Global Sourcing',
+    heroBadge2: 'Factory Setup',
+    heroBadge3: 'Market Entry',
+    trustYears: '10+ years',
+    trustMarkets: '50+ markets',
+    trustProjects: '200+ projects',
+    trustCert: 'Certifications on request',
+
+    // Services (home summary)
+    servicesTitle: 'Our Core Services',
+    servicesSubtitle: 'Three integrated service lines that take you from first shipment to full production.',
+    service1: 'Global Sourcing & Commodities Trading',
+    service1Desc: 'Direct access to vetted Chinese manufacturers, quality control, and commodity procurement.',
+    service2: 'Turnkey Factory Establishment',
+    service2Desc: 'End-to-end consulting, machinery sourcing, assembly line planning, and factory setup.',
+    service3: 'China Market Entry & Expansion',
+    service3Desc: 'Helping international enterprises scale up by navigating Chinese supply chains.',
+    tabSourcing: 'Sourcing',
+    tabFactory: 'Factory Setup',
+
+    // About / stats
+    aboutTitle: 'Driving Global Trade & Industrial Growth',
+    aboutDesc:
+      'ENZ INTERNATIONAL bridges the gap between global demand and Chinese manufacturing excellence. We provide end-to-end sourcing and industrial-setup support that helps businesses scale, de-risk procurement, and enter new markets with confidence.',
+    statsTitle: 'Our Impact in Numbers',
+    statYears: 'Years Active',
+    statMarkets: 'Markets Served',
+    statProjects: 'Projects Delivered',
+    statSatisfaction: 'Client Satisfaction',
+
+    // Values
+    valueTitle: 'Our Values',
+    value1: 'Integrity & Transparency',
+    value1Desc: 'We operate with uncompromising honesty and clear communication at every stage of a deal.',
+    value2: 'Excellence in Execution',
+    value2Desc: 'Precision, quality, and reliability define every project we undertake.',
+    value3: 'Global Partnership',
+    value3Desc: 'We build lasting relationships across continents and cultures.',
+
+    // Footprint
+    footprintTitle: 'Global Footprint',
+    footprintHubsLabel: 'Operational hubs',
+
+    // Insights
+    insightsTitle: 'Industry Insights',
+    insightsSubtitle: 'Practical guidance on sourcing, factory setup, and trading across China and emerging markets.',
+    insightsBackToList: 'Back to Insights',
+    insightsPublished: 'Published',
+    insightsReadTime: 'min read',
+
+    // CTA banner
+    ctaBannerTitle: 'Ready to Transform Your Supply Chain?',
+    ctaBannerDesc: 'Book a consultation with our team and discover how ENZ can accelerate your growth.',
+
+    // Booking modal / page
+    bookingTitle: 'Executive Consultation',
+    bookingIntro: "Tell us about your project and we'll respond within one business day.",
+    bookingName: 'Full Name',
+    bookingEmail: 'Email Address',
+    bookingPhone: 'Phone (optional)',
+    bookingCompany: 'Company (optional)',
+    bookingDate: 'Preferred Date',
+    bookingService: 'Service of Interest',
+    bookingMessage: 'Tell us about your project (optional)',
+    bookingServiceOptSourcing: 'Global Sourcing',
+    bookingServiceOptFactory: 'Factory Setup',
+    bookingServiceOptMarket: 'Market Entry',
+    bookingServiceOptOther: 'Other',
+    bookingSubmit: 'Request Consultation',
+    bookingSubmitting: 'Sending…',
+    bookingDisclaimer: "We'll respond within 24h. No payment is required to request a consultation.",
+    bookingSuccessTitle: 'Request received',
+    bookingSuccessDesc: "Thank you, {name}. A member of our team will reach out to {email} shortly.",
+    bookingErrorTitle: 'Something went wrong',
+    bookingErrorDesc: 'Please try again, or reach us directly on WhatsApp.',
+
+    // Portal
+    portalTitle: 'Client Portal Login',
+    portalIntro: 'Track sourcing projects, milestones, and shared documents in one place.',
+    portalEmailLabel: 'Email',
+    portalPassLabel: 'Password',
+    portalLogin: 'Login',
+    portalDemoNote: 'Demo mode: any credentials will sign you in. No backend is connected yet — see SETUP.md.',
+    portalMock: 'You are logged in (demo)',
+    portalLoggedInDesc: 'Track sourcing projects, milestones, and documents.',
+    portalLogout: 'Log out',
+
+    // Contact
+    contactTitle: 'Contact & Booking',
+    contactSubtitle: "Reach our team directly, or book a consultation and we'll take it from there.",
+    contactDetailsTitle: 'Contact Details',
+    contactAddress: 'Guangzhou, China (HQ) · Dar es Salaam · Nairobi · Kinshasa · London · New York',
+    contactPhone: 'Phone / WhatsApp',
+    contactEmail: 'Email',
+
+    // Careers
+    careersTitle: 'Careers at ENZ INTERNATIONAL',
+    careersSubtitle: "We're building the team that connects global business with China's manufacturing base.",
+    careersNoOpenings: 'No open roles are posted right now. Send us your CV and we\'ll reach out when a role opens.',
+    careersSendCv: 'Send your CV',
+
+    // FAQ
+    faqTitle: 'Frequently Asked Questions',
+
+    // Footer
+    footerAbout: 'Global sourcing, factory setup, and market entry consulting.',
+    footerServices: 'Services',
+    footerCompany: 'Company',
+    footerContact: 'Contact',
+    footerPhone: '+86 132 0384 0456',
+    footerWhatsapp: 'Chat on WhatsApp',
+    footerRights: '© {year} ENZ INTERNATIONAL. All rights reserved.',
+    footerPrivacy: 'Privacy Policy',
+    footerTerms: 'Terms of Service',
+    footerNewsletterTitle: 'Stay informed',
+    footerNewsletterDesc: 'Sourcing insights and market updates, occasionally.',
+    footerNewsletterPlaceholder: 'you@company.com',
+    footerNewsletterSuccess: "Thanks — check your inbox to confirm.",
+
+    // 404
+    notFoundTitle: 'Page not found',
+    notFoundDesc: "The page you're looking for doesn't exist or may have moved.",
+
+    // Breadcrumb home
+    breadcrumbHome: 'Home',
+
+    // Cookie consent
+    cookieTitle: 'We value your privacy',
+    cookieDesc: 'We use essential cookies to run this site and optional analytics cookies to improve it. You can change this anytime.',
+    cookieAcceptAll: 'Accept all',
+    cookieEssentialOnly: 'Essential only',
+  },
+
+  sw: {
+    navHome: 'Nyumbani',
+    navServices: 'Huduma',
+    navAbout: 'Kuhusu',
+    navInsights: 'Maoni',
+    navContact: 'Wasiliana',
+    navCareers: 'Kazi',
+    navPortal: 'Lango la Mteja',
+    skipToContent: 'Rukia yaliyomo',
+
+    ctaBooking: 'Panga Ushauriano',
+    ctaPortal: 'Ingia Mteja',
+    ctaLearnMore: 'Jifunze zaidi',
+    ctaReadMore: 'Soma zaidi',
+    ctaViewAll: 'Ona vyote',
+    ctaSubmit: 'Tuma',
+    ctaSubscribe: 'Jiandikishe',
+    ctaBackHome: 'Rudi mwanzo',
+
+    heroTitle: 'Ugavi wa Kimataifa na Ubora wa Viwanda',
+    heroSub:
+      'Mshirika wako wa kuaminika kwa biashara ya bidhaa, uanzishaji wa kiwanda, na kuingia soko la China.',
+    heroBadge1: 'Ugavi wa Kimataifa',
+    heroBadge2: 'Uanzishaji wa Kiwanda',
+    heroBadge3: 'Kuingia Sokoni',
+    trustYears: 'Zaidi ya miaka 10',
+    trustMarkets: 'Masoko 50+',
+    trustProjects: 'Miradi 200+',
+    trustCert: 'Vyeti kwa maombi',
+
+    servicesTitle: 'Huduma Zetu Kuu',
+    servicesSubtitle: 'Huduma tatu zilizounganishwa kutoka usafirishaji wa kwanza hadi uzalishaji kamili.',
+    service1: 'Ugavi wa Kimataifa na Biashara ya Bidhaa',
+    service1Desc: 'Upatikanaji wa moja kwa moja kwa wazalishaji wa China, udhibiti wa ubora, na ununuzi wa bidhaa.',
+    service2: 'Uanzishaji wa Kiwanda',
+    service2Desc: 'Ushauriano kamili, upatikanaji wa mashine, mipango ya mstari wa uzalishaji.',
+    service3: 'Kuingia Soko la China',
+    service3Desc: 'Kusaidia biashara za kimataifa kupanua kupitia minyororo ya usambazaji ya China.',
+    tabSourcing: 'Ugavi',
+    tabFactory: 'Kiwanda',
+
+    aboutTitle: 'Kuendesha Biashara ya Kimataifa na Ukuaji wa Viwanda',
+    aboutDesc:
+      'ENZ INTERNATIONAL inaunganisha mahitaji ya kimataifa na ubora wa utengenezaji wa China. Tunatoa msaada kamili wa ugavi na uanzishaji wa viwanda unaowezesha biashara kukua na kuingia masoko mapya kwa ujasiri.',
+    statsTitle: 'Athari Zetu kwa Nambari',
+    statYears: 'Miaka ya Uzoefu',
+    statMarkets: 'Masoko Yanayohudumiwa',
+    statProjects: 'Miradi Iliyokamilika',
+    statSatisfaction: 'Kuridhika kwa Wateja',
+
+    valueTitle: 'Maadili Yetu',
+    value1: 'Uadilifu na Uwazi',
+    value1Desc: 'Tunafanya kazi kwa uaminifu usioyumbayumba na mawasiliano ya wazi.',
+    value2: 'Ubora katika Utekelezaji',
+    value2Desc: 'Usahihi, ubora, na kutegemewa hufafanua kila mradi tunaofanya.',
+    value3: 'Ushirikiano wa Kimataifa',
+    value3Desc: 'Tunajenga uhusiano wa kudumu katika mabara na tamaduni.',
+
+    footprintTitle: 'Uwepo wa Kimataifa',
+    footprintHubsLabel: 'Vituo vya uendeshaji',
+
+    insightsTitle: 'Maoni ya Sekta',
+    insightsSubtitle: 'Mwongozo wa vitendo kuhusu ugavi, uanzishaji wa kiwanda, na biashara.',
+    insightsBackToList: 'Rudi kwa Maoni',
+    insightsPublished: 'Ilichapishwa',
+    insightsReadTime: 'dakika za kusoma',
+
+    ctaBannerTitle: 'Tayari Kubadilisha Mnyororo wako wa Ugavi?',
+    ctaBannerDesc: 'Panga ushauriano na timu yetu na ugundue jinsi ENZ inavyoweza kuharakisha ukuaji wako.',
+
+    bookingTitle: 'Ushauriano wa Kiutendaji',
+    bookingIntro: 'Tuambie kuhusu mradi wako na tutajibu ndani ya siku moja ya kazi.',
+    bookingName: 'Jina Kamili',
+    bookingEmail: 'Barua pepe',
+    bookingPhone: 'Simu (hiari)',
+    bookingCompany: 'Kampuni (hiari)',
+    bookingDate: 'Tarehe Uipendayo',
+    bookingService: 'Huduma ya Nia',
+    bookingMessage: 'Tuambie kuhusu mradi wako (hiari)',
+    bookingServiceOptSourcing: 'Ugavi wa Kimataifa',
+    bookingServiceOptFactory: 'Uanzishaji wa Kiwanda',
+    bookingServiceOptMarket: 'Kuingia Sokoni',
+    bookingServiceOptOther: 'Nyingine',
+    bookingSubmit: 'Omba Ushauriano',
+    bookingSubmitting: 'Inatuma…',
+    bookingDisclaimer: 'Tutajibu ndani ya masaa 24. Hakuna malipo yanayohitajika kuomba ushauriano.',
+    bookingSuccessTitle: 'Ombi limepokelewa',
+    bookingSuccessDesc: 'Asante, {name}. Mwanachama wa timu yetu atawasiliana na {email} hivi karibuni.',
+    bookingErrorTitle: 'Hitilafu imetokea',
+    bookingErrorDesc: 'Tafadhali jaribu tena, au wasiliana nasi moja kwa moja kwenye WhatsApp.',
+
+    portalTitle: 'Lango la Mteja',
+    portalIntro: 'Fuatilia miradi ya ugavi, hatua muhimu, na hati zilizoshirikiwa mahali pamoja.',
+    portalEmailLabel: 'Barua pepe',
+    portalPassLabel: 'Nenosiri',
+    portalLogin: 'Ingia',
+    portalDemoNote: 'Hali ya onyesho: vitambulisho vyovyote vitakuruhusu kuingia. Hakuna backend bado — angalia SETUP.md.',
+    portalMock: 'Umeingia (demo)',
+    portalLoggedInDesc: 'Fuatilia miradi ya ugavi, hatua muhimu, na hati.',
+    portalLogout: 'Toka',
+
+    contactTitle: 'Wasiliana na Panga',
+    contactSubtitle: 'Wasiliana na timu yetu moja kwa moja, au panga ushauriano.',
+    contactDetailsTitle: 'Maelezo ya Mawasiliano',
+    contactAddress: 'Guangzhou, China (Makao Makuu) · Dar es Salaam · Nairobi · Kinshasa · London · New York',
+    contactPhone: 'Simu / WhatsApp',
+    contactEmail: 'Barua pepe',
+
+    careersTitle: 'Kazi katika ENZ INTERNATIONAL',
+    careersSubtitle: 'Tunajenga timu inayounganisha biashara za kimataifa na msingi wa utengenezaji wa China.',
+    careersNoOpenings: 'Hakuna nafasi za kazi kwa sasa. Tutumie CV yako na tutawasiliana nafasi ikifunguka.',
+    careersSendCv: 'Tuma CV yako',
+
+    faqTitle: 'Maswali Yanayoulizwa Mara kwa Mara',
+
+    footerAbout: 'Ugavi wa kimataifa, uanzishaji wa kiwanda, na ushauri wa kuingia sokoni.',
+    footerServices: 'Huduma',
+    footerCompany: 'Kampuni',
+    footerContact: 'Wasiliana',
+    footerPhone: '+86 132 0384 0456',
+    footerWhatsapp: 'Ongea WhatsApp',
+    footerRights: '© {year} ENZ INTERNATIONAL. Haki zote zimehifadhiwa.',
+    footerPrivacy: 'Sera ya Faragha',
+    footerTerms: 'Masharti ya Huduma',
+    footerNewsletterTitle: 'Endelea kupata habari',
+    footerNewsletterDesc: 'Maoni ya ugavi na masasisho ya soko, mara kwa mara.',
+    footerNewsletterPlaceholder: 'wewe@kampuni.com',
+    footerNewsletterSuccess: 'Asante — angalia barua pepe yako kuthibitisha.',
+
+    notFoundTitle: 'Ukurasa haujapatikana',
+    notFoundDesc: 'Ukurasa unaoutafuta haupo au umehamishwa.',
+
+    breadcrumbHome: 'Nyumbani',
+
+    cookieTitle: 'Tunathamini faragha yako',
+    cookieDesc: 'Tunatumia vidakuzi muhimu kuendesha tovuti hii na vidakuzi vya uchambuzi vya hiari kuiboresha.',
+    cookieAcceptAll: 'Kubali vyote',
+    cookieEssentialOnly: 'Muhimu tu',
+  },
+
+  fr: {
+    navHome: 'Accueil',
+    navServices: 'Services',
+    navAbout: 'À propos',
+    navInsights: 'Perspectives',
+    navContact: 'Contact',
+    navCareers: 'Carrières',
+    navPortal: 'Portail Client',
+    skipToContent: 'Aller au contenu principal',
+
+    ctaBooking: 'Réserver une consultation',
+    ctaPortal: 'Connexion client',
+    ctaLearnMore: 'En savoir plus',
+    ctaReadMore: 'Lire la suite',
+    ctaViewAll: 'Voir tout',
+    ctaSubmit: 'Envoyer',
+    ctaSubscribe: "S'abonner",
+    ctaBackHome: "Retour à l'accueil",
+
+    heroTitle: 'Approvisionnement mondial et excellence industrielle',
+    heroSub:
+      "Votre partenaire de confiance pour le négoce de matières premières, l'implantation d'usines et l'entrée sur le marché chinois.",
+    heroBadge1: 'Approvisionnement mondial',
+    heroBadge2: "Implantation d'usine",
+    heroBadge3: 'Entrée sur le marché',
+    trustYears: '10+ ans',
+    trustMarkets: '50+ marchés',
+    trustProjects: '200+ projets',
+    trustCert: 'Certifications sur demande',
+
+    servicesTitle: 'Nos services principaux',
+    servicesSubtitle: "Trois lignes de service intégrées, de la première expédition à la pleine production.",
+    service1: 'Approvisionnement mondial et négoce',
+    service1Desc: 'Accès direct aux fabricants chinois, contrôle qualité et achats de matières premières.',
+    service2: "Création d'usine clé en main",
+    service2Desc: "Conseil complet, approvisionnement en machines, planification et mise en place.",
+    service3: 'Entrée sur le marché chinois',
+    service3Desc: "Aide aux entreprises internationales à naviguer dans les chaînes d'approvisionnement chinoises.",
+    tabSourcing: 'Approvisionnement',
+    tabFactory: 'Usine',
+
+    aboutTitle: 'Stimuler le commerce mondial et la croissance industrielle',
+    aboutDesc:
+      "ENZ INTERNATIONAL fait le pont entre la demande mondiale et l'excellence de la fabrication chinoise. Nous fournissons un accompagnement complet qui permet aux entreprises de se développer et d'entrer sur de nouveaux marchés en toute confiance.",
+    statsTitle: 'Notre impact en chiffres',
+    statYears: "Années d'activité",
+    statMarkets: 'Marchés desservis',
+    statProjects: 'Projets livrés',
+    statSatisfaction: 'Satisfaction client',
+
+    valueTitle: 'Nos valeurs',
+    value1: 'Intégrité et transparence',
+    value1Desc: 'Nous agissons avec une honnêteté inébranlable et une communication claire.',
+    value2: "Excellence dans l'exécution",
+    value2Desc: 'La précision, la qualité et la fiabilité définissent chaque projet.',
+    value3: 'Partenariat mondial',
+    value3Desc: 'Nous construisons des relations durables à travers les continents et les cultures.',
+
+    footprintTitle: 'Présence mondiale',
+    footprintHubsLabel: "Hubs opérationnels",
+
+    insightsTitle: 'Perspectives du secteur',
+    insightsSubtitle: "Conseils pratiques sur l'approvisionnement, l'implantation d'usines et le commerce.",
+    insightsBackToList: 'Retour aux perspectives',
+    insightsPublished: 'Publié le',
+    insightsReadTime: 'min de lecture',
+
+    ctaBannerTitle: 'Prêt à transformer votre chaîne d\'approvisionnement?',
+    ctaBannerDesc: 'Réservez une consultation avec notre équipe et découvrez comment ENZ peut accélérer votre croissance.',
+
+    bookingTitle: 'Consultation exécutive',
+    bookingIntro: 'Parlez-nous de votre projet, nous répondrons sous un jour ouvré.',
+    bookingName: 'Nom complet',
+    bookingEmail: 'E-mail',
+    bookingPhone: 'Téléphone (optionnel)',
+    bookingCompany: 'Entreprise (optionnel)',
+    bookingDate: 'Date préférée',
+    bookingService: 'Service souhaité',
+    bookingMessage: 'Parlez-nous de votre projet (optionnel)',
+    bookingServiceOptSourcing: 'Approvisionnement mondial',
+    bookingServiceOptFactory: "Implantation d'usine",
+    bookingServiceOptMarket: 'Entrée sur le marché',
+    bookingServiceOptOther: 'Autre',
+    bookingSubmit: 'Demander une consultation',
+    bookingSubmitting: 'Envoi…',
+    bookingDisclaimer: 'Nous répondrons sous 24h. Aucun paiement requis pour cette demande.',
+    bookingSuccessTitle: 'Demande reçue',
+    bookingSuccessDesc: 'Merci, {name}. Un membre de notre équipe contactera {email} sous peu.',
+    bookingErrorTitle: "Une erreur s'est produite",
+    bookingErrorDesc: 'Veuillez réessayer, ou contactez-nous directement sur WhatsApp.',
+
+    portalTitle: 'Portail client',
+    portalIntro: 'Suivez vos projets d\'approvisionnement, jalons et documents partagés en un seul endroit.',
+    portalEmailLabel: 'E-mail',
+    portalPassLabel: 'Mot de passe',
+    portalLogin: 'Se connecter',
+    portalDemoNote: 'Mode démo : tout identifiant fonctionne. Aucun backend connecté — voir SETUP.md.',
+    portalMock: 'Vous êtes connecté (démo)',
+    portalLoggedInDesc: "Suivez vos projets d'approvisionnement, jalons et documents.",
+    portalLogout: 'Se déconnecter',
+
+    contactTitle: 'Contact et réservation',
+    contactSubtitle: 'Contactez notre équipe directement, ou réservez une consultation.',
+    contactDetailsTitle: 'Coordonnées',
+    contactAddress: 'Guangzhou, Chine (Siège) · Dar es Salaam · Nairobi · Kinshasa · Londres · New York',
+    contactPhone: 'Téléphone / WhatsApp',
+    contactEmail: 'E-mail',
+
+    careersTitle: 'Carrières chez ENZ INTERNATIONAL',
+    careersSubtitle: "Nous construisons l'équipe qui relie les entreprises mondiales à la base manufacturière chinoise.",
+    careersNoOpenings: "Aucun poste n'est ouvert actuellement. Envoyez-nous votre CV, nous vous contacterons.",
+    careersSendCv: 'Envoyer votre CV',
+
+    faqTitle: 'Questions fréquentes',
+
+    footerAbout: "Approvisionnement mondial, implantation d'usines et conseil en entrée de marché.",
+    footerServices: 'Services',
+    footerCompany: 'Entreprise',
+    footerContact: 'Contact',
+    footerPhone: '+86 132 0384 0456',
+    footerWhatsapp: 'Discuter sur WhatsApp',
+    footerRights: '© {year} ENZ INTERNATIONAL. Tous droits réservés.',
+    footerPrivacy: 'Politique de confidentialité',
+    footerTerms: "Conditions d'utilisation",
+    footerNewsletterTitle: 'Restez informé',
+    footerNewsletterDesc: "Perspectives d'approvisionnement et actualités de marché, occasionnellement.",
+    footerNewsletterPlaceholder: 'vous@entreprise.com',
+    footerNewsletterSuccess: 'Merci — vérifiez votre boîte de réception pour confirmer.',
+
+    notFoundTitle: 'Page introuvable',
+    notFoundDesc: "La page que vous recherchez n'existe pas ou a été déplacée.",
+
+    breadcrumbHome: 'Accueil',
+
+    cookieTitle: 'Nous respectons votre vie privée',
+    cookieDesc: 'Nous utilisons des cookies essentiels et, avec votre accord, des cookies analytiques.',
+    cookieAcceptAll: 'Tout accepter',
+    cookieEssentialOnly: 'Essentiels uniquement',
+  },
+
+  zh: {
+    navHome: '首页',
+    navServices: '服务',
+    navAbout: '关于我们',
+    navInsights: '洞察',
+    navContact: '联系我们',
+    navCareers: '招聘',
+    navPortal: '客户门户',
+    skipToContent: '跳转到主要内容',
+
+    ctaBooking: '预约咨询',
+    ctaPortal: '客户登录',
+    ctaLearnMore: '了解更多',
+    ctaReadMore: '阅读更多',
+    ctaViewAll: '查看全部',
+    ctaSubmit: '提交',
+    ctaSubscribe: '订阅',
+    ctaBackHome: '返回首页',
+
+    heroTitle: '全球采购与工业卓越',
+    heroSub: '您值得信赖的商品贸易、工厂建设和中国市场进入合作伙伴。服务东非、刚果金、美国、英国及全球。',
+    heroBadge1: '全球采购',
+    heroBadge2: '工厂建设',
+    heroBadge3: '市场进入',
+    trustYears: '10年以上',
+    trustMarkets: '50多个市场',
+    trustProjects: '200多个项目',
+    trustCert: '认证信息可索取',
+
+    servicesTitle: '核心服务',
+    servicesSubtitle: '三条一体化服务线，从首次发货到全面投产。',
+    service1: '全球采购与商品贸易',
+    service1Desc: '直接对接经过审核的中国制造商、质量控制和商品采购。',
+    service2: '交钥匙工厂建设',
+    service2Desc: '端到端咨询、机械采购、产线规划和工厂设立。',
+    service3: '中国市场进入与扩展',
+    service3Desc: '帮助国际企业通过中国供应链实现扩张。',
+    tabSourcing: '采购',
+    tabFactory: '工厂',
+
+    aboutTitle: '推动全球贸易与工业增长',
+    aboutDesc:
+      'ENZ INTERNATIONAL 架起全球需求与中国制造卓越之间的桥梁。我们提供端到端的采购与建厂支持，帮助企业扩展并有信心地进入新市场。',
+    statsTitle: '我们的影响力数据',
+    statYears: '运营年限',
+    statMarkets: '服务市场',
+    statProjects: '已完成项目',
+    statSatisfaction: '客户满意度',
+
+    valueTitle: '我们的价值观',
+    value1: '诚信与透明',
+    value1Desc: '我们以坚定不移的诚实和清晰的沟通运营。',
+    value2: '执行卓越',
+    value2Desc: '精确、质量和可靠性定义了我们承担的每一个项目。',
+    value3: '全球伙伴关系',
+    value3Desc: '我们在各大洲和文化之间建立持久的关系。',
+
+    footprintTitle: '全球足迹',
+    footprintHubsLabel: '运营中心',
+
+    insightsTitle: '行业洞察',
+    insightsSubtitle: '关于采购、建厂和贸易的实用指南。',
+    insightsBackToList: '返回洞察列表',
+    insightsPublished: '发布于',
+    insightsReadTime: '分钟阅读',
+
+    ctaBannerTitle: '准备好改造您的供应链了吗？',
+    ctaBannerDesc: '预约我们的专家咨询，了解ENZ如何加速您的增长。',
+
+    bookingTitle: '高管咨询',
+    bookingIntro: '告诉我们您的项目，我们将在一个工作日内回复。',
+    bookingName: '全名',
+    bookingEmail: '电子邮箱',
+    bookingPhone: '电话（可选）',
+    bookingCompany: '公司（可选）',
+    bookingDate: '首选日期',
+    bookingService: '感兴趣的服务',
+    bookingMessage: '告诉我们您的项目（可选）',
+    bookingServiceOptSourcing: '全球采购',
+    bookingServiceOptFactory: '工厂建设',
+    bookingServiceOptMarket: '市场进入',
+    bookingServiceOptOther: '其他',
+    bookingSubmit: '请求咨询',
+    bookingSubmitting: '发送中…',
+    bookingDisclaimer: '我们将在24小时内回复。请求咨询无需付款。',
+    bookingSuccessTitle: '请求已收到',
+    bookingSuccessDesc: '谢谢，{name}。我们的团队成员会尽快联系 {email}。',
+    bookingErrorTitle: '出现错误',
+    bookingErrorDesc: '请重试，或直接通过WhatsApp联系我们。',
+
+    portalTitle: '客户门户登录',
+    portalIntro: '在一个地方跟踪采购项目、里程碑和共享文档。',
+    portalEmailLabel: '邮箱',
+    portalPassLabel: '密码',
+    portalLogin: '登录',
+    portalDemoNote: '演示模式：任意凭据均可登录。尚未连接后端 — 参见 SETUP.md。',
+    portalMock: '您已登录（演示）',
+    portalLoggedInDesc: '跟踪采购项目、里程碑和文档。',
+    portalLogout: '退出登录',
+
+    contactTitle: '联系与预约',
+    contactSubtitle: '直接联系我们的团队，或预约咨询。',
+    contactDetailsTitle: '联系方式',
+    contactAddress: '中国广州（总部）· 达累斯萨拉姆 · 内罗毕 · 金沙萨 · 伦敦 · 纽约',
+    contactPhone: '电话 / WhatsApp',
+    contactEmail: '电子邮箱',
+
+    careersTitle: 'ENZ INTERNATIONAL 招聘',
+    careersSubtitle: '我们正在组建连接全球企业与中国制造基地的团队。',
+    careersNoOpenings: '目前没有开放职位。请发送您的简历，职位开放时我们会与您联系。',
+    careersSendCv: '发送简历',
+
+    faqTitle: '常见问题',
+
+    footerAbout: '全球采购、工厂建设和市场进入咨询。',
+    footerServices: '服务',
+    footerCompany: '公司',
+    footerContact: '联系方式',
+    footerPhone: '+86 132 0384 0456',
+    footerWhatsapp: 'WhatsApp 聊天',
+    footerRights: '© {year} ENZ INTERNATIONAL。保留所有权利。',
+    footerPrivacy: '隐私政策',
+    footerTerms: '服务条款',
+    footerNewsletterTitle: '获取最新资讯',
+    footerNewsletterDesc: '偶尔分享采购洞察和市场动态。',
+    footerNewsletterPlaceholder: 'you@company.com',
+    footerNewsletterSuccess: '谢谢 — 请查看您的邮箱以确认订阅。',
+
+    notFoundTitle: '页面未找到',
+    notFoundDesc: '您要查找的页面不存在或可能已被移动。',
+
+    breadcrumbHome: '首页',
+
+    cookieTitle: '我们重视您的隐私',
+    cookieDesc: '我们使用必要的Cookie来运行本网站，并在您同意的情况下使用分析Cookie来改进它。',
+    cookieAcceptAll: '全部接受',
+    cookieEssentialOnly: '仅必要项',
+  },
+};
+
+export default dict;
