@@ -36,6 +36,8 @@
       a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }
       .skip-link { position: absolute; left: -9999px; top: 0; background: #D4AF37; color: #0A192F; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
       .skip-link:focus { left: 1rem; top: 1rem; }
+      [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s ease-out, transform .7s ease-out; }
+      [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
       @media print { header, footer, .no-print { display: none !important; } }
     </style>
     
@@ -108,17 +110,12 @@
           <div><label for="cf-name" class="block text-sm font-medium text-navy/80">Jina Kamili</label><input id="cf-name" name="name" type="text" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" /></div>
           <div><label for="cf-email" class="block text-sm font-medium text-navy/80">Barua pepe</label><input id="cf-email" name="email" type="email" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" /></div>
           <div><label for="cf-date" class="block text-sm font-medium text-navy/80">Tarehe Uipendayo</label><input id="cf-date" name="date" type="date" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" /></div>
-          <div><label for="cf-service" class="block text-sm font-medium text-navy/80">Huduma ya Nia</label>
-            <select id="cf-service" name="service" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50"><option value="">—</option><option value="sourcing">Ugavi wa Kimataifa</option><option value="factory">Uanzishaji wa Kiwanda</option><option value="market">Kuingia Sokoni</option></select>
-          </div>
+          <div><label for="cf-service" class="block text-sm font-medium text-navy/80">Huduma ya Nia</label><select id="cf-service" name="service" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50"><option value="">—</option><option value="sourcing">Ugavi wa Kimataifa</option><option value="factory">Uanzishaji wa Kiwanda</option><option value="market">Kuingia Sokoni</option></select></div>
           <input type="hidden" name="phone" value="" /><input type="hidden" name="company" value="" /><input type="hidden" name="message" value="" />
           <p id="booking-error" role="alert" hidden class="text-sm text-red-600">Hitilafu imetokea</p>
           <button type="submit" data-submitting-label="Inatuma…" class="w-full bg-gold hover:bg-gold-light text-navy font-semibold py-4 rounded-xl transition shadow-md">Omba Ushauriano</button>
         </form>
-        <div id="booking-success" role="status" hidden class="text-center py-6">
-          <div class="text-4xl mb-4">✅</div>
-          <p class="text-lg font-semibold text-navy">Ombi limepokelewa</p>
-        </div>
+        <div id="booking-success" role="status" hidden class="text-center py-6"><div class="text-4xl mb-4">✅</div><p class="text-lg font-semibold text-navy">Ombi limepokelewa</p></div>
       </div>
     </div>
   </section>
@@ -127,39 +124,27 @@
       <h2 class="text-2xl md:text-3xl font-bold text-navy text-center mb-10">Maswali Yanayoulizwa Mara kwa Mara</h2>
       <div class="max-w-3xl mx-auto divide-y divide-gray-200 border-t border-b border-gray-200">
     <div>
-      <h3><button class="faq-question w-full flex items-center justify-between py-5 text-left font-medium text-navy hover:text-gold transition-colors" aria-expanded="false" aria-controls="faq-panel-0" id="faq-btn-0">
-        <span>How does the sourcing process start?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-      </button></h3>
+      <h3><button class="faq-question w-full flex items-center justify-between py-5 text-left font-medium text-navy hover:text-gold transition-colors" aria-expanded="false" aria-controls="faq-panel-0" id="faq-btn-0"><span>How does the sourcing process start?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
       <div id="faq-panel-0" role="region" aria-labelledby="faq-btn-0" hidden class="pb-5 text-sm text-gray-600 leading-relaxed">It starts with a consultation where you share your product specifications, target price range, and order volume. From there we shortlist and vet suppliers on your behalf.</div>
     </div>
     <div>
-      <h3><button class="faq-question w-full flex items-center justify-between py-5 text-left font-medium text-navy hover:text-gold transition-colors" aria-expanded="false" aria-controls="faq-panel-1" id="faq-btn-1">
-        <span>Do you handle quality control and inspections?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-      </button></h3>
+      <h3><button class="faq-question w-full flex items-center justify-between py-5 text-left font-medium text-navy hover:text-gold transition-colors" aria-expanded="false" aria-controls="faq-panel-1" id="faq-btn-1"><span>Do you handle quality control and inspections?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
       <div id="faq-panel-1" role="region" aria-labelledby="faq-btn-1" hidden class="pb-5 text-sm text-gray-600 leading-relaxed">Yes. We offer staged quality control — incoming material checks, in-process inspection, and pre-shipment inspection — so defects are caught before goods leave the factory.</div>
     </div>
     <div>
-      <h3><button class="faq-question w-full flex items-center justify-between py-5 text-left font-medium text-navy hover:text-gold transition-colors" aria-expanded="false" aria-controls="faq-panel-2" id="faq-btn-2">
-        <span>Can you help set up a factory outside of China?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-      </button></h3>
+      <h3><button class="faq-question w-full flex items-center justify-between py-5 text-left font-medium text-navy hover:text-gold transition-colors" aria-expanded="false" aria-controls="faq-panel-2" id="faq-btn-2"><span>Can you help set up a factory outside of China?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
       <div id="faq-panel-2" role="region" aria-labelledby="faq-btn-2" hidden class="pb-5 text-sm text-gray-600 leading-relaxed">Yes, our factory-setup service covers site selection, machinery sourcing, assembly-line planning, and commissioning support, including in East African markets.</div>
     </div>
     <div>
-      <h3><button class="faq-question w-full flex items-center justify-between py-5 text-left font-medium text-navy hover:text-gold transition-colors" aria-expanded="false" aria-controls="faq-panel-3" id="faq-btn-3">
-        <span>What information do you need for a factory-setup consultation?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-      </button></h3>
+      <h3><button class="faq-question w-full flex items-center justify-between py-5 text-left font-medium text-navy hover:text-gold transition-colors" aria-expanded="false" aria-controls="faq-panel-3" id="faq-btn-3"><span>What information do you need for a factory-setup consultation?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
       <div id="faq-panel-3" role="region" aria-labelledby="faq-btn-3" hidden class="pb-5 text-sm text-gray-600 leading-relaxed">A general sense of your target product, expected production volume, and preferred location is enough to start. We refine the scope together during the consultation.</div>
     </div>
     <div>
-      <h3><button class="faq-question w-full flex items-center justify-between py-5 text-left font-medium text-navy hover:text-gold transition-colors" aria-expanded="false" aria-controls="faq-panel-4" id="faq-btn-4">
-        <span>Is there a fee to book a consultation?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-      </button></h3>
+      <h3><button class="faq-question w-full flex items-center justify-between py-5 text-left font-medium text-navy hover:text-gold transition-colors" aria-expanded="false" aria-controls="faq-panel-4" id="faq-btn-4"><span>Is there a fee to book a consultation?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
       <div id="faq-panel-4" role="region" aria-labelledby="faq-btn-4" hidden class="pb-5 text-sm text-gray-600 leading-relaxed">No — requesting a consultation through this site is free. Any paid engagement terms are agreed separately once scope is defined.</div>
     </div>
     <div>
-      <h3><button class="faq-question w-full flex items-center justify-between py-5 text-left font-medium text-navy hover:text-gold transition-colors" aria-expanded="false" aria-controls="faq-panel-5" id="faq-btn-5">
-        <span>Which regions do you currently serve?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-      </button></h3>
+      <h3><button class="faq-question w-full flex items-center justify-between py-5 text-left font-medium text-navy hover:text-gold transition-colors" aria-expanded="false" aria-controls="faq-panel-5" id="faq-btn-5"><span>Which regions do you currently serve?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
       <div id="faq-panel-5" role="region" aria-labelledby="faq-btn-5" hidden class="pb-5 text-sm text-gray-600 leading-relaxed">Our team operates across Tanzania, Kenya, the Democratic Republic of Congo, the United States, and the United Kingdom, with our sourcing hub based in Guangzhou, China.</div>
     </div></div>
     </div>
@@ -304,7 +289,7 @@
           <input id="portal-password" name="password" type="password" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" />
         </div>
         <button type="submit" class="w-full bg-navy hover:bg-slate-blue text-white font-semibold py-4 rounded-xl transition shadow-md">Ingia</button>
-        <p class="text-xs text-gray-400 text-center">Hali ya onyesho: vitambulisho vyovyote vitakuruhusu kuingia. Hakuna backend bado — angalia SETUP.md.</p>
+        <p class="text-xs text-gray-400 text-center">Mpya kwenye lango la mteja? Omba ufikiaji kutoka kwa meneja wako wa akaunti kwa <a href="mailto:info@enzinternational.com" class="text-gold hover:underline">info@enzinternational.com</a></p>
       </form>
       <div id="portal-success" role="status" hidden class="text-center py-6">
         <div class="text-4xl mb-4">✅</div>

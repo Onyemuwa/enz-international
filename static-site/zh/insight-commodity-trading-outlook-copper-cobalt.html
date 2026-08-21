@@ -36,6 +36,8 @@
       a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }
       .skip-link { position: absolute; left: -9999px; top: 0; background: #D4AF37; color: #0A192F; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
       .skip-link:focus { left: 1rem; top: 1rem; }
+      [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s ease-out, transform .7s ease-out; }
+      [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
       @media print { header, footer, .no-print { display: none !important; } }
     </style>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Commodity Trading Fundamentals: Copper and Cobalt","description":"A primer on the procurement considerations that matter most when trading copper and cobalt across African and Chinese markets.","datePublished":"2026-03-20","author":{"@type":"Organization","name":"ENZ INTERNATIONAL"}}</script>
@@ -85,9 +87,7 @@
       <span class="text-xs font-medium text-gold bg-gold/10 px-2.5 py-1 rounded-full">Commodities</span>
       <h1 class="text-3xl md:text-5xl font-bold text-navy mt-4">Commodity Trading Fundamentals: Copper and Cobalt</h1>
       <div class="text-sm text-gray-400 mt-4 flex items-center gap-2"><span>发布于</span><time datetime="2026-03-20">2026-03-20</time><span aria-hidden="true">·</span><span>5 分钟阅读</span></div>
-      <div class="mt-10 space-y-6">
-        <p class="text-gray-700 leading-relaxed text-lg">Copper and cobalt procurement sits at the intersection of mining output, refining capacity, and — increasingly — battery and electronics demand. Buyers benefit from tracking not just spot pricing but also the reliability of the logistics corridor between mine, refinery, and port.</p><p class="text-gray-700 leading-relaxed text-lg">Documentation and traceability requirements have tightened across many downstream markets. Establishing a clean chain-of-custody record from the point of origin is no longer optional for buyers selling into regulated end markets.</p><p class="text-gray-700 leading-relaxed text-lg">Contract structure matters as much as price: framework agreements with defined quality specifications, penalty clauses for off-spec delivery, and clear force majeure terms protect both sides of a long-term trading relationship far more than a favorable one-off price.</p>
-      </div>
+      <div class="mt-10 space-y-6"><p class="text-gray-700 leading-relaxed text-lg">Copper and cobalt procurement sits at the intersection of mining output, refining capacity, and — increasingly — battery and electronics demand. Buyers benefit from tracking not just spot pricing but also the reliability of the logistics corridor between mine, refinery, and port.</p><p class="text-gray-700 leading-relaxed text-lg">Documentation and traceability requirements have tightened across many downstream markets. Establishing a clean chain-of-custody record from the point of origin is no longer optional for buyers selling into regulated end markets.</p><p class="text-gray-700 leading-relaxed text-lg">Contract structure matters as much as price: framework agreements with defined quality specifications, penalty clauses for off-spec delivery, and clear force majeure terms protect both sides of a long-term trading relationship far more than a favorable one-off price.</p></div>
       <a href="insights.html" class="inline-flex items-center gap-2 mt-12 text-navy font-medium hover:text-gold transition"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> 返回洞察列表</a>
     </div>
   </article>
@@ -231,7 +231,7 @@
           <input id="portal-password" name="password" type="password" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" />
         </div>
         <button type="submit" class="w-full bg-navy hover:bg-slate-blue text-white font-semibold py-4 rounded-xl transition shadow-md">登录</button>
-        <p class="text-xs text-gray-400 text-center">演示模式：任意凭据均可登录。尚未连接后端 — 参见 SETUP.md。</p>
+        <p class="text-xs text-gray-400 text-center">首次使用客户门户？请联系您的客户经理申请访问权限： <a href="mailto:info@enzinternational.com" class="text-gold hover:underline">info@enzinternational.com</a></p>
       </form>
       <div id="portal-success" role="status" hidden class="text-center py-6">
         <div class="text-4xl mb-4">✅</div>

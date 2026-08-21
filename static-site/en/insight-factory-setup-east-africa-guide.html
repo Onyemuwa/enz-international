@@ -36,6 +36,8 @@
       a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }
       .skip-link { position: absolute; left: -9999px; top: 0; background: #D4AF37; color: #0A192F; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
       .skip-link:focus { left: 1rem; top: 1rem; }
+      [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s ease-out, transform .7s ease-out; }
+      [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
       @media print { header, footer, .no-print { display: none !important; } }
     </style>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Factory Setup in East Africa: A Step-by-Step Guide","description":"From site selection to first production run — what to plan for when establishing manufacturing capacity in East Africa.","datePublished":"2026-05-02","author":{"@type":"Organization","name":"ENZ INTERNATIONAL"}}</script>
@@ -85,9 +87,7 @@
       <span class="text-xs font-medium text-gold bg-gold/10 px-2.5 py-1 rounded-full">Factory Setup</span>
       <h1 class="text-3xl md:text-5xl font-bold text-navy mt-4">Factory Setup in East Africa: A Step-by-Step Guide</h1>
       <div class="text-sm text-gray-400 mt-4 flex items-center gap-2"><span>Published</span><time datetime="2026-05-02">2026-05-02</time><span aria-hidden="true">·</span><span>8 min read</span></div>
-      <div class="mt-10 space-y-6">
-        <p class="text-gray-700 leading-relaxed text-lg">Establishing a factory in East Africa starts well before ground is broken. Site selection needs to weigh proximity to ports and labor markets against the cost and reliability of utilities — power stability in particular has an outsized effect on continuous-process manufacturing.</p><p class="text-gray-700 leading-relaxed text-lg">Regulatory pathways differ by country and sector: expect to navigate business registration, environmental impact assessments, and in many cases import-duty exemptions for productive equipment. Engaging local counsel and a customs specialist early prevents costly delays once machinery is already in transit.</p><p class="text-gray-700 leading-relaxed text-lg">Machinery sourcing and shipping is often the longest lead-time item in the whole project. Building a realistic project timeline means sequencing civil works, utility connections, and equipment delivery so that installation teams are not left waiting — or waiting to be paid — for delayed shipments.</p><p class="text-gray-700 leading-relaxed text-lg">Commissioning and operator training close the loop: a factory is only as good as the people running it day to day. Budgeting for a training period alongside the first production run, rather than treating it as an afterthought, has a direct effect on early yield rates.</p>
-      </div>
+      <div class="mt-10 space-y-6"><p class="text-gray-700 leading-relaxed text-lg">Establishing a factory in East Africa starts well before ground is broken. Site selection needs to weigh proximity to ports and labor markets against the cost and reliability of utilities — power stability in particular has an outsized effect on continuous-process manufacturing.</p><p class="text-gray-700 leading-relaxed text-lg">Regulatory pathways differ by country and sector: expect to navigate business registration, environmental impact assessments, and in many cases import-duty exemptions for productive equipment. Engaging local counsel and a customs specialist early prevents costly delays once machinery is already in transit.</p><p class="text-gray-700 leading-relaxed text-lg">Machinery sourcing and shipping is often the longest lead-time item in the whole project. Building a realistic project timeline means sequencing civil works, utility connections, and equipment delivery so that installation teams are not left waiting — or waiting to be paid — for delayed shipments.</p><p class="text-gray-700 leading-relaxed text-lg">Commissioning and operator training close the loop: a factory is only as good as the people running it day to day. Budgeting for a training period alongside the first production run, rather than treating it as an afterthought, has a direct effect on early yield rates.</p></div>
       <a href="insights.html" class="inline-flex items-center gap-2 mt-12 text-navy font-medium hover:text-gold transition"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Insights</a>
     </div>
   </article>
@@ -231,7 +231,7 @@
           <input id="portal-password" name="password" type="password" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" />
         </div>
         <button type="submit" class="w-full bg-navy hover:bg-slate-blue text-white font-semibold py-4 rounded-xl transition shadow-md">Login</button>
-        <p class="text-xs text-gray-400 text-center">Demo mode: any credentials will sign you in. No backend is connected yet — see SETUP.md.</p>
+        <p class="text-xs text-gray-400 text-center">New to the client portal? Request access from your account manager at <a href="mailto:info@enzinternational.com" class="text-gold hover:underline">info@enzinternational.com</a></p>
       </form>
       <div id="portal-success" role="status" hidden class="text-center py-6">
         <div class="text-4xl mb-4">✅</div>

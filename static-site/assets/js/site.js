@@ -282,4 +282,78 @@
   document.querySelectorAll('[data-current-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+
+  // ---------- Scroll reveal (fade + slide up once, on first intersection) ----------
+  // Safety net baked in from the start: some environments never fire
+  // IntersectionObserver callbacks at all, so content must never stay
+  // permanently invisible because of that — a 3s timeout always wins.
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-reveal]').forEach(function (el) {
+    if (prefersReducedMotion || typeof IntersectionObserver === 'undefined') {
+      el.classList.add('is-visible');
+      return;
+    }
+    var revealed = false;
+    var reveal = function () {
+      if (revealed) return;
+      revealed = true;
+      el.classList.add('is-visible');
+    };
+    var observer = new IntersectionObserver(
+      function (entries) {
+        if (entries[0].isIntersecting) {
+          reveal();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    setTimeout(reveal, 3000);
+  });
+
+  // ---------- Animated counters (count up once, on first intersection) ----------
+  document.querySelectorAll('[data-counter]').forEach(function (el) {
+    var value = parseInt(el.getAttribute('data-counter'), 10) || 0;
+    var suffix = el.getAttribute('data-counter-suffix') || '';
+    var started = false;
+
+    var showFinal = function () {
+      started = true;
+      el.textContent = value + suffix;
+    };
+
+    if (prefersReducedMotion || typeof IntersectionObserver === 'undefined') {
+      showFinal();
+      return;
+    }
+
+    var runCountUp = function () {
+      if (started) return;
+      started = true;
+      var duration = 1400;
+      var start = performance.now();
+      var tick = function (now) {
+        var progress = Math.min((now - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * value) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        if (entries[0].isIntersecting) {
+          runCountUp();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    // Skips straight to the final value rather than depending on rAF too —
+    // guarantees correctness even if rAF never fires either.
+    setTimeout(showFinal, 3000);
+  });
 })();

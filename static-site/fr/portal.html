@@ -36,6 +36,8 @@
       a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }
       .skip-link { position: absolute; left: -9999px; top: 0; background: #D4AF37; color: #0A192F; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
       .skip-link:focus { left: 1rem; top: 1rem; }
+      [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s ease-out, transform .7s ease-out; }
+      [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
       @media print { header, footer, .no-print { display: none !important; } }
     </style>
     
@@ -89,13 +91,9 @@
           <div><label for="pp-email" class="block text-sm font-medium text-navy/80">E-mail</label><input id="pp-email" name="email" type="email" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" /></div>
           <div><label for="pp-password" class="block text-sm font-medium text-navy/80">Mot de passe</label><input id="pp-password" name="password" type="password" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" /></div>
           <button type="submit" class="w-full bg-navy hover:bg-slate-blue text-white font-semibold py-4 rounded-xl transition shadow-md">Se connecter</button>
-          <p class="text-xs text-gray-400 text-center">Mode démo : tout identifiant fonctionne. Aucun backend connecté — voir SETUP.md.</p>
+          <p class="text-xs text-gray-400 text-center">Nouveau sur le portail client ? Demandez l'accès à votre gestionnaire de compte à <a href="mailto:info@enzinternational.com" class="text-gold hover:underline">info@enzinternational.com</a></p>
         </form>
-        <div id="portal-success" role="status" hidden class="text-center py-6">
-          <div class="text-4xl mb-4">✅</div>
-          <p class="text-lg font-semibold text-navy">Vous êtes connecté (démo)</p>
-          <p class="text-sm text-gray-500 mt-2">Suivez vos projets d'approvisionnement, jalons et documents.</p>
-        </div>
+        <div id="portal-success" role="status" hidden class="text-center py-6"><div class="text-4xl mb-4">✅</div><p class="text-lg font-semibold text-navy">Vous êtes connecté (démo)</p><p class="text-sm text-gray-500 mt-2">Suivez vos projets d'approvisionnement, jalons et documents.</p></div>
       </div>
     </div>
   </section>
@@ -239,7 +237,7 @@
           <input id="portal-password" name="password" type="password" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" />
         </div>
         <button type="submit" class="w-full bg-navy hover:bg-slate-blue text-white font-semibold py-4 rounded-xl transition shadow-md">Se connecter</button>
-        <p class="text-xs text-gray-400 text-center">Mode démo : tout identifiant fonctionne. Aucun backend connecté — voir SETUP.md.</p>
+        <p class="text-xs text-gray-400 text-center">Nouveau sur le portail client ? Demandez l'accès à votre gestionnaire de compte à <a href="mailto:info@enzinternational.com" class="text-gold hover:underline">info@enzinternational.com</a></p>
       </form>
       <div id="portal-success" role="status" hidden class="text-center py-6">
         <div class="text-4xl mb-4">✅</div>

@@ -36,6 +36,8 @@
       a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }
       .skip-link { position: absolute; left: -9999px; top: 0; background: #D4AF37; color: #0A192F; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
       .skip-link:focus { left: 1rem; top: 1rem; }
+      [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s ease-out, transform .7s ease-out; }
+      [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
       @media print { header, footer, .no-print { display: none !important; } }
     </style>
     
@@ -94,10 +96,7 @@
         <div><label for="cv-name" class="block text-sm font-medium text-navy/80">Nom complet</label><input id="cv-name" name="name" type="text" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" /></div>
         <div><label for="cv-email" class="block text-sm font-medium text-navy/80">E-mail</label><input id="cv-email" name="email" type="email" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" /></div>
         <div><label for="cv-message" class="block text-sm font-medium text-navy/80">Parlez-nous de votre projet (optionnel)</label><textarea id="cv-message" name="message" rows="3" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50"></textarea></div>
-        <div>
-          <label for="cv-file" class="block text-sm font-medium text-navy/80 mb-1">CV / Resume (PDF)</label>
-          <input id="cv-file" name="cv" type="file" accept="application/pdf" class="block w-full text-sm text-gray-500 border-2 border-dashed border-gray-300 rounded-xl px-4 py-6 cursor-pointer" />
-        </div>
+        <div><label for="cv-file" class="block text-sm font-medium text-navy/80 mb-1">CV / Resume (PDF)</label><input id="cv-file" name="cv" type="file" accept="application/pdf" class="block w-full text-sm text-gray-500 border-2 border-dashed border-gray-300 rounded-xl px-4 py-6 cursor-pointer" /></div>
         <button type="submit" class="w-full bg-gold hover:bg-gold-light text-navy font-semibold py-4 rounded-xl transition shadow-md">Envoyer</button>
       </form>
       <p id="careers-success" role="status" hidden class="text-center text-navy font-medium mt-6">Demande reçue</p>
@@ -243,7 +242,7 @@
           <input id="portal-password" name="password" type="password" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" />
         </div>
         <button type="submit" class="w-full bg-navy hover:bg-slate-blue text-white font-semibold py-4 rounded-xl transition shadow-md">Se connecter</button>
-        <p class="text-xs text-gray-400 text-center">Mode démo : tout identifiant fonctionne. Aucun backend connecté — voir SETUP.md.</p>
+        <p class="text-xs text-gray-400 text-center">Nouveau sur le portail client ? Demandez l'accès à votre gestionnaire de compte à <a href="mailto:info@enzinternational.com" class="text-gold hover:underline">info@enzinternational.com</a></p>
       </form>
       <div id="portal-success" role="status" hidden class="text-center py-6">
         <div class="text-4xl mb-4">✅</div>
