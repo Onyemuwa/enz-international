@@ -7,6 +7,10 @@ Built with Vite + React 18 + React Router 6 + Tailwind CSS (frontend), Express +
 `server/`). See [SETUP.md](./SETUP.md) for the full picture — SEO audit, performance checklist, what's
 real vs. placeholder, and the deployment guide.
 
+**Want zero build tooling instead?** [`static-site/`](./static-site/) is a parallel, hand-editable
+version of the same site — plain HTML/CSS/JS, no npm/Node required to run or deploy it, ever. Same
+content, ported from this app's data. See [`static-site/README.md`](./static-site/README.md).
+
 ## Quick start
 
 ```bash
