@@ -36,8 +36,8 @@ assets/
     i18n.js            Translation dictionary
     api.js             Mock-first API client — real backend, Web3Forms, or mock, in that order
     motion-effects.js  Scroll-reveal, count-up stats, hero entrance — via Motion
-    site.js            All other interactive behavior: modals, tabs, FAQ, forms, cookie
-                        consent, exit-intent popup, sticky CTA, language switcher
+    site.js            All other interactive behavior: modals, tabs, FAQ, forms,
+                        language switcher
 en/  sw/  fr/  zh/    One real folder per language — 13 pages each:
   index.html, about.html, services.html, markets.html, insights.html,
   insight-*.html (×3), contact.html, portal.html, careers.html,
@@ -50,10 +50,15 @@ anywhere with zero configuration.
 
 ## Editing content
 
-There is no generator to run and no source-of-truth elsewhere — **edit these `.html` files directly**.
-Shared chrome (header, footer, modals) is duplicated across every page on purpose; that's the tradeoff for
-having no build step. To change something in the header nav, for example, a project-wide search for the
-text you're changing is the fastest way to find every place it needs to change.
+For small changes, **edit the `.html` files directly** — nothing to run, nothing to build. Shared chrome
+(header, footer, modals) is duplicated across every page on purpose; that's the tradeoff for having no
+build step. To change something in the header nav, for example, a project-wide search for the text you're
+changing is the fastest way to find every place it needs to change.
+
+For a sweeping change that touches most or all of the 52 pages at once (e.g. a full copy rewrite, a new
+sitewide section), `_generate-static.mjs` can regenerate everything from the structured content in
+`_content/` — see `_content/README.md`. Neither file is loaded by the live site; they're optional
+maintenance tooling, kept only so large content passes don't mean hand-editing 13 files × 4 languages.
 
 ## Real email on form submit (no backend required)
 

@@ -26,7 +26,7 @@
     <script>
       tailwind.config = {
         theme: { extend: {
-          colors: { navy: '#0A192F', 'slate-blue': '#1E3A5F', gold: '#D4AF37', 'gold-light': '#E8C84A', 'gray-bg': '#F1F5F9' },
+          colors: { navy: '#0A192F', 'slate-blue': '#1E3A5F', gold: '#D4AF37', 'gold-light': '#E8C84A', 'gray-bg': '#F8F9FB' },
           fontFamily: { inter: ['Inter', 'sans-serif'] },
         } },
       };
@@ -46,19 +46,19 @@
   <body class="bg-gray-bg text-navy antialiased">
     <a href="#main-content" class="skip-link">跳转到主要内容</a>
     
-  <header class="bg-navy text-white sticky top-0 z-50 shadow-lg">
+  <header class="bg-navy/95 backdrop-blur-md text-white sticky top-0 z-50 border-b border-white/5">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
       <a href="index.html" class="flex items-center space-x-3">
         <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-10 w-auto object-contain" />
       </a>
-      <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium" aria-label="Primary">
+      <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium tracking-wide" aria-label="Primary">
         <a href="index.html" class="hover:text-gold transition-colors">首页</a>
 <a href="services.html" class="hover:text-gold transition-colors">服务</a>
 <a href="markets.html" class="hover:text-gold transition-colors">服务市场</a>
 <a href="about.html" class="hover:text-gold transition-colors">关于我们</a>
 <a href="insights.html" class="hover:text-gold transition-colors">洞察</a>
 <a href="contact.html" class="hover:text-gold transition-colors">联系我们</a>
-        <button data-open-portal class="flex items-center space-x-1 border border-gold/40 px-4 py-1.5 rounded-full text-gold hover:bg-gold/10 transition">
+        <button data-open-portal class="flex items-center space-x-1.5 border border-gold/30 px-4 py-1.5 rounded-full text-gold hover:bg-gold/10 hover:border-gold/50 transition-all">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>客户门户</span>
         </button>
         <select aria-label="Language" data-lang-select data-target-template="../__LANG__/privacy.html" class="bg-navy border border-white/20 rounded-md px-2 py-1 text-xs cursor-pointer"><option value="en" >EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" selected>ZH</option></select>
@@ -67,26 +67,26 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
-    <nav id="mobile-nav" hidden aria-label="Primary" class="lg:hidden bg-navy/95 border-t border-white/10 px-4 py-6 space-y-4 text-sm">
+    <nav id="mobile-nav" hidden aria-label="Primary" class="lg:hidden bg-navy/98 border-t border-white/10 px-4 py-6 space-y-4 text-sm">
       <a href="index.html" class="block hover:text-gold">首页</a>
 <a href="services.html" class="block hover:text-gold">服务</a>
 <a href="markets.html" class="block hover:text-gold">服务市场</a>
 <a href="about.html" class="block hover:text-gold">关于我们</a>
 <a href="insights.html" class="block hover:text-gold">洞察</a>
 <a href="contact.html" class="block hover:text-gold">联系我们</a>
-      <button data-open-portal class="flex items-center space-x-2 text-gold border border-gold/40 px-4 py-1.5 rounded-full w-fit">
+      <button data-open-portal class="flex items-center space-x-2 text-gold border border-gold/30 px-4 py-1.5 rounded-full w-fit">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>客户门户</span>
       </button>
       <div class="pt-2"><select aria-label="Language" data-lang-select data-target-template="../__LANG__/privacy.html" class="bg-navy border border-white/20 rounded-md px-2 py-1 text-xs cursor-pointer"><option value="en" >EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" selected>ZH</option></select></div>
     </nav>
   </header>
-    <nav aria-label="Breadcrumb" class="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-sm text-gray-500"><ol class="flex flex-wrap items-center gap-1"><li class="flex items-center gap-1"><a href="index.html" class="hover:text-gold transition">首页</a></li><li class="flex items-center gap-1"><span aria-hidden="true">/</span></li><li class="flex items-center gap-1"><span class="text-navy font-medium" aria-current="page">隐私政策</span></li></ol></nav>
+    <nav aria-label="Breadcrumb" class="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-sm text-gray-500"><ol class="flex flex-wrap items-center gap-1.5"><li class="flex items-center gap-1.5"><a href="index.html" class="hover:text-gold transition">首页</a></li><li class="flex items-center gap-1.5"><span aria-hidden="true">/</span></li><li class="flex items-center gap-1.5"><span class="text-navy font-medium" aria-current="page">隐私政策</span></li></ol></nav>
     <main id="main-content">
       
-  <section class="py-16 bg-white">
+  <section class="py-20 bg-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-      <h1 class="text-3xl font-bold text-navy mb-2">隐私政策</h1>
-      <p class="text-xs text-amber-600 bg-amber-50 border border-amber-200 rounded-lg px-4 py-2 mb-8">Placeholder text — not reviewed by counsel. Replace before launch.</p>
+      <h1 class="text-3xl font-bold text-navy mb-3 tracking-tight">隐私政策</h1>
+      <p class="text-xs text-amber-600 bg-amber-50 border border-amber-200 rounded-lg px-4 py-2.5 mb-9">Placeholder text — not reviewed by counsel. Replace before launch.</p>
       <div class="space-y-6 text-gray-700 leading-relaxed"><p>ENZ INTERNATIONAL ("we", "us") collects information you provide directly — such as your name, email, and project details submitted through our consultation and newsletter forms — in order to respond to your enquiry and, where you've opted in, send occasional updates.</p>
        <h2 class="text-xl font-bold text-navy mt-6">What we collect</h2><p>Contact-form and booking submissions, newsletter sign-up emails, and — once analytics tooling is connected — standard usage data.</p>
        <h2 class="text-xl font-bold text-navy mt-6">Your rights</h2><p>You may have the right to access, correct, or delete your data, or withdraw consent for marketing emails at any time.</p>
@@ -95,23 +95,23 @@
   </section>
     </main>
     
-  <footer class="bg-navy text-white/70 py-12 border-t border-white/5">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+  <footer class="bg-navy text-white/70 py-16 border-t border-white/5">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
       <div>
-        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-10 w-auto object-contain mb-3" />
-        <p class="text-sm max-w-xs">全球采购、工厂建设和市场进入咨询。</p>
+        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-10 w-auto object-contain mb-4" />
+        <p class="text-sm max-w-xs leading-relaxed">全球采购、工厂建设和市场进入咨询。</p>
       </div>
       <div>
-        <h2 class="text-white font-semibold text-sm mb-3">服务</h2>
-        <ul class="text-sm space-y-2">
+        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">服务</h2>
+        <ul class="text-sm space-y-3">
           <li><a href="services.html" class="hover:text-gold transition">采购</a></li>
           <li><a href="services.html" class="hover:text-gold transition">工厂</a></li>
           <li><a href="services.html" class="hover:text-gold transition">中国市场进入与扩展</a></li>
         </ul>
       </div>
       <div>
-        <h2 class="text-white font-semibold text-sm mb-3">公司</h2>
-        <ul class="text-sm space-y-2">
+        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">公司</h2>
+        <ul class="text-sm space-y-3">
           <li><a href="about.html" class="hover:text-gold transition">关于我们</a></li>
           <li><a href="markets.html" class="hover:text-gold transition">服务市场</a></li>
           <li><a href="insights.html" class="hover:text-gold transition">洞察</a></li>
@@ -120,26 +120,26 @@
         </ul>
       </div>
       <div>
-        <h2 class="text-white font-semibold text-sm mb-3">联系方式</h2>
+        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">联系方式</h2>
         <p class="text-sm flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-gold" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8613203840456" class="hover:text-gold transition">+86 132 0384 0456</a></p>
-        <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="mt-3 flex items-center gap-2 bg-green-600/20 hover:bg-green-600/30 text-green-400 px-4 py-2 rounded-full text-sm transition w-fit">
+        <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="mt-4 flex items-center gap-2 bg-green-600/15 hover:bg-green-600/25 text-green-400 px-4 py-2.5 rounded-full text-sm transition w-fit">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp 聊天
         </a>
-        <form id="newsletter-form" class="mt-6">
-          <label for="newsletter-email" class="text-white font-semibold text-sm block mb-1">获取最新资讯</label>
-          <p class="text-xs text-white/50 mb-2">偶尔分享采购洞察和市场动态。</p>
+        <form id="newsletter-form" class="mt-7">
+          <label for="newsletter-email" class="text-white font-semibold text-sm block mb-1.5">获取最新资讯</label>
+          <p class="text-xs text-white/50 mb-3">偶尔分享采购洞察和市场动态。</p>
           <div class="flex gap-2">
-            <input id="newsletter-email" name="email" type="email" required placeholder="you@company.com" class="flex-1 min-w-0 bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-gold/50" />
-            <button type="submit" class="bg-gold text-navy text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gold-light transition">订阅</button>
+            <input id="newsletter-email" name="email" type="email" required placeholder="you@company.com" class="flex-1 min-w-0 bg-white/10 border border-white/15 rounded-lg px-3 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-gold/50" />
+            <button type="submit" class="bg-gold text-navy text-sm font-semibold px-4 py-2.5 rounded-lg hover:bg-gold-light transition">订阅</button>
           </div>
         </form>
-        <p id="newsletter-success" role="status" hidden class="text-sm text-gold mt-2">谢谢 — 请查看您的邮箱以确认订阅。</p>
+        <p id="newsletter-success" role="status" hidden class="text-sm text-gold mt-3">谢谢 — 请查看您的邮箱以确认订阅。</p>
       </div>
     </div>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
       <p>© <span data-current-year></span> ENZ INTERNATIONAL. All rights reserved.</p>
-      <p class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</p>
-      <div class="flex gap-4">
+      <p class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</p>
+      <div class="flex gap-5">
         <a href="privacy.html" class="hover:text-gold transition">隐私政策</a>
         <a href="terms.html" class="hover:text-gold transition">服务条款</a>
       </div>
@@ -147,67 +147,44 @@
   </footer>
     <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 z-40 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-2xl transition-transform hover:scale-105 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
     
-  <div id="sticky-cta" hidden class="fixed bottom-0 inset-x-0 z-40 bg-navy border-t border-gold/30 shadow-2xl">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
-      <p class="text-white text-sm hidden sm:block">准备好改造您的供应链了吗？</p>
-      <div class="flex items-center gap-2 ml-auto">
-        <button data-open-booking class="bg-gold hover:bg-gold-light text-navy font-semibold px-5 py-2.5 rounded-full text-sm transition flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 预约咨询</button>
-        <button id="sticky-cta-dismiss" aria-label="Dismiss" class="text-white/50 hover:text-white p-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      </div>
-    </div>
-  </div>
-    
-  <div id="cookie-consent" role="dialog" aria-label="我们重视您的隐私" class="fixed bottom-0 inset-x-0 z-[70] bg-white border-t border-gray-200 shadow-2xl">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col md:flex-row items-start md:items-center gap-4">
-      <div class="flex-1">
-        <p class="font-semibold text-navy text-sm">我们重视您的隐私</p>
-        <p class="text-xs text-gray-500 mt-1">我们使用必要的Cookie来运行本网站，并在您同意的情况下使用分析Cookie来改进它。</p>
-      </div>
-      <div class="flex gap-3 shrink-0">
-        <button id="cookie-essential-only" class="border border-gray-300 text-navy text-sm font-medium px-4 py-2 rounded-full hover:bg-gray-50 transition">仅必要项</button>
-        <button id="cookie-accept-all" class="bg-gold hover:bg-gold-light text-navy text-sm font-semibold px-4 py-2 rounded-full transition">全部接受</button>
-      </div>
-    </div>
-  </div>
-    
-  <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative">
-      <button data-close-modal aria-label="Close dialog" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <h2 id="booking-modal-title" class="text-2xl font-bold text-navy mb-6 pr-6">高管咨询</h2>
+  <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-navy/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-7 relative">
+      <button data-close-modal aria-label="Close dialog" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2 id="booking-modal-title" class="text-2xl font-bold text-navy mb-6 pr-6 tracking-tight">高管咨询</h2>
       <form id="booking-form" class="space-y-5">
         <p class="text-sm text-gray-500">告诉我们您的项目，我们将在一个工作日内回复。</p>
         <div>
           <label for="booking-name" class="block text-sm font-medium text-navy/80">全名</label>
-          <input id="booking-name" name="name" type="text" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" />
+          <input id="booking-name" name="name" type="text" required class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold/50" />
         </div>
         <div>
           <label for="booking-email" class="block text-sm font-medium text-navy/80">电子邮箱</label>
-          <input id="booking-email" name="email" type="email" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" />
+          <input id="booking-email" name="email" type="email" required class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold/50" />
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label for="booking-phone" class="block text-sm font-medium text-navy/80">电话（可选）</label>
-            <input id="booking-phone" name="phone" type="tel" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" />
+            <input id="booking-phone" name="phone" type="tel" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold/50" />
           </div>
           <div>
             <label for="booking-company" class="block text-sm font-medium text-navy/80">公司（可选）</label>
-            <input id="booking-company" name="company" type="text" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" />
+            <input id="booking-company" name="company" type="text" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold/50" />
           </div>
         </div>
         <div>
           <label for="booking-date" class="block text-sm font-medium text-navy/80">首选日期</label>
-          <input id="booking-date" name="date" type="date" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" />
+          <input id="booking-date" name="date" type="date" required class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold/50" />
         </div>
         <div>
           <label for="booking-service" class="block text-sm font-medium text-navy/80">感兴趣的服务</label>
-          <select id="booking-service" name="service" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50"><option value="">—</option><option value="sourcing">全球采购</option><option value="factory">工厂建设</option><option value="market">市场进入</option><option value="other">其他</option></select>
+          <select id="booking-service" name="service" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold/50"><option value="">—</option><option value="sourcing">全球采购</option><option value="factory">工厂建设</option><option value="market">市场进入</option><option value="other">其他</option></select>
         </div>
         <div>
           <label for="booking-message" class="block text-sm font-medium text-navy/80">告诉我们您的项目（可选）</label>
-          <textarea id="booking-message" name="message" rows="3" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50"></textarea>
+          <textarea id="booking-message" name="message" rows="3" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold/50"></textarea>
         </div>
         <p id="booking-error" role="alert" hidden class="text-sm text-red-600">出现错误 — 请重试，或直接通过WhatsApp联系我们。</p>
-        <button type="submit" data-submitting-label="发送中…" class="w-full bg-gold hover:bg-gold-light text-navy font-semibold py-4 rounded-xl transition shadow-md">请求咨询</button>
+        <button type="submit" data-submitting-label="发送中…" class="w-full bg-gold hover:bg-gold-light text-navy font-semibold rounded-full shadow-lg shadow-gold/20 hover:shadow-xl hover:shadow-gold/30 hover:scale-[1.02] transition-all duration-300 py-4">请求咨询</button>
         <p class="text-xs text-gray-400 text-center">我们将在24小时内回复。请求咨询无需付款。</p>
       </form>
       <div id="booking-success" role="status" hidden class="text-center py-6">
@@ -218,21 +195,21 @@
     </div>
   </div>
     
-  <div id="portal-modal" role="dialog" aria-modal="true" aria-labelledby="portal-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative">
-      <button data-close-modal aria-label="Close dialog" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <h2 id="portal-modal-title" class="text-2xl font-bold text-navy mb-6 pr-6">客户门户登录</h2>
+  <div id="portal-modal" role="dialog" aria-modal="true" aria-labelledby="portal-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-navy/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-7 relative">
+      <button data-close-modal aria-label="Close dialog" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2 id="portal-modal-title" class="text-2xl font-bold text-navy mb-6 pr-6 tracking-tight">客户门户登录</h2>
       <form id="portal-login-form" class="space-y-5">
         <p class="text-sm text-gray-500">在一个地方跟踪采购项目、里程碑和共享文档。</p>
         <div>
           <label for="portal-email" class="block text-sm font-medium text-navy/80">邮箱</label>
-          <input id="portal-email" name="email" type="email" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" />
+          <input id="portal-email" name="email" type="email" required class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold/50" />
         </div>
         <div>
           <label for="portal-password" class="block text-sm font-medium text-navy/80">密码</label>
-          <input id="portal-password" name="password" type="password" required class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50" />
+          <input id="portal-password" name="password" type="password" required class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold/50" />
         </div>
-        <button type="submit" class="w-full bg-navy hover:bg-slate-blue text-white font-semibold py-4 rounded-xl transition shadow-md">登录</button>
+        <button type="submit" class="w-full bg-navy hover:bg-slate-blue text-white font-semibold py-4 rounded-full shadow-lg transition-all duration-300 hover:scale-[1.02]">登录</button>
         <p class="text-xs text-gray-400 text-center">首次使用客户门户？请联系您的客户经理申请访问权限： <a href="mailto:info@enzinternational.com" class="text-gold hover:underline">info@enzinternational.com</a></p>
       </form>
       <div id="portal-success" role="status" hidden class="text-center py-6">
@@ -240,16 +217,6 @@
         <p class="text-lg font-semibold text-navy">您已登录（演示）</p>
         <p class="text-sm text-gray-500 mt-2">跟踪采购项目、里程碑和文档。</p>
       </div>
-    </div>
-  </div>
-    
-  <div id="exit-intent-popup" role="dialog" aria-label="准备好改造您的供应链了吗？" style="display:none" data-modal-backdrop class="fixed inset-0 z-[65] items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-8 text-center relative shadow-2xl">
-      <button data-close-exit-intent aria-label="Close" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-gold mx-auto mb-4" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      <h2 class="text-xl font-bold text-navy">准备好改造您的供应链了吗？</h2>
-      <p class="text-sm text-gray-600 mt-2">预约我们的专家咨询，了解ENZ如何加速您的增长。</p>
-      <button data-open-booking class="mt-6 w-full bg-gold hover:bg-gold-light text-navy font-semibold py-3 rounded-full transition">预约咨询</button>
     </div>
   </div>
     <script src="../assets/js/config.js"></script>

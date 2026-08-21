@@ -1,6 +1,6 @@
 // Shared vanilla-JS behavior for every page: mobile menu, modals (with focus
-// trap), cookie consent, exit-intent popup, sticky CTA, FAQ accordion, tabs,
-// and form submissions against ENZ_API. No framework, no build step.
+// trap), FAQ accordion, tabs, and form submissions against ENZ_API. No
+// framework, no build step.
 (function () {
   'use strict';
 
@@ -18,6 +18,8 @@
   }
 
   // ---------- Generic modal open/close with focus trap ----------
+  // Modals here are only ever opened by an explicit click on "Book
+  // Consultation" / "Client Login" — never shown unprompted.
   var lastFocused = null;
 
   function openModal(modal) {
@@ -62,8 +64,6 @@
 
   document.querySelectorAll('[data-open-booking]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var exitPopup = document.getElementById('exit-intent-popup');
-      if (exitPopup) exitPopup.style.display = 'none';
       openModal(document.getElementById('booking-modal'));
     });
   });
@@ -200,75 +200,6 @@
       });
     });
   });
-
-  // ---------- Cookie consent ----------
-  var CONSENT_KEY = 'enz_cookie_consent';
-  var cookieBanner = document.getElementById('cookie-consent');
-  if (cookieBanner) {
-    var existing = localStorage.getItem(CONSENT_KEY);
-    if (existing) {
-      cookieBanner.hidden = true;
-    } else {
-      var acceptAll = document.getElementById('cookie-accept-all');
-      var essentialOnly = document.getElementById('cookie-essential-only');
-      if (acceptAll)
-        acceptAll.addEventListener('click', function () {
-          localStorage.setItem(CONSENT_KEY, 'all');
-          cookieBanner.hidden = true;
-        });
-      if (essentialOnly)
-        essentialOnly.addEventListener('click', function () {
-          localStorage.setItem(CONSENT_KEY, 'essential');
-          cookieBanner.hidden = true;
-        });
-    }
-  }
-
-  // ---------- Sticky CTA ----------
-  var stickyCta = document.getElementById('sticky-cta');
-  if (stickyCta) {
-    var dismissed = false;
-    var dismissBtn = document.getElementById('sticky-cta-dismiss');
-    if (dismissBtn)
-      dismissBtn.addEventListener('click', function () {
-        dismissed = true;
-        stickyCta.hidden = true;
-      });
-    window.addEventListener(
-      'scroll',
-      function () {
-        if (dismissed) return;
-        stickyCta.hidden = window.scrollY <= 720;
-      },
-      { passive: true }
-    );
-  }
-
-  // ---------- Exit-intent popup (desktop only, once per tab session) ----------
-  var exitPopup = document.getElementById('exit-intent-popup');
-  if (exitPopup) {
-    var SESSION_KEY = 'enz_exit_intent_shown';
-    if (!sessionStorage.getItem(SESSION_KEY)) {
-      var handleMouseOut = function (e) {
-        var leavingTop = e.clientY <= 0 && !e.relatedTarget;
-        if (!leavingTop) return;
-        var bookingModal = document.getElementById('booking-modal');
-        var portalModal = document.getElementById('portal-modal');
-        var bookingOpen = bookingModal && bookingModal.style.display !== 'none';
-        var portalOpen = portalModal && portalModal.style.display !== 'none';
-        if (bookingOpen || portalOpen) return;
-        exitPopup.style.display = 'flex';
-        sessionStorage.setItem(SESSION_KEY, '1');
-        document.removeEventListener('mouseout', handleMouseOut);
-      };
-      document.addEventListener('mouseout', handleMouseOut);
-    }
-    var exitClose = exitPopup.querySelector('[data-close-exit-intent]');
-    if (exitClose)
-      exitClose.addEventListener('click', function () {
-        exitPopup.style.display = 'none';
-      });
-  }
 
   // ---------- Language switcher ----------
   document.querySelectorAll('[data-lang-select]').forEach(function (select) {

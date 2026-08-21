@@ -35,7 +35,10 @@ claims on a live company site, which isn't something to guess on your behalf.
   everything degrades to instantly-visible content rather than staying hidden — verified in this session's
   testing, along with a defensive fallback for the (rarer) case where the animation never fires at all.
 - **Interactivity**: plain vanilla JS (`assets/js/site.js`) — no framework. Modals, tabs, FAQ accordion,
-  cookie consent, exit-intent popup, sticky CTA, language switcher, and form submission.
+  language switcher, and form submission. No exit-intent popups, cookie banners, or sticky
+  bottom bars — deliberately left out to keep the experience calm and trustworthy rather than
+  aggressive-growth-hacky. Modals only ever open from an explicit click on "Book Consultation"
+  or "Client Login," never unprompted.
 - **Fonts**: Google Fonts (Inter) via `<link>`, with `preconnect` for performance.
 
 ## 3. Real email on form submit — no backend required
