@@ -4,4 +4,4 @@ Disallow: /*/portal.html
 Disallow: /*/privacy.html
 Disallow: /*/terms.html
 
-Sitemap: https://www.enzinternational.com/sitemap.xml
+Sitemap: https://enzinternational.co/sitemap.xml

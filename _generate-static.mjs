@@ -14,10 +14,10 @@ import { regions, hubs } from './_content/regions.js';
 import { faqs } from './_content/faqs.js';
 
 const OUT = path.resolve('.'); // repo root — this IS the site
-const SITE_URL = 'https://www.enzinternational.com'; // TODO: replace with your real domain (see SETUP.md)
+const SITE_URL = 'https://enzinternational.co';
 const WHATSAPP_NUMBER = '8613203840456';
 const CONTACT_PHONE = '+86 132 0384 0456';
-const CONTACT_EMAIL = 'info@enzinternational.com';
+const CONTACT_EMAIL = 'info@enzinternational.co';
 
 function t(lang, key, vars) {
   let str = dict[lang]?.[key] ?? dict.en[key] ?? key;

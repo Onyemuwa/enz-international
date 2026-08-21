@@ -14,5 +14,5 @@ window.ENZ_CONFIG = {
   WEB3FORMS_ACCESS_KEY: '',
   WHATSAPP_NUMBER: '8613203840456',
   CONTACT_PHONE: '+86 132 0384 0456',
-  CONTACT_EMAIL: 'info@enzinternational.com',
+  CONTACT_EMAIL: 'info@enzinternational.co',
 };

@@ -12,12 +12,12 @@ claims on a live company site, which isn't something to guess on your behalf.
 
 | Item | Where | What to do |
 |---|---|---|
-| Real production domain | `_generate...` references were removed — search all files for `enzinternational.com` | Replace with your real domain in every `<link>`/`<meta>` canonical/hreflang tag, `robots.txt`, and `sitemap.xml` |
+| Real production domain | ✅ done — `enzinternational.co`, set in `_generate-static.mjs` and baked into every canonical/hreflang tag, `robots.txt`, `sitemap.xml`, and `CNAME` | Just point your DNS at GitHub Pages — see section 7 |
 | Team bios/photos | `en/about.html` (and sw/fr/zh) | Currently shows a "coming soon" placeholder instead of fake names — add a real team grid when you have photos/bios |
 | Client testimonials/case studies | Not present anywhere | Add a section once you have real, permissioned quotes — nothing fabricated is included |
 | Certifications (e.g. "ISO 9001") | Hero trust badges say "Certifications on request" | Add a specific certification only once you can point to a real, current certificate |
 | HQ address for the embedded map | `contact.html` (all languages) | Currently centers on "Guangzhou, China" generically — swap in the real street address |
-| Contact email | `assets/js/config.js` (`CONTACT_EMAIL`) | Placeholder `info@enzinternational.com` — confirm it's a real, monitored inbox |
+| Contact email | `assets/js/config.js` (`CONTACT_EMAIL`) | Domain matches (`info@enzinternational.co`) but confirm that inbox actually exists and is monitored |
 | Operational hubs / markets list | `assets/js/config.js`, page content | Confirm the cities and 5 markets (Tanzania, Kenya, DRC, US, UK) are current |
 | Privacy Policy / Terms | `privacy.html`, `terms.html` | Structural placeholder text, explicitly flagged in-page — **have a lawyer review before launch**, especially GDPR/data-processing language |
 | Web3Forms access key | `assets/js/config.js` | Empty by default (mock mode) — see section 3 |
@@ -98,6 +98,22 @@ domain age/authority, and content velocity (3 blog posts is a start, not a full 
 There is no SPA fallback to configure — every URL is a real file, so there's nothing for a 404-to-200
 rewrite rule to do. `404.html` is picked up automatically by most static hosts for genuinely unmatched
 paths.
+
+**Currently live on GitHub Pages** at `enz-international` under this repo's owner, with a `CNAME` file
+already committed pointing at `enzinternational.co`. To make that domain actually serve the site, add these
+DNS records at your domain registrar (whoever you bought `enzinternational.co` from):
+
+```
+Type   Name   Value
+A      @      185.199.108.153
+A      @      185.199.109.153
+A      @      185.199.110.153
+A      @      185.199.111.153
+```
+
+(Some registrars want an ALIAS/ANAME record instead of 4 A records for the apex domain — use whichever
+your provider supports.) GitHub auto-provisions HTTPS for the custom domain once DNS resolves, usually
+within a few hours of the records propagating. No further repo changes are needed once DNS is set.
 
 ## 7. Testing
 
