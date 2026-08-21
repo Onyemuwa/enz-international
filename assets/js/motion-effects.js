@@ -16,11 +16,28 @@
   var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var useMotion = motion && !prefersReducedMotion;
 
+  // Force an element to its visible end state, no matter what.
+  //
+  // Cancelling first is the whole point: motion.animate() drives elements via
+  // the Web Animations API, and a running WAAPI animation OUTRANKS inline
+  // styles in the cascade. So if an animation gets stuck holding its opacity:0
+  // first keyframe, `el.style.opacity = '1'` silently loses and the element
+  // stays invisible — inline style set, computed style still 0. Cancelling
+  // drops the animation's contribution and lets the inline style take effect.
+  function forceVisible(el) {
+    if (typeof el.getAnimations === 'function') {
+      el.getAnimations().forEach(function (a) {
+        try { a.cancel(); } catch (e) { /* already finished/detached */ }
+      });
+    }
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  }
+
   // ---------- Scroll reveal ----------
   document.querySelectorAll('[data-reveal]').forEach(function (el) {
     if (!useMotion) {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
+      forceVisible(el);
       return;
     }
     var done = false;
@@ -30,14 +47,18 @@
       motion.animate(el, { opacity: [0, 1], transform: ['translateY(24px)', 'translateY(0px)'] }, { duration: 0.7, easing: [0.22, 1, 0.36, 1] });
     };
     motion.inView(el, reveal, { amount: 0.15 });
-    // Safety net: some environments never fire IntersectionObserver (which
-    // Motion's inView() is built on) at all. Content must never stay
-    // permanently invisible because of that.
+    // Safety net. Checks what actually rendered, NOT whether we *started* a
+    // reveal — those are different failures and only the first one matters:
+    //   a) inView never fires (no IntersectionObserver) -> never started
+    //   b) inView fires but animate() never progresses   -> started, still invisible
+    // Keying this on a `done` flag only caught (a) and left (b) permanently
+    // blank, which is how the hero shipped invisible. Reading computed opacity
+    // catches both. In a healthy browser the 0.7s animation is long finished by
+    // now, so this is a no-op and the design is untouched.
     setTimeout(function () {
-      if (!done) {
+      if (parseFloat(getComputedStyle(el).opacity) < 0.9) {
         done = true;
-        el.style.opacity = '1';
-        el.style.transform = 'none';
+        forceVisible(el);
       }
     }, 3000);
   });
@@ -83,10 +104,7 @@
   var heroItems = document.querySelectorAll('[data-hero-stagger] > *');
   if (heroItems.length) {
     var finalizeHero = function () {
-      heroItems.forEach(function (el) {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-      });
+      heroItems.forEach(forceVisible);
     };
 
     if (!useMotion) {
