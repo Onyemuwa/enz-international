@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
-import { portalLogin, isMockMode } from '../lib/api';
+import { portalLogin } from '../lib/api';
+import { CONTACT_EMAIL } from '../lib/siteConfig';
 
 const PortalLoginForm = ({ onSuccess }) => {
   const { t } = useLanguage();
@@ -65,7 +66,12 @@ const PortalLoginForm = ({ onSuccess }) => {
       >
         {t('portalLogin')}
       </button>
-      {isMockMode && <p className="text-xs text-gray-400 text-center">{t('portalDemoNote')}</p>}
+      <p className="text-xs text-gray-400 text-center">
+        {t('portalAccessHelp')}{' '}
+        <a href={`mailto:${CONTACT_EMAIL}`} className="text-gold hover:underline">
+          {CONTACT_EMAIL}
+        </a>
+      </p>
     </form>
   );
 };

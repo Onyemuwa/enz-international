@@ -129,7 +129,7 @@
   if (portalForm) {
     portalForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      window.ENZ_API.portalLogin(portalForm.email.value, portalForm.password.value).then(function (result) {
+      window.ENZ_API.portalLogin(portalForm.email.value, portalForm.password.value).then(function () {
         portalForm.hidden = true;
         var success = document.getElementById('portal-success');
         if (success) success.hidden = false;

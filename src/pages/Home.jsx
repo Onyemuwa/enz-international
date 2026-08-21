@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Icon from '../components/Icon';
 import ServiceCard from '../components/ServiceCard';
 import SEO from '../components/SEO';
+import Reveal from '../components/Reveal';
+import AnimatedCounter from '../components/AnimatedCounter';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useModal } from '../context/ModalContext';
 import { regions, hubs } from '../data/regions';
@@ -10,10 +12,10 @@ import { insights } from '../data/insights';
 import { SITE_URL, WHATSAPP_NUMBER } from '../lib/siteConfig';
 
 const stats = [
-  { key: 'statYears', value: '10+' },
-  { key: 'statMarkets', value: '50+' },
-  { key: 'statProjects', value: '200+' },
-  { key: 'statSatisfaction', value: '98%' },
+  { key: 'statYears', value: 10, suffix: '+' },
+  { key: 'statMarkets', value: 50, suffix: '+' },
+  { key: 'statProjects', value: 200, suffix: '+' },
+  { key: 'statSatisfaction', value: 98, suffix: '%' },
 ];
 
 const values = [
@@ -21,6 +23,23 @@ const values = [
   { titleKey: 'value2', descKey: 'value2Desc', icon: 'award' },
   { titleKey: 'value3', descKey: 'value3Desc', icon: 'globe' },
 ];
+
+const whyItems = [
+  { titleKey: 'why1Title', descKey: 'why1Desc', icon: 'shield' },
+  { titleKey: 'why2Title', descKey: 'why2Desc', icon: 'briefcase' },
+  { titleKey: 'why3Title', descKey: 'why3Desc', icon: 'mapPin' },
+  { titleKey: 'why4Title', descKey: 'why4Desc', icon: 'mail' },
+  { titleKey: 'why5Title', descKey: 'why5Desc', icon: 'award' },
+  { titleKey: 'why6Title', descKey: 'why6Desc', icon: 'check' },
+];
+
+const regionServiceTags = {
+  TZ: ['service1', 'service2'],
+  KE: ['service1', 'service3'],
+  CD: ['service1', 'service2'],
+  US: ['service1', 'service3'],
+  UK: ['service1', 'service3'],
+};
 
 const Home = () => {
   const { language, t } = useLanguage();
@@ -59,6 +78,9 @@ const Home = () => {
           aria-hidden="true"
           className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNkNGFmMzciIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzR2LTRoNHY0aC00em0tMTAgMGgtNHYtNGg0djR6bTEwLTEwaC00di00aDR2NHptLTEwIDBINGwtNCA0aDE2eiIvPjwvZz48L2c+PC9zdmc+')] bg-repeat"
         />
+        {/* Decorative glow orbs — pure CSS, no image assets */}
+        <div aria-hidden="true" className="absolute -top-24 -right-24 w-96 h-96 bg-gold/20 rounded-full blur-3xl" />
+        <div aria-hidden="true" className="absolute -bottom-32 -left-24 w-96 h-96 bg-slate-blue/40 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-wrap justify-center gap-2 mb-6">
@@ -77,7 +99,7 @@ const Home = () => {
             <div className="flex flex-wrap justify-center gap-4 mt-10">
               <button
                 onClick={openBooking}
-                className="bg-gold hover:bg-gold-light text-navy font-semibold px-8 py-4 rounded-full shadow-lg transition flex items-center gap-2"
+                className="bg-gold hover:bg-gold-light text-navy font-semibold px-8 py-4 rounded-full shadow-lg shadow-gold/20 transition flex items-center gap-2 hover:scale-[1.03]"
               >
                 <Icon name="calendar" className="w-5 h-5" /> {t('ctaBooking')}
               </button>
@@ -107,19 +129,49 @@ const Home = () => {
       {/* ===== ABOUT + STATS ===== */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center mb-16">
+          <Reveal className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-navy">{t('aboutTitle')}</h2>
             <p className="text-gray-600 text-lg mt-4 leading-relaxed">{t('aboutDesc')}</p>
             <Link to={`/${language}/about`} className="inline-block mt-4 text-gold font-medium hover:underline">
               {t('ctaLearnMore')} →
             </Link>
-          </div>
+          </Reveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {stats.map((stat) => (
-              <div key={stat.key} className="bg-gray-bg rounded-2xl p-6 text-center border border-gray-200">
-                <div className="text-3xl font-bold text-gold">{stat.value}</div>
+            {stats.map((stat, idx) => (
+              <Reveal
+                key={stat.key}
+                delay={idx * 80}
+                className="bg-gray-bg rounded-2xl p-6 text-center border border-gray-200 hover:border-gold/40 hover:shadow-md transition-shadow"
+              >
+                <div className="text-3xl font-bold text-gold">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                </div>
                 <div className="text-sm text-gray-600 mt-1">{t(stat.key)}</div>
-              </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== WHY ENZ ===== */}
+      <section className="py-20 bg-navy text-white relative overflow-hidden">
+        <div aria-hidden="true" className="absolute inset-0 opacity-[0.07] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNkNGFmMzciIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzR2LTRoNHY0aC00em0tMTAgMGgtNHYtNGg0djR6bTEwLTEwaC00di00aDR2NHptLTEwIDBINGwtNCA0aDE2eiIvPjwvZz48L2c+PC9zdmc+')] bg-repeat" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <Reveal className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold">{t('whyTitle')}</h2>
+            <p className="text-white/70 text-lg mt-3">{t('whySubtitle')}</p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-14 max-w-6xl mx-auto">
+            {whyItems.map((item, idx) => (
+              <Reveal
+                key={item.titleKey}
+                delay={idx * 70}
+                className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-gold/30 transition"
+              >
+                <Icon name={item.icon} className="w-8 h-8 text-gold mb-4" />
+                <h3 className="font-bold">{t(item.titleKey)}</h3>
+                <p className="text-white/60 text-sm mt-2 leading-relaxed">{t(item.descKey)}</p>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -128,8 +180,10 @@ const Home = () => {
       {/* ===== SERVICES ===== */}
       <section className="py-20 bg-gray-bg">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy text-center">{t('servicesTitle')}</h2>
-          <p className="text-gray-600 text-center max-w-2xl mx-auto mt-3">{t('servicesSubtitle')}</p>
+          <Reveal className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy">{t('servicesTitle')}</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto mt-3">{t('servicesSubtitle')}</p>
+          </Reveal>
           <div className="flex justify-center gap-4 mt-8" role="tablist" aria-label={t('servicesTitle')}>
             <button
               role="tab"
@@ -181,41 +235,62 @@ const Home = () => {
       {/* ===== VALUES ===== */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-navy text-center">{t('valueTitle')}</h2>
+          <Reveal as="h2" className="text-2xl md:text-3xl font-bold text-navy text-center">
+            {t('valueTitle')}
+          </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 max-w-5xl mx-auto">
-            {values.map((v) => (
-              <div key={v.titleKey} className="bg-gray-bg rounded-2xl p-8 text-center border border-gray-200 hover:shadow-lg transition">
+            {values.map((v, idx) => (
+              <Reveal
+                key={v.titleKey}
+                delay={idx * 80}
+                className="bg-gray-bg rounded-2xl p-8 text-center border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition-all"
+              >
                 <div className="flex justify-center mb-4">
                   <Icon name={v.icon} className="w-12 h-12 text-gold" />
                 </div>
                 <h3 className="text-xl font-bold text-navy">{t(v.titleKey)}</h3>
                 <p className="text-gray-600 text-sm mt-2">{t(v.descKey)}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* ===== GLOBAL FOOTPRINT ===== */}
-      <section className="py-16 bg-gray-bg">
+      <section className="py-20 bg-gray-bg">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-navy text-center">{t('footprintTitle')}</h2>
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-10">
-            {regions.map((r) => (
-              <div
+          <Reveal className="text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-navy">{t('footprintTitle')}</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto mt-3">{t('footprintHubsLabel')}: {hubs.join(' · ')}</p>
+          </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-12 max-w-6xl mx-auto">
+            {regions.map((r, idx) => (
+              <Reveal
                 key={r.code}
-                className="bg-white rounded-xl shadow-sm px-5 py-3 flex items-center gap-3 border border-gray-100 min-w-[80px] justify-center"
+                delay={idx * 60}
+                className="bg-white rounded-2xl shadow-sm p-5 border border-gray-100 hover:border-gold/40 hover:shadow-md transition"
               >
-                <span className="text-xl font-bold text-gold">{r.code}</span>
-                <span className="text-sm font-medium text-navy">{r.name}</span>
-              </div>
+                <div className="flex items-center gap-3">
+                  <span className="w-10 h-10 rounded-full bg-navy text-gold text-sm font-bold flex items-center justify-center shrink-0">
+                    {r.code}
+                  </span>
+                  <span className="font-semibold text-navy">{r.name}</span>
+                </div>
+                <ul className="mt-4 space-y-1.5">
+                  {(regionServiceTags[r.code] || []).map((sk) => (
+                    <li key={sk} className="text-xs text-gray-500 flex items-center gap-1.5">
+                      <Icon name="check" className="w-3 h-3 text-gold shrink-0" /> {t(sk)}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to={`/${language}/markets`}
+                  className="text-gold text-xs font-medium mt-4 inline-flex items-center gap-1 hover:underline"
+                >
+                  {t('ctaLearnMore')} <Icon name="chevronRight" className="w-3 h-3" />
+                </Link>
+              </Reveal>
             ))}
-          </div>
-          <div className="mt-8 text-center text-sm text-gray-500">
-            <span className="inline-flex items-center gap-2 bg-white px-6 py-2 rounded-full shadow-sm mx-auto w-fit">
-              <Icon name="mapPin" className="w-4 h-4 text-gold" />
-              {t('footprintHubsLabel')}: {hubs.join(' · ')}
-            </span>
           </div>
         </div>
       </section>
@@ -223,10 +298,16 @@ const Home = () => {
       {/* ===== INSIGHTS PREVIEW ===== */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-navy text-center">{t('insightsTitle')}</h2>
+          <Reveal as="h2" className="text-2xl md:text-3xl font-bold text-navy text-center">
+            {t('insightsTitle')}
+          </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 max-w-6xl mx-auto">
-            {insights.map((insight) => (
-              <div key={insight.slug} className="bg-gray-bg rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition">
+            {insights.map((insight, idx) => (
+              <Reveal
+                key={insight.slug}
+                delay={idx * 80}
+                className="bg-gray-bg rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition"
+              >
                 <div className="mb-3">
                   <Icon name={insight.icon} className="w-8 h-8 text-gold" />
                 </div>
@@ -238,20 +319,21 @@ const Home = () => {
                 >
                   {t('ctaReadMore')} →
                 </Link>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* ===== CTA BANNER ===== */}
-      <section className="py-16 bg-navy text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-16 bg-navy text-white relative overflow-hidden">
+        <div aria-hidden="true" className="absolute -top-16 left-1/2 -translate-x-1/2 w-[32rem] h-64 bg-gold/10 rounded-full blur-3xl" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <h2 className="text-2xl md:text-3xl font-bold">{t('ctaBannerTitle')}</h2>
           <p className="text-white/70 text-lg mt-3 max-w-2xl mx-auto">{t('ctaBannerDesc')}</p>
           <button
             onClick={openBooking}
-            className="mt-6 bg-gold hover:bg-gold-light text-navy font-semibold px-8 py-4 rounded-full shadow-lg transition inline-flex items-center gap-2"
+            className="mt-6 bg-gold hover:bg-gold-light text-navy font-semibold px-8 py-4 rounded-full shadow-lg transition inline-flex items-center gap-2 hover:scale-[1.03]"
           >
             <Icon name="calendar" className="w-5 h-5" /> {t('ctaBooking')}
           </button>

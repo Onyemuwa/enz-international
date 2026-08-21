@@ -95,7 +95,20 @@ you host `server/`) — flag it once you've picked a host and I'll set it up.
 
 ---
 
-## 3. Backend — `server/`
+## 3. Backend — `server/` (or zero backend at all)
+
+There are now two ways to get real form submissions instead of mock responses, tried in this order by
+`src/lib/api.js`:
+
+1. **`VITE_API_BASE_URL`** — the real backend below. Full persistence, real portal auth, your own database.
+2. **`VITE_WEB3FORMS_ACCESS_KEY`** — no backend at all. Forms POST straight to
+   [Web3Forms](https://web3forms.com), which emails the submission to whichever address you registered
+   the key with. Free, no account/password (just an emailed key), set up in under a minute. This is the
+   right choice if you don't want to run or pay for a backend — it directly answers "forms should arrive
+   by email automatically." The one thing it **can't** do is client-portal login (it's a mail relay, not
+   an auth provider) — that still needs option 1 if you want real portal accounts.
+
+Leave both unset to stay in mock mode (forms work, nothing is sent).
 
 A real, working implementation of the four endpoints, not just a documented contract:
 

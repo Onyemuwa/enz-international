@@ -57,10 +57,7 @@ const ClientPortal = () => {
                     </li>
                   ))}
                 </ul>
-                <p className="text-xs text-gray-400 mt-6">
-                  This is placeholder demo data. Real project tracking, document upload, and notifications
-                  require a connected backend — see SETUP.md &ldquo;Client Portal&rdquo;.
-                </p>
+                <p className="text-xs text-gray-400 mt-6">Sample project shown for illustration.</p>
               </div>
             </div>
           )}
