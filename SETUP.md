@@ -1,10 +1,7 @@
 # SETUP.md — Setup, SEO Audit, Performance Checklist, Deployment Guide
 
-Phase 1 replaced the original single-file CDN/Babel prototype with a real build (Vite + React Router +
-Tailwind), full SEO plumbing, i18n routing, and accessibility. Phase 2 added a working reference backend,
-analytics/monitoring wiring, CI/CD, Docker, e2e tests, an exit-intent popup, and per-market landing pages.
-What's left is genuinely yours: real content (team, testimonials, certifications, legal review) and your
-own accounts for third-party services (domain, SMTP, GA4, Sentry).
+The entire stack is HTML, CSS, and JavaScript — no React, no Node backend, no build step, ever. This
+document covers what's real vs. placeholder, the SEO/performance state, and how to deploy.
 
 ---
 
@@ -15,127 +12,46 @@ claims on a live company site, which isn't something to guess on your behalf.
 
 | Item | Where | What to do |
 |---|---|---|
-| Real production domain | `src/lib/siteConfig.js`, `index.html`, `scripts/generate-sitemap.mjs` | Replace `www.enzinternational.com` everywhere it appears (search for it) once you've picked/confirmed the domain |
-| Team bios/photos | `src/data/team.js` | Currently empty — About page shows a "coming soon" placeholder instead of fake names |
-| Client testimonials/case studies | `src/data/testimonials.js` | Currently empty, not rendered anywhere yet |
-| Certifications (e.g. "ISO 9001") | Removed from hero trust badges, replaced with "Certifications on request" | Add back only once you can point to a real, current certificate |
-| HQ address for the embedded map | `src/pages/Contact.jsx` | Currently just centers on "Guangzhou, China" — swap in the real street address |
-| Contact email | `src/lib/siteConfig.js` (`CONTACT_EMAIL`) | Currently a placeholder `info@enzinternational.com` — confirm it's a real, monitored inbox |
-| Operational hubs list | `src/data/regions.js`, `src/data/markets.js` | Confirm the six cities / five markets listed are current before launch |
-| Privacy Policy / Terms | `src/pages/Legal.jsx` | Structural placeholder text, explicitly flagged — **have a lawyer review before launch**, especially GDPR/data-processing language |
-| Og/social preview image | `index.html`, `src/components/SEO.jsx` | Points to `/images/og-cover.jpg`, which doesn't exist yet — add a real 1200×630 image |
-| Portal user accounts | `server/` | No self-serve signup by design — run `npm run seed:admin` in `server/` to create real client logins |
-| SMTP provider | `server/.env` | Booking/CV notification emails log to the console until you set `SMTP_*` to a real provider (SendGrid, SES, Postmark, ...) |
-| GA4 / GTM / Sentry IDs | `.env` (frontend) | All three are wired up and consent-gated but inert until you supply real IDs — see section 6 |
+| Real production domain | `_generate...` references were removed — search all files for `enzinternational.com` | Replace with your real domain in every `<link>`/`<meta>` canonical/hreflang tag, `robots.txt`, and `sitemap.xml` |
+| Team bios/photos | `en/about.html` (and sw/fr/zh) | Currently shows a "coming soon" placeholder instead of fake names — add a real team grid when you have photos/bios |
+| Client testimonials/case studies | Not present anywhere | Add a section once you have real, permissioned quotes — nothing fabricated is included |
+| Certifications (e.g. "ISO 9001") | Hero trust badges say "Certifications on request" | Add a specific certification only once you can point to a real, current certificate |
+| HQ address for the embedded map | `contact.html` (all languages) | Currently centers on "Guangzhou, China" generically — swap in the real street address |
+| Contact email | `assets/js/config.js` (`CONTACT_EMAIL`) | Placeholder `info@enzinternational.com` — confirm it's a real, monitored inbox |
+| Operational hubs / markets list | `assets/js/config.js`, page content | Confirm the cities and 5 markets (Tanzania, Kenya, DRC, US, UK) are current |
+| Privacy Policy / Terms | `privacy.html`, `terms.html` | Structural placeholder text, explicitly flagged in-page — **have a lawyer review before launch**, especially GDPR/data-processing language |
+| Web3Forms access key | `assets/js/config.js` | Empty by default (mock mode) — see section 3 |
 
-## 2. What's implemented, mapped to your original 11 categories
+## 2. Stack
 
-**1. SEO & metadata** — per-page `<title>`/description via `react-helmet-async`, canonical URLs, hreflang
-alternates for all 4 languages + x-default, Open Graph + Twitter Card tags, JSON-LD (`Organization`
-site-wide, `LocalBusiness` on Home, `Service` ItemList on Services, `BreadcrumbList` on every inner page,
-`BlogPosting` on each insight post), `robots.txt`, and a generated `sitemap.xml` (44 URLs = static pages +
-3 blog posts + 5 market pages, × 4 languages). *Still needs you:* Search Console verification and a real
-domain before any of this can be crawled for real.
+- **Markup**: hand-written semantic HTML, one real file per page per language (52 pages total: 13 pages ×
+  4 languages, plus a root redirect and a shared 404).
+- **Styling**: Tailwind CSS via the CDN `<script>` tag (no build step, no local config file) — same
+  approach as the very first prototype this site started from.
+- **Animation**: [Motion](https://motion.dev) (`assets/js/motion-effects.js`), loaded as a native ES
+  module import from a CDN — the same team and animation engine as Framer Motion, but framework-free, so
+  it runs without React. Powers scroll-reveal (`[data-reveal]`), count-up stats (`[data-counter]`), and
+  the hero entrance stagger (`[data-hero-stagger]`). If the CDN import ever fails (offline, blocked),
+  everything degrades to instantly-visible content rather than staying hidden — verified in this session's
+  testing, along with a defensive fallback for the (rarer) case where the animation never fires at all.
+- **Interactivity**: plain vanilla JS (`assets/js/site.js`) — no framework. Modals, tabs, FAQ accordion,
+  cookie consent, exit-intent popup, sticky CTA, language switcher, and form submission.
+- **Fonts**: Google Fonts (Inter) via `<link>`, with `preconnect` for performance.
 
-**2. Performance** — route-level code splitting via `React.lazy` for every page, a vendor chunk split from
-app code, font `preconnect`/`display=swap`, and **dead-code elimination for unconfigured integrations** —
-Sentry (`@sentry/react`, ~120KB gzipped) is dynamically imported and only enters the bundle at all once
-`VITE_SENTRY_DSN` is set (verified: 0 bytes when unset, a separate lazy chunk when set). *Still open:*
-image optimization/WebP (no real photography yet), CDN cache headers (set at your hosting layer — nginx
-config included for the Docker path, see section 7), a Lighthouse CI budget.
+## 3. Real email on form submit — no backend required
 
-**3. Multi-page architecture** — React Router with `/:lang/page` structure: Home, About, Services,
-Markets (index + 5 per-market landing pages), Insights (list + posts), Contact, Client Portal, Careers,
-Privacy, Terms, 404.
+`assets/js/api.js` tries three things in order, controlled entirely from `assets/js/config.js`:
 
-**4. Interactive features** — booking form, newsletter signup, portal login, and CV upload are all wired
-to a **real backend** (`server/`, see section 3) — SQLite persistence, real password hashing + JWT for
-portal login, email notifications (console-logged until you set SMTP). No calendar sync or payments yet;
-flag it if you want those next. The frontend still runs standalone in mock mode if `VITE_API_BASE_URL` is
-unset, so it's demoable with zero backend setup.
-
-**5. Content** — About, Services (with process steps), 5 per-market landing pages, Insights (3 full
-articles), FAQ accordion, Careers page with real CV upload. Team/testimonials intentionally left empty
-(see section 1).
-
-**6. CRO** — sticky bottom CTA bar, FAQ accordion, newsletter capture, an exit-intent popup (desktop-only,
-fires once per tab session when the cursor leaves toward the top of the viewport, opens the booking
-modal), 5 per-market landing pages, cookie-consent-gated analytics. *Still open:* A/B testing — Google
-Optimize (the tool named in your original brief) was **discontinued by Google in 2023**; if you want
-experimentation, tell me and I'll wire up an alternative (GrowthBook and PostHog both have straightforward
-React SDKs) rather than build against a dead product.
-
-**7. Analytics & monitoring** — GA4, GTM, and Sentry are all implemented and load **only after a visitor
-accepts cookies** (`src/lib/analytics.js`, `src/lib/monitoring.js`, `src/lib/consent.js`), each a no-op
-until you supply its ID in `.env`. GA4 fires a virtual pageview on every client-side route change (SPAs
-don't get free pageviews from GA4's default snippet). Scroll-depth/engagement tracking isn't wired in —
-flag it if you want it once GA4 is actually configured, since testing it meaningfully needs a real
-property.
-
-**8. Backend** — see the dedicated section below. This moved from "documented contract" to "working
-implementation" in Phase 2.
-
-**9. Security & compliance** — real password hashing (bcrypt) + JWT for portal auth (no more "any
-credentials accepted"), rate limiting (general + a tighter limit on login), input validation (zod) on
-every endpoint, `helmet` security headers, CORS locked to your frontend origin, PDF-only + size-capped
-uploads, cookie consent banner. HTTPS/SSL is a hosting-platform concern (Vercel/Netlify provide it
-automatically). Real CSRF protection is less relevant here since the API takes JSON/FormData from a
-same-origin SPA rather than form posts, but flag it if your deployment shape changes that.
-
-**10. UI/UX polish** — focus-trapped, keyboard-accessible modals, skip-to-content link, visible focus
-rings, `aria-*` labeling throughout, 404 page, breadcrumbs with `BreadcrumbList` schema, print stylesheet.
-*Still open:* dark mode, page-transition animations — genuinely optional polish, not blocking launch.
-
-**11. Deployment & DevOps** — GitHub Actions CI (frontend lint/test/build, backend lint/test, Cypress e2e
-— see `.github/workflows/ci.yml`), Dockerfiles for both frontend (nginx) and backend, `docker-compose.yml`
-to run them together. **Not verified in this environment** — no Docker daemon was available here to build
-the images; run `docker compose build` yourself before relying on it. Staging vs. production environments
-and a database backup strategy are deployment-target decisions I can't make for you (they depend on where
-you host `server/`) — flag it once you've picked a host and I'll set it up.
-
----
-
-## 3. Backend — `server/` (or zero backend at all)
-
-There are now two ways to get real form submissions instead of mock responses, tried in this order by
-`src/lib/api.js`:
-
-1. **`VITE_API_BASE_URL`** — the real backend below. Full persistence, real portal auth, your own database.
-2. **`VITE_WEB3FORMS_ACCESS_KEY`** — no backend at all. Forms POST straight to
-   [Web3Forms](https://web3forms.com), which emails the submission to whichever address you registered
-   the key with. Free, no account/password (just an emailed key), set up in under a minute. This is the
-   right choice if you don't want to run or pay for a backend — it directly answers "forms should arrive
-   by email automatically." The one thing it **can't** do is client-portal login (it's a mail relay, not
-   an auth provider) — that still needs option 1 if you want real portal accounts.
-
-Leave both unset to stay in mock mode (forms work, nothing is sent).
-
-A real, working implementation of the four endpoints, not just a documented contract:
-
-```
-POST /api/bookings                        { name, email, phone?, company?, date, service, message? }
-POST /api/newsletter                      { email }
-POST /api/auth/login                      { email, password } → { token, user }
-POST /api/careers/applications  (multipart)  name, email, message, cv (PDF, ≤5MB)
-```
-
-- **Persistence**: SQLite via Node's built-in `node:sqlite` (not `better-sqlite3` — this machine had no
-  Python/node-gyp toolchain to compile it, and the built-in module needs no native build step at all,
-  which is arguably better for deployability anyway). Requires Node ≥22.5.
-- **Auth**: bcrypt password hashing, JWT issuance, no self-serve signup — accounts are created via
-  `npm run seed:admin` (see `server/README.md`).
-- **Tests**: Node's built-in test runner (not Vitest — Vitest's bundled Vite couldn't resolve `node:sqlite`
-  as an external, a known gap for very new Node builtins; Node's own runner sidesteps the issue entirely).
-  10 tests covering all four endpoints, run with `npm test` inside `server/`.
-- **Not yet real**: email delivery (logs to console until you set `SMTP_*`), file storage for CVs (local
-  disk in `server/uploads/`, not S3 — fine for low volume, revisit if that grows).
-
-Full setup: [`server/README.md`](./server/README.md). Frontend `.env`: set `VITE_API_BASE_URL` to point at
-it (leave unset to keep the frontend in standalone mock mode).
-
-**This is a long-running Node process, not a serverless function set.** If you'd rather deploy on
-Vercel/Netlify functions instead of a VPS/container, the route handlers in `server/src/routes/` would need
-adapting to that platform's function signature — say so and I'll do that conversion instead.
+1. **`API_BASE_URL`** — if you stand up a real backend somewhere, point at it here for full persistence
+   and real client-portal auth. (Not included in this repo — ask if you want one built; it would be a
+   separate service you host, since "no other stack" means it can't live in this repo.)
+2. **`WEB3FORMS_ACCESS_KEY`** — no backend at all. Get a free key at [web3forms.com](https://web3forms.com)
+   (no account/password — the key is emailed to you). Forms POST straight to Web3Forms, which relays the
+   submission to your inbox. This is the recommended path given the all-static constraint — it directly
+   answers "the form should arrive by email automatically" with zero infrastructure to run or pay for.
+   The one thing it can't do is client-portal login (it's a mail relay, not an auth provider).
+3. **Neither set** — mock mode. Every form works and shows a success state, but nothing is sent. Safe
+   default for previewing the site.
 
 ## 4. SEO audit — current state
 
@@ -144,99 +60,46 @@ adapting to that platform's function signature — say so and I'll do that conve
 | Unique `<title>`/description per page/language | ✅ |
 | Canonical URLs | ✅ |
 | hreflang (all 4 languages + x-default) | ✅ |
-| Open Graph / Twitter Card | ✅ (og image asset itself still needs to be supplied — see section 1) |
-| JSON-LD structured data | ✅ Organization, LocalBusiness, Service, BreadcrumbList, BlogPosting |
-| `robots.txt` + `sitemap.xml` | ✅ 44 URLs; portal/privacy/terms correctly excluded via `noindex` + robots disallow |
+| Open Graph / Twitter Card | ✅ (add a real 1200×630 `og-cover.jpg` and a real domain before launch) |
+| JSON-LD structured data | ✅ Organization/LocalBusiness (home), Service list (services), BreadcrumbList (inner pages), BlogPosting (insight posts) |
+| `robots.txt` + `sitemap.xml` | ✅ 44 URLs; portal/privacy/terms correctly excluded |
 | Semantic heading hierarchy (one `<h1>` per page) | ✅ |
-| Image alt text | ✅ for the logo; no other imagery exists yet to audit |
-| Mobile responsiveness | ✅ (Tailwind mobile-first) |
-| Per-market landing pages (long-tail SEO) | ✅ Tanzania, Kenya, DRC, US, UK |
-| Core Web Vitals / Lighthouse score | ⏳ not yet measured — run `npm run build && npm run preview` and audit with Lighthouse once deployed to a real URL; localhost scores aren't representative |
+| Real per-language URLs (not query params or client routing) | ✅ — this is the structural advantage of the all-static approach: every `/xx/page.html` is a genuinely separate, crawlable file |
+| Mobile responsiveness | ✅ verified at 375px — no horizontal overflow, mobile menu functional |
+| Core Web Vitals / Lighthouse score | ⏳ not yet measured — audit once deployed to a real URL; localhost scores aren't representative |
 | Google Search Console / Bing Webmaster verification | ⏳ needs your domain + account |
 
-**Ranking for "global sourcing China" realistically**: on-page SEO is necessary but not sufficient — that
-keyword is competitive, and ranking also depends on backlinks, domain age/authority, and content velocity
-(3 blog posts + 5 market pages is a start, not a full content strategy).
+**Ranking realistically**: on-page SEO here is solid, but competitive keywords also depend on backlinks,
+domain age/authority, and content velocity (3 blog posts is a start, not a full content strategy).
 
 ## 5. Performance checklist
 
-- [x] Route-based code splitting (`React.lazy`)
-- [x] Vendor chunk separated from app code
-- [x] Font preconnect + `display=swap`
-- [x] No unused CSS shipped (Tailwind purges by content scan)
-- [x] Zero-cost when unconfigured — Sentry is dead-code-eliminated from the bundle until you set a DSN
+- [x] Zero build-step JS/CSS shipped as-is — no bundle to bloat
+- [x] Font `preconnect` + `display=swap`
+- [x] Motion loaded as a CDN ES module — only fetched once, cached by the browser across all 52 pages
+- [x] No horizontal overflow at mobile widths
 - [ ] Image optimization / WebP — revisit once real photography (team, facilities) is added
-- [ ] CDN cache headers — configured in `nginx.conf` for the Docker path; set equivalently at Vercel/Netlify
+- [ ] CDN cache headers — configure at your hosting platform (Vercel/Netlify set sensible defaults for
+      static files automatically; no server-side config needed for a plain static site)
 - [ ] Lighthouse CI budget — add once deployed to a stable URL
 
-## 6. Analytics & monitoring setup
+## 6. Deployment guide
 
-All three are already wired to `src/lib/consent.js` — nothing loads until a visitor clicks "Accept all" on
-the cookie banner. To activate:
+**Any static host, zero configuration**:
 
-1. Copy `.env.example` to `.env` (frontend root).
-2. `VITE_GA4_MEASUREMENT_ID` — from your GA4 property. Pageviews fire automatically on route change.
-3. `VITE_GTM_CONTAINER_ID` — from Google Tag Manager, if you use it instead of/alongside GA4 directly.
-4. `VITE_SENTRY_DSN` — from a Sentry project. Rebuild after setting it (`npm run build`) — this is when
-   the Sentry chunk actually gets included; setting it at runtime with no rebuild does nothing.
+- **Vercel**: import the repo, leave the framework preset as "Other" / no build command. Root directory
+  is the repo root. Deploy.
+- **Netlify**: same — no build command, publish directory is the repo root.
+- **Anything else** (S3, GitHub Pages, nginx, a shared host over FTP): upload the repo contents as-is.
 
-## 7. Deployment guide
+There is no SPA fallback to configure — every URL is a real file, so there's nothing for a 404-to-200
+rewrite rule to do. `404.html` is picked up automatically by most static hosts for genuinely unmatched
+paths.
 
-**Vercel or Netlify (recommended for the frontend — zero config beyond env vars):**
+## 7. Testing
 
-1. Push this repo to GitHub/GitLab.
-2. Import the repo. Build command: `npm run build`. Output directory: `dist`.
-3. SPA fallback is already configured: `vercel.json` (rewrite) and `public/_redirects` (Netlify) are both
-   in the repo.
-4. Set environment variables (`VITE_API_BASE_URL`, `VITE_GA4_MEASUREMENT_ID`, etc.) once you have them —
-   leaving them unset keeps the site in mock mode, which is safe to ship.
-5. Point your domain's DNS at the platform; both provision HTTPS automatically.
-6. The backend (`server/`) needs somewhere else to run — it's a long-running process, not a static site.
-   Railway, Render, Fly.io, or a small VPS all work; see `server/README.md`.
-
-**Full stack via Docker** (frontend + backend together, e.g. on a VPS):
-
-```bash
-cp server/.env.example server/.env   # fill in JWT_SECRET at minimum
-docker compose up --build
-```
-
-Frontend on `:8080`, backend on `:4000`. **I wrote this but couldn't verify it builds** — no Docker daemon
-was available in this environment. Run `docker compose build` yourself before relying on it in production.
-
-**Any other static host** (S3+CloudFront, GitHub Pages, etc.): needs the same SPA-fallback behavior —
-configure a 404-to-200 rewrite to `index.html`, and cache `dist/assets/*` forever (`immutable`) while
-keeping `index.html` uncached.
-
-## 8. Known dependency advisories (tracked, not acted on)
-
-- `react-router-dom` has a moderate-severity open-redirect advisory patched only in the v7 major (pinned
-  to the latest 6.x patch, `^6.30.6`, in the meantime). Exposure here is low — every `navigate()`/`<Link>`
-  target in this app is built from a fixed language code + static path segment, never raw user input — but
-  a v6→v7 upgrade is worth scheduling once there's time to regression-test the route tree.
-- `esbuild` (via Vite's and Cypress's dev-only tooling) has a known advisory that only affects local dev
-  servers, not production builds — same situation on both the frontend and `server/`.
-- Cypress's own dependency tree carries some older transitive packages with advisories; all devDependency
-  -only, not shipped to users (`npm audit --omit=dev` on the frontend shows only the react-router item
-  above).
-
-## 9. Testing
-
-- **Unit** (`npm test`, frontend): Vitest + React Testing Library — routing/i18n, language switching, 404
-  handling, booking form validation + mock-submit flow. 5 tests.
-- **Unit** (`npm test`, `server/`): Node's built-in test runner + supertest — all 4 API endpoints,
-  including auth success/failure paths and file-type rejection. 10 tests, isolated SQLite file per run.
-- **E2E** (`npm run e2e`, frontend): Cypress against a real production build — booking flow end-to-end,
-  portal login, modal focus/Escape behavior, language switching (URL + content), navigation, 404. 9 tests,
-  all passing. Runs in CI via `cypress-io/github-action`. Note: if you ever run Cypress locally on Windows
-  in a sandboxed/GPU-restricted environment, `npm run cy:run` already bakes in the `--disable-gpu` flags
-  that were needed to get Electron to launch here — you shouldn't need to think about this.
-
-## 10. What's left, roughly in priority order
-
-1. Real content (section 1) — the only thing actually blocking launch.
-2. Point `server/` at a real SMTP provider so notifications land in an inbox.
-3. Deploy `server/` somewhere long-running and set `VITE_API_BASE_URL` in production.
-4. Verify the Docker build actually works (I couldn't test it here).
-5. Decide on an A/B testing tool (Google Optimize is dead) if you still want experimentation.
-6. Real photography → image optimization pass.
+No test framework is included (that would itself be "another stack" — Node/npm-based test runners don't
+fit a zero-tooling site). Verification for this build was done by hand in-browser: console-error checks,
+DOM-state assertions for interactive elements (modals, tabs, forms), and viewport-width overflow checks at
+375px/1280px. If you want automated regression coverage later, that's a separate decision to make
+explicitly, since any JS test runner reintroduces Node/npm as a dev-time dependency (not a shipped one).

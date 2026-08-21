@@ -1,14 +1,2 @@
-node_modules
-dist
-dist-ssr
-*.local
-.env
-.env.local
-.env.*.local
-npm-debug.log*
 .DS_Store
-coverage
-cypress/screenshots
-cypress/videos
-cypress/downloads
-preview.log
+Thumbs.db

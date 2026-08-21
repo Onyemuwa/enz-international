@@ -1,9 +1,0 @@
-node_modules
-dist
-server/node_modules
-server/data
-server/data-test
-server/uploads
-.git
-.env
-server/.env
