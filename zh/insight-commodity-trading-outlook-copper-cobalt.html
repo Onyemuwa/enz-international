@@ -7,7 +7,8 @@
     <title>Commodity Trading Fundamentals: Copper and Cobalt | ENZ INTERNATIONAL</title>
     <meta name="description" content="A primer on the procurement considerations that matter most when trading copper and cobalt across African and Chinese markets." />
     <link rel="canonical" href="https://enzinternational.co/zh/insight-commodity-trading-outlook-copper-cobalt.html" />
-    <link rel="icon" type="image/png" href="../assets/images/enz-logo.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/images/favicon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png" />
     <link rel="alternate" hreflang="en" href="https://enzinternational.co/en/insight-commodity-trading-outlook-copper-cobalt.html" />
     <link rel="alternate" hreflang="sw" href="https://enzinternational.co/sw/insight-commodity-trading-outlook-copper-cobalt.html" />
     <link rel="alternate" hreflang="fr" href="https://enzinternational.co/fr/insight-commodity-trading-outlook-copper-cobalt.html" />
@@ -34,10 +35,18 @@
       tailwind.config = {
         theme: { extend: {
           colors: {
-            navy: '#0B1220', ink: '#0A0A0B', slate: '#5A6472',
-            brand: '#2563EB', 'brand-dark': '#1D4ED8', 'brand-tint': '#EFF4FF',
-            gold: '#C9A227',
-            line: '#E8EAEE', 'gray-bg': '#FAFAFB',
+            navy: '#0B1A24', ink: '#0A0F14', slate: '#5A6A75',
+            /* Brand scale derived from the logo's own hue (199deg), sampled
+               from assets/images/enz-logo.png: blue #2AA8E4, orange #FCAE42.
+               The logo blue is only 2.7:1 on white — it FAILS WCAG AA, so it
+               can never be text or a button fill on a light background.
+               'brand' is therefore the darkened same-hue variant (6.2:1) used
+               for anything interactive, and 'brand-bright' is the exact logo
+               colour, reserved for dark backgrounds and decorative fills where
+               contrast is satisfied. Same family, different jobs. */
+            brand: '#12688F', 'brand-dark': '#0E5878', 'brand-bright': '#2AA8E4', 'brand-tint': '#EAF6FD',
+            accent: '#FCAE42', 'accent-tint': '#FFF4E3',
+            line: '#E4E9ED', 'gray-bg': '#F8FAFB',
           },
           fontFamily: { inter: ['Inter', 'sans-serif'] },
         } },
@@ -50,8 +59,8 @@
       h1 { letter-spacing: -0.033em; }
       h2 { letter-spacing: -0.025em; }
       h3 { letter-spacing: -0.015em; }
-      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #2563EB; outline-offset: 2px; border-radius: 4px; }
-      .skip-link { position: absolute; left: -9999px; top: 0; background: #2563EB; color: #fff; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
+      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #12688F; outline-offset: 2px; border-radius: 4px; }
+      .skip-link { position: absolute; left: -9999px; top: 0; background: #12688F; color: #fff; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
       .skip-link:focus { left: 1rem; top: 1rem; }
       /* NOTE: there is deliberately no opacity:0 initial state anywhere.
          Entrance reveals were removed outright — four separate attempts at
@@ -131,24 +140,24 @@
       <div>
         <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">服务</h2>
         <ul class="text-sm space-y-3">
-          <li><a href="services.html" class="hover:text-brand transition">采购</a></li>
-          <li><a href="services.html" class="hover:text-brand transition">工厂</a></li>
-          <li><a href="services.html" class="hover:text-brand transition">中国市场进入与扩展</a></li>
+          <li><a href="services.html" class="hover:text-brand-bright transition">采购</a></li>
+          <li><a href="services.html" class="hover:text-brand-bright transition">工厂</a></li>
+          <li><a href="services.html" class="hover:text-brand-bright transition">中国市场进入与扩展</a></li>
         </ul>
       </div>
       <div>
         <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">公司</h2>
         <ul class="text-sm space-y-3">
-          <li><a href="about.html" class="hover:text-brand transition">关于我们</a></li>
-          <li><a href="markets.html" class="hover:text-brand transition">服务市场</a></li>
-          <li><a href="insights.html" class="hover:text-brand transition">洞察</a></li>
-          <li><a href="careers.html" class="hover:text-brand transition">招聘</a></li>
-          <li><a href="contact.html" class="hover:text-brand transition">联系我们</a></li>
+          <li><a href="about.html" class="hover:text-brand-bright transition">关于我们</a></li>
+          <li><a href="markets.html" class="hover:text-brand-bright transition">服务市场</a></li>
+          <li><a href="insights.html" class="hover:text-brand-bright transition">洞察</a></li>
+          <li><a href="careers.html" class="hover:text-brand-bright transition">招聘</a></li>
+          <li><a href="contact.html" class="hover:text-brand-bright transition">联系我们</a></li>
         </ul>
       </div>
       <div>
         <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">联系方式</h2>
-        <p class="text-sm flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8613203840456" class="hover:text-brand transition">+86 132 0384 0456</a></p>
+        <p class="text-sm flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8613203840456" class="hover:text-brand-bright transition">+86 132 0384 0456</a></p>
         <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="mt-4 flex items-center gap-2 bg-green-600/15 hover:bg-green-600/25 text-green-400 px-4 py-2.5 rounded-full text-sm transition w-fit">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp 聊天
         </a>
@@ -160,15 +169,15 @@
             <button type="submit" class="bg-brand text-white text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-brand-dark transition-colors">订阅</button>
           </div>
         </form>
-        <p id="newsletter-success" role="status" hidden class="text-sm text-brand mt-3">谢谢 — 请查看您的邮箱以确认订阅。</p>
+        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3">谢谢 — 请查看您的邮箱以确认订阅。</p>
       </div>
     </div>
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
       <p>© <span data-current-year></span> ENZ INTERNATIONAL. All rights reserved.</p>
       <p class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</p>
       <div class="flex gap-5">
-        <a href="privacy.html" class="hover:text-brand transition">隐私政策</a>
-        <a href="terms.html" class="hover:text-brand transition">服务条款</a>
+        <a href="privacy.html" class="hover:text-brand-bright transition">隐私政策</a>
+        <a href="terms.html" class="hover:text-brand-bright transition">服务条款</a>
       </div>
     </div>
   </footer>
@@ -246,10 +255,10 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=5"></script>
-    <script src="../assets/js/i18n.js?v=5"></script>
-    <script src="../assets/js/api.js?v=5"></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=5"></script>
-    <script src="../assets/js/site.js?v=5" defer></script>
+    <script src="../assets/js/config.js?v=8"></script>
+    <script src="../assets/js/i18n.js?v=8"></script>
+    <script src="../assets/js/api.js?v=8"></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=8"></script>
+    <script src="../assets/js/site.js?v=8" defer></script>
   </body>
 </html>

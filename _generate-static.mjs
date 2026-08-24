@@ -23,7 +23,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '5';
+const ASSET_VERSION = '8';
 
 function t(lang, key, vars) {
   let str = dict[lang]?.[key] ?? dict.en[key] ?? key;
@@ -74,6 +74,9 @@ const BTN_SECONDARY =
 const BTN_GHOST_LIGHT =
   'inline-flex items-center justify-center gap-2 bg-white/[0.08] border border-white/20 hover:bg-white/[0.14] hover:border-white/30 text-white font-medium rounded-lg transition-colors duration-200';
 const EYEBROW = 'text-xs font-semibold tracking-[0.14em] uppercase text-brand';
+// Orange from the logo, used sparingly as a second accent so the palette reads
+// as the mark's two colours rather than a single blue borrowed from elsewhere.
+const RULE_ACCENT = 'w-10 h-0.5 bg-accent rounded-full';
 const H2 = 'text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink';
 const LEAD = 'text-slate text-lg leading-relaxed';
 
@@ -159,24 +162,24 @@ function footerHTML(lang) {
       <div>
         <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">${t(lang, 'footerServices')}</h2>
         <ul class="text-sm space-y-3">
-          <li><a href="services.html" class="hover:text-brand transition">${t(lang, 'tabSourcing')}</a></li>
-          <li><a href="services.html" class="hover:text-brand transition">${t(lang, 'tabFactory')}</a></li>
-          <li><a href="services.html" class="hover:text-brand transition">${t(lang, 'service3')}</a></li>
+          <li><a href="services.html" class="hover:text-brand-bright transition">${t(lang, 'tabSourcing')}</a></li>
+          <li><a href="services.html" class="hover:text-brand-bright transition">${t(lang, 'tabFactory')}</a></li>
+          <li><a href="services.html" class="hover:text-brand-bright transition">${t(lang, 'service3')}</a></li>
         </ul>
       </div>
       <div>
         <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">${t(lang, 'footerCompany')}</h2>
         <ul class="text-sm space-y-3">
-          <li><a href="about.html" class="hover:text-brand transition">${t(lang, 'navAbout')}</a></li>
-          <li><a href="markets.html" class="hover:text-brand transition">${t(lang, 'navMarkets')}</a></li>
-          <li><a href="insights.html" class="hover:text-brand transition">${t(lang, 'navInsights')}</a></li>
-          <li><a href="careers.html" class="hover:text-brand transition">${t(lang, 'navCareers')}</a></li>
-          <li><a href="contact.html" class="hover:text-brand transition">${t(lang, 'navContact')}</a></li>
+          <li><a href="about.html" class="hover:text-brand-bright transition">${t(lang, 'navAbout')}</a></li>
+          <li><a href="markets.html" class="hover:text-brand-bright transition">${t(lang, 'navMarkets')}</a></li>
+          <li><a href="insights.html" class="hover:text-brand-bright transition">${t(lang, 'navInsights')}</a></li>
+          <li><a href="careers.html" class="hover:text-brand-bright transition">${t(lang, 'navCareers')}</a></li>
+          <li><a href="contact.html" class="hover:text-brand-bright transition">${t(lang, 'navContact')}</a></li>
         </ul>
       </div>
       <div>
         <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">${t(lang, 'footerContact')}</h2>
-        <p class="text-sm flex items-center gap-2">${icon('phone', 'w-4 h-4 text-brand')}<a href="tel:${CONTACT_PHONE.replace(/\s/g, '')}" class="hover:text-brand transition">${CONTACT_PHONE}</a></p>
+        <p class="text-sm flex items-center gap-2">${icon('phone', 'w-4 h-4 text-brand-bright')}<a href="tel:${CONTACT_PHONE.replace(/\s/g, '')}" class="hover:text-brand-bright transition">${CONTACT_PHONE}</a></p>
         <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" rel="noopener noreferrer" class="mt-4 flex items-center gap-2 bg-green-600/15 hover:bg-green-600/25 text-green-400 px-4 py-2.5 rounded-full text-sm transition w-fit">
           ${icon('whatsapp', 'w-4 h-4')} ${t(lang, 'footerWhatsapp')}
         </a>
@@ -188,15 +191,15 @@ function footerHTML(lang) {
             <button type="submit" class="bg-brand text-white text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-brand-dark transition-colors">${t(lang, 'ctaSubscribe')}</button>
           </div>
         </form>
-        <p id="newsletter-success" role="status" hidden class="text-sm text-brand mt-3">${t(lang, 'footerNewsletterSuccess')}</p>
+        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3">${t(lang, 'footerNewsletterSuccess')}</p>
       </div>
     </div>
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
       <p>© <span data-current-year></span> ENZ INTERNATIONAL. All rights reserved.</p>
       <p class="flex items-center gap-1.5">${icon('mapPin', 'w-3 h-3')} ${hubs.join(' · ')}</p>
       <div class="flex gap-5">
-        <a href="privacy.html" class="hover:text-brand transition">${t(lang, 'footerPrivacy')}</a>
-        <a href="terms.html" class="hover:text-brand transition">${t(lang, 'footerTerms')}</a>
+        <a href="privacy.html" class="hover:text-brand-bright transition">${t(lang, 'footerPrivacy')}</a>
+        <a href="terms.html" class="hover:text-brand-bright transition">${t(lang, 'footerTerms')}</a>
       </div>
     </div>
   </footer>`;
@@ -314,7 +317,8 @@ function seoHead({ lang, title, description, page, jsonLd }) {
     <title>${title} | ENZ INTERNATIONAL</title>
     <meta name="description" content="${description}" />
     <link rel="canonical" href="${canonical}" />
-    <link rel="icon" type="image/png" href="../assets/images/enz-logo.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/images/favicon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png" />
     ${alternates}
     <link rel="alternate" hreflang="x-default" href="${SITE_URL}/en/${page}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -338,10 +342,18 @@ function seoHead({ lang, title, description, page, jsonLd }) {
       tailwind.config = {
         theme: { extend: {
           colors: {
-            navy: '#0B1220', ink: '#0A0A0B', slate: '#5A6472',
-            brand: '#2563EB', 'brand-dark': '#1D4ED8', 'brand-tint': '#EFF4FF',
-            gold: '#C9A227',
-            line: '#E8EAEE', 'gray-bg': '#FAFAFB',
+            navy: '#0B1A24', ink: '#0A0F14', slate: '#5A6A75',
+            /* Brand scale derived from the logo's own hue (199deg), sampled
+               from assets/images/enz-logo.png: blue #2AA8E4, orange #FCAE42.
+               The logo blue is only 2.7:1 on white — it FAILS WCAG AA, so it
+               can never be text or a button fill on a light background.
+               'brand' is therefore the darkened same-hue variant (6.2:1) used
+               for anything interactive, and 'brand-bright' is the exact logo
+               colour, reserved for dark backgrounds and decorative fills where
+               contrast is satisfied. Same family, different jobs. */
+            brand: '#12688F', 'brand-dark': '#0E5878', 'brand-bright': '#2AA8E4', 'brand-tint': '#EAF6FD',
+            accent: '#FCAE42', 'accent-tint': '#FFF4E3',
+            line: '#E4E9ED', 'gray-bg': '#F8FAFB',
           },
           fontFamily: { inter: ['Inter', 'sans-serif'] },
         } },
@@ -354,8 +366,8 @@ function seoHead({ lang, title, description, page, jsonLd }) {
       h1 { letter-spacing: -0.033em; }
       h2 { letter-spacing: -0.025em; }
       h3 { letter-spacing: -0.015em; }
-      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #2563EB; outline-offset: 2px; border-radius: 4px; }
-      .skip-link { position: absolute; left: -9999px; top: 0; background: #2563EB; color: #fff; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
+      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #12688F; outline-offset: 2px; border-radius: 4px; }
+      .skip-link { position: absolute; left: -9999px; top: 0; background: #12688F; color: #fff; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
       .skip-link:focus { left: 1rem; top: 1rem; }
       /* NOTE: there is deliberately no opacity:0 initial state anywhere.
          Entrance reveals were removed outright — four separate attempts at
@@ -428,7 +440,7 @@ function homePage(lang) {
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="max-w-3xl mx-auto text-center pt-24 pb-20 md:pt-32 md:pb-28">
         <a href="markets.html" class="inline-flex items-center gap-2 bg-brand-tint text-brand text-[0.8125rem] font-medium px-3 py-1.5 rounded-full border border-brand/15 hover:border-brand/30 transition-colors">
-          <span class="w-1.5 h-1.5 rounded-full bg-brand"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
           ${t(lang, 'heroBadge1')} · ${t(lang, 'heroBadge2')} · ${t(lang, 'heroBadge3')}
         </a>
         <h1 class="text-[2.75rem] leading-[1.08] md:text-[4rem] md:leading-[1.05] font-semibold text-ink mt-7">${t(lang, 'heroTitle')}</h1>
