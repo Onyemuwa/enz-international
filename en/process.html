@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0A192F" />
+    <title>How a sourcing project actually runs | ENZ INTERNATIONAL</title>
+    <meta name="description" content="Five stages from first call to delivered goods, with what happens at each and what you get out of it." />
+    <link rel="canonical" href="https://enzinternational.co/en/process.html" />
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/images/favicon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png" />
+    <link rel="alternate" hreflang="en" href="https://enzinternational.co/en/process.html" />
+    <link rel="alternate" hreflang="sw" href="https://enzinternational.co/sw/process.html" />
+    <link rel="alternate" hreflang="fr" href="https://enzinternational.co/fr/process.html" />
+    <link rel="alternate" hreflang="zh" href="https://enzinternational.co/zh/process.html" />
+    <link rel="alternate" hreflang="x-default" href="https://enzinternational.co/en/process.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ENZ INTERNATIONAL" />
+    <meta property="og:title" content="How a sourcing project actually runs | ENZ INTERNATIONAL" />
+    <meta property="og:description" content="Five stages from first call to delivered goods, with what happens at each and what you get out of it." />
+    <meta property="og:url" content="https://enzinternational.co/en/process.html" />
+    <meta property="og:image" content="https://enzinternational.co/assets/images/og-cover.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How a sourcing project actually runs | ENZ INTERNATIONAL" />
+    <meta name="twitter:description" content="Five stages from first call to delivered goods, with what happens at each and what you get out of it." />
+    <meta name="twitter:image" content="https://enzinternational.co/assets/images/og-cover.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: { extend: {
+          colors: {
+            navy: '#0B1A24', ink: '#0A0F14', slate: '#5A6A75',
+            /* Brand scale derived from the logo's own hue (199deg), sampled
+               from assets/images/enz-logo.png: blue #2AA8E4, orange #FCAE42.
+               The logo blue is only 2.7:1 on white — it FAILS WCAG AA, so it
+               can never be text or a button fill on a light background.
+               'brand' is therefore the darkened same-hue variant (6.2:1) used
+               for anything interactive, and 'brand-bright' is the exact logo
+               colour, reserved for dark backgrounds and decorative fills where
+               contrast is satisfied. Same family, different jobs. */
+            brand: '#12688F', 'brand-dark': '#0E5878', 'brand-bright': '#2AA8E4', 'brand-tint': '#EAF6FD',
+            accent: '#FCAE42', 'accent-tint': '#FFF4E3',
+            line: '#E4E9ED', 'gray-bg': '#F8FAFB',
+          },
+          fontFamily: { inter: ['Inter', 'sans-serif'] },
+        } },
+      };
+    </script>
+    <style>
+      body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; }
+      /* Optical tightening on large display type — the single biggest difference
+         between "template" and "designed" at headline sizes. */
+      h1 { letter-spacing: -0.033em; }
+      h2 { letter-spacing: -0.025em; }
+      h3 { letter-spacing: -0.015em; }
+      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #12688F; outline-offset: 2px; border-radius: 4px; }
+      .skip-link { position: absolute; left: -9999px; top: 0; background: #12688F; color: #fff; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
+      .skip-link:focus { left: 1rem; top: 1rem; }
+      /* NOTE: there is deliberately no opacity:0 initial state anywhere.
+         Entrance reveals were removed outright — four separate attempts at
+         "hide, then reveal on scroll" each shipped invisible content when the
+         reveal step didn't run (observer never fired, animation never
+         advanced, or a transition-all pinned the element at its start value).
+         On a marketing site, content that is merely *decorated* by motion must
+         never be *gated* by it. Hover/focus transitions are safe: they animate
+         from a visible state, so a stalled one still leaves content readable. */
+      @media print { header, footer, .no-print { display: none !important; } }
+    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How a sourcing project actually runs","description":"Five stages from first call to delivered goods, with what happens at each and what you get out of it.","step":[{"@type":"HowToStep","position":1,"name":"Discovery call","text":"We establish what you are buying or building, at what volume, to what tolerance, and by when."},{"@type":"HowToStep","position":2,"name":"Supplier identification","text":"We shortlist factories against your spec and verify they are what they claim to be."},{"@type":"HowToStep","position":3,"name":"Sampling and negotiation","text":"Samples are produced and reviewed before terms are fixed."},{"@type":"HowToStep","position":4,"name":"Production and quality control","text":"Production is monitored and inspected at defined checkpoints, not just at the end."},{"@type":"HowToStep","position":5,"name":"Freight and customs","text":"Goods are booked, documented, and cleared into your market."}]}</script>
+  </head>
+  <body class="bg-gray-bg text-ink antialiased">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+  <header class="bg-white/85 backdrop-blur-xl sticky top-0 z-50 border-b border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center shrink-0">
+        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="132" height="36" class="h-9 w-auto object-contain" />
+      </a>
+      <nav class="hidden lg:flex items-center gap-8 text-[0.9375rem] font-medium" aria-label="Primary">
+        <a href="index.html" class="transition-colors text-slate hover:text-ink">Home</a>
+<a href="services.html" class="transition-colors text-slate hover:text-ink">Services</a>
+<a href="process.html" class="transition-colors text-ink">Process</a>
+<a href="industries.html" class="transition-colors text-slate hover:text-ink">Industries</a>
+<a href="markets.html" class="transition-colors text-slate hover:text-ink">Markets</a>
+<a href="about.html" class="transition-colors text-slate hover:text-ink">About</a>
+<a href="insights.html" class="transition-colors text-slate hover:text-ink">Insights</a>
+<a href="contact.html" class="transition-colors text-slate hover:text-ink">Contact</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-3">
+        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/process.html" class="bg-transparent border border-line rounded-md px-2 py-1.5 text-xs text-slate cursor-pointer hover:border-slate/40 transition-colors"><option value="en" selected>EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" >ZH</option></select>
+        <button data-open-portal class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-3.5 py-2 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Client Portal</span>
+        </button>
+        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-4 py-2 text-sm">Book Consultation</button>
+      </div>
+      <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav" class="lg:hidden text-ink" aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Primary" class="lg:hidden bg-white border-t border-line px-4 py-6 space-y-4 text-[0.9375rem]">
+      <a href="index.html" class="block text-slate hover:text-ink transition-colors">Home</a>
+<a href="services.html" class="block text-slate hover:text-ink transition-colors">Services</a>
+<a href="process.html" class="block text-slate hover:text-ink transition-colors">Process</a>
+<a href="industries.html" class="block text-slate hover:text-ink transition-colors">Industries</a>
+<a href="markets.html" class="block text-slate hover:text-ink transition-colors">Markets</a>
+<a href="about.html" class="block text-slate hover:text-ink transition-colors">About</a>
+<a href="insights.html" class="block text-slate hover:text-ink transition-colors">Insights</a>
+<a href="contact.html" class="block text-slate hover:text-ink transition-colors">Contact</a>
+      <div class="pt-3 space-y-3 border-t border-line">
+        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 w-full px-4 py-2.5 text-sm">Book Consultation</button>
+        <button data-open-portal class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 w-full px-4 py-2.5 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Client Portal</span>
+        </button>
+        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/process.html" class="bg-transparent border border-line rounded-md px-2 py-1.5 text-xs text-slate cursor-pointer hover:border-slate/40 transition-colors"><option value="en" selected>EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" >ZH</option></select>
+      </div>
+    </nav>
+  </header>
+    <nav aria-label="Breadcrumb" class="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-sm text-slate"><ol class="flex flex-wrap items-center gap-1.5"><li class="flex items-center gap-1.5"><a href="index.html" class="hover:text-brand transition">Home</a></li><li class="flex items-center gap-1.5"><span aria-hidden="true">/</span></li><li class="flex items-center gap-1.5"><span class="text-ink font-medium" aria-current="page">Process</span></li></ol></nav>
+    <main id="main-content">
+      
+  
+  <section class="bg-white border-b border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl text-center pt-16 pb-14 md:pt-20 md:pb-16">
+      <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Process</p>
+      <h1 class="text-[2.25rem] leading-[1.1] md:text-[3.25rem] md:leading-[1.06] font-semibold text-ink mt-3">How a sourcing project actually runs</h1>
+      <p class="text-slate text-lg leading-relaxed mt-5">Five stages from first call to delivered goods, with what happens at each and what you get out of it.</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3 mt-8">
+        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-6 py-3 text-[0.9375rem]">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <a href="contact.html" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-6 py-3 text-[0.9375rem]">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <ol class="space-y-5">
+        <li class="bg-white border border-line rounded-xl p-6 md:p-8">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <span class="text-brand font-semibold text-sm">01</span>
+            <h2 class="text-xl md:text-2xl font-semibold text-ink">Discovery call</h2>
+            <span class="ml-auto text-xs font-medium text-slate bg-gray-bg border border-line px-2.5 py-1 rounded-md">30 minutes</span>
+          </div>
+          <p class="text-slate mt-3 leading-relaxed">We establish what you are buying or building, at what volume, to what tolerance, and by when.</p>
+          <ul class="mt-5 space-y-2.5">
+            <li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Product specification, target landed cost, and order volume — including whether this is a trial order or an ongoing programme.</span></li><li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Your quality tolerance and any regulatory requirements in the destination market (CE, FDA, SONCAP, KEBS, and equivalents vary by product and country).</span></li><li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Timeline constraints, especially any hard dates tied to a season, tender, or existing contract.</span></li>
+          </ul>
+          <p class="mt-5 pt-4 border-t border-line text-sm"><span class="font-medium text-ink">You receive:</span> <span class="text-slate">A written summary of requirements and an honest read on whether we are the right partner.</span></p>
+        </li>
+        <li class="bg-white border border-line rounded-xl p-6 md:p-8">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <span class="text-brand font-semibold text-sm">02</span>
+            <h2 class="text-xl md:text-2xl font-semibold text-ink">Supplier identification</h2>
+            <span class="ml-auto text-xs font-medium text-slate bg-gray-bg border border-line px-2.5 py-1 rounded-md">1–2 weeks</span>
+          </div>
+          <p class="text-slate mt-3 leading-relaxed">We shortlist factories against your spec and verify they are what they claim to be.</p>
+          <ul class="mt-5 space-y-2.5">
+            <li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Shortlisting across the relevant manufacturing cluster — different provinces dominate different categories, and starting in the wrong one costs weeks.</span></li><li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Business licence verification, export history, and production capacity checked against your volume.</span></li><li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Where the order justifies it, an on-site visit or third-party audit before any commitment.</span></li>
+          </ul>
+          <p class="mt-5 pt-4 border-t border-line text-sm"><span class="font-medium text-ink">You receive:</span> <span class="text-slate">Three to five vetted candidates with quoted pricing, lead times, and MOQ.</span></p>
+        </li>
+        <li class="bg-white border border-line rounded-xl p-6 md:p-8">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <span class="text-brand font-semibold text-sm">03</span>
+            <h2 class="text-xl md:text-2xl font-semibold text-ink">Sampling and negotiation</h2>
+            <span class="ml-auto text-xs font-medium text-slate bg-gray-bg border border-line px-2.5 py-1 rounded-md">2–4 weeks</span>
+          </div>
+          <p class="text-slate mt-3 leading-relaxed">Samples are produced and reviewed before terms are fixed.</p>
+          <ul class="mt-5 space-y-2.5">
+            <li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Pre-production samples reviewed against the agreed specification, with revisions where needed.</span></li><li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Commercial terms negotiated on your behalf: unit price, MOQ, payment schedule, and Incoterm.</span></li><li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>A golden sample is retained as the reference standard that later inspections are judged against.</span></li>
+          </ul>
+          <p class="mt-5 pt-4 border-t border-line text-sm"><span class="font-medium text-ink">You receive:</span> <span class="text-slate">An approved reference sample and a signed proforma invoice.</span></p>
+        </li>
+        <li class="bg-white border border-line rounded-xl p-6 md:p-8">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <span class="text-brand font-semibold text-sm">04</span>
+            <h2 class="text-xl md:text-2xl font-semibold text-ink">Production and quality control</h2>
+            <span class="ml-auto text-xs font-medium text-slate bg-gray-bg border border-line px-2.5 py-1 rounded-md">Varies by product</span>
+          </div>
+          <p class="text-slate mt-3 leading-relaxed">Production is monitored and inspected at defined checkpoints, not just at the end.</p>
+          <ul class="mt-5 space-y-2.5">
+            <li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Incoming material checks before the line starts, so a substrate problem is caught before it becomes finished stock.</span></li><li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>During-production inspection at roughly 20–30% completion, when a systemic defect can still be corrected.</span></li><li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Pre-shipment inspection against AQL sampling once goods are 100% produced and at least 80% packed.</span></li>
+          </ul>
+          <p class="mt-5 pt-4 border-t border-line text-sm"><span class="font-medium text-ink">You receive:</span> <span class="text-slate">Inspection reports with photographic evidence at each checkpoint.</span></p>
+        </li>
+        <li class="bg-white border border-line rounded-xl p-6 md:p-8">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <span class="text-brand font-semibold text-sm">05</span>
+            <h2 class="text-xl md:text-2xl font-semibold text-ink">Freight and customs</h2>
+            <span class="ml-auto text-xs font-medium text-slate bg-gray-bg border border-line px-2.5 py-1 rounded-md">2–6 weeks in transit</span>
+          </div>
+          <p class="text-slate mt-3 leading-relaxed">Goods are booked, documented, and cleared into your market.</p>
+          <ul class="mt-5 space-y-2.5">
+            <li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Mode selection — sea LCL, sea FCL, air, or rail — based on your cost/urgency trade-off.</span></li><li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Documentation prepared and checked: commercial invoice, packing list, bill of lading, certificate of origin, and any product-specific certificates.</span></li><li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Customs clearance coordinated at destination, with duties and taxes calculated in advance so the landed cost holds.</span></li>
+          </ul>
+          <p class="mt-5 pt-4 border-t border-line text-sm"><span class="font-medium text-ink">You receive:</span> <span class="text-slate">Delivered goods and a complete document set for your records.</span></p>
+        </li></ol>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-gray-bg border-y border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+      <div class="text-center max-w-3xl mx-auto">
+        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Comparison</p>
+        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink mt-3">Direct sourcing vs. working with us</h2>
+        <p class="text-slate text-lg leading-relaxed mt-5">An honest comparison. Direct sourcing is genuinely the right call for some buyers — usually those with staff on the ground or an established supplier they already trust.</p>
+      </div>
+      <div class="mt-12 overflow-x-auto">
+        <table class="w-full min-w-[640px] bg-white border border-line rounded-xl overflow-hidden text-left">
+          <thead>
+            <tr class="bg-gray-bg border-b border-line">
+              <th scope="col" class="p-4 text-sm font-semibold text-ink w-1/4">Factor</th>
+              <th scope="col" class="p-4 text-sm font-semibold text-slate">Sourcing direct</th>
+              <th scope="col" class="p-4 text-sm font-semibold text-brand">With ENZ</th>
+            </tr>
+          </thead>
+          <tbody><tr class=" border-b border-line last:border-0"><th scope="row" class="p-4 text-sm font-medium text-ink align-top text-left">Supplier verification</th><td class="p-4 text-sm text-slate align-top">You rely on platform badges and self-reported credentials</td><td class="p-4 text-sm text-ink align-top">Licence, capacity, and export history verified independently; site visits where the order justifies it</td></tr><tr class="bg-gray-bg/50 border-b border-line last:border-0"><th scope="row" class="p-4 text-sm font-medium text-ink align-top text-left">Time to first shipment</th><td class="p-4 text-sm text-slate align-top">Often 3–6 months for a first-time buyer, most of it spent finding and vetting</td><td class="p-4 text-sm text-ink align-top">Typically shorter, because the shortlist starts from suppliers already known to the category</td></tr><tr class=" border-b border-line last:border-0"><th scope="row" class="p-4 text-sm font-medium text-ink align-top text-left">Quality control</th><td class="p-4 text-sm text-slate align-top">Usually a single pre-shipment check, if any</td><td class="p-4 text-sm text-ink align-top">Staged: incoming materials, during production, pre-shipment, and loading</td></tr><tr class="bg-gray-bg/50 border-b border-line last:border-0"><th scope="row" class="p-4 text-sm font-medium text-ink align-top text-left">Language and time zone</th><td class="p-4 text-sm text-slate align-top">Negotiating technical specs across a 6–8 hour gap and a language barrier</td><td class="p-4 text-sm text-ink align-top">Handled locally in Mandarin, during Chinese business hours</td></tr><tr class=" border-b border-line last:border-0"><th scope="row" class="p-4 text-sm font-medium text-ink align-top text-left">When something goes wrong</th><td class="p-4 text-sm text-slate align-top">Limited leverage from abroad once payment has been sent</td><td class="p-4 text-sm text-ink align-top">Someone on the ground with an existing relationship and the ability to visit</td></tr><tr class="bg-gray-bg/50 border-b border-line last:border-0"><th scope="row" class="p-4 text-sm font-medium text-ink align-top text-left">Cost</th><td class="p-4 text-sm text-slate align-top">No agency fee — but rework, delays, and freight errors are absorbed by you</td><td class="p-4 text-sm text-ink align-top">A fee against typically lower landed cost and materially lower risk of a failed order</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="py-20 md:py-24 bg-ink text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-[2.5rem] md:leading-[1.1] font-semibold">Ready to Transform Your Supply Chain?</h2>
+      <p class="text-white/60 text-lg mt-4 max-w-2xl mx-auto leading-relaxed">Book a consultation with our team and discover how ENZ can accelerate your growth.</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
+        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-6 py-3 text-[0.9375rem]">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <a href="contact.html" class="inline-flex items-center justify-center gap-2 bg-white/[0.08] border border-white/20 hover:bg-white/[0.14] hover:border-white/30 text-white font-medium rounded-lg transition-colors duration-200 px-6 py-3 text-[0.9375rem]">Contact</a>
+      </div>
+    </div>
+  </section>
+    </main>
+    
+  <footer class="bg-navy text-white/70 py-16 border-t border-white/5">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div>
+        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-10 w-auto object-contain mb-4" />
+        <p class="text-sm max-w-xs leading-relaxed">Global sourcing, factory setup, and market entry consulting.</p>
+      </div>
+      <div>
+        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">Services</h2>
+        <ul class="text-sm space-y-3">
+          <li><a href="services.html" class="hover:text-brand-bright transition">Sourcing</a></li>
+          <li><a href="services.html" class="hover:text-brand-bright transition">Factory Setup</a></li>
+          <li><a href="services.html" class="hover:text-brand-bright transition">China Market Entry & Expansion</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">Company</h2>
+        <ul class="text-sm space-y-3">
+          <li><a href="about.html" class="hover:text-brand-bright transition">About</a></li>
+          <li><a href="markets.html" class="hover:text-brand-bright transition">Markets</a></li>
+          <li><a href="process.html" class="hover:text-brand-bright transition">Process</a></li>
+          <li><a href="industries.html" class="hover:text-brand-bright transition">Industries</a></li>
+          <li><a href="quality-control.html" class="hover:text-brand-bright transition">Quality control</a></li>
+          <li><a href="logistics.html" class="hover:text-brand-bright transition">Logistics</a></li>
+          <li><a href="resources.html" class="hover:text-brand-bright transition">Resources</a></li>
+          <li><a href="faq.html" class="hover:text-brand-bright transition">FAQ</a></li>
+          <li><a href="insights.html" class="hover:text-brand-bright transition">Insights</a></li>
+          <li><a href="careers.html" class="hover:text-brand-bright transition">Careers</a></li>
+          <li><a href="contact.html" class="hover:text-brand-bright transition">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">Contact</h2>
+        <p class="text-sm flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8613203840456" class="hover:text-brand-bright transition">+86 132 0384 0456</a></p>
+        <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="mt-4 flex items-center gap-2 bg-green-600/15 hover:bg-green-600/25 text-green-400 px-4 py-2.5 rounded-full text-sm transition w-fit">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Chat on WhatsApp
+        </a>
+        <form id="newsletter-form" class="mt-7">
+          <label for="newsletter-email" class="text-white font-semibold text-sm block mb-1.5">Stay informed</label>
+          <p class="text-xs text-white/50 mb-3">Sourcing insights and market updates, occasionally.</p>
+          <div class="flex gap-2">
+            <input id="newsletter-email" name="email" type="email" required placeholder="you@company.com" class="flex-1 min-w-0 bg-white/10 border border-white/15 rounded-lg px-3 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand/30" />
+            <button type="submit" class="bg-brand text-white text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-brand-dark transition-colors">Subscribe</button>
+          </div>
+        </form>
+        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3">Thanks — check your inbox to confirm.</p>
+      </div>
+    </div>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
+      <p>© <span data-current-year></span> ENZ INTERNATIONAL. All rights reserved.</p>
+      <p class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</p>
+      <div class="flex gap-5">
+        <a href="privacy.html" class="hover:text-brand-bright transition">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-brand-bright transition">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+    <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 z-40 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-2xl transition-transform hover:scale-105 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+    
+  <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-ink/50 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-7 relative">
+      <button data-close-modal aria-label="Close dialog" class="absolute top-5 right-5 text-slate hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2 id="booking-modal-title" class="text-2xl font-bold text-ink mb-6 pr-6 tracking-tight">Executive Consultation</h2>
+      <form id="booking-form" class="space-y-5">
+        <p class="text-sm text-slate">Tell us about your project and we'll respond within one business day.</p>
+        <div>
+          <label for="booking-name" class="block text-sm font-medium text-ink">Full Name</label>
+          <input id="booking-name" name="name" type="text" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+        </div>
+        <div>
+          <label for="booking-email" class="block text-sm font-medium text-ink">Email Address</label>
+          <input id="booking-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="booking-phone" class="block text-sm font-medium text-ink">Phone (optional)</label>
+            <input id="booking-phone" name="phone" type="tel" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          </div>
+          <div>
+            <label for="booking-company" class="block text-sm font-medium text-ink">Company (optional)</label>
+            <input id="booking-company" name="company" type="text" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          </div>
+        </div>
+        <div>
+          <label for="booking-date" class="block text-sm font-medium text-ink">Preferred Date</label>
+          <input id="booking-date" name="date" type="date" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+        </div>
+        <div>
+          <label for="booking-service" class="block text-sm font-medium text-ink">Service of Interest</label>
+          <select id="booking-service" name="service" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"><option value="">—</option><option value="sourcing">Global Sourcing</option><option value="factory">Factory Setup</option><option value="market">Market Entry</option><option value="other">Other</option></select>
+        </div>
+        <div>
+          <label for="booking-message" class="block text-sm font-medium text-ink">Tell us about your project (optional)</label>
+          <textarea id="booking-message" name="message" rows="3" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"></textarea>
+        </div>
+        <p id="booking-error" role="alert" hidden class="text-sm text-red-600">Something went wrong — Please try again, or reach us directly on WhatsApp.</p>
+        <button type="submit" data-submitting-label="Sending…" class="w-full inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 py-4">Request Consultation</button>
+        <p class="text-xs text-slate text-center">We'll respond within 24h. No payment is required to request a consultation.</p>
+      </form>
+      <div id="booking-success" role="status" hidden class="py-6">
+        <div class="text-center">
+          <div class="w-11 h-11 rounded-full bg-brand-tint text-brand flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p class="text-lg font-semibold text-ink mt-4">Request received</p>
+          <p class="text-sm text-slate mt-2">Thank you, <span data-success-name></span>. A member of our team will reach out to <span data-success-email></span> shortly.</p>
+        </div>
+        
+        <div class="mt-7 pt-6 border-t border-line text-left">
+          <p class="text-xs font-semibold tracking-[0.14em] uppercase text-slate">What happens next</p>
+          <ol class="mt-4 space-y-3">
+            <li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">1</span><span>We review your enquiry and match it to the right specialist.</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">2</span><span>You get a reply within one business day — no automated drip sequence.</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">3</span><span>If it is a fit, we schedule a 30-minute call at a time that suits you.</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <div id="portal-modal" role="dialog" aria-modal="true" aria-labelledby="portal-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-ink/50 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-7 relative">
+      <button data-close-modal aria-label="Close dialog" class="absolute top-5 right-5 text-slate hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2 id="portal-modal-title" class="text-2xl font-bold text-ink mb-6 pr-6 tracking-tight">Client Portal Login</h2>
+      <form id="portal-login-form" class="space-y-5">
+        <p class="text-sm text-slate">Track sourcing projects, milestones, and shared documents in one place.</p>
+        <div>
+          <label for="portal-email" class="block text-sm font-medium text-ink">Email</label>
+          <input id="portal-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+        </div>
+        <div>
+          <label for="portal-password" class="block text-sm font-medium text-ink">Password</label>
+          <input id="portal-password" name="password" type="password" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+        </div>
+        <button type="submit" class="w-full bg-ink hover:bg-navy text-white font-medium py-3.5 rounded-lg transition-colors duration-200">Login</button>
+        <p class="text-xs text-slate text-center">New to the client portal? Request access from your account manager at <a href="mailto:info@enzinternational.co" class="text-brand hover:underline">info@enzinternational.co</a></p>
+      </form>
+      <div id="portal-success" role="status" hidden class="text-center py-6">
+        <div class="text-4xl mb-4">✅</div>
+        <p class="text-lg font-semibold text-ink">You are logged in (demo)</p>
+        <p class="text-sm text-slate mt-2">Track sourcing projects, milestones, and documents.</p>
+      </div>
+    </div>
+  </div>
+    <script src="../assets/js/config.js?v=10"></script>
+    <script src="../assets/js/i18n.js?v=10"></script>
+    <script src="../assets/js/api.js?v=10"></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=10"></script>
+    <script src="../assets/js/site.js?v=10" defer></script>
+  </body>
+</html>

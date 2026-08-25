@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0A192F" />
+    <title>四个检验节点，而非一个 | ENZ INTERNATIONAL</title>
+    <meta name="description" content="多数质量问题被发现时已无法低成本补救。分阶段检验能防止缺陷变成损失。" />
+    <link rel="canonical" href="https://enzinternational.co/zh/quality-control.html" />
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/images/favicon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png" />
+    <link rel="alternate" hreflang="en" href="https://enzinternational.co/en/quality-control.html" />
+    <link rel="alternate" hreflang="sw" href="https://enzinternational.co/sw/quality-control.html" />
+    <link rel="alternate" hreflang="fr" href="https://enzinternational.co/fr/quality-control.html" />
+    <link rel="alternate" hreflang="zh" href="https://enzinternational.co/zh/quality-control.html" />
+    <link rel="alternate" hreflang="x-default" href="https://enzinternational.co/en/quality-control.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ENZ INTERNATIONAL" />
+    <meta property="og:title" content="四个检验节点，而非一个 | ENZ INTERNATIONAL" />
+    <meta property="og:description" content="多数质量问题被发现时已无法低成本补救。分阶段检验能防止缺陷变成损失。" />
+    <meta property="og:url" content="https://enzinternational.co/zh/quality-control.html" />
+    <meta property="og:image" content="https://enzinternational.co/assets/images/og-cover.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="四个检验节点，而非一个 | ENZ INTERNATIONAL" />
+    <meta name="twitter:description" content="多数质量问题被发现时已无法低成本补救。分阶段检验能防止缺陷变成损失。" />
+    <meta name="twitter:image" content="https://enzinternational.co/assets/images/og-cover.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: { extend: {
+          colors: {
+            navy: '#0B1A24', ink: '#0A0F14', slate: '#5A6A75',
+            /* Brand scale derived from the logo's own hue (199deg), sampled
+               from assets/images/enz-logo.png: blue #2AA8E4, orange #FCAE42.
+               The logo blue is only 2.7:1 on white — it FAILS WCAG AA, so it
+               can never be text or a button fill on a light background.
+               'brand' is therefore the darkened same-hue variant (6.2:1) used
+               for anything interactive, and 'brand-bright' is the exact logo
+               colour, reserved for dark backgrounds and decorative fills where
+               contrast is satisfied. Same family, different jobs. */
+            brand: '#12688F', 'brand-dark': '#0E5878', 'brand-bright': '#2AA8E4', 'brand-tint': '#EAF6FD',
+            accent: '#FCAE42', 'accent-tint': '#FFF4E3',
+            line: '#E4E9ED', 'gray-bg': '#F8FAFB',
+          },
+          fontFamily: { inter: ['Inter', 'sans-serif'] },
+        } },
+      };
+    </script>
+    <style>
+      body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; }
+      /* Optical tightening on large display type — the single biggest difference
+         between "template" and "designed" at headline sizes. */
+      h1 { letter-spacing: -0.033em; }
+      h2 { letter-spacing: -0.025em; }
+      h3 { letter-spacing: -0.015em; }
+      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #12688F; outline-offset: 2px; border-radius: 4px; }
+      .skip-link { position: absolute; left: -9999px; top: 0; background: #12688F; color: #fff; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
+      .skip-link:focus { left: 1rem; top: 1rem; }
+      /* NOTE: there is deliberately no opacity:0 initial state anywhere.
+         Entrance reveals were removed outright — four separate attempts at
+         "hide, then reveal on scroll" each shipped invisible content when the
+         reveal step didn't run (observer never fired, animation never
+         advanced, or a transition-all pinned the element at its start value).
+         On a marketing site, content that is merely *decorated* by motion must
+         never be *gated* by it. Hover/focus transitions are safe: they animate
+         from a visible state, so a stalled one still leaves content readable. */
+      @media print { header, footer, .no-print { display: none !important; } }
+    </style>
+    
+  </head>
+  <body class="bg-gray-bg text-ink antialiased">
+    <a href="#main-content" class="skip-link">跳转到主要内容</a>
+    
+  <header class="bg-white/85 backdrop-blur-xl sticky top-0 z-50 border-b border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center shrink-0">
+        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="132" height="36" class="h-9 w-auto object-contain" />
+      </a>
+      <nav class="hidden lg:flex items-center gap-8 text-[0.9375rem] font-medium" aria-label="Primary">
+        <a href="index.html" class="transition-colors text-slate hover:text-ink">首页</a>
+<a href="services.html" class="transition-colors text-slate hover:text-ink">服务</a>
+<a href="process.html" class="transition-colors text-slate hover:text-ink">服务流程</a>
+<a href="industries.html" class="transition-colors text-slate hover:text-ink">服务行业</a>
+<a href="markets.html" class="transition-colors text-slate hover:text-ink">服务市场</a>
+<a href="about.html" class="transition-colors text-slate hover:text-ink">关于我们</a>
+<a href="insights.html" class="transition-colors text-slate hover:text-ink">洞察</a>
+<a href="contact.html" class="transition-colors text-slate hover:text-ink">联系我们</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-3">
+        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/quality-control.html" class="bg-transparent border border-line rounded-md px-2 py-1.5 text-xs text-slate cursor-pointer hover:border-slate/40 transition-colors"><option value="en" >EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" selected>ZH</option></select>
+        <button data-open-portal class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-3.5 py-2 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>客户门户</span>
+        </button>
+        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-4 py-2 text-sm">预约咨询</button>
+      </div>
+      <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav" class="lg:hidden text-ink" aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Primary" class="lg:hidden bg-white border-t border-line px-4 py-6 space-y-4 text-[0.9375rem]">
+      <a href="index.html" class="block text-slate hover:text-ink transition-colors">首页</a>
+<a href="services.html" class="block text-slate hover:text-ink transition-colors">服务</a>
+<a href="process.html" class="block text-slate hover:text-ink transition-colors">服务流程</a>
+<a href="industries.html" class="block text-slate hover:text-ink transition-colors">服务行业</a>
+<a href="markets.html" class="block text-slate hover:text-ink transition-colors">服务市场</a>
+<a href="about.html" class="block text-slate hover:text-ink transition-colors">关于我们</a>
+<a href="insights.html" class="block text-slate hover:text-ink transition-colors">洞察</a>
+<a href="contact.html" class="block text-slate hover:text-ink transition-colors">联系我们</a>
+      <div class="pt-3 space-y-3 border-t border-line">
+        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 w-full px-4 py-2.5 text-sm">预约咨询</button>
+        <button data-open-portal class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 w-full px-4 py-2.5 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>客户门户</span>
+        </button>
+        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/quality-control.html" class="bg-transparent border border-line rounded-md px-2 py-1.5 text-xs text-slate cursor-pointer hover:border-slate/40 transition-colors"><option value="en" >EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" selected>ZH</option></select>
+      </div>
+    </nav>
+  </header>
+    <nav aria-label="Breadcrumb" class="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-sm text-slate"><ol class="flex flex-wrap items-center gap-1.5"><li class="flex items-center gap-1.5"><a href="index.html" class="hover:text-brand transition">首页</a></li><li class="flex items-center gap-1.5"><span aria-hidden="true">/</span></li><li class="flex items-center gap-1.5"><span class="text-ink font-medium" aria-current="page">四个检验节点，而非一个</span></li></ol></nav>
+    <main id="main-content">
+      
+  
+  <section class="bg-white border-b border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl text-center pt-16 pb-14 md:pt-20 md:pb-16">
+      <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">质量控制</p>
+      <h1 class="text-[2.25rem] leading-[1.1] md:text-[3.25rem] md:leading-[1.06] font-semibold text-ink mt-3">四个检验节点，而非一个</h1>
+      <p class="text-slate text-lg leading-relaxed mt-5">多数质量问题被发现时已无法低成本补救。分阶段检验能防止缺陷变成损失。</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3 mt-8">
+        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-6 py-3 text-[0.9375rem]">预约咨询<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <a href="contact.html" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-6 py-3 text-[0.9375rem]">联系我们</a>
+      </div>
+    </div>
+  </section>
+  <section class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <div class="grid gap-5 md:grid-cols-2">
+        <article class="bg-white border border-line rounded-xl p-6">
+          <div class="flex items-center gap-2.5">
+            <span class="text-[0.6875rem] font-semibold tracking-wider text-brand bg-brand-tint px-2 py-1 rounded">IQC</span>
+            <span class="text-xs text-slate">Before production starts</span>
+          </div>
+          <h2 class="text-lg font-semibold text-ink mt-4">Incoming quality control</h2>
+          <p class="text-slate text-[0.9375rem] mt-2.5 leading-relaxed">Raw materials and components are checked against specification as they arrive at the factory. Catching an out-of-spec substrate here costs a delay; catching it after production costs the whole run. This is the cheapest inspection point in the entire process and the one most often skipped.</p>
+        </article>
+        <article class="bg-white border border-line rounded-xl p-6">
+          <div class="flex items-center gap-2.5">
+            <span class="text-[0.6875rem] font-semibold tracking-wider text-brand bg-brand-tint px-2 py-1 rounded">DUPRO</span>
+            <span class="text-xs text-slate">At roughly 20–30% completion</span>
+          </div>
+          <h2 class="text-lg font-semibold text-ink mt-4">During-production inspection</h2>
+          <p class="text-slate text-[0.9375rem] mt-2.5 leading-relaxed">The first finished units are inspected while the line is still running. A systemic error — wrong tolerance, wrong finish, misaligned assembly — can still be corrected without scrapping the order. Waiting until the goods are 100% complete removes that option entirely.</p>
+        </article>
+        <article class="bg-white border border-line rounded-xl p-6">
+          <div class="flex items-center gap-2.5">
+            <span class="text-[0.6875rem] font-semibold tracking-wider text-brand bg-brand-tint px-2 py-1 rounded">PSI</span>
+            <span class="text-xs text-slate">At 100% production, 80%+ packed</span>
+          </div>
+          <h2 class="text-lg font-semibold text-ink mt-4">Pre-shipment inspection</h2>
+          <p class="text-slate text-[0.9375rem] mt-2.5 leading-relaxed">The final check before goods leave the factory, conducted on a random sample drawn from packed cartons. This is the last point at which you can refuse a shipment without it becoming a cross-border dispute, which is why it matters more than any inspection that happens after arrival.</p>
+        </article>
+        <article class="bg-white border border-line rounded-xl p-6">
+          <div class="flex items-center gap-2.5">
+            <span class="text-[0.6875rem] font-semibold tracking-wider text-brand bg-brand-tint px-2 py-1 rounded">LOADING</span>
+            <span class="text-xs text-slate">At the point of loading</span>
+          </div>
+          <h2 class="text-lg font-semibold text-ink mt-4">Container loading supervision</h2>
+          <p class="text-slate text-[0.9375rem] mt-2.5 leading-relaxed">Verification that the quantity loaded matches the packing list, that cartons are stacked and secured to survive transit, and that the container itself is sound and dry. Damage that begins as a loading error is almost impossible to attribute after the fact.</p>
+        </article></div>
+    </div>
+  </section>
+  <section class="py-16 md:py-24 bg-gray-bg border-y border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+      <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink">How AQL sampling works</h2>
+      <p class="text-slate text-lg leading-relaxed mt-5">Inspections use AQL (Acceptable Quality Limit) sampling under ISO 2859-1, the international standard for inspection by attributes. Rather than checking every unit — which is prohibitively slow for most consumer goods — a statistically determined sample is drawn from the batch and defects are sorted into three classes.</p>
+      <div class="mt-8 space-y-3"><div class="bg-white border border-line rounded-lg p-5"><h3 class="font-semibold text-ink">Critical</h3><p class="text-slate text-[0.9375rem] mt-1.5 leading-relaxed">Renders the product unsafe or illegal to sell. Standard limit is zero — any critical defect fails the batch.</p></div><div class="bg-white border border-line rounded-lg p-5"><h3 class="font-semibold text-ink">Major</h3><p class="text-slate text-[0.9375rem] mt-1.5 leading-relaxed">Would likely cause a return, complaint, or lost sale. Commonly set at 2.5% for consumer goods.</p></div><div class="bg-white border border-line rounded-lg p-5"><h3 class="font-semibold text-ink">Minor</h3><p class="text-slate text-[0.9375rem] mt-1.5 leading-relaxed">A cosmetic deviation unlikely to affect saleability. Commonly set at 4.0%.</p></div></div>
+      <p class="text-sm text-slate mt-6 border-l-2 border-accent pl-4">These limits are negotiable and should be agreed in writing before production, not argued about after an inspection fails. Tighter limits generally cost more per unit.</p>
+    </div>
+  </section>
+  
+  <section class="py-20 md:py-24 bg-ink text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-[2.5rem] md:leading-[1.1] font-semibold">准备好改造您的供应链了吗？</h2>
+      <p class="text-white/60 text-lg mt-4 max-w-2xl mx-auto leading-relaxed">预约我们的专家咨询，了解ENZ如何加速您的增长。</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
+        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-6 py-3 text-[0.9375rem]">预约咨询<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <a href="contact.html" class="inline-flex items-center justify-center gap-2 bg-white/[0.08] border border-white/20 hover:bg-white/[0.14] hover:border-white/30 text-white font-medium rounded-lg transition-colors duration-200 px-6 py-3 text-[0.9375rem]">联系我们</a>
+      </div>
+    </div>
+  </section>
+    </main>
+    
+  <footer class="bg-navy text-white/70 py-16 border-t border-white/5">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div>
+        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-10 w-auto object-contain mb-4" />
+        <p class="text-sm max-w-xs leading-relaxed">全球采购、工厂建设和市场进入咨询。</p>
+      </div>
+      <div>
+        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">服务</h2>
+        <ul class="text-sm space-y-3">
+          <li><a href="services.html" class="hover:text-brand-bright transition">采购</a></li>
+          <li><a href="services.html" class="hover:text-brand-bright transition">工厂</a></li>
+          <li><a href="services.html" class="hover:text-brand-bright transition">中国市场进入与扩展</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">公司</h2>
+        <ul class="text-sm space-y-3">
+          <li><a href="about.html" class="hover:text-brand-bright transition">关于我们</a></li>
+          <li><a href="markets.html" class="hover:text-brand-bright transition">服务市场</a></li>
+          <li><a href="process.html" class="hover:text-brand-bright transition">服务流程</a></li>
+          <li><a href="industries.html" class="hover:text-brand-bright transition">服务行业</a></li>
+          <li><a href="quality-control.html" class="hover:text-brand-bright transition">质量控制</a></li>
+          <li><a href="logistics.html" class="hover:text-brand-bright transition">物流</a></li>
+          <li><a href="resources.html" class="hover:text-brand-bright transition">资源</a></li>
+          <li><a href="faq.html" class="hover:text-brand-bright transition">FAQ</a></li>
+          <li><a href="insights.html" class="hover:text-brand-bright transition">洞察</a></li>
+          <li><a href="careers.html" class="hover:text-brand-bright transition">招聘</a></li>
+          <li><a href="contact.html" class="hover:text-brand-bright transition">联系我们</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">联系方式</h2>
+        <p class="text-sm flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8613203840456" class="hover:text-brand-bright transition">+86 132 0384 0456</a></p>
+        <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="mt-4 flex items-center gap-2 bg-green-600/15 hover:bg-green-600/25 text-green-400 px-4 py-2.5 rounded-full text-sm transition w-fit">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp 聊天
+        </a>
+        <form id="newsletter-form" class="mt-7">
+          <label for="newsletter-email" class="text-white font-semibold text-sm block mb-1.5">获取最新资讯</label>
+          <p class="text-xs text-white/50 mb-3">偶尔分享采购洞察和市场动态。</p>
+          <div class="flex gap-2">
+            <input id="newsletter-email" name="email" type="email" required placeholder="you@company.com" class="flex-1 min-w-0 bg-white/10 border border-white/15 rounded-lg px-3 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand/30" />
+            <button type="submit" class="bg-brand text-white text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-brand-dark transition-colors">订阅</button>
+          </div>
+        </form>
+        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3">谢谢 — 请查看您的邮箱以确认订阅。</p>
+      </div>
+    </div>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
+      <p>© <span data-current-year></span> ENZ INTERNATIONAL. All rights reserved.</p>
+      <p class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</p>
+      <div class="flex gap-5">
+        <a href="privacy.html" class="hover:text-brand-bright transition">隐私政策</a>
+        <a href="terms.html" class="hover:text-brand-bright transition">服务条款</a>
+      </div>
+    </div>
+  </footer>
+    <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 z-40 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-2xl transition-transform hover:scale-105 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+    
+  <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-ink/50 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-7 relative">
+      <button data-close-modal aria-label="Close dialog" class="absolute top-5 right-5 text-slate hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2 id="booking-modal-title" class="text-2xl font-bold text-ink mb-6 pr-6 tracking-tight">高管咨询</h2>
+      <form id="booking-form" class="space-y-5">
+        <p class="text-sm text-slate">告诉我们您的项目，我们将在一个工作日内回复。</p>
+        <div>
+          <label for="booking-name" class="block text-sm font-medium text-ink">全名</label>
+          <input id="booking-name" name="name" type="text" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+        </div>
+        <div>
+          <label for="booking-email" class="block text-sm font-medium text-ink">电子邮箱</label>
+          <input id="booking-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="booking-phone" class="block text-sm font-medium text-ink">电话（可选）</label>
+            <input id="booking-phone" name="phone" type="tel" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          </div>
+          <div>
+            <label for="booking-company" class="block text-sm font-medium text-ink">公司（可选）</label>
+            <input id="booking-company" name="company" type="text" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          </div>
+        </div>
+        <div>
+          <label for="booking-date" class="block text-sm font-medium text-ink">首选日期</label>
+          <input id="booking-date" name="date" type="date" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+        </div>
+        <div>
+          <label for="booking-service" class="block text-sm font-medium text-ink">感兴趣的服务</label>
+          <select id="booking-service" name="service" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"><option value="">—</option><option value="sourcing">全球采购</option><option value="factory">工厂建设</option><option value="market">市场进入</option><option value="other">其他</option></select>
+        </div>
+        <div>
+          <label for="booking-message" class="block text-sm font-medium text-ink">告诉我们您的项目（可选）</label>
+          <textarea id="booking-message" name="message" rows="3" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"></textarea>
+        </div>
+        <p id="booking-error" role="alert" hidden class="text-sm text-red-600">出现错误 — 请重试，或直接通过WhatsApp联系我们。</p>
+        <button type="submit" data-submitting-label="发送中…" class="w-full inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 py-4">请求咨询</button>
+        <p class="text-xs text-slate text-center">我们将在24小时内回复。请求咨询无需付款。</p>
+      </form>
+      <div id="booking-success" role="status" hidden class="py-6">
+        <div class="text-center">
+          <div class="w-11 h-11 rounded-full bg-brand-tint text-brand flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p class="text-lg font-semibold text-ink mt-4">请求已收到</p>
+          <p class="text-sm text-slate mt-2">谢谢，<span data-success-name></span>。我们的团队成员会尽快联系 <span data-success-email></span>。</p>
+        </div>
+        
+        <div class="mt-7 pt-6 border-t border-line text-left">
+          <p class="text-xs font-semibold tracking-[0.14em] uppercase text-slate">接下来会发生什么</p>
+          <ol class="mt-4 space-y-3">
+            <li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">1</span><span>我们会审阅您的需求，并安排合适的专员对接。</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">2</span><span>您将在一个工作日内收到回复——不是自动群发邮件。</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">3</span><span>如果合适，我们会安排一次30分钟的通话，时间由您决定。</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <div id="portal-modal" role="dialog" aria-modal="true" aria-labelledby="portal-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-ink/50 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-7 relative">
+      <button data-close-modal aria-label="Close dialog" class="absolute top-5 right-5 text-slate hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2 id="portal-modal-title" class="text-2xl font-bold text-ink mb-6 pr-6 tracking-tight">客户门户登录</h2>
+      <form id="portal-login-form" class="space-y-5">
+        <p class="text-sm text-slate">在一个地方跟踪采购项目、里程碑和共享文档。</p>
+        <div>
+          <label for="portal-email" class="block text-sm font-medium text-ink">邮箱</label>
+          <input id="portal-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+        </div>
+        <div>
+          <label for="portal-password" class="block text-sm font-medium text-ink">密码</label>
+          <input id="portal-password" name="password" type="password" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+        </div>
+        <button type="submit" class="w-full bg-ink hover:bg-navy text-white font-medium py-3.5 rounded-lg transition-colors duration-200">登录</button>
+        <p class="text-xs text-slate text-center">首次使用客户门户？请联系您的客户经理申请访问权限： <a href="mailto:info@enzinternational.co" class="text-brand hover:underline">info@enzinternational.co</a></p>
+      </form>
+      <div id="portal-success" role="status" hidden class="text-center py-6">
+        <div class="text-4xl mb-4">✅</div>
+        <p class="text-lg font-semibold text-ink">您已登录（演示）</p>
+        <p class="text-sm text-slate mt-2">跟踪采购项目、里程碑和文档。</p>
+      </div>
+    </div>
+  </div>
+    <script src="../assets/js/config.js?v=10"></script>
+    <script src="../assets/js/i18n.js?v=10"></script>
+    <script src="../assets/js/api.js?v=10"></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=10"></script>
+    <script src="../assets/js/site.js?v=10" defer></script>
+  </body>
+</html>

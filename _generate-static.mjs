@@ -12,6 +12,7 @@ import { insights } from './_content/insights.js';
 import { markets } from './_content/markets.js';
 import { regions, hubs } from './_content/regions.js';
 import { faqs } from './_content/faqs.js';
+import { processSteps, qcStages, aqlExplainer, incoterms, shippingDocs, industries, comparison, resources, trustSignals } from './_content/pages.js';
 
 const OUT = path.resolve('.'); // repo root — this IS the site
 const SITE_URL = 'https://enzinternational.co';
@@ -23,7 +24,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '9';
+const ASSET_VERSION = '10';
 
 function t(lang, key, vars) {
   let str = dict[lang]?.[key] ?? dict.en[key] ?? key;
@@ -83,6 +84,8 @@ const LEAD = 'text-slate text-lg leading-relaxed';
 const NAV_ITEMS = [
   { page: 'index.html', key: 'navHome' },
   { page: 'services.html', key: 'navServices' },
+  { page: 'process.html', key: 'navProcess' },
+  { page: 'industries.html', key: 'navIndustries' },
   { page: 'markets.html', key: 'navMarkets' },
   { page: 'about.html', key: 'navAbout' },
   { page: 'insights.html', key: 'navInsights' },
@@ -96,6 +99,12 @@ const ALL_PAGES = [
   'markets.html',
   'insights.html',
   ...insights.map((p) => `insight-${p.slug}.html`),
+  'process.html',
+  'industries.html',
+  'quality-control.html',
+  'logistics.html',
+  'faq.html',
+  'resources.html',
   'contact.html',
   'portal.html',
   'careers.html',
@@ -172,6 +181,12 @@ function footerHTML(lang) {
         <ul class="text-sm space-y-3">
           <li><a href="about.html" class="hover:text-brand-bright transition">${t(lang, 'navAbout')}</a></li>
           <li><a href="markets.html" class="hover:text-brand-bright transition">${t(lang, 'navMarkets')}</a></li>
+          <li><a href="process.html" class="hover:text-brand-bright transition">${t(lang, 'navProcess')}</a></li>
+          <li><a href="industries.html" class="hover:text-brand-bright transition">${t(lang, 'navIndustries')}</a></li>
+          <li><a href="quality-control.html" class="hover:text-brand-bright transition">${t(lang, 'qcEyebrow')}</a></li>
+          <li><a href="logistics.html" class="hover:text-brand-bright transition">${t(lang, 'logisticsEyebrow')}</a></li>
+          <li><a href="resources.html" class="hover:text-brand-bright transition">${t(lang, 'navResources')}</a></li>
+          <li><a href="faq.html" class="hover:text-brand-bright transition">FAQ</a></li>
           <li><a href="insights.html" class="hover:text-brand-bright transition">${t(lang, 'navInsights')}</a></li>
           <li><a href="careers.html" class="hover:text-brand-bright transition">${t(lang, 'navCareers')}</a></li>
           <li><a href="contact.html" class="hover:text-brand-bright transition">${t(lang, 'navContact')}</a></li>
@@ -485,6 +500,20 @@ function homePage(lang) {
     </div>
   </section>
 
+
+  <section class="bg-gray-bg border-b border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line">
+        ${trustSignals
+          .map(
+            (ts) =>
+              `<div class="bg-gray-bg py-6 px-5 flex items-start gap-3">${icon(ts.icon, 'w-5 h-5 text-brand shrink-0 mt-0.5')}<div><p class="text-sm font-medium text-ink">${ts.label}</p><p class="text-xs text-slate mt-1 leading-relaxed">${ts.body}</p></div></div>`
+          )
+          .join('')}
+      </div>
+    </div>
+  </section>
+
   <section class="py-20 md:py-28 bg-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center mb-16">
@@ -599,6 +628,100 @@ function homePage(lang) {
           .map(
             (p) =>
               `<a href="insight-${p.slug}.html" class="${CARD_MUTED} block group"><span class="text-xs font-medium text-brand bg-brand-tint px-2.5 py-1 rounded-md">${p.category}</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">${p.title}</h3><p class="text-slate text-sm mt-2 leading-relaxed">${p.excerpt}</p><span class="text-brand text-sm font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">${t(lang, 'ctaReadMore')} ${icon('chevronRight', 'w-3.5 h-3.5')}</span></a>`
+          )
+          .join('')}
+      </div>
+    </div>
+  </section>
+
+
+  <section class="py-20 md:py-28 bg-white border-t border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <p class="${EYEBROW}">${t(lang, 'navProcess')}</p>
+        <h2 class="${H2} mt-3">${t(lang, 'processTitle')}</h2>
+        <p class="${LEAD} mt-5">${t(lang, 'processLead')}</p>
+      </div>
+      <ol class="grid gap-4 md:grid-cols-5 mt-12 max-w-6xl mx-auto">
+        ${processSteps
+          .map(
+            (st) =>
+              `<li class="${CARD}"><span class="text-brand font-semibold text-sm">${st.n}</span><h3 class="font-medium text-ink mt-2">${st.title}</h3><p class="text-slate text-sm mt-2 leading-relaxed">${st.summary}</p></li>`
+          )
+          .join('')}
+      </ol>
+      <div class="text-center mt-10"><a href="process.html" class="${BTN_SECONDARY} px-5 py-2.5 text-sm">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a></div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 bg-gray-bg border-y border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <p class="${EYEBROW}">${t(lang, 'navIndustries')}</p>
+        <h2 class="${H2} mt-3">${t(lang, 'industriesTitle')}</h2>
+        <p class="${LEAD} mt-5">${t(lang, 'industriesLead')}</p>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2 mt-12 max-w-5xl mx-auto">
+        ${industries
+          .map(
+            (ind) =>
+              `<a href="industries.html" class="${CARD} block group">${icon(ind.icon, 'w-5 h-5 text-brand mb-4')}<h3 class="text-[1.0625rem] font-medium text-ink">${ind.name}</h3><p class="text-slate text-sm mt-2 leading-relaxed">${ind.body}</p><span class="text-brand text-sm font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-3.5 h-3.5')}</span></a>`
+          )
+          .join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <p class="${EYEBROW}">${t(lang, 'qcEyebrow')}</p>
+        <h2 class="${H2} mt-3">${t(lang, 'qcTitle')}</h2>
+        <p class="${LEAD} mt-5">${t(lang, 'qcLead')}</p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-12 max-w-6xl mx-auto">
+        ${qcStages
+          .map(
+            (st) =>
+              `<div class="${CARD_MUTED}"><span class="text-[0.6875rem] font-semibold tracking-wider text-brand bg-brand-tint px-2 py-1 rounded">${st.code}</span><h3 class="font-medium text-ink mt-3">${st.title}</h3><p class="text-xs text-slate mt-1">${st.when}</p></div>`
+          )
+          .join('')}
+      </div>
+      <div class="text-center mt-10"><a href="quality-control.html" class="${BTN_SECONDARY} px-5 py-2.5 text-sm">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a></div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 bg-gray-bg border-y border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <p class="${EYEBROW}">${t(lang, 'logisticsEyebrow')}</p>
+        <h2 class="${H2} mt-3">${t(lang, 'incotermsTitle')}</h2>
+        <p class="${LEAD} mt-5">${t(lang, 'incotermsLead')}</p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-12 max-w-6xl mx-auto">
+        ${incoterms
+          .map(
+            (it) =>
+              `<div class="${CARD}"><div class="flex items-baseline justify-between gap-2"><span class="text-brand font-semibold">${it.code}</span><span class="text-[0.6875rem] text-slate bg-gray-bg border border-line px-2 py-0.5 rounded">${it.risk}</span></div><h3 class="font-medium text-ink mt-2">${it.name}</h3></div>`
+          )
+          .join('')}
+      </div>
+      <div class="text-center mt-10"><a href="logistics.html" class="${BTN_SECONDARY} px-5 py-2.5 text-sm">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a></div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <p class="${EYEBROW}">${t(lang, 'navResources')}</p>
+        <h2 class="${H2} mt-3">${t(lang, 'resourcesTitle')}</h2>
+        <p class="${LEAD} mt-5">${t(lang, 'resourcesLead')}</p>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2 mt-12 max-w-5xl mx-auto">
+        ${resources
+          .map(
+            (r) =>
+              `<a href="resources.html" class="${CARD_MUTED} block group">${icon(r.icon, 'w-5 h-5 text-brand mb-4')}<h3 class="text-[1.0625rem] font-medium text-ink">${r.title}</h3><p class="text-slate text-sm mt-2 leading-relaxed">${r.body}</p></a>`
           )
           .join('')}
       </div>
@@ -997,6 +1120,273 @@ function careersPage(lang) {
   return pageShell({ lang, page: 'careers.html', title: t(lang, 'navCareers'), description: t(lang, 'careersSubtitle'), crumbs: [{ label: t(lang, 'navCareers') }], bodyHTML: body });
 }
 
+// ============================================================================
+// Detail pages
+// ============================================================================
+
+function pageHero(lang, { eyebrow, title, lead }) {
+  return `
+  <section class="bg-white border-b border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl text-center pt-16 pb-14 md:pt-20 md:pb-16">
+      <p class="${EYEBROW}">${eyebrow}</p>
+      <h1 class="text-[2.25rem] leading-[1.1] md:text-[3.25rem] md:leading-[1.06] font-semibold text-ink mt-3">${title}</h1>
+      <p class="${LEAD} mt-5">${lead}</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3 mt-8">
+        <button data-open-booking class="${BTN_PRIMARY} px-6 py-3 text-[0.9375rem]">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4')}</button>
+        <a href="contact.html" class="${BTN_SECONDARY} px-6 py-3 text-[0.9375rem]">${t(lang, 'navContact')}</a>
+      </div>
+    </div>
+  </section>`;
+}
+
+function closingCta(lang) {
+  return `
+  <section class="py-20 md:py-24 bg-ink text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-[2.5rem] md:leading-[1.1] font-semibold">${t(lang, 'ctaBannerTitle')}</h2>
+      <p class="text-white/60 text-lg mt-4 max-w-2xl mx-auto leading-relaxed">${t(lang, 'ctaBannerDesc')}</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
+        <button data-open-booking class="${BTN_PRIMARY} px-6 py-3 text-[0.9375rem]">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4')}</button>
+        <a href="contact.html" class="${BTN_GHOST_LIGHT} px-6 py-3 text-[0.9375rem]">${t(lang, 'navContact')}</a>
+      </div>
+    </div>
+  </section>`;
+}
+
+function processPage(lang) {
+  const steps = processSteps
+    .map(
+      (st) => `
+        <li class="bg-white border border-line rounded-xl p-6 md:p-8">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <span class="text-brand font-semibold text-sm">${st.n}</span>
+            <h2 class="text-xl md:text-2xl font-semibold text-ink">${st.title}</h2>
+            <span class="ml-auto text-xs font-medium text-slate bg-gray-bg border border-line px-2.5 py-1 rounded-md">${st.duration}</span>
+          </div>
+          <p class="text-slate mt-3 leading-relaxed">${st.summary}</p>
+          <ul class="mt-5 space-y-2.5">
+            ${st.detail.map((d) => `<li class="flex items-start gap-2.5 text-[0.9375rem] text-slate"><span class="mt-1.5">${icon('check', 'w-3.5 h-3.5 text-brand shrink-0')}</span><span>${d}</span></li>`).join('')}
+          </ul>
+          <p class="mt-5 pt-4 border-t border-line text-sm"><span class="font-medium text-ink">${t(lang, 'processOutput')}:</span> <span class="text-slate">${st.output}</span></p>
+        </li>`
+    )
+    .join('');
+
+  const rows = comparison.rows
+    .map(
+      (r, i) =>
+        `<tr class="${i % 2 ? 'bg-gray-bg/50' : ''} border-b border-line last:border-0"><th scope="row" class="p-4 text-sm font-medium text-ink align-top text-left">${r.factor}</th><td class="p-4 text-sm text-slate align-top">${r.diy}</td><td class="p-4 text-sm text-ink align-top">${r.enz}</td></tr>`
+    )
+    .join('');
+
+  const body = `
+  ${pageHero(lang, { eyebrow: t(lang, 'navProcess'), title: t(lang, 'processTitle'), lead: t(lang, 'processLead') })}
+
+  <section class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <ol class="space-y-5">${steps}</ol>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-gray-bg border-y border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+      <div class="text-center max-w-3xl mx-auto">
+        <p class="${EYEBROW}">${t(lang, 'compareEyebrow')}</p>
+        <h2 class="${H2} mt-3">${comparison.title}</h2>
+        <p class="${LEAD} mt-5">${comparison.subtitle}</p>
+      </div>
+      <div class="mt-12 overflow-x-auto">
+        <table class="w-full min-w-[640px] bg-white border border-line rounded-xl overflow-hidden text-left">
+          <thead>
+            <tr class="bg-gray-bg border-b border-line">
+              <th scope="col" class="p-4 text-sm font-semibold text-ink w-1/4">${t(lang, 'compareFactor')}</th>
+              <th scope="col" class="p-4 text-sm font-semibold text-slate">${t(lang, 'compareDiy')}</th>
+              <th scope="col" class="p-4 text-sm font-semibold text-brand">${t(lang, 'compareEnz')}</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  ${closingCta(lang)}`;
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: t(lang, 'processTitle'),
+    description: t(lang, 'processLead'),
+    step: processSteps.map((st, i) => ({ '@type': 'HowToStep', position: i + 1, name: st.title, text: st.summary })),
+  };
+
+  return pageShell({ lang, page: 'process.html', title: t(lang, 'processTitle'), description: t(lang, 'processLead'), jsonLd, crumbs: [{ label: t(lang, 'navProcess') }], bodyHTML: body });
+}
+
+function industriesPage(lang) {
+  const cards = industries
+    .map(
+      (ind) => `
+      <article class="bg-white border border-line rounded-xl p-6 md:p-8">
+        ${icon(ind.icon, 'w-5 h-5 text-brand mb-4')}
+        <h2 class="text-xl md:text-2xl font-semibold text-ink">${ind.name}</h2>
+        <p class="text-slate mt-3 leading-relaxed">${ind.body}</p>
+        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-slate mt-6">${t(lang, 'industriesWatch')}</p>
+        <ul class="mt-3 grid gap-2.5 md:grid-cols-3">
+          ${ind.considerations.map((c) => `<li class="flex items-start gap-2.5 text-sm text-slate bg-gray-bg border border-line rounded-lg p-3"><span class="mt-0.5">${icon('check', 'w-3.5 h-3.5 text-brand shrink-0')}</span><span>${c}</span></li>`).join('')}
+        </ul>
+      </article>`
+    )
+    .join('');
+
+  const body = `
+  ${pageHero(lang, { eyebrow: t(lang, 'navIndustries'), title: t(lang, 'industriesTitle'), lead: t(lang, 'industriesLead') })}
+  <section class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl space-y-5">${cards}</div>
+  </section>
+  ${closingCta(lang)}`;
+
+  return pageShell({ lang, page: 'industries.html', title: t(lang, 'industriesTitle'), description: t(lang, 'industriesLead'), crumbs: [{ label: t(lang, 'navIndustries') }], bodyHTML: body });
+}
+
+function qualityControlPage(lang) {
+  const stages = qcStages
+    .map(
+      (st) => `
+        <article class="bg-white border border-line rounded-xl p-6">
+          <div class="flex items-center gap-2.5">
+            <span class="text-[0.6875rem] font-semibold tracking-wider text-brand bg-brand-tint px-2 py-1 rounded">${st.code}</span>
+            <span class="text-xs text-slate">${st.when}</span>
+          </div>
+          <h2 class="text-lg font-semibold text-ink mt-4">${st.title}</h2>
+          <p class="text-slate text-[0.9375rem] mt-2.5 leading-relaxed">${st.body}</p>
+        </article>`
+    )
+    .join('');
+
+  const levels = aqlExplainer.levels
+    .map(
+      (l) => `<div class="bg-white border border-line rounded-lg p-5"><h3 class="font-semibold text-ink">${l.label}</h3><p class="text-slate text-[0.9375rem] mt-1.5 leading-relaxed">${l.desc}</p></div>`
+    )
+    .join('');
+
+  const body = `
+  ${pageHero(lang, { eyebrow: t(lang, 'qcEyebrow'), title: t(lang, 'qcTitle'), lead: t(lang, 'qcLead') })}
+  <section class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <div class="grid gap-5 md:grid-cols-2">${stages}</div>
+    </div>
+  </section>
+  <section class="py-16 md:py-24 bg-gray-bg border-y border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+      <h2 class="${H2}">${aqlExplainer.title}</h2>
+      <p class="${LEAD} mt-5">${aqlExplainer.body}</p>
+      <div class="mt-8 space-y-3">${levels}</div>
+      <p class="text-sm text-slate mt-6 border-l-2 border-accent pl-4">${aqlExplainer.note}</p>
+    </div>
+  </section>
+  ${closingCta(lang)}`;
+
+  return pageShell({ lang, page: 'quality-control.html', title: t(lang, 'qcTitle'), description: t(lang, 'qcLead'), crumbs: [{ label: t(lang, 'qcTitle') }], bodyHTML: body });
+}
+
+function logisticsPage(lang) {
+  const terms = incoterms
+    .map(
+      (it) => `
+        <div class="bg-white border border-line rounded-xl p-6">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <span class="text-brand font-semibold">${it.code}</span>
+            <h3 class="text-lg font-semibold text-ink">${it.name}</h3>
+            <span class="ml-auto text-xs font-medium text-slate bg-gray-bg border border-line px-2.5 py-1 rounded-md">${t(lang, 'incotermsRisk')}: ${it.risk}</span>
+          </div>
+          <p class="text-slate text-[0.9375rem] mt-3 leading-relaxed">${it.body}</p>
+        </div>`
+    )
+    .join('');
+
+  const docs = shippingDocs
+    .map(
+      (d) => `<div class="bg-white border border-line rounded-xl p-6">${icon('briefcase', 'w-5 h-5 text-brand mb-3')}<h3 class="font-semibold text-ink">${d.name}</h3><p class="text-slate text-[0.9375rem] mt-2 leading-relaxed">${d.body}</p></div>`
+    )
+    .join('');
+
+  const body = `
+  ${pageHero(lang, { eyebrow: t(lang, 'logisticsEyebrow'), title: t(lang, 'logisticsTitle'), lead: t(lang, 'logisticsLead') })}
+  <section class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <h2 class="${H2}">${t(lang, 'incotermsTitle')}</h2>
+      <p class="${LEAD} mt-5">${t(lang, 'incotermsLead')}</p>
+      <div class="mt-10 space-y-4">${terms}</div>
+    </div>
+  </section>
+  <section class="py-16 md:py-24 bg-gray-bg border-y border-line">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <h2 class="${H2}">${t(lang, 'docsTitle')}</h2>
+      <p class="${LEAD} mt-5">${t(lang, 'docsLead')}</p>
+      <div class="mt-10 grid gap-4 md:grid-cols-2">${docs}</div>
+    </div>
+  </section>
+  ${closingCta(lang)}`;
+
+  return pageShell({ lang, page: 'logistics.html', title: t(lang, 'logisticsTitle'), description: t(lang, 'logisticsLead'), crumbs: [{ label: t(lang, 'logisticsTitle') }], bodyHTML: body });
+}
+
+function faqPage(lang) {
+  const items = faqs
+    .map(
+      (f, idx) => `
+      <div>
+        <h2><button class="faq-question w-full flex items-center justify-between gap-4 py-5 text-left font-medium text-ink hover:text-brand transition-colors" aria-expanded="false" aria-controls="fp-${idx}" id="fp-btn-${idx}"><span>${f.question}</span>${icon('chevronDown', 'w-5 h-5 shrink-0 faq-chevron transition-transform text-slate')}</button></h2>
+        <div id="fp-${idx}" role="region" aria-labelledby="fp-btn-${idx}" hidden class="pb-5 text-[0.9375rem] text-slate leading-relaxed">${f.answer}</div>
+      </div>`
+    )
+    .join('');
+
+  const body = `
+  ${pageHero(lang, { eyebrow: 'FAQ', title: t(lang, 'faqPageTitle'), lead: t(lang, 'faqPageLead') })}
+  <section class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+      <div class="divide-y divide-line border-y border-line">${items}</div>
+    </div>
+  </section>
+  ${closingCta(lang)}`;
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+  };
+
+  return pageShell({ lang, page: 'faq.html', title: t(lang, 'faqPageTitle'), description: t(lang, 'faqPageLead'), jsonLd, crumbs: [{ label: 'FAQ' }], bodyHTML: body });
+}
+
+function resourcesPage(lang) {
+  const cards = resources
+    .map(
+      (r) => `
+        <article class="bg-white border border-line rounded-xl p-6 flex flex-col">
+          ${icon(r.icon, 'w-5 h-5 text-brand mb-4')}
+          <h2 class="text-lg font-semibold text-ink">${r.title}</h2>
+          <p class="text-slate text-[0.9375rem] mt-2.5 leading-relaxed flex-1">${r.body}</p>
+          <button data-open-booking class="${BTN_SECONDARY} px-4 py-2.5 text-sm mt-5 self-start">${r.cta}${icon('chevronRight', 'w-3.5 h-3.5')}</button>
+        </article>`
+    )
+    .join('');
+
+  const body = `
+  ${pageHero(lang, { eyebrow: t(lang, 'navResources'), title: t(lang, 'resourcesTitle'), lead: t(lang, 'resourcesLead') })}
+  <section class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+      <div class="grid gap-5 md:grid-cols-2">${cards}</div>
+      <p class="text-sm text-slate mt-8 text-center">${t(lang, 'resourcesNote')}</p>
+    </div>
+  </section>
+  ${closingCta(lang)}`;
+
+  return pageShell({ lang, page: 'resources.html', title: t(lang, 'resourcesTitle'), description: t(lang, 'resourcesLead'), crumbs: [{ label: t(lang, 'navResources') }], bodyHTML: body });
+}
+
 function legalPage(lang, type) {
   const isPrivacy = type === 'privacy';
   const title = isPrivacy ? t(lang, 'footerPrivacy') : t(lang, 'footerTerms');
@@ -1037,6 +1427,12 @@ for (const lang of SUPPORTED_LANGUAGES) {
     ['contact.html', contactPage],
     ['portal.html', portalPage],
     ['careers.html', careersPage],
+    ['process.html', processPage],
+    ['industries.html', industriesPage],
+    ['quality-control.html', qualityControlPage],
+    ['logistics.html', logisticsPage],
+    ['faq.html', faqPage],
+    ['resources.html', resourcesPage],
   ];
 
   for (const [file, builder] of pages) {
