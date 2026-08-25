@@ -23,7 +23,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '8';
+const ASSET_VERSION = '9';
 
 function t(lang, key, vars) {
   let str = dict[lang]?.[key] ?? dict.en[key] ?? key;
@@ -205,6 +205,25 @@ function footerHTML(lang) {
   </footer>`;
 }
 
+// Shown after a successful enquiry. Answering "what now?" at the moment of
+// submission is the cheapest way to stop a lead going cold — it replaces an
+// ambiguous silence with a stated turnaround the sender can hold us to.
+function nextStepsHTML(lang) {
+  const steps = [t(lang, 'bookingNext1'), t(lang, 'bookingNext2'), t(lang, 'bookingNext3')];
+  return `
+        <div class="mt-7 pt-6 border-t border-line text-left">
+          <p class="text-xs font-semibold tracking-[0.14em] uppercase text-slate">${t(lang, 'bookingNextTitle')}</p>
+          <ol class="mt-4 space-y-3">
+            ${steps
+              .map(
+                (s, i) =>
+                  `<li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">${i + 1}</span><span>${s}</span></li>`
+              )
+              .join('')}
+          </ol>
+        </div>`;
+}
+
 function bookingModalHTML(lang) {
   const opts = [
     ['sourcing', 'bookingServiceOptSourcing'],
@@ -241,7 +260,7 @@ function bookingModalHTML(lang) {
         </div>
         <div>
           <label for="booking-date" class="block text-sm font-medium text-ink">${t(lang, 'bookingDate')}</label>
-          <input id="booking-date" name="date" type="date" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <input id="booking-date" name="date" type="date" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
         </div>
         <div>
           <label for="booking-service" class="block text-sm font-medium text-ink">${t(lang, 'bookingService')}</label>
@@ -255,10 +274,13 @@ function bookingModalHTML(lang) {
         <button type="submit" data-submitting-label="${t(lang, 'bookingSubmitting')}" class="w-full ${BTN_PRIMARY} py-4">${t(lang, 'bookingSubmit')}</button>
         <p class="text-xs text-slate text-center">${t(lang, 'bookingDisclaimer')}</p>
       </form>
-      <div id="booking-success" role="status" hidden class="text-center py-6">
-        <div class="text-4xl mb-4">✅</div>
-        <p class="text-lg font-semibold text-ink">${t(lang, 'bookingSuccessTitle')}</p>
-        <p class="text-sm text-slate mt-2">${t(lang, 'bookingSuccessDesc', { name: '<span data-success-name></span>', email: '<span data-success-email></span>' })}</p>
+      <div id="booking-success" role="status" hidden class="py-6">
+        <div class="text-center">
+          <div class="w-11 h-11 rounded-full bg-brand-tint text-brand flex items-center justify-center mx-auto">${icon('check', 'w-6 h-6')}</div>
+          <p class="text-lg font-semibold text-ink mt-4">${t(lang, 'bookingSuccessTitle')}</p>
+          <p class="text-sm text-slate mt-2">${t(lang, 'bookingSuccessDesc', { name: '<span data-success-name></span>', email: '<span data-success-email></span>' })}</p>
+        </div>
+        ${nextStepsHTML(lang)}
       </div>
     </div>
   </div>`;
@@ -433,6 +455,10 @@ function homePage(lang) {
     ['why6Title', 'why6Desc', 'check'],
   ];
   const regionServiceTags = { TZ: ['service1', 'service2'], KE: ['service1', 'service3'], CD: ['service1', 'service2'], US: ['service1', 'service3'], UK: ['service1', 'service3'] };
+  // The four most pre-purchase-relevant questions, surfaced on the homepage so
+  // the objections that stall a first enquiry get answered before the CTA.
+  // Full list still lives on the contact page.
+  const homeFaqs = faqs.slice(0, 4);
 
   const body = `
   <section class="relative bg-white overflow-hidden border-b border-line">
@@ -579,6 +605,28 @@ function homePage(lang) {
     </div>
   </section>
 
+  <section class="py-20 md:py-28 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <p class="${EYEBROW}">FAQ</p>
+        <h2 class="${H2} mt-3">${t(lang, 'faqHomeTitle')}</h2>
+        <p class="${LEAD} mt-5">${t(lang, 'faqHomeSubtitle')}</p>
+      </div>
+      <div class="max-w-3xl mx-auto mt-12 divide-y divide-line border-y border-line">
+        ${homeFaqs
+          .map(
+            (f, idx) => `
+        <div>
+          <h3><button class="faq-question w-full flex items-center justify-between gap-4 py-5 text-left font-medium text-ink hover:text-brand transition-colors" aria-expanded="false" aria-controls="home-faq-${idx}" id="home-faq-btn-${idx}"><span>${f.question}</span>${icon('chevronDown', 'w-5 h-5 shrink-0 faq-chevron transition-transform text-slate')}</button></h3>
+          <div id="home-faq-${idx}" role="region" aria-labelledby="home-faq-btn-${idx}" hidden class="pb-5 text-[0.9375rem] text-slate leading-relaxed">${f.answer}</div>
+        </div>`
+          )
+          .join('')}
+      </div>
+      <div class="text-center mt-10"><a href="contact.html" class="${BTN_SECONDARY} px-5 py-2.5 text-sm">${t(lang, 'faqSeeAll')} ${icon('chevronRight', 'w-4 h-4')}</a></div>
+    </div>
+  </section>
+
   <section class="py-20 md:py-24 bg-ink text-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl md:text-[2.5rem] md:leading-[1.1] font-semibold">${t(lang, 'ctaBannerTitle')}</h2>
@@ -590,13 +638,32 @@ function homePage(lang) {
     </div>
   </section>`;
 
+  // @graph so one script can carry several entity types. FAQPage makes the
+  // homepage eligible for expandable FAQ rich results in search — built from
+  // the same real answers rendered above, never a schema-only copy (Google
+  // treats visible/markup mismatch as a violation).
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'ENZ INTERNATIONAL',
-    telephone: '+86-1320-384-0456',
-    address: { '@type': 'PostalAddress', addressLocality: 'Guangzhou', addressCountry: 'CN' },
-    areaServed: regions.map((r) => r.name),
+    '@graph': [
+      {
+        '@type': 'LocalBusiness',
+        name: 'ENZ INTERNATIONAL',
+        url: `${SITE_URL}/${lang}/index.html`,
+        image: `${SITE_URL}/assets/images/og-cover.png`,
+        telephone: '+86-1320-384-0456',
+        email: CONTACT_EMAIL,
+        address: { '@type': 'PostalAddress', addressLocality: 'Guangzhou', addressCountry: 'CN' },
+        areaServed: regions.map((r) => r.name),
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: homeFaqs.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: { '@type': 'Answer', text: f.answer },
+        })),
+      },
+    ],
   };
 
   return pageShell({ lang, page: 'index.html', title: t(lang, 'heroTitle'), description: t(lang, 'heroSub'), jsonLd, bodyHTML: body });
@@ -865,13 +932,13 @@ function contactPage(lang) {
           <p class="text-sm text-slate">${t(lang, 'bookingIntro')}</p>
           <div><label for="cf-name" class="block text-sm font-medium text-ink">${t(lang, 'bookingName')}</label><input id="cf-name" name="name" type="text" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" /></div>
           <div><label for="cf-email" class="block text-sm font-medium text-ink">${t(lang, 'bookingEmail')}</label><input id="cf-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" /></div>
-          <div><label for="cf-date" class="block text-sm font-medium text-ink">${t(lang, 'bookingDate')}</label><input id="cf-date" name="date" type="date" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" /></div>
+          <div><label for="cf-date" class="block text-sm font-medium text-ink">${t(lang, 'bookingDate')}</label><input id="cf-date" name="date" type="date" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" /></div>
           <div><label for="cf-service" class="block text-sm font-medium text-ink">${t(lang, 'bookingService')}</label><select id="cf-service" name="service" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"><option value="">—</option><option value="sourcing">${t(lang, 'bookingServiceOptSourcing')}</option><option value="factory">${t(lang, 'bookingServiceOptFactory')}</option><option value="market">${t(lang, 'bookingServiceOptMarket')}</option></select></div>
           <input type="hidden" name="phone" value="" /><input type="hidden" name="company" value="" /><input type="hidden" name="message" value="" />
           <p id="booking-error" role="alert" hidden class="text-sm text-red-600">${t(lang, 'bookingErrorTitle')}</p>
           <button type="submit" data-submitting-label="${t(lang, 'bookingSubmitting')}" class="w-full ${BTN_PRIMARY} py-4">${t(lang, 'bookingSubmit')}</button>
         </form>
-        <div id="booking-success" role="status" hidden class="text-center py-6"><div class="text-4xl mb-4">✅</div><p class="text-lg font-semibold text-ink">${t(lang, 'bookingSuccessTitle')}</p></div>
+        <div id="booking-success" role="status" hidden class="py-6"><div class="text-center"><div class="w-11 h-11 rounded-full bg-brand-tint text-brand flex items-center justify-center mx-auto">${icon("check", "w-6 h-6")}</div><p class="text-lg font-semibold text-ink mt-4">${t(lang, "bookingSuccessTitle")}</p></div>${nextStepsHTML(lang)}</div>
       </div>
     </div>
   </section>

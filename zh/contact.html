@@ -147,13 +147,19 @@
           <p class="text-sm text-slate">告诉我们您的项目，我们将在一个工作日内回复。</p>
           <div><label for="cf-name" class="block text-sm font-medium text-ink">全名</label><input id="cf-name" name="name" type="text" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" /></div>
           <div><label for="cf-email" class="block text-sm font-medium text-ink">电子邮箱</label><input id="cf-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" /></div>
-          <div><label for="cf-date" class="block text-sm font-medium text-ink">首选日期</label><input id="cf-date" name="date" type="date" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" /></div>
+          <div><label for="cf-date" class="block text-sm font-medium text-ink">首选日期</label><input id="cf-date" name="date" type="date" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" /></div>
           <div><label for="cf-service" class="block text-sm font-medium text-ink">感兴趣的服务</label><select id="cf-service" name="service" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"><option value="">—</option><option value="sourcing">全球采购</option><option value="factory">工厂建设</option><option value="market">市场进入</option></select></div>
           <input type="hidden" name="phone" value="" /><input type="hidden" name="company" value="" /><input type="hidden" name="message" value="" />
           <p id="booking-error" role="alert" hidden class="text-sm text-red-600">出现错误</p>
           <button type="submit" data-submitting-label="发送中…" class="w-full inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 py-4">请求咨询</button>
         </form>
-        <div id="booking-success" role="status" hidden class="text-center py-6"><div class="text-4xl mb-4">✅</div><p class="text-lg font-semibold text-ink">请求已收到</p></div>
+        <div id="booking-success" role="status" hidden class="py-6"><div class="text-center"><div class="w-11 h-11 rounded-full bg-brand-tint text-brand flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div><p class="text-lg font-semibold text-ink mt-4">请求已收到</p></div>
+        <div class="mt-7 pt-6 border-t border-line text-left">
+          <p class="text-xs font-semibold tracking-[0.14em] uppercase text-slate">接下来会发生什么</p>
+          <ol class="mt-4 space-y-3">
+            <li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">1</span><span>我们会审阅您的需求，并安排合适的专员对接。</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">2</span><span>您将在一个工作日内收到回复——不是自动群发邮件。</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">3</span><span>如果合适，我们会安排一次30分钟的通话，时间由您决定。</span></li>
+          </ol>
+        </div></div>
       </div>
     </div>
   </section>
@@ -267,7 +273,7 @@
         </div>
         <div>
           <label for="booking-date" class="block text-sm font-medium text-ink">首选日期</label>
-          <input id="booking-date" name="date" type="date" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <input id="booking-date" name="date" type="date" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
         </div>
         <div>
           <label for="booking-service" class="block text-sm font-medium text-ink">感兴趣的服务</label>
@@ -281,10 +287,19 @@
         <button type="submit" data-submitting-label="发送中…" class="w-full inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 py-4">请求咨询</button>
         <p class="text-xs text-slate text-center">我们将在24小时内回复。请求咨询无需付款。</p>
       </form>
-      <div id="booking-success" role="status" hidden class="text-center py-6">
-        <div class="text-4xl mb-4">✅</div>
-        <p class="text-lg font-semibold text-ink">请求已收到</p>
-        <p class="text-sm text-slate mt-2">谢谢，<span data-success-name></span>。我们的团队成员会尽快联系 <span data-success-email></span>。</p>
+      <div id="booking-success" role="status" hidden class="py-6">
+        <div class="text-center">
+          <div class="w-11 h-11 rounded-full bg-brand-tint text-brand flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p class="text-lg font-semibold text-ink mt-4">请求已收到</p>
+          <p class="text-sm text-slate mt-2">谢谢，<span data-success-name></span>。我们的团队成员会尽快联系 <span data-success-email></span>。</p>
+        </div>
+        
+        <div class="mt-7 pt-6 border-t border-line text-left">
+          <p class="text-xs font-semibold tracking-[0.14em] uppercase text-slate">接下来会发生什么</p>
+          <ol class="mt-4 space-y-3">
+            <li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">1</span><span>我们会审阅您的需求，并安排合适的专员对接。</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">2</span><span>您将在一个工作日内收到回复——不是自动群发邮件。</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">3</span><span>如果合适，我们会安排一次30分钟的通话，时间由您决定。</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -313,10 +328,10 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=8"></script>
-    <script src="../assets/js/i18n.js?v=8"></script>
-    <script src="../assets/js/api.js?v=8"></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=8"></script>
-    <script src="../assets/js/site.js?v=8" defer></script>
+    <script src="../assets/js/config.js?v=9"></script>
+    <script src="../assets/js/i18n.js?v=9"></script>
+    <script src="../assets/js/api.js?v=9"></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=9"></script>
+    <script src="../assets/js/site.js?v=9" defer></script>
   </body>
 </html>

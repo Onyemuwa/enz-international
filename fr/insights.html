@@ -230,7 +230,7 @@
         </div>
         <div>
           <label for="booking-date" class="block text-sm font-medium text-ink">Date préférée</label>
-          <input id="booking-date" name="date" type="date" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <input id="booking-date" name="date" type="date" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
         </div>
         <div>
           <label for="booking-service" class="block text-sm font-medium text-ink">Service souhaité</label>
@@ -244,10 +244,19 @@
         <button type="submit" data-submitting-label="Envoi…" class="w-full inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 py-4">Demander une consultation</button>
         <p class="text-xs text-slate text-center">Nous répondrons sous 24h. Aucun paiement requis pour cette demande.</p>
       </form>
-      <div id="booking-success" role="status" hidden class="text-center py-6">
-        <div class="text-4xl mb-4">✅</div>
-        <p class="text-lg font-semibold text-ink">Demande reçue</p>
-        <p class="text-sm text-slate mt-2">Merci, <span data-success-name></span>. Un membre de notre équipe contactera <span data-success-email></span> sous peu.</p>
+      <div id="booking-success" role="status" hidden class="py-6">
+        <div class="text-center">
+          <div class="w-11 h-11 rounded-full bg-brand-tint text-brand flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p class="text-lg font-semibold text-ink mt-4">Demande reçue</p>
+          <p class="text-sm text-slate mt-2">Merci, <span data-success-name></span>. Un membre de notre équipe contactera <span data-success-email></span> sous peu.</p>
+        </div>
+        
+        <div class="mt-7 pt-6 border-t border-line text-left">
+          <p class="text-xs font-semibold tracking-[0.14em] uppercase text-slate">La suite</p>
+          <ol class="mt-4 space-y-3">
+            <li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">1</span><span>Nous étudions votre demande et l'orientons vers le bon spécialiste.</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">2</span><span>Vous recevez une réponse sous un jour ouvré — pas une séquence automatisée.</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">3</span><span>Si cela correspond, nous planifions un appel de 30 minutes à votre convenance.</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -276,10 +285,10 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=8"></script>
-    <script src="../assets/js/i18n.js?v=8"></script>
-    <script src="../assets/js/api.js?v=8"></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=8"></script>
-    <script src="../assets/js/site.js?v=8" defer></script>
+    <script src="../assets/js/config.js?v=9"></script>
+    <script src="../assets/js/i18n.js?v=9"></script>
+    <script src="../assets/js/api.js?v=9"></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=9"></script>
+    <script src="../assets/js/site.js?v=9" defer></script>
   </body>
 </html>
