@@ -25,7 +25,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=14" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=15" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -72,9 +72,6 @@
       </nav>
       <div class="hidden xl:flex items-center gap-2 2xl:gap-2.5 shrink-0">
         <select aria-label="Language" data-lang-select data-target-template="../__LANG__/about.html" class="lang-select"><option value="en" >EN</option><option value="sw" >SW</option><option value="fr" selected>FR</option><option value="zh" >ZH</option></select>
-        <button data-open-portal class="btn btn-secondary btn-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Portail Client</span>
-        </button>
         <button data-open-booking class="btn btn-primary btn-sm">Prendre RDV<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
       </div>
       <div class="flex xl:hidden items-center gap-2">
@@ -96,9 +93,6 @@
 <a href="contact.html" class="nav-link-mobile">Contact<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
         <div class="pt-5 space-y-3">
           <button data-open-booking class="btn btn-primary w-full">Réserver une consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
-          <button data-open-portal class="btn btn-secondary w-full">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Portail Client</span>
-          </button>
           <div class="flex items-center justify-between pt-2">
             <span class="text-xs font-medium text-slate">Langue</span>
             <select aria-label="Language" data-lang-select data-target-template="../__LANG__/about.html" class="lang-select"><option value="en" >EN</option><option value="sw" >SW</option><option value="fr" selected>FR</option><option value="zh" >ZH</option></select>
@@ -344,35 +338,10 @@
       </div>
     </div>
   </div>
-    
-  <div id="portal-modal" role="dialog" aria-modal="true" aria-labelledby="portal-modal-title" style="display:none" data-modal-backdrop class="modal-backdrop">
-    <div class="modal-panel">
-      <button data-close-modal aria-label="Close dialog" class="modal-close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <h2 id="portal-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">Portail client</h2>
-      <form data-portal-form class="space-y-5">
-        <p class="text-sm text-slate">Suivez vos projets d'approvisionnement, jalons et documents partagés en un seul endroit.</p>
-        <div>
-          <label for="portal-email" class="field-label">E-mail</label>
-          <input id="portal-email" name="email" type="email" required class="field" />
-        </div>
-        <div>
-          <label for="portal-password" class="field-label">Mot de passe</label>
-          <input id="portal-password" name="password" type="password" required class="field" />
-        </div>
-        <button type="submit" class="btn btn-dark w-full">Se connecter</button>
-        <p class="text-xs text-slate text-center">Nouveau sur le portail client ? Demandez l'accès à votre gestionnaire de compte à <a href="mailto:info@enzinternational.co" class="text-brand hover:underline">info@enzinternational.co</a></p>
-      </form>
-      <p data-error-slot role="alert" hidden class="text-sm text-red-600 mb-4"></p><div data-portal-success role="status" hidden class="text-center py-6">
-        <div class="text-4xl mb-4">✅</div>
-        <p class="text-lg font-semibold text-ink">Vous êtes connecté (démo)</p>
-        <p class="text-sm text-slate mt-2">Suivez vos projets d'approvisionnement, jalons et documents.</p>
-      </div>
-    </div>
-  </div>
-    <script src="../assets/js/config.js?v=14"></script>
-    <script src="../assets/js/i18n.js?v=14"></script>
-    <script src="../assets/js/api.js?v=14"></script>
-    <script src="../assets/js/site.js?v=14" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=14"></script>
+    <script src="../assets/js/config.js?v=15"></script>
+    <script src="../assets/js/i18n.js?v=15"></script>
+    <script src="../assets/js/api.js?v=15"></script>
+    <script src="../assets/js/site.js?v=15" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=15"></script>
   </body>
 </html>

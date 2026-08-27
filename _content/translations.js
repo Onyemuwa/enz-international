@@ -76,7 +76,6 @@ const dict = {
     navInsights: 'Insights',
     navContact: 'Contact',
     navCareers: 'Careers',
-    navPortal: 'Client Portal',
     navMarkets: 'Markets',
     skipToContent: 'Skip to main content',
     marketsTitle: 'Markets We Serve',
@@ -85,7 +84,6 @@ const dict = {
 
     // Common CTAs
     ctaBooking: 'Book Consultation',
-    ctaPortal: 'Client Login',
     ctaLearnMore: 'Learn more',
     ctaReadMore: 'Read more',
     ctaViewAll: 'View all',
@@ -195,15 +193,6 @@ const dict = {
     bookingErrorDesc: 'Please try again, or reach us directly on WhatsApp.',
 
     // Portal
-    portalTitle: 'Client Portal Login',
-    portalIntro: 'Track sourcing projects, milestones, and shared documents in one place.',
-    portalEmailLabel: 'Email',
-    portalPassLabel: 'Password',
-    portalLogin: 'Login',
-    portalAccessHelp: 'New to the client portal? Request access from your account manager at',
-    portalMock: 'You are logged in (demo)',
-    portalLoggedInDesc: 'Track sourcing projects, milestones, and documents.',
-    portalLogout: 'Log out',
 
     // Contact
     contactTitle: 'Contact & Booking',
@@ -348,7 +337,6 @@ const dict = {
     navInsights: 'Maoni',
     navContact: 'Wasiliana',
     navCareers: 'Kazi',
-    navPortal: 'Lango la Mteja',
     navMarkets: 'Masoko',
     skipToContent: 'Rukia yaliyomo',
     marketsTitle: 'Masoko Tunayohudumia',
@@ -356,7 +344,6 @@ const dict = {
     marketPageBackToMarkets: 'Masoko yote',
 
     ctaBooking: 'Panga Ushauriano',
-    ctaPortal: 'Ingia Mteja',
     ctaLearnMore: 'Jifunze zaidi',
     ctaReadMore: 'Soma zaidi',
     ctaViewAll: 'Ona vyote',
@@ -456,15 +443,6 @@ const dict = {
     bookingErrorTitle: 'Hitilafu imetokea',
     bookingErrorDesc: 'Tafadhali jaribu tena, au wasiliana nasi moja kwa moja kwenye WhatsApp.',
 
-    portalTitle: 'Lango la Mteja',
-    portalIntro: 'Fuatilia miradi ya ugavi, hatua muhimu, na hati zilizoshirikiwa mahali pamoja.',
-    portalEmailLabel: 'Barua pepe',
-    portalPassLabel: 'Nenosiri',
-    portalLogin: 'Ingia',
-    portalAccessHelp: 'Mpya kwenye lango la mteja? Omba ufikiaji kutoka kwa meneja wako wa akaunti kwa',
-    portalMock: 'Umeingia (demo)',
-    portalLoggedInDesc: 'Fuatilia miradi ya ugavi, hatua muhimu, na hati.',
-    portalLogout: 'Toka',
 
     contactTitle: 'Wasiliana na Panga',
     contactSubtitle: 'Wasiliana na timu yetu moja kwa moja, au panga ushauriano.',
@@ -602,7 +580,6 @@ const dict = {
     navInsights: 'Perspectives',
     navContact: 'Contact',
     navCareers: 'Carrières',
-    navPortal: 'Portail Client',
     navMarkets: 'Marchés',
     skipToContent: 'Aller au contenu principal',
     marketsTitle: 'Marchés que nous desservons',
@@ -610,7 +587,6 @@ const dict = {
     marketPageBackToMarkets: 'Tous les marchés',
 
     ctaBooking: 'Réserver une consultation',
-    ctaPortal: 'Connexion client',
     ctaLearnMore: 'En savoir plus',
     ctaReadMore: 'Lire la suite',
     ctaViewAll: 'Voir tout',
@@ -710,15 +686,6 @@ const dict = {
     bookingErrorTitle: "Une erreur s'est produite",
     bookingErrorDesc: 'Veuillez réessayer, ou contactez-nous directement sur WhatsApp.',
 
-    portalTitle: 'Portail client',
-    portalIntro: 'Suivez vos projets d\'approvisionnement, jalons et documents partagés en un seul endroit.',
-    portalEmailLabel: 'E-mail',
-    portalPassLabel: 'Mot de passe',
-    portalLogin: 'Se connecter',
-    portalAccessHelp: "Nouveau sur le portail client ? Demandez l'accès à votre gestionnaire de compte à",
-    portalMock: 'Vous êtes connecté (démo)',
-    portalLoggedInDesc: "Suivez vos projets d'approvisionnement, jalons et documents.",
-    portalLogout: 'Se déconnecter',
 
     contactTitle: 'Contact et réservation',
     contactSubtitle: 'Contactez notre équipe directement, ou réservez une consultation.',
@@ -856,7 +823,6 @@ const dict = {
     navInsights: '洞察',
     navContact: '联系我们',
     navCareers: '招聘',
-    navPortal: '客户门户',
     navMarkets: '服务市场',
     skipToContent: '跳转到主要内容',
     marketsTitle: '我们服务的市场',
@@ -864,7 +830,6 @@ const dict = {
     marketPageBackToMarkets: '所有市场',
 
     ctaBooking: '预约咨询',
-    ctaPortal: '客户登录',
     ctaLearnMore: '了解更多',
     ctaReadMore: '阅读更多',
     ctaViewAll: '查看全部',
@@ -964,15 +929,6 @@ const dict = {
     bookingErrorTitle: '出现错误',
     bookingErrorDesc: '请重试，或直接通过WhatsApp联系我们。',
 
-    portalTitle: '客户门户登录',
-    portalIntro: '在一个地方跟踪采购项目、里程碑和共享文档。',
-    portalEmailLabel: '邮箱',
-    portalPassLabel: '密码',
-    portalLogin: '登录',
-    portalAccessHelp: '首次使用客户门户？请联系您的客户经理申请访问权限：',
-    portalMock: '您已登录（演示）',
-    portalLoggedInDesc: '跟踪采购项目、里程碑和文档。',
-    portalLogout: '退出登录',
 
     contactTitle: '联系与预约',
     contactSubtitle: '直接联系我们的团队，或预约咨询。',

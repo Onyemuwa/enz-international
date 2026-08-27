@@ -55,8 +55,8 @@
   }
 
   // ---------- Generic modal open/close with focus trap ----------
-  // Modals here are only ever opened by an explicit click on "Book
-  // Consultation" / "Client Login" — never shown unprompted.
+  // The booking modal is only ever opened by an explicit click on "Book
+  // Consultation", never shown unprompted.
   var lastFocused = null;
 
   function openModal(modal) {
@@ -104,11 +104,6 @@
       openModal(document.getElementById('booking-modal'));
     });
   });
-  document.querySelectorAll('[data-open-portal]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      openModal(document.getElementById('portal-modal'));
-    });
-  });
   document.querySelectorAll('[data-close-modal]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       closeModal(btn.closest('[role="dialog"]'));
@@ -121,9 +116,9 @@
   });
 
   // ---------- Forms ----------
-  // Every form is wired per INSTANCE, not by id. contact.html and portal.html
-  // each render the shared modal plus an inline copy of the same form, so the
-  // old getElementById() lookups found only the first of the two and left the
+  // Every form is wired per INSTANCE, not by id. contact.html renders the
+  // shared booking modal plus an inline copy of the same form, so the old
+  // getElementById() lookups found only the first of the two and left the
   // modal's form with no submit handler at all — the primary CTA on the
   // contact page silently did nothing when submitted.
   //
@@ -185,13 +180,6 @@
       var emailSpan = success.querySelector('[data-success-email]');
       if (nameSpan) nameSpan.textContent = form.name.value;
       if (emailSpan) emailSpan.textContent = form.email.value;
-    },
-  });
-
-  wireForm('[data-portal-form]', {
-    successSelector: '[data-portal-success]',
-    submit: function (form) {
-      return window.ENZ_API.portalLogin(form.email.value, form.password.value);
     },
   });
 

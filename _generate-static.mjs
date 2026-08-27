@@ -27,7 +27,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '14';
+const ASSET_VERSION = '15';
 
 // One weight range, one request. `display=swap` means text paints immediately
 // in the fallback and re-renders in Inter — never an invisible headline.
@@ -252,7 +252,6 @@ const ALL_PAGES = [
   'faq.html',
   'resources.html',
   'contact.html',
-  'portal.html',
   'careers.html',
   'privacy.html',
   'terms.html',
@@ -287,9 +286,6 @@ function headerHTML(lang, currentPage) {
       </nav>
       <div class="hidden xl:flex items-center gap-2 2xl:gap-2.5 shrink-0">
         ${langSwitcher(lang, currentPage)}
-        <button data-open-portal class="${BTN_SECONDARY} btn-sm">
-          ${icon('user', 'w-4 h-4')}<span>${t(lang, 'navPortal')}</span>
-        </button>
         <button data-open-booking class="${BTN_PRIMARY} btn-sm">${t(lang, 'ctaBookingShort')}${icon('chevronRight', 'w-3.5 h-3.5 btn-arrow')}</button>
       </div>
       <div class="flex xl:hidden items-center gap-2">
@@ -304,9 +300,6 @@ function headerHTML(lang, currentPage) {
         ${mobileLinks}
         <div class="pt-5 space-y-3">
           <button data-open-booking class="${BTN_PRIMARY} w-full">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
-          <button data-open-portal class="${BTN_SECONDARY} w-full">
-            ${icon('user', 'w-4 h-4')}<span>${t(lang, 'navPortal')}</span>
-          </button>
           <div class="flex items-center justify-between pt-2">
             <span class="text-xs font-medium text-slate">${LANG_LABEL[lang] || 'Language'}</span>
             ${langSwitcher(lang, currentPage)}
@@ -474,34 +467,6 @@ function bookingModalHTML(lang) {
   </div>`;
 }
 
-function portalModalHTML(lang) {
-  return `
-  <div id="portal-modal" role="dialog" aria-modal="true" aria-labelledby="portal-modal-title" style="display:none" data-modal-backdrop class="modal-backdrop">
-    <div class="modal-panel">
-      <button data-close-modal aria-label="Close dialog" class="modal-close">${icon('close', 'w-6 h-6')}</button>
-      <h2 id="portal-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">${t(lang, 'portalTitle')}</h2>
-      <form data-portal-form class="space-y-5">
-        <p class="text-sm text-slate">${t(lang, 'portalIntro')}</p>
-        <div>
-          <label for="portal-email" class="field-label">${t(lang, 'portalEmailLabel')}</label>
-          <input id="portal-email" name="email" type="email" required class="field" />
-        </div>
-        <div>
-          <label for="portal-password" class="field-label">${t(lang, 'portalPassLabel')}</label>
-          <input id="portal-password" name="password" type="password" required class="field" />
-        </div>
-        <button type="submit" class="btn btn-dark w-full">${t(lang, 'portalLogin')}</button>
-        <p class="text-xs text-slate text-center">${t(lang, 'portalAccessHelp')} <a href="mailto:${CONTACT_EMAIL}" class="text-brand hover:underline">${CONTACT_EMAIL}</a></p>
-      </form>
-      <p data-error-slot role="alert" hidden class="text-sm text-red-600 mb-4"></p><div data-portal-success role="status" hidden class="text-center py-6">
-        <div class="text-4xl mb-4">✅</div>
-        <p class="text-lg font-semibold text-ink">${t(lang, 'portalMock')}</p>
-        <p class="text-sm text-slate mt-2">${t(lang, 'portalLoggedInDesc')}</p>
-      </div>
-    </div>
-  </div>`;
-}
-
 function whatsappButtonHTML(lang) {
   return `
   <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" rel="noopener noreferrer" class="fab-whatsapp no-print" aria-label="${t(lang, 'footerWhatsapp')}">
@@ -632,7 +597,6 @@ function pageShell({ lang, page, title, description, jsonLd, crumbs, bodyHTML, r
     ${footerHTML(lang)}
     ${whatsappButtonHTML(lang)}
     ${bookingModalHTML(lang)}
-    ${portalModalHTML(lang)}
     <script src="../assets/js/config.js?v=${ASSET_VERSION}"></script>
     <script src="../assets/js/i18n.js?v=${ASSET_VERSION}"></script>
     <script src="../assets/js/api.js?v=${ASSET_VERSION}"></script>
@@ -1377,26 +1341,6 @@ function contactPage(lang) {
   return pageShell({ lang, page: 'contact.html', title: t(lang, 'contactTitle'), description: t(lang, 'contactSubtitle'), crumbs: [{ label: t(lang, 'navContact') }], bodyHTML: body });
 }
 
-function portalPage(lang) {
-  const body = `
-  <section class="section bg-white min-h-[60vh]">
-    <div class="shell max-w-2xl">
-      <div class="card card-muted card-lg">
-        <h1 class="text-[1.375rem] font-semibold text-ink">${t(lang, 'portalTitle')}</h1>
-        <form data-portal-form class="space-y-5">
-          <p class="text-sm text-slate">${t(lang, 'portalIntro')}</p>
-          <div><label for="pp-email" class="field-label">${t(lang, 'portalEmailLabel')}</label><input id="pp-email" name="email" type="email" required class="field" /></div>
-          <div><label for="pp-password" class="field-label">${t(lang, 'portalPassLabel')}</label><input id="pp-password" name="password" type="password" required class="field" /></div>
-          <button type="submit" class="btn btn-dark w-full">${t(lang, 'portalLogin')}</button>
-          <p class="text-xs text-slate text-center">${t(lang, 'portalAccessHelp')} <a href="mailto:${CONTACT_EMAIL}" class="text-brand hover:underline">${CONTACT_EMAIL}</a></p>
-        </form>
-        <p data-error-slot role="alert" hidden class="text-sm text-red-600 mb-4"></p><div data-portal-success role="status" hidden class="text-center py-6"><div class="text-4xl mb-4">✅</div><p class="text-lg font-semibold text-ink">${t(lang, 'portalMock')}</p><p class="text-sm text-slate mt-2">${t(lang, 'portalLoggedInDesc')}</p></div>
-      </div>
-    </div>
-  </section>`;
-  return pageShell({ lang, page: 'portal.html', title: t(lang, 'navPortal'), description: t(lang, 'portalIntro'), crumbs: [{ label: t(lang, 'navPortal') }], bodyHTML: body });
-}
-
 function careersPage(lang) {
   const body = `
   <section class="section bg-white">
@@ -1946,7 +1890,6 @@ for (const lang of SUPPORTED_LANGUAGES) {
     ['markets.html', marketsPage],
     ['insights.html', insightsListPage],
     ['contact.html', contactPage],
-    ['portal.html', portalPage],
     ['careers.html', careersPage],
     ['process.html', processPage],
     ['industries.html', industriesPage],
@@ -2117,21 +2060,20 @@ writeFileSync(
   ) + '\n'
 );
 
-// Privacy and terms were previously disallowed. Search engines treat a
-// reachable, indexable privacy policy as a trust signal for a business site,
-// and hiding it gains nothing — only the client portal is worth excluding.
+// Everything shipped is indexable. Privacy and terms were once disallowed;
+// search engines treat a reachable privacy policy as a trust signal, and
+// hiding it gained nothing. The client portal that used to be excluded here
+// has been removed from the site entirely.
 writeFileSync(
   path.join(OUT, 'robots.txt'),
   `User-agent: *
 Allow: /
-Disallow: /*/portal.html
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `
 );
 
-// Portal is the only page kept out of the sitemap, matching robots.txt above.
-const sitemapPages = ALL_PAGES.filter((p) => p !== 'portal.html');
+const sitemapPages = ALL_PAGES;
 const LASTMOD = new Date().toISOString().slice(0, 10);
 // Home outranks a legal page; a hub outranks a leaf.
 const priorityFor = (page) => {

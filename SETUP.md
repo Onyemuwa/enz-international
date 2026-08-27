@@ -22,8 +22,8 @@ Nobody is silently dropped — but nobody reaches your inbox through the form ei
 
 1. Get a free key at [web3forms.com](https://web3forms.com) (emailed to you in under a minute, no
    account) and set `WEB3FORMS_ACCESS_KEY` in `assets/js/config.js`. Every form then emails you directly.
-2. Or run the real backend and set `API_BASE_URL`. Only this option can do genuine portal auth —
-   Web3Forms is a mail relay, not an auth provider.
+2. Or run the real backend and set `API_BASE_URL`. Use this if you want submissions persisted somewhere
+   you control rather than arriving purely as email.
 
 Then bump `ASSET_VERSION` in `_generate-static.mjs`, re-run it, and redeploy — otherwise browsers keep
 serving the cached `config.js`.
@@ -51,7 +51,7 @@ claims on a live company site, which isn't something to guess on your behalf.
 
 ## 2. Stack
 
-- **Markup**: hand-written semantic HTML, one real file per page per language (80 pages total: 20 pages ×
+- **Markup**: hand-written semantic HTML, one real file per page per language (76 pages total: 19 pages ×
   4 languages, plus a root redirect and a shared 404).
 - **Styling**: one plain stylesheet, `assets/css/site.css`, committed to the repo. It is compiled from
   `_build/tailwind.src.css` only when markup changes — deploying still needs no build step. This
@@ -67,11 +67,11 @@ claims on a live company site, which isn't something to guess on your behalf.
   *after* a successful import is anything hidden — one element at a time, immediately before animating it
   back in. A watchdog then clears every inline style unconditionally after 4s. Every failure path ends at
   "visible", which is precisely how the four earlier scroll-reveal attempts failed and this one does not.
-- **Interactivity**: plain vanilla JS (`assets/js/site.js`) — no framework. Modals, FAQ accordion, scroll-linked chrome,
-  language switcher, and form submission. No exit-intent popups, cookie banners, or sticky
-  bottom bars — deliberately left out to keep the experience calm and trustworthy rather than
-  aggressive-growth-hacky. Modals only ever open from an explicit click on "Book Consultation"
-  or "Client Login," never unprompted.
+- **Interactivity**: plain vanilla JS (`assets/js/site.js`) — no framework. The booking modal, FAQ
+  accordion, scroll-linked chrome, language switcher, and form submission. No exit-intent popups, cookie
+  banners, or sticky bottom bars — deliberately left out to keep the experience calm and trustworthy
+  rather than aggressive-growth-hacky. The modal only ever opens from an explicit click on "Book
+  Consultation", never unprompted.
 - **Fonts**: Google Fonts (Inter) via `<link>`, with `preconnect` for performance.
 
 ## 3. Real email on form submit — no backend required
@@ -79,13 +79,13 @@ claims on a live company site, which isn't something to guess on your behalf.
 `assets/js/api.js` tries three things in order, controlled entirely from `assets/js/config.js`:
 
 1. **`API_BASE_URL`** — if you stand up a real backend somewhere, point at it here for full persistence
-   and real client-portal auth. (Not included in this repo — ask if you want one built; it would be a
+   of submissions. (Not included in this repo — ask if you want one built; it would be a
    separate service you host, since "no other stack" means it can't live in this repo.)
 2. **`WEB3FORMS_ACCESS_KEY`** — no backend at all. Get a free key at [web3forms.com](https://web3forms.com)
    (no account/password — the key is emailed to you). Forms POST straight to Web3Forms, which relays the
    submission to your inbox. This is the recommended path given the all-static constraint — it directly
    answers "the form should arrive by email automatically" with zero infrastructure to run or pay for.
-   The one thing it can't do is client-portal login (it's a mail relay, not an auth provider).
+   It is a mail relay, so it delivers submissions but does not store them anywhere you can query.
 3. **Neither set** — mock mode, and **only on localhost**. Forms resolve successfully so you can click
    through the whole flow while developing. On a deployed host this same state instead rejects the
    submission and shows an "email us directly" fallback, because a live form that fakes success loses
@@ -100,7 +100,7 @@ claims on a live company site, which isn't something to guess on your behalf.
 | hreflang (all 4 languages + x-default) | ✅ |
 | Open Graph / Twitter Card | ✅ (add a real 1200×630 `og-cover.jpg` and a real domain before launch) |
 | JSON-LD structured data | ✅ one merged `@graph` per page: Organization + WebSite sitewide, plus LocalBusiness/FAQPage (home), Service list (services, pricing), HowTo (process), BreadcrumbList (inner pages), BlogPosting (insight posts) |
-| `robots.txt` + `sitemap.xml` | ✅ 76 URLs with `lastmod`/`priority`; only the client portal is excluded. Privacy and terms are now indexable — a reachable privacy policy is a trust signal, and hiding it gained nothing |
+| `robots.txt` + `sitemap.xml` | ✅ 76 URLs with `lastmod`/`priority`; nothing is excluded. Privacy and terms are indexable — a reachable privacy policy is a trust signal, and hiding it gained nothing |
 | Semantic heading hierarchy (one `<h1>` per page) | ✅ |
 | Real per-language URLs (not query params or client routing) | ✅ — this is the structural advantage of the all-static approach: every `/xx/page.html` is a genuinely separate, crawlable file |
 | Mobile responsiveness | ✅ verified at 360/768/1280 across en/fr/zh — zero horizontal overflow, mobile menu functional |
@@ -114,7 +114,7 @@ domain age/authority, and content velocity (3 blog posts is a start, not a full 
 
 - [x] One compiled stylesheet (~42KB minified) instead of a CDN compiler on the critical path
 - [x] Font `preconnect` + `display=swap`
-- [x] Motion vendored locally — one fetch, cached by the browser across all 80 pages
+- [x] Motion vendored locally — one fetch, cached by the browser across all 76 pages
 - [x] No horizontal overflow at 360/768/1280 in any language
 - [x] Cache + security headers shipped in `_headers` and `vercel.json`
 - [ ] Image optimization / WebP — revisit once real photography (team, facilities) is added

@@ -49,9 +49,9 @@ assets/
                         sticky-header state, reading progress, language switcher
     vendor/
       motion.min.js    Motion, vendored. No third-party CDN at runtime.
-en/  sw/  fr/  zh/    One real folder per language — 20 pages each:
+en/  sw/  fr/  zh/    One real folder per language — 19 pages each:
   index.html, about.html, services.html, markets.html, insights.html,
-  insight-*.html (×3), contact.html, portal.html, careers.html,
+  insight-*.html (×3), contact.html, pricing.html, careers.html,
   privacy.html, terms.html
 ```
 
@@ -79,7 +79,7 @@ For small changes, **edit the `.html` files directly** — nothing to run, nothi
 build step. To change something in the header nav, for example, a project-wide search for the text you're
 changing is the fastest way to find every place it needs to change.
 
-For a sweeping change that touches most or all of the 80 pages at once (e.g. a full copy rewrite, a new
+For a sweeping change that touches most or all of the 76 pages at once (e.g. a full copy rewrite, a new
 sitewide section), `_generate-static.mjs` can regenerate everything from the structured content in
 `_content/` — see `_content/README.md`. Neither file is loaded by the live site; they're optional
 maintenance tooling, kept only so large content passes don't mean hand-editing 13 files × 4 languages.

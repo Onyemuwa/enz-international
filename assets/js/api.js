@@ -118,13 +118,6 @@ window.ENZ_API = (function () {
       return mockResolve({ status: 'subscribed' });
     },
 
-    portalLogin: function (email, password) {
-      if (BASE) return request('/api/auth/login', { method: 'POST', body: JSON.stringify({ email: email, password: password }) });
-      // Web3Forms is a mail relay, not an auth provider — portal login stays
-      // mock unless a real backend is configured.
-      return mockResolve({ token: 'mock-token', user: { name: email.split('@')[0], email: email } });
-    },
-
     submitCvApplication: function (formData) {
       if (BASE) {
         return fetch(BASE + '/api/careers/applications', { method: 'POST', body: formData }).then(function (res) {
