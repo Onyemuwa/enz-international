@@ -1,6 +1,6 @@
 // Shared vanilla-JS behavior for every page: mobile menu, modals (with focus
-// trap), FAQ accordion, tabs, and form submissions against ENZ_API. No
-// framework, no build step.
+// trap), FAQ accordion, scroll-linked chrome (sticky header state, reading
+// progress, back-to-top), and form submissions against ENZ_API. No framework.
 (function () {
   'use strict';
 
@@ -10,10 +10,28 @@
   var menuToggle = document.getElementById('mobile-menu-toggle');
   var mobileNav = document.getElementById('mobile-nav');
   if (menuToggle && mobileNav) {
+    var setMenu = function (open) {
+      mobileNav.hidden = !open;
+      menuToggle.setAttribute('aria-expanded', String(open));
+    };
     menuToggle.addEventListener('click', function () {
-      var isOpen = !mobileNav.hidden;
-      mobileNav.hidden = isOpen;
-      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      setMenu(mobileNav.hidden);
+    });
+    // Tapping a nav link on a phone should navigate, not leave the panel
+    // hanging open over the destination.
+    mobileNav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !mobileNav.hidden) {
+        setMenu(false);
+        menuToggle.focus();
+      }
+    });
+    // Rotating a phone to landscape can cross the desktop breakpoint, where
+    // the panel is display:none but still "open" as far as the toggle knows.
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1280 && !mobileNav.hidden) setMenu(false);
     });
   }
 
@@ -171,33 +189,8 @@
       var isOpen = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', String(!isOpen));
       if (panel) panel.hidden = isOpen;
-      var icon = btn.querySelector('.faq-chevron');
-      if (icon) icon.style.transform = isOpen ? '' : 'rotate(180deg)';
-    });
-  });
-
-  // ---------- Service tabs (home page) ----------
-  document.querySelectorAll('[data-tab-btn]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var group = btn.closest('[data-tab-group]');
-      if (!group) return;
-      group.querySelectorAll('[data-tab-btn]').forEach(function (b) {
-        var active = b === btn;
-        b.setAttribute('aria-selected', String(active));
-        b.classList.toggle('bg-navy', active);
-        b.classList.toggle('text-white', active);
-        b.classList.toggle('shadow-md', active);
-        b.classList.toggle('bg-white', !active);
-        b.classList.toggle('text-navy/70', !active);
-      });
-      group.querySelectorAll('[data-tab-panel]').forEach(function (panel) {
-        // Inline style, not the `hidden` attribute: panels also carry Tailwind's
-        // `.grid` class, which ties `[hidden]{display:none}` on specificity and
-        // wins on source order (Tailwind's stylesheet loads after the UA one).
-        // Only an inline style is guaranteed to beat a stylesheet class.
-        var isActive = panel.getAttribute('data-tab-panel') === btn.getAttribute('data-tab-btn');
-        panel.style.display = isActive ? '' : 'none';
-      });
+      // The chevron rotation lives in CSS, keyed off [aria-expanded="true"] —
+      // one source of truth for the open state instead of two.
     });
   });
 
@@ -214,6 +207,53 @@
     el.textContent = new Date().getFullYear();
   });
 
-  // Scroll reveal, animated counters, and hero entrance are handled by
-  // motion-effects.js (Motion — motion.dev), loaded separately.
+  // ---------- Scroll-linked chrome ----------
+  // Header border/shadow, reading-progress bar, and the back-to-top button all
+  // read the same scroll position, so they share one throttled listener rather
+  // than three competing ones.
+  var header = document.querySelector('[data-site-header]');
+  var progress = document.querySelector('[data-read-progress]');
+  var toTop = document.querySelector('[data-to-top]');
+
+  if (header || progress || toTop) {
+    var scrollTicking = false;
+
+    var updateChrome = function () {
+      var y = window.scrollY || document.documentElement.scrollTop || 0;
+
+      // The header only earns its border once there is content behind it.
+      if (header) header.classList.toggle('is-scrolled', y > 8);
+
+      if (progress) {
+        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = scrollable > 0 ? Math.min(y / scrollable, 1) : 0;
+        progress.style.width = pct * 100 + '%';
+      }
+
+      // Only worth offering once scrolling back is actually a chore.
+      if (toTop) toTop.hidden = y < 900;
+
+      scrollTicking = false;
+    };
+
+    var onScroll = function () {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      window.requestAnimationFrame(updateChrome);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    updateChrome();
+  }
+
+  if (toTop) {
+    toTop.addEventListener('click', function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  }
+
+  // Animated counters, entrance reveals, and the hero parallax are handled by
+  // motion-effects.js (Motion — motion.dev), loaded separately as a module.
 })();

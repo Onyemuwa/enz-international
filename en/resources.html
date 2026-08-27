@@ -2,313 +2,471 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0A192F" />
-    <title>Guides and references | ENZ INTERNATIONAL</title>
-    <meta name="description" content="Practical material we use with clients. Ask and we will send it over — no signup wall." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0B1A24" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="light" />
+    <title>The buyer's guide | ENZ INTERNATIONAL</title>
+    <meta name="description" content="The reference material worth reading before your first order — costs, payment, timelines, and the mistakes that cost the most." />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="ENZ INTERNATIONAL" />
     <link rel="canonical" href="https://enzinternational.co/en/resources.html" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/images/favicon-512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png" />
+    <link rel="manifest" href="../site.webmanifest" />
     <link rel="alternate" hreflang="en" href="https://enzinternational.co/en/resources.html" />
     <link rel="alternate" hreflang="sw" href="https://enzinternational.co/sw/resources.html" />
     <link rel="alternate" hreflang="fr" href="https://enzinternational.co/fr/resources.html" />
     <link rel="alternate" hreflang="zh" href="https://enzinternational.co/zh/resources.html" />
     <link rel="alternate" hreflang="x-default" href="https://enzinternational.co/en/resources.html" />
+
+    <!-- The stylesheet is a single plain file, committed to the repo. It is
+         compiled from _build/tailwind.src.css only when markup changes; the
+         site itself still needs no build step to deploy. (The Tailwind Play
+         CDN that used to sit here is explicitly not for production: it ships a
+         compiler to every visitor and repaints the page after first paint.) -->
+    <link rel="stylesheet" href="../assets/css/site.css?v=12" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" /></noscript>
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ENZ INTERNATIONAL" />
-    <meta property="og:title" content="Guides and references | ENZ INTERNATIONAL" />
-    <meta property="og:description" content="Practical material we use with clients. Ask and we will send it over — no signup wall." />
+    <meta property="og:title" content="The buyer's guide | ENZ INTERNATIONAL" />
+    <meta property="og:description" content="The reference material worth reading before your first order — costs, payment, timelines, and the mistakes that cost the most." />
     <meta property="og:url" content="https://enzinternational.co/en/resources.html" />
     <meta property="og:image" content="https://enzinternational.co/assets/images/og-cover.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ENZ INTERNATIONAL — global sourcing and industrial excellence" />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="sw_TZ" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="zh_CN" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Guides and references | ENZ INTERNATIONAL" />
-    <meta name="twitter:description" content="Practical material we use with clients. Ask and we will send it over — no signup wall." />
+    <meta name="twitter:title" content="The buyer's guide | ENZ INTERNATIONAL" />
+    <meta name="twitter:description" content="The reference material worth reading before your first order — costs, payment, timelines, and the mistakes that cost the most." />
     <meta name="twitter:image" content="https://enzinternational.co/assets/images/og-cover.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: { extend: {
-          colors: {
-            navy: '#0B1A24', ink: '#0A0F14', slate: '#5A6A75',
-            /* Brand scale derived from the logo's own hue (199deg), sampled
-               from assets/images/enz-logo.png: blue #2AA8E4, orange #FCAE42.
-               The logo blue is only 2.7:1 on white — it FAILS WCAG AA, so it
-               can never be text or a button fill on a light background.
-               'brand' is therefore the darkened same-hue variant (6.2:1) used
-               for anything interactive, and 'brand-bright' is the exact logo
-               colour, reserved for dark backgrounds and decorative fills where
-               contrast is satisfied. Same family, different jobs. */
-            brand: '#12688F', 'brand-dark': '#0E5878', 'brand-bright': '#2AA8E4', 'brand-tint': '#EAF6FD',
-            accent: '#FCAE42', 'accent-tint': '#FFF4E3',
-            line: '#E4E9ED', 'gray-bg': '#F8FAFB',
-          },
-          fontFamily: { inter: ['Inter', 'sans-serif'] },
-        } },
-      };
-    </script>
-    <style>
-      body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; }
-      /* Optical tightening on large display type — the single biggest difference
-         between "template" and "designed" at headline sizes. */
-      h1 { letter-spacing: -0.033em; }
-      h2 { letter-spacing: -0.025em; }
-      h3 { letter-spacing: -0.015em; }
-      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #12688F; outline-offset: 2px; border-radius: 4px; }
-      .skip-link { position: absolute; left: -9999px; top: 0; background: #12688F; color: #fff; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
-      .skip-link:focus { left: 1rem; top: 1rem; }
-      /* NOTE: there is deliberately no opacity:0 initial state anywhere.
-         Entrance reveals were removed outright — four separate attempts at
-         "hide, then reveal on scroll" each shipped invisible content when the
-         reveal step didn't run (observer never fired, animation never
-         advanced, or a transition-all pinned the element at its start value).
-         On a marketing site, content that is merely *decorated* by motion must
-         never be *gated* by it. Hover/focus transitions are safe: they animate
-         from a visible state, so a stalled one still leaves content readable. */
-      @media print { header, footer, .no-print { display: none !important; } }
-    </style>
-    
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://enzinternational.co/#organization","name":"ENZ INTERNATIONAL","url":"https://enzinternational.co/en/index.html","logo":"https://enzinternational.co/assets/images/enz-logo.png","email":"info@enzinternational.co","telephone":"+86-132-0384-0456","areaServed":["Tanzania","Kenya","DRC","USA","UK"]},{"@type":"WebSite","@id":"https://enzinternational.co/#website","url":"https://enzinternational.co/en/","name":"ENZ INTERNATIONAL","inLanguage":"en","publisher":{"@id":"https://enzinternational.co/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://enzinternational.co/en/index.html"},{"@type":"ListItem","position":2,"name":"Resources","item":"https://enzinternational.co/en/resources.html"}]}]}</script>
   </head>
-  <body class="bg-gray-bg text-ink antialiased">
+  <body class="bg-white text-ink">
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
-  <header class="bg-white/85 backdrop-blur-xl sticky top-0 z-50 border-b border-line">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-      <a href="index.html" class="flex items-center shrink-0">
+  <div class="read-progress" data-read-progress aria-hidden="true"></div>
+  <header class="site-header" data-site-header>
+    <div class="shell flex items-center justify-between gap-6 h-[4.25rem]">
+      <a href="index.html" class="flex items-center shrink-0" aria-label="ENZ INTERNATIONAL — home">
         <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="132" height="36" class="h-9 w-auto object-contain" />
       </a>
-      <nav class="hidden lg:flex items-center gap-8 text-[0.9375rem] font-medium" aria-label="Primary">
-        <a href="index.html" class="transition-colors text-slate hover:text-ink">Home</a>
-<a href="services.html" class="transition-colors text-slate hover:text-ink">Services</a>
-<a href="process.html" class="transition-colors text-slate hover:text-ink">Process</a>
-<a href="industries.html" class="transition-colors text-slate hover:text-ink">Industries</a>
-<a href="markets.html" class="transition-colors text-slate hover:text-ink">Markets</a>
-<a href="about.html" class="transition-colors text-slate hover:text-ink">About</a>
-<a href="insights.html" class="transition-colors text-slate hover:text-ink">Insights</a>
-<a href="contact.html" class="transition-colors text-slate hover:text-ink">Contact</a>
+      <nav class="hidden xl:flex items-center gap-5 2xl:gap-7 min-w-0 text-[0.875rem] 2xl:text-[0.9375rem] font-medium" aria-label="Primary">
+        <a href="index.html" class="nav-link">Home</a>
+<a href="services.html" class="nav-link">Services</a>
+<a href="process.html" class="nav-link">Process</a>
+<a href="pricing.html" class="nav-link">Engagement</a>
+<a href="markets.html" class="nav-link">Markets</a>
+<a href="about.html" class="nav-link">About</a>
+<a href="insights.html" class="nav-link">Insights</a>
+<a href="contact.html" class="nav-link">Contact</a>
       </nav>
-      <div class="hidden lg:flex items-center gap-3">
-        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/resources.html" class="bg-transparent border border-line rounded-md px-2 py-1.5 text-xs text-slate cursor-pointer hover:border-slate/40 transition-colors"><option value="en" selected>EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" >ZH</option></select>
-        <button data-open-portal class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-3.5 py-2 text-sm">
+      <div class="hidden xl:flex items-center gap-2 2xl:gap-2.5 shrink-0">
+        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/resources.html" class="lang-select"><option value="en" selected>EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" >ZH</option></select>
+        <button data-open-portal class="btn btn-secondary btn-sm">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Client Portal</span>
         </button>
-        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-4 py-2 text-sm">Book Consultation</button>
+        <button data-open-booking class="btn btn-primary btn-sm">Book a call<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
       </div>
-      <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav" class="lg:hidden text-ink" aria-label="Toggle menu">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-    </div>
-    <nav id="mobile-nav" hidden aria-label="Primary" class="lg:hidden bg-white border-t border-line px-4 py-6 space-y-4 text-[0.9375rem]">
-      <a href="index.html" class="block text-slate hover:text-ink transition-colors">Home</a>
-<a href="services.html" class="block text-slate hover:text-ink transition-colors">Services</a>
-<a href="process.html" class="block text-slate hover:text-ink transition-colors">Process</a>
-<a href="industries.html" class="block text-slate hover:text-ink transition-colors">Industries</a>
-<a href="markets.html" class="block text-slate hover:text-ink transition-colors">Markets</a>
-<a href="about.html" class="block text-slate hover:text-ink transition-colors">About</a>
-<a href="insights.html" class="block text-slate hover:text-ink transition-colors">Insights</a>
-<a href="contact.html" class="block text-slate hover:text-ink transition-colors">Contact</a>
-      <div class="pt-3 space-y-3 border-t border-line">
-        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 w-full px-4 py-2.5 text-sm">Book Consultation</button>
-        <button data-open-portal class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 w-full px-4 py-2.5 text-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Client Portal</span>
+      <div class="flex xl:hidden items-center gap-2">
+        <button data-open-booking class="btn btn-primary btn-sm hidden sm:inline-flex">Book a call</button>
+        <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav" class="inline-flex items-center justify-center w-10 h-10 -mr-2 rounded-lg text-ink hover:bg-gray-bg transition-colors" aria-label="Toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
-        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/resources.html" class="bg-transparent border border-line rounded-md px-2 py-1.5 text-xs text-slate cursor-pointer hover:border-slate/40 transition-colors"><option value="en" selected>EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" >ZH</option></select>
+      </div>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Primary" class="xl:hidden bg-white border-t border-line shadow-lg max-h-[calc(100vh-4.25rem)] overflow-y-auto">
+      <div class="shell py-5 text-[0.9375rem]">
+        <a href="index.html" class="nav-link-mobile">Home<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="services.html" class="nav-link-mobile">Services<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="process.html" class="nav-link-mobile">Process<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="pricing.html" class="nav-link-mobile">Engagement<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="markets.html" class="nav-link-mobile">Markets<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="about.html" class="nav-link-mobile">About<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="insights.html" class="nav-link-mobile">Insights<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="contact.html" class="nav-link-mobile">Contact<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+        <div class="pt-5 space-y-3">
+          <button data-open-booking class="btn btn-primary w-full">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+          <button data-open-portal class="btn btn-secondary w-full">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Client Portal</span>
+          </button>
+          <div class="flex items-center justify-between pt-2">
+            <span class="text-xs font-medium text-slate">Language</span>
+            <select aria-label="Language" data-lang-select data-target-template="../__LANG__/resources.html" class="lang-select"><option value="en" selected>EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" >ZH</option></select>
+          </div>
+        </div>
       </div>
     </nav>
   </header>
-    <nav aria-label="Breadcrumb" class="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-sm text-slate"><ol class="flex flex-wrap items-center gap-1.5"><li class="flex items-center gap-1.5"><a href="index.html" class="hover:text-brand transition">Home</a></li><li class="flex items-center gap-1.5"><span aria-hidden="true">/</span></li><li class="flex items-center gap-1.5"><span class="text-ink font-medium" aria-current="page">Resources</span></li></ol></nav>
+    <nav aria-label="Breadcrumb" class="shell pt-5 text-[0.8125rem] text-slate"><ol class="flex flex-wrap items-center gap-2"><li class="flex items-center gap-2"><a href="index.html" class="hover:text-brand transition-colors">Home</a></li><li class="flex items-center gap-2"><span aria-hidden="true" class="text-line-strong"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></li><li class="flex items-center gap-2"><span class="text-ink font-medium" aria-current="page">Resources</span></li></ol></nav>
     <main id="main-content">
       
   
   <section class="bg-white border-b border-line">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl text-center pt-16 pb-14 md:pt-20 md:pb-16">
-      <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Resources</p>
-      <h1 class="text-[2.25rem] leading-[1.1] md:text-[3.25rem] md:leading-[1.06] font-semibold text-ink mt-3">Guides and references</h1>
-      <p class="text-slate text-lg leading-relaxed mt-5">Practical material we use with clients. Ask and we will send it over — no signup wall.</p>
+    <div class="shell max-w-3xl text-center pt-16 pb-14 md:pt-20 md:pb-16">
+      <p class="eyebrow">Resources</p>
+      <h1 class="text-[2.25rem] leading-[1.1] md:text-[3.25rem] md:leading-[1.06] font-semibold text-ink mt-3">The buyer's guide</h1>
+      <p class="lead mt-5">The reference material worth reading before your first order — costs, payment, timelines, and the mistakes that cost the most.</p>
       <div class="flex flex-col sm:flex-row justify-center gap-3 mt-8">
-        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-6 py-3 text-[0.9375rem]">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
-        <a href="contact.html" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-6 py-3 text-[0.9375rem]">Contact</a>
+        <button data-open-booking class="btn btn-primary px-6 py-3 text-[0.9375rem]">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <a href="contact.html" class="btn btn-secondary px-6 py-3 text-[0.9375rem]">Contact</a>
       </div>
     </div>
   </section>
-  <section class="py-16 md:py-24 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-      <div class="grid gap-5 md:grid-cols-2">
-        <article class="bg-white border border-line rounded-xl p-6 flex flex-col">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          <h2 class="text-lg font-semibold text-ink">Pre-shipment inspection checklist</h2>
-          <p class="text-slate text-[0.9375rem] mt-2.5 leading-relaxed flex-1">The checks worth insisting on before goods leave the factory — quantity verification, workmanship, function testing, packaging, and shipping marks.</p>
-          <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-4 py-2.5 text-sm mt-5 self-start">Request the checklist<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+
+  <section class="bg-white pt-10">
+    <nav aria-label="The buyer's guide" class="shell max-w-5xl flex flex-wrap justify-center gap-2.5"><a href="#landed-cost" class="btn btn-secondary btn-sm">What actually makes up your landed cost</a><a href="#payment" class="btn btn-secondary btn-sm">How payment is usually structured</a><a href="#timelines" class="btn btn-secondary btn-sm">Realistic timelines</a><a href="#mistakes" class="btn btn-secondary btn-sm">Six mistakes that cost buyers the most</a><a href="#glossary" class="btn btn-secondary btn-sm">Terms worth knowing</a><a href="#templates" class="btn btn-secondary btn-sm">Guides and references</a></nav>
+  </section>
+
+  <section id="landed-cost" class="section bg-white">
+    <div class="shell max-w-5xl">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Cost</p>
+        <h2 class="h2-section mt-4">What actually makes up your landed cost</h2>
+        <p class="lead mt-5">Unit price is usually 50–70% of what you finally pay. A quote compared on unit price alone is a quote compared on the smaller half of the number.</p>
+      </div>
+      <div data-reveal-group class="grid gap-4 md:grid-cols-2 mt-14">
+        <div class="card"><div class="flex items-start gap-4">
+          <span class="step-badge">1</span>
+          <div><h3 class="font-medium text-ink">Unit price (EXW/FOB)</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">The factory price. The only figure most buyers compare — and therefore the one most easily discounted to win an order that is made back elsewhere.</p></div>
+        </div></div><div class="card"><div class="flex items-start gap-4">
+          <span class="step-badge">2</span>
+          <div><h3 class="font-medium text-ink">Inland freight in China</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">Factory to port. Minor on a full container, disproportionate on a part load moving from an inland province.</p></div>
+        </div></div><div class="card"><div class="flex items-start gap-4">
+          <span class="step-badge">3</span>
+          <div><h3 class="font-medium text-ink">Export clearance and origin documents</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">Export declaration, certificate of origin, and any inspection certificates the destination market requires.</p></div>
+        </div></div><div class="card"><div class="flex items-start gap-4">
+          <span class="step-badge">4</span>
+          <div><h3 class="font-medium text-ink">Ocean or air freight</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">The most volatile line item. Rates move with season, fuel, and capacity — a freight quote three months old is not a quote.</p></div>
+        </div></div><div class="card"><div class="flex items-start gap-4">
+          <span class="step-badge">5</span>
+          <div><h3 class="font-medium text-ink">Cargo insurance</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">Typically a small percentage of cargo value. Cheap relative to the loss it covers, and routinely skipped.</p></div>
+        </div></div><div class="card"><div class="flex items-start gap-4">
+          <span class="step-badge">6</span>
+          <div><h3 class="font-medium text-ink">Import duty and VAT</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">Driven by HS code and destination. Misclassification is common and expensive, because it triggers penalties rather than simple corrections.</p></div>
+        </div></div><div class="card"><div class="flex items-start gap-4">
+          <span class="step-badge">7</span>
+          <div><h3 class="font-medium text-ink">Port, handling, and demurrage</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">Terminal handling, customs examination fees, and storage if clearance stalls. Demurrage accrues daily and is almost entirely avoidable with correct paperwork.</p></div>
+        </div></div><div class="card"><div class="flex items-start gap-4">
+          <span class="step-badge">8</span>
+          <div><h3 class="font-medium text-ink">Final-mile delivery</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">Port to your warehouse, including special handling for oversized, fragile, or hazardous goods.</p></div>
+        </div></div>
+      </div>
+      <p class="note-accent mt-10">A landed-cost estimate before you commit is worth more than a lower unit price after you have.</p>
+    </div>
+  </section>
+
+  <section id="payment" class="section bg-gray-bg border-y border-line">
+    <div class="shell max-w-5xl">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Payment</p>
+        <h2 class="h2-section mt-4">How payment is usually structured</h2>
+        <p class="lead mt-5">The instrument you use decides how much recourse you have if something goes wrong. Choose it before you send money, not after.</p>
+      </div>
+      <div data-reveal-group class="grid gap-4 sm:grid-cols-2 mt-14">
+        <div class="card">
+          <div class="flex items-baseline gap-3"><span class="pill mono-tag">T/T</span><h3 class="font-medium text-ink">Telegraphic transfer</h3></div>
+          <p class="text-slate text-sm mt-3 leading-relaxed">A bank wire, commonly 30% deposit with the balance before shipment. Fast and cheap, but offers little recourse once sent — which is exactly why the balance should be tied to a passed inspection rather than a promised date.</p>
+        </div><div class="card">
+          <div class="flex items-baseline gap-3"><span class="pill mono-tag">L/C</span><h3 class="font-medium text-ink">Letter of credit</h3></div>
+          <p class="text-slate text-sm mt-3 leading-relaxed">A bank guarantees payment against presented documents. Strong protection on large orders, at the cost of bank fees and strict document discipline — a single discrepancy can hold payment.</p>
+        </div><div class="card">
+          <div class="flex items-baseline gap-3"><span class="pill mono-tag">D/P</span><h3 class="font-medium text-ink">Documents against payment</h3></div>
+          <p class="text-slate text-sm mt-3 leading-relaxed">Shipping documents release only on payment, handled bank to bank. A middle ground: cheaper than a letter of credit, more structured than a bare wire.</p>
+        </div><div class="card">
+          <div class="flex items-baseline gap-3"><span class="pill mono-tag">Escrow</span><h3 class="font-medium text-ink">Platform escrow</h3></div>
+          <p class="text-slate text-sm mt-3 leading-relaxed">Funds held by a marketplace until you confirm receipt. Genuinely useful for small trial orders; rarely practical at container scale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="timelines" class="section bg-white">
+    <div class="shell max-w-4xl">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Timelines</p>
+        <h2 class="h2-section mt-4">Realistic timelines</h2>
+        <p class="lead mt-5">Typical ranges, not promises — complexity, tooling, and season all move them. The value is in planning against honest numbers rather than best-case ones.</p>
+      </div>
+      <div class="table-wrap mt-14">
+        <table class="table-pro">
+          <thead>
+            <tr>
+              <th scope="col">Phase</th>
+              <th scope="col" class="text-brand">Typical</th>
+              <th scope="col">What moves it</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Supplier shortlisting and verification</th><td class="text-brand whitespace-nowrap">1–2 weeks</td><td>Longer for technical or regulated products</td></tr><tr><th scope="row">Sampling and revisions</th><td class="text-brand whitespace-nowrap">2–4 weeks</td><td>Each revision round adds roughly a week</td></tr><tr><th scope="row">Production</th><td class="text-brand whitespace-nowrap">20–45 days</td><td>Highly product-dependent; new tooling adds materially</td></tr><tr><th scope="row">Inspection and freight booking</th><td class="text-brand whitespace-nowrap">3–7 days</td><td>A failed inspection means rework and rebooking</td></tr><tr><th scope="row">Ocean transit to East Africa</th><td class="text-brand whitespace-nowrap">25–40 days</td><td>Port to port, before clearance</td></tr><tr><th scope="row">Customs clearance</th><td class="text-brand whitespace-nowrap">2–10 days</td><td>Clean paperwork is the single biggest variable</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="mistakes" class="section bg-gray-bg border-y border-line">
+    <div class="shell">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Pitfalls</p>
+        <h2 class="h2-section mt-4">Six mistakes that cost buyers the most</h2>
+        <p class="lead mt-5">Every one of these is common, expensive, and entirely avoidable if you know to look for it.</p>
+      </div>
+      <div data-reveal-group class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-14">
+        <div class="card">
+          <span class="step-badge">01</span>
+          <h3 class="font-medium text-ink mt-4">Comparing quotes on different Incoterms</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">An EXW quote and a DDP quote are not comparable numbers. Normalise every quote to the same term first, or you will pick the most expensive supplier believing it is the cheapest.</p>
+        </div><div class="card">
+          <span class="step-badge">02</span>
+          <h3 class="font-medium text-ink mt-4">Paying a deposit to an unverified supplier</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">A 30% deposit to a company you have not verified is 30% at risk. Verification costs a fraction of that and takes days, not weeks.</p>
+        </div><div class="card">
+          <span class="step-badge">03</span>
+          <h3 class="font-medium text-ink mt-4">Skipping the pre-production sample</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Approving a catalogue photo rather than a sample built to your specification. Whatever you approve becomes the reference every later inspection is judged against.</p>
+        </div><div class="card">
+          <span class="step-badge">04</span>
+          <h3 class="font-medium text-ink mt-4">Ignoring the Chinese New Year calendar</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Factories close for two to four weeks and run hot for weeks either side. Orders placed in the wrong window ship late regardless of what was promised.</p>
+        </div><div class="card">
+          <span class="step-badge">05</span>
+          <h3 class="font-medium text-ink mt-4">Mistaking a trading company for a factory</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Both are legitimate and both have their place. Problems start when you believe you are speaking to the factory and you are not — pricing and quality control work differently.</p>
+        </div><div class="card">
+          <span class="step-badge">06</span>
+          <h3 class="font-medium text-ink mt-4">Accepting an under-declared invoice value</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Sometimes offered by a supplier as a favour to reduce your duty. It is customs fraud in your market, and the liability sits with the importer of record — you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="glossary" class="section bg-white">
+    <div class="shell">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Glossary</p>
+        <h2 class="h2-section mt-4">Terms worth knowing</h2>
+        <p class="lead mt-5">The vocabulary that shows up in quotes and contracts, in plain language.</p>
+      </div>
+      <dl data-reveal-group class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-14">
+        <div class="card card-muted"><dt class="font-medium text-ink">MOQ</dt><dd class="text-slate text-sm mt-1.5 leading-relaxed">Minimum order quantity — the smallest run a factory will accept. Often negotiable on a first order, usually at a higher unit price.</dd></div><div class="card card-muted"><dt class="font-medium text-ink">HS code</dt><dd class="text-slate text-sm mt-1.5 leading-relaxed">Harmonised System code classifying goods for customs. It sets your duty rate, and misclassification carries penalties.</dd></div><div class="card card-muted"><dt class="font-medium text-ink">Golden sample</dt><dd class="text-slate text-sm mt-1.5 leading-relaxed">The approved reference unit retained by both parties. Every later inspection is judged against it.</dd></div><div class="card card-muted"><dt class="font-medium text-ink">LCL / FCL</dt><dd class="text-slate text-sm mt-1.5 leading-relaxed">Less than container load (shared) versus full container load. LCL costs more per unit of volume and is handled more times.</dd></div><div class="card card-muted"><dt class="font-medium text-ink">Demurrage</dt><dd class="text-slate text-sm mt-1.5 leading-relaxed">Daily charges once a container sits at destination beyond its free time. Usually caused by paperwork, not by shipping.</dd></div><div class="card card-muted"><dt class="font-medium text-ink">PVoC</dt><dd class="text-slate text-sm mt-1.5 leading-relaxed">Pre-export verification of conformity, required by several African markets before shipment. Missing it means goods are refused at arrival.</dd></div>
+      </dl>
+      <p class="text-center mt-10"><a href="logistics.html" class="btn btn-secondary">Which Incoterm to ask for <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></p>
+    </div>
+  </section>
+
+  <section id="templates" class="section bg-gray-bg border-y border-line">
+    <div class="shell max-w-5xl">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Resources</p>
+        <h2 class="h2-section mt-4">Guides and references</h2>
+        <p class="lead mt-5">Practical material we use with clients. Ask and we will send it over — no signup wall.</p>
+      </div>
+      <div data-reveal-group class="grid gap-4 md:grid-cols-2 mt-14">
+        <article class="card flex flex-col">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <h3 class="text-lg font-medium text-ink mt-4">Pre-shipment inspection checklist</h3>
+          <p class="text-slate text-sm mt-2.5 leading-relaxed flex-1">The checks worth insisting on before goods leave the factory — quantity verification, workmanship, function testing, packaging, and shipping marks.</p>
+          <button data-open-booking class="btn btn-secondary btn-sm mt-5 self-start">Request the checklist<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+        </article><article class="card flex flex-col">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+          <h3 class="text-lg font-medium text-ink mt-4">Chinese New Year planning calendar</h3>
+          <p class="text-slate text-sm mt-2.5 leading-relaxed flex-1">Factories close for two to four weeks and capacity tightens for weeks either side. This is the single most common cause of missed deadlines for first-time buyers.</p>
+          <button data-open-booking class="btn btn-secondary btn-sm mt-5 self-start">Request the calendar<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+        </article><article class="card flex flex-col">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <h3 class="text-lg font-medium text-ink mt-4">Incoterms quick reference</h3>
+          <p class="text-slate text-sm mt-2.5 leading-relaxed flex-1">What each term actually obliges each party to do, where risk transfers, and which one to ask for depending on how much control you want.</p>
+          <button data-open-booking class="btn btn-secondary btn-sm mt-5 self-start">Request the reference<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+        </article><article class="card flex flex-col">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <h3 class="text-lg font-medium text-ink mt-4">Supplier verification questions</h3>
+          <p class="text-slate text-sm mt-2.5 leading-relaxed flex-1">The questions that separate a manufacturer from a trading company, and the documents to ask for in each case.</p>
+          <button data-open-booking class="btn btn-secondary btn-sm mt-5 self-start">Request the questions<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
         </article>
-        <article class="bg-white border border-line rounded-xl p-6 flex flex-col">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <h2 class="text-lg font-semibold text-ink">Chinese New Year planning calendar</h2>
-          <p class="text-slate text-[0.9375rem] mt-2.5 leading-relaxed flex-1">Factories close for two to four weeks and capacity tightens for weeks either side. This is the single most common cause of missed deadlines for first-time buyers.</p>
-          <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-4 py-2.5 text-sm mt-5 self-start">Request the calendar<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
-        </article>
-        <article class="bg-white border border-line rounded-xl p-6 flex flex-col">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <h2 class="text-lg font-semibold text-ink">Incoterms quick reference</h2>
-          <p class="text-slate text-[0.9375rem] mt-2.5 leading-relaxed flex-1">What each term actually obliges each party to do, where risk transfers, and which one to ask for depending on how much control you want.</p>
-          <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-4 py-2.5 text-sm mt-5 self-start">Request the reference<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
-        </article>
-        <article class="bg-white border border-line rounded-xl p-6 flex flex-col">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <h2 class="text-lg font-semibold text-ink">Supplier verification questions</h2>
-          <p class="text-slate text-[0.9375rem] mt-2.5 leading-relaxed flex-1">The questions that separate a manufacturer from a trading company, and the documents to ask for in each case.</p>
-          <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-4 py-2.5 text-sm mt-5 self-start">Request the questions<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
-        </article></div>
+      </div>
       <p class="text-sm text-slate mt-8 text-center">Each of these is sent by a person, not an autoresponder.</p>
     </div>
   </section>
+
   
-  <section class="py-20 md:py-24 bg-ink text-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl md:text-[2.5rem] md:leading-[1.1] font-semibold">Ready to Transform Your Supply Chain?</h2>
-      <p class="text-white/60 text-lg mt-4 max-w-2xl mx-auto leading-relaxed">Book a consultation with our team and discover how ENZ can accelerate your growth.</p>
+  <section class="section section-dark">
+    <div class="shell text-center">
+      <h2 class="h2-section on-dark">Ready to Transform Your Supply Chain?</h2>
+      <p class="lead-light mt-4 max-w-2xl mx-auto">Book a consultation with our team and discover how ENZ can accelerate your growth.</p>
       <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
-        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-6 py-3 text-[0.9375rem]">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
-        <a href="contact.html" class="inline-flex items-center justify-center gap-2 bg-white/[0.08] border border-white/20 hover:bg-white/[0.14] hover:border-white/30 text-white font-medium rounded-lg transition-colors duration-200 px-6 py-3 text-[0.9375rem]">Contact</a>
+        <button data-open-booking class="btn btn-primary px-6 py-3 text-[0.9375rem]">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <a href="contact.html" class="btn btn-ghost-light px-6 py-3 text-[0.9375rem]">Contact</a>
       </div>
     </div>
   </section>
     </main>
     
-  <footer class="bg-navy text-white/70 py-16 border-t border-white/5">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
-      <div>
-        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-10 w-auto object-contain mb-4" />
-        <p class="text-sm max-w-xs leading-relaxed">Global sourcing, factory setup, and market entry consulting.</p>
-      </div>
-      <div>
-        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">Services</h2>
-        <ul class="text-sm space-y-3">
-          <li><a href="services.html" class="hover:text-brand-bright transition">Sourcing</a></li>
-          <li><a href="services.html" class="hover:text-brand-bright transition">Factory Setup</a></li>
-          <li><a href="services.html" class="hover:text-brand-bright transition">China Market Entry & Expansion</a></li>
+  <footer class="section-dark text-white/70 pt-16 pb-8 md:pt-20">
+    <div aria-hidden="true" class="glow glow-brand w-[30rem] h-[30rem] -top-48 left-1/4"></div>
+    <div class="shell grid grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12">
+      <div class="col-span-2 lg:col-span-4">
+        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-10 w-auto object-contain" />
+        <p class="text-sm max-w-xs leading-relaxed mt-5 text-white/60">Global sourcing, factory setup, and market entry consulting.</p>
+        <ul class="mt-6 space-y-2.5 text-sm">
+          <li class="flex items-center gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright shrink-0" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8613203840456" class="text-white/70 hover:text-white transition-colors">+86 132 0384 0456</a></li>
+          <li class="flex items-center gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright shrink-0" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg><a href="mailto:info@enzinternational.co" class="text-white/70 hover:text-white transition-colors">info@enzinternational.co</a></li>
+          <li class="flex items-start gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright shrink-0 mt-0.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-white/60">Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</span></li>
         </ul>
-      </div>
-      <div>
-        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">Company</h2>
-        <ul class="text-sm space-y-3">
-          <li><a href="about.html" class="hover:text-brand-bright transition">About</a></li>
-          <li><a href="markets.html" class="hover:text-brand-bright transition">Markets</a></li>
-          <li><a href="process.html" class="hover:text-brand-bright transition">Process</a></li>
-          <li><a href="industries.html" class="hover:text-brand-bright transition">Industries</a></li>
-          <li><a href="quality-control.html" class="hover:text-brand-bright transition">Quality control</a></li>
-          <li><a href="logistics.html" class="hover:text-brand-bright transition">Logistics</a></li>
-          <li><a href="resources.html" class="hover:text-brand-bright transition">Resources</a></li>
-          <li><a href="faq.html" class="hover:text-brand-bright transition">FAQ</a></li>
-          <li><a href="insights.html" class="hover:text-brand-bright transition">Insights</a></li>
-          <li><a href="careers.html" class="hover:text-brand-bright transition">Careers</a></li>
-          <li><a href="contact.html" class="hover:text-brand-bright transition">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">Contact</h2>
-        <p class="text-sm flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8613203840456" class="hover:text-brand-bright transition">+86 132 0384 0456</a></p>
-        <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="mt-4 flex items-center gap-2 bg-green-600/15 hover:bg-green-600/25 text-green-400 px-4 py-2.5 rounded-full text-sm transition w-fit">
+        <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light btn-sm mt-6">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Chat on WhatsApp
         </a>
-        <form id="newsletter-form" class="mt-7">
-          <label for="newsletter-email" class="text-white font-semibold text-sm block mb-1.5">Stay informed</label>
-          <p class="text-xs text-white/50 mb-3">Sourcing insights and market updates, occasionally.</p>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h2 class="text-white font-semibold text-xs uppercase tracking-[0.14em] mb-4">Services</h2>
+        <ul class="text-sm space-y-2.5">
+          <li><a href="services.html" class="inline-block text-white/60 hover:text-white transition-colors">Sourcing</a></li>
+          <li><a href="services.html" class="inline-block text-white/60 hover:text-white transition-colors">Factory Setup</a></li>
+          <li><a href="services.html" class="inline-block text-white/60 hover:text-white transition-colors">China Market Entry & Expansion</a></li>
+          <li><a href="quality-control.html" class="inline-block text-white/60 hover:text-white transition-colors">Quality control</a></li>
+          <li><a href="logistics.html" class="inline-block text-white/60 hover:text-white transition-colors">Logistics</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h2 class="text-white font-semibold text-xs uppercase tracking-[0.14em] mb-4">Company</h2>
+        <ul class="text-sm space-y-2.5">
+          <li><a href="about.html" class="inline-block text-white/60 hover:text-white transition-colors">About</a></li>
+          <li><a href="markets.html" class="inline-block text-white/60 hover:text-white transition-colors">Markets</a></li>
+          <li><a href="process.html" class="inline-block text-white/60 hover:text-white transition-colors">Process</a></li>
+          <li><a href="pricing.html" class="inline-block text-white/60 hover:text-white transition-colors">Engagement</a></li>
+          <li><a href="industries.html" class="inline-block text-white/60 hover:text-white transition-colors">Industries</a></li>
+          <li><a href="careers.html" class="inline-block text-white/60 hover:text-white transition-colors">Careers</a></li>
+          <li><a href="contact.html" class="inline-block text-white/60 hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-4">
+        <h2 class="text-white font-semibold text-xs uppercase tracking-[0.14em] mb-4">Resources</h2>
+        <ul class="text-sm space-y-2.5">
+          <li><a href="resources.html" class="inline-block text-white/60 hover:text-white transition-colors">Guides and references</a></li>
+          <li><a href="insights.html" class="inline-block text-white/60 hover:text-white transition-colors">Insights</a></li>
+          <li><a href="faq.html" class="inline-block text-white/60 hover:text-white transition-colors">FAQ</a></li>
+        </ul>
+        <form id="newsletter-form" class="mt-8">
+          <label for="newsletter-email" class="text-white font-semibold text-sm block">Stay informed</label>
+          <p class="text-xs text-white/60 mt-1.5 mb-3 leading-relaxed">Sourcing insights and market updates, occasionally.</p>
           <div class="flex gap-2">
-            <input id="newsletter-email" name="email" type="email" required placeholder="you@company.com" class="flex-1 min-w-0 bg-white/10 border border-white/15 rounded-lg px-3 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand/30" />
-            <button type="submit" class="bg-brand text-white text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-brand-dark transition-colors">Subscribe</button>
+            <input id="newsletter-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com" class="field field-dark flex-1 min-w-0" />
+            <button type="submit" class="btn btn-primary btn-sm shrink-0">Subscribe</button>
           </div>
         </form>
-        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3">Thanks — check your inbox to confirm.</p>
+        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Thanks — check your inbox to confirm.</p>
       </div>
     </div>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
-      <p>© <span data-current-year></span> ENZ INTERNATIONAL. All rights reserved.</p>
-      <p class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</p>
-      <div class="flex gap-5">
-        <a href="privacy.html" class="hover:text-brand-bright transition">Privacy Policy</a>
-        <a href="terms.html" class="hover:text-brand-bright transition">Terms of Service</a>
+
+    <div class="shell mt-14 pt-7 border-t border-white/10 flex flex-col-reverse md:flex-row items-center justify-between gap-4 text-xs text-white/60">
+      <p>© <span data-current-year>2026</span> ENZ INTERNATIONAL. All rights reserved.</p>
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+        <a href="../sitemap.xml" class="hover:text-white transition-colors">Sitemap</a>
       </div>
     </div>
   </footer>
-    <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 z-40 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-2xl transition-transform hover:scale-105 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
     
-  <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-ink/50 backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-7 relative">
-      <button data-close-modal aria-label="Close dialog" class="absolute top-5 right-5 text-slate hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <h2 id="booking-modal-title" class="text-2xl font-bold text-ink mb-6 pr-6 tracking-tight">Executive Consultation</h2>
+  <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="fab-whatsapp no-print" aria-label="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span class="fab-label" aria-hidden="true">Chat on WhatsApp</span>
+  </a>
+  <button type="button" data-to-top hidden class="to-top no-print" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+  </button>
+    
+  <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" style="display:none" data-modal-backdrop class="modal-backdrop">
+    <div class="modal-panel">
+      <button data-close-modal aria-label="Close dialog" class="modal-close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2 id="booking-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">Executive Consultation</h2>
       <form id="booking-form" class="space-y-5">
         <p class="text-sm text-slate">Tell us about your project and we'll respond within one business day.</p>
         <div>
-          <label for="booking-name" class="block text-sm font-medium text-ink">Full Name</label>
-          <input id="booking-name" name="name" type="text" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="booking-name" class="field-label">Full Name</label>
+          <input id="booking-name" name="name" type="text" required class="field" />
         </div>
         <div>
-          <label for="booking-email" class="block text-sm font-medium text-ink">Email Address</label>
-          <input id="booking-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="booking-email" class="field-label">Email Address</label>
+          <input id="booking-email" name="email" type="email" required class="field" />
         </div>
-        <div class="grid grid-cols-2 gap-4">
+        <div data-reveal-group class="grid grid-cols-2 gap-4">
           <div>
-            <label for="booking-phone" class="block text-sm font-medium text-ink">Phone (optional)</label>
-            <input id="booking-phone" name="phone" type="tel" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+            <label for="booking-phone" class="field-label">Phone (optional)</label>
+            <input id="booking-phone" name="phone" type="tel" class="field" />
           </div>
           <div>
-            <label for="booking-company" class="block text-sm font-medium text-ink">Company (optional)</label>
-            <input id="booking-company" name="company" type="text" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+            <label for="booking-company" class="field-label">Company (optional)</label>
+            <input id="booking-company" name="company" type="text" class="field" />
           </div>
         </div>
         <div>
-          <label for="booking-date" class="block text-sm font-medium text-ink">Preferred Date</label>
-          <input id="booking-date" name="date" type="date" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="booking-date" class="field-label">Preferred Date</label>
+          <input id="booking-date" name="date" type="date" class="field" />
         </div>
         <div>
-          <label for="booking-service" class="block text-sm font-medium text-ink">Service of Interest</label>
-          <select id="booking-service" name="service" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"><option value="">—</option><option value="sourcing">Global Sourcing</option><option value="factory">Factory Setup</option><option value="market">Market Entry</option><option value="other">Other</option></select>
+          <label for="booking-service" class="field-label">Service of Interest</label>
+          <select id="booking-service" name="service" class="field"><option value="">—</option><option value="sourcing">Global Sourcing</option><option value="factory">Factory Setup</option><option value="market">Market Entry</option><option value="other">Other</option></select>
         </div>
         <div>
-          <label for="booking-message" class="block text-sm font-medium text-ink">Tell us about your project (optional)</label>
-          <textarea id="booking-message" name="message" rows="3" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"></textarea>
+          <label for="booking-message" class="field-label">Tell us about your project (optional)</label>
+          <textarea id="booking-message" name="message" rows="3" class="field"></textarea>
         </div>
         <p id="booking-error" role="alert" hidden class="text-sm text-red-600">Something went wrong — Please try again, or reach us directly on WhatsApp.</p>
-        <button type="submit" data-submitting-label="Sending…" class="w-full inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 py-4">Request Consultation</button>
+        <button type="submit" data-submitting-label="Sending…" class="w-full btn btn-primary py-4">Request Consultation</button>
         <p class="text-xs text-slate text-center">We'll respond within 24h. No payment is required to request a consultation.</p>
       </form>
       <div id="booking-success" role="status" hidden class="py-6">
         <div class="text-center">
-          <div class="w-11 h-11 rounded-full bg-brand-tint text-brand flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="icon-chip w-12 h-12 rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
           <p class="text-lg font-semibold text-ink mt-4">Request received</p>
           <p class="text-sm text-slate mt-2">Thank you, <span data-success-name></span>. A member of our team will reach out to <span data-success-email></span> shortly.</p>
         </div>
         
         <div class="mt-7 pt-6 border-t border-line text-left">
-          <p class="text-xs font-semibold tracking-[0.14em] uppercase text-slate">What happens next</p>
+          <p class="eyebrow text-slate">What happens next</p>
           <ol class="mt-4 space-y-3">
-            <li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">1</span><span>We review your enquiry and match it to the right specialist.</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">2</span><span>You get a reply within one business day — no automated drip sequence.</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">3</span><span>If it is a fit, we schedule a 30-minute call at a time that suits you.</span></li>
+            <li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">1</span><span>We review your enquiry and match it to the right specialist.</span></li><li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">2</span><span>You get a reply within one business day — no automated drip sequence.</span></li><li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">3</span><span>If it is a fit, we schedule a 30-minute call at a time that suits you.</span></li>
           </ol>
         </div>
       </div>
     </div>
   </div>
     
-  <div id="portal-modal" role="dialog" aria-modal="true" aria-labelledby="portal-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-ink/50 backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-7 relative">
-      <button data-close-modal aria-label="Close dialog" class="absolute top-5 right-5 text-slate hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <h2 id="portal-modal-title" class="text-2xl font-bold text-ink mb-6 pr-6 tracking-tight">Client Portal Login</h2>
+  <div id="portal-modal" role="dialog" aria-modal="true" aria-labelledby="portal-modal-title" style="display:none" data-modal-backdrop class="modal-backdrop">
+    <div class="modal-panel">
+      <button data-close-modal aria-label="Close dialog" class="modal-close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2 id="portal-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">Client Portal Login</h2>
       <form id="portal-login-form" class="space-y-5">
         <p class="text-sm text-slate">Track sourcing projects, milestones, and shared documents in one place.</p>
         <div>
-          <label for="portal-email" class="block text-sm font-medium text-ink">Email</label>
-          <input id="portal-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="portal-email" class="field-label">Email</label>
+          <input id="portal-email" name="email" type="email" required class="field" />
         </div>
         <div>
-          <label for="portal-password" class="block text-sm font-medium text-ink">Password</label>
-          <input id="portal-password" name="password" type="password" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="portal-password" class="field-label">Password</label>
+          <input id="portal-password" name="password" type="password" required class="field" />
         </div>
-        <button type="submit" class="w-full bg-ink hover:bg-navy text-white font-medium py-3.5 rounded-lg transition-colors duration-200">Login</button>
+        <button type="submit" class="btn btn-dark w-full">Login</button>
         <p class="text-xs text-slate text-center">New to the client portal? Request access from your account manager at <a href="mailto:info@enzinternational.co" class="text-brand hover:underline">info@enzinternational.co</a></p>
       </form>
       <div id="portal-success" role="status" hidden class="text-center py-6">
@@ -318,10 +476,10 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=10"></script>
-    <script src="../assets/js/i18n.js?v=10"></script>
-    <script src="../assets/js/api.js?v=10"></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=10"></script>
-    <script src="../assets/js/site.js?v=10" defer></script>
+    <script src="../assets/js/config.js?v=12"></script>
+    <script src="../assets/js/i18n.js?v=12"></script>
+    <script src="../assets/js/api.js?v=12"></script>
+    <script src="../assets/js/site.js?v=12" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=12"></script>
   </body>
 </html>

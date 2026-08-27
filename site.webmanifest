@@ -1,0 +1,23 @@
+{
+  "name": "ENZ INTERNATIONAL",
+  "short_name": "ENZ",
+  "description": "Your trusted partner for commodities trading, factory setup, and China market entry. Serving East Africa, DRC, US, UK and beyond.",
+  "start_url": "/en/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0B1A24",
+  "icons": [
+    {
+      "src": "/assets/images/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

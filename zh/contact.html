@@ -2,21 +2,37 @@
 <html lang="zh">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0A192F" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0B1A24" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="light" />
     <title>联系与预约 | ENZ INTERNATIONAL</title>
     <meta name="description" content="直接联系我们的团队，或预约咨询。" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="ENZ INTERNATIONAL" />
     <link rel="canonical" href="https://enzinternational.co/zh/contact.html" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/images/favicon-512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png" />
+    <link rel="manifest" href="../site.webmanifest" />
     <link rel="alternate" hreflang="en" href="https://enzinternational.co/en/contact.html" />
     <link rel="alternate" hreflang="sw" href="https://enzinternational.co/sw/contact.html" />
     <link rel="alternate" hreflang="fr" href="https://enzinternational.co/fr/contact.html" />
     <link rel="alternate" hreflang="zh" href="https://enzinternational.co/zh/contact.html" />
     <link rel="alternate" hreflang="x-default" href="https://enzinternational.co/en/contact.html" />
+
+    <!-- The stylesheet is a single plain file, committed to the repo. It is
+         compiled from _build/tailwind.src.css only when markup changes; the
+         site itself still needs no build step to deploy. (The Tailwind Play
+         CDN that used to sit here is explicitly not for production: it ships a
+         compiler to every visitor and repaints the page after first paint.) -->
+    <link rel="stylesheet" href="../assets/css/site.css?v=12" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" /></noscript>
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ENZ INTERNATIONAL" />
     <meta property="og:title" content="联系与预约 | ENZ INTERNATIONAL" />
@@ -25,310 +41,299 @@
     <meta property="og:image" content="https://enzinternational.co/assets/images/og-cover.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ENZ INTERNATIONAL — global sourcing and industrial excellence" />
     <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="sw_TZ" />
+    <meta property="og:locale:alternate" content="fr_FR" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="联系与预约 | ENZ INTERNATIONAL" />
     <meta name="twitter:description" content="直接联系我们的团队，或预约咨询。" />
     <meta name="twitter:image" content="https://enzinternational.co/assets/images/og-cover.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: { extend: {
-          colors: {
-            navy: '#0B1A24', ink: '#0A0F14', slate: '#5A6A75',
-            /* Brand scale derived from the logo's own hue (199deg), sampled
-               from assets/images/enz-logo.png: blue #2AA8E4, orange #FCAE42.
-               The logo blue is only 2.7:1 on white — it FAILS WCAG AA, so it
-               can never be text or a button fill on a light background.
-               'brand' is therefore the darkened same-hue variant (6.2:1) used
-               for anything interactive, and 'brand-bright' is the exact logo
-               colour, reserved for dark backgrounds and decorative fills where
-               contrast is satisfied. Same family, different jobs. */
-            brand: '#12688F', 'brand-dark': '#0E5878', 'brand-bright': '#2AA8E4', 'brand-tint': '#EAF6FD',
-            accent: '#FCAE42', 'accent-tint': '#FFF4E3',
-            line: '#E4E9ED', 'gray-bg': '#F8FAFB',
-          },
-          fontFamily: { inter: ['Inter', 'sans-serif'] },
-        } },
-      };
-    </script>
-    <style>
-      body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; }
-      /* Optical tightening on large display type — the single biggest difference
-         between "template" and "designed" at headline sizes. */
-      h1 { letter-spacing: -0.033em; }
-      h2 { letter-spacing: -0.025em; }
-      h3 { letter-spacing: -0.015em; }
-      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #12688F; outline-offset: 2px; border-radius: 4px; }
-      .skip-link { position: absolute; left: -9999px; top: 0; background: #12688F; color: #fff; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
-      .skip-link:focus { left: 1rem; top: 1rem; }
-      /* NOTE: there is deliberately no opacity:0 initial state anywhere.
-         Entrance reveals were removed outright — four separate attempts at
-         "hide, then reveal on scroll" each shipped invisible content when the
-         reveal step didn't run (observer never fired, animation never
-         advanced, or a transition-all pinned the element at its start value).
-         On a marketing site, content that is merely *decorated* by motion must
-         never be *gated* by it. Hover/focus transitions are safe: they animate
-         from a visible state, so a stalled one still leaves content readable. */
-      @media print { header, footer, .no-print { display: none !important; } }
-    </style>
-    
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://enzinternational.co/#organization","name":"ENZ INTERNATIONAL","url":"https://enzinternational.co/zh/index.html","logo":"https://enzinternational.co/assets/images/enz-logo.png","email":"info@enzinternational.co","telephone":"+86-132-0384-0456","areaServed":["Tanzania","Kenya","DRC","USA","UK"]},{"@type":"WebSite","@id":"https://enzinternational.co/#website","url":"https://enzinternational.co/zh/","name":"ENZ INTERNATIONAL","inLanguage":"zh","publisher":{"@id":"https://enzinternational.co/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://enzinternational.co/zh/index.html"},{"@type":"ListItem","position":2,"name":"联系我们","item":"https://enzinternational.co/zh/contact.html"}]}]}</script>
   </head>
-  <body class="bg-gray-bg text-ink antialiased">
+  <body class="bg-white text-ink">
     <a href="#main-content" class="skip-link">跳转到主要内容</a>
     
-  <header class="bg-white/85 backdrop-blur-xl sticky top-0 z-50 border-b border-line">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-      <a href="index.html" class="flex items-center shrink-0">
+  <div class="read-progress" data-read-progress aria-hidden="true"></div>
+  <header class="site-header" data-site-header>
+    <div class="shell flex items-center justify-between gap-6 h-[4.25rem]">
+      <a href="index.html" class="flex items-center shrink-0" aria-label="ENZ INTERNATIONAL — home">
         <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="132" height="36" class="h-9 w-auto object-contain" />
       </a>
-      <nav class="hidden lg:flex items-center gap-8 text-[0.9375rem] font-medium" aria-label="Primary">
-        <a href="index.html" class="transition-colors text-slate hover:text-ink">首页</a>
-<a href="services.html" class="transition-colors text-slate hover:text-ink">服务</a>
-<a href="process.html" class="transition-colors text-slate hover:text-ink">服务流程</a>
-<a href="industries.html" class="transition-colors text-slate hover:text-ink">服务行业</a>
-<a href="markets.html" class="transition-colors text-slate hover:text-ink">服务市场</a>
-<a href="about.html" class="transition-colors text-slate hover:text-ink">关于我们</a>
-<a href="insights.html" class="transition-colors text-slate hover:text-ink">洞察</a>
-<a href="contact.html" class="transition-colors text-ink">联系我们</a>
+      <nav class="hidden xl:flex items-center gap-5 2xl:gap-7 min-w-0 text-[0.875rem] 2xl:text-[0.9375rem] font-medium" aria-label="Primary">
+        <a href="index.html" class="nav-link">首页</a>
+<a href="services.html" class="nav-link">服务</a>
+<a href="process.html" class="nav-link">服务流程</a>
+<a href="pricing.html" class="nav-link">合作方式</a>
+<a href="markets.html" class="nav-link">服务市场</a>
+<a href="about.html" class="nav-link">关于我们</a>
+<a href="insights.html" class="nav-link">洞察</a>
+<a href="contact.html" class="nav-link" aria-current="page">联系我们</a>
       </nav>
-      <div class="hidden lg:flex items-center gap-3">
-        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/contact.html" class="bg-transparent border border-line rounded-md px-2 py-1.5 text-xs text-slate cursor-pointer hover:border-slate/40 transition-colors"><option value="en" >EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" selected>ZH</option></select>
-        <button data-open-portal class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-3.5 py-2 text-sm">
+      <div class="hidden xl:flex items-center gap-2 2xl:gap-2.5 shrink-0">
+        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/contact.html" class="lang-select"><option value="en" >EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" selected>ZH</option></select>
+        <button data-open-portal class="btn btn-secondary btn-sm">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>客户门户</span>
         </button>
-        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-4 py-2 text-sm">预约咨询</button>
+        <button data-open-booking class="btn btn-primary btn-sm">预约通话<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
       </div>
-      <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav" class="lg:hidden text-ink" aria-label="Toggle menu">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-    </div>
-    <nav id="mobile-nav" hidden aria-label="Primary" class="lg:hidden bg-white border-t border-line px-4 py-6 space-y-4 text-[0.9375rem]">
-      <a href="index.html" class="block text-slate hover:text-ink transition-colors">首页</a>
-<a href="services.html" class="block text-slate hover:text-ink transition-colors">服务</a>
-<a href="process.html" class="block text-slate hover:text-ink transition-colors">服务流程</a>
-<a href="industries.html" class="block text-slate hover:text-ink transition-colors">服务行业</a>
-<a href="markets.html" class="block text-slate hover:text-ink transition-colors">服务市场</a>
-<a href="about.html" class="block text-slate hover:text-ink transition-colors">关于我们</a>
-<a href="insights.html" class="block text-slate hover:text-ink transition-colors">洞察</a>
-<a href="contact.html" class="block text-slate hover:text-ink transition-colors">联系我们</a>
-      <div class="pt-3 space-y-3 border-t border-line">
-        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 w-full px-4 py-2.5 text-sm">预约咨询</button>
-        <button data-open-portal class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 w-full px-4 py-2.5 text-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>客户门户</span>
+      <div class="flex xl:hidden items-center gap-2">
+        <button data-open-booking class="btn btn-primary btn-sm hidden sm:inline-flex">预约通话</button>
+        <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav" class="inline-flex items-center justify-center w-10 h-10 -mr-2 rounded-lg text-ink hover:bg-gray-bg transition-colors" aria-label="Toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
-        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/contact.html" class="bg-transparent border border-line rounded-md px-2 py-1.5 text-xs text-slate cursor-pointer hover:border-slate/40 transition-colors"><option value="en" >EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" selected>ZH</option></select>
+      </div>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Primary" class="xl:hidden bg-white border-t border-line shadow-lg max-h-[calc(100vh-4.25rem)] overflow-y-auto">
+      <div class="shell py-5 text-[0.9375rem]">
+        <a href="index.html" class="nav-link-mobile">首页<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="services.html" class="nav-link-mobile">服务<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="process.html" class="nav-link-mobile">服务流程<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="pricing.html" class="nav-link-mobile">合作方式<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="markets.html" class="nav-link-mobile">服务市场<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="about.html" class="nav-link-mobile">关于我们<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="insights.html" class="nav-link-mobile">洞察<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="contact.html" class="nav-link-mobile" aria-current="page">联系我们<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+        <div class="pt-5 space-y-3">
+          <button data-open-booking class="btn btn-primary w-full">预约咨询<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+          <button data-open-portal class="btn btn-secondary w-full">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>客户门户</span>
+          </button>
+          <div class="flex items-center justify-between pt-2">
+            <span class="text-xs font-medium text-slate">语言</span>
+            <select aria-label="Language" data-lang-select data-target-template="../__LANG__/contact.html" class="lang-select"><option value="en" >EN</option><option value="sw" >SW</option><option value="fr" >FR</option><option value="zh" selected>ZH</option></select>
+          </div>
+        </div>
       </div>
     </nav>
   </header>
-    <nav aria-label="Breadcrumb" class="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-sm text-slate"><ol class="flex flex-wrap items-center gap-1.5"><li class="flex items-center gap-1.5"><a href="index.html" class="hover:text-brand transition">首页</a></li><li class="flex items-center gap-1.5"><span aria-hidden="true">/</span></li><li class="flex items-center gap-1.5"><span class="text-ink font-medium" aria-current="page">联系我们</span></li></ol></nav>
+    <nav aria-label="Breadcrumb" class="shell pt-5 text-[0.8125rem] text-slate"><ol class="flex flex-wrap items-center gap-2"><li class="flex items-center gap-2"><a href="index.html" class="hover:text-brand transition-colors">首页</a></li><li class="flex items-center gap-2"><span aria-hidden="true" class="text-line-strong"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></li><li class="flex items-center gap-2"><span class="text-ink font-medium" aria-current="page">联系我们</span></li></ol></nav>
     <main id="main-content">
       
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl text-center">
-      <h1 class="text-4xl md:text-6xl font-bold text-ink tracking-tight">联系与预约</h1>
-      <p class="text-slate text-lg mt-6">直接联系我们的团队，或预约咨询。</p>
+  <section class="section bg-white">
+    <div class="shell max-w-3xl text-center">
+      <h1 class="h1-display text-ink">联系与预约</h1>
+      <p class="lead mt-6">直接联系我们的团队，或预约咨询。</p>
     </div>
   </section>
-  <section class="pb-20 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl">
+  <section class="section pt-0 bg-white">
+    <div class="shell grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl">
       <div>
-        <div class="bg-gray-bg rounded-2xl border border-line shadow-sm p-7">
-          <h2 class="font-bold text-ink text-lg mb-5 tracking-tight">联系方式</h2>
-          <ul class="space-y-4 text-sm text-gray-700">
+        <div class="card card-muted card-lg">
+          <h2 class="text-lg font-semibold text-ink mb-5">联系方式</h2>
+          <ul class="space-y-4 text-sm text-slate">
             <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>中国广州（总部）· 达累斯萨拉姆 · 内罗毕 · 金沙萨 · 伦敦 · 纽约</span></li>
             <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8613203840456" class="hover:text-brand transition">+86 132 0384 0456</a></li>
             <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg><a href="mailto:info@enzinternational.co" class="hover:text-brand transition">info@enzinternational.co</a></li>
           </ul>
-          <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="mt-7 w-full flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-3.5 rounded-full text-sm font-medium transition"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp 聊天</a>
+          <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp w-full mt-7"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp 聊天</a>
         </div>
         <div class="mt-6 rounded-2xl overflow-hidden border border-line shadow-sm h-64">
           <iframe title="ENZ INTERNATIONAL — Guangzhou HQ location" src="https://www.google.com/maps?q=Guangzhou%2C+China&output=embed" width="100%" height="100%" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
-      <div class="bg-white rounded-2xl border border-line shadow-md p-7">
+      <div class="card card-lg">
         <form id="booking-form" class="space-y-5">
           <p class="text-sm text-slate">告诉我们您的项目，我们将在一个工作日内回复。</p>
-          <div><label for="cf-name" class="block text-sm font-medium text-ink">全名</label><input id="cf-name" name="name" type="text" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" /></div>
-          <div><label for="cf-email" class="block text-sm font-medium text-ink">电子邮箱</label><input id="cf-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" /></div>
-          <div><label for="cf-date" class="block text-sm font-medium text-ink">首选日期</label><input id="cf-date" name="date" type="date" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" /></div>
-          <div><label for="cf-service" class="block text-sm font-medium text-ink">感兴趣的服务</label><select id="cf-service" name="service" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"><option value="">—</option><option value="sourcing">全球采购</option><option value="factory">工厂建设</option><option value="market">市场进入</option></select></div>
+          <div><label for="cf-name" class="field-label">全名</label><input id="cf-name" name="name" type="text" required class="field" /></div>
+          <div><label for="cf-email" class="field-label">电子邮箱</label><input id="cf-email" name="email" type="email" required class="field" /></div>
+          <div><label for="cf-date" class="field-label">首选日期</label><input id="cf-date" name="date" type="date" class="field" /></div>
+          <div><label for="cf-service" class="field-label">感兴趣的服务</label><select id="cf-service" name="service" class="field"><option value="">—</option><option value="sourcing">全球采购</option><option value="factory">工厂建设</option><option value="market">市场进入</option></select></div>
           <input type="hidden" name="phone" value="" /><input type="hidden" name="company" value="" /><input type="hidden" name="message" value="" />
           <p id="booking-error" role="alert" hidden class="text-sm text-red-600">出现错误</p>
-          <button type="submit" data-submitting-label="发送中…" class="w-full inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 py-4">请求咨询</button>
+          <button type="submit" data-submitting-label="发送中…" class="w-full btn btn-primary py-4">请求咨询</button>
         </form>
-        <div id="booking-success" role="status" hidden class="py-6"><div class="text-center"><div class="w-11 h-11 rounded-full bg-brand-tint text-brand flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div><p class="text-lg font-semibold text-ink mt-4">请求已收到</p></div>
+        <div id="booking-success" role="status" hidden class="py-6"><div class="text-center"><div class="icon-chip w-12 h-12 rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div><p class="text-lg font-semibold text-ink mt-4">请求已收到</p></div>
         <div class="mt-7 pt-6 border-t border-line text-left">
-          <p class="text-xs font-semibold tracking-[0.14em] uppercase text-slate">接下来会发生什么</p>
+          <p class="eyebrow text-slate">接下来会发生什么</p>
           <ol class="mt-4 space-y-3">
-            <li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">1</span><span>我们会审阅您的需求，并安排合适的专员对接。</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">2</span><span>您将在一个工作日内收到回复——不是自动群发邮件。</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">3</span><span>如果合适，我们会安排一次30分钟的通话，时间由您决定。</span></li>
+            <li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">1</span><span>我们会审阅您的需求，并安排合适的专员对接。</span></li><li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">2</span><span>您将在一个工作日内收到回复——不是自动群发邮件。</span></li><li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">3</span><span>如果合适，我们会安排一次30分钟的通话，时间由您决定。</span></li>
           </ol>
         </div></div>
       </div>
     </div>
   </section>
-  <section class="py-24 bg-gray-bg">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl md:text-4xl font-bold text-ink text-center tracking-tight mb-14">常见问题</h2>
+  <section class="section bg-gray-bg">
+    <div class="shell">
+      <h2 class="h2-section text-center mb-14">常见问题</h2>
       <div class="max-w-3xl mx-auto divide-y divide-gray-200 border-t border-b border-line">
     <div>
-      <h3><button class="faq-question w-full flex items-center justify-between py-6 text-left font-medium text-ink hover:text-brand transition-colors" aria-expanded="false" aria-controls="faq-panel-0" id="faq-btn-0"><span>How does the sourcing process start?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
-      <div id="faq-panel-0" role="region" aria-labelledby="faq-btn-0" hidden class="pb-6 text-sm text-slate leading-relaxed">It starts with a consultation where you share your product specifications, target price range, and order volume. From there we shortlist and vet suppliers on your behalf.</div>
+      <h3><button class="faq-question" aria-expanded="false" aria-controls="faq-panel-0" id="faq-btn-0"><span>How does the sourcing process start?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 faq-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
+      <div id="faq-panel-0" role="region" aria-labelledby="faq-btn-0" hidden class="faq-answer">It starts with a consultation where you share your product specifications, target price range, and order volume. From there we shortlist and vet suppliers on your behalf.</div>
     </div>
     <div>
-      <h3><button class="faq-question w-full flex items-center justify-between py-6 text-left font-medium text-ink hover:text-brand transition-colors" aria-expanded="false" aria-controls="faq-panel-1" id="faq-btn-1"><span>Do you handle quality control and inspections?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
-      <div id="faq-panel-1" role="region" aria-labelledby="faq-btn-1" hidden class="pb-6 text-sm text-slate leading-relaxed">Yes. We offer staged quality control — incoming material checks, in-process inspection, and pre-shipment inspection — so defects are caught before goods leave the factory.</div>
+      <h3><button class="faq-question" aria-expanded="false" aria-controls="faq-panel-1" id="faq-btn-1"><span>Do you handle quality control and inspections?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 faq-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
+      <div id="faq-panel-1" role="region" aria-labelledby="faq-btn-1" hidden class="faq-answer">Yes. We offer staged quality control — incoming material checks, in-process inspection, and pre-shipment inspection — so defects are caught before goods leave the factory.</div>
     </div>
     <div>
-      <h3><button class="faq-question w-full flex items-center justify-between py-6 text-left font-medium text-ink hover:text-brand transition-colors" aria-expanded="false" aria-controls="faq-panel-2" id="faq-btn-2"><span>Can you help set up a factory outside of China?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
-      <div id="faq-panel-2" role="region" aria-labelledby="faq-btn-2" hidden class="pb-6 text-sm text-slate leading-relaxed">Yes, our factory-setup service covers site selection, machinery sourcing, assembly-line planning, and commissioning support, including in East African markets.</div>
+      <h3><button class="faq-question" aria-expanded="false" aria-controls="faq-panel-2" id="faq-btn-2"><span>Can you help set up a factory outside of China?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 faq-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
+      <div id="faq-panel-2" role="region" aria-labelledby="faq-btn-2" hidden class="faq-answer">Yes, our factory-setup service covers site selection, machinery sourcing, assembly-line planning, and commissioning support, including in East African markets.</div>
     </div>
     <div>
-      <h3><button class="faq-question w-full flex items-center justify-between py-6 text-left font-medium text-ink hover:text-brand transition-colors" aria-expanded="false" aria-controls="faq-panel-3" id="faq-btn-3"><span>What information do you need for a factory-setup consultation?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
-      <div id="faq-panel-3" role="region" aria-labelledby="faq-btn-3" hidden class="pb-6 text-sm text-slate leading-relaxed">A general sense of your target product, expected production volume, and preferred location is enough to start. We refine the scope together during the consultation.</div>
+      <h3><button class="faq-question" aria-expanded="false" aria-controls="faq-panel-3" id="faq-btn-3"><span>What information do you need for a factory-setup consultation?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 faq-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
+      <div id="faq-panel-3" role="region" aria-labelledby="faq-btn-3" hidden class="faq-answer">A general sense of your target product, expected production volume, and preferred location is enough to start. We refine the scope together during the consultation.</div>
     </div>
     <div>
-      <h3><button class="faq-question w-full flex items-center justify-between py-6 text-left font-medium text-ink hover:text-brand transition-colors" aria-expanded="false" aria-controls="faq-panel-4" id="faq-btn-4"><span>Is there a fee to book a consultation?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
-      <div id="faq-panel-4" role="region" aria-labelledby="faq-btn-4" hidden class="pb-6 text-sm text-slate leading-relaxed">No — requesting a consultation through this site is free. Any paid engagement terms are agreed separately once scope is defined.</div>
+      <h3><button class="faq-question" aria-expanded="false" aria-controls="faq-panel-4" id="faq-btn-4"><span>Is there a fee to book a consultation?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 faq-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
+      <div id="faq-panel-4" role="region" aria-labelledby="faq-btn-4" hidden class="faq-answer">No — requesting a consultation through this site is free. Any paid engagement terms are agreed separately once scope is defined.</div>
     </div>
     <div>
-      <h3><button class="faq-question w-full flex items-center justify-between py-6 text-left font-medium text-ink hover:text-brand transition-colors" aria-expanded="false" aria-controls="faq-panel-5" id="faq-btn-5"><span>Which regions do you currently serve?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
-      <div id="faq-panel-5" role="region" aria-labelledby="faq-btn-5" hidden class="pb-6 text-sm text-slate leading-relaxed">Our team operates across Tanzania, Kenya, the Democratic Republic of Congo, the United States, and the United Kingdom, with our sourcing hub based in Guangzhou, China.</div>
+      <h3><button class="faq-question" aria-expanded="false" aria-controls="faq-panel-5" id="faq-btn-5"><span>Which regions do you currently serve?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 faq-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
+      <div id="faq-panel-5" role="region" aria-labelledby="faq-btn-5" hidden class="faq-answer">Our team operates across Tanzania, Kenya, the Democratic Republic of Congo, the United States, and the United Kingdom, with our sourcing hub based in Guangzhou, China.</div>
     </div></div>
     </div>
   </section>
     </main>
     
-  <footer class="bg-navy text-white/70 py-16 border-t border-white/5">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
-      <div>
-        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-10 w-auto object-contain mb-4" />
-        <p class="text-sm max-w-xs leading-relaxed">全球采购、工厂建设和市场进入咨询。</p>
-      </div>
-      <div>
-        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">服务</h2>
-        <ul class="text-sm space-y-3">
-          <li><a href="services.html" class="hover:text-brand-bright transition">采购</a></li>
-          <li><a href="services.html" class="hover:text-brand-bright transition">工厂</a></li>
-          <li><a href="services.html" class="hover:text-brand-bright transition">中国市场进入与扩展</a></li>
+  <footer class="section-dark text-white/70 pt-16 pb-8 md:pt-20">
+    <div aria-hidden="true" class="glow glow-brand w-[30rem] h-[30rem] -top-48 left-1/4"></div>
+    <div class="shell grid grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12">
+      <div class="col-span-2 lg:col-span-4">
+        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-10 w-auto object-contain" />
+        <p class="text-sm max-w-xs leading-relaxed mt-5 text-white/60">全球采购、工厂建设和市场进入咨询。</p>
+        <ul class="mt-6 space-y-2.5 text-sm">
+          <li class="flex items-center gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright shrink-0" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8613203840456" class="text-white/70 hover:text-white transition-colors">+86 132 0384 0456</a></li>
+          <li class="flex items-center gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright shrink-0" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg><a href="mailto:info@enzinternational.co" class="text-white/70 hover:text-white transition-colors">info@enzinternational.co</a></li>
+          <li class="flex items-start gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright shrink-0 mt-0.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-white/60">Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</span></li>
         </ul>
-      </div>
-      <div>
-        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">公司</h2>
-        <ul class="text-sm space-y-3">
-          <li><a href="about.html" class="hover:text-brand-bright transition">关于我们</a></li>
-          <li><a href="markets.html" class="hover:text-brand-bright transition">服务市场</a></li>
-          <li><a href="process.html" class="hover:text-brand-bright transition">服务流程</a></li>
-          <li><a href="industries.html" class="hover:text-brand-bright transition">服务行业</a></li>
-          <li><a href="quality-control.html" class="hover:text-brand-bright transition">质量控制</a></li>
-          <li><a href="logistics.html" class="hover:text-brand-bright transition">物流</a></li>
-          <li><a href="resources.html" class="hover:text-brand-bright transition">资源</a></li>
-          <li><a href="faq.html" class="hover:text-brand-bright transition">FAQ</a></li>
-          <li><a href="insights.html" class="hover:text-brand-bright transition">洞察</a></li>
-          <li><a href="careers.html" class="hover:text-brand-bright transition">招聘</a></li>
-          <li><a href="contact.html" class="hover:text-brand-bright transition">联系我们</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">联系方式</h2>
-        <p class="text-sm flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8613203840456" class="hover:text-brand-bright transition">+86 132 0384 0456</a></p>
-        <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="mt-4 flex items-center gap-2 bg-green-600/15 hover:bg-green-600/25 text-green-400 px-4 py-2.5 rounded-full text-sm transition w-fit">
+        <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light btn-sm mt-6">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp 聊天
         </a>
-        <form id="newsletter-form" class="mt-7">
-          <label for="newsletter-email" class="text-white font-semibold text-sm block mb-1.5">获取最新资讯</label>
-          <p class="text-xs text-white/50 mb-3">偶尔分享采购洞察和市场动态。</p>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h2 class="text-white font-semibold text-xs uppercase tracking-[0.14em] mb-4">服务</h2>
+        <ul class="text-sm space-y-2.5">
+          <li><a href="services.html" class="inline-block text-white/60 hover:text-white transition-colors">采购</a></li>
+          <li><a href="services.html" class="inline-block text-white/60 hover:text-white transition-colors">工厂</a></li>
+          <li><a href="services.html" class="inline-block text-white/60 hover:text-white transition-colors">中国市场进入与扩展</a></li>
+          <li><a href="quality-control.html" class="inline-block text-white/60 hover:text-white transition-colors">质量控制</a></li>
+          <li><a href="logistics.html" class="inline-block text-white/60 hover:text-white transition-colors">物流</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h2 class="text-white font-semibold text-xs uppercase tracking-[0.14em] mb-4">公司</h2>
+        <ul class="text-sm space-y-2.5">
+          <li><a href="about.html" class="inline-block text-white/60 hover:text-white transition-colors">关于我们</a></li>
+          <li><a href="markets.html" class="inline-block text-white/60 hover:text-white transition-colors">服务市场</a></li>
+          <li><a href="process.html" class="inline-block text-white/60 hover:text-white transition-colors">服务流程</a></li>
+          <li><a href="pricing.html" class="inline-block text-white/60 hover:text-white transition-colors">合作方式</a></li>
+          <li><a href="industries.html" class="inline-block text-white/60 hover:text-white transition-colors">服务行业</a></li>
+          <li><a href="careers.html" class="inline-block text-white/60 hover:text-white transition-colors">招聘</a></li>
+          <li><a href="contact.html" class="inline-block text-white/60 hover:text-white transition-colors">联系我们</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-4">
+        <h2 class="text-white font-semibold text-xs uppercase tracking-[0.14em] mb-4">资源</h2>
+        <ul class="text-sm space-y-2.5">
+          <li><a href="resources.html" class="inline-block text-white/60 hover:text-white transition-colors">指南与参考资料</a></li>
+          <li><a href="insights.html" class="inline-block text-white/60 hover:text-white transition-colors">洞察</a></li>
+          <li><a href="faq.html" class="inline-block text-white/60 hover:text-white transition-colors">FAQ</a></li>
+        </ul>
+        <form id="newsletter-form" class="mt-8">
+          <label for="newsletter-email" class="text-white font-semibold text-sm block">获取最新资讯</label>
+          <p class="text-xs text-white/60 mt-1.5 mb-3 leading-relaxed">偶尔分享采购洞察和市场动态。</p>
           <div class="flex gap-2">
-            <input id="newsletter-email" name="email" type="email" required placeholder="you@company.com" class="flex-1 min-w-0 bg-white/10 border border-white/15 rounded-lg px-3 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand/30" />
-            <button type="submit" class="bg-brand text-white text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-brand-dark transition-colors">订阅</button>
+            <input id="newsletter-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com" class="field field-dark flex-1 min-w-0" />
+            <button type="submit" class="btn btn-primary btn-sm shrink-0">订阅</button>
           </div>
         </form>
-        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3">谢谢 — 请查看您的邮箱以确认订阅。</p>
+        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>谢谢 — 请查看您的邮箱以确认订阅。</p>
       </div>
     </div>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
-      <p>© <span data-current-year></span> ENZ INTERNATIONAL. All rights reserved.</p>
-      <p class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</p>
-      <div class="flex gap-5">
-        <a href="privacy.html" class="hover:text-brand-bright transition">隐私政策</a>
-        <a href="terms.html" class="hover:text-brand-bright transition">服务条款</a>
+
+    <div class="shell mt-14 pt-7 border-t border-white/10 flex flex-col-reverse md:flex-row items-center justify-between gap-4 text-xs text-white/60">
+      <p>© <span data-current-year>2026</span> ENZ INTERNATIONAL. All rights reserved.</p>
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        <a href="privacy.html" class="hover:text-white transition-colors">隐私政策</a>
+        <a href="terms.html" class="hover:text-white transition-colors">服务条款</a>
+        <a href="../sitemap.xml" class="hover:text-white transition-colors">Sitemap</a>
       </div>
     </div>
   </footer>
-    <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 z-40 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-2xl transition-transform hover:scale-105 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
     
-  <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-ink/50 backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-7 relative">
-      <button data-close-modal aria-label="Close dialog" class="absolute top-5 right-5 text-slate hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <h2 id="booking-modal-title" class="text-2xl font-bold text-ink mb-6 pr-6 tracking-tight">高管咨询</h2>
+  <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="fab-whatsapp no-print" aria-label="WhatsApp 聊天">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span class="fab-label" aria-hidden="true">WhatsApp 聊天</span>
+  </a>
+  <button type="button" data-to-top hidden class="to-top no-print" aria-label="返回顶部">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+  </button>
+    
+  <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" style="display:none" data-modal-backdrop class="modal-backdrop">
+    <div class="modal-panel">
+      <button data-close-modal aria-label="Close dialog" class="modal-close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2 id="booking-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">高管咨询</h2>
       <form id="booking-form" class="space-y-5">
         <p class="text-sm text-slate">告诉我们您的项目，我们将在一个工作日内回复。</p>
         <div>
-          <label for="booking-name" class="block text-sm font-medium text-ink">全名</label>
-          <input id="booking-name" name="name" type="text" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="booking-name" class="field-label">全名</label>
+          <input id="booking-name" name="name" type="text" required class="field" />
         </div>
         <div>
-          <label for="booking-email" class="block text-sm font-medium text-ink">电子邮箱</label>
-          <input id="booking-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="booking-email" class="field-label">电子邮箱</label>
+          <input id="booking-email" name="email" type="email" required class="field" />
         </div>
-        <div class="grid grid-cols-2 gap-4">
+        <div data-reveal-group class="grid grid-cols-2 gap-4">
           <div>
-            <label for="booking-phone" class="block text-sm font-medium text-ink">电话（可选）</label>
-            <input id="booking-phone" name="phone" type="tel" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+            <label for="booking-phone" class="field-label">电话（可选）</label>
+            <input id="booking-phone" name="phone" type="tel" class="field" />
           </div>
           <div>
-            <label for="booking-company" class="block text-sm font-medium text-ink">公司（可选）</label>
-            <input id="booking-company" name="company" type="text" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+            <label for="booking-company" class="field-label">公司（可选）</label>
+            <input id="booking-company" name="company" type="text" class="field" />
           </div>
         </div>
         <div>
-          <label for="booking-date" class="block text-sm font-medium text-ink">首选日期</label>
-          <input id="booking-date" name="date" type="date" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="booking-date" class="field-label">首选日期</label>
+          <input id="booking-date" name="date" type="date" class="field" />
         </div>
         <div>
-          <label for="booking-service" class="block text-sm font-medium text-ink">感兴趣的服务</label>
-          <select id="booking-service" name="service" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"><option value="">—</option><option value="sourcing">全球采购</option><option value="factory">工厂建设</option><option value="market">市场进入</option><option value="other">其他</option></select>
+          <label for="booking-service" class="field-label">感兴趣的服务</label>
+          <select id="booking-service" name="service" class="field"><option value="">—</option><option value="sourcing">全球采购</option><option value="factory">工厂建设</option><option value="market">市场进入</option><option value="other">其他</option></select>
         </div>
         <div>
-          <label for="booking-message" class="block text-sm font-medium text-ink">告诉我们您的项目（可选）</label>
-          <textarea id="booking-message" name="message" rows="3" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"></textarea>
+          <label for="booking-message" class="field-label">告诉我们您的项目（可选）</label>
+          <textarea id="booking-message" name="message" rows="3" class="field"></textarea>
         </div>
         <p id="booking-error" role="alert" hidden class="text-sm text-red-600">出现错误 — 请重试，或直接通过WhatsApp联系我们。</p>
-        <button type="submit" data-submitting-label="发送中…" class="w-full inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 py-4">请求咨询</button>
+        <button type="submit" data-submitting-label="发送中…" class="w-full btn btn-primary py-4">请求咨询</button>
         <p class="text-xs text-slate text-center">我们将在24小时内回复。请求咨询无需付款。</p>
       </form>
       <div id="booking-success" role="status" hidden class="py-6">
         <div class="text-center">
-          <div class="w-11 h-11 rounded-full bg-brand-tint text-brand flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="icon-chip w-12 h-12 rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
           <p class="text-lg font-semibold text-ink mt-4">请求已收到</p>
           <p class="text-sm text-slate mt-2">谢谢，<span data-success-name></span>。我们的团队成员会尽快联系 <span data-success-email></span>。</p>
         </div>
         
         <div class="mt-7 pt-6 border-t border-line text-left">
-          <p class="text-xs font-semibold tracking-[0.14em] uppercase text-slate">接下来会发生什么</p>
+          <p class="eyebrow text-slate">接下来会发生什么</p>
           <ol class="mt-4 space-y-3">
-            <li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">1</span><span>我们会审阅您的需求，并安排合适的专员对接。</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">2</span><span>您将在一个工作日内收到回复——不是自动群发邮件。</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">3</span><span>如果合适，我们会安排一次30分钟的通话，时间由您决定。</span></li>
+            <li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">1</span><span>我们会审阅您的需求，并安排合适的专员对接。</span></li><li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">2</span><span>您将在一个工作日内收到回复——不是自动群发邮件。</span></li><li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">3</span><span>如果合适，我们会安排一次30分钟的通话，时间由您决定。</span></li>
           </ol>
         </div>
       </div>
     </div>
   </div>
     
-  <div id="portal-modal" role="dialog" aria-modal="true" aria-labelledby="portal-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-ink/50 backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-7 relative">
-      <button data-close-modal aria-label="Close dialog" class="absolute top-5 right-5 text-slate hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <h2 id="portal-modal-title" class="text-2xl font-bold text-ink mb-6 pr-6 tracking-tight">客户门户登录</h2>
+  <div id="portal-modal" role="dialog" aria-modal="true" aria-labelledby="portal-modal-title" style="display:none" data-modal-backdrop class="modal-backdrop">
+    <div class="modal-panel">
+      <button data-close-modal aria-label="Close dialog" class="modal-close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2 id="portal-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">客户门户登录</h2>
       <form id="portal-login-form" class="space-y-5">
         <p class="text-sm text-slate">在一个地方跟踪采购项目、里程碑和共享文档。</p>
         <div>
-          <label for="portal-email" class="block text-sm font-medium text-ink">邮箱</label>
-          <input id="portal-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="portal-email" class="field-label">邮箱</label>
+          <input id="portal-email" name="email" type="email" required class="field" />
         </div>
         <div>
-          <label for="portal-password" class="block text-sm font-medium text-ink">密码</label>
-          <input id="portal-password" name="password" type="password" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="portal-password" class="field-label">密码</label>
+          <input id="portal-password" name="password" type="password" required class="field" />
         </div>
-        <button type="submit" class="w-full bg-ink hover:bg-navy text-white font-medium py-3.5 rounded-lg transition-colors duration-200">登录</button>
+        <button type="submit" class="btn btn-dark w-full">登录</button>
         <p class="text-xs text-slate text-center">首次使用客户门户？请联系您的客户经理申请访问权限： <a href="mailto:info@enzinternational.co" class="text-brand hover:underline">info@enzinternational.co</a></p>
       </form>
       <div id="portal-success" role="status" hidden class="text-center py-6">
@@ -338,10 +343,10 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=10"></script>
-    <script src="../assets/js/i18n.js?v=10"></script>
-    <script src="../assets/js/api.js?v=10"></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=10"></script>
-    <script src="../assets/js/site.js?v=10" defer></script>
+    <script src="../assets/js/config.js?v=12"></script>
+    <script src="../assets/js/i18n.js?v=12"></script>
+    <script src="../assets/js/api.js?v=12"></script>
+    <script src="../assets/js/site.js?v=12" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=12"></script>
   </body>
 </html>

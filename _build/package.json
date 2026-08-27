@@ -1,0 +1,13 @@
+{
+  "name": "enz-css-build",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Optional dev-only tooling. Compiles assets/css/site.css from Tailwind. The SITE itself has no build step — the compiled CSS is committed.",
+  "scripts": {
+    "css": "tailwindcss -c ./tailwind.config.cjs -i ./tailwind.src.css -o ../assets/css/site.css --minify",
+    "css:watch": "tailwindcss -c ./tailwind.config.cjs -i ./tailwind.src.css -o ../assets/css/site.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

@@ -1,11 +1,14 @@
 # ENZ INTERNATIONAL — Corporate Website
 
-Plain HTML, CSS, and JavaScript. No React, no Node backend, no bundler, no build step — anywhere, ever.
-Open a file, or point any static web server at this folder, and it works.
+Plain HTML, CSS, and JavaScript. No React, no Node backend, no bundler, and **no build step to deploy** —
+point any static web server at this folder and it works.
 
-Multi-language (`/en/`, `/sw/`, `/fr/`, `/zh/`, real per-language URLs), multi-page, SEO-optimized, and
-animated with [Motion](https://motion.dev) — the same team and engine behind Framer Motion, loaded here as
-a framework-free ES module so it works without React.
+Multi-language (`/en/`, `/sw/`, `/fr/`, `/zh/`, real per-language URLs), multi-page, responsive,
+SEO-optimized, and animated with [Motion](https://motion.dev) — the same team and engine behind Framer
+Motion, vendored locally as a framework-free ES module so it works without React and without a CDN.
+
+Everything the browser loads is a plain file already sitting in this repo: the HTML, one stylesheet, four
+small scripts, and the Motion bundle. Nothing is compiled, fetched, or generated at request time.
 
 ## Run it locally
 
@@ -29,15 +32,23 @@ GitHub Pages, S3, or any web server at the root. Done.
 index.html          Redirects to en/index.html (root visitors land on English)
 404.html             Shared 404 page (most static hosts serve this automatically)
 robots.txt, sitemap.xml
+site.webmanifest     Installable-app + Android home-screen metadata
+_headers, vercel.json  Cache and security headers, in Netlify's and Vercel's dialects.
+                       Both are inert on a host that doesn't read them.
 assets/
+  css/
+    site.css           The ONE stylesheet. Compiled from _build/ and committed — see
+                       "Changing the design" below.
   images/
   js/
-    config.js         The ONE place to set a real backend URL or Web3Forms key (see below)
+    config.js          The ONE place to set a real backend URL or Web3Forms key (see below)
     i18n.js            Translation dictionary
     api.js             Mock-first API client — real backend, Web3Forms, or mock, in that order
-    motion-effects.js  Scroll-reveal, count-up stats, hero entrance — via Motion
+    motion-effects.js  Count-up stats, staggered reveals, hero parallax — via Motion
     site.js            All other interactive behavior: modals, tabs, FAQ, forms,
-                        language switcher
+                        sticky-header state, reading progress, language switcher
+    vendor/
+      motion.min.js    Motion, vendored. No third-party CDN at runtime.
 en/  sw/  fr/  zh/    One real folder per language — 13 pages each:
   index.html, about.html, services.html, markets.html, insights.html,
   insight-*.html (×3), contact.html, portal.html, careers.html,
@@ -47,6 +58,19 @@ en/  sw/  fr/  zh/    One real folder per language — 13 pages each:
 Each page is a genuinely separate, real file — not client-rendered from a template. That's what makes
 `/en/services.html` and `/fr/services.html` crawlable at their own URLs, and what makes this deployable
 anywhere with zero configuration.
+
+## Changing the design
+
+The design system lives in `_build/tailwind.src.css` and compiles to `assets/css/site.css`, which is
+committed. **Editing markup that uses an existing class needs no rebuild.** You only rebuild when you
+introduce a Tailwind class the site never used before, or when you edit the source stylesheet:
+
+```bash
+cd _build && npx tailwindcss@3.4.17 -c ./tailwind.config.cjs -i ./tailwind.src.css -o ../assets/css/site.css --minify
+```
+
+Then commit the regenerated `assets/css/site.css`. Full detail, and the reasoning behind dropping the
+Tailwind Play CDN, is in **[_build/README.md](./_build/README.md)**.
 
 ## Editing content
 

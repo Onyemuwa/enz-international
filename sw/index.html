@@ -2,21 +2,37 @@
 <html lang="sw">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0A192F" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0B1A24" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="light" />
     <title>Ugavi wa Kimataifa na Ubora wa Viwanda | ENZ INTERNATIONAL</title>
     <meta name="description" content="Mshirika wako wa kuaminika kwa biashara ya bidhaa, uanzishaji wa kiwanda, na kuingia soko la China." />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="ENZ INTERNATIONAL" />
     <link rel="canonical" href="https://enzinternational.co/sw/index.html" />
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/images/favicon-512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png" />
+    <link rel="manifest" href="../site.webmanifest" />
     <link rel="alternate" hreflang="en" href="https://enzinternational.co/en/index.html" />
     <link rel="alternate" hreflang="sw" href="https://enzinternational.co/sw/index.html" />
     <link rel="alternate" hreflang="fr" href="https://enzinternational.co/fr/index.html" />
     <link rel="alternate" hreflang="zh" href="https://enzinternational.co/zh/index.html" />
     <link rel="alternate" hreflang="x-default" href="https://enzinternational.co/en/index.html" />
+
+    <!-- The stylesheet is a single plain file, committed to the repo. It is
+         compiled from _build/tailwind.src.css only when markup changes; the
+         site itself still needs no build step to deploy. (The Tailwind Play
+         CDN that used to sit here is explicitly not for production: it ships a
+         compiler to every visitor and repaints the page after first paint.) -->
+    <link rel="stylesheet" href="../assets/css/site.css?v=12" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" /></noscript>
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ENZ INTERNATIONAL" />
     <meta property="og:title" content="Ugavi wa Kimataifa na Ubora wa Viwanda | ENZ INTERNATIONAL" />
@@ -25,495 +41,765 @@
     <meta property="og:image" content="https://enzinternational.co/assets/images/og-cover.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ENZ INTERNATIONAL — global sourcing and industrial excellence" />
     <meta property="og:locale" content="sw_TZ" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="zh_CN" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Ugavi wa Kimataifa na Ubora wa Viwanda | ENZ INTERNATIONAL" />
     <meta name="twitter:description" content="Mshirika wako wa kuaminika kwa biashara ya bidhaa, uanzishaji wa kiwanda, na kuingia soko la China." />
     <meta name="twitter:image" content="https://enzinternational.co/assets/images/og-cover.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: { extend: {
-          colors: {
-            navy: '#0B1A24', ink: '#0A0F14', slate: '#5A6A75',
-            /* Brand scale derived from the logo's own hue (199deg), sampled
-               from assets/images/enz-logo.png: blue #2AA8E4, orange #FCAE42.
-               The logo blue is only 2.7:1 on white — it FAILS WCAG AA, so it
-               can never be text or a button fill on a light background.
-               'brand' is therefore the darkened same-hue variant (6.2:1) used
-               for anything interactive, and 'brand-bright' is the exact logo
-               colour, reserved for dark backgrounds and decorative fills where
-               contrast is satisfied. Same family, different jobs. */
-            brand: '#12688F', 'brand-dark': '#0E5878', 'brand-bright': '#2AA8E4', 'brand-tint': '#EAF6FD',
-            accent: '#FCAE42', 'accent-tint': '#FFF4E3',
-            line: '#E4E9ED', 'gray-bg': '#F8FAFB',
-          },
-          fontFamily: { inter: ['Inter', 'sans-serif'] },
-        } },
-      };
-    </script>
-    <style>
-      body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; }
-      /* Optical tightening on large display type — the single biggest difference
-         between "template" and "designed" at headline sizes. */
-      h1 { letter-spacing: -0.033em; }
-      h2 { letter-spacing: -0.025em; }
-      h3 { letter-spacing: -0.015em; }
-      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #12688F; outline-offset: 2px; border-radius: 4px; }
-      .skip-link { position: absolute; left: -9999px; top: 0; background: #12688F; color: #fff; padding: .5rem 1rem; border-radius: .375rem; font-weight: 600; z-index: 100; }
-      .skip-link:focus { left: 1rem; top: 1rem; }
-      /* NOTE: there is deliberately no opacity:0 initial state anywhere.
-         Entrance reveals were removed outright — four separate attempts at
-         "hide, then reveal on scroll" each shipped invisible content when the
-         reveal step didn't run (observer never fired, animation never
-         advanced, or a transition-all pinned the element at its start value).
-         On a marketing site, content that is merely *decorated* by motion must
-         never be *gated* by it. Hover/focus transitions are safe: they animate
-         from a visible state, so a stalled one still leaves content readable. */
-      @media print { header, footer, .no-print { display: none !important; } }
-    </style>
-    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LocalBusiness","name":"ENZ INTERNATIONAL","url":"https://enzinternational.co/sw/index.html","image":"https://enzinternational.co/assets/images/og-cover.png","telephone":"+86-1320-384-0456","email":"info@enzinternational.co","address":{"@type":"PostalAddress","addressLocality":"Guangzhou","addressCountry":"CN"},"areaServed":["Tanzania","Kenya","DRC","USA","UK"]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does the sourcing process start?","acceptedAnswer":{"@type":"Answer","text":"It starts with a consultation where you share your product specifications, target price range, and order volume. From there we shortlist and vet suppliers on your behalf."}},{"@type":"Question","name":"Do you handle quality control and inspections?","acceptedAnswer":{"@type":"Answer","text":"Yes. We offer staged quality control — incoming material checks, in-process inspection, and pre-shipment inspection — so defects are caught before goods leave the factory."}},{"@type":"Question","name":"Can you help set up a factory outside of China?","acceptedAnswer":{"@type":"Answer","text":"Yes, our factory-setup service covers site selection, machinery sourcing, assembly-line planning, and commissioning support, including in East African markets."}},{"@type":"Question","name":"What information do you need for a factory-setup consultation?","acceptedAnswer":{"@type":"Answer","text":"A general sense of your target product, expected production volume, and preferred location is enough to start. We refine the scope together during the consultation."}}]}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LocalBusiness","name":"ENZ INTERNATIONAL","url":"https://enzinternational.co/sw/index.html","image":"https://enzinternational.co/assets/images/og-cover.png","telephone":"+86-1320-384-0456","email":"info@enzinternational.co","address":{"@type":"PostalAddress","addressLocality":"Guangzhou","addressCountry":"CN"},"areaServed":["Tanzania","Kenya","DRC","USA","UK"]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does the sourcing process start?","acceptedAnswer":{"@type":"Answer","text":"It starts with a consultation where you share your product specifications, target price range, and order volume. From there we shortlist and vet suppliers on your behalf."}},{"@type":"Question","name":"Do you handle quality control and inspections?","acceptedAnswer":{"@type":"Answer","text":"Yes. We offer staged quality control — incoming material checks, in-process inspection, and pre-shipment inspection — so defects are caught before goods leave the factory."}},{"@type":"Question","name":"Can you help set up a factory outside of China?","acceptedAnswer":{"@type":"Answer","text":"Yes, our factory-setup service covers site selection, machinery sourcing, assembly-line planning, and commissioning support, including in East African markets."}},{"@type":"Question","name":"What information do you need for a factory-setup consultation?","acceptedAnswer":{"@type":"Answer","text":"A general sense of your target product, expected production volume, and preferred location is enough to start. We refine the scope together during the consultation."}},{"@type":"Question","name":"Is there a fee to book a consultation?","acceptedAnswer":{"@type":"Answer","text":"No — requesting a consultation through this site is free. Any paid engagement terms are agreed separately once scope is defined."}},{"@type":"Question","name":"Which regions do you currently serve?","acceptedAnswer":{"@type":"Answer","text":"Our team operates across Tanzania, Kenya, the Democratic Republic of Congo, the United States, and the United Kingdom, with our sourcing hub based in Guangzhou, China."}}]},{"@type":"Organization","@id":"https://enzinternational.co/#organization","name":"ENZ INTERNATIONAL","url":"https://enzinternational.co/sw/index.html","logo":"https://enzinternational.co/assets/images/enz-logo.png","email":"info@enzinternational.co","telephone":"+86-132-0384-0456","areaServed":["Tanzania","Kenya","DRC","USA","UK"]},{"@type":"WebSite","@id":"https://enzinternational.co/#website","url":"https://enzinternational.co/sw/","name":"ENZ INTERNATIONAL","inLanguage":"sw","publisher":{"@id":"https://enzinternational.co/#organization"}}]}</script>
   </head>
-  <body class="bg-gray-bg text-ink antialiased">
+  <body class="bg-white text-ink">
     <a href="#main-content" class="skip-link">Rukia yaliyomo</a>
     
-  <header class="bg-white/85 backdrop-blur-xl sticky top-0 z-50 border-b border-line">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-      <a href="index.html" class="flex items-center shrink-0">
+  <div class="read-progress" data-read-progress aria-hidden="true"></div>
+  <header class="site-header" data-site-header>
+    <div class="shell flex items-center justify-between gap-6 h-[4.25rem]">
+      <a href="index.html" class="flex items-center shrink-0" aria-label="ENZ INTERNATIONAL — home">
         <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="132" height="36" class="h-9 w-auto object-contain" />
       </a>
-      <nav class="hidden lg:flex items-center gap-8 text-[0.9375rem] font-medium" aria-label="Primary">
-        <a href="index.html" class="transition-colors text-ink">Nyumbani</a>
-<a href="services.html" class="transition-colors text-slate hover:text-ink">Huduma</a>
-<a href="process.html" class="transition-colors text-slate hover:text-ink">Mchakato</a>
-<a href="industries.html" class="transition-colors text-slate hover:text-ink">Sekta</a>
-<a href="markets.html" class="transition-colors text-slate hover:text-ink">Masoko</a>
-<a href="about.html" class="transition-colors text-slate hover:text-ink">Kuhusu</a>
-<a href="insights.html" class="transition-colors text-slate hover:text-ink">Maoni</a>
-<a href="contact.html" class="transition-colors text-slate hover:text-ink">Wasiliana</a>
+      <nav class="hidden xl:flex items-center gap-5 2xl:gap-7 min-w-0 text-[0.875rem] 2xl:text-[0.9375rem] font-medium" aria-label="Primary">
+        <a href="index.html" class="nav-link" aria-current="page">Nyumbani</a>
+<a href="services.html" class="nav-link">Huduma</a>
+<a href="process.html" class="nav-link">Mchakato</a>
+<a href="pricing.html" class="nav-link">Ushirikiano</a>
+<a href="markets.html" class="nav-link">Masoko</a>
+<a href="about.html" class="nav-link">Kuhusu</a>
+<a href="insights.html" class="nav-link">Maoni</a>
+<a href="contact.html" class="nav-link">Wasiliana</a>
       </nav>
-      <div class="hidden lg:flex items-center gap-3">
-        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/index.html" class="bg-transparent border border-line rounded-md px-2 py-1.5 text-xs text-slate cursor-pointer hover:border-slate/40 transition-colors"><option value="en" >EN</option><option value="sw" selected>SW</option><option value="fr" >FR</option><option value="zh" >ZH</option></select>
-        <button data-open-portal class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-3.5 py-2 text-sm">
+      <div class="hidden xl:flex items-center gap-2 2xl:gap-2.5 shrink-0">
+        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/index.html" class="lang-select"><option value="en" >EN</option><option value="sw" selected>SW</option><option value="fr" >FR</option><option value="zh" >ZH</option></select>
+        <button data-open-portal class="btn btn-secondary btn-sm">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Lango la Mteja</span>
         </button>
-        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-4 py-2 text-sm">Panga Ushauriano</button>
+        <button data-open-booking class="btn btn-primary btn-sm">Weka miadi<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
       </div>
-      <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav" class="lg:hidden text-ink" aria-label="Toggle menu">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-    </div>
-    <nav id="mobile-nav" hidden aria-label="Primary" class="lg:hidden bg-white border-t border-line px-4 py-6 space-y-4 text-[0.9375rem]">
-      <a href="index.html" class="block text-slate hover:text-ink transition-colors">Nyumbani</a>
-<a href="services.html" class="block text-slate hover:text-ink transition-colors">Huduma</a>
-<a href="process.html" class="block text-slate hover:text-ink transition-colors">Mchakato</a>
-<a href="industries.html" class="block text-slate hover:text-ink transition-colors">Sekta</a>
-<a href="markets.html" class="block text-slate hover:text-ink transition-colors">Masoko</a>
-<a href="about.html" class="block text-slate hover:text-ink transition-colors">Kuhusu</a>
-<a href="insights.html" class="block text-slate hover:text-ink transition-colors">Maoni</a>
-<a href="contact.html" class="block text-slate hover:text-ink transition-colors">Wasiliana</a>
-      <div class="pt-3 space-y-3 border-t border-line">
-        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 w-full px-4 py-2.5 text-sm">Panga Ushauriano</button>
-        <button data-open-portal class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 w-full px-4 py-2.5 text-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Lango la Mteja</span>
+      <div class="flex xl:hidden items-center gap-2">
+        <button data-open-booking class="btn btn-primary btn-sm hidden sm:inline-flex">Weka miadi</button>
+        <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav" class="inline-flex items-center justify-center w-10 h-10 -mr-2 rounded-lg text-ink hover:bg-gray-bg transition-colors" aria-label="Toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
-        <select aria-label="Language" data-lang-select data-target-template="../__LANG__/index.html" class="bg-transparent border border-line rounded-md px-2 py-1.5 text-xs text-slate cursor-pointer hover:border-slate/40 transition-colors"><option value="en" >EN</option><option value="sw" selected>SW</option><option value="fr" >FR</option><option value="zh" >ZH</option></select>
+      </div>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Primary" class="xl:hidden bg-white border-t border-line shadow-lg max-h-[calc(100vh-4.25rem)] overflow-y-auto">
+      <div class="shell py-5 text-[0.9375rem]">
+        <a href="index.html" class="nav-link-mobile" aria-current="page">Nyumbani<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="services.html" class="nav-link-mobile">Huduma<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="process.html" class="nav-link-mobile">Mchakato<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="pricing.html" class="nav-link-mobile">Ushirikiano<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="markets.html" class="nav-link-mobile">Masoko<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="about.html" class="nav-link-mobile">Kuhusu<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="insights.html" class="nav-link-mobile">Maoni<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="contact.html" class="nav-link-mobile">Wasiliana<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+        <div class="pt-5 space-y-3">
+          <button data-open-booking class="btn btn-primary w-full">Panga Ushauriano<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+          <button data-open-portal class="btn btn-secondary w-full">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Lango la Mteja</span>
+          </button>
+          <div class="flex items-center justify-between pt-2">
+            <span class="text-xs font-medium text-slate">Lugha</span>
+            <select aria-label="Language" data-lang-select data-target-template="../__LANG__/index.html" class="lang-select"><option value="en" >EN</option><option value="sw" selected>SW</option><option value="fr" >FR</option><option value="zh" >ZH</option></select>
+          </div>
+        </div>
       </div>
     </nav>
   </header>
     
     <main id="main-content">
       
-  <section class="relative bg-white overflow-hidden border-b border-line">
-    <div aria-hidden="true" class="absolute inset-x-0 top-0 h-[36rem] bg-[radial-gradient(60%_100%_at_50%_0%,#EFF4FF_0%,rgba(255,255,255,0)_70%)]"></div>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <div class="max-w-3xl mx-auto text-center pt-24 pb-20 md:pt-32 md:pb-28">
-        <a href="markets.html" class="inline-flex items-center gap-2 bg-brand-tint text-brand text-[0.8125rem] font-medium px-3 py-1.5 rounded-full border border-brand/15 hover:border-brand/30 transition-colors">
-          <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+  <section class="section-dark pt-14 pb-24 md:pt-20 md:pb-32">
+    <div aria-hidden="true" class="glow glow-brand w-[34rem] h-[34rem] -top-40 -left-32"></div>
+        <div aria-hidden="true" class="glow glow-accent w-[26rem] h-[26rem] -bottom-32 -right-24"></div>
+    <div class="shell grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+
+      <div class="lg:col-span-7">
+        <a href="markets.html" class="pill pill-dark hover:border-brand-bright/50 transition-colors">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
           Ugavi wa Kimataifa · Uanzishaji wa Kiwanda · Kuingia Sokoni
         </a>
-        <h1 class="text-[2.75rem] leading-[1.08] md:text-[4rem] md:leading-[1.05] font-semibold text-ink mt-7">Ugavi wa Kimataifa na Ubora wa Viwanda</h1>
-        <p class="text-slate text-lg leading-relaxed md:text-xl max-w-2xl mx-auto mt-6">Mshirika wako wa kuaminika kwa biashara ya bidhaa, uanzishaji wa kiwanda, na kuingia soko la China.</p>
-        <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
-          <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-6 py-3 text-[0.9375rem]">Panga Ushauriano<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
-          <a href="services.html" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-6 py-3 text-[0.9375rem]">Ona vyote</a>
+
+        <h1 class="h1-display text-white mt-6">Ugavi wa Kimataifa na Ubora <span class="text-gradient">wa Viwanda</span></h1>
+        <p class="lead-light mt-6 max-w-xl">Mshirika wako wa kuaminika kwa biashara ya bidhaa, uanzishaji wa kiwanda, na kuingia soko la China.</p>
+
+        <div class="flex flex-col sm:flex-row gap-3 mt-9">
+          <button data-open-booking class="btn btn-primary btn-lg">Panga Ushauriano<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+          <a href="#how-it-works" class="btn btn-ghost-light btn-lg">Mchakato</a>
         </div>
-        <ul class="flex flex-wrap justify-center items-center gap-x-7 gap-y-2.5 mt-12 text-slate text-sm list-none">
-          <li class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Zaidi ya miaka 10</li>
-          <li class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Masoko 50+</li>
-          <li class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Vyeti kwa maombi</li>
-          <li class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Miradi 200+</li>
+
+        <ul class="flex flex-wrap gap-x-7 gap-y-3 mt-10 text-sm list-none">
+          <li class="check-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Zaidi ya miaka 10</span></li><li class="check-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Masoko 50+</span></li><li class="check-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Vyeti kwa maombi</span></li><li class="check-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Miradi 200+</span></li>
         </ul>
       </div>
-    </div>
-  </section>
 
-
-  <section class="bg-gray-bg border-b border-line">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line">
-        <div class="bg-gray-bg py-6 px-5 flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div><p class="text-sm font-medium text-ink">On the ground</p><p class="text-xs text-slate mt-1 leading-relaxed">Staff in Guangzhou and across the markets we serve</p></div></div><div class="bg-gray-bg py-6 px-5 flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><p class="text-sm font-medium text-ink">Verified suppliers</p><p class="text-xs text-slate mt-1 leading-relaxed">Independent checks before any recommendation</p></div></div><div class="bg-gray-bg py-6 px-5 flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><div><p class="text-sm font-medium text-ink">Staged QC</p><p class="text-xs text-slate mt-1 leading-relaxed">Four inspection points, not one</p></div></div><div class="bg-gray-bg py-6 px-5 flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg><div><p class="text-sm font-medium text-ink">One point of contact</p><p class="text-xs text-slate mt-1 leading-relaxed">Same person from first call to delivery</p></div></div>
+      <!-- The objection this panel answers is "what actually happens if I send
+           that form?" — answered beside the CTA, not after it. -->
+      <div class="lg:col-span-5">
+        <div class="card-dark card-lg">
+          <p class="eyebrow eyebrow-light">Kinachofuata</p>
+          <ol class="mt-6 space-y-5">
+            <li class="flex gap-4">
+              <span class="step-badge bg-brand-bright/10 text-brand-bright border-brand-bright/25">1</span>
+              <span class="text-sm text-white/70 leading-relaxed pt-1">Tunapitia ombi lako na kulilinganisha na mtaalamu sahihi.</span>
+            </li><li class="flex gap-4">
+              <span class="step-badge bg-brand-bright/10 text-brand-bright border-brand-bright/25">2</span>
+              <span class="text-sm text-white/70 leading-relaxed pt-1">Utapata jibu ndani ya siku moja ya kazi — si ujumbe wa kiotomatiki.</span>
+            </li><li class="flex gap-4">
+              <span class="step-badge bg-brand-bright/10 text-brand-bright border-brand-bright/25">3</span>
+              <span class="text-sm text-white/70 leading-relaxed pt-1">Ikiwa inafaa, tunapanga simu ya dakika 30 kwa wakati unaokufaa.</span>
+            </li>
+          </ol>
+          <div class="mt-7 pt-6 border-t border-white/10">
+            <button data-open-booking class="btn btn-primary w-full">Panga Ushauriano<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+            <p class="text-xs text-white/60 text-center mt-3">Tutajibu ndani ya masaa 24. Hakuna malipo yanayohitajika kuomba ushauriano.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="py-20 md:py-28 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Kuhusu</p>
-        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink mt-3">Kuendesha Biashara ya Kimataifa na Ukuaji wa Viwanda</h2>
-        <p class="text-slate text-lg leading-relaxed mt-5">ENZ INTERNATIONAL inaunganisha mahitaji ya kimataifa na ubora wa utengenezaji wa China. Tunatoa msaada kamili wa ugavi na uanzishaji wa viwanda unaowezesha biashara kukua na kuingia masoko mapya kwa ujasiri.</p>
-        <a href="about.html" class="inline-flex items-center gap-1.5 mt-6 text-brand font-medium hover:gap-2.5 transition-[gap] duration-200">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-line rounded-xl overflow-hidden border border-line max-w-4xl mx-auto">
-        <div class="bg-white p-7 text-center"><div class="text-[2.5rem] leading-none font-semibold text-ink"><span data-counter="10" data-counter-suffix="+">10+</span></div><div class="text-sm text-slate mt-2.5">Miaka ya Uzoefu</div></div><div class="bg-white p-7 text-center"><div class="text-[2.5rem] leading-none font-semibold text-ink"><span data-counter="50" data-counter-suffix="+">50+</span></div><div class="text-sm text-slate mt-2.5">Masoko Yanayohudumiwa</div></div><div class="bg-white p-7 text-center"><div class="text-[2.5rem] leading-none font-semibold text-ink"><span data-counter="200" data-counter-suffix="+">200+</span></div><div class="text-sm text-slate mt-2.5">Miradi Iliyokamilika</div></div><div class="bg-white p-7 text-center"><div class="text-[2.5rem] leading-none font-semibold text-ink"><span data-counter="98" data-counter-suffix="%">98%</span></div><div class="text-sm text-slate mt-2.5">Kuridhika kwa Wateja</div></div>
+  <!-- Stat strip, lifted over the seam between the dark hero and the page. -->
+  <section class="bg-white">
+    <div class="shell">
+      <div class="-mt-16 md:-mt-20 relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-2xl border border-line shadow-lift overflow-hidden">
+        <div class="bg-white p-6 md:p-8 text-center">
+          <div class="stat-value text-gradient-dark"><span data-counter="10" data-counter-suffix="+">10+</span></div>
+          <div class="text-sm text-slate mt-2.5">Miaka ya Uzoefu</div>
+        </div><div class="bg-white p-6 md:p-8 text-center">
+          <div class="stat-value text-gradient-dark"><span data-counter="50" data-counter-suffix="+">50+</span></div>
+          <div class="text-sm text-slate mt-2.5">Masoko Yanayohudumiwa</div>
+        </div><div class="bg-white p-6 md:p-8 text-center">
+          <div class="stat-value text-gradient-dark"><span data-counter="200" data-counter-suffix="+">200+</span></div>
+          <div class="text-sm text-slate mt-2.5">Miradi Iliyokamilika</div>
+        </div><div class="bg-white p-6 md:p-8 text-center">
+          <div class="stat-value text-gradient-dark"><span data-counter="98" data-counter-suffix="%">98%</span></div>
+          <div class="text-sm text-slate mt-2.5">Kuridhika kwa Wateja</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="py-20 md:py-28 bg-navy text-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Static text with a CSS marquee laid over it: if the animation never
+       runs, the row simply doesn't move. It is never blank. -->
+  <section class="bg-white pt-12 pb-2">
+    <p class="text-center text-xs font-semibold tracking-[0.14em] uppercase text-slate-light">Viwango, masharti na vituo tunavyotumia</p>
+    <div class="marquee mt-5">
+      <div class="marquee-track"><div class="flex"><span class="marquee-item">EXW</span><span class="marquee-item">FOB</span><span class="marquee-item">CIF</span><span class="marquee-item">DDP</span><span class="marquee-item">IQC</span><span class="marquee-item">DUPRO</span><span class="marquee-item">PSI</span><span class="marquee-item">LOADING</span><span class="marquee-item">AQL 2.5</span><span class="marquee-item">ISO 9001</span><span class="marquee-item">Guangzhou</span><span class="marquee-item">Dar es Salaam</span><span class="marquee-item">Nairobi</span><span class="marquee-item">Kinshasa</span><span class="marquee-item">London</span><span class="marquee-item">New York</span></div><div class="flex" aria-hidden="true"><span class="marquee-item">EXW</span><span class="marquee-item">FOB</span><span class="marquee-item">CIF</span><span class="marquee-item">DDP</span><span class="marquee-item">IQC</span><span class="marquee-item">DUPRO</span><span class="marquee-item">PSI</span><span class="marquee-item">LOADING</span><span class="marquee-item">AQL 2.5</span><span class="marquee-item">ISO 9001</span><span class="marquee-item">Guangzhou</span><span class="marquee-item">Dar es Salaam</span><span class="marquee-item">Nairobi</span><span class="marquee-item">Kinshasa</span><span class="marquee-item">London</span><span class="marquee-item">New York</span></div></div>
+    </div>
+  </section>
+
+  <!-- 1. THE PROBLEM. A visitor who doesn't recognise their own situation in
+       the first screen has no reason to read the second. -->
+  <section class="section section-wash hairline-top">
+    <div class="shell">
+      
       <div class="max-w-3xl mx-auto text-center">
-        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-white/45">Maadili Yetu</p>
-        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold mt-3">Kwa Nini Biashara Zinachagua ENZ</h2>
-        <p class="text-white/60 text-lg mt-5 leading-relaxed">Mshirika wa ugavi anayefanya kazi kama sehemu ya timu yako, si muuzaji unayemfuatilia.</p>
+        <p class="eyebrow">Tatizo</p>
+        <h2 class="h2-section mt-4">Ununuzi kutoka China huharibika kwa njia zinazotabirika</h2>
+        <p class="lead mt-5">Takriban kila oda iliyoshindwa tuliyoitwa kuiokoa ilikwenda vibaya kwa moja ya sababu nne. Hakuna hata moja ni bahati mbaya.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-14 max-w-6xl mx-auto">
-        <div class="bg-white/[0.03] border border-white/10 rounded-xl p-6 hover:bg-white/[0.06] hover:border-white/20 transition-[background-color,border-color] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/70 mb-4" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h3 class="font-medium text-[1.0625rem]">Mtandao wa Wasambazaji Uliothibitishwa</h3><p class="text-white/55 text-sm mt-2 leading-relaxed">Kila kiwanda tunachopendekeza kinapitia uthibitisho wetu wenyewe kabla ya kukupa nukuu.</p></div><div class="bg-white/[0.03] border border-white/10 rounded-xl p-6 hover:bg-white/[0.06] hover:border-white/20 transition-[background-color,border-color] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/70 mb-4" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><h3 class="font-medium text-[1.0625rem]">Umiliki wa Mwanzo hadi Mwisho</h3><p class="text-white/55 text-sm mt-2 leading-relaxed">Timu moja inasimamia ugavi, usafirishaji, na uanzishaji wa kiwanda — hakuna makabidhiano kati ya wauzaji tofauti.</p></div><div class="bg-white/[0.03] border border-white/10 rounded-xl p-6 hover:bg-white/[0.06] hover:border-white/20 transition-[background-color,border-color] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/70 mb-4" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><h3 class="font-medium text-[1.0625rem]">Uwepo wa Ndani</h3><p class="text-white/55 text-sm mt-2 leading-relaxed">Wafanyakazi walioko Guangzhou na katika masoko tunayohudumia — si simu tu inayojibiwa kutoka kituo cha simu.</p></div><div class="bg-white/[0.03] border border-white/10 rounded-xl p-6 hover:bg-white/[0.06] hover:border-white/20 transition-[background-color,border-color] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/70 mb-4" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg><h3 class="font-medium text-[1.0625rem]">Mawasiliano Wazi</h3><p class="text-white/55 text-sm mt-2 leading-relaxed">Masasisho ya mara kwa mara, kwa lugha rahisi, katika lugha yako — hakuna maneno magumu, hakuna mshangao wa mwisho.</p></div><div class="bg-white/[0.03] border border-white/10 rounded-xl p-6 hover:bg-white/[0.06] hover:border-white/20 transition-[background-color,border-color] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/70 mb-4" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg><h3 class="font-medium text-[1.0625rem]">Ushirikiano Rahisi</h3><p class="text-white/55 text-sm mt-2 leading-relaxed">Kutoka mradi mmoja wa ugavi hadi mkataba unaoendelea, ukilingana na mahitaji halisi ya biashara yako.</p></div><div class="bg-white/[0.03] border border-white/10 rounded-xl p-6 hover:bg-white/[0.06] hover:border-white/20 transition-[background-color,border-color] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white/70 mb-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><h3 class="font-medium text-[1.0625rem]">Mchakato Unaozingatia Hatari</h3><p class="text-white/55 text-sm mt-2 leading-relaxed">Udhibiti wa ubora wa hatua kwa hatua na masharti wazi ya mkataba yanakulinda katika kila hatua.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 md:py-28 bg-gray-bg border-y border-line">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Huduma</p>
-        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink mt-3">Huduma Zetu Kuu</h2>
-        <p class="text-slate text-lg leading-relaxed mt-5">Huduma tatu zilizounganishwa kutoka usafirishaji wa kwanza hadi uzalishaji kamili.</p>
-      </div>
-      <div data-tab-group>
-        <div class="flex justify-center gap-1.5 mt-10 p-1 bg-white border border-line rounded-lg w-fit mx-auto" role="tablist" aria-label="Huduma Zetu Kuu">
-          <button data-tab-btn="sourcing" role="tab" aria-selected="true" class="px-5 py-2 rounded-md font-medium text-sm transition-colors bg-ink text-white">Ugavi</button>
-          <button data-tab-btn="factory" role="tab" aria-selected="false" class="px-5 py-2 rounded-md font-medium text-sm transition-colors text-slate hover:text-ink">Kiwanda</button>
-        </div>
-        <div data-tab-panel="sourcing" class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Ugavi wa Kimataifa na Biashara ya Bidhaa</h3><p class="text-slate text-sm mt-2 leading-relaxed">Upatikanaji wa moja kwa moja kwa wazalishaji wa China, udhibiti wa ubora, na ununuzi wa bidhaa.</p></div>
-          <div class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Kuingia Soko la China</h3><p class="text-slate text-sm mt-2 leading-relaxed">Kusaidia biashara za kimataifa kupanua kupitia minyororo ya usambazaji ya China.</p></div>
-          <div class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Commodity Trading</h3><p class="text-slate text-sm mt-2 leading-relaxed">Copper, cobalt, agricultural, and more.</p></div>
-        </div>
-        <div data-tab-panel="factory" style="display:none" class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Uanzishaji wa Kiwanda</h3><p class="text-slate text-sm mt-2 leading-relaxed">Ushauriano kamili, upatikanaji wa mashine, mipango ya mstari wa uzalishaji.</p></div>
-          <div class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Assembly Line Planning</h3><p class="text-slate text-sm mt-2 leading-relaxed">Customized factory floor design.</p></div>
-          <div class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Machinery Sourcing</h3><p class="text-slate text-sm mt-2 leading-relaxed">Reliable equipment from vetted vendors.</p></div>
+      <div data-reveal-group class="grid sm:grid-cols-2 gap-4 mt-14 max-w-5xl mx-auto">
+        <div class="card">
+          <span class="icon-chip icon-chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">You cannot verify who you are buying from</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Platform badges and self-reported credentials are not verification. Trading companies present themselves as factories, and you find out after the deposit has cleared.</p>
+        </div><div class="card">
+          <span class="icon-chip icon-chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Quality is checked once, too late to fix</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">A single pre-shipment inspection tells you the order is wrong when it is already made and paid for. By then your options are a discount or a delay.</p>
+        </div><div class="card">
+          <span class="icon-chip icon-chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">The quoted price is not the price you pay</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Unit price is a fraction of landed cost. Freight, duties, inspection, and port fees arrive later, and a cheap EXW quote routinely lands dearer than a higher FOB one.</p>
+        </div><div class="card">
+          <span class="icon-chip icon-chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Nobody owns the problem when it goes wrong</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">A supplier, a forwarder, and a customs broker each answer for their own leg. The gaps between them are where orders stall — and those gaps are yours to manage.</p>
         </div>
       </div>
-      <div class="text-center mt-10"><a href="services.html" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-5 py-2.5 text-sm">Ona vyote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
     </div>
   </section>
 
-  <section class="py-20 md:py-28 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Maadili Yetu</p>
-        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink mt-3">Maadili Yetu</h2>
+  <!-- 2. WHAT WE DO. Three lines, all visible at once. -->
+  <section class="section bg-gray-bg border-y border-line">
+    <div class="shell">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Huduma</p>
+        <h2 class="h2-section mt-4">Huduma Zetu Kuu</h2>
+        <p class="lead mt-5">Huduma tatu zilizounganishwa kutoka usafirishaji wa kwanza hadi uzalishaji kamili.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12 max-w-5xl mx-auto">
-        <div class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Uadilifu na Uwazi</h3><p class="text-slate text-sm mt-2 leading-relaxed">Tunafanya kazi kwa uaminifu usioyumbayumba na mawasiliano ya wazi.</p></div><div class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Ubora katika Utekelezaji</h3><p class="text-slate text-sm mt-2 leading-relaxed">Usahihi, ubora, na kutegemewa hufafanua kila mradi tunaofanya.</p></div><div class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Ushirikiano wa Kimataifa</h3><p class="text-slate text-sm mt-2 leading-relaxed">Tunajenga uhusiano wa kudumu katika mabara na tamaduni.</p></div>
+      <div data-reveal-group class="grid md:grid-cols-3 gap-4 mt-14">
+        <a href="services.html#sourcing" class="card card-lg flex flex-col group">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+          <h3 class="text-lg font-medium text-ink mt-5">Ugavi wa Kimataifa na Biashara ya Bidhaa</h3>
+          <p class="text-slate text-sm mt-2.5 leading-relaxed">Upatikanaji wa moja kwa moja kwa wazalishaji wa China, udhibiti wa ubora, na ununuzi wa bidhaa.</p>
+          <ul class="mt-5 space-y-2 flex-1">
+            <li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Verified-supplier shortlisting</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Price benchmarking and negotiation</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Freight and customs documentation</span></li>
+          </ul>
+          <span class="link-arrow text-sm mt-6">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </a><a href="quality-control.html" class="card card-lg flex flex-col group">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <h3 class="text-lg font-medium text-ink mt-5">Ukaguzi wa hatua nne, si moja</h3>
+          <p class="text-slate text-sm mt-2.5 leading-relaxed">Matatizo mengi ya ubora hugunduliwa kuchelewa mno. Ukaguzi wa hatua kwa hatua huzuia kasoro kuwa hasara.</p>
+          <ul class="mt-5 space-y-2 flex-1">
+            <li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Incoming materials check</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>During-production inspection</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Pre-shipment and loading checks</span></li>
+          </ul>
+          <span class="link-arrow text-sm mt-6">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </a><a href="services.html#factory-setup" class="card card-lg flex flex-col group">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+          <h3 class="text-lg font-medium text-ink mt-5">Uanzishaji wa Kiwanda</h3>
+          <p class="text-slate text-sm mt-2.5 leading-relaxed">Ushauriano kamili, upatikanaji wa mashine, mipango ya mstari wa uzalishaji.</p>
+          <ul class="mt-5 space-y-2 flex-1">
+            <li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Site selection and feasibility</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Machinery sourcing</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Commissioning support</span></li>
+          </ul>
+          <span class="link-arrow text-sm mt-6">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </a>
       </div>
+      <div class="text-center mt-10"><a href="services.html" class="btn btn-secondary">Ona vyote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
     </div>
   </section>
 
-  <section class="py-20 md:py-28 bg-gray-bg border-y border-line">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Masoko</p>
-        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink mt-3">Uwepo wa Kimataifa</h2>
-        <p class="text-slate text-lg leading-relaxed mt-5">Vituo vya uendeshaji: Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</p>
+  <!-- 3. HOW IT WORKS. Anchor target for the hero's secondary CTA. -->
+  <section id="how-it-works" class="section bg-white">
+    <div class="shell">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Mchakato</p>
+        <h2 class="h2-section mt-4">Jinsi mradi wa ugavi unavyoendeshwa</h2>
+        <p class="lead mt-5">Hatua tano kutoka simu ya kwanza hadi bidhaa kufikishwa, na unachopata katika kila hatua.</p>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-12 max-w-6xl mx-auto">
-        
-          <a href="markets.html" class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200 block group">
-            <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-md bg-brand-tint text-brand text-xs font-semibold flex items-center justify-center shrink-0">TZ</span><span class="font-medium text-ink">Tanzania</span></div>
-            <ul class="mt-4 space-y-1.5"><li class="text-xs text-slate flex items-start gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-brand shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <span>Ugavi wa Kimataifa na Biashara ya Bidhaa</span></li><li class="text-xs text-slate flex items-start gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-brand shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <span>Uanzishaji wa Kiwanda</span></li></ul>
-            <span class="text-brand text-xs font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
-          </a>
-          <a href="markets.html" class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200 block group">
-            <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-md bg-brand-tint text-brand text-xs font-semibold flex items-center justify-center shrink-0">KE</span><span class="font-medium text-ink">Kenya</span></div>
-            <ul class="mt-4 space-y-1.5"><li class="text-xs text-slate flex items-start gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-brand shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <span>Ugavi wa Kimataifa na Biashara ya Bidhaa</span></li><li class="text-xs text-slate flex items-start gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-brand shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <span>Kuingia Soko la China</span></li></ul>
-            <span class="text-brand text-xs font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
-          </a>
-          <a href="markets.html" class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200 block group">
-            <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-md bg-brand-tint text-brand text-xs font-semibold flex items-center justify-center shrink-0">CD</span><span class="font-medium text-ink">DRC</span></div>
-            <ul class="mt-4 space-y-1.5"><li class="text-xs text-slate flex items-start gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-brand shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <span>Ugavi wa Kimataifa na Biashara ya Bidhaa</span></li><li class="text-xs text-slate flex items-start gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-brand shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <span>Uanzishaji wa Kiwanda</span></li></ul>
-            <span class="text-brand text-xs font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
-          </a>
-          <a href="markets.html" class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200 block group">
-            <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-md bg-brand-tint text-brand text-xs font-semibold flex items-center justify-center shrink-0">US</span><span class="font-medium text-ink">USA</span></div>
-            <ul class="mt-4 space-y-1.5"><li class="text-xs text-slate flex items-start gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-brand shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <span>Ugavi wa Kimataifa na Biashara ya Bidhaa</span></li><li class="text-xs text-slate flex items-start gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-brand shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <span>Kuingia Soko la China</span></li></ul>
-            <span class="text-brand text-xs font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
-          </a>
-          <a href="markets.html" class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200 block group">
-            <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-md bg-brand-tint text-brand text-xs font-semibold flex items-center justify-center shrink-0">UK</span><span class="font-medium text-ink">UK</span></div>
-            <ul class="mt-4 space-y-1.5"><li class="text-xs text-slate flex items-start gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-brand shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <span>Ugavi wa Kimataifa na Biashara ya Bidhaa</span></li><li class="text-xs text-slate flex items-start gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-brand shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <span>Kuingia Soko la China</span></li></ul>
-            <span class="text-brand text-xs font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
-          </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 md:py-28 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Maoni</p>
-        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink mt-3">Maoni ya Sekta</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12 max-w-6xl mx-auto">
-        <a href="insight-navigating-china-supply-chain-2026.html" class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200 block group"><span class="text-xs font-medium text-brand bg-brand-tint px-2.5 py-1 rounded-md">Sourcing</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Navigating China's Supply Chain in 2026: A Buyer's Checklist</h3><p class="text-slate text-sm mt-2 leading-relaxed">A practical framework for vetting suppliers, managing lead times, and protecting quality when sourcing from China.</p><span class="text-brand text-sm font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">Soma zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a><a href="insight-factory-setup-east-africa-guide.html" class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200 block group"><span class="text-xs font-medium text-brand bg-brand-tint px-2.5 py-1 rounded-md">Factory Setup</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Factory Setup in East Africa: A Step-by-Step Guide</h3><p class="text-slate text-sm mt-2 leading-relaxed">From site selection to first production run — what to plan for when establishing manufacturing capacity in East Africa.</p><span class="text-brand text-sm font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">Soma zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a><a href="insight-commodity-trading-outlook-copper-cobalt.html" class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200 block group"><span class="text-xs font-medium text-brand bg-brand-tint px-2.5 py-1 rounded-md">Commodities</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Commodity Trading Fundamentals: Copper and Cobalt</h3><p class="text-slate text-sm mt-2 leading-relaxed">A primer on the procurement considerations that matter most when trading copper and cobalt across African and Chinese markets.</p><span class="text-brand text-sm font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">Soma zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="py-20 md:py-28 bg-white border-t border-line">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Mchakato</p>
-        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink mt-3">Jinsi mradi wa ugavi unavyoendeshwa</h2>
-        <p class="text-slate text-lg leading-relaxed mt-5">Hatua tano kutoka simu ya kwanza hadi bidhaa kufikishwa, na unachopata katika kila hatua.</p>
-      </div>
-      <ol class="grid gap-4 md:grid-cols-5 mt-12 max-w-6xl mx-auto">
-        <li class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><span class="text-brand font-semibold text-sm">01</span><h3 class="font-medium text-ink mt-2">Discovery call</h3><p class="text-slate text-sm mt-2 leading-relaxed">We establish what you are buying or building, at what volume, to what tolerance, and by when.</p></li><li class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><span class="text-brand font-semibold text-sm">02</span><h3 class="font-medium text-ink mt-2">Supplier identification</h3><p class="text-slate text-sm mt-2 leading-relaxed">We shortlist factories against your spec and verify they are what they claim to be.</p></li><li class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><span class="text-brand font-semibold text-sm">03</span><h3 class="font-medium text-ink mt-2">Sampling and negotiation</h3><p class="text-slate text-sm mt-2 leading-relaxed">Samples are produced and reviewed before terms are fixed.</p></li><li class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><span class="text-brand font-semibold text-sm">04</span><h3 class="font-medium text-ink mt-2">Production and quality control</h3><p class="text-slate text-sm mt-2 leading-relaxed">Production is monitored and inspected at defined checkpoints, not just at the end.</p></li><li class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><span class="text-brand font-semibold text-sm">05</span><h3 class="font-medium text-ink mt-2">Freight and customs</h3><p class="text-slate text-sm mt-2 leading-relaxed">Goods are booked, documented, and cleared into your market.</p></li>
+      <ol data-reveal-group class="rail grid gap-4 md:grid-cols-2 lg:grid-cols-5 mt-14">
+        <li class="card bg-white">
+          <div class="flex items-center justify-between gap-2">
+            <span class="step-badge">01</span>
+            <span class="pill pill-neutral mono-tag">30 minutes</span>
+          </div>
+          <h3 class="font-medium text-ink mt-4">Discovery call</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">We establish what you are buying or building, at what volume, to what tolerance, and by when.</p>
+        </li><li class="card bg-white">
+          <div class="flex items-center justify-between gap-2">
+            <span class="step-badge">02</span>
+            <span class="pill pill-neutral mono-tag">1–2 weeks</span>
+          </div>
+          <h3 class="font-medium text-ink mt-4">Supplier identification</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">We shortlist factories against your spec and verify they are what they claim to be.</p>
+        </li><li class="card bg-white">
+          <div class="flex items-center justify-between gap-2">
+            <span class="step-badge">03</span>
+            <span class="pill pill-neutral mono-tag">2–4 weeks</span>
+          </div>
+          <h3 class="font-medium text-ink mt-4">Sampling and negotiation</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Samples are produced and reviewed before terms are fixed.</p>
+        </li><li class="card bg-white">
+          <div class="flex items-center justify-between gap-2">
+            <span class="step-badge">04</span>
+            <span class="pill pill-neutral mono-tag">Varies by product</span>
+          </div>
+          <h3 class="font-medium text-ink mt-4">Production and quality control</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Production is monitored and inspected at defined checkpoints, not just at the end.</p>
+        </li><li class="card bg-white">
+          <div class="flex items-center justify-between gap-2">
+            <span class="step-badge">05</span>
+            <span class="pill pill-neutral mono-tag">2–6 weeks in transit</span>
+          </div>
+          <h3 class="font-medium text-ink mt-4">Freight and customs</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Goods are booked, documented, and cleared into your market.</p>
+        </li>
       </ol>
-      <div class="text-center mt-10"><a href="process.html" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-5 py-2.5 text-sm">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
+      <div class="text-center mt-10"><a href="process.html" class="btn btn-secondary">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
     </div>
   </section>
 
-  <section class="py-20 md:py-28 bg-gray-bg border-y border-line">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Sekta</p>
-        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink mt-3">Sekta tunazohudumia</h2>
-        <p class="text-slate text-lg leading-relaxed mt-5">Kila sekta ina changamoto zake. Hizi ndizo tunazofanya kazi nazo zaidi.</p>
+  <!-- 4. THE HONEST COMPARISON. Naming when you are NOT the right answer is
+       the single most persuasive thing a services page can do. -->
+  <section class="section bg-gray-bg border-y border-line">
+    <div class="shell max-w-5xl">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Ulinganisho</p>
+        <h2 class="h2-section mt-4">Direct sourcing vs. working with us</h2>
+        <p class="lead mt-5">An honest comparison. Direct sourcing is genuinely the right call for some buyers — usually those with staff on the ground or an established supplier they already trust.</p>
       </div>
-      <div class="grid gap-4 md:grid-cols-2 mt-12 max-w-5xl mx-auto">
-        <a href="industries.html" class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200 block group"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Construction & building materials</h3><p class="text-slate text-sm mt-2 leading-relaxed">Fixtures, fittings, tiles, sanitaryware, hardware, and finishing materials. Volume-heavy, freight-sensitive, and highly dependent on consistent tolerance across repeat orders.</p><span class="text-brand text-sm font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a><a href="industries.html" class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200 block group"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Industrial equipment & machinery</h3><p class="text-slate text-sm mt-2 leading-relaxed">Production machinery, spare parts, and assembly-line equipment. Long lead times and high consequence of error, so verification before shipment is critical.</p><span class="text-brand text-sm font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a><a href="industries.html" class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200 block group"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Consumer goods & retail</h3><p class="text-slate text-sm mt-2 leading-relaxed">Household products, packaging, textiles, and general merchandise. Typically the most quality-sensitive category, because defects surface as customer returns.</p><span class="text-brand text-sm font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a><a href="industries.html" class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200 block group"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Commodities & raw materials</h3><p class="text-slate text-sm mt-2 leading-relaxed">Copper, cobalt, and select agricultural goods. Contract structure and chain-of-custody documentation matter more here than in any other category.</p><span class="text-brand text-sm font-medium mt-4 inline-flex items-center gap-1 group-hover:gap-2 transition-[gap] duration-200">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 md:py-28 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Udhibiti wa ubora</p>
-        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink mt-3">Ukaguzi wa hatua nne, si moja</h2>
-        <p class="text-slate text-lg leading-relaxed mt-5">Matatizo mengi ya ubora hugunduliwa kuchelewa mno. Ukaguzi wa hatua kwa hatua huzuia kasoro kuwa hasara.</p>
-      </div>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-12 max-w-6xl mx-auto">
-        <div class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200"><span class="text-[0.6875rem] font-semibold tracking-wider text-brand bg-brand-tint px-2 py-1 rounded">IQC</span><h3 class="font-medium text-ink mt-3">Incoming quality control</h3><p class="text-xs text-slate mt-1">Before production starts</p></div><div class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200"><span class="text-[0.6875rem] font-semibold tracking-wider text-brand bg-brand-tint px-2 py-1 rounded">DUPRO</span><h3 class="font-medium text-ink mt-3">During-production inspection</h3><p class="text-xs text-slate mt-1">At roughly 20–30% completion</p></div><div class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200"><span class="text-[0.6875rem] font-semibold tracking-wider text-brand bg-brand-tint px-2 py-1 rounded">PSI</span><h3 class="font-medium text-ink mt-3">Pre-shipment inspection</h3><p class="text-xs text-slate mt-1">At 100% production, 80%+ packed</p></div><div class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200"><span class="text-[0.6875rem] font-semibold tracking-wider text-brand bg-brand-tint px-2 py-1 rounded">LOADING</span><h3 class="font-medium text-ink mt-3">Container loading supervision</h3><p class="text-xs text-slate mt-1">At the point of loading</p></div>
-      </div>
-      <div class="text-center mt-10"><a href="quality-control.html" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-5 py-2.5 text-sm">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
-    </div>
-  </section>
-
-  <section class="py-20 md:py-28 bg-gray-bg border-y border-line">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Usafirishaji</p>
-        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink mt-3">Incoterm gani ya kuomba</h2>
-        <p class="text-slate text-lg leading-relaxed mt-5">Incoterm huamua nani analipa nini na hatari inahamia wapi.</p>
-      </div>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-12 max-w-6xl mx-auto">
-        <div class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><div class="flex items-baseline justify-between gap-2"><span class="text-brand font-semibold">EXW</span><span class="text-[0.6875rem] text-slate bg-gray-bg border border-line px-2 py-0.5 rounded">Buyer</span></div><h3 class="font-medium text-ink mt-2">Ex Works</h3></div><div class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><div class="flex items-baseline justify-between gap-2"><span class="text-brand font-semibold">FOB</span><span class="text-[0.6875rem] text-slate bg-gray-bg border border-line px-2 py-0.5 rounded">Shared</span></div><h3 class="font-medium text-ink mt-2">Free On Board</h3></div><div class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><div class="flex items-baseline justify-between gap-2"><span class="text-brand font-semibold">CIF</span><span class="text-[0.6875rem] text-slate bg-gray-bg border border-line px-2 py-0.5 rounded">Shared</span></div><h3 class="font-medium text-ink mt-2">Cost, Insurance & Freight</h3></div><div class="bg-white rounded-xl p-6 border border-line hover:border-slate/25 hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow] duration-200"><div class="flex items-baseline justify-between gap-2"><span class="text-brand font-semibold">DDP</span><span class="text-[0.6875rem] text-slate bg-gray-bg border border-line px-2 py-0.5 rounded">Seller</span></div><h3 class="font-medium text-ink mt-2">Delivered Duty Paid</h3></div>
-      </div>
-      <div class="text-center mt-10"><a href="logistics.html" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-5 py-2.5 text-sm">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
-    </div>
-  </section>
-
-  <section class="py-20 md:py-28 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">Rasilimali</p>
-        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink mt-3">Miongozo na marejeo</h2>
-        <p class="text-slate text-lg leading-relaxed mt-5">Nyenzo za vitendo tunazotumia na wateja. Omba nasi tutakutumia.</p>
-      </div>
-      <div class="grid gap-4 md:grid-cols-2 mt-12 max-w-5xl mx-auto">
-        <a href="resources.html" class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200 block group"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Pre-shipment inspection checklist</h3><p class="text-slate text-sm mt-2 leading-relaxed">The checks worth insisting on before goods leave the factory — quantity verification, workmanship, function testing, packaging, and shipping marks.</p></a><a href="resources.html" class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200 block group"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Chinese New Year planning calendar</h3><p class="text-slate text-sm mt-2 leading-relaxed">Factories close for two to four weeks and capacity tightens for weeks either side. This is the single most common cause of missed deadlines for first-time buyers.</p></a><a href="resources.html" class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200 block group"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Incoterms quick reference</h3><p class="text-slate text-sm mt-2 leading-relaxed">What each term actually obliges each party to do, where risk transfers, and which one to ask for depending on how much control you want.</p></a><a href="resources.html" class="bg-gray-bg rounded-xl p-6 border border-line hover:border-slate/25 hover:bg-white hover:shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-6px_rgba(11,18,32,.10)] transition-[border-color,box-shadow,background-color] duration-200 block group"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand mb-4" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h3 class="text-[1.0625rem] font-medium text-ink">Supplier verification questions</h3><p class="text-slate text-sm mt-2 leading-relaxed">The questions that separate a manufacturer from a trading company, and the documents to ask for in each case.</p></a>
+      <div class="table-wrap mt-12">
+        <table class="table-pro">
+          <thead>
+            <tr>
+              <th scope="col" class="w-1/4">Kipengele</th>
+              <th scope="col">Kununua moja kwa moja</th>
+              <th scope="col" class="text-brand">Na ENZ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Supplier verification</th><td>You rely on platform badges and self-reported credentials</td><td class="text-ink">Licence, capacity, and export history verified independently; site visits where the order justifies it</td></tr><tr><th scope="row">Time to first shipment</th><td>Often 3–6 months for a first-time buyer, most of it spent finding and vetting</td><td class="text-ink">Typically shorter, because the shortlist starts from suppliers already known to the category</td></tr><tr><th scope="row">Quality control</th><td>Usually a single pre-shipment check, if any</td><td class="text-ink">Staged: incoming materials, during production, pre-shipment, and loading</td></tr><tr><th scope="row">Language and time zone</th><td>Negotiating technical specs across a 6–8 hour gap and a language barrier</td><td class="text-ink">Handled locally in Mandarin, during Chinese business hours</td></tr><tr><th scope="row">When something goes wrong</th><td>Limited leverage from abroad once payment has been sent</td><td class="text-ink">Someone on the ground with an existing relationship and the ability to visit</td></tr><tr><th scope="row">Cost</th><td>No agency fee — but rework, delays, and freight errors are absorbed by you</td><td class="text-ink">A fee against typically lower landed cost and materially lower risk of a failed order</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <section class="py-20 md:py-28 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <p class="text-xs font-semibold tracking-[0.14em] uppercase text-brand">FAQ</p>
-        <h2 class="text-3xl md:text-[2.75rem] md:leading-[1.1] font-semibold text-ink mt-3">Maswali ya kawaida</h2>
-        <p class="text-slate text-lg leading-relaxed mt-5">Majibu ya moja kwa moja kwa yale wanunuzi wanatuuliza zaidi.</p>
+  <!-- 5. COMMITMENTS. Stands in for testimonials until there are real ones:
+       every line is a promise that can be checked, not a claim about quality. -->
+  <section class="section section-dark">
+    <div aria-hidden="true" class="glow glow-brand w-[30rem] h-[30rem] -top-32 right-[-6rem]"></div>
+        <div aria-hidden="true" class="glow glow-accent w-[22rem] h-[22rem] bottom-[-8rem] left-[-4rem]"></div>
+    <div class="shell">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow eyebrow-light">Ahadi zetu</p>
+        <h2 class="h2-section on-dark mt-4">Mambo unayoweza kutuwajibisha</h2>
+        <p class="lead-light mt-5">Si madai kuhusu ubora wetu — ni mambo mahususi tunayofanya kila mradi, ambayo unaweza kuthibitisha tumeyafanya.</p>
       </div>
-      <div class="max-w-3xl mx-auto mt-12 divide-y divide-line border-y border-line">
+      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
+        <div class="card-dark">
+          <span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+          <h3 class="font-medium text-[1.0625rem] mt-4">A reply within one business day</h3>
+          <p class="text-white/60 text-sm mt-2 leading-relaxed">Every enquiry is read by a person and answered within one working day — not routed into an automated drip sequence.</p>
+        </div><div class="card-dark">
+          <span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
+          <h3 class="font-medium text-[1.0625rem] mt-4">One named point of contact</h3>
+          <p class="text-white/60 text-sm mt-2 leading-relaxed">The same person owns your project from the first call to final delivery. No handoffs between departments, no re-explaining your brief.</p>
+        </div><div class="card-dark">
+          <span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <h3 class="font-medium text-[1.0625rem] mt-4">A written scope before anything is signed</h3>
+          <p class="text-white/60 text-sm mt-2 leading-relaxed">What we will do, what it costs, and how long it takes — in writing, before you commit to anything.</p>
+        </div><div class="card-dark">
+          <span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <h3 class="font-medium text-[1.0625rem] mt-4">Inspection reports you can actually read</h3>
+          <p class="text-white/60 text-sm mt-2 leading-relaxed">Photographed findings against your specification at each inspection point, in plain language, not a pass/fail stamp.</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+        <div class="card-dark"><span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3 class="font-medium text-[1.0625rem] mt-4">Mtandao wa Wasambazaji Uliothibitishwa</h3><p class="text-white/60 text-sm mt-2 leading-relaxed">Kila kiwanda tunachopendekeza kinapitia uthibitisho wetu wenyewe kabla ya kukupa nukuu.</p></div><div class="card-dark"><span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><h3 class="font-medium text-[1.0625rem] mt-4">Umiliki wa Mwanzo hadi Mwisho</h3><p class="text-white/60 text-sm mt-2 leading-relaxed">Timu moja inasimamia ugavi, usafirishaji, na uanzishaji wa kiwanda — hakuna makabidhiano kati ya wauzaji tofauti.</p></div><div class="card-dark"><span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><h3 class="font-medium text-[1.0625rem] mt-4">Uwepo wa Ndani</h3><p class="text-white/60 text-sm mt-2 leading-relaxed">Wafanyakazi walioko Guangzhou na katika masoko tunayohudumia — si simu tu inayojibiwa kutoka kituo cha simu.</p></div>
+      </div>
+      <div class="text-center mt-10"><a href="about.html" class="btn btn-ghost-light">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
+    </div>
+  </section>
+
+  
+
+  <!-- 6. ENGAGEMENT. The question every serious buyer asks second. -->
+  <section class="section bg-white">
+    <div class="shell">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Ushirikiano</p>
+        <h2 class="h2-section mt-4">Njia tatu za kufanya kazi nasi</h2>
+        <p class="lead mt-5">Chagua kiasi cha mchakato unachotaka tukimiliki. Unaweza kuanza kidogo na kupanda — wateja wengi hufanya hivyo.</p>
+      </div>
+      <div data-reveal-group class="grid lg:grid-cols-3 gap-5 mt-14 items-start">
         
-        <div>
-          <h3><button class="faq-question w-full flex items-center justify-between gap-4 py-5 text-left font-medium text-ink hover:text-brand transition-colors" aria-expanded="false" aria-controls="home-faq-0" id="home-faq-btn-0"><span>How does the sourcing process start?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform text-slate" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
-          <div id="home-faq-0" role="region" aria-labelledby="home-faq-btn-0" hidden class="pb-5 text-[0.9375rem] text-slate leading-relaxed">It starts with a consultation where you share your product specifications, target price range, and order volume. From there we shortlist and vet suppliers on your behalf.</div>
+        <div class="card card-lg flex flex-col h-full ">
+          
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+          <h3 class="text-lg font-medium text-ink mt-5">Single sourcing project</h3>
+          <p class="text-brand text-sm font-medium mt-1">One product, one order.</p>
+          <p class="text-slate text-sm mt-3 leading-relaxed">Ideal for testing a new supplier relationship or a one-off procurement need, without committing to anything ongoing.</p>
+
+          <p class="text-[0.6875rem] font-semibold tracking-[0.14em] uppercase text-slate mt-6">Kinachojumuishwa</p>
+          <ul class="mt-3 space-y-2 flex-1">
+            <li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Supplier shortlisting and verification</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Price benchmarking and negotiation support</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Pre-shipment inspection</span></li>
+          </ul>
+
+          <div class="mt-6 pt-5 border-t border-line">
+            <p class="text-[0.6875rem] font-semibold tracking-[0.14em] uppercase text-slate">Inafaa kwa</p>
+            <p class="text-sm text-ink mt-1.5">First-time buyers, sample orders, seasonal purchases</p>
+          </div>
+          
         </div>
-        <div>
-          <h3><button class="faq-question w-full flex items-center justify-between gap-4 py-5 text-left font-medium text-ink hover:text-brand transition-colors" aria-expanded="false" aria-controls="home-faq-1" id="home-faq-btn-1"><span>Do you handle quality control and inspections?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform text-slate" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
-          <div id="home-faq-1" role="region" aria-labelledby="home-faq-btn-1" hidden class="pb-5 text-[0.9375rem] text-slate leading-relaxed">Yes. We offer staged quality control — incoming material checks, in-process inspection, and pre-shipment inspection — so defects are caught before goods leave the factory.</div>
+        <div class="card card-lg flex flex-col h-full border-brand-200 shadow-lift ring-1 ring-brand-100">
+          <span class="pill absolute -top-3 left-6">Inayotumika zaidi</span>
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+          <h3 class="text-lg font-medium text-ink mt-5">Ongoing retainer</h3>
+          <p class="text-brand text-sm font-medium mt-1">Repeat orders, one team.</p>
+          <p class="text-slate text-sm mt-3 leading-relaxed">Continuous sourcing and quality control across multiple SKUs and repeat order cycles, with a dedicated point of contact who already knows your specification.</p>
+
+          <p class="text-[0.6875rem] font-semibold tracking-[0.14em] uppercase text-slate mt-6">Kinachojumuishwa</p>
+          <ul class="mt-3 space-y-2 flex-1">
+            <li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Everything in a single project</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Dedicated point of contact</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Staged QC across every order</span></li>
+          </ul>
+
+          <div class="mt-6 pt-5 border-t border-line">
+            <p class="text-[0.6875rem] font-semibold tracking-[0.14em] uppercase text-slate">Inafaa kwa</p>
+            <p class="text-sm text-ink mt-1.5">Growing brands with recurring purchase cycles</p>
+          </div>
+          
         </div>
-        <div>
-          <h3><button class="faq-question w-full flex items-center justify-between gap-4 py-5 text-left font-medium text-ink hover:text-brand transition-colors" aria-expanded="false" aria-controls="home-faq-2" id="home-faq-btn-2"><span>Can you help set up a factory outside of China?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform text-slate" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
-          <div id="home-faq-2" role="region" aria-labelledby="home-faq-btn-2" hidden class="pb-5 text-[0.9375rem] text-slate leading-relaxed">Yes, our factory-setup service covers site selection, machinery sourcing, assembly-line planning, and commissioning support, including in East African markets.</div>
-        </div>
-        <div>
-          <h3><button class="faq-question w-full flex items-center justify-between gap-4 py-5 text-left font-medium text-ink hover:text-brand transition-colors" aria-expanded="false" aria-controls="home-faq-3" id="home-faq-btn-3"><span>What information do you need for a factory-setup consultation?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 faq-chevron transition-transform text-slate" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
-          <div id="home-faq-3" role="region" aria-labelledby="home-faq-btn-3" hidden class="pb-5 text-[0.9375rem] text-slate leading-relaxed">A general sense of your target product, expected production volume, and preferred location is enough to start. We refine the scope together during the consultation.</div>
+        <div class="card card-lg flex flex-col h-full ">
+          
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></span>
+          <h3 class="text-lg font-medium text-ink mt-5">Full factory partnership</h3>
+          <p class="text-brand text-sm font-medium mt-1">Build production, not just orders.</p>
+          <p class="text-slate text-sm mt-3 leading-relaxed">End-to-end factory establishment — site selection through commissioning — plus ongoing operational and sourcing support once you are running.</p>
+
+          <p class="text-[0.6875rem] font-semibold tracking-[0.14em] uppercase text-slate mt-6">Kinachojumuishwa</p>
+          <ul class="mt-3 space-y-2 flex-1">
+            <li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Feasibility study and site selection</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Machinery sourcing and assembly-line planning</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Installation and commissioning support</span></li>
+          </ul>
+
+          <div class="mt-6 pt-5 border-t border-line">
+            <p class="text-[0.6875rem] font-semibold tracking-[0.14em] uppercase text-slate">Inafaa kwa</p>
+            <p class="text-sm text-ink mt-1.5">Businesses localising production in a new market</p>
+          </div>
+          
         </div>
       </div>
-      <div class="text-center mt-10"><a href="contact.html" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-bg text-ink font-medium rounded-lg border border-line hover:border-slate/30 transition-colors duration-200 px-5 py-2.5 text-sm">Ona maswali yote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
+      <div class="text-center mt-10">
+        <a href="pricing.html" class="btn btn-secondary">Linganisha mifumo ya ushirikiano <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+      </div>
     </div>
   </section>
 
-  <section class="py-20 md:py-24 bg-ink text-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl md:text-[2.5rem] md:leading-[1.1] font-semibold">Tayari Kubadilisha Mnyororo wako wa Ugavi?</h2>
-      <p class="text-white/60 text-lg mt-4 max-w-2xl mx-auto leading-relaxed">Panga ushauriano na timu yetu na ugundue jinsi ENZ inavyoweza kuharakisha ukuaji wako.</p>
+  <!-- 7. WHO AND WHERE. Industries and markets were two near-identical card
+       grids in sequence; one section answers both questions. -->
+  <section class="section bg-gray-bg border-y border-line">
+    <div class="shell">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Tunaofanya nao kazi</p>
+        <h2 class="h2-section mt-4">Sekta na masoko tunayohudumia</h2>
+        <p class="lead mt-5">Uzoefu wa sekta huamua tunachokagua. Hizi ndizo kategoria tunazonunua mara nyingi, na tunapowasilisha.</p>
+      </div>
+      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
+        <a href="industries.html" class="card block group">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Construction & building materials</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Fixtures, fittings, tiles, sanitaryware, hardware, and finishing materials. Volume-heavy, freight-sensitive, and highly dependent on consistent tolerance across repeat orders.</p>
+        </a><a href="industries.html" class="card block group">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Industrial equipment & machinery</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Production machinery, spare parts, and assembly-line equipment. Long lead times and high consequence of error, so verification before shipment is critical.</p>
+        </a><a href="industries.html" class="card block group">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Consumer goods & retail</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Household products, packaging, textiles, and general merchandise. Typically the most quality-sensitive category, because defects surface as customer returns.</p>
+        </a><a href="industries.html" class="card block group">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Commodities & raw materials</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Copper, cobalt, and select agricultural goods. Contract structure and chain-of-custody documentation matter more here than in any other category.</p>
+        </a>
+      </div>
+
+      <div class="mt-10 rounded-2xl border border-line bg-white p-6 md:p-8">
+        <div class="flex flex-wrap items-baseline justify-between gap-4">
+          <h3 class="text-lg font-medium text-ink">Uwepo wa Kimataifa</h3>
+          <a href="markets.html" class="link-arrow text-sm">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mt-6">
+          <a href="markets.html" class="flex items-center gap-2.5 rounded-lg border border-line bg-gray-bg px-3.5 py-3 hover:border-brand-200 hover:bg-white transition-colors">
+            <span class="step-badge">TZ</span><span class="text-sm font-medium text-ink">Tanzania</span>
+          </a><a href="markets.html" class="flex items-center gap-2.5 rounded-lg border border-line bg-gray-bg px-3.5 py-3 hover:border-brand-200 hover:bg-white transition-colors">
+            <span class="step-badge">KE</span><span class="text-sm font-medium text-ink">Kenya</span>
+          </a><a href="markets.html" class="flex items-center gap-2.5 rounded-lg border border-line bg-gray-bg px-3.5 py-3 hover:border-brand-200 hover:bg-white transition-colors">
+            <span class="step-badge">CD</span><span class="text-sm font-medium text-ink">DRC</span>
+          </a><a href="markets.html" class="flex items-center gap-2.5 rounded-lg border border-line bg-gray-bg px-3.5 py-3 hover:border-brand-200 hover:bg-white transition-colors">
+            <span class="step-badge">US</span><span class="text-sm font-medium text-ink">USA</span>
+          </a><a href="markets.html" class="flex items-center gap-2.5 rounded-lg border border-line bg-gray-bg px-3.5 py-3 hover:border-brand-200 hover:bg-white transition-colors">
+            <span class="step-badge">UK</span><span class="text-sm font-medium text-ink">UK</span>
+          </a>
+        </div>
+        <p class="text-sm text-slate mt-5">Vituo vya uendeshaji: Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. GETTING STARTED. The last objection is procedural, not commercial. -->
+  <section class="section bg-white">
+    <div class="shell max-w-4xl">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Kuanza</p>
+        <h2 class="h2-section mt-4">Kinachotokea unapowasiliana nasi</h2>
+        <p class="lead mt-5">Hakuna ahadi yoyote kabla ya maelezo ya maandishi. Huu ndio mchakato mzima kutoka ujumbe wa kwanza hadi kazi kuanza.</p>
+      </div>
+      <ol data-reveal-group class="mt-14 space-y-4">
+        <li class="card flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
+          <span class="step-badge step-badge-lg">01</span>
+          <div class="flex-1">
+            <div class="flex flex-wrap items-baseline gap-3">
+              <h3 class="text-lg font-medium text-ink">Tell us what you need</h3>
+              <span class="pill pill-neutral mono-tag">2 minutes</span>
+            </div>
+            <p class="text-slate text-sm mt-2 leading-relaxed">Product, rough volume, target market, and your timeline. A paragraph is enough — you do not need a finished specification to start.</p>
+          </div>
+        </li><li class="card flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
+          <span class="step-badge step-badge-lg">02</span>
+          <div class="flex-1">
+            <div class="flex flex-wrap items-baseline gap-3">
+              <h3 class="text-lg font-medium text-ink">We reply within one business day</h3>
+              <span class="pill pill-neutral mono-tag">1 business day</span>
+            </div>
+            <p class="text-slate text-sm mt-2 leading-relaxed">A person reads it and comes back with either questions or an honest "this is not a fit for us". No drip sequence, no sales cadence.</p>
+          </div>
+        </li><li class="card flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
+          <span class="step-badge step-badge-lg">03</span>
+          <div class="flex-1">
+            <div class="flex flex-wrap items-baseline gap-3">
+              <h3 class="text-lg font-medium text-ink">A 30-minute scoping call</h3>
+              <span class="pill pill-neutral mono-tag">30 minutes</span>
+            </div>
+            <p class="text-slate text-sm mt-2 leading-relaxed">We work out what the project actually involves and whether we are the right people for it. Free, and with no obligation attached.</p>
+          </div>
+        </li><li class="card flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
+          <span class="step-badge step-badge-lg">04</span>
+          <div class="flex-1">
+            <div class="flex flex-wrap items-baseline gap-3">
+              <h3 class="text-lg font-medium text-ink">A written scope, then work begins</h3>
+              <span class="pill pill-neutral mono-tag">Before you commit</span>
+            </div>
+            <p class="text-slate text-sm mt-2 leading-relaxed">What we will do, what it costs, and how long it takes — in writing. Nothing starts until you have agreed to it.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="text-center mt-10">
+        <button data-open-booking class="btn btn-primary btn-lg">Panga Ushauriano<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Reference material, as links out rather than inline chapters. -->
+  <section class="section bg-gray-bg border-y border-line">
+    <div class="shell">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">Rasilimali</p>
+        <h2 class="h2-section mt-4">Mwongozo wa mnunuzi</h2>
+        <p class="lead mt-5">Marejeleo yanayostahili kusomwa kabla ya oda yako ya kwanza — gharama, malipo, muda, na makosa yanayogharimu zaidi.</p>
+      </div>
+      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
+        <a href="resources.html#landed-cost" class="card card-muted block group flex flex-col">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">What actually makes up your landed cost</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Unit price is usually 50–70% of what you finally pay. A quote compared on unit price alone is a quote compared on the smaller half of the number.</p>
+          <span class="link-arrow text-sm mt-4">Soma zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </a><a href="resources.html#timelines" class="card card-muted block group flex flex-col">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Realistic timelines</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Typical ranges, not promises — complexity, tooling, and season all move them. The value is in planning against honest numbers rather than best-case ones.</p>
+          <span class="link-arrow text-sm mt-4">Soma zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </a><a href="logistics.html" class="card card-muted block group flex flex-col">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Incoterm gani ya kuomba</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Incoterm huamua nani analipa nini na hatari inahamia wapi.</p>
+          <span class="link-arrow text-sm mt-4">Soma zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </a><a href="resources.html#mistakes" class="card card-muted block group flex flex-col">
+          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Makosa sita yanayowagharimu wanunuzi zaidi</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Kila moja ni la kawaida, la gharama, na linaloweza kuepukwa kabisa ukijua cha kuangalia.</p>
+          <span class="link-arrow text-sm mt-4">Soma zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 mt-4">
+        <a href="insight-navigating-china-supply-chain-2026.html" class="card block group"><span class="pill">Sourcing</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Navigating China's Supply Chain in 2026: A Buyer's Checklist</h3><p class="text-slate text-sm mt-2 leading-relaxed">A practical framework for vetting suppliers, managing lead times, and protecting quality when sourcing from China.</p><span class="link-arrow text-sm mt-4">Soma zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a><a href="insight-factory-setup-east-africa-guide.html" class="card block group"><span class="pill">Factory Setup</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Factory Setup in East Africa: A Step-by-Step Guide</h3><p class="text-slate text-sm mt-2 leading-relaxed">From site selection to first production run — what to plan for when establishing manufacturing capacity in East Africa.</p><span class="link-arrow text-sm mt-4">Soma zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a><a href="insight-commodity-trading-outlook-copper-cobalt.html" class="card block group"><span class="pill">Commodities</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Commodity Trading Fundamentals: Copper and Cobalt</h3><p class="text-slate text-sm mt-2 leading-relaxed">A primer on the procurement considerations that matter most when trading copper and cobalt across African and Chinese markets.</p><span class="link-arrow text-sm mt-4">Soma zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FAQ. -->
+  <section class="section bg-white">
+    <div class="shell">
+      
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="h2-section mt-4">Maswali ya kawaida</h2>
+        <p class="lead mt-5">Majibu ya moja kwa moja kwa yale wanunuzi wanatuuliza zaidi.</p>
+      </div>
+      <div class="max-w-3xl mx-auto mt-12 border-t border-line">
+        
+        <div class="faq-item">
+          <h3><button class="faq-question" aria-expanded="false" aria-controls="home-faq-0" id="home-faq-btn-0"><span>How does the sourcing process start?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 faq-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
+          <div id="home-faq-0" role="region" aria-labelledby="home-faq-btn-0" hidden class="faq-answer">It starts with a consultation where you share your product specifications, target price range, and order volume. From there we shortlist and vet suppliers on your behalf.</div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-question" aria-expanded="false" aria-controls="home-faq-1" id="home-faq-btn-1"><span>Do you handle quality control and inspections?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 faq-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
+          <div id="home-faq-1" role="region" aria-labelledby="home-faq-btn-1" hidden class="faq-answer">Yes. We offer staged quality control — incoming material checks, in-process inspection, and pre-shipment inspection — so defects are caught before goods leave the factory.</div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-question" aria-expanded="false" aria-controls="home-faq-2" id="home-faq-btn-2"><span>Can you help set up a factory outside of China?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 faq-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
+          <div id="home-faq-2" role="region" aria-labelledby="home-faq-btn-2" hidden class="faq-answer">Yes, our factory-setup service covers site selection, machinery sourcing, assembly-line planning, and commissioning support, including in East African markets.</div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-question" aria-expanded="false" aria-controls="home-faq-3" id="home-faq-btn-3"><span>What information do you need for a factory-setup consultation?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 faq-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
+          <div id="home-faq-3" role="region" aria-labelledby="home-faq-btn-3" hidden class="faq-answer">A general sense of your target product, expected production volume, and preferred location is enough to start. We refine the scope together during the consultation.</div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-question" aria-expanded="false" aria-controls="home-faq-4" id="home-faq-btn-4"><span>Is there a fee to book a consultation?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 faq-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
+          <div id="home-faq-4" role="region" aria-labelledby="home-faq-btn-4" hidden class="faq-answer">No — requesting a consultation through this site is free. Any paid engagement terms are agreed separately once scope is defined.</div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-question" aria-expanded="false" aria-controls="home-faq-5" id="home-faq-btn-5"><span>Which regions do you currently serve?</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 faq-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></h3>
+          <div id="home-faq-5" role="region" aria-labelledby="home-faq-btn-5" hidden class="faq-answer">Our team operates across Tanzania, Kenya, the Democratic Republic of Congo, the United States, and the United Kingdom, with our sourcing hub based in Guangzhou, China.</div>
+        </div>
+      </div>
+      <div class="text-center mt-10"><a href="faq.html" class="btn btn-secondary">Ona maswali yote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
+    </div>
+  </section>
+
+  
+  <section class="section section-dark">
+    <div class="shell text-center">
+      <h2 class="h2-section on-dark">Tayari Kubadilisha Mnyororo wako wa Ugavi?</h2>
+      <p class="lead-light mt-4 max-w-2xl mx-auto">Panga ushauriano na timu yetu na ugundue jinsi ENZ inavyoweza kuharakisha ukuaji wako.</p>
       <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
-        <button data-open-booking class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 px-6 py-3 text-[0.9375rem]">Panga Ushauriano<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
-        <a href="contact.html" class="inline-flex items-center justify-center gap-2 bg-white/[0.08] border border-white/20 hover:bg-white/[0.14] hover:border-white/30 text-white font-medium rounded-lg transition-colors duration-200 px-6 py-3 text-[0.9375rem]">Wasiliana</a>
+        <button data-open-booking class="btn btn-primary px-6 py-3 text-[0.9375rem]">Panga Ushauriano<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+        <a href="contact.html" class="btn btn-ghost-light px-6 py-3 text-[0.9375rem]">Wasiliana</a>
       </div>
     </div>
   </section>
     </main>
     
-  <footer class="bg-navy text-white/70 py-16 border-t border-white/5">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
-      <div>
-        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-10 w-auto object-contain mb-4" />
-        <p class="text-sm max-w-xs leading-relaxed">Ugavi wa kimataifa, uanzishaji wa kiwanda, na ushauri wa kuingia sokoni.</p>
-      </div>
-      <div>
-        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">Huduma</h2>
-        <ul class="text-sm space-y-3">
-          <li><a href="services.html" class="hover:text-brand-bright transition">Ugavi</a></li>
-          <li><a href="services.html" class="hover:text-brand-bright transition">Kiwanda</a></li>
-          <li><a href="services.html" class="hover:text-brand-bright transition">Kuingia Soko la China</a></li>
+  <footer class="section-dark text-white/70 pt-16 pb-8 md:pt-20">
+    <div aria-hidden="true" class="glow glow-brand w-[30rem] h-[30rem] -top-48 left-1/4"></div>
+    <div class="shell grid grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12">
+      <div class="col-span-2 lg:col-span-4">
+        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-10 w-auto object-contain" />
+        <p class="text-sm max-w-xs leading-relaxed mt-5 text-white/60">Ugavi wa kimataifa, uanzishaji wa kiwanda, na ushauri wa kuingia sokoni.</p>
+        <ul class="mt-6 space-y-2.5 text-sm">
+          <li class="flex items-center gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright shrink-0" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8613203840456" class="text-white/70 hover:text-white transition-colors">+86 132 0384 0456</a></li>
+          <li class="flex items-center gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright shrink-0" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg><a href="mailto:info@enzinternational.co" class="text-white/70 hover:text-white transition-colors">info@enzinternational.co</a></li>
+          <li class="flex items-start gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright shrink-0 mt-0.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-white/60">Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</span></li>
         </ul>
-      </div>
-      <div>
-        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">Kampuni</h2>
-        <ul class="text-sm space-y-3">
-          <li><a href="about.html" class="hover:text-brand-bright transition">Kuhusu</a></li>
-          <li><a href="markets.html" class="hover:text-brand-bright transition">Masoko</a></li>
-          <li><a href="process.html" class="hover:text-brand-bright transition">Mchakato</a></li>
-          <li><a href="industries.html" class="hover:text-brand-bright transition">Sekta</a></li>
-          <li><a href="quality-control.html" class="hover:text-brand-bright transition">Udhibiti wa ubora</a></li>
-          <li><a href="logistics.html" class="hover:text-brand-bright transition">Usafirishaji</a></li>
-          <li><a href="resources.html" class="hover:text-brand-bright transition">Rasilimali</a></li>
-          <li><a href="faq.html" class="hover:text-brand-bright transition">FAQ</a></li>
-          <li><a href="insights.html" class="hover:text-brand-bright transition">Maoni</a></li>
-          <li><a href="careers.html" class="hover:text-brand-bright transition">Kazi</a></li>
-          <li><a href="contact.html" class="hover:text-brand-bright transition">Wasiliana</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2 class="text-white font-semibold text-sm mb-4 tracking-wide">Wasiliana</h2>
-        <p class="text-sm flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-bright" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8613203840456" class="hover:text-brand-bright transition">+86 132 0384 0456</a></p>
-        <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="mt-4 flex items-center gap-2 bg-green-600/15 hover:bg-green-600/25 text-green-400 px-4 py-2.5 rounded-full text-sm transition w-fit">
+        <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light btn-sm mt-6">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Ongea WhatsApp
         </a>
-        <form id="newsletter-form" class="mt-7">
-          <label for="newsletter-email" class="text-white font-semibold text-sm block mb-1.5">Endelea kupata habari</label>
-          <p class="text-xs text-white/50 mb-3">Maoni ya ugavi na masasisho ya soko, mara kwa mara.</p>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h2 class="text-white font-semibold text-xs uppercase tracking-[0.14em] mb-4">Huduma</h2>
+        <ul class="text-sm space-y-2.5">
+          <li><a href="services.html" class="inline-block text-white/60 hover:text-white transition-colors">Ugavi</a></li>
+          <li><a href="services.html" class="inline-block text-white/60 hover:text-white transition-colors">Kiwanda</a></li>
+          <li><a href="services.html" class="inline-block text-white/60 hover:text-white transition-colors">Kuingia Soko la China</a></li>
+          <li><a href="quality-control.html" class="inline-block text-white/60 hover:text-white transition-colors">Udhibiti wa ubora</a></li>
+          <li><a href="logistics.html" class="inline-block text-white/60 hover:text-white transition-colors">Usafirishaji</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h2 class="text-white font-semibold text-xs uppercase tracking-[0.14em] mb-4">Kampuni</h2>
+        <ul class="text-sm space-y-2.5">
+          <li><a href="about.html" class="inline-block text-white/60 hover:text-white transition-colors">Kuhusu</a></li>
+          <li><a href="markets.html" class="inline-block text-white/60 hover:text-white transition-colors">Masoko</a></li>
+          <li><a href="process.html" class="inline-block text-white/60 hover:text-white transition-colors">Mchakato</a></li>
+          <li><a href="pricing.html" class="inline-block text-white/60 hover:text-white transition-colors">Ushirikiano</a></li>
+          <li><a href="industries.html" class="inline-block text-white/60 hover:text-white transition-colors">Sekta</a></li>
+          <li><a href="careers.html" class="inline-block text-white/60 hover:text-white transition-colors">Kazi</a></li>
+          <li><a href="contact.html" class="inline-block text-white/60 hover:text-white transition-colors">Wasiliana</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-4">
+        <h2 class="text-white font-semibold text-xs uppercase tracking-[0.14em] mb-4">Rasilimali</h2>
+        <ul class="text-sm space-y-2.5">
+          <li><a href="resources.html" class="inline-block text-white/60 hover:text-white transition-colors">Miongozo na marejeo</a></li>
+          <li><a href="insights.html" class="inline-block text-white/60 hover:text-white transition-colors">Maoni</a></li>
+          <li><a href="faq.html" class="inline-block text-white/60 hover:text-white transition-colors">FAQ</a></li>
+        </ul>
+        <form id="newsletter-form" class="mt-8">
+          <label for="newsletter-email" class="text-white font-semibold text-sm block">Endelea kupata habari</label>
+          <p class="text-xs text-white/60 mt-1.5 mb-3 leading-relaxed">Maoni ya ugavi na masasisho ya soko, mara kwa mara.</p>
           <div class="flex gap-2">
-            <input id="newsletter-email" name="email" type="email" required placeholder="wewe@kampuni.com" class="flex-1 min-w-0 bg-white/10 border border-white/15 rounded-lg px-3 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand/30" />
-            <button type="submit" class="bg-brand text-white text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-brand-dark transition-colors">Jiandikishe</button>
+            <input id="newsletter-email" name="email" type="email" required autocomplete="email" placeholder="wewe@kampuni.com" class="field field-dark flex-1 min-w-0" />
+            <button type="submit" class="btn btn-primary btn-sm shrink-0">Jiandikishe</button>
           </div>
         </form>
-        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3">Asante — angalia barua pepe yako kuthibitisha.</p>
+        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Asante — angalia barua pepe yako kuthibitisha.</p>
       </div>
     </div>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
-      <p>© <span data-current-year></span> ENZ INTERNATIONAL. All rights reserved.</p>
-      <p class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</p>
-      <div class="flex gap-5">
-        <a href="privacy.html" class="hover:text-brand-bright transition">Sera ya Faragha</a>
-        <a href="terms.html" class="hover:text-brand-bright transition">Masharti ya Huduma</a>
+
+    <div class="shell mt-14 pt-7 border-t border-white/10 flex flex-col-reverse md:flex-row items-center justify-between gap-4 text-xs text-white/60">
+      <p>© <span data-current-year>2026</span> ENZ INTERNATIONAL. All rights reserved.</p>
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        <a href="privacy.html" class="hover:text-white transition-colors">Sera ya Faragha</a>
+        <a href="terms.html" class="hover:text-white transition-colors">Masharti ya Huduma</a>
+        <a href="../sitemap.xml" class="hover:text-white transition-colors">Sitemap</a>
       </div>
     </div>
   </footer>
-    <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 z-40 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-2xl transition-transform hover:scale-105 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
     
-  <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-ink/50 backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-7 relative">
-      <button data-close-modal aria-label="Close dialog" class="absolute top-5 right-5 text-slate hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <h2 id="booking-modal-title" class="text-2xl font-bold text-ink mb-6 pr-6 tracking-tight">Ushauriano wa Kiutendaji</h2>
+  <a href="https://wa.me/8613203840456" target="_blank" rel="noopener noreferrer" class="fab-whatsapp no-print" aria-label="Ongea WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span class="fab-label" aria-hidden="true">Ongea WhatsApp</span>
+  </a>
+  <button type="button" data-to-top hidden class="to-top no-print" aria-label="Rudi juu">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+  </button>
+    
+  <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" style="display:none" data-modal-backdrop class="modal-backdrop">
+    <div class="modal-panel">
+      <button data-close-modal aria-label="Close dialog" class="modal-close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2 id="booking-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">Ushauriano wa Kiutendaji</h2>
       <form id="booking-form" class="space-y-5">
         <p class="text-sm text-slate">Tuambie kuhusu mradi wako na tutajibu ndani ya siku moja ya kazi.</p>
         <div>
-          <label for="booking-name" class="block text-sm font-medium text-ink">Jina Kamili</label>
-          <input id="booking-name" name="name" type="text" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="booking-name" class="field-label">Jina Kamili</label>
+          <input id="booking-name" name="name" type="text" required class="field" />
         </div>
         <div>
-          <label for="booking-email" class="block text-sm font-medium text-ink">Barua pepe</label>
-          <input id="booking-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="booking-email" class="field-label">Barua pepe</label>
+          <input id="booking-email" name="email" type="email" required class="field" />
         </div>
-        <div class="grid grid-cols-2 gap-4">
+        <div data-reveal-group class="grid grid-cols-2 gap-4">
           <div>
-            <label for="booking-phone" class="block text-sm font-medium text-ink">Simu (hiari)</label>
-            <input id="booking-phone" name="phone" type="tel" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+            <label for="booking-phone" class="field-label">Simu (hiari)</label>
+            <input id="booking-phone" name="phone" type="tel" class="field" />
           </div>
           <div>
-            <label for="booking-company" class="block text-sm font-medium text-ink">Kampuni (hiari)</label>
-            <input id="booking-company" name="company" type="text" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+            <label for="booking-company" class="field-label">Kampuni (hiari)</label>
+            <input id="booking-company" name="company" type="text" class="field" />
           </div>
         </div>
         <div>
-          <label for="booking-date" class="block text-sm font-medium text-ink">Tarehe Uipendayo</label>
-          <input id="booking-date" name="date" type="date" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="booking-date" class="field-label">Tarehe Uipendayo</label>
+          <input id="booking-date" name="date" type="date" class="field" />
         </div>
         <div>
-          <label for="booking-service" class="block text-sm font-medium text-ink">Huduma ya Nia</label>
-          <select id="booking-service" name="service" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"><option value="">—</option><option value="sourcing">Ugavi wa Kimataifa</option><option value="factory">Uanzishaji wa Kiwanda</option><option value="market">Kuingia Sokoni</option><option value="other">Nyingine</option></select>
+          <label for="booking-service" class="field-label">Huduma ya Nia</label>
+          <select id="booking-service" name="service" class="field"><option value="">—</option><option value="sourcing">Ugavi wa Kimataifa</option><option value="factory">Uanzishaji wa Kiwanda</option><option value="market">Kuingia Sokoni</option><option value="other">Nyingine</option></select>
         </div>
         <div>
-          <label for="booking-message" class="block text-sm font-medium text-ink">Tuambie kuhusu mradi wako (hiari)</label>
-          <textarea id="booking-message" name="message" rows="3" class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"></textarea>
+          <label for="booking-message" class="field-label">Tuambie kuhusu mradi wako (hiari)</label>
+          <textarea id="booking-message" name="message" rows="3" class="field"></textarea>
         </div>
         <p id="booking-error" role="alert" hidden class="text-sm text-red-600">Hitilafu imetokea — Tafadhali jaribu tena, au wasiliana nasi moja kwa moja kwenye WhatsApp.</p>
-        <button type="submit" data-submitting-label="Inatuma…" class="w-full inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium rounded-lg shadow-[0_1px_2px_rgba(11,18,32,.08)] transition-colors duration-200 py-4">Omba Ushauriano</button>
+        <button type="submit" data-submitting-label="Inatuma…" class="w-full btn btn-primary py-4">Omba Ushauriano</button>
         <p class="text-xs text-slate text-center">Tutajibu ndani ya masaa 24. Hakuna malipo yanayohitajika kuomba ushauriano.</p>
       </form>
       <div id="booking-success" role="status" hidden class="py-6">
         <div class="text-center">
-          <div class="w-11 h-11 rounded-full bg-brand-tint text-brand flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="icon-chip w-12 h-12 rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
           <p class="text-lg font-semibold text-ink mt-4">Ombi limepokelewa</p>
           <p class="text-sm text-slate mt-2">Asante, <span data-success-name></span>. Mwanachama wa timu yetu atawasiliana na <span data-success-email></span> hivi karibuni.</p>
         </div>
         
         <div class="mt-7 pt-6 border-t border-line text-left">
-          <p class="text-xs font-semibold tracking-[0.14em] uppercase text-slate">Kinachofuata</p>
+          <p class="eyebrow text-slate">Kinachofuata</p>
           <ol class="mt-4 space-y-3">
-            <li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">1</span><span>Tunapitia ombi lako na kulilinganisha na mtaalamu sahihi.</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">2</span><span>Utapata jibu ndani ya siku moja ya kazi — si ujumbe wa kiotomatiki.</span></li><li class="flex gap-3 text-sm text-slate"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-tint text-brand text-[0.6875rem] font-semibold flex items-center justify-center">3</span><span>Ikiwa inafaa, tunapanga simu ya dakika 30 kwa wakati unaokufaa.</span></li>
+            <li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">1</span><span>Tunapitia ombi lako na kulilinganisha na mtaalamu sahihi.</span></li><li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">2</span><span>Utapata jibu ndani ya siku moja ya kazi — si ujumbe wa kiotomatiki.</span></li><li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">3</span><span>Ikiwa inafaa, tunapanga simu ya dakika 30 kwa wakati unaokufaa.</span></li>
           </ol>
         </div>
       </div>
     </div>
   </div>
     
-  <div id="portal-modal" role="dialog" aria-modal="true" aria-labelledby="portal-modal-title" style="display:none" data-modal-backdrop class="fixed inset-0 z-[60] items-center justify-center p-4 bg-ink/50 backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl p-7 relative">
-      <button data-close-modal aria-label="Close dialog" class="absolute top-5 right-5 text-slate hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <h2 id="portal-modal-title" class="text-2xl font-bold text-ink mb-6 pr-6 tracking-tight">Lango la Mteja</h2>
+  <div id="portal-modal" role="dialog" aria-modal="true" aria-labelledby="portal-modal-title" style="display:none" data-modal-backdrop class="modal-backdrop">
+    <div class="modal-panel">
+      <button data-close-modal aria-label="Close dialog" class="modal-close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2 id="portal-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">Lango la Mteja</h2>
       <form id="portal-login-form" class="space-y-5">
         <p class="text-sm text-slate">Fuatilia miradi ya ugavi, hatua muhimu, na hati zilizoshirikiwa mahali pamoja.</p>
         <div>
-          <label for="portal-email" class="block text-sm font-medium text-ink">Barua pepe</label>
-          <input id="portal-email" name="email" type="email" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="portal-email" class="field-label">Barua pepe</label>
+          <input id="portal-email" name="email" type="email" required class="field" />
         </div>
         <div>
-          <label for="portal-password" class="block text-sm font-medium text-ink">Nenosiri</label>
-          <input id="portal-password" name="password" type="password" required class="w-full border border-line rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand" />
+          <label for="portal-password" class="field-label">Nenosiri</label>
+          <input id="portal-password" name="password" type="password" required class="field" />
         </div>
-        <button type="submit" class="w-full bg-ink hover:bg-navy text-white font-medium py-3.5 rounded-lg transition-colors duration-200">Ingia</button>
+        <button type="submit" class="btn btn-dark w-full">Ingia</button>
         <p class="text-xs text-slate text-center">Mpya kwenye lango la mteja? Omba ufikiaji kutoka kwa meneja wako wa akaunti kwa <a href="mailto:info@enzinternational.co" class="text-brand hover:underline">info@enzinternational.co</a></p>
       </form>
       <div id="portal-success" role="status" hidden class="text-center py-6">
@@ -523,10 +809,10 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=10"></script>
-    <script src="../assets/js/i18n.js?v=10"></script>
-    <script src="../assets/js/api.js?v=10"></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=10"></script>
-    <script src="../assets/js/site.js?v=10" defer></script>
+    <script src="../assets/js/config.js?v=12"></script>
+    <script src="../assets/js/i18n.js?v=12"></script>
+    <script src="../assets/js/api.js?v=12"></script>
+    <script src="../assets/js/site.js?v=12" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=12"></script>
   </body>
 </html>

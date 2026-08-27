@@ -1,2 +1,7 @@
 .DS_Store
 Thumbs.db
+
+# Optional dev-only CSS tooling (see _build/README.md). The COMPILED
+# stylesheet at assets/css/site.css is committed on purpose — it is what the
+# site actually loads, and committing it is what keeps deploying build-free.
+_build/node_modules/
