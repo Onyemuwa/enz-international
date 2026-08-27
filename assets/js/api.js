@@ -4,13 +4,45 @@
 // 2. Web3Forms (config.WEB3FORMS_ACCESS_KEY set) — no backend at all, forms
 //    email straight to your inbox. See config.js for setup.
 // 3. Mock mode (neither set) — forms work locally, nothing is sent.
+//
+// ---------------------------------------------------------------------------
+// MOCK MODE IS LOCAL-ONLY, AND THAT IS DELIBERATE.
+// ---------------------------------------------------------------------------
+// Mock mode resolves successfully, so the form shows "thanks, we'll be in
+// touch within 24h" and nothing is sent anywhere. That is exactly what you
+// want while developing, and the worst possible behaviour on a live site: a
+// real buyer types a real enquiry, is told it arrived, and it goes nowhere.
+// There is no error for anyone to notice — not the sender, not the owner.
+//
+// So mock mode now refuses to run off localhost. On a deployed host with
+// neither backend configured, submissions reject with `notConfigured`, and
+// site.js turns that into a visible "email us directly" fallback. A visitor
+// who wants to reach you still can; they are never quietly dropped.
+// ---------------------------------------------------------------------------
 window.ENZ_API = (function () {
   var BASE = window.ENZ_CONFIG.API_BASE_URL;
   var WEB3FORMS_KEY = window.ENZ_CONFIG.WEB3FORMS_ACCESS_KEY;
   var WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
   var MOCK_DELAY_MS = 700;
 
+  function isLocalPreview() {
+    return (
+      location.protocol === 'file:' ||
+      /^(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])$/.test(location.hostname) ||
+      /\.local$/.test(location.hostname)
+    );
+  }
+
+  function notConfigured() {
+    var err = new Error('No form delivery configured (see assets/js/config.js)');
+    err.notConfigured = true;
+    return Promise.reject(err);
+  }
+
   function mockResolve(payload) {
+    // The guard lives here rather than at each call site so a future endpoint
+    // cannot forget it.
+    if (!isLocalPreview()) return notConfigured();
     return new Promise(function (resolve) {
       setTimeout(function () {
         resolve(payload);

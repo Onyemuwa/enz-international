@@ -25,7 +25,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=12" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=13" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -225,7 +225,7 @@
           <li><a href="insights.html" class="inline-block text-white/60 hover:text-white transition-colors">Insights</a></li>
           <li><a href="faq.html" class="inline-block text-white/60 hover:text-white transition-colors">FAQ</a></li>
         </ul>
-        <form id="newsletter-form" class="mt-8">
+        <form data-newsletter-form class="mt-8">
           <label for="newsletter-email" class="text-white font-semibold text-sm block">Stay informed</label>
           <p class="text-xs text-white/60 mt-1.5 mb-3 leading-relaxed">Sourcing insights and market updates, occasionally.</p>
           <div class="flex gap-2">
@@ -233,7 +233,8 @@
             <button type="submit" class="btn btn-primary btn-sm shrink-0">Subscribe</button>
           </div>
         </form>
-        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Thanks — check your inbox to confirm.</p>
+        <p data-error-slot role="alert" hidden class="text-sm text-red-300 mt-3"></p>
+        <p data-newsletter-success role="status" hidden class="text-sm text-brand-bright mt-3 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Thanks — check your inbox to confirm.</p>
       </div>
     </div>
 
@@ -258,7 +259,7 @@
     <div class="modal-panel">
       <button data-close-modal aria-label="Close dialog" class="modal-close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       <h2 id="booking-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">Executive Consultation</h2>
-      <form id="booking-form" class="space-y-5">
+      <form data-booking-form class="space-y-5">
         <p class="text-sm text-slate">Tell us about your project and we'll respond within one business day.</p>
         <div>
           <label for="booking-name" class="field-label">Full Name</label>
@@ -290,11 +291,11 @@
           <label for="booking-message" class="field-label">Tell us about your project (optional)</label>
           <textarea id="booking-message" name="message" rows="3" class="field"></textarea>
         </div>
-        <p id="booking-error" role="alert" hidden class="text-sm text-red-600">Something went wrong — Please try again, or reach us directly on WhatsApp.</p>
+        <p data-booking-error data-error-slot role="alert" hidden class="text-sm text-red-600">Something went wrong — Please try again, or reach us directly on WhatsApp.</p>
         <button type="submit" data-submitting-label="Sending…" class="w-full btn btn-primary py-4">Request Consultation</button>
         <p class="text-xs text-slate text-center">We'll respond within 24h. No payment is required to request a consultation.</p>
       </form>
-      <div id="booking-success" role="status" hidden class="py-6">
+      <div data-booking-success role="status" hidden class="py-6">
         <div class="text-center">
           <div class="icon-chip w-12 h-12 rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
           <p class="text-lg font-semibold text-ink mt-4">Request received</p>
@@ -315,7 +316,7 @@
     <div class="modal-panel">
       <button data-close-modal aria-label="Close dialog" class="modal-close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       <h2 id="portal-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">Client Portal Login</h2>
-      <form id="portal-login-form" class="space-y-5">
+      <form data-portal-form class="space-y-5">
         <p class="text-sm text-slate">Track sourcing projects, milestones, and shared documents in one place.</p>
         <div>
           <label for="portal-email" class="field-label">Email</label>
@@ -328,17 +329,17 @@
         <button type="submit" class="btn btn-dark w-full">Login</button>
         <p class="text-xs text-slate text-center">New to the client portal? Request access from your account manager at <a href="mailto:info@enzinternational.co" class="text-brand hover:underline">info@enzinternational.co</a></p>
       </form>
-      <div id="portal-success" role="status" hidden class="text-center py-6">
+      <p data-error-slot role="alert" hidden class="text-sm text-red-600 mb-4"></p><div data-portal-success role="status" hidden class="text-center py-6">
         <div class="text-4xl mb-4">✅</div>
         <p class="text-lg font-semibold text-ink">You are logged in (demo)</p>
         <p class="text-sm text-slate mt-2">Track sourcing projects, milestones, and documents.</p>
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=12"></script>
-    <script src="../assets/js/i18n.js?v=12"></script>
-    <script src="../assets/js/api.js?v=12"></script>
-    <script src="../assets/js/site.js?v=12" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=12"></script>
+    <script src="../assets/js/config.js?v=13"></script>
+    <script src="../assets/js/i18n.js?v=13"></script>
+    <script src="../assets/js/api.js?v=13"></script>
+    <script src="../assets/js/site.js?v=13" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=13"></script>
   </body>
 </html>

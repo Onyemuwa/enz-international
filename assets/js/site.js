@@ -6,6 +6,25 @@
 
   var FOCUSABLE = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
+  // Renders a submission failure into an element. When the cause is that no
+  // form backend is configured (see api.js), the message becomes a working
+  // mailto link — so a deployed-but-unconfigured site still gives a visitor a
+  // real way to reach the business instead of a dead end.
+  function showSubmitError(el, err) {
+    if (!el) return;
+    if (err && err.notConfigured) {
+      var cfg = window.ENZ_CONFIG || {};
+      var email = cfg.CONTACT_EMAIL || '';
+      var phone = cfg.CONTACT_PHONE || '';
+      el.innerHTML =
+        'This form is not connected yet. Please email us at ' +
+        '<a href="mailto:' + email + '" style="text-decoration:underline">' + email + '</a>' +
+        (phone ? ' or call <a href="tel:' + phone.replace(/\s/g, '') + '" style="text-decoration:underline">' + phone + '</a>' : '') +
+        ' and we will come straight back to you.';
+    }
+    el.hidden = false;
+  }
+
   // ---------- Mobile menu ----------
   var menuToggle = document.getElementById('mobile-menu-toggle');
   var mobileNav = document.getElementById('mobile-nav');
@@ -101,86 +120,94 @@
     });
   });
 
-  // ---------- Booking form ----------
-  var bookingForm = document.getElementById('booking-form');
-  if (bookingForm) {
-    bookingForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var submitBtn = bookingForm.querySelector('button[type="submit"]');
-      var data = {
-        name: bookingForm.name.value,
-        email: bookingForm.email.value,
-        phone: bookingForm.phone.value,
-        company: bookingForm.company.value,
-        date: bookingForm.date.value,
-        service: bookingForm.service.value,
-        message: bookingForm.message.value,
-      };
-      submitBtn.disabled = true;
-      var originalLabel = submitBtn.textContent;
-      submitBtn.textContent = submitBtn.getAttribute('data-submitting-label') || 'Sending…';
-      window.ENZ_API.submitBooking(data)
-        .then(function () {
-          bookingForm.hidden = true;
-          var success = document.getElementById('booking-success');
-          if (success) {
-            success.hidden = false;
-            var nameSpan = success.querySelector('[data-success-name]');
-            var emailSpan = success.querySelector('[data-success-email]');
-            if (nameSpan) nameSpan.textContent = data.name;
-            if (emailSpan) emailSpan.textContent = data.email;
-          }
-        })
-        .catch(function () {
-          var errorEl = document.getElementById('booking-error');
-          if (errorEl) errorEl.hidden = false;
-        })
-        .finally(function () {
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalLabel;
-        });
-    });
-  }
+  // ---------- Forms ----------
+  // Every form is wired per INSTANCE, not by id. contact.html and portal.html
+  // each render the shared modal plus an inline copy of the same form, so the
+  // old getElementById() lookups found only the first of the two and left the
+  // modal's form with no submit handler at all — the primary CTA on the
+  // contact page silently did nothing when submitted.
+  //
+  // Success and error elements are resolved within the form's own container,
+  // so two copies on one page never reach into each other's state.
+  function wireForm(selector, opts) {
+    document.querySelectorAll(selector).forEach(function (form) {
+      var scope = form.parentElement || document;
+      var success = opts.successSelector ? scope.querySelector(opts.successSelector) : null;
+      var errorEl = form.querySelector('[data-error-slot]') || scope.querySelector('[data-error-slot]');
 
-  // ---------- Portal login form ----------
-  var portalForm = document.getElementById('portal-login-form');
-  if (portalForm) {
-    portalForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      window.ENZ_API.portalLogin(portalForm.email.value, portalForm.password.value).then(function () {
-        portalForm.hidden = true;
-        var success = document.getElementById('portal-success');
-        if (success) success.hidden = false;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (errorEl) errorEl.hidden = true;
+
+        var submitBtn = form.querySelector('button[type="submit"]');
+        var originalLabel = submitBtn ? submitBtn.textContent : '';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = submitBtn.getAttribute('data-submitting-label') || originalLabel;
+        }
+
+        Promise.resolve(opts.submit(form))
+          .then(function () {
+            form.hidden = true;
+            if (success) {
+              success.hidden = false;
+              if (opts.onSuccess) opts.onSuccess(form, success);
+            }
+          })
+          .catch(function (err) {
+            showSubmitError(errorEl, err);
+          })
+          .finally(function () {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalLabel;
+            }
+          });
       });
     });
   }
 
-  // ---------- Newsletter form ----------
-  var newsletterForm = document.getElementById('newsletter-form');
-  if (newsletterForm) {
-    newsletterForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      window.ENZ_API.subscribeNewsletter(newsletterForm.email.value).then(function () {
-        newsletterForm.hidden = true;
-        var success = document.getElementById('newsletter-success');
-        if (success) success.hidden = false;
+  wireForm('[data-booking-form]', {
+    successSelector: '[data-booking-success]',
+    submit: function (form) {
+      return window.ENZ_API.submitBooking({
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone ? form.phone.value : '',
+        company: form.company ? form.company.value : '',
+        date: form.date ? form.date.value : '',
+        service: form.service ? form.service.value : '',
+        message: form.message ? form.message.value : '',
       });
-    });
-  }
+    },
+    onSuccess: function (form, success) {
+      var nameSpan = success.querySelector('[data-success-name]');
+      var emailSpan = success.querySelector('[data-success-email]');
+      if (nameSpan) nameSpan.textContent = form.name.value;
+      if (emailSpan) emailSpan.textContent = form.email.value;
+    },
+  });
 
-  // ---------- Careers CV form ----------
-  var careersForm = document.getElementById('careers-form');
-  if (careersForm) {
-    careersForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var fd = new FormData(careersForm);
-      window.ENZ_API.submitCvApplication(fd).then(function () {
-        careersForm.hidden = true;
-        var success = document.getElementById('careers-success');
-        if (success) success.hidden = false;
-      });
-    });
-  }
+  wireForm('[data-portal-form]', {
+    successSelector: '[data-portal-success]',
+    submit: function (form) {
+      return window.ENZ_API.portalLogin(form.email.value, form.password.value);
+    },
+  });
+
+  wireForm('[data-newsletter-form]', {
+    successSelector: '[data-newsletter-success]',
+    submit: function (form) {
+      return window.ENZ_API.subscribeNewsletter(form.email.value);
+    },
+  });
+
+  wireForm('[data-careers-form]', {
+    successSelector: '[data-careers-success]',
+    submit: function (form) {
+      return window.ENZ_API.submitCvApplication(new FormData(form));
+    },
+  });
 
   // ---------- FAQ accordion ----------
   document.querySelectorAll('.faq-question').forEach(function (btn) {

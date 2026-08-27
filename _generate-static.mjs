@@ -27,7 +27,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '12';
+const ASSET_VERSION = '13';
 
 // One weight range, one request. `display=swap` means text paints immediately
 // in the fallback and re-renders in Inter — never an invisible headline.
@@ -352,7 +352,7 @@ function footerHTML(lang) {
           ${fLink('insights.html', t(lang, 'navInsights'))}
           ${fLink('faq.html', 'FAQ')}
         </ul>
-        <form id="newsletter-form" class="mt-8">
+        <form data-newsletter-form class="mt-8">
           <label for="newsletter-email" class="text-white font-semibold text-sm block">${t(lang, 'footerNewsletterTitle')}</label>
           <p class="text-xs text-white/60 mt-1.5 mb-3 leading-relaxed">${t(lang, 'footerNewsletterDesc')}</p>
           <div class="flex gap-2">
@@ -360,7 +360,8 @@ function footerHTML(lang) {
             <button type="submit" class="${BTN_PRIMARY} btn-sm shrink-0">${t(lang, 'ctaSubscribe')}</button>
           </div>
         </form>
-        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3 flex items-center gap-2">${icon('check', 'w-4 h-4')}${t(lang, 'footerNewsletterSuccess')}</p>
+        <p data-error-slot role="alert" hidden class="text-sm text-red-300 mt-3"></p>
+        <p data-newsletter-success role="status" hidden class="text-sm text-brand-bright mt-3 flex items-center gap-2">${icon('check', 'w-4 h-4')}${t(lang, 'footerNewsletterSuccess')}</p>
       </div>
     </div>
 
@@ -408,7 +409,7 @@ function bookingModalHTML(lang) {
     <div class="modal-panel">
       <button data-close-modal aria-label="Close dialog" class="modal-close">${icon('close', 'w-6 h-6')}</button>
       <h2 id="booking-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">${t(lang, 'bookingTitle')}</h2>
-      <form id="booking-form" class="space-y-5">
+      <form data-booking-form class="space-y-5">
         <p class="text-sm text-slate">${t(lang, 'bookingIntro')}</p>
         <div>
           <label for="booking-name" class="field-label">${t(lang, 'bookingName')}</label>
@@ -440,11 +441,11 @@ function bookingModalHTML(lang) {
           <label for="booking-message" class="field-label">${t(lang, 'bookingMessage')}</label>
           <textarea id="booking-message" name="message" rows="3" class="field"></textarea>
         </div>
-        <p id="booking-error" role="alert" hidden class="text-sm text-red-600">${t(lang, 'bookingErrorTitle')} — ${t(lang, 'bookingErrorDesc')}</p>
+        <p data-booking-error data-error-slot role="alert" hidden class="text-sm text-red-600">${t(lang, 'bookingErrorTitle')} — ${t(lang, 'bookingErrorDesc')}</p>
         <button type="submit" data-submitting-label="${t(lang, 'bookingSubmitting')}" class="w-full ${BTN_PRIMARY} py-4">${t(lang, 'bookingSubmit')}</button>
         <p class="text-xs text-slate text-center">${t(lang, 'bookingDisclaimer')}</p>
       </form>
-      <div id="booking-success" role="status" hidden class="py-6">
+      <div data-booking-success role="status" hidden class="py-6">
         <div class="text-center">
           <div class="icon-chip w-12 h-12 rounded-full mx-auto">${icon('check', 'w-6 h-6')}</div>
           <p class="text-lg font-semibold text-ink mt-4">${t(lang, 'bookingSuccessTitle')}</p>
@@ -462,7 +463,7 @@ function portalModalHTML(lang) {
     <div class="modal-panel">
       <button data-close-modal aria-label="Close dialog" class="modal-close">${icon('close', 'w-6 h-6')}</button>
       <h2 id="portal-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">${t(lang, 'portalTitle')}</h2>
-      <form id="portal-login-form" class="space-y-5">
+      <form data-portal-form class="space-y-5">
         <p class="text-sm text-slate">${t(lang, 'portalIntro')}</p>
         <div>
           <label for="portal-email" class="field-label">${t(lang, 'portalEmailLabel')}</label>
@@ -475,7 +476,7 @@ function portalModalHTML(lang) {
         <button type="submit" class="btn btn-dark w-full">${t(lang, 'portalLogin')}</button>
         <p class="text-xs text-slate text-center">${t(lang, 'portalAccessHelp')} <a href="mailto:${CONTACT_EMAIL}" class="text-brand hover:underline">${CONTACT_EMAIL}</a></p>
       </form>
-      <div id="portal-success" role="status" hidden class="text-center py-6">
+      <p data-error-slot role="alert" hidden class="text-sm text-red-600 mb-4"></p><div data-portal-success role="status" hidden class="text-center py-6">
         <div class="text-4xl mb-4">✅</div>
         <p class="text-lg font-semibold text-ink">${t(lang, 'portalMock')}</p>
         <p class="text-sm text-slate mt-2">${t(lang, 'portalLoggedInDesc')}</p>
@@ -1353,17 +1354,17 @@ function contactPage(lang) {
         </div>
       </div>
       <div class="card card-lg">
-        <form id="booking-form" class="space-y-5">
+        <form data-booking-form class="space-y-5">
           <p class="text-sm text-slate">${t(lang, 'bookingIntro')}</p>
           <div><label for="cf-name" class="field-label">${t(lang, 'bookingName')}</label><input id="cf-name" name="name" type="text" required class="field" /></div>
           <div><label for="cf-email" class="field-label">${t(lang, 'bookingEmail')}</label><input id="cf-email" name="email" type="email" required class="field" /></div>
           <div><label for="cf-date" class="field-label">${t(lang, 'bookingDate')}</label><input id="cf-date" name="date" type="date" class="field" /></div>
           <div><label for="cf-service" class="field-label">${t(lang, 'bookingService')}</label><select id="cf-service" name="service" class="field"><option value="">—</option><option value="sourcing">${t(lang, 'bookingServiceOptSourcing')}</option><option value="factory">${t(lang, 'bookingServiceOptFactory')}</option><option value="market">${t(lang, 'bookingServiceOptMarket')}</option></select></div>
           <input type="hidden" name="phone" value="" /><input type="hidden" name="company" value="" /><input type="hidden" name="message" value="" />
-          <p id="booking-error" role="alert" hidden class="text-sm text-red-600">${t(lang, 'bookingErrorTitle')}</p>
+          <p data-booking-error data-error-slot role="alert" hidden class="text-sm text-red-600">${t(lang, 'bookingErrorTitle')}</p>
           <button type="submit" data-submitting-label="${t(lang, 'bookingSubmitting')}" class="w-full ${BTN_PRIMARY} py-4">${t(lang, 'bookingSubmit')}</button>
         </form>
-        <div id="booking-success" role="status" hidden class="py-6"><div class="text-center"><div class="icon-chip w-12 h-12 rounded-full mx-auto">${icon("check", "w-6 h-6")}</div><p class="text-lg font-semibold text-ink mt-4">${t(lang, "bookingSuccessTitle")}</p></div>${nextStepsHTML(lang)}</div>
+        <div data-booking-success role="status" hidden class="py-6"><div class="text-center"><div class="icon-chip w-12 h-12 rounded-full mx-auto">${icon("check", "w-6 h-6")}</div><p class="text-lg font-semibold text-ink mt-4">${t(lang, "bookingSuccessTitle")}</p></div>${nextStepsHTML(lang)}</div>
       </div>
     </div>
   </section>
@@ -1383,14 +1384,14 @@ function portalPage(lang) {
     <div class="shell max-w-2xl">
       <div class="card card-muted card-lg">
         <h1 class="text-[1.375rem] font-semibold text-ink">${t(lang, 'portalTitle')}</h1>
-        <form id="portal-login-form" class="space-y-5">
+        <form data-portal-form class="space-y-5">
           <p class="text-sm text-slate">${t(lang, 'portalIntro')}</p>
           <div><label for="pp-email" class="field-label">${t(lang, 'portalEmailLabel')}</label><input id="pp-email" name="email" type="email" required class="field" /></div>
           <div><label for="pp-password" class="field-label">${t(lang, 'portalPassLabel')}</label><input id="pp-password" name="password" type="password" required class="field" /></div>
           <button type="submit" class="btn btn-dark w-full">${t(lang, 'portalLogin')}</button>
           <p class="text-xs text-slate text-center">${t(lang, 'portalAccessHelp')} <a href="mailto:${CONTACT_EMAIL}" class="text-brand hover:underline">${CONTACT_EMAIL}</a></p>
         </form>
-        <div id="portal-success" role="status" hidden class="text-center py-6"><div class="text-4xl mb-4">✅</div><p class="text-lg font-semibold text-ink">${t(lang, 'portalMock')}</p><p class="text-sm text-slate mt-2">${t(lang, 'portalLoggedInDesc')}</p></div>
+        <p data-error-slot role="alert" hidden class="text-sm text-red-600 mb-4"></p><div data-portal-success role="status" hidden class="text-center py-6"><div class="text-4xl mb-4">✅</div><p class="text-lg font-semibold text-ink">${t(lang, 'portalMock')}</p><p class="text-sm text-slate mt-2">${t(lang, 'portalLoggedInDesc')}</p></div>
       </div>
     </div>
   </section>`;
@@ -1408,7 +1409,7 @@ function careersPage(lang) {
   <section class="section pt-0 bg-white">
     <div class="shell max-w-xl">
       <div class="card card-muted text-center mb-9">${icon('briefcase', 'w-8 h-8 text-brand mx-auto mb-3')}<p class="text-sm text-slate">${t(lang, 'careersNoOpenings')}</p></div>
-      <form id="careers-form" enctype="multipart/form-data" class="card card-lg space-y-5">
+      <form data-careers-form enctype="multipart/form-data" class="card card-lg space-y-5">
         <h2 class="font-semibold text-ink">${t(lang, 'careersSendCv')}</h2>
         <div><label for="cv-name" class="field-label">${t(lang, 'bookingName')}</label><input id="cv-name" name="name" type="text" required class="field" /></div>
         <div><label for="cv-email" class="field-label">${t(lang, 'bookingEmail')}</label><input id="cv-email" name="email" type="email" required class="field" /></div>
@@ -1416,7 +1417,8 @@ function careersPage(lang) {
         <div><label for="cv-file" class="field-label">CV / Resume (PDF)</label><input id="cv-file" name="cv" type="file" accept="application/pdf" class="block w-full text-sm text-slate border-2 border-dashed border-line rounded-xl px-4 py-7 cursor-pointer" /></div>
         <button type="submit" class="w-full ${BTN_PRIMARY} py-4">${t(lang, 'ctaSubmit')}</button>
       </form>
-      <p id="careers-success" role="status" hidden class="text-center text-ink font-medium mt-6">${t(lang, 'bookingSuccessTitle')}</p>
+      <p data-error-slot role="alert" hidden class="text-sm text-red-600 text-center mt-6"></p>
+      <p data-careers-success role="status" hidden class="text-center text-ink font-medium mt-6">${t(lang, 'bookingSuccessTitle')}</p>
     </div>
   </section>`;
   return pageShell({ lang, page: 'careers.html', title: t(lang, 'navCareers'), description: t(lang, 'careersSubtitle'), crumbs: [{ label: t(lang, 'navCareers') }], bodyHTML: body });

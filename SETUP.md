@@ -5,6 +5,33 @@ document covers what's real vs. placeholder, the SEO/performance state, and how 
 
 ---
 
+## 0. THE ONE BLOCKER — forms send nothing until you set a key
+
+`assets/js/config.js` ships with `API_BASE_URL` and `WEB3FORMS_ACCESS_KEY` both empty. That is **mock
+mode**, and it is correct for local development: forms resolve successfully so you can click through the
+whole flow offline.
+
+On a real domain that behaviour would be the worst bug on the site — a buyer types a genuine enquiry, is
+told it arrived, and it goes nowhere. Nobody sees an error: not the sender, not you.
+
+So mock mode is now **local-only**. On any non-localhost host with neither backend configured, every
+submission is rejected and the form shows a visible fallback pointing at your email and phone instead.
+Nobody is silently dropped — but nobody reaches your inbox through the form either.
+
+**To actually receive enquiries**, do one of:
+
+1. Get a free key at [web3forms.com](https://web3forms.com) (emailed to you in under a minute, no
+   account) and set `WEB3FORMS_ACCESS_KEY` in `assets/js/config.js`. Every form then emails you directly.
+2. Or run the real backend and set `API_BASE_URL`. Only this option can do genuine portal auth —
+   Web3Forms is a mail relay, not an auth provider.
+
+Then bump `ASSET_VERSION` in `_generate-static.mjs`, re-run it, and redeploy — otherwise browsers keep
+serving the cached `config.js`.
+
+Verify after deploying by submitting the contact form on the live site and confirming the email arrives.
+
+---
+
 ## 1. Before you launch — things that need YOUR input
 
 These are placeholders on purpose. Publishing them as-is would mean shipping unverified or fabricated
@@ -12,29 +39,35 @@ claims on a live company site, which isn't something to guess on your behalf.
 
 | Item | Where | What to do |
 |---|---|---|
-| Real production domain | ✅ done — `enzinternational.co`, set in `_generate-static.mjs` and baked into every canonical/hreflang tag, `robots.txt`, `sitemap.xml`, and `CNAME` | Just point your DNS at GitHub Pages — see section 7 |
+| Real production domain | ✅ done — `enzinternational.co`, set in `_generate-static.mjs` and baked into every canonical/hreflang tag, `robots.txt`, and `sitemap.xml` | Point your DNS at whichever host you use — `vercel.json` and `_headers` are both committed, so Vercel, Netlify, Cloudflare Pages, and GitHub Pages all work with no build command |
 | Team bios/photos | `en/about.html` (and sw/fr/zh) | Currently shows a "coming soon" placeholder instead of fake names — add a real team grid when you have photos/bios |
-| Client testimonials/case studies | Not present anywhere | Add a section once you have real, permissioned quotes — nothing fabricated is included |
+| Client testimonials/case studies | `_content/proof.js` | Sections are built and styled but render nothing while the arrays are empty. Add real, permissioned entries and they appear automatically — nothing fabricated is shipped |
 | Certifications (e.g. "ISO 9001") | Hero trust badges say "Certifications on request" | Add a specific certification only once you can point to a real, current certificate |
 | HQ address for the embedded map | `contact.html` (all languages) | Currently centers on "Guangzhou, China" generically — swap in the real street address |
 | Contact email | `assets/js/config.js` (`CONTACT_EMAIL`) | Domain matches (`info@enzinternational.co`) but confirm that inbox actually exists and is monitored |
 | Operational hubs / markets list | `assets/js/config.js`, page content | Confirm the cities and 5 markets (Tanzania, Kenya, DRC, US, UK) are current |
 | Privacy Policy / Terms | `privacy.html`, `terms.html` | Structural placeholder text, explicitly flagged in-page — **have a lawyer review before launch**, especially GDPR/data-processing language |
-| Web3Forms access key | `assets/js/config.js` | Empty by default (mock mode) — see section 3 |
+| **Web3Forms access key** | `assets/js/config.js` | **Empty — forms reach nobody until this is set. See section 0.** |
 
 ## 2. Stack
 
-- **Markup**: hand-written semantic HTML, one real file per page per language (52 pages total: 13 pages ×
+- **Markup**: hand-written semantic HTML, one real file per page per language (80 pages total: 20 pages ×
   4 languages, plus a root redirect and a shared 404).
-- **Styling**: Tailwind CSS via the CDN `<script>` tag (no build step, no local config file) — same
-  approach as the very first prototype this site started from.
+- **Styling**: one plain stylesheet, `assets/css/site.css`, committed to the repo. It is compiled from
+  `_build/tailwind.src.css` only when markup changes — deploying still needs no build step. This
+  replaced the Tailwind Play CDN, which ships a compiler to every visitor, warns in the console, and
+  restyles the page after first paint. See [_build/README.md](./_build/README.md).
 - **Animation**: [Motion](https://motion.dev) (`assets/js/motion-effects.js`), loaded as a native ES
-  module import from a CDN — the same team and animation engine as Framer Motion, but framework-free, so
-  it runs without React. Powers scroll-reveal (`[data-reveal]`), count-up stats (`[data-counter]`), and
-  the hero entrance stagger (`[data-hero-stagger]`). If the CDN import ever fails (offline, blocked),
-  everything degrades to instantly-visible content rather than staying hidden — verified in this session's
-  testing, along with a defensive fallback for the (rarer) case where the animation never fires at all.
-- **Interactivity**: plain vanilla JS (`assets/js/site.js`) — no framework. Modals, tabs, FAQ accordion,
+  module import. Vendored at `assets/js/vendor/motion.min.js` rather than fetched from a CDN, so there is no
+  third-party runtime dependency — same team and engine as Framer Motion, framework-free, so
+  it runs without React. Powers staggered reveals (`[data-reveal-group]`), count-up stats
+  (`[data-counter]`), and the hero glow parallax.
+
+  The safety order is load-bearing: HTML and CSS render everything visible, Motion is imported, and only
+  *after* a successful import is anything hidden — one element at a time, immediately before animating it
+  back in. A watchdog then clears every inline style unconditionally after 4s. Every failure path ends at
+  "visible", which is precisely how the four earlier scroll-reveal attempts failed and this one does not.
+- **Interactivity**: plain vanilla JS (`assets/js/site.js`) — no framework. Modals, FAQ accordion, scroll-linked chrome,
   language switcher, and form submission. No exit-intent popups, cookie banners, or sticky
   bottom bars — deliberately left out to keep the experience calm and trustworthy rather than
   aggressive-growth-hacky. Modals only ever open from an explicit click on "Book Consultation"
@@ -53,8 +86,10 @@ claims on a live company site, which isn't something to guess on your behalf.
    submission to your inbox. This is the recommended path given the all-static constraint — it directly
    answers "the form should arrive by email automatically" with zero infrastructure to run or pay for.
    The one thing it can't do is client-portal login (it's a mail relay, not an auth provider).
-3. **Neither set** — mock mode. Every form works and shows a success state, but nothing is sent. Safe
-   default for previewing the site.
+3. **Neither set** — mock mode, and **only on localhost**. Forms resolve successfully so you can click
+   through the whole flow while developing. On a deployed host this same state instead rejects the
+   submission and shows an "email us directly" fallback, because a live form that fakes success loses
+   real enquiries silently. See section 0.
 
 ## 4. SEO audit — current state
 
@@ -64,11 +99,11 @@ claims on a live company site, which isn't something to guess on your behalf.
 | Canonical URLs | ✅ |
 | hreflang (all 4 languages + x-default) | ✅ |
 | Open Graph / Twitter Card | ✅ (add a real 1200×630 `og-cover.jpg` and a real domain before launch) |
-| JSON-LD structured data | ✅ Organization/LocalBusiness (home), Service list (services), BreadcrumbList (inner pages), BlogPosting (insight posts) |
-| `robots.txt` + `sitemap.xml` | ✅ 44 URLs; portal/privacy/terms correctly excluded |
+| JSON-LD structured data | ✅ one merged `@graph` per page: Organization + WebSite sitewide, plus LocalBusiness/FAQPage (home), Service list (services, pricing), HowTo (process), BreadcrumbList (inner pages), BlogPosting (insight posts) |
+| `robots.txt` + `sitemap.xml` | ✅ 76 URLs with `lastmod`/`priority`; only the client portal is excluded. Privacy and terms are now indexable — a reachable privacy policy is a trust signal, and hiding it gained nothing |
 | Semantic heading hierarchy (one `<h1>` per page) | ✅ |
 | Real per-language URLs (not query params or client routing) | ✅ — this is the structural advantage of the all-static approach: every `/xx/page.html` is a genuinely separate, crawlable file |
-| Mobile responsiveness | ✅ verified at 375px — no horizontal overflow, mobile menu functional |
+| Mobile responsiveness | ✅ verified at 360/768/1280 across en/fr/zh — zero horizontal overflow, mobile menu functional |
 | Core Web Vitals / Lighthouse score | ⏳ not yet measured — audit once deployed to a real URL; localhost scores aren't representative |
 | Google Search Console / Bing Webmaster verification | ⏳ needs your domain + account |
 
@@ -77,13 +112,15 @@ domain age/authority, and content velocity (3 blog posts is a start, not a full 
 
 ## 5. Performance checklist
 
-- [x] Zero build-step JS/CSS shipped as-is — no bundle to bloat
+- [x] One compiled stylesheet (~42KB minified) instead of a CDN compiler on the critical path
 - [x] Font `preconnect` + `display=swap`
-- [x] Motion loaded as a CDN ES module — only fetched once, cached by the browser across all 52 pages
-- [x] No horizontal overflow at mobile widths
+- [x] Motion vendored locally — one fetch, cached by the browser across all 80 pages
+- [x] No horizontal overflow at 360/768/1280 in any language
+- [x] Cache + security headers shipped in `_headers` and `vercel.json`
 - [ ] Image optimization / WebP — revisit once real photography (team, facilities) is added
-- [ ] CDN cache headers — configure at your hosting platform (Vercel/Netlify set sensible defaults for
-      static files automatically; no server-side config needed for a plain static site)
+- [x] CDN cache headers — shipped in `_headers` (Netlify/Cloudflare Pages) and `vercel.json`: HTML is
+      revalidated so content fixes go live immediately, `/assets/` is immutable for a year, which is safe
+      because every asset URL carries `?v=ASSET_VERSION` and changes when the file does
 - [ ] Lighthouse CI budget — add once deployed to a stable URL
 
 ## 6. Deployment guide

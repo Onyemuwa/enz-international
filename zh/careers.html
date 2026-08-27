@@ -25,7 +25,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=12" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=13" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -120,7 +120,7 @@
   <section class="section pt-0 bg-white">
     <div class="shell max-w-xl">
       <div class="card card-muted text-center mb-9"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-brand mx-auto mb-3" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><p class="text-sm text-slate">目前没有开放职位。请发送您的简历，职位开放时我们会与您联系。</p></div>
-      <form id="careers-form" enctype="multipart/form-data" class="card card-lg space-y-5">
+      <form data-careers-form enctype="multipart/form-data" class="card card-lg space-y-5">
         <h2 class="font-semibold text-ink">发送简历</h2>
         <div><label for="cv-name" class="field-label">全名</label><input id="cv-name" name="name" type="text" required class="field" /></div>
         <div><label for="cv-email" class="field-label">电子邮箱</label><input id="cv-email" name="email" type="email" required class="field" /></div>
@@ -128,7 +128,8 @@
         <div><label for="cv-file" class="field-label">CV / Resume (PDF)</label><input id="cv-file" name="cv" type="file" accept="application/pdf" class="block w-full text-sm text-slate border-2 border-dashed border-line rounded-xl px-4 py-7 cursor-pointer" /></div>
         <button type="submit" class="w-full btn btn-primary py-4">提交</button>
       </form>
-      <p id="careers-success" role="status" hidden class="text-center text-ink font-medium mt-6">请求已收到</p>
+      <p data-error-slot role="alert" hidden class="text-sm text-red-600 text-center mt-6"></p>
+      <p data-careers-success role="status" hidden class="text-center text-ink font-medium mt-6">请求已收到</p>
     </div>
   </section>
     </main>
@@ -180,7 +181,7 @@
           <li><a href="insights.html" class="inline-block text-white/60 hover:text-white transition-colors">洞察</a></li>
           <li><a href="faq.html" class="inline-block text-white/60 hover:text-white transition-colors">FAQ</a></li>
         </ul>
-        <form id="newsletter-form" class="mt-8">
+        <form data-newsletter-form class="mt-8">
           <label for="newsletter-email" class="text-white font-semibold text-sm block">获取最新资讯</label>
           <p class="text-xs text-white/60 mt-1.5 mb-3 leading-relaxed">偶尔分享采购洞察和市场动态。</p>
           <div class="flex gap-2">
@@ -188,7 +189,8 @@
             <button type="submit" class="btn btn-primary btn-sm shrink-0">订阅</button>
           </div>
         </form>
-        <p id="newsletter-success" role="status" hidden class="text-sm text-brand-bright mt-3 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>谢谢 — 请查看您的邮箱以确认订阅。</p>
+        <p data-error-slot role="alert" hidden class="text-sm text-red-300 mt-3"></p>
+        <p data-newsletter-success role="status" hidden class="text-sm text-brand-bright mt-3 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>谢谢 — 请查看您的邮箱以确认订阅。</p>
       </div>
     </div>
 
@@ -213,7 +215,7 @@
     <div class="modal-panel">
       <button data-close-modal aria-label="Close dialog" class="modal-close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       <h2 id="booking-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">高管咨询</h2>
-      <form id="booking-form" class="space-y-5">
+      <form data-booking-form class="space-y-5">
         <p class="text-sm text-slate">告诉我们您的项目，我们将在一个工作日内回复。</p>
         <div>
           <label for="booking-name" class="field-label">全名</label>
@@ -245,11 +247,11 @@
           <label for="booking-message" class="field-label">告诉我们您的项目（可选）</label>
           <textarea id="booking-message" name="message" rows="3" class="field"></textarea>
         </div>
-        <p id="booking-error" role="alert" hidden class="text-sm text-red-600">出现错误 — 请重试，或直接通过WhatsApp联系我们。</p>
+        <p data-booking-error data-error-slot role="alert" hidden class="text-sm text-red-600">出现错误 — 请重试，或直接通过WhatsApp联系我们。</p>
         <button type="submit" data-submitting-label="发送中…" class="w-full btn btn-primary py-4">请求咨询</button>
         <p class="text-xs text-slate text-center">我们将在24小时内回复。请求咨询无需付款。</p>
       </form>
-      <div id="booking-success" role="status" hidden class="py-6">
+      <div data-booking-success role="status" hidden class="py-6">
         <div class="text-center">
           <div class="icon-chip w-12 h-12 rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
           <p class="text-lg font-semibold text-ink mt-4">请求已收到</p>
@@ -270,7 +272,7 @@
     <div class="modal-panel">
       <button data-close-modal aria-label="Close dialog" class="modal-close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       <h2 id="portal-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">客户门户登录</h2>
-      <form id="portal-login-form" class="space-y-5">
+      <form data-portal-form class="space-y-5">
         <p class="text-sm text-slate">在一个地方跟踪采购项目、里程碑和共享文档。</p>
         <div>
           <label for="portal-email" class="field-label">邮箱</label>
@@ -283,17 +285,17 @@
         <button type="submit" class="btn btn-dark w-full">登录</button>
         <p class="text-xs text-slate text-center">首次使用客户门户？请联系您的客户经理申请访问权限： <a href="mailto:info@enzinternational.co" class="text-brand hover:underline">info@enzinternational.co</a></p>
       </form>
-      <div id="portal-success" role="status" hidden class="text-center py-6">
+      <p data-error-slot role="alert" hidden class="text-sm text-red-600 mb-4"></p><div data-portal-success role="status" hidden class="text-center py-6">
         <div class="text-4xl mb-4">✅</div>
         <p class="text-lg font-semibold text-ink">您已登录（演示）</p>
         <p class="text-sm text-slate mt-2">跟踪采购项目、里程碑和文档。</p>
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=12"></script>
-    <script src="../assets/js/i18n.js?v=12"></script>
-    <script src="../assets/js/api.js?v=12"></script>
-    <script src="../assets/js/site.js?v=12" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=12"></script>
+    <script src="../assets/js/config.js?v=13"></script>
+    <script src="../assets/js/i18n.js?v=13"></script>
+    <script src="../assets/js/api.js?v=13"></script>
+    <script src="../assets/js/site.js?v=13" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=13"></script>
   </body>
 </html>
