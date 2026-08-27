@@ -192,20 +192,6 @@ function proofSection(lang) {
   </section>`;
 }
 
-// Paints the last word or two of a headline in the brand gradient.
-//
-// Language-aware on purpose: Chinese isn't space-delimited, so splitting on
-// spaces would either do nothing or swallow the whole line. When there is no
-// space to split on, the headline is returned untouched and simply renders
-// solid white — a missing flourish, never a broken headline.
-function highlightLast(title, words = 2) {
-  const parts = title.trim().split(/\s+/);
-  if (parts.length < words + 2) return title;
-  const head = parts.slice(0, -words).join(' ');
-  const tail = parts.slice(-words).join(' ');
-  return `${head} <span class="text-gradient">${tail}</span>`;
-}
-
 // The two decorative light sources behind every dark band. Sizes differ per
 // section so the bands don't look copy-pasted.
 function glows(variant = 'a') {
@@ -688,49 +674,82 @@ function homePage(lang) {
   ];
 
   const body = `
-  <section class="section-dark pt-14 pb-24 md:pt-20 md:pb-32">
+  <section class="section-dark pt-12 pb-24 md:pt-16 md:pb-32">
     ${glows('a')}
-    <div class="${SHELL} grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+    <div class="${SHELL} grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
 
-      <div class="lg:col-span-7">
+      <div class="lg:col-span-6">
         <a href="markets.html" class="pill pill-dark hover:border-brand-bright/50 transition-colors">
           <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
-          ${t(lang, 'heroBadge1')} · ${t(lang, 'heroBadge2')} · ${t(lang, 'heroBadge3')}
+          ${hubs.slice(0, 3).join(' · ')} +${hubs.length - 3}
         </a>
 
-        <h1 class="h1-display text-white mt-6">${highlightLast(t(lang, 'heroTitle'))}</h1>
-        <p class="lead-light mt-6 max-w-xl">${t(lang, 'heroSub')}</p>
+        <!-- Two short sentences, the second in the brand gradient. The old
+             headline was "Global Sourcing & Industrial Excellence", which told
+             a first-time visitor nothing about what actually gets done. -->
+        <h1 class="h1-display text-white mt-7">
+          <span class="line">${t(lang, 'heroTitleA')}</span>
+          <span class="line text-gradient">${t(lang, 'heroTitleB')}</span>
+        </h1>
+
+        <p class="lead-light mt-7 max-w-xl">${t(lang, 'heroSub')}</p>
+
+        <!-- The three service lines, legible without scrolling. -->
+        <div class="chip-row mt-8">
+          <span class="chip">${icon('globe', 'w-4 h-4')}${t(lang, 'heroBadge1')}</span>
+          <span class="chip">${icon('check', 'w-4 h-4')}${t(lang, 'heroBadge2')}</span>
+          <span class="chip">${icon('calendar', 'w-4 h-4')}${t(lang, 'heroBadge3')}</span>
+        </div>
 
         <div class="flex flex-col sm:flex-row gap-3 mt-9">
           <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
           <a href="#how-it-works" class="${BTN_GHOST_LIGHT} btn-lg">${t(lang, 'navProcess')}</a>
         </div>
 
-        <ul class="flex flex-wrap gap-x-7 gap-y-3 mt-10 text-sm list-none">
-          ${['trustYears', 'trustMarkets', 'trustCert', 'trustProjects']
-            .map((k) => `<li class="check-item">${icon('check', 'w-4 h-4')}<span>${t(lang, k)}</span></li>`)
-            .join('')}
-        </ul>
+        <p class="text-sm text-white/60 mt-7">${t(lang, 'bookingDisclaimer')}</p>
       </div>
 
-      <!-- The objection this panel answers is "what actually happens if I send
-           that form?" — answered beside the CTA, not after it. -->
-      <div class="lg:col-span-5">
-        <div class="card-dark card-lg">
-          <p class="eyebrow eyebrow-light">${t(lang, 'bookingNextTitle')}</p>
-          <ol class="mt-6 space-y-5">
-            ${nextSteps
-              .map(
-                (step, i) => `<li class="flex gap-4">
-              <span class="step-badge bg-brand-bright/10 text-brand-bright border-brand-bright/25">${i + 1}</span>
-              <span class="text-sm text-white/70 leading-relaxed pt-1">${step}</span>
-            </li>`
-              )
-              .join('')}
-          </ol>
-          <div class="mt-7 pt-6 border-t border-white/10">
-            <button data-open-booking class="${BTN_PRIMARY} w-full">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
-            <p class="text-xs text-white/60 text-center mt-3">${t(lang, 'bookingDisclaimer')}</p>
+      <!-- An ILLUSTRATION of the four-stage inspection process documented on
+           quality-control.html — not a screenshot of a product, because there
+           is no product to screenshot. The stage codes and timings are the
+           real ones from _content/pages.js. -->
+      <div class="lg:col-span-6">
+        <div class="gradient-border shadow-2xl">
+          <div class="bg-navy-deep/95 p-6 md:p-7">
+            <div class="flex items-center justify-between gap-4 pb-5 border-b border-white/10">
+              <div>
+                <p class="text-white font-medium">${t(lang, 'qcTitle')}</p>
+                <p class="text-xs text-white/60 mt-1">${t(lang, 'qcEyebrow')}</p>
+              </div>
+              <span class="pill pill-dark mono-tag">${qcStages.length} ${t(lang, 'qcStagesLabel')}</span>
+            </div>
+
+            <div class="mt-5">
+              ${qcStages
+                .map((st, i) => {
+                  const state = i < 2 ? 'done' : i === 2 ? 'active' : 'idle';
+                  const mark =
+                    state === 'done'
+                      ? icon('check', 'w-3.5 h-3.5')
+                      : state === 'active'
+                        ? '<span class="status-pulse w-2 h-2 rounded-full bg-current"></span>'
+                        : '<span class="w-2 h-2 rounded-full border border-current"></span>';
+                  return `<div class="status-row">
+                <span class="status-dot status-${state}">${mark}</span>
+                <span class="min-w-0 flex-1">
+                  <span class="flex flex-wrap items-baseline gap-x-2.5">
+                    <span class="mono-tag text-brand-bright">${st.code}</span>
+                    <span class="text-sm font-medium text-white">${st.title}</span>
+                  </span>
+                  <span class="block text-xs text-white/60 mt-1">${st.when}</span>
+                </span>
+              </div>`;
+                })
+                .join('')}
+            </div>
+
+            <p class="text-xs text-white/60 leading-relaxed mt-5 pt-5 border-t border-white/10">${t(lang, 'qcLead')}</p>
+            <a href="quality-control.html" class="link-arrow link-arrow-light text-sm mt-4">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
           </div>
         </div>
       </div>
@@ -785,19 +804,24 @@ function homePage(lang) {
   <section class="section bg-gray-bg border-y border-line">
     <div class="${SHELL}">
       ${sectionHead(t(lang, 'navServices'), t(lang, 'servicesTitle'), t(lang, 'servicesSubtitle'))}
-      <div data-reveal-group class="grid md:grid-cols-3 gap-4 mt-14">
+      <!-- Bento rather than a fourth identical three-up grid: the first
+           service gets a tall feature tile, the other two stack beside it. The
+           asymmetry is what stops the page reading as a list of equivalent
+           tiles, which is exactly how it read before. -->
+      <div data-reveal-group class="bento mt-14">
         ${coreServices
-          .map(
-            (sv) => `<a href="${sv.href}" class="${CARD} card-lg flex flex-col group">
-          <span class="icon-chip">${icon(sv.icon, 'w-5 h-5')}</span>
-          <h3 class="text-lg font-medium text-ink mt-5">${sv.title}</h3>
-          <p class="text-slate text-sm mt-2.5 leading-relaxed">${sv.body}</p>
-          <ul class="mt-5 space-y-2 flex-1">
+          .map((sv, i) => {
+            const feature = i === 0;
+            return `<a href="${sv.href}" class="${CARD} card-lg flex flex-col group ${feature ? 'bento-feature' : ''}">
+          <span class="icon-chip">${icon(sv.icon, feature ? 'w-6 h-6' : 'w-5 h-5')}</span>
+          <h3 class="${feature ? 'text-2xl' : 'text-lg'} font-medium text-ink mt-5">${sv.title}</h3>
+          <p class="text-slate ${feature ? 'text-[0.9375rem]' : 'text-sm'} mt-3 leading-relaxed">${sv.body}</p>
+          <ul class="mt-6 space-y-2.5 flex-1">
             ${sv.points.map((pt) => `<li class="check-item text-[0.8125rem]">${icon('check', 'w-3.5 h-3.5')}<span>${pt}</span></li>`).join('')}
           </ul>
           <span class="link-arrow text-sm mt-6">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</span>
-        </a>`
-          )
+        </a>`;
+          })
           .join('')}
       </div>
       <div class="text-center mt-10"><a href="services.html" class="${BTN_SECONDARY}">${t(lang, 'ctaViewAll')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
@@ -1041,7 +1065,7 @@ function homePage(lang) {
     ],
   };
 
-  return pageShell({ lang, page: 'index.html', title: t(lang, 'heroTitle'), description: t(lang, 'heroSub'), jsonLd, bodyHTML: body });
+  return pageShell({ lang, page: 'index.html', title: t(lang, 'homeSeoTitle'), description: t(lang, 'heroSub'), jsonLd, bodyHTML: body });
 }
 
 function aboutPage(lang) {
@@ -1417,15 +1441,28 @@ function pageHero(lang, { eyebrow, title, lead }) {
   </section>`;
 }
 
+// The last thing a visitor sees on every page. It gets the gradient-border
+// treatment and repeats the three reassurances that remove the reasons not to
+// send the form — free, no obligation, answered by a person within a day.
 function closingCta(lang) {
   return `
   <section class="section section-dark">
-    <div class="shell text-center">
-      <h2 class="h2-section on-dark">${t(lang, 'ctaBannerTitle')}</h2>
-      <p class="lead-light mt-4 max-w-2xl mx-auto">${t(lang, 'ctaBannerDesc')}</p>
-      <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
-        <button data-open-booking class="${BTN_PRIMARY} px-6 py-3 text-[0.9375rem]">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4')}</button>
-        <a href="contact.html" class="${BTN_GHOST_LIGHT} px-6 py-3 text-[0.9375rem]">${t(lang, 'navContact')}</a>
+    ${glows('b')}
+    <div class="${SHELL}">
+      <div class="gradient-border max-w-5xl mx-auto shadow-2xl">
+        <div class="bg-navy-deep/95 px-6 py-14 md:px-16 md:py-20 text-center">
+          <h2 class="h2-section on-dark">${t(lang, 'ctaBannerTitle')}</h2>
+          <p class="lead-light mt-5 max-w-2xl mx-auto">${t(lang, 'ctaBannerDesc')}</p>
+          <div class="flex flex-col sm:flex-row justify-center gap-3 mt-10">
+            <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
+            <a href="contact.html" class="${BTN_GHOST_LIGHT} btn-lg">${t(lang, 'ctaTalkToUs')}</a>
+          </div>
+          <ul class="flex flex-wrap justify-center gap-x-7 gap-y-3 mt-10 text-sm list-none">
+            ${[t(lang, 'bookingNext2'), t(lang, 'bookingDisclaimer')]
+              .map((r) => `<li class="check-item">${icon('check', 'w-4 h-4')}<span>${r}</span></li>`)
+              .join('')}
+          </ul>
+        </div>
       </div>
     </div>
   </section>`;

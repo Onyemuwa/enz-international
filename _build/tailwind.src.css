@@ -98,7 +98,17 @@
   .eyebrow-light { color: rgba(255,255,255,.62); }
   .eyebrow-light::before { background: linear-gradient(90deg, #2AA8E4, rgba(42,168,228,0)); }
 
-  .h1-display { font-size: clamp(2.5rem, 6.2vw, 4.25rem); line-height: 1.04; font-weight: 600; }
+  /* Display type runs bigger and tighter than the old scale. At headline
+     sizes, size and negative tracking are most of what separates "premium"
+     from "template" — and the headline is now two short sentences, so it can
+     carry the extra weight without wrapping into a wall. */
+  .h1-display {
+    font-size: clamp(2.625rem, 6.6vw, 4.75rem);
+    line-height: 1.02;
+    font-weight: 620;
+    letter-spacing: -.042em;
+  }
+  .h1-display .line { display: block; }
   .h2-section {
     font-size: clamp(1.875rem, 3.4vw, 2.75rem);
     line-height: 1.1; font-weight: 600; color: #0A0F14;
@@ -133,7 +143,7 @@
     display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
     font-weight: 500; font-size: .9375rem; line-height: 1.2;
     padding: .75rem 1.375rem;
-    border-radius: .625rem;
+    border-radius: .75rem;
     white-space: nowrap;
     transition: background-color .2s, border-color .2s, color .2s,
                 box-shadow .25s var(--ease-spring), transform .25s var(--ease-spring);
@@ -204,7 +214,7 @@
     position: relative;
     background: #fff;
     border: 1px solid #E4E9ED;
-    border-radius: .875rem;
+    border-radius: 1.125rem;
     padding: 1.5rem;
     box-shadow: 0 1px 2px rgba(11,18,32,.035);
     transition: border-color .25s, box-shadow .3s var(--ease-spring),
@@ -214,7 +224,7 @@
      pseudo-element, so it can never hide the card's own content. */
   .card::after {
     content: ''; position: absolute; inset: -1px -1px auto -1px; height: 2px;
-    border-radius: .875rem .875rem 0 0;
+    border-radius: 1.125rem 1.125rem 0 0;
     background: var(--grad-brand);
     transform: scaleX(0); transform-origin: left;
     transition: transform .4s var(--ease-spring);
@@ -239,13 +249,13 @@
     position: relative;
     background: rgba(255,255,255,.035);
     border: 1px solid rgba(255,255,255,.1);
-    border-radius: .875rem;
+    border-radius: 1.125rem;
     padding: 1.5rem;
     transition: background-color .25s, border-color .25s, transform .3s var(--ease-spring);
   }
   .card-dark::after {
     content: ''; position: absolute; inset: -1px -1px auto -1px; height: 2px;
-    border-radius: .875rem .875rem 0 0;
+    border-radius: 1.125rem 1.125rem 0 0;
     background: linear-gradient(90deg, #2AA8E4, #FCAE42);
     transform: scaleX(0); transform-origin: left;
     transition: transform .4s var(--ease-spring);
@@ -257,8 +267,8 @@
      instead of a bare stroke icon floating in whitespace. */
   .icon-chip {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 2.5rem; height: 2.5rem; flex: none;
-    border-radius: .625rem;
+    width: 2.75rem; height: 2.75rem; flex: none;
+    border-radius: .875rem;
     color: #12688F;
     background: linear-gradient(140deg, #EAF6FD 0%, #F7FCFF 100%);
     border: 1px solid #D2EBFA;
@@ -417,7 +427,7 @@
   /* ---------- Tables ---------------------------------------------------- */
   .table-wrap {
     overflow-x: auto;
-    border: 1px solid #E4E9ED; border-radius: .875rem; background: #fff;
+    border: 1px solid #E4E9ED; border-radius: 1.125rem; background: #fff;
     box-shadow: 0 1px 2px rgba(11,18,32,.04);
     -webkit-overflow-scrolling: touch;
   }
@@ -456,7 +466,7 @@
     padding: .6875rem .875rem;
     font-size: .9375rem; color: #0A0F14;
     background: #fff;
-    border: 1px solid #E4E9ED; border-radius: .625rem;
+    border: 1px solid #E4E9ED; border-radius: .75rem;
     transition: border-color .2s, box-shadow .2s, background-color .2s;
   }
   .field::placeholder { color: #A6B1B9; }
@@ -494,7 +504,7 @@
   .modal-panel {
     position: relative; width: 100%; max-width: 30rem;
     max-height: min(90vh, 44rem); overflow-y: auto;
-    background: #fff; border-radius: 1.125rem;
+    background: #fff; border-radius: 1.5rem;
     padding: 1.75rem;
     box-shadow: 0 24px 64px -12px rgba(6,13,19,.4), 0 0 0 1px rgba(11,18,32,.06);
   }
@@ -581,6 +591,85 @@
     color: #5A6A75; font-size: .9375rem; line-height: 1.75;
   }
   .section-dark .note-accent { color: rgba(255,255,255,.72); }
+
+  /* ---------- SaaS surface treatments ----------------------------------- */
+
+  /* Fine grain over the dark bands. Flat dark gradients band visibly on wide
+     screens and read as cheap; a little noise is what stops that, and it costs
+     one inline SVG rather than an image request. */
+  .section-dark::after {
+    content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
+  }
+
+  /* Decorative light sources that drift. Transform-only, so it composites on
+     the GPU and can never affect layout or hide anything. */
+  @keyframes orbDrift {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50%      { transform: translate3d(2.5rem, -1.75rem, 0) scale(1.08); }
+  }
+  .glow { animation: orbDrift 18s ease-in-out infinite; }
+  .glow:nth-of-type(2) { animation-duration: 24s; animation-direction: reverse; }
+  @media (prefers-reduced-motion: reduce) { .glow { animation: none; } }
+
+  /* A gradient hairline that a solid panel sits inside — the standard way to
+     make one element read as "featured" without shouting. */
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, rgba(42,168,228,.55), rgba(252,174,66,.45) 55%, rgba(42,168,228,.2));
+    padding: 1px;
+    border-radius: 1.375rem;
+  }
+  .gradient-border > * { border-radius: 1.3125rem; }
+
+  /* Bento: one tall feature tile beside a stack of shorter ones. Breaks the
+     "another grid of identical cards" monotony that made the page read as a
+     list rather than a pitch. */
+  .bento { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  @media (min-width: 768px) { .bento { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) {
+    .bento { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(0, auto); }
+    .bento-feature { grid-column: span 1; grid-row: span 2; }
+    .bento-wide { grid-column: span 2; }
+  }
+
+  /* Hero inspection panel. This is an ILLUSTRATION of the four-stage QC
+     process (the same IQC / DUPRO / PSI / LOADING stages documented on the
+     quality-control page) — deliberately not dressed up as a screenshot of a
+     product, because there isn't one to screenshot. */
+  .status-row {
+    display: flex; align-items: center; gap: .875rem;
+    padding: .875rem 1rem;
+    border-radius: .75rem;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    transition: background-color .25s, border-color .25s, transform .3s var(--ease-spring);
+  }
+  .status-row + .status-row { margin-top: .5rem; }
+  .status-row:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.16); transform: translateX(3px); }
+  .status-dot {
+    width: 1.5rem; height: 1.5rem; flex: none; border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .status-done { background: rgba(31,168,85,.16); color: #4ADE80; border: 1px solid rgba(74,222,128,.3); }
+  .status-active { background: rgba(42,168,228,.16); color: #6FC1EC; border: 1px solid rgba(111,193,236,.35); }
+  .status-idle { background: rgba(255,255,255,.05); color: rgba(255,255,255,.35); border: 1px solid rgba(255,255,255,.12); }
+  .status-active .status-pulse { animation: pulseDot 1.8s ease-in-out infinite; }
+
+  /* Service chips directly under the headline: the three things the company
+     sells, legible in one glance without scrolling. */
+  .chip-row { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .chip {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .5rem .875rem; border-radius: 999px;
+    font-size: .875rem; font-weight: 500; color: #fff;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14);
+    transition: background-color .2s, border-color .2s, transform .25s var(--ease-spring);
+  }
+  .chip:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.28); transform: translateY(-1px); }
+  .chip svg { color: #6FC1EC; }
 
   /* ---------- Misc ------------------------------------------------------ */
   .check-item { display: flex; align-items: flex-start; gap: .625rem; font-size: .875rem; line-height: 1.6; color: #5A6A75; }
