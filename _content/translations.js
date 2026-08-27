@@ -233,6 +233,7 @@ const dict = {
     // Breadcrumb home
     breadcrumbHome: 'Home',
     backToTop: 'Back to top',
+    footerRights: 'All rights reserved.',
     qcStagesLabel: 'stages',
     heroTitleA: 'We find your factory in China.',
     heroTitleB: 'And make sure it delivers.',
@@ -477,6 +478,7 @@ const dict = {
 
     breadcrumbHome: 'Nyumbani',
     backToTop: 'Rudi juu',
+    footerRights: 'Haki zote zimehifadhiwa.',
     qcStagesLabel: 'hatua',
     heroTitleA: 'Tunakutafutia kiwanda nchini China.',
     heroTitleB: 'Na tunahakikisha kinatimiza.',
@@ -720,6 +722,7 @@ const dict = {
 
     breadcrumbHome: 'Accueil',
     backToTop: 'Retour en haut',
+    footerRights: 'Tous droits réservés.',
     qcStagesLabel: 'étapes',
     heroTitleA: 'Nous trouvons votre usine en Chine.',
     heroTitleB: 'Et nous veillons à ce qu\'elle livre.',
@@ -963,6 +966,7 @@ const dict = {
 
     breadcrumbHome: '首页',
     backToTop: '返回顶部',
+    footerRights: '版权所有。',
     qcStagesLabel: '个环节',
     heroTitleA: '我们为你在中国找到工厂，',
     heroTitleB: '并确保它按时交付。',

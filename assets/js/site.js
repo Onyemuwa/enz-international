@@ -209,13 +209,36 @@
     });
   });
 
-  // ---------- Language switcher ----------
-  document.querySelectorAll('[data-lang-select]').forEach(function (select) {
-    select.addEventListener('change', function () {
-      var target = select.getAttribute('data-target-template');
-      if (target) window.location.href = target.replace('__LANG__', select.value);
+  // ---------- Language menu ----------
+  // The menu is a <details> containing real links, so it already opens,
+  // navigates and is keyboard-operable with no JavaScript at all. Everything
+  // below is polish on top of that: close when you click elsewhere, close on
+  // Escape, and never leave two menus open at once.
+  var langMenus = document.querySelectorAll('[data-lang-menu]');
+  if (langMenus.length) {
+    document.addEventListener('click', function (e) {
+      langMenus.forEach(function (menu) {
+        if (menu.open && !menu.contains(e.target)) menu.open = false;
+      });
     });
-  });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      langMenus.forEach(function (menu) {
+        if (!menu.open) return;
+        menu.open = false;
+        var summary = menu.querySelector('summary');
+        if (summary) summary.focus();
+      });
+    });
+    langMenus.forEach(function (menu) {
+      menu.addEventListener('toggle', function () {
+        if (!menu.open) return;
+        langMenus.forEach(function (other) {
+          if (other !== menu) other.open = false;
+        });
+      });
+    });
+  }
 
   // ---------- Footer year ----------
   document.querySelectorAll('[data-current-year]').forEach(function (el) {

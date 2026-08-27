@@ -426,17 +426,102 @@
   .nav-link-mobile:hover { color: #0A0F14; padding-left: .5rem; }
   .nav-link-mobile[aria-current='page'] { color: #12688F; font-weight: 600; }
 
-  .lang-select {
-    appearance: none; -webkit-appearance: none;
-    padding: .375rem 1.75rem .375rem .625rem;
-    border: 1px solid #E4E9ED; border-radius: .5rem;
-    font-size: .75rem; font-weight: 600; color: #5A6A75; background-color: #fff;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235A6A75' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right .5rem center; background-size: .75rem;
-    cursor: pointer;
-    transition: border-color .2s, color .2s;
+  /* ---------- Footer ---------------------------------------------------- */
+  .footer-heading {
+    font-size: .6875rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(255,255,255,.45);
   }
-  .lang-select:hover { border-color: #A9D8F4; color: #0A0F14; }
+  .footer-link {
+    display: inline-block;
+    font-size: .875rem; color: rgba(255,255,255,.62);
+    transition: color .2s, transform .2s var(--ease-spring);
+  }
+  .footer-link:hover { color: #fff; transform: translateX(2px); }
+  .footer-contact {
+    display: inline-flex; align-items: center; gap: .625rem;
+    color: rgba(255,255,255,.7);
+    transition: color .2s;
+  }
+  .footer-contact svg { color: #6FC1EC; flex: none; transition: color .2s; }
+  .footer-contact:hover { color: #fff; }
+
+  /* Visually hidden but available to screen readers — used for the newsletter
+     label, which would otherwise duplicate the heading directly above it. */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+
+  /* ---------- Language menu -------------------------------------------- */
+  /* Built on <details>/<summary>, not a <select> + change handler. Three
+     reasons that matters:
+       1. A native select renders in OS chrome, so it never matches the brand
+          and looks different on every machine.
+       2. The old one listed "EN / SW / FR / ZH". Nobody looking for Swahili
+          scans for "SW" — they look for "Kiswahili". Full endonyms now.
+       3. The options are real <a href> links, so the translated pages are
+          crawlable from every page instead of hidden behind a script. The
+          menu also opens and navigates with JavaScript disabled. */
+  .lang-menu { position: relative; }
+  .lang-menu > summary {
+    display: inline-flex; align-items: center; gap: .4375rem;
+    padding: .4375rem .625rem;
+    border: 1px solid #E4E9ED; border-radius: .625rem;
+    font-size: .8125rem; font-weight: 500; color: #5A6A75;
+    background: #fff; cursor: pointer; list-style: none;
+    transition: border-color .2s, color .2s, background-color .2s;
+  }
+  .lang-menu > summary::-webkit-details-marker { display: none; }
+  .lang-menu > summary::marker { content: ''; }
+  .lang-menu > summary:hover { border-color: #A9D8F4; color: #0A0F14; }
+  .lang-menu > summary .lang-caret { transition: transform .25s var(--ease-spring); }
+  .lang-menu[open] > summary { border-color: #A9D8F4; color: #0A0F14; background: #F7F9FB; }
+  .lang-menu[open] > summary .lang-caret { transform: rotate(180deg); }
+
+  .lang-panel {
+    position: absolute; right: 0; top: calc(100% + .5rem); z-index: 60;
+    min-width: 11rem; padding: .375rem;
+    background: #fff;
+    border: 1px solid #E4E9ED; border-radius: .875rem;
+    box-shadow: 0 1px 2px rgba(11,18,32,.06), 0 16px 36px -12px rgba(11,18,32,.24);
+  }
+  /* In the footer the menu has to open upward or it falls off the page. */
+  .lang-menu-up .lang-panel { top: auto; bottom: calc(100% + .5rem); }
+  .lang-panel a {
+    display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+    padding: .5rem .625rem; border-radius: .5rem;
+    font-size: .875rem; color: #5A6A75;
+    transition: background-color .18s, color .18s;
+  }
+  .lang-panel a:hover { background: #F7F9FB; color: #0A0F14; }
+  .lang-panel a[aria-current='true'] { color: #12688F; font-weight: 600; background: #EAF6FD; }
+  .lang-panel .lang-code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .6875rem; text-transform: uppercase; opacity: .6;
+  }
+
+  /* Inline variant for the mobile nav — see langInline() for why the dropdown
+     cannot be used inside a scrolling panel. */
+  .lang-inline { display: grid; grid-template-columns: repeat(2, 1fr); gap: .5rem; }
+  .lang-inline a {
+    display: block; padding: .5625rem .75rem;
+    border: 1px solid #E4E9ED; border-radius: .625rem;
+    font-size: .875rem; color: #5A6A75; text-align: center;
+    transition: border-color .2s, color .2s, background-color .2s;
+  }
+  .lang-inline a:hover { border-color: #A9D8F4; color: #0A0F14; }
+  .lang-inline a[aria-current='true'] {
+    color: #12688F; font-weight: 600; background: #EAF6FD; border-color: #D2EBFA;
+  }
+
+  /* Footer instance sits on the dark band. */
+  .lang-menu-dark > summary {
+    background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.16); color: rgba(255,255,255,.75);
+  }
+  .lang-menu-dark > summary:hover,
+  .lang-menu-dark[open] > summary {
+    background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); color: #fff;
+  }
 
   /* ---------- Marquee --------------------------------------------------- */
   /* Decoration on already-rendered text: if the animation never runs the row

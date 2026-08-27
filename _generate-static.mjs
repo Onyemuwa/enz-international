@@ -6,7 +6,7 @@
 
 import { writeFileSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
-import dict, { SUPPORTED_LANGUAGES, LOCALE_MAP } from './_content/translations.js';
+import dict, { SUPPORTED_LANGUAGES, LOCALE_MAP, LANGUAGE_LABELS } from './_content/translations.js';
 import { services } from './_content/services.js';
 import { insights } from './_content/insights.js';
 import { markets } from './_content/markets.js';
@@ -27,7 +27,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '15';
+const ASSET_VERSION = '16';
 
 // One weight range, one request. `display=swap` means text paints immediately
 // in the fallback and re-renders in Inter — never an invisible headline.
@@ -257,12 +257,42 @@ const ALL_PAGES = [
   'terms.html',
 ];
 
-function langSwitcher(lang, currentPage) {
-  const template = `../__LANG__/${currentPage}`;
-  const options = SUPPORTED_LANGUAGES.map(
-    (l) => `<option value="${l}" ${l === lang ? 'selected' : ''}>${l.toUpperCase()}</option>`
-  ).join('');
-  return `<select aria-label="Language" data-lang-select data-target-template="${template}" class="lang-select">${options}</select>`;
+// Inside the mobile nav the dropdown is the wrong shape: the panel is
+// absolutely positioned but the nav scrolls (`overflow-y: auto`), so an open
+// menu is clipped by its own container. There is room to just show the four
+// options, so it does.
+function langInline(lang, currentPage) {
+  return `
+          <div class="lang-inline">
+            ${SUPPORTED_LANGUAGES.map(
+              (l) =>
+                `<a href="../${l}/${currentPage}" hreflang="${l}" lang="${l}"${l === lang ? ' aria-current="true"' : ''}>${LANGUAGE_LABELS[l]}</a>`
+            ).join('')}
+          </div>`;
+}
+
+// A <details> disclosure rather than a <select>, listing each language in its
+// own name. See the .lang-menu block in tailwind.src.css for why: OS chrome,
+// two-letter codes nobody scans for, and options that were not real links.
+//
+// `variant: 'dark'` styles it for the footer band and opens it upward.
+function langSwitcher(lang, currentPage, { variant = 'light', id = 'lang' } = {}) {
+  const options = SUPPORTED_LANGUAGES.map((l) => {
+    const current = l === lang;
+    return `<a href="../${l}/${currentPage}" hreflang="${l}" lang="${l}"${current ? ' aria-current="true"' : ''}>
+            <span>${LANGUAGE_LABELS[l]}</span><span class="lang-code">${l}</span>
+          </a>`;
+  }).join('');
+
+  return `
+        <details class="lang-menu${variant === 'dark' ? ' lang-menu-dark lang-menu-up' : ''}" data-lang-menu>
+          <summary aria-haspopup="true" aria-label="${LANG_LABEL[lang] || 'Language'}: ${LANGUAGE_LABELS[lang]}">
+            ${icon('globe', 'w-4 h-4')}
+            <span>${LANGUAGE_LABELS[lang]}</span>
+            ${icon('chevronDown', 'w-3.5 h-3.5 lang-caret')}
+          </summary>
+          <div class="lang-panel" role="menu" id="${id}-panel">${options}</div>
+        </details>`;
 }
 
 function headerHTML(lang, currentPage) {
@@ -300,9 +330,9 @@ function headerHTML(lang, currentPage) {
         ${mobileLinks}
         <div class="pt-5 space-y-3">
           <button data-open-booking class="${BTN_PRIMARY} w-full">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
-          <div class="flex items-center justify-between pt-2">
-            <span class="text-xs font-medium text-slate">${LANG_LABEL[lang] || 'Language'}</span>
-            ${langSwitcher(lang, currentPage)}
+          <div class="pt-4 mt-2 border-t border-line">
+            <span class="block text-[0.6875rem] font-semibold tracking-[0.14em] uppercase text-slate mb-3">${LANG_LABEL[lang] || 'Language'}</span>
+            ${langInline(lang, currentPage)}
           </div>
         </div>
       </div>
@@ -310,78 +340,99 @@ function headerHTML(lang, currentPage) {
   </header>`;
 }
 
-function footerHTML(lang) {
+// Rebuilt. The previous version put the newsletter — a primary action — as a
+// subordinate item underneath a three-link column, in a 4/2/2/4 grid that left
+// one column short and one overloaded. And on a phone it forced two columns,
+// so the signup form ended up in a half-width cell.
+//
+// Now: the newsletter gets its own full-width band at the top, the link
+// columns are evenly weighted, and the language switcher moves to the bottom
+// bar where it belongs on a multilingual site.
+function footerHTML(lang, currentPage) {
   const fLink = (href, label) =>
-    `<li><a href="${href}" class="inline-block text-white/60 hover:text-white transition-colors">${label}</a></li>`;
+    `<li><a href="${href}" class="footer-link">${label}</a></li>`;
+
+  const column = (heading, links) => `
+        <div>
+          <h2 class="footer-heading">${heading}</h2>
+          <ul class="mt-4 space-y-2.5">${links}</ul>
+        </div>`;
 
   return `
-  <footer class="section-dark text-white/70 pt-16 pb-8 md:pt-20">
-    <div aria-hidden="true" class="glow glow-brand w-[30rem] h-[30rem] -top-48 left-1/4"></div>
-    <div class="${SHELL} grid grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12">
-      <div class="col-span-2 lg:col-span-4">
-        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-10 w-auto object-contain" />
-        <p class="text-sm max-w-xs leading-relaxed mt-5 text-white/60">${t(lang, 'footerAbout')}</p>
-        <ul class="mt-6 space-y-2.5 text-sm">
-          <li class="flex items-center gap-2.5">${icon('phone', 'w-4 h-4 text-brand-bright shrink-0')}<a href="tel:${CONTACT_PHONE.replace(/\s/g, '')}" class="text-white/70 hover:text-white transition-colors">${CONTACT_PHONE}</a></li>
-          <li class="flex items-center gap-2.5">${icon('mail', 'w-4 h-4 text-brand-bright shrink-0')}<a href="mailto:${CONTACT_EMAIL}" class="text-white/70 hover:text-white transition-colors">${CONTACT_EMAIL}</a></li>
-          <li class="flex items-start gap-2.5">${icon('mapPin', 'w-4 h-4 text-brand-bright shrink-0 mt-0.5')}<span class="text-white/60">${hubs.join(' · ')}</span></li>
-        </ul>
-        <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" rel="noopener noreferrer" class="${BTN_GHOST_LIGHT} btn-sm mt-6">
-          ${icon('whatsapp', 'w-4 h-4')} ${t(lang, 'footerWhatsapp')}
-        </a>
-      </div>
-
-      <div class="lg:col-span-2">
-        <h2 class="text-white font-semibold text-xs uppercase tracking-[0.14em] mb-4">${t(lang, 'footerServices')}</h2>
-        <ul class="text-sm space-y-2.5">
-          ${fLink('services.html', t(lang, 'tabSourcing'))}
-          ${fLink('services.html', t(lang, 'tabFactory'))}
-          ${fLink('services.html', t(lang, 'service3'))}
-          ${fLink('quality-control.html', t(lang, 'qcEyebrow'))}
-          ${fLink('logistics.html', t(lang, 'logisticsEyebrow'))}
-        </ul>
-      </div>
-
-      <div class="lg:col-span-2">
-        <h2 class="text-white font-semibold text-xs uppercase tracking-[0.14em] mb-4">${t(lang, 'footerCompany')}</h2>
-        <ul class="text-sm space-y-2.5">
-          ${fLink('about.html', t(lang, 'navAbout'))}
-          ${fLink('markets.html', t(lang, 'navMarkets'))}
-          ${fLink('process.html', t(lang, 'navProcess'))}
-          ${fLink('pricing.html', t(lang, 'navPricing'))}
-          ${fLink('industries.html', t(lang, 'navIndustries'))}
-          ${fLink('careers.html', t(lang, 'navCareers'))}
-          ${fLink('contact.html', t(lang, 'navContact'))}
-        </ul>
-      </div>
-
-      <div class="lg:col-span-4">
-        <h2 class="text-white font-semibold text-xs uppercase tracking-[0.14em] mb-4">${t(lang, 'navResources')}</h2>
-        <ul class="text-sm space-y-2.5">
-          ${fLink('resources.html', t(lang, 'resourcesTitle'))}
-          ${fLink('insights.html', t(lang, 'navInsights'))}
-          ${fLink('faq.html', 'FAQ')}
-        </ul>
-        <form data-newsletter-form class="mt-8">
-          <label for="newsletter-email" class="text-white font-semibold text-sm block">${t(lang, 'footerNewsletterTitle')}</label>
-          <p class="text-xs text-white/60 mt-1.5 mb-3 leading-relaxed">${t(lang, 'footerNewsletterDesc')}</p>
-          <div class="flex gap-2">
-            <input id="newsletter-email" name="email" type="email" required autocomplete="email" placeholder="${t(lang, 'footerNewsletterPlaceholder')}" class="field field-dark flex-1 min-w-0" />
-            <button type="submit" class="${BTN_PRIMARY} btn-sm shrink-0">${t(lang, 'ctaSubscribe')}</button>
-          </div>
-        </form>
-        <p data-error-slot role="alert" hidden class="text-sm text-red-300 mt-3"></p>
-        <p data-newsletter-success role="status" hidden class="text-sm text-brand-bright mt-3 flex items-center gap-2">${icon('check', 'w-4 h-4')}${t(lang, 'footerNewsletterSuccess')}</p>
+  <footer class="section-dark">
+    <!-- Newsletter, as its own band rather than an afterthought in a column. -->
+    <div class="${SHELL} py-12 md:py-14 border-b border-white/10">
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+        <div class="lg:col-span-6">
+          <h2 class="text-xl md:text-2xl font-semibold text-white">${t(lang, 'footerNewsletterTitle')}</h2>
+          <p class="text-sm text-white/60 mt-2 leading-relaxed max-w-md">${t(lang, 'footerNewsletterDesc')}</p>
+        </div>
+        <div class="lg:col-span-6">
+          <form data-newsletter-form class="flex flex-col sm:flex-row gap-2.5 lg:justify-end">
+            <label for="newsletter-email" class="sr-only">${t(lang, 'footerNewsletterTitle')}</label>
+            <input id="newsletter-email" name="email" type="email" required autocomplete="email"
+                   placeholder="${t(lang, 'footerNewsletterPlaceholder')}"
+                   class="field field-dark sm:max-w-xs" />
+            <button type="submit" class="${BTN_PRIMARY} shrink-0">${t(lang, 'ctaSubscribe')}</button>
+          </form>
+          <p data-error-slot role="alert" hidden class="text-sm text-red-300 mt-3 lg:text-right"></p>
+          <p data-newsletter-success role="status" hidden class="text-sm text-brand-bright mt-3 flex items-center gap-2 lg:justify-end">${icon('check', 'w-4 h-4')}${t(lang, 'footerNewsletterSuccess')}</p>
+        </div>
       </div>
     </div>
 
-    <div class="${SHELL} mt-14 pt-7 border-t border-white/10 flex flex-col-reverse md:flex-row items-center justify-between gap-4 text-xs text-white/60">
-      <p>© <span data-current-year>${new Date().getFullYear()}</span> ENZ INTERNATIONAL. All rights reserved.</p>
-      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-        <a href="privacy.html" class="hover:text-white transition-colors">${t(lang, 'footerPrivacy')}</a>
-        <a href="terms.html" class="hover:text-white transition-colors">${t(lang, 'footerTerms')}</a>
-        <a href="../sitemap.xml" class="hover:text-white transition-colors">Sitemap</a>
+    <!-- Brand block plus three evenly weighted link columns. -->
+    <div class="${SHELL} py-12 md:py-16 grid gap-10 md:gap-8 md:grid-cols-2 lg:grid-cols-12">
+      <div class="lg:col-span-4 lg:pr-8">
+        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-9 w-auto object-contain" />
+        <p class="text-sm leading-relaxed mt-5 text-white/60 max-w-xs">${t(lang, 'footerAbout')}</p>
+        <ul class="mt-6 space-y-3 text-sm">
+          <li><a href="tel:${CONTACT_PHONE.replace(/\s/g, '')}" class="footer-contact">${icon('phone', 'w-4 h-4')}<span>${CONTACT_PHONE}</span></a></li>
+          <li><a href="mailto:${CONTACT_EMAIL}" class="footer-contact">${icon('mail', 'w-4 h-4')}<span>${CONTACT_EMAIL}</span></a></li>
+          <li><a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" rel="noopener noreferrer" class="footer-contact">${icon('whatsapp', 'w-4 h-4')}<span>${t(lang, 'footerWhatsapp')}</span></a></li>
+        </ul>
       </div>
+
+      <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+        ${column(
+          t(lang, 'footerServices'),
+          [
+            fLink('services.html', t(lang, 'tabSourcing')),
+            fLink('quality-control.html', t(lang, 'qcEyebrow')),
+            fLink('services.html', t(lang, 'tabFactory')),
+            fLink('logistics.html', t(lang, 'logisticsEyebrow')),
+            fLink('industries.html', t(lang, 'navIndustries')),
+          ].join('')
+        )}
+        ${column(
+          t(lang, 'footerCompany'),
+          [
+            fLink('about.html', t(lang, 'navAbout')),
+            fLink('process.html', t(lang, 'navProcess')),
+            fLink('pricing.html', t(lang, 'navPricing')),
+            fLink('markets.html', t(lang, 'navMarkets')),
+            fLink('careers.html', t(lang, 'navCareers')),
+            fLink('contact.html', t(lang, 'navContact')),
+          ].join('')
+        )}
+        ${column(
+          t(lang, 'navResources'),
+          [
+            fLink('resources.html', t(lang, 'resourcesTitle')),
+            fLink('insights.html', t(lang, 'navInsights')),
+            fLink('faq.html', 'FAQ'),
+            fLink('privacy.html', t(lang, 'footerPrivacy')),
+            fLink('terms.html', t(lang, 'footerTerms')),
+          ].join('')
+        )}
+      </div>
+    </div>
+
+    <!-- Bottom bar: attribution left, hubs centre, language right. -->
+    <div class="${SHELL} py-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-5 text-xs text-white/55">
+      <p class="order-2 md:order-1">&copy; <span data-current-year>${new Date().getFullYear()}</span> ENZ INTERNATIONAL. ${t(lang, 'footerRights')}</p>
+      <p class="order-3 md:order-2 hidden lg:flex items-center gap-2">${icon('mapPin', 'w-3.5 h-3.5')}<span>${hubs.join(' · ')}</span></p>
+      <div class="order-1 md:order-3">${langSwitcher(lang, currentPage, { variant: 'dark', id: 'lang-footer' })}</div>
     </div>
   </footer>`;
 }
@@ -594,7 +645,7 @@ function pageShell({ lang, page, title, description, jsonLd, crumbs, bodyHTML, r
     <main id="main-content">
       ${bodyHTML}
     </main>
-    ${footerHTML(lang)}
+    ${footerHTML(lang, page)}
     ${whatsappButtonHTML(lang)}
     ${bookingModalHTML(lang)}
     <script src="../assets/js/config.js?v=${ASSET_VERSION}"></script>
