@@ -27,12 +27,12 @@ export const problems = [
   {
     icon: 'trendingUp',
     title: 'The quoted price is not the price you pay',
-    body: 'Unit price is a fraction of landed cost. Freight, duties, inspection, and port fees arrive later, and a cheap EXW quote routinely lands dearer than a higher FOB one.',
+    body: 'Unit price is a fraction of landed cost. Freight, duties, inspection and port fees all arrive later, and a cheap EXW quote routinely lands dearer than a higher FOB one.',
   },
   {
     icon: 'user',
     title: 'Nobody owns the problem when it goes wrong',
-    body: 'A supplier, a forwarder, and a customs broker each answer for their own leg. The gaps between them are where orders stall — and those gaps are yours to manage.',
+    body: 'A supplier, a forwarder and a customs broker each answer for their own leg. The gaps between them are where orders stall, and those gaps are yours to manage.',
   },
 ];
 
@@ -78,7 +78,7 @@ export const engagementModels = [
     icon: 'award',
     name: 'Full factory partnership',
     tagline: 'Build production, not just orders.',
-    body: 'End-to-end factory establishment — site selection through commissioning — plus ongoing operational and sourcing support once you are running.',
+    body: 'End-to-end factory establishment, from site selection through commissioning, plus ongoing operational and sourcing support once you are running.',
     bestFor: 'Businesses localising production in a new market',
     includes: [
       'Feasibility study and site selection',
@@ -110,7 +110,7 @@ export const gettingStarted = [
   {
     n: '01',
     title: 'Tell us what you need',
-    body: 'Product, rough volume, target market, and your timeline. A paragraph is enough — you do not need a finished specification to start.',
+    body: 'Product, rough volume, target market and your timeline. A paragraph is enough; you do not need a finished specification to start.',
     meta: '2 minutes',
   },
   {
@@ -128,7 +128,7 @@ export const gettingStarted = [
   {
     n: '04',
     title: 'A written scope, then work begins',
-    body: 'What we will do, what it costs, and how long it takes — in writing. Nothing starts until you have agreed to it.',
+    body: 'What we will do, what it costs and how long it takes, in writing. Nothing starts until you have agreed to it.',
     meta: 'Before you commit',
   },
 ];

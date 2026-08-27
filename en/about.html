@@ -25,7 +25,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=13" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=14" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,7 +55,6 @@
   <body class="bg-white text-ink">
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
-  <div class="read-progress" data-read-progress aria-hidden="true"></div>
   <header class="site-header" data-site-header>
     <div class="shell flex items-center justify-between gap-6 h-[4.25rem]">
       <a href="index.html" class="flex items-center shrink-0" aria-label="ENZ INTERNATIONAL — home">
@@ -146,6 +145,26 @@
         <li class="relative pl-16"><span class="step-badge step-badge-lg absolute left-0 top-0">1</span><h3 class="font-semibold text-ink text-lg">Book a Consultation</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">A 30-minute call to understand your product, volume, timeline, and budget — no cost, no obligation.</p></li><li class="relative pl-16"><span class="step-badge step-badge-lg absolute left-0 top-0">2</span><h3 class="font-semibold text-ink text-lg">Scoped Proposal</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">You get a written scope: what we’ll do, what it costs, and how long it takes, before anything is signed.</p></li><li class="relative pl-16"><span class="step-badge step-badge-lg absolute left-0 top-0">3</span><h3 class="font-semibold text-ink text-lg">Execution & Updates</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">Your single point of contact runs the project and sends regular, plain-language status updates.</p></li><li class="relative pl-16"><span class="step-badge step-badge-lg absolute left-0 top-0">4</span><h3 class="font-semibold text-ink text-lg">Delivery & Beyond</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">Goods delivered or factory commissioned — with an open line for the next order or the next phase.</p></li>
       </ol>
       <div class="text-center mt-14"><a href="markets.html" class="btn btn-secondary">See where we operate <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
+    </div>
+  </section>
+
+  <!-- Moved off the homepage, where three of these six sat beside the
+       commitments band making the same argument twice. Here the full set has
+       room, and it is the page a visitor opens when they are specifically
+       asking "why you?". -->
+  <section class="section bg-white hairline-top">
+    <div class="shell">
+      
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+        <div class="lg:col-span-6">
+          <p class="eyebrow">Why ENZ</p>
+          <h2 class="h2-section mt-4">Why Businesses Choose ENZ</h2>
+        </div>
+        <div class="lg:col-span-6"><p class="lead">A sourcing partner that acts like part of your team, not a vendor you have to chase.</p></div>
+      </div>
+      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+        <div class="card"><span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Vetted Supplier Network</h3><p class="text-slate text-sm mt-2 leading-relaxed">Every factory we recommend passes our own diligence process first — licenses, capacity, and quality history checked before you ever see a quote.</p></div><div class="card"><span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">End-to-End Ownership</h3><p class="text-slate text-sm mt-2 leading-relaxed">One team manages sourcing, logistics, and factory setup. No handoffs between disconnected vendors, no dropped context.</p></div><div class="card"><span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">On-the-Ground Presence</h3><p class="text-slate text-sm mt-2 leading-relaxed">Staff based in Guangzhou and across the markets we serve — not just a phone line answered from a call center.</p></div><div class="card"><span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Clear Communication</h3><p class="text-slate text-sm mt-2 leading-relaxed">Regular, plain-language updates at every stage, in your language — no jargon, no surprises at delivery.</p></div><div class="card"><span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Flexible Engagement</h3><p class="text-slate text-sm mt-2 leading-relaxed">From a single sourcing project to an ongoing retainer, scoped to what your business actually needs right now.</p></div><div class="card"><span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Risk-Aware Process</h3><p class="text-slate text-sm mt-2 leading-relaxed">Staged quality control and clearly written contract terms protect you at every step, not just at the end.</p></div>
+      </div>
     </div>
   </section>
 
@@ -350,10 +369,10 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=13"></script>
-    <script src="../assets/js/i18n.js?v=13"></script>
-    <script src="../assets/js/api.js?v=13"></script>
-    <script src="../assets/js/site.js?v=13" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=13"></script>
+    <script src="../assets/js/config.js?v=14"></script>
+    <script src="../assets/js/i18n.js?v=14"></script>
+    <script src="../assets/js/api.js?v=14"></script>
+    <script src="../assets/js/site.js?v=14" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=14"></script>
   </body>
 </html>

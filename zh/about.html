@@ -25,7 +25,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=13" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=14" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,7 +55,6 @@
   <body class="bg-white text-ink">
     <a href="#main-content" class="skip-link">跳转到主要内容</a>
     
-  <div class="read-progress" data-read-progress aria-hidden="true"></div>
   <header class="site-header" data-site-header>
     <div class="shell flex items-center justify-between gap-6 h-[4.25rem]">
       <a href="index.html" class="flex items-center shrink-0" aria-label="ENZ INTERNATIONAL — home">
@@ -146,6 +145,26 @@
         <li class="relative pl-16"><span class="step-badge step-badge-lg absolute left-0 top-0">1</span><h3 class="font-semibold text-ink text-lg">Book a Consultation</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">A 30-minute call to understand your product, volume, timeline, and budget — no cost, no obligation.</p></li><li class="relative pl-16"><span class="step-badge step-badge-lg absolute left-0 top-0">2</span><h3 class="font-semibold text-ink text-lg">Scoped Proposal</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">You get a written scope: what we’ll do, what it costs, and how long it takes, before anything is signed.</p></li><li class="relative pl-16"><span class="step-badge step-badge-lg absolute left-0 top-0">3</span><h3 class="font-semibold text-ink text-lg">Execution & Updates</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">Your single point of contact runs the project and sends regular, plain-language status updates.</p></li><li class="relative pl-16"><span class="step-badge step-badge-lg absolute left-0 top-0">4</span><h3 class="font-semibold text-ink text-lg">Delivery & Beyond</h3><p class="text-slate text-sm mt-1.5 leading-relaxed">Goods delivered or factory commissioned — with an open line for the next order or the next phase.</p></li>
       </ol>
       <div class="text-center mt-14"><a href="markets.html" class="btn btn-secondary">See where we operate <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
+    </div>
+  </section>
+
+  <!-- Moved off the homepage, where three of these six sat beside the
+       commitments band making the same argument twice. Here the full set has
+       room, and it is the page a visitor opens when they are specifically
+       asking "why you?". -->
+  <section class="section bg-white hairline-top">
+    <div class="shell">
+      
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+        <div class="lg:col-span-6">
+          <p class="eyebrow">为何选择 ENZ</p>
+          <h2 class="h2-section mt-4">企业为何选择ENZ</h2>
+        </div>
+        <div class="lg:col-span-6"><p class="lead">一个像团队一部分而非需要追踪的供应商那样运作的采购伙伴。</p></div>
+      </div>
+      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+        <div class="card"><span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">经过审核的供应商网络</h3><p class="text-slate text-sm mt-2 leading-relaxed">我们推荐的每家工厂都先通过我们自己的尽职调查流程——在您收到报价之前，资质、产能和质量记录均已核实。</p></div><div class="card"><span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">端到端负责</h3><p class="text-slate text-sm mt-2 leading-relaxed">一个团队统筹采购、物流和工厂建设，不同供应商之间没有脱节的交接。</p></div><div class="card"><span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">本地化驻点</h3><p class="text-slate text-sm mt-2 leading-relaxed">团队常驻广州及我们服务的各个市场——而不仅仅是呼叫中心接听的电话。</p></div><div class="card"><span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">清晰的沟通</h3><p class="text-slate text-sm mt-2 leading-relaxed">在每个阶段以您的语言提供定期、简明的更新——没有行话，交付时也不会有意外。</p></div><div class="card"><span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">灵活的合作方式</h3><p class="text-slate text-sm mt-2 leading-relaxed">从单次采购项目到持续的长期合作，按照您企业的实际需求量身定制。</p></div><div class="card"><span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">风险意识流程</h3><p class="text-slate text-sm mt-2 leading-relaxed">分阶段的质量控制和清晰的合同条款在每一步都保护着您，而不仅仅是在最后。</p></div>
+      </div>
     </div>
   </section>
 
@@ -350,10 +369,10 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=13"></script>
-    <script src="../assets/js/i18n.js?v=13"></script>
-    <script src="../assets/js/api.js?v=13"></script>
-    <script src="../assets/js/site.js?v=13" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=13"></script>
+    <script src="../assets/js/config.js?v=14"></script>
+    <script src="../assets/js/i18n.js?v=14"></script>
+    <script src="../assets/js/api.js?v=14"></script>
+    <script src="../assets/js/site.js?v=14" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=14"></script>
   </body>
 </html>

@@ -27,7 +27,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '13';
+const ASSET_VERSION = '14';
 
 // One weight range, one request. `display=swap` means text paints immediately
 // in the fallback and re-renders in Inter — never an invisible headline.
@@ -99,7 +99,25 @@ const SHELL = 'shell';
 // Centred section header — eyebrow, heading, lead. Repeated ~30 times across
 // the site; having it in one function is what keeps the vertical rhythm
 // identical everywhere instead of drifting a few pixels per section.
+// Centred is the default because it suits a hero-adjacent statement, but it is
+// NOT the default for every band. Ten of fourteen homepage sections opening
+// with the identical eyebrow -> heading -> centred lead was the single loudest
+// "assembled from a template" signal on the page: real sites vary their
+// alignment because different content wants different emphasis.
+//
+// `align: 'start'` puts the heading hard left with the lead beside it, which
+// reads as an editor's decision rather than a component default.
 function sectionHead(eyebrow, title, lead, { dark = false, align = 'center' } = {}) {
+  if (align === 'start') {
+    return `
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+        <div class="lg:col-span-6">
+          ${eyebrow ? `<p class="${dark ? EYEBROW_LIGHT : EYEBROW}">${eyebrow}</p>` : ''}
+          <h2 class="${dark ? H2_LIGHT : H2} mt-4">${title}</h2>
+        </div>
+        ${lead ? `<div class="lg:col-span-6"><p class="${dark ? LEAD_LIGHT : LEAD}">${lead}</p></div>` : ''}
+      </div>`;
+  }
   const wrap = align === 'center' ? 'max-w-3xl mx-auto text-center' : 'max-w-3xl';
   return `
       <div class="${wrap}">
@@ -259,7 +277,6 @@ function headerHTML(lang, currentPage) {
   ).join('\n');
 
   return `
-  <div class="read-progress" data-read-progress aria-hidden="true"></div>
   <header class="site-header" data-site-header>
     <div class="${SHELL} flex items-center justify-between gap-6 h-[4.25rem]">
       <a href="index.html" class="flex items-center shrink-0" aria-label="ENZ INTERNATIONAL — home">
@@ -645,22 +662,7 @@ function homePage(lang) {
     ['statProjects', 200, '+'],
     ['statSatisfaction', 98, '%'],
   ];
-  const whyItems = [
-    ['why1Title', 'why1Desc', 'shield'],
-    ['why2Title', 'why2Desc', 'briefcase'],
-    ['why3Title', 'why3Desc', 'mapPin'],
-    ['why4Title', 'why4Desc', 'mail'],
-    ['why5Title', 'why5Desc', 'award'],
-    ['why6Title', 'why6Desc', 'check'],
-  ];
   const nextSteps = [t(lang, 'bookingNext1'), t(lang, 'bookingNext2'), t(lang, 'bookingNext3')];
-
-  // Language-neutral technical vocabulary: Incoterms, inspection stage codes
-  // and hub cities read the same in all four languages, so this credibility
-  // strip needs no translation and stays true wherever it renders.
-  const marqueeItems = [...incoterms.map((it) => it.code), ...qcStages.map((st) => st.code), 'AQL 2.5', 'ISO 9001', ...hubs];
-  const marqueeRow = (hidden) =>
-    `<div class="flex"${hidden ? ' aria-hidden="true"' : ''}>${marqueeItems.map((m) => `<span class="marquee-item">${m}</span>`).join('')}</div>`;
 
   // The three service lines, stated plainly. This replaced a two-tab widget:
   // tabs hid half the offering behind a click, on the one section a first-time
@@ -675,7 +677,7 @@ function homePage(lang) {
   ];
 
   const body = `
-  <section class="section-dark pt-12 pb-24 md:pt-16 md:pb-32">
+  <section class="section-dark hero">
     ${glows('a')}
     <div class="${SHELL} grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
 
@@ -742,7 +744,7 @@ function homePage(lang) {
                     <span class="mono-tag text-brand-bright">${st.code}</span>
                     <span class="text-sm font-medium text-white">${st.title}</span>
                   </span>
-                  <span class="block text-xs text-white/60 mt-1">${st.when}</span>
+                  <span class="status-when block text-xs text-white/60 mt-1">${st.when}</span>
                 </span>
               </div>`;
                 })
@@ -764,21 +766,12 @@ function homePage(lang) {
         ${stats
           .map(
             ([key, value, suffix]) => `<div class="bg-white p-6 md:p-8 text-center">
-          <div class="stat-value text-gradient-dark"><span data-counter="${value}" data-counter-suffix="${suffix}">${value}${suffix}</span></div>
+          <div class="stat-value text-ink"><span data-counter="${value}" data-counter-suffix="${suffix}">${value}${suffix}</span></div>
           <div class="text-sm text-slate mt-2.5">${t(lang, key)}</div>
         </div>`
           )
           .join('')}
       </div>
-    </div>
-  </section>
-
-  <!-- Static text with a CSS marquee laid over it: if the animation never
-       runs, the row simply doesn't move. It is never blank. -->
-  <section class="bg-white pt-12 pb-2">
-    <p class="text-center text-xs font-semibold tracking-[0.14em] uppercase text-slate-light">${t(lang, 'stripLabel')}</p>
-    <div class="marquee mt-5">
-      <div class="marquee-track">${marqueeRow(false)}${marqueeRow(true)}</div>
     </div>
   </section>
 
@@ -804,7 +797,7 @@ function homePage(lang) {
   <!-- 2. WHAT WE DO. Three lines, all visible at once. -->
   <section class="section bg-gray-bg border-y border-line">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'navServices'), t(lang, 'servicesTitle'), t(lang, 'servicesSubtitle'))}
+      ${sectionHead(t(lang, 'navServices'), t(lang, 'servicesTitle'), t(lang, 'servicesSubtitle'), { align: 'start' })}
       <!-- Bento rather than a fourth identical three-up grid: the first
            service gets a tall feature tile, the other two stack beside it. The
            asymmetry is what stops the page reading as a list of equivalent
@@ -832,7 +825,7 @@ function homePage(lang) {
   <!-- 3. HOW IT WORKS. Anchor target for the hero's secondary CTA. -->
   <section id="how-it-works" class="section bg-white">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'navProcess'), t(lang, 'processTitle'), t(lang, 'processLead'))}
+      ${sectionHead(t(lang, 'navProcess'), t(lang, 'processTitle'), t(lang, 'processLead'), { align: 'start' })}
       <ol data-reveal-group class="rail grid gap-4 md:grid-cols-2 lg:grid-cols-5 mt-14">
         ${processSteps
           .map(
@@ -855,7 +848,7 @@ function homePage(lang) {
        the single most persuasive thing a services page can do. -->
   <section class="section bg-gray-bg border-y border-line">
     <div class="${SHELL} max-w-5xl">
-      ${sectionHead(t(lang, 'compareEyebrow'), comparison.title, comparison.subtitle)}
+      ${sectionHead(t(lang, 'compareEyebrow'), comparison.title, comparison.subtitle, { align: 'start' })}
       <div class="table-wrap mt-12">
         <table class="table-pro">
           <thead>
@@ -895,15 +888,6 @@ function homePage(lang) {
           )
           .join('')}
       </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        ${whyItems
-          .slice(0, 3)
-          .map(
-            ([tk, dk, ic]) =>
-              `<div class="${CARD_DARK}"><span class="icon-chip icon-chip-dark">${icon(ic, 'w-5 h-5')}</span><h3 class="font-medium text-[1.0625rem] mt-4">${t(lang, tk)}</h3><p class="text-white/60 text-sm mt-2 leading-relaxed">${t(lang, dk)}</p></div>`
-          )
-          .join('')}
-      </div>
       <div class="text-center mt-10"><a href="about.html" class="${BTN_GHOST_LIGHT}">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
     </div>
   </section>
@@ -913,7 +897,7 @@ function homePage(lang) {
   <!-- 6. ENGAGEMENT. The question every serious buyer asks second. -->
   <section class="section bg-white">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'engageEyebrow'), t(lang, 'engageTitle'), t(lang, 'engageLead'))}
+      ${sectionHead(t(lang, 'engageEyebrow'), t(lang, 'engageTitle'), t(lang, 'engageLead'), { align: 'start' })}
       <div data-reveal-group class="grid lg:grid-cols-3 gap-5 mt-14 items-start">
         ${engagementModels.map((m) => engagementCard(lang, m)).join('')}
       </div>
@@ -927,7 +911,7 @@ function homePage(lang) {
        grids in sequence; one section answers both questions. -->
   <section class="section bg-gray-bg border-y border-line">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'whoEyebrow'), t(lang, 'whoTitle'), t(lang, 'whoLead'))}
+      ${sectionHead(t(lang, 'whoEyebrow'), t(lang, 'whoTitle'), t(lang, 'whoLead'), { align: 'start' })}
       <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
         ${industries
           .map(
@@ -985,36 +969,26 @@ function homePage(lang) {
     </div>
   </section>
 
-  <!-- 9. Reference material, as links out rather than inline chapters. -->
+  <!-- 9. Recent writing. This band used to carry four "read about landed
+       cost / timelines / Incoterms / mistakes" link cards on top of these
+       three posts — seven cards, 2.8 phone screens, and every one of those
+       four destinations is already in the nav and the footer. A homepage
+       should not contain a directory of itself, so the link cards went and
+       the actual writing stayed. The guide is one line away, below. -->
   <section class="section bg-gray-bg border-y border-line">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'navResources'), t(lang, 'resourcesGuideTitle'), t(lang, 'resourcesGuideLead'))}
-      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
-        ${[
-          { href: 'resources.html#landed-cost', title: landedCost.title, body: landedCost.lead, icon: 'trendingUp' },
-          { href: 'resources.html#timelines', title: timelines.title, body: timelines.lead, icon: 'clock' },
-          { href: 'logistics.html', title: t(lang, 'incotermsTitle'), body: t(lang, 'incotermsLead'), icon: 'globe' },
-          { href: 'resources.html#mistakes', title: t(lang, 'mistakesTitle'), body: t(lang, 'mistakesLead'), icon: 'shield' },
-        ]
-          .map(
-            (r) => `<a href="${r.href}" class="${CARD} card-muted block group flex flex-col">
-          <span class="icon-chip">${icon(r.icon, 'w-5 h-5')}</span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">${r.title}</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed flex-1">${r.body}</p>
-          <span class="link-arrow text-sm mt-4">${t(lang, 'ctaReadMore')} ${icon('chevronRight', 'w-4 h-4')}</span>
-        </a>`
-          )
-          .join('')}
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-4 mt-4">
+      ${sectionHead(t(lang, 'navInsights'), t(lang, 'insightsTitle'), null, { align: 'start' })}
+      <div data-reveal-group class="grid md:grid-cols-3 gap-4 mt-12">
         ${insights
           .map(
             (pst) =>
-              `<a href="insight-${pst.slug}.html" class="${CARD} block group"><span class="pill">${pst.category}</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">${pst.title}</h3><p class="text-slate text-sm mt-2 leading-relaxed">${pst.excerpt}</p><span class="link-arrow text-sm mt-4">${t(lang, 'ctaReadMore')} ${icon('chevronRight', 'w-4 h-4')}</span></a>`
+              `<a href="insight-${pst.slug}.html" class="${CARD} block group flex flex-col"><span class="pill self-start">${pst.category}</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">${pst.title}</h3><p class="text-slate text-sm mt-2 leading-relaxed flex-1">${pst.excerpt}</p><span class="link-arrow text-sm mt-4">${t(lang, 'ctaReadMore')} ${icon('chevronRight', 'w-4 h-4')}</span></a>`
           )
           .join('')}
       </div>
+      <p class="text-sm text-slate mt-8">
+        ${t(lang, 'resourcesGuideLead')} <a href="resources.html" class="link-arrow">${t(lang, 'ctaSeeGuide')} ${icon('chevronRight', 'w-4 h-4')}</a>
+      </p>
     </div>
   </section>
 
@@ -1131,6 +1105,31 @@ function aboutPage(lang) {
           .join('')}
       </ol>
       <div class="text-center mt-14"><a href="markets.html" class="btn btn-secondary">See where we operate ${icon('chevronRight', 'w-4 h-4')}</a></div>
+    </div>
+  </section>
+
+  <!-- Moved off the homepage, where three of these six sat beside the
+       commitments band making the same argument twice. Here the full set has
+       room, and it is the page a visitor opens when they are specifically
+       asking "why you?". -->
+  <section class="section bg-white hairline-top">
+    <div class="${SHELL}">
+      ${sectionHead(t(lang, 'whyEyebrow'), t(lang, 'whyTitle'), t(lang, 'whySubtitle'), { align: 'start' })}
+      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+        ${[
+          ['why1Title', 'why1Desc', 'shield'],
+          ['why2Title', 'why2Desc', 'briefcase'],
+          ['why3Title', 'why3Desc', 'mapPin'],
+          ['why4Title', 'why4Desc', 'mail'],
+          ['why5Title', 'why5Desc', 'award'],
+          ['why6Title', 'why6Desc', 'check'],
+        ]
+          .map(
+            ([tk, dk, ic]) =>
+              `<div class="${CARD}"><span class="icon-chip">${icon(ic, 'w-5 h-5')}</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">${t(lang, tk)}</h3><p class="text-slate text-sm mt-2 leading-relaxed">${t(lang, dk)}</p></div>`
+          )
+          .join('')}
+      </div>
     </div>
   </section>
 

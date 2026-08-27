@@ -51,7 +51,7 @@ export const commitments = [
   {
     icon: 'clock',
     title: 'A reply within one business day',
-    body: 'Every enquiry is read by a person and answered within one working day — not routed into an automated drip sequence.',
+    body: 'Every enquiry is read by a person and answered within one working day, not routed into an automated drip sequence.',
   },
   {
     icon: 'mail',
@@ -61,7 +61,7 @@ export const commitments = [
   {
     icon: 'shield',
     title: 'A written scope before anything is signed',
-    body: 'What we will do, what it costs, and how long it takes — in writing, before you commit to anything.',
+    body: 'What we will do, what it costs and how long it takes, in writing, before you commit to anything.',
   },
   {
     icon: 'check',

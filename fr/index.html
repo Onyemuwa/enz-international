@@ -25,7 +25,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=13" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=14" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,7 +55,6 @@
   <body class="bg-white text-ink">
     <a href="#main-content" class="skip-link">Aller au contenu principal</a>
     
-  <div class="read-progress" data-read-progress aria-hidden="true"></div>
   <header class="site-header" data-site-header>
     <div class="shell flex items-center justify-between gap-6 h-[4.25rem]">
       <a href="index.html" class="flex items-center shrink-0" aria-label="ENZ INTERNATIONAL — home">
@@ -111,7 +110,7 @@
     
     <main id="main-content">
       
-  <section class="section-dark pt-12 pb-24 md:pt-16 md:pb-32">
+  <section class="section-dark hero">
     <div aria-hidden="true" class="glow glow-brand w-[34rem] h-[34rem] -top-40 -left-32"></div>
         <div aria-hidden="true" class="glow glow-accent w-[26rem] h-[26rem] -bottom-32 -right-24"></div>
     <div class="shell grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
@@ -170,7 +169,7 @@
                     <span class="mono-tag text-brand-bright">IQC</span>
                     <span class="text-sm font-medium text-white">Incoming quality control</span>
                   </span>
-                  <span class="block text-xs text-white/60 mt-1">Before production starts</span>
+                  <span class="status-when block text-xs text-white/60 mt-1">Before production starts</span>
                 </span>
               </div><div class="status-row">
                 <span class="status-dot status-done"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
@@ -179,7 +178,7 @@
                     <span class="mono-tag text-brand-bright">DUPRO</span>
                     <span class="text-sm font-medium text-white">During-production inspection</span>
                   </span>
-                  <span class="block text-xs text-white/60 mt-1">At roughly 20–30% completion</span>
+                  <span class="status-when block text-xs text-white/60 mt-1">At roughly 20–30% completion</span>
                 </span>
               </div><div class="status-row">
                 <span class="status-dot status-active"><span class="status-pulse w-2 h-2 rounded-full bg-current"></span></span>
@@ -188,7 +187,7 @@
                     <span class="mono-tag text-brand-bright">PSI</span>
                     <span class="text-sm font-medium text-white">Pre-shipment inspection</span>
                   </span>
-                  <span class="block text-xs text-white/60 mt-1">At 100% production, 80%+ packed</span>
+                  <span class="status-when block text-xs text-white/60 mt-1">At 100% production, 80%+ packed</span>
                 </span>
               </div><div class="status-row">
                 <span class="status-dot status-idle"><span class="w-2 h-2 rounded-full border border-current"></span></span>
@@ -197,7 +196,7 @@
                     <span class="mono-tag text-brand-bright">LOADING</span>
                     <span class="text-sm font-medium text-white">Container loading supervision</span>
                   </span>
-                  <span class="block text-xs text-white/60 mt-1">At the point of loading</span>
+                  <span class="status-when block text-xs text-white/60 mt-1">At the point of loading</span>
                 </span>
               </div>
             </div>
@@ -215,28 +214,19 @@
     <div class="shell">
       <div class="-mt-16 md:-mt-20 relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-2xl border border-line shadow-lift overflow-hidden">
         <div class="bg-white p-6 md:p-8 text-center">
-          <div class="stat-value text-gradient-dark"><span data-counter="10" data-counter-suffix="+">10+</span></div>
+          <div class="stat-value text-ink"><span data-counter="10" data-counter-suffix="+">10+</span></div>
           <div class="text-sm text-slate mt-2.5">Années d'activité</div>
         </div><div class="bg-white p-6 md:p-8 text-center">
-          <div class="stat-value text-gradient-dark"><span data-counter="50" data-counter-suffix="+">50+</span></div>
+          <div class="stat-value text-ink"><span data-counter="50" data-counter-suffix="+">50+</span></div>
           <div class="text-sm text-slate mt-2.5">Marchés desservis</div>
         </div><div class="bg-white p-6 md:p-8 text-center">
-          <div class="stat-value text-gradient-dark"><span data-counter="200" data-counter-suffix="+">200+</span></div>
+          <div class="stat-value text-ink"><span data-counter="200" data-counter-suffix="+">200+</span></div>
           <div class="text-sm text-slate mt-2.5">Projets livrés</div>
         </div><div class="bg-white p-6 md:p-8 text-center">
-          <div class="stat-value text-gradient-dark"><span data-counter="98" data-counter-suffix="%">98%</span></div>
+          <div class="stat-value text-ink"><span data-counter="98" data-counter-suffix="%">98%</span></div>
           <div class="text-sm text-slate mt-2.5">Satisfaction client</div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Static text with a CSS marquee laid over it: if the animation never
-       runs, the row simply doesn't move. It is never blank. -->
-  <section class="bg-white pt-12 pb-2">
-    <p class="text-center text-xs font-semibold tracking-[0.14em] uppercase text-slate-light">Normes, incoterms et hubs</p>
-    <div class="marquee mt-5">
-      <div class="marquee-track"><div class="flex"><span class="marquee-item">EXW</span><span class="marquee-item">FOB</span><span class="marquee-item">CIF</span><span class="marquee-item">DDP</span><span class="marquee-item">IQC</span><span class="marquee-item">DUPRO</span><span class="marquee-item">PSI</span><span class="marquee-item">LOADING</span><span class="marquee-item">AQL 2.5</span><span class="marquee-item">ISO 9001</span><span class="marquee-item">Guangzhou</span><span class="marquee-item">Dar es Salaam</span><span class="marquee-item">Nairobi</span><span class="marquee-item">Kinshasa</span><span class="marquee-item">London</span><span class="marquee-item">New York</span></div><div class="flex" aria-hidden="true"><span class="marquee-item">EXW</span><span class="marquee-item">FOB</span><span class="marquee-item">CIF</span><span class="marquee-item">DDP</span><span class="marquee-item">IQC</span><span class="marquee-item">DUPRO</span><span class="marquee-item">PSI</span><span class="marquee-item">LOADING</span><span class="marquee-item">AQL 2.5</span><span class="marquee-item">ISO 9001</span><span class="marquee-item">Guangzhou</span><span class="marquee-item">Dar es Salaam</span><span class="marquee-item">Nairobi</span><span class="marquee-item">Kinshasa</span><span class="marquee-item">London</span><span class="marquee-item">New York</span></div></div>
     </div>
   </section>
 
@@ -262,11 +252,11 @@
         </div><div class="card">
           <span class="icon-chip icon-chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
           <h3 class="text-[1.0625rem] font-medium text-ink mt-4">The quoted price is not the price you pay</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">Unit price is a fraction of landed cost. Freight, duties, inspection, and port fees arrive later, and a cheap EXW quote routinely lands dearer than a higher FOB one.</p>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Unit price is a fraction of landed cost. Freight, duties, inspection and port fees all arrive later, and a cheap EXW quote routinely lands dearer than a higher FOB one.</p>
         </div><div class="card">
           <span class="icon-chip icon-chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
           <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Nobody owns the problem when it goes wrong</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">A supplier, a forwarder, and a customs broker each answer for their own leg. The gaps between them are where orders stall — and those gaps are yours to manage.</p>
+          <p class="text-slate text-sm mt-2 leading-relaxed">A supplier, a forwarder and a customs broker each answer for their own leg. The gaps between them are where orders stall, and those gaps are yours to manage.</p>
         </div>
       </div>
     </div>
@@ -276,10 +266,12 @@
   <section class="section bg-gray-bg border-y border-line">
     <div class="shell">
       
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="eyebrow">Services</p>
-        <h2 class="h2-section mt-4">Nos services principaux</h2>
-        <p class="lead mt-5">Trois lignes de service intégrées, de la première expédition à la pleine production.</p>
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+        <div class="lg:col-span-6">
+          <p class="eyebrow">Services</p>
+          <h2 class="h2-section mt-4">Nos services principaux</h2>
+        </div>
+        <div class="lg:col-span-6"><p class="lead">Trois lignes de service intégrées, de la première expédition à la pleine production.</p></div>
       </div>
       <!-- Bento rather than a fourth identical three-up grid: the first
            service gets a tall feature tile, the other two stack beside it. The
@@ -320,10 +312,12 @@
   <section id="how-it-works" class="section bg-white">
     <div class="shell">
       
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="eyebrow">Processus</p>
-        <h2 class="h2-section mt-4">Comment se déroule un projet d'approvisionnement</h2>
-        <p class="lead mt-5">Cinq étapes du premier appel à la livraison, avec ce qui se passe à chacune et ce que vous en retirez.</p>
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+        <div class="lg:col-span-6">
+          <p class="eyebrow">Processus</p>
+          <h2 class="h2-section mt-4">Comment se déroule un projet d'approvisionnement</h2>
+        </div>
+        <div class="lg:col-span-6"><p class="lead">Cinq étapes du premier appel à la livraison, avec ce qui se passe à chacune et ce que vous en retirez.</p></div>
       </div>
       <ol data-reveal-group class="rail grid gap-4 md:grid-cols-2 lg:grid-cols-5 mt-14">
         <li class="card bg-white">
@@ -372,10 +366,12 @@
   <section class="section bg-gray-bg border-y border-line">
     <div class="shell max-w-5xl">
       
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="eyebrow">Comparaison</p>
-        <h2 class="h2-section mt-4">Direct sourcing vs. working with us</h2>
-        <p class="lead mt-5">An honest comparison. Direct sourcing is genuinely the right call for some buyers — usually those with staff on the ground or an established supplier they already trust.</p>
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+        <div class="lg:col-span-6">
+          <p class="eyebrow">Comparaison</p>
+          <h2 class="h2-section mt-4">Direct sourcing vs. working with us</h2>
+        </div>
+        <div class="lg:col-span-6"><p class="lead">An honest comparison. Direct sourcing is genuinely the right call for some buyers — usually those with staff on the ground or an established supplier they already trust.</p></div>
       </div>
       <div class="table-wrap mt-12">
         <table class="table-pro">
@@ -410,7 +406,7 @@
         <div class="card-dark">
           <span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
           <h3 class="font-medium text-[1.0625rem] mt-4">A reply within one business day</h3>
-          <p class="text-white/60 text-sm mt-2 leading-relaxed">Every enquiry is read by a person and answered within one working day — not routed into an automated drip sequence.</p>
+          <p class="text-white/60 text-sm mt-2 leading-relaxed">Every enquiry is read by a person and answered within one working day, not routed into an automated drip sequence.</p>
         </div><div class="card-dark">
           <span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
           <h3 class="font-medium text-[1.0625rem] mt-4">One named point of contact</h3>
@@ -418,15 +414,12 @@
         </div><div class="card-dark">
           <span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
           <h3 class="font-medium text-[1.0625rem] mt-4">A written scope before anything is signed</h3>
-          <p class="text-white/60 text-sm mt-2 leading-relaxed">What we will do, what it costs, and how long it takes — in writing, before you commit to anything.</p>
+          <p class="text-white/60 text-sm mt-2 leading-relaxed">What we will do, what it costs and how long it takes, in writing, before you commit to anything.</p>
         </div><div class="card-dark">
           <span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
           <h3 class="font-medium text-[1.0625rem] mt-4">Inspection reports you can actually read</h3>
           <p class="text-white/60 text-sm mt-2 leading-relaxed">Photographed findings against your specification at each inspection point, in plain language, not a pass/fail stamp.</p>
         </div>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        <div class="card-dark"><span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3 class="font-medium text-[1.0625rem] mt-4">Réseau de fournisseurs vérifiés</h3><p class="text-white/60 text-sm mt-2 leading-relaxed">Chaque usine que nous recommandons passe par notre propre processus de diligence avant même de vous transmettre un devis.</p></div><div class="card-dark"><span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><h3 class="font-medium text-[1.0625rem] mt-4">Prise en charge de bout en bout</h3><p class="text-white/60 text-sm mt-2 leading-relaxed">Une seule équipe gère l'approvisionnement, la logistique et l'implantation d'usine — aucun transfert entre prestataires déconnectés.</p></div><div class="card-dark"><span class="icon-chip icon-chip-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><h3 class="font-medium text-[1.0625rem] mt-4">Présence locale</h3><p class="text-white/60 text-sm mt-2 leading-relaxed">Des équipes basées à Guangzhou et dans les marchés que nous desservons — pas seulement une ligne téléphonique.</p></div>
       </div>
       <div class="text-center mt-10"><a href="about.html" class="btn btn-ghost-light">En savoir plus <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
     </div>
@@ -438,10 +431,12 @@
   <section class="section bg-white">
     <div class="shell">
       
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="eyebrow">Collaboration</p>
-        <h2 class="h2-section mt-4">Trois façons de travailler avec nous</h2>
-        <p class="lead mt-5">Choisissez la part du processus que vous voulez nous confier. Vous pouvez commencer petit et monter — c'est ce que font la plupart des clients.</p>
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+        <div class="lg:col-span-6">
+          <p class="eyebrow">Collaboration</p>
+          <h2 class="h2-section mt-4">Trois façons de travailler avec nous</h2>
+        </div>
+        <div class="lg:col-span-6"><p class="lead">Choisissez la part du processus que vous voulez nous confier. Vous pouvez commencer petit et monter — c'est ce que font la plupart des clients.</p></div>
       </div>
       <div data-reveal-group class="grid lg:grid-cols-3 gap-5 mt-14 items-start">
         
@@ -486,7 +481,7 @@
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></span>
           <h3 class="text-lg font-medium text-ink mt-5">Full factory partnership</h3>
           <p class="text-brand text-sm font-medium mt-1">Build production, not just orders.</p>
-          <p class="text-slate text-sm mt-3 leading-relaxed">End-to-end factory establishment — site selection through commissioning — plus ongoing operational and sourcing support once you are running.</p>
+          <p class="text-slate text-sm mt-3 leading-relaxed">End-to-end factory establishment, from site selection through commissioning, plus ongoing operational and sourcing support once you are running.</p>
 
           <p class="text-[0.6875rem] font-semibold tracking-[0.14em] uppercase text-slate mt-6">Ce qui est inclus</p>
           <ul class="mt-3 space-y-2 flex-1">
@@ -511,10 +506,12 @@
   <section class="section bg-gray-bg border-y border-line">
     <div class="shell">
       
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="eyebrow">Nos clients</p>
-        <h2 class="h2-section mt-4">Secteurs et marchés que nous servons</h2>
-        <p class="lead mt-5">L'expérience sectorielle détermine ce que nous vérifions. Voici les catégories que nous sourçons le plus souvent, et où nous livrons.</p>
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+        <div class="lg:col-span-6">
+          <p class="eyebrow">Nos clients</p>
+          <h2 class="h2-section mt-4">Secteurs et marchés que nous servons</h2>
+        </div>
+        <div class="lg:col-span-6"><p class="lead">L'expérience sectorielle détermine ce que nous vérifions. Voici les catégories que nous sourçons le plus souvent, et où nous livrons.</p></div>
       </div>
       <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
         <a href="industries.html" class="card block group">
@@ -576,7 +573,7 @@
               <h3 class="text-lg font-medium text-ink">Tell us what you need</h3>
               <span class="pill pill-neutral mono-tag">2 minutes</span>
             </div>
-            <p class="text-slate text-sm mt-2 leading-relaxed">Product, rough volume, target market, and your timeline. A paragraph is enough — you do not need a finished specification to start.</p>
+            <p class="text-slate text-sm mt-2 leading-relaxed">Product, rough volume, target market and your timeline. A paragraph is enough; you do not need a finished specification to start.</p>
           </div>
         </li><li class="card flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
           <span class="step-badge step-badge-lg">02</span>
@@ -603,7 +600,7 @@
               <h3 class="text-lg font-medium text-ink">A written scope, then work begins</h3>
               <span class="pill pill-neutral mono-tag">Before you commit</span>
             </div>
-            <p class="text-slate text-sm mt-2 leading-relaxed">What we will do, what it costs, and how long it takes — in writing. Nothing starts until you have agreed to it.</p>
+            <p class="text-slate text-sm mt-2 leading-relaxed">What we will do, what it costs and how long it takes, in writing. Nothing starts until you have agreed to it.</p>
           </div>
         </li>
       </ol>
@@ -613,42 +610,28 @@
     </div>
   </section>
 
-  <!-- 9. Reference material, as links out rather than inline chapters. -->
+  <!-- 9. Recent writing. This band used to carry four "read about landed
+       cost / timelines / Incoterms / mistakes" link cards on top of these
+       three posts — seven cards, 2.8 phone screens, and every one of those
+       four destinations is already in the nav and the footer. A homepage
+       should not contain a directory of itself, so the link cards went and
+       the actual writing stayed. The guide is one line away, below. -->
   <section class="section bg-gray-bg border-y border-line">
     <div class="shell">
       
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="eyebrow">Ressources</p>
-        <h2 class="h2-section mt-4">Le guide de l'acheteur</h2>
-        <p class="lead mt-5">Les références à lire avant votre première commande — coûts, paiement, délais, et les erreurs qui coûtent le plus cher.</p>
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+        <div class="lg:col-span-6">
+          <p class="eyebrow">Perspectives</p>
+          <h2 class="h2-section mt-4">Perspectives du secteur</h2>
+        </div>
+        
       </div>
-      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
-        <a href="resources.html#landed-cost" class="card card-muted block group flex flex-col">
-          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">What actually makes up your landed cost</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Unit price is usually 50–70% of what you finally pay. A quote compared on unit price alone is a quote compared on the smaller half of the number.</p>
-          <span class="link-arrow text-sm mt-4">Lire la suite <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
-        </a><a href="resources.html#timelines" class="card card-muted block group flex flex-col">
-          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Realistic timelines</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Typical ranges, not promises — complexity, tooling, and season all move them. The value is in planning against honest numbers rather than best-case ones.</p>
-          <span class="link-arrow text-sm mt-4">Lire la suite <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
-        </a><a href="logistics.html" class="card card-muted block group flex flex-col">
-          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Quel Incoterm demander</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed flex-1">L'Incoterm détermine qui paie quoi et où le risque est transféré.</p>
-          <span class="link-arrow text-sm mt-4">Lire la suite <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
-        </a><a href="resources.html#mistakes" class="card card-muted block group flex flex-col">
-          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Six erreurs qui coûtent le plus cher aux acheteurs</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Chacune est courante, coûteuse, et entièrement évitable si l'on sait quoi surveiller.</p>
-          <span class="link-arrow text-sm mt-4">Lire la suite <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
-        </a>
+      <div data-reveal-group class="grid md:grid-cols-3 gap-4 mt-12">
+        <a href="insight-navigating-china-supply-chain-2026.html" class="card block group flex flex-col"><span class="pill self-start">Sourcing</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Navigating China's Supply Chain in 2026: A Buyer's Checklist</h3><p class="text-slate text-sm mt-2 leading-relaxed flex-1">A practical framework for vetting suppliers, managing lead times, and protecting quality when sourcing from China.</p><span class="link-arrow text-sm mt-4">Lire la suite <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a><a href="insight-factory-setup-east-africa-guide.html" class="card block group flex flex-col"><span class="pill self-start">Factory Setup</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Factory Setup in East Africa: A Step-by-Step Guide</h3><p class="text-slate text-sm mt-2 leading-relaxed flex-1">From site selection to first production run — what to plan for when establishing manufacturing capacity in East Africa.</p><span class="link-arrow text-sm mt-4">Lire la suite <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a><a href="insight-commodity-trading-outlook-copper-cobalt.html" class="card block group flex flex-col"><span class="pill self-start">Commodities</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Commodity Trading Fundamentals: Copper and Cobalt</h3><p class="text-slate text-sm mt-2 leading-relaxed flex-1">A primer on the procurement considerations that matter most when trading copper and cobalt across African and Chinese markets.</p><span class="link-arrow text-sm mt-4">Lire la suite <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a>
       </div>
-
-      <div class="grid md:grid-cols-3 gap-4 mt-4">
-        <a href="insight-navigating-china-supply-chain-2026.html" class="card block group"><span class="pill">Sourcing</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Navigating China's Supply Chain in 2026: A Buyer's Checklist</h3><p class="text-slate text-sm mt-2 leading-relaxed">A practical framework for vetting suppliers, managing lead times, and protecting quality when sourcing from China.</p><span class="link-arrow text-sm mt-4">Lire la suite <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a><a href="insight-factory-setup-east-africa-guide.html" class="card block group"><span class="pill">Factory Setup</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Factory Setup in East Africa: A Step-by-Step Guide</h3><p class="text-slate text-sm mt-2 leading-relaxed">From site selection to first production run — what to plan for when establishing manufacturing capacity in East Africa.</p><span class="link-arrow text-sm mt-4">Lire la suite <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a><a href="insight-commodity-trading-outlook-copper-cobalt.html" class="card block group"><span class="pill">Commodities</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">Commodity Trading Fundamentals: Copper and Cobalt</h3><p class="text-slate text-sm mt-2 leading-relaxed">A primer on the procurement considerations that matter most when trading copper and cobalt across African and Chinese markets.</p><span class="link-arrow text-sm mt-4">Lire la suite <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span></a>
-      </div>
+      <p class="text-sm text-slate mt-8">
+        Les références à lire avant votre première commande — coûts, paiement, délais, et les erreurs qui coûtent le plus cher. <a href="resources.html" class="link-arrow">Lire le guide de l'acheteur <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+      </p>
     </div>
   </section>
 
@@ -699,8 +682,8 @@
     <div class="shell">
       <div class="gradient-border max-w-5xl mx-auto shadow-2xl">
         <div class="bg-navy-deep/95 px-6 py-14 md:px-16 md:py-20 text-center">
-          <h2 class="h2-section on-dark">Prêt à transformer votre chaîne d'approvisionnement?</h2>
-          <p class="lead-light mt-5 max-w-2xl mx-auto">Réservez une consultation avec notre équipe et découvrez comment ENZ peut accélérer votre croissance.</p>
+          <h2 class="h2-section on-dark">Dites-nous ce que vous cherchez à sourcer</h2>
+          <p class="lead-light mt-5 max-w-2xl mx-auto">Un appel de 30 minutes, gratuit et sans engagement. Si votre projet ne nous correspond pas, nous vous le dirons pendant cet appel au lieu de le chiffrer.</p>
           <div class="flex flex-col sm:flex-row justify-center gap-3 mt-10">
             <button data-open-booking class="btn btn-primary btn-lg">Réserver une consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
             <a href="contact.html" class="btn btn-ghost-light btn-lg">Parlons-en</a>
@@ -872,10 +855,10 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=13"></script>
-    <script src="../assets/js/i18n.js?v=13"></script>
-    <script src="../assets/js/api.js?v=13"></script>
-    <script src="../assets/js/site.js?v=13" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=13"></script>
+    <script src="../assets/js/config.js?v=14"></script>
+    <script src="../assets/js/i18n.js?v=14"></script>
+    <script src="../assets/js/api.js?v=14"></script>
+    <script src="../assets/js/site.js?v=14" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=14"></script>
   </body>
 </html>

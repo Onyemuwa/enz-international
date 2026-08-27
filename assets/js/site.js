@@ -1,6 +1,6 @@
 // Shared vanilla-JS behavior for every page: mobile menu, modals (with focus
 // trap), FAQ accordion, scroll-linked chrome (sticky header state, reading
-// progress, back-to-top), and form submissions against ENZ_API. No framework.
+// back-to-top, floating action), and form submissions against ENZ_API.
 (function () {
   'use strict';
 
@@ -235,14 +235,14 @@
   });
 
   // ---------- Scroll-linked chrome ----------
-  // Header border/shadow, reading-progress bar, and the back-to-top button all
-  // read the same scroll position, so they share one throttled listener rather
-  // than three competing ones.
+  // The header border, the back-to-top button and the floating WhatsApp action
+  // all read the same scroll position, so they share one throttled listener
+  // rather than three competing ones.
   var header = document.querySelector('[data-site-header]');
-  var progress = document.querySelector('[data-read-progress]');
   var toTop = document.querySelector('[data-to-top]');
+  var fab = document.querySelector('.fab-whatsapp');
 
-  if (header || progress || toTop) {
+  if (header || toTop || fab) {
     var scrollTicking = false;
 
     var updateChrome = function () {
@@ -251,14 +251,14 @@
       // The header only earns its border once there is content behind it.
       if (header) header.classList.toggle('is-scrolled', y > 8);
 
-      if (progress) {
-        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
-        var pct = scrollable > 0 ? Math.min(y / scrollable, 1) : 0;
-        progress.style.width = pct * 100 + '%';
-      }
-
       // Only worth offering once scrolling back is actually a chore.
       if (toTop) toTop.hidden = y < 900;
+
+      // On phones the hero's full-width CTAs sit at the same height as the
+      // floating action, so it covered "Book Consultation". Tuck it until the
+      // hero is behind us. The CSS only honours `is-tucked` under 768px, so
+      // this is inert on desktop where there is no collision.
+      if (fab) fab.classList.toggle('is-tucked', y < 520);
 
       scrollTicking = false;
     };

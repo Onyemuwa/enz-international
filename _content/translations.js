@@ -95,8 +95,6 @@ const dict = {
 
     // Hero
     heroTitle: 'Global Sourcing & Industrial Excellence',
-    heroSub:
-      'Your trusted partner for commodities trading, factory setup, and China market entry. Serving East Africa, DRC, US, UK and beyond.',
     heroBadge1: 'Sourcing',
     heroBadge2: 'Quality control',
     heroBadge3: 'Factory setup',
@@ -164,8 +162,8 @@ const dict = {
     insightsReadTime: 'min read',
 
     // CTA banner
-    ctaBannerTitle: 'Ready to Transform Your Supply Chain?',
-    ctaBannerDesc: 'Book a consultation with our team and discover how ENZ can accelerate your growth.',
+    ctaBannerTitle: 'Tell us what you need to source',
+    ctaBannerDesc: 'A 30-minute call, free, with no obligation attached. If your project is not a fit for us, we will say so on that call rather than quote for it.',
 
     // Booking modal / page
     bookingTitle: 'Executive Consultation',
@@ -367,8 +365,6 @@ const dict = {
     ctaBackHome: 'Rudi mwanzo',
 
     heroTitle: 'Ugavi wa Kimataifa na Ubora wa Viwanda',
-    heroSub:
-      'Mshirika wako wa kuaminika kwa biashara ya bidhaa, uanzishaji wa kiwanda, na kuingia soko la China.',
     heroBadge1: 'Ununuzi',
     heroBadge2: 'Udhibiti wa ubora',
     heroBadge3: 'Uanzishaji wa kiwanda',
@@ -429,8 +425,8 @@ const dict = {
     insightsPublished: 'Ilichapishwa',
     insightsReadTime: 'dakika za kusoma',
 
-    ctaBannerTitle: 'Tayari Kubadilisha Mnyororo wako wa Ugavi?',
-    ctaBannerDesc: 'Panga ushauriano na timu yetu na ugundue jinsi ENZ inavyoweza kuharakisha ukuaji wako.',
+    ctaBannerTitle: 'Tuambie unachotaka kununua',
+    ctaBannerDesc: 'Simu ya dakika 30, bila malipo, bila ahadi yoyote. Kama mradi wako haufai kwetu, tutasema hivyo kwenye simu hiyo badala ya kukunukuria bei.',
 
     bookingTitle: 'Ushauriano wa Kiutendaji',
     bookingIntro: 'Tuambie kuhusu mradi wako na tutajibu ndani ya siku moja ya kazi.',
@@ -623,8 +619,6 @@ const dict = {
     ctaBackHome: "Retour à l'accueil",
 
     heroTitle: 'Approvisionnement mondial et excellence industrielle',
-    heroSub:
-      "Votre partenaire de confiance pour le négoce de matières premières, l'implantation d'usines et l'entrée sur le marché chinois.",
     heroBadge1: 'Sourcing',
     heroBadge2: 'Contrôle qualité',
     heroBadge3: "Implantation d'usine",
@@ -685,8 +679,8 @@ const dict = {
     insightsPublished: 'Publié le',
     insightsReadTime: 'min de lecture',
 
-    ctaBannerTitle: 'Prêt à transformer votre chaîne d\'approvisionnement?',
-    ctaBannerDesc: 'Réservez une consultation avec notre équipe et découvrez comment ENZ peut accélérer votre croissance.',
+    ctaBannerTitle: 'Dites-nous ce que vous cherchez à sourcer',
+    ctaBannerDesc: 'Un appel de 30 minutes, gratuit et sans engagement. Si votre projet ne nous correspond pas, nous vous le dirons pendant cet appel au lieu de le chiffrer.',
 
     bookingTitle: 'Consultation exécutive',
     bookingIntro: 'Parlez-nous de votre projet, nous répondrons sous un jour ouvré.',
@@ -879,7 +873,6 @@ const dict = {
     ctaBackHome: '返回首页',
 
     heroTitle: '全球采购与工业卓越',
-    heroSub: '您值得信赖的商品贸易、工厂建设和中国市场进入合作伙伴。服务东非、刚果金、美国、英国及全球。',
     heroBadge1: '采购',
     heroBadge2: '质量管控',
     heroBadge3: '工厂建设',
@@ -940,8 +933,8 @@ const dict = {
     insightsPublished: '发布于',
     insightsReadTime: '分钟阅读',
 
-    ctaBannerTitle: '准备好改造您的供应链了吗？',
-    ctaBannerDesc: '预约我们的专家咨询，了解ENZ如何加速您的增长。',
+    ctaBannerTitle: '告诉我们你需要采购什么',
+    ctaBannerDesc: '30 分钟通话，免费，且不附带任何义务。如果你的项目并不适合我们，我们会在通话中直说，而不是先给你报价。',
 
     bookingTitle: '高管咨询',
     bookingIntro: '告诉我们您的项目，我们将在一个工作日内回复。',
