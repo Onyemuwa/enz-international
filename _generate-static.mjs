@@ -28,7 +28,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '22';
+const ASSET_VERSION = '23';
 
 // Sora, matching onemartent.com — one of the two reference sites.
 //
@@ -1960,7 +1960,7 @@ function legalPage(lang, type) {
   <section class="section bg-white">
     <div class="shell max-w-3xl">
       <h1 class="h2-section">${title}</h1>
-      <p class="text-xs text-amber-600 bg-amber-50 border border-amber-200 rounded-lg px-4 py-2.5 mb-9">Placeholder text — not reviewed by counsel. Replace before launch.</p>
+      <p class="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-4 py-2.5 mb-9">Placeholder text — not reviewed by counsel. Replace before launch.</p>
       <div class="prose-enz">${content}</div>
     </div>
   </section>`;

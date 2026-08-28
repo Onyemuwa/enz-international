@@ -19,7 +19,7 @@ module.exports = {
     extend: {
       colors: {
         /* Surfaces ------------------------------------------------------- */
-        ink: '#0A0F14',
+        ink: '#1E2E40',
         navy: '#0B1A24',
         'navy-deep': '#060D13',
         slate: '#5A6A75',
