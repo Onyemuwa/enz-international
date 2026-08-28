@@ -45,6 +45,7 @@ claims on a live company site, which isn't something to guess on your behalf.
 | Item | Where | What to do |
 |---|---|---|
 | Real production domain | ✅ done — `enzinternational.co`, set in `_generate-static.mjs` and baked into every canonical/hreflang tag, `robots.txt`, and `sitemap.xml` | Point your DNS at whichever host you use — `vercel.json` and `_headers` are both committed, so Vercel, Netlify, Cloudflare Pages, and GitHub Pages all work with no build command |
+| **Photography** | `_content/images.js` | **The biggest visual upgrade available.** The site had two images on it, both the logo. Ten image slots are now built into the layouts and render a branded gradient until filled. Each entry carries the exact filename, pixel size and a brief describing what to buy. Drop files into `assets/images/`, set `src`, regenerate |
 | Team bios/photos | `en/about.html` (and sw/fr/zh) | Currently shows a "coming soon" placeholder instead of fake names — add a real team grid when you have photos/bios |
 | Client testimonials/case studies | `_content/proof.js` | Sections are built and styled but render nothing while the arrays are empty. Add real, permissioned entries and they appear automatically — nothing fabricated is shipped |
 | Certifications (e.g. "ISO 9001") | Hero trust badges say "Certifications on request" | Add a specific certification only once you can point to a real, current certificate |

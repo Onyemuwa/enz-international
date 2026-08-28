@@ -343,6 +343,136 @@
   .pill-accent { color: #C97A08; background: #FFF4E3; border-color: #FCE3BA; }
 
 
+  /* ---------- Media ----------------------------------------------------- */
+  /* Every image slot renders whether or not a file exists yet. With no file
+     the same box paints a branded gradient, so an unfilled slot reads as a
+     design decision rather than a broken image. See _content/images.js. */
+  .media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.125rem;
+    background: linear-gradient(140deg, #0E5878 0%, #12688F 45%, #1789C2 100%);
+    isolation: isolate;
+  }
+  .media > img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Aspect ratios, so the layout never shifts while an image decodes. */
+  .media-16-9 { aspect-ratio: 16 / 9; }
+  .media-16-10 { aspect-ratio: 16 / 10; }
+  .media-4-3 { aspect-ratio: 4 / 3; }
+  .media-3-2 { aspect-ratio: 3 / 2; }
+
+  /* The placeholder state: a subtle diagonal weave over the brand gradient,
+     plus a centred label naming what belongs there. */
+  .media-empty::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 1;
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,.055) 0 12px,
+      rgba(255,255,255,0) 12px 24px
+    );
+  }
+  .media-empty > .media-note {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: .5rem; padding: 1.25rem; text-align: center;
+    color: rgba(255,255,255,.85);
+  }
+  .media-note svg { opacity: .7; }
+  .media-note span {
+    font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    max-width: 22ch; line-height: 1.5;
+  }
+
+  /* ---------- Photographic hero ---------------------------------------- */
+  /* The contrast the page lost when the near-black bands went now comes from
+     a photograph with a scrim over it, rather than a synthetic gradient. A
+     dark wash on a real image reads as photography; the same wash on nothing
+     read as a generated landing page, which is the distinction that matters. */
+  .hero-media {
+    position: absolute; inset: 0; z-index: -2;
+    overflow: hidden;
+  }
+  .hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-media::after {
+    content: '';
+    position: absolute; inset: 0;
+    /* Heavier on the left, where the headline sits. */
+    background:
+      linear-gradient(100deg, rgba(6,13,19,.94) 0%, rgba(6,13,19,.82) 38%, rgba(6,13,19,.42) 68%, rgba(6,13,19,.30) 100%);
+  }
+  @media (max-width: 1023px) {
+    /* Stacked, the text sits over the whole image, so the scrim is even. */
+    .hero-media::after { background: linear-gradient(180deg, rgba(6,13,19,.90) 0%, rgba(6,13,19,.86) 55%, rgba(6,13,19,.92) 100%); }
+  }
+  /* No photo yet: the brand gradient stands in, and the hero still works. */
+  .hero-photo { position: relative; isolation: isolate; color: #fff; overflow: hidden; }
+  .hero-photo.is-empty { background: linear-gradient(150deg, #0C1F2C 0%, #0E5878 55%, #12688F 100%); }
+  .hero-photo .h2-section, .hero-photo h1 { color: #fff; }
+  .hero-photo .lead { color: rgba(255,255,255,.78); }
+  .hero-photo .eyebrow { color: rgba(255,255,255,.7); }
+  .hero-photo .eyebrow::before { background: linear-gradient(90deg, #6FC1EC, rgba(111,193,236,0)); }
+  .hero-photo .check-item { color: rgba(255,255,255,.75); }
+  .hero-photo .check-item > svg { color: #6FC1EC; }
+  .hero-photo .text-gradient {
+    background: linear-gradient(100deg, #A9D8F4 0%, #6FC1EC 40%, #FCAE42 115%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  /* Chips and the proof panel sit on the photo, so they go translucent. */
+  .hero-photo .chip {
+    color: #fff; background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.2);
+    backdrop-filter: blur(8px); box-shadow: none;
+  }
+  .hero-photo .chip:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.34); }
+  .hero-photo .chip svg { color: #6FC1EC; }
+  .hero-photo .btn-secondary {
+    color: #fff; background: rgba(255,255,255,.1);
+    border-color: rgba(255,255,255,.24); backdrop-filter: blur(8px); box-shadow: none;
+  }
+  .hero-photo .btn-secondary:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.4); }
+  .hero-photo a:focus-visible, .hero-photo button:focus-visible { outline-color: #A9D8F4; }
+
+  /* Glass proof panel over the photograph. */
+  .glass-panel {
+    background: rgba(255,255,255,.09);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 1.375rem;
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: 0 24px 60px -20px rgba(6,13,19,.6);
+    color: #fff;
+  }
+  .glass-panel .status-row {
+    background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12);
+  }
+  .glass-panel .status-row:hover { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.24); }
+  .glass-panel .status-done { background: rgba(74,222,128,.16); color: #86EFAC; border-color: rgba(134,239,172,.36); }
+  .glass-panel .status-active { background: rgba(111,193,236,.18); color: #A9D8F4; border-color: rgba(169,216,244,.4); }
+  .glass-panel .status-idle { background: rgba(255,255,255,.06); color: rgba(255,255,255,.5); border-color: rgba(255,255,255,.16); }
+  .glass-panel .mono-tag { color: #A9D8F4; }
+  .glass-panel .pill { color: #A9D8F4; background: rgba(169,216,244,.14); border-color: rgba(169,216,244,.28); }
+  .glass-panel .link-arrow { color: #A9D8F4; }
+  .glass-panel .link-arrow:hover { color: #fff; }
+
+  /* Card with a photo at the top. */
+  .card-media {
+    margin: -1.5rem -1.5rem 1.25rem;
+    border-radius: 1.125rem 1.125rem 0 0;
+  }
+  .card-lg .card-media { margin: -1.75rem -1.75rem 1.375rem; }
+  @media (min-width: 768px) { .card-lg .card-media { margin: -2.25rem -2.25rem 1.5rem; } }
+  @media (max-width: 639px) {
+    .card-media { margin: -1.25rem -1.25rem 1rem; }
+    .card-lg .card-media { margin: -1.375rem -1.375rem 1.125rem; }
+  }
+  a.card:hover .card-media img { transform: scale(1.04); }
+  .card-media img { transition: transform .5s var(--ease-spring); }
+
   /* ---------- Feature sections ----------------------------------------- */
   /* These were near-black bands with glowing orbs over them. That treatment
      is the single most recognisable "generated landing page" look there is,

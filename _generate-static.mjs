@@ -16,6 +16,7 @@ import { processSteps, qcStages, aqlExplainer, incoterms, shippingDocs, industri
 import { landedCost, commonMistakes, paymentTerms, timelines, glossary, whyChina } from './_content/pages2.js';
 import { problems, engagementModels, pricingFactors, gettingStarted } from './_content/narrative.js';
 import { testimonials, caseStudies, commitments } from './_content/proof.js';
+import { images, industryImages } from './_content/images.js';
 
 const OUT = path.resolve('.'); // repo root — this IS the site
 const SITE_URL = 'https://enzinternational.co';
@@ -27,7 +28,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '19';
+const ASSET_VERSION = '21';
 
 // One weight range, one request. `display=swap` means text paints immediately
 // in the fallback and re-renders in Inter — never an invisible headline.
@@ -63,6 +64,7 @@ const ICON_PATHS = {
   clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
   arrowLeft: '<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>',
   upload: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>',
+  image: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>',
 };
 
 function icon(name, cls = 'w-5 h-5') {
@@ -121,6 +123,47 @@ function sectionHead(eyebrow, title, lead, { align = 'center' } = {}) {
         <h2 class="${H2} mt-4">${title}</h2>
         ${lead ? `<p class="${LEAD} mt-5">${lead}</p>` : ''}
       </div>`;
+}
+
+// Renders an image slot from the manifest in _content/images.js.
+//
+// The slot is drawn whether or not the file exists. With no `src` it paints a
+// branded gradient at the same aspect ratio and names what belongs there, so
+// an unfilled slot reads as deliberate and the layout never shifts when the
+// photograph is finally dropped in.
+//
+// `eager` is for above-the-fold images only — everything else is lazy, because
+// a photo-led page with eager images would block first paint on all of them.
+function media(slot, { ratio = '16-9', className = '', eager = false, sizes = '' } = {}) {
+  const conf = images[slot] || industryImages[slot];
+  if (!conf) throw new Error(`Unknown image slot: ${slot}`);
+
+  if (!conf.src) {
+    return `<div class="media media-${ratio} media-empty ${className}" role="img" aria-label="${conf.alt}">
+            <span class="media-note" aria-hidden="true">
+              ${icon('image', 'w-6 h-6')}
+              <span>${conf.file}</span>
+            </span>
+          </div>`;
+  }
+
+  return `<div class="media media-${ratio} ${className}">
+            <img src="../assets/images/${conf.src}" alt="${conf.alt}"
+                 loading="${eager ? 'eager' : 'lazy'}" decoding="async"
+                 ${eager ? 'fetchpriority="high"' : ''}${sizes ? ` sizes="${sizes}"` : ''} />
+          </div>`;
+}
+
+// The hero photograph is a background rather than a slot, so it gets its own
+// renderer. When there is no file the section falls back to a brand gradient
+// via .is-empty and every layer above it is unchanged.
+function heroMedia() {
+  const conf = images.hero;
+  if (!conf.src) return '';
+  return `
+    <div class="hero-media" aria-hidden="true">
+      <img src="../assets/images/${conf.src}" alt="" loading="eager" decoding="async" fetchpriority="high" />
+    </div>`;
 }
 
 // One engagement model, as a card. Shared by the homepage summary and the
@@ -671,16 +714,17 @@ function homePage(lang) {
   // tabs hid half the offering behind a click, on the one section a first-time
   // visitor most needs to read in full.
   const coreServices = [
-    { icon: 'globe', title: t(lang, 'service1'), body: t(lang, 'service1Desc'), href: 'services.html#sourcing',
+    { icon: 'globe', img: 'sourcing', title: t(lang, 'service1'), body: t(lang, 'service1Desc'), href: 'services.html#sourcing',
       points: ['Verified-supplier shortlisting', 'Price benchmarking and negotiation', 'Freight and customs documentation'] },
-    { icon: 'check', title: t(lang, 'qcTitle'), body: t(lang, 'qcLead'), href: 'quality-control.html',
+    { icon: 'check', img: 'qualityControl', title: t(lang, 'qcTitle'), body: t(lang, 'qcLead'), href: 'quality-control.html',
       points: ['Incoming materials check', 'During-production inspection', 'Pre-shipment and loading checks'] },
-    { icon: 'calendar', title: t(lang, 'service2'), body: t(lang, 'service2Desc'), href: 'services.html#factory-setup',
+    { icon: 'calendar', img: 'factorySetup', title: t(lang, 'service2'), body: t(lang, 'service2Desc'), href: 'services.html#factory-setup',
       points: ['Site selection and feasibility', 'Machinery sourcing', 'Commissioning support'] },
   ];
 
   const body = `
-  <section class="section-feature hero">
+  <section class="hero hero-photo${images.hero.src ? '' : ' is-empty'}">
+    ${heroMedia()}
     <div class="${SHELL} grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
 
       <div class="lg:col-span-6">
@@ -719,8 +763,7 @@ function homePage(lang) {
            is no product to screenshot. The stage codes and timings are the
            real ones from _content/pages.js. -->
       <div class="lg:col-span-6">
-        <div class="gradient-border shadow-2xl">
-          <div class="bg-white p-6 md:p-7">
+        <div class="glass-panel p-6 md:p-7">
             <div class="flex items-center justify-between gap-4 pb-5 border-b border-line">
               <div>
                 <p class="text-ink font-medium">${t(lang, 'qcTitle')}</p>
@@ -755,7 +798,6 @@ function homePage(lang) {
 
             <p class="text-xs text-slate leading-relaxed mt-5 pt-5 border-t border-line">${t(lang, 'qcLead')}</p>
             <a href="quality-control.html" class="link-arrow text-sm mt-4">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
-          </div>
         </div>
       </div>
     </div>
@@ -809,6 +851,7 @@ function homePage(lang) {
           .map((sv, i) => {
             const feature = i === 0;
             return `<a href="${sv.href}" class="${CARD} card-lg flex flex-col group ${feature ? 'bento-feature' : ''}">
+          ${media(sv.img, { ratio: feature ? '4-3' : '16-9', className: 'card-media' })}
           <span class="icon-chip">${icon(sv.icon, feature ? 'w-6 h-6' : 'w-5 h-5')}</span>
           <h3 class="${feature ? 'text-2xl' : 'text-lg'} font-medium text-ink mt-5">${sv.title}</h3>
           <p class="text-slate ${feature ? 'text-[0.9375rem]' : 'text-sm'} mt-3 leading-relaxed">${sv.body}</p>
@@ -917,6 +960,7 @@ function homePage(lang) {
         ${industries
           .map(
             (ind) => `<a href="industries.html" class="${CARD} block group">
+          ${industryImages[ind.name] ? media(ind.name, { ratio: '16-10', className: 'card-media' }) : ''}
           <span class="icon-chip">${icon(ind.icon, 'w-5 h-5')}</span>
           <h3 class="text-[1.0625rem] font-medium text-ink mt-4">${ind.name}</h3>
           <p class="text-slate text-sm mt-2 leading-relaxed">${ind.body}</p>
@@ -925,7 +969,9 @@ function homePage(lang) {
           .join('')}
       </div>
 
-      <div class="mt-10 rounded-2xl border border-line bg-white p-6 md:p-8">
+      <div class="mt-10 rounded-2xl border border-line bg-white overflow-hidden">
+        ${media('markets', { ratio: '16-9', className: 'rounded-none max-h-64' })}
+        <div class="p-6 md:p-8">
         <div class="flex flex-wrap items-baseline justify-between gap-4">
           <h3 class="text-lg font-medium text-ink">${t(lang, 'footprintTitle')}</h3>
           <a href="markets.html" class="link-arrow text-sm">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
@@ -940,6 +986,7 @@ function homePage(lang) {
             .join('')}
         </div>
         <p class="text-sm text-slate mt-5">${t(lang, 'footprintHubsLabel')}: ${hubs.join(' · ')}</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1068,10 +1115,15 @@ function aboutPage(lang) {
 
   const body = `
   <section class="section section-feature">
-    <div class="shell max-w-4xl relative">
-      <h1 class="h1-display">${t(lang, 'aboutTitle')}</h1>
-      <p class="text-slate text-lg mt-7 leading-relaxed font-light">${t(lang, 'aboutDesc')}</p>
-      <p class="text-ink/65 text-lg mt-4 leading-relaxed font-light">We work as an extension of your team on the ground in China and East Africa — vetting suppliers, managing quality control, and coordinating the logistics that turn a purchase order or a factory blueprint into a delivered, working result. One point of contact owns your project from first call to final delivery, so nothing gets lost between departments or vendors.</p>
+    <div class="${SHELL} grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      <div class="lg:col-span-7">
+        <h1 class="h1-display">${t(lang, 'aboutTitle')}</h1>
+        <p class="lead mt-7">${t(lang, 'aboutDesc')}</p>
+        <p class="lead mt-4">We work as an extension of your team on the ground in China and East Africa, vetting suppliers, managing quality control, and coordinating the logistics that turn a purchase order or a factory blueprint into a delivered, working result. One point of contact owns your project from first call to final delivery, so nothing gets lost between departments or vendors.</p>
+      </div>
+      <div class="lg:col-span-5">
+        ${media('about', { ratio: '16-10' })}
+      </div>
     </div>
   </section>
 

@@ -25,7 +25,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=19" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=21" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -123,7 +123,8 @@
     
     <main id="main-content">
       
-  <section class="section-feature hero">
+  <section class="hero hero-photo is-empty">
+    
     <div class="shell grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
 
       <div class="lg:col-span-6">
@@ -162,8 +163,7 @@
            is no product to screenshot. The stage codes and timings are the
            real ones from _content/pages.js. -->
       <div class="lg:col-span-6">
-        <div class="gradient-border shadow-2xl">
-          <div class="bg-white p-6 md:p-7">
+        <div class="glass-panel p-6 md:p-7">
             <div class="flex items-center justify-between gap-4 pb-5 border-b border-line">
               <div>
                 <p class="text-ink font-medium">Ukaguzi wa hatua nne, si moja</p>
@@ -214,7 +214,6 @@
 
             <p class="text-xs text-slate leading-relaxed mt-5 pt-5 border-t border-line">Matatizo mengi ya ubora hugunduliwa kuchelewa mno. Ukaguzi wa hatua kwa hatua huzuia kasoro kuwa hasara.</p>
             <a href="quality-control.html" class="link-arrow text-sm mt-4">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
-          </div>
         </div>
       </div>
     </div>
@@ -290,6 +289,12 @@
            tiles, which is exactly how it read before. -->
       <div data-reveal-group class="bento mt-14">
         <a href="services.html#sourcing" class="card card-lg flex flex-col group bento-feature">
+          <div class="media media-4-3 media-empty card-media" role="img" aria-label="Shipping containers stacked at a port terminal">
+            <span class="media-note" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>sourcing.webp</span>
+            </span>
+          </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
           <h3 class="text-2xl font-medium text-ink mt-5">Ugavi wa Kimataifa na Biashara ya Bidhaa</h3>
           <p class="text-slate text-[0.9375rem] mt-3 leading-relaxed">Upatikanaji wa moja kwa moja kwa wazalishaji wa China, udhibiti wa ubora, na ununuzi wa bidhaa.</p>
@@ -298,6 +303,12 @@
           </ul>
           <span class="link-arrow text-sm mt-6">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
         </a><a href="quality-control.html" class="card card-lg flex flex-col group ">
+          <div class="media media-16-9 media-empty card-media" role="img" aria-label="Inspector checking goods against a specification sheet before shipment">
+            <span class="media-note" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>quality-inspection.webp</span>
+            </span>
+          </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
           <h3 class="text-lg font-medium text-ink mt-5">Ukaguzi wa hatua nne, si moja</h3>
           <p class="text-slate text-sm mt-3 leading-relaxed">Matatizo mengi ya ubora hugunduliwa kuchelewa mno. Ukaguzi wa hatua kwa hatua huzuia kasoro kuwa hasara.</p>
@@ -306,6 +317,12 @@
           </ul>
           <span class="link-arrow text-sm mt-6">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
         </a><a href="services.html#factory-setup" class="card card-lg flex flex-col group ">
+          <div class="media media-16-9 media-empty card-media" role="img" aria-label="Machinery being installed and commissioned in a new facility">
+            <span class="media-note" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>factory-setup.webp</span>
+            </span>
+          </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
           <h3 class="text-lg font-medium text-ink mt-5">Uanzishaji wa Kiwanda</h3>
           <p class="text-slate text-sm mt-3 leading-relaxed">Ushauriano kamili, upatikanaji wa mashine, mipango ya mstari wa uzalishaji.</p>
@@ -524,25 +541,56 @@
       </div>
       <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
         <a href="industries.html" class="card block group">
+          <div class="media media-16-10 media-empty card-media" role="img" aria-label="Tiles, fittings and finishing materials stacked at a building site">
+            <span class="media-note" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>ind-construction.webp</span>
+            </span>
+          </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
           <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Construction & building materials</h3>
           <p class="text-slate text-sm mt-2 leading-relaxed">Fixtures, fittings, tiles, sanitaryware, hardware, and finishing materials. Volume-heavy, freight-sensitive, and highly dependent on consistent tolerance across repeat orders.</p>
         </a><a href="industries.html" class="card block group">
+          <div class="media media-16-10 media-empty card-media" role="img" aria-label="Production machinery on an assembly line">
+            <span class="media-note" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>ind-machinery.webp</span>
+            </span>
+          </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
           <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Industrial equipment & machinery</h3>
           <p class="text-slate text-sm mt-2 leading-relaxed">Production machinery, spare parts, and assembly-line equipment. Long lead times and high consequence of error, so verification before shipment is critical.</p>
         </a><a href="industries.html" class="card block group">
+          <div class="media media-16-10 media-empty card-media" role="img" aria-label="Packaged consumer goods moving along a production line">
+            <span class="media-note" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>ind-consumer.webp</span>
+            </span>
+          </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
           <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Consumer goods & retail</h3>
           <p class="text-slate text-sm mt-2 leading-relaxed">Household products, packaging, textiles, and general merchandise. Typically the most quality-sensitive category, because defects surface as customer returns.</p>
         </a><a href="industries.html" class="card block group">
+          <div class="media media-16-10 media-empty card-media" role="img" aria-label="Raw copper and mineral stock at a bulk handling facility">
+            <span class="media-note" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>ind-commodities.webp</span>
+            </span>
+          </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
           <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Commodities & raw materials</h3>
           <p class="text-slate text-sm mt-2 leading-relaxed">Copper, cobalt, and select agricultural goods. Contract structure and chain-of-custody documentation matter more here than in any other category.</p>
         </a>
       </div>
 
-      <div class="mt-10 rounded-2xl border border-line bg-white p-6 md:p-8">
+      <div class="mt-10 rounded-2xl border border-line bg-white overflow-hidden">
+        <div class="media media-16-9 media-empty rounded-none max-h-64" role="img" aria-label="Cargo vessel being loaded at an East African port">
+            <span class="media-note" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>markets-port.webp</span>
+            </span>
+          </div>
+        <div class="p-6 md:p-8">
         <div class="flex flex-wrap items-baseline justify-between gap-4">
           <h3 class="text-lg font-medium text-ink">Uwepo wa Kimataifa</h3>
           <a href="markets.html" class="link-arrow text-sm">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
@@ -561,6 +609,7 @@
           </a>
         </div>
         <p class="text-sm text-slate mt-5">Vituo vya uendeshaji: Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</p>
+        </div>
       </div>
     </div>
   </section>
@@ -848,9 +897,9 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=19"></script>
-    <script src="../assets/js/api.js?v=19"></script>
-    <script src="../assets/js/site.js?v=19" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=19"></script>
+    <script src="../assets/js/config.js?v=21"></script>
+    <script src="../assets/js/api.js?v=21"></script>
+    <script src="../assets/js/site.js?v=21" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=21"></script>
   </body>
 </html>
