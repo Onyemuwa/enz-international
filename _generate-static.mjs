@@ -12,7 +12,7 @@ import { insights } from './_content/insights.js';
 import { markets } from './_content/markets.js';
 import { regions, hubs } from './_content/regions.js';
 import { faqs } from './_content/faqs.js';
-import { processSteps, qcStages, aqlExplainer, incoterms, shippingDocs, industries, comparison, resources, trustSignals } from './_content/pages.js';
+import { processSteps, qcStages, aqlExplainer, incoterms, shippingDocs, industries, comparison, resources } from './_content/pages.js';
 import { landedCost, commonMistakes, paymentTerms, timelines, glossary, whyChina } from './_content/pages2.js';
 import { problems, engagementModels, pricingFactors, gettingStarted } from './_content/narrative.js';
 import { testimonials, caseStudies, commitments } from './_content/proof.js';
@@ -27,7 +27,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '16';
+const ASSET_VERSION = '17';
 
 // One weight range, one request. `display=swap` means text paints immediately
 // in the fallback and re-renders in Inter — never an invisible headline.
@@ -309,7 +309,7 @@ function headerHTML(lang, currentPage) {
   <header class="site-header" data-site-header>
     <div class="${SHELL} flex items-center justify-between gap-6 h-[4.25rem]">
       <a href="index.html" class="flex items-center shrink-0" aria-label="ENZ INTERNATIONAL — home">
-        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="132" height="36" class="h-9 w-auto object-contain" />
+        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="51" height="36" class="h-9 w-auto object-contain" fetchpriority="high" />
       </a>
       <nav class="hidden xl:flex items-center gap-5 2xl:gap-7 min-w-0 text-[0.875rem] 2xl:text-[0.9375rem] font-medium" aria-label="Primary">
         ${links}
@@ -384,7 +384,7 @@ function footerHTML(lang, currentPage) {
     <!-- Brand block plus three evenly weighted link columns. -->
     <div class="${SHELL} py-12 md:py-16 grid gap-10 md:gap-8 md:grid-cols-2 lg:grid-cols-12">
       <div class="lg:col-span-4 lg:pr-8">
-        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="140" height="40" class="h-9 w-auto object-contain" />
+        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="51" height="36" class="h-9 w-auto object-contain" loading="lazy" decoding="async" />
         <p class="text-sm leading-relaxed mt-5 text-white/60 max-w-xs">${t(lang, 'footerAbout')}</p>
         <ul class="mt-6 space-y-3 text-sm">
           <li><a href="tel:${CONTACT_PHONE.replace(/\s/g, '')}" class="footer-contact">${icon('phone', 'w-4 h-4')}<span>${CONTACT_PHONE}</span></a></li>
@@ -649,7 +649,6 @@ function pageShell({ lang, page, title, description, jsonLd, crumbs, bodyHTML, r
     ${whatsappButtonHTML(lang)}
     ${bookingModalHTML(lang)}
     <script src="../assets/js/config.js?v=${ASSET_VERSION}"></script>
-    <script src="../assets/js/i18n.js?v=${ASSET_VERSION}"></script>
     <script src="../assets/js/api.js?v=${ASSET_VERSION}"></script>
     <script src="../assets/js/site.js?v=${ASSET_VERSION}" defer></script>
     <script type="module" src="../assets/js/motion-effects.js?v=${ASSET_VERSION}"></script>
@@ -1823,7 +1822,11 @@ function pricingPage(lang) {
 
   <section class="section bg-white">
     <div class="${SHELL}">
-      <div data-reveal-group class="grid lg:grid-cols-3 gap-5 items-start">
+      <!-- The cards below are h3s, so this h2 is what stops the page jumping
+           straight from h1 to h3 — a heading level a screen-reader user hears
+           as a missing section. -->
+      ${sectionHead(null, t(lang, 'engageTitle'), t(lang, 'engageLead'), { align: 'start' })}
+      <div data-reveal-group class="grid lg:grid-cols-3 gap-5 items-start mt-12">
         ${engagementModels.map((m) => engagementCard(lang, m, { detailed: true })).join('')}
       </div>
     </div>
