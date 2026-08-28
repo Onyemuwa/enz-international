@@ -348,6 +348,21 @@
   .pill-accent { color: #C97A08; background: #FFF4E3; border-color: #FCE3BA; }
 
 
+  /* ---------- Founder monogram ------------------------------------------ */
+  /* Stands in for a portrait. Deliberately NOT a stock photo of a person:
+     stock scenery still shows the thing it shows, but a stranger's face beside
+     a real founder's name presents someone else as them. Initials are honest
+     about being a placeholder while still looking composed. */
+  .monogram {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 7rem; height: 7rem;
+    border-radius: 999px;
+    font-size: 1.875rem; font-weight: 600; letter-spacing: .02em;
+    color: #fff;
+    background: var(--grad-brand-text);
+    box-shadow: 0 10px 30px -10px rgba(1,113,186,.55);
+  }
+
   /* ---------- Media ----------------------------------------------------- */
   /* Every image slot renders whether or not a file exists yet. With no file
      the same box paints a branded gradient, so an unfilled slot reads as a
@@ -406,9 +421,12 @@
   .hero-media::after {
     content: '';
     position: absolute; inset: 0;
-    /* Heavier on the left, where the headline sits. */
+    /* Heavier on the left, where the headline sits — but never thin enough on
+       the right to let a bright photograph through, because the proof panel
+       lives there. The earlier ramp bottomed out at .30 and a well-lit factory
+       shot came straight through it. */
     background:
-      linear-gradient(100deg, rgba(6,13,19,.94) 0%, rgba(6,13,19,.82) 38%, rgba(6,13,19,.42) 68%, rgba(6,13,19,.30) 100%);
+      linear-gradient(100deg, rgba(6,13,19,.95) 0%, rgba(6,13,19,.88) 38%, rgba(6,13,19,.72) 68%, rgba(6,13,19,.66) 100%);
   }
   @media (max-width: 1023px) {
     /* Stacked, the text sits over the whole image, so the scrim is even. */
@@ -475,9 +493,14 @@
   .hero-photo .btn-secondary:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.4); }
   .hero-photo a:focus-visible, .hero-photo button:focus-visible { outline-color: #A9D8F4; }
 
-  /* Glass proof panel over the photograph. */
+  /* Glass proof panel over the photograph.
+     DARK glass, not light. The panel carries light text, so a white-tinted
+     translucent brightened the ground underneath it and left everything inside
+     between 3.3:1 and 4.1:1 once a real photograph replaced the flat gradient
+     fallback. Tinting toward near-black instead gives the text a consistent
+     dark ground whatever the photo behind it is doing. */
   .glass-panel {
-    background: rgba(255,255,255,.09);
+    background: rgba(7,18,28,.62);
     border: 1px solid rgba(255,255,255,.18);
     border-radius: 1.375rem;
     backdrop-filter: blur(18px) saturate(140%);

@@ -233,6 +233,8 @@ const dict = {
     // Breadcrumb home
     breadcrumbHome: 'Home',
     backToTop: 'Back to top',
+    founderEyebrow: 'Who you are dealing with',
+    founderTitle: 'A note from the founder',
     bookingHandoffTitle: 'Your email app is open',
     bookingHandoffDesc: 'We have written the enquiry for you. Press send in your email app and it reaches us straight away.',
     bookingHandoffFallback: 'Nothing opened? Email us directly at',
@@ -481,6 +483,8 @@ const dict = {
 
     breadcrumbHome: 'Nyumbani',
     backToTop: 'Rudi juu',
+    founderEyebrow: 'Unayeshughulika naye',
+    founderTitle: 'Ujumbe kutoka kwa mwanzilishi',
     bookingHandoffTitle: 'Programu yako ya barua pepe imefunguliwa',
     bookingHandoffDesc: 'Tumeandika ujumbe kwa ajili yako. Bonyeza tuma kwenye programu yako ya barua pepe nao utatufikia mara moja.',
     bookingHandoffFallback: 'Hakuna kilichofunguka? Tutumie barua pepe moja kwa moja kwa',
@@ -728,6 +732,8 @@ const dict = {
 
     breadcrumbHome: 'Accueil',
     backToTop: 'Retour en haut',
+    founderEyebrow: 'Avec qui vous traitez',
+    founderTitle: 'Un mot du fondateur',
     bookingHandoffTitle: 'Votre messagerie est ouverte',
     bookingHandoffDesc: "Nous avons rédigé la demande pour vous. Appuyez sur envoyer dans votre messagerie et elle nous parvient aussitôt.",
     bookingHandoffFallback: "Rien ne s'est ouvert ? Écrivez-nous directement à",
@@ -975,6 +981,8 @@ const dict = {
 
     breadcrumbHome: '首页',
     backToTop: '返回顶部',
+    founderEyebrow: '与谁合作',
+    founderTitle: '创始人的话',
     bookingHandoffTitle: '你的邮件应用已打开',
     bookingHandoffDesc: '我们已为你写好这封询价邮件。在邮件应用中点击发送，它会立即送达我们。',
     bookingHandoffFallback: '没有打开？可直接发邮件至',

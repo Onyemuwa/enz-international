@@ -17,6 +17,7 @@ import { landedCost, commonMistakes, paymentTerms, timelines, glossary, whyChina
 import { problems, engagementModels, pricingFactors, gettingStarted } from './_content/narrative.js';
 import { testimonials, caseStudies, commitments } from './_content/proof.js';
 import { images, industryImages } from './_content/images.js';
+import { founder } from './_content/founder.js';
 
 const OUT = path.resolve('.'); // repo root — this IS the site
 const SITE_URL = 'https://enzinternational.co';
@@ -28,7 +29,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '24';
+const ASSET_VERSION = '25';
 
 // Sora, matching onemartent.com — one of the two reference sites.
 //
@@ -172,6 +173,46 @@ function heroMedia() {
     <div class="hero-media" aria-hidden="true">
       <img src="../assets/images/${conf.src}" alt="" loading="eager" decoding="async" fetchpriority="high" />
     </div>`;
+}
+
+// A note from the founder. Renders only when a name is set, so emptying
+// `name` in _content/founder.js removes it site-wide rather than leaving a
+// half-filled section behind.
+//
+// The portrait falls back to an initials monogram rather than a stock person:
+// stock scenery is fine, but a stranger's face beside a real founder's name is
+// presenting someone else as them.
+function founderSection(lang, { compact = false } = {}) {
+  if (!founder.name) return '';
+
+  const portrait = founder.photo
+    ? `<img src="../assets/images/${founder.photo}" alt="${founder.photoAlt || founder.name}" width="112" height="112" loading="lazy" decoding="async" class="w-28 h-28 rounded-full object-cover" />`
+    : `<span class="monogram" aria-hidden="true">${founder.initials}</span>`;
+
+  const meta = `
+          <div class="mt-5">
+            <p class="font-semibold text-ink">${founder.name}</p>
+            <p class="text-sm text-slate mt-0.5">${founder.role}${founder.location ? ` · ${founder.location}` : ''}</p>
+            ${founder.linkedin ? `<a href="${founder.linkedin}" target="_blank" rel="noopener noreferrer" class="link-arrow text-sm mt-3">LinkedIn ${icon('chevronRight', 'w-4 h-4')}</a>` : ''}
+          </div>`;
+
+  const body = (compact ? founder.note.slice(0, 2) : founder.note)
+    .map((para) => `<p>${para}</p>`)
+    .join('');
+
+  return `
+  <section class="section section-feature">
+    <div class="${SHELL} max-w-5xl">
+      ${sectionHead(t(lang, 'founderEyebrow'), t(lang, 'founderTitle'), null, { align: 'start' })}
+      <div class="card card-lg mt-12 grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+        <div class="md:col-span-3 text-center md:text-left">
+          ${portrait}
+          ${meta}
+        </div>
+        <blockquote class="md:col-span-9 space-y-4 text-slate leading-relaxed">${body}</blockquote>
+      </div>
+    </div>
+  </section>`;
 }
 
 // One engagement model, as a card. Shared by the homepage summary and the
@@ -944,6 +985,8 @@ function homePage(lang) {
     </div>
   </section>
 
+  ${founderSection(lang, { compact: true })}
+
   ${proofSection(lang)}
 
   <!-- 6. ENGAGEMENT. The question every serious buyer asks second. -->
@@ -1216,6 +1259,8 @@ function aboutPage(lang) {
       <p class="note-accent mt-10">${whyChina.note}</p>
     </div>
   </section>
+
+  ${founderSection(lang)}
 
   <section class="section bg-gray-bg border-t border-line">
     <div class="${SHELL} max-w-3xl text-center">

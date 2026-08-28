@@ -25,7 +25,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=24" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=25" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -123,8 +123,11 @@
     
     <main id="main-content">
       
-  <section class="hero hero-photo is-empty">
+  <section class="hero hero-photo">
     
+    <div class="hero-media" aria-hidden="true">
+      <img src="../assets/images/hero-factory.webp" alt="" loading="eager" decoding="async" fetchpriority="high" />
+    </div>
     <div class="shell grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
 
       <div class="lg:col-span-6">
@@ -289,11 +292,10 @@
            tiles, which is exactly how it read before. -->
       <div data-reveal-group class="bento mt-14">
         <a href="services.html#sourcing" class="card card-lg flex flex-col group bento-feature">
-          <div class="media media-4-3 media-empty card-media" role="img" aria-label="Shipping containers stacked at a port terminal">
-            <span class="media-note" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span>sourcing.webp</span>
-            </span>
+          <div class="media media-4-3 card-media">
+            <img src="../assets/images/sourcing.webp" alt="Shipping containers stacked at a port terminal"
+                 loading="lazy" decoding="async"
+                  />
           </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
           <h3 class="text-2xl font-medium text-ink mt-5">Approvisionnement mondial et négoce</h3>
@@ -303,11 +305,10 @@
           </ul>
           <span class="link-arrow text-sm mt-6">En savoir plus <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
         </a><a href="quality-control.html" class="card card-lg flex flex-col group ">
-          <div class="media media-16-9 media-empty card-media" role="img" aria-label="Inspector checking goods against a specification sheet before shipment">
-            <span class="media-note" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span>quality-inspection.webp</span>
-            </span>
+          <div class="media media-16-9 card-media">
+            <img src="../assets/images/quality-inspection.webp" alt="Inspector checking goods against a specification sheet before shipment"
+                 loading="lazy" decoding="async"
+                  />
           </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
           <h3 class="text-lg font-medium text-ink mt-5">Quatre points d'inspection, pas un seul</h3>
@@ -317,11 +318,10 @@
           </ul>
           <span class="link-arrow text-sm mt-6">En savoir plus <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
         </a><a href="services.html#factory-setup" class="card card-lg flex flex-col group ">
-          <div class="media media-16-9 media-empty card-media" role="img" aria-label="Machinery being installed and commissioned in a new facility">
-            <span class="media-note" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span>factory-setup.webp</span>
-            </span>
+          <div class="media media-16-9 card-media">
+            <img src="../assets/images/factory-setup.webp" alt="Machinery being installed and commissioned in a new facility"
+                 loading="lazy" decoding="async"
+                  />
           </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
           <h3 class="text-lg font-medium text-ink mt-5">Création d'usine clé en main</h3>
@@ -452,6 +452,32 @@
   </section>
 
   
+  <section class="section section-feature">
+    <div class="shell max-w-5xl">
+      
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+        <div class="lg:col-span-6">
+          <p class="eyebrow">Avec qui vous traitez</p>
+          <h2 class="h2-section mt-4">Un mot du fondateur</h2>
+        </div>
+        
+      </div>
+      <div class="card card-lg mt-12 grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+        <div class="md:col-span-3 text-center md:text-left">
+          <span class="monogram" aria-hidden="true">GU</span>
+          
+          <div class="mt-5">
+            <p class="font-semibold text-ink">Godwin Ubani</p>
+            <p class="text-sm text-slate mt-0.5">Founder · Guangzhou, China</p>
+            
+          </div>
+        </div>
+        <blockquote class="md:col-span-9 space-y-4 text-slate leading-relaxed"><p>Most buyers who come to us have already been burned once. A supplier that turned out to be a trading company, an order that passed its only inspection and still arrived wrong, or a quote that looked cheap until the freight and duties landed.</p><p>None of that is bad luck. It happens because nobody on the buyer’s side is standing in the factory. So that is the job I built this business to do: verify who you are actually buying from, inspect the work while it can still be corrected, and stay the single point of contact until the goods are delivered.</p></blockquote>
+      </div>
+    </div>
+  </section>
+
+  
 
   <!-- 6. ENGAGEMENT. The question every serious buyer asks second. -->
   <section class="section bg-white">
@@ -541,41 +567,37 @@
       </div>
       <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
         <a href="industries.html" class="card block group">
-          <div class="media media-16-10 media-empty card-media" role="img" aria-label="Tiles, fittings and finishing materials stacked at a building site">
-            <span class="media-note" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span>ind-construction.webp</span>
-            </span>
+          <div class="media media-16-10 card-media">
+            <img src="../assets/images/ind-construction.webp" alt="Tiles, fittings and finishing materials stacked at a building site"
+                 loading="lazy" decoding="async"
+                  />
           </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
           <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Construction & building materials</h3>
           <p class="text-slate text-sm mt-2 leading-relaxed">Fixtures, fittings, tiles, sanitaryware, hardware, and finishing materials. Volume-heavy, freight-sensitive, and highly dependent on consistent tolerance across repeat orders.</p>
         </a><a href="industries.html" class="card block group">
-          <div class="media media-16-10 media-empty card-media" role="img" aria-label="Production machinery on an assembly line">
-            <span class="media-note" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span>ind-machinery.webp</span>
-            </span>
+          <div class="media media-16-10 card-media">
+            <img src="../assets/images/ind-machinery.webp" alt="Production machinery on an assembly line"
+                 loading="lazy" decoding="async"
+                  />
           </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
           <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Industrial equipment & machinery</h3>
           <p class="text-slate text-sm mt-2 leading-relaxed">Production machinery, spare parts, and assembly-line equipment. Long lead times and high consequence of error, so verification before shipment is critical.</p>
         </a><a href="industries.html" class="card block group">
-          <div class="media media-16-10 media-empty card-media" role="img" aria-label="Packaged consumer goods moving along a production line">
-            <span class="media-note" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span>ind-consumer.webp</span>
-            </span>
+          <div class="media media-16-10 card-media">
+            <img src="../assets/images/ind-consumer.webp" alt="Packaged consumer goods moving along a production line"
+                 loading="lazy" decoding="async"
+                  />
           </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
           <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Consumer goods & retail</h3>
           <p class="text-slate text-sm mt-2 leading-relaxed">Household products, packaging, textiles, and general merchandise. Typically the most quality-sensitive category, because defects surface as customer returns.</p>
         </a><a href="industries.html" class="card block group">
-          <div class="media media-16-10 media-empty card-media" role="img" aria-label="Raw copper and mineral stock at a bulk handling facility">
-            <span class="media-note" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span>ind-commodities.webp</span>
-            </span>
+          <div class="media media-16-10 card-media">
+            <img src="../assets/images/ind-commodities.webp" alt="Raw copper and mineral stock at a bulk handling facility"
+                 loading="lazy" decoding="async"
+                  />
           </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
           <h3 class="text-[1.0625rem] font-medium text-ink mt-4">Commodities & raw materials</h3>
@@ -584,11 +606,10 @@
       </div>
 
       <div class="mt-10 rounded-2xl border border-line bg-white overflow-hidden">
-        <div class="media media-16-9 media-empty rounded-none max-h-64" role="img" aria-label="Cargo vessel being loaded at an East African port">
-            <span class="media-note" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span>markets-port.webp</span>
-            </span>
+        <div class="media media-16-9 rounded-none max-h-64">
+            <img src="../assets/images/markets-port.webp" alt="Cargo vessel being loaded at an East African port"
+                 loading="lazy" decoding="async"
+                  />
           </div>
         <div class="p-6 md:p-8">
         <div class="flex flex-wrap items-baseline justify-between gap-4">
@@ -897,9 +918,9 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=24"></script>
-    <script src="../assets/js/api.js?v=24"></script>
-    <script src="../assets/js/site.js?v=24" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=24"></script>
+    <script src="../assets/js/config.js?v=25"></script>
+    <script src="../assets/js/api.js?v=25"></script>
+    <script src="../assets/js/site.js?v=25" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=25"></script>
   </body>
 </html>

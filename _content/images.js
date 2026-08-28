@@ -38,7 +38,7 @@
 /** @type {Record<string, {src: string, file: string, alt: string, size: string, brief: string}>} */
 export const images = {
   hero: {
-    src: '',
+    src: 'hero-factory.webp',
     file: 'hero-factory.webp',
     alt: 'Production line inside a Chinese manufacturing facility',
     size: '2000×1200 (landscape, will be cropped to 16:9 and shorter on mobile)',
@@ -47,7 +47,7 @@ export const images = {
   },
 
   qualityControl: {
-    src: '',
+    src: 'quality-inspection.webp',
     file: 'quality-inspection.webp',
     alt: 'Inspector checking goods against a specification sheet before shipment',
     size: '1200×900 (4:3)',
@@ -56,7 +56,7 @@ export const images = {
   },
 
   factorySetup: {
-    src: '',
+    src: 'factory-setup.webp',
     file: 'factory-setup.webp',
     alt: 'Machinery being installed and commissioned in a new facility',
     size: '1200×900 (4:3)',
@@ -64,7 +64,7 @@ export const images = {
   },
 
   sourcing: {
-    src: '',
+    src: 'sourcing.webp',
     file: 'sourcing.webp',
     alt: 'Shipping containers stacked at a port terminal',
     size: '1200×900 (4:3)',
@@ -72,7 +72,7 @@ export const images = {
   },
 
   about: {
-    src: '',
+    src: 'about-team.webp',
     file: 'about-team.webp',
     alt: 'ENZ INTERNATIONAL staff at work',
     size: '1600×1000 (16:10)',
@@ -81,7 +81,7 @@ export const images = {
   },
 
   markets: {
-    src: '',
+    src: 'markets-port.webp',
     file: 'markets-port.webp',
     alt: 'Cargo vessel being loaded at an East African port',
     size: '1600×900 (16:9)',
@@ -94,19 +94,19 @@ export const images = {
 /** @type {Record<string, {src: string, file: string, alt: string}>} */
 export const industryImages = {
   'Construction & building materials': {
-    src: '', file: 'ind-construction.webp',
+    src: 'ind-construction.webp', file: 'ind-construction.webp',
     alt: 'Tiles, fittings and finishing materials stacked at a building site',
   },
   'Industrial equipment & machinery': {
-    src: '', file: 'ind-machinery.webp',
+    src: 'ind-machinery.webp', file: 'ind-machinery.webp',
     alt: 'Production machinery on an assembly line',
   },
   'Consumer goods & retail': {
-    src: '', file: 'ind-consumer.webp',
+    src: 'ind-consumer.webp', file: 'ind-consumer.webp',
     alt: 'Packaged consumer goods moving along a production line',
   },
   'Commodities & raw materials': {
-    src: '', file: 'ind-commodities.webp',
+    src: 'ind-commodities.webp', file: 'ind-commodities.webp',
     alt: 'Raw copper and mineral stock at a bulk handling facility',
   },
 };
