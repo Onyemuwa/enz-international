@@ -414,17 +414,50 @@
     /* Stacked, the text sits over the whole image, so the scrim is even. */
     .hero-media::after { background: linear-gradient(180deg, rgba(6,13,19,.90) 0%, rgba(6,13,19,.86) 55%, rgba(6,13,19,.92) 100%); }
   }
-  /* No photo yet: the brand gradient stands in, and the hero still works. */
+  /* No photo yet: the brand gradient stands in, and the hero still works.
+     Deeper and less saturated than before — the old ramp finished on a bright
+     #0171BA at the bottom right, which left the panel sitting on almost the
+     same blue as itself and pushed everything toward the low-contrast end. */
   .hero-photo { position: relative; isolation: isolate; color: #fff; overflow: hidden; }
-  .hero-photo.is-empty { background: linear-gradient(150deg, #0C1F2C 0%, #015C96 55%, #0171BA 100%); }
+  .hero-photo.is-empty { background: linear-gradient(155deg, #071A28 0%, #0A3C63 48%, #0A5589 100%); }
+
+  /* ------------------------------------------------------------------------
+     EVERYTHING INSIDE THE HERO SITS ON A DARK SURFACE.
+     ------------------------------------------------------------------------
+     The dark-to-light conversion rewrote `text-white/60` to `text-slate` and
+     `text-white` to `text-ink` across the whole generator — including this
+     block, which never stopped being dark. That left fourteen elements in the
+     hero painting near-black on deep blue: the inspection sub-lines, the
+     panel's body copy, the location badge and the response-time note were all
+     effectively invisible.
+
+     These overrides catch the utilities by scope rather than by patching each
+     call site, so a utility used here in future is covered automatically. */
+  .hero-photo .text-ink { color: #fff; }
+  .hero-photo .text-slate { color: rgba(255,255,255,.74); }
+  .hero-photo .text-slate-light { color: rgba(255,255,255,.58); }
+  .hero-photo .text-brand { color: #9BD0F5; }
+  .hero-photo .border-line { border-color: rgba(255,255,255,.16); }
+  .hero-photo .pill {
+    color: #fff;
+    background: rgba(255,255,255,.12);
+    border-color: rgba(255,255,255,.26);
+    backdrop-filter: blur(8px);
+  }
+  .hero-photo .pill:hover { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.4); }
   .hero-photo .h2-section, .hero-photo h1 { color: #fff; }
   .hero-photo .lead { color: rgba(255,255,255,.78); }
   .hero-photo .eyebrow { color: rgba(255,255,255,.7); }
   .hero-photo .eyebrow::before { background: linear-gradient(90deg, #6FC1EC, rgba(111,193,236,0)); }
   .hero-photo .check-item { color: rgba(255,255,255,.75); }
   .hero-photo .check-item > svg { color: #6FC1EC; }
+  /* The second headline line ran #A9D8F4 -> #FCAE42. Against deep blue the
+     amber end has nowhere to go and reads as muddy tan rather than as an
+     accent — it looked washed out and slightly dirty at display size. Cool
+     stops only, resolving to near-white, so the phrase stays legible the whole
+     way across and the emphasis comes from brightness instead of hue. */
   .hero-photo .text-gradient {
-    background: linear-gradient(100deg, #A9D8F4 0%, #6FC1EC 40%, #FCAE42 115%);
+    background: linear-gradient(100deg, #6FC1EC 0%, #A9D8F4 45%, #F2F9FE 100%);
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent; color: transparent;
   }
