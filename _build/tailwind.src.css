@@ -49,6 +49,17 @@
   h2 { letter-spacing: -.028em; }
   h3 { letter-spacing: -.016em; }
 
+  /* Long words must break rather than push the page sideways.
+     English rarely triggers this; French and Swahili routinely do. The French
+     homepage overflowed by 12px at 360px on the single word
+     "d'approvisionnement" — 19 characters that simply cannot fit at heading
+     size on a narrow phone. A site in four languages cannot assume the widest
+     word is one it was designed around. */
+  h1, h2, h3, h4 {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
   /* Figures line up in tables, stats and price columns. */
   table, .tabular { font-variant-numeric: tabular-nums; }
 
@@ -84,9 +95,9 @@
   @media (min-width: 640px) { .shell { padding-inline: 1.5rem; } }
   @media (min-width: 1024px) { .shell { padding-inline: 2rem; } }
 
-  .section { padding-block: 3.5rem; }
-  @media (min-width: 768px) { .section { padding-block: 5rem; } }
-  @media (min-width: 1280px) { .section { padding-block: 6rem; } }
+  .section { padding-block: 4rem; }
+  @media (min-width: 768px) { .section { padding-block: 6rem; } }
+  @media (min-width: 1280px) { .section { padding-block: 7.5rem; } }
   .section-sm { padding-block: 3rem; }
   @media (min-width: 768px) { .section-sm { padding-block: 4rem; } }
 
@@ -101,34 +112,13 @@
     .section-sm { padding-block: 3rem; }
   }
 
-  /* Hero, following the Creatifix reference: a light tinted panel inset from
-     the page edges rather than a full-bleed band. The inset is what makes it
-     read as a designed object on the page instead of a header strip. */
-  .hero-wrap { padding: .75rem .75rem 0; }
-  @media (min-width: 768px) { .hero-wrap { padding: 1rem 1rem 0; } }
-  @media (min-width: 1280px) { .hero-wrap { padding: 1.25rem 1.25rem 0; } }
-
-  .hero-box {
-    border-radius: 1.25rem;
-    background:
-      radial-gradient(90% 120% at 88% 8%, rgba(1,113,186,.10) 0%, rgba(244,248,254,0) 58%),
-      linear-gradient(180deg, #F2F7FE 0%, #F7FAFE 100%);
-    padding-block: 3rem;
-    overflow: hidden;
-  }
-  @media (min-width: 768px) { .hero-box { border-radius: 1.75rem; padding-block: 4.5rem; } }
-  @media (min-width: 1280px) { .hero-box { padding-block: 5.5rem; } }
-  /* Short laptops again: wide but not tall, so the vertical scale winds back. */
+  /* Hero owns its own padding so the height query can reach it directly. */
+  .hero { padding-block: 2.5rem 4rem; }
+  @media (min-width: 768px) { .hero { padding-block: 4rem 7rem; } }
   @media (min-width: 1024px) and (max-height: 850px) {
-    .hero-box { padding-block: 3rem; }
-    .hero-box .h1-display { font-size: clamp(2rem, 3.2vw, 2.875rem); }
-  }
-
-  /* The photograph now sits in its own framed block beside the copy rather
-     than underneath it, so no text depends on a scrim to stay readable. */
-  .hero-shot {
-    border-radius: 1.125rem;
-    box-shadow: 0 24px 60px -24px rgba(8,15,30,.28), 0 2px 8px rgba(8,15,30,.06);
+    .hero { padding-block: 2.25rem 3.5rem; }
+    .hero .h1-display { font-size: clamp(2.25rem, 3.5vw, 3.25rem); }
+    .hero .lead { font-size: 1rem; }
   }
 
   /* Phone density.
@@ -175,23 +165,20 @@
      sizes, size and negative tracking are most of what separates "premium"
      from "template" — and the headline is now two short sentences, so it can
      carry the extra weight without wrapping into a wall. */
-  /* Smaller than before. The reference's H1 is restrained — the impact comes
-     from whitespace and the accent colour, not from size. A 68px headline on
-     a light panel shouts; this does not. */
   .h1-display {
-    font-size: clamp(2.125rem, 4.4vw, 3.25rem);
-    line-height: 1.12;
+    font-size: clamp(2.375rem, 5.8vw, 4.25rem);
+    line-height: 1.06;
     font-weight: 600;
-    letter-spacing: -.028em;
+    letter-spacing: -.032em;
   }
   .h1-display .line { display: block; }
   .h2-section {
-    font-size: clamp(1.625rem, 2.6vw, 2.125rem);
-    line-height: 1.18; font-weight: 600; letter-spacing: -.022em; color: #1E2E40;
+    font-size: clamp(2.125rem, 4.2vw, 3.5rem);
+    line-height: 1.08; font-weight: 600; letter-spacing: -.03em; color: #1E2E40;
   }
 
-  .lead { color: #5A6A75; font-size: .9375rem; line-height: 1.75; }
-  @media (min-width: 768px) { .lead { font-size: 1rem; } }
+  .lead { color: #5A6A75; font-size: 1.0625rem; line-height: 1.7; }
+  @media (min-width: 768px) { .lead { font-size: 1.125rem; } }
 
 
   /* The one phrase in a headline that carries the brand gradient. Used once
@@ -286,7 +273,7 @@
     border: 1px solid transparent;
     border-radius: 1.25rem;
     padding: 1.75rem;
-    box-shadow: 0 2px 28px rgba(8,15,30,.05), 0 1px 2px rgba(8,15,30,.03);
+    box-shadow: 0 4px 60px rgba(8,15,30,.07), 0 1px 2px rgba(8,15,30,.03);
     transition: border-color .25s, box-shadow .3s var(--ease-spring),
                 transform .3s var(--ease-spring), background-color .25s;
   }
@@ -300,8 +287,8 @@
     transition: transform .4s var(--ease-spring);
   }
   .card:hover {
-    box-shadow: 0 10px 44px rgba(8,15,30,.10), 0 2px 6px rgba(8,15,30,.04);
-    transform: translateY(-3px);
+    box-shadow: 0 12px 70px rgba(8,15,30,.12), 0 2px 6px rgba(8,15,30,.05);
+    transform: translateY(-4px);
   }
   .card:hover::after { transform: scaleX(1); }
   .card-muted { background: #F7F9FB; box-shadow: none; border-color: #EEF2F5; }

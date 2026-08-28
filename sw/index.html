@@ -25,7 +25,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=27" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=28" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -123,107 +123,100 @@
     
     <main id="main-content">
       
-  <!-- Hero, following the Creatifix reference: a LIGHT tinted panel inset from
-       the page edges with a rounded corner, rather than a full-bleed dark
-       band. Dark text on light removes the scrim entirely — there is no
-       photograph underneath the copy any more, so nothing can drift out of
-       contrast when an image is swapped. The photo moves to its own framed
-       block on the right, which is also how the reference handles it. -->
-  <section class="hero-wrap">
-    <div class="hero-box">
-      <div class="shell grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-
-        <div class="lg:col-span-6">
-          <a href="markets/" class="pill">
-            <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
-            Guangzhou · Dar es Salaam · Nairobi +3
-          </a>
-
-          <!-- One accent word in solid brand blue, not a gradient. The
-               reference sets its highlight as a flat colour and it reads
-               cleaner at this size than a ramp does. -->
-          <h1 class="h1-display text-ink mt-6">
-            <span class="line">Tunakutafutia kiwanda nchini China.</span>
-            <span class="line text-brand">Na tunahakikisha kinatimiza.</span>
-          </h1>
-
-          <p class="lead mt-6 max-w-lg">Wasambazaji waliothibitishwa, ukaguzi katika hatua nne za uzalishaji, na usafirishaji hadi bandarini — na mtu mmoja anayekushughulikia tangu mwanzo hadi bidhaa zinakufikia.</p>
-
-          <div class="flex flex-wrap items-center gap-3 mt-8">
-            <button data-open-booking class="btn btn-primary">Panga Ushauriano</button>
-            <a href="#how-it-works" class="link-arrow ml-2">Mchakato <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
-          </div>
-
-          <div class="chip-row mt-9">
-            <span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Ununuzi</span>
-            <span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Udhibiti wa ubora</span>
-            <span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Uanzishaji wa kiwanda</span>
-          </div>
-        </div>
-
-        <div class="lg:col-span-6">
-          <div class="media media-4-3 hero-shot">
-            <img src="../assets/images/hero-factory.webp" alt="Production line inside a Chinese manufacturing facility"
-                 loading="eager" decoding="async"
-                 fetchpriority="high" />
-          </div>
-        </div>
-      </div>
+  <section class="hero hero-photo">
+    
+    <div class="hero-media" aria-hidden="true">
+      <img src="../assets/images/hero-factory.webp" alt="" loading="eager" decoding="async" fetchpriority="high" />
     </div>
-  </section>
+    <div class="shell grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
 
-  <!-- The four-stage inspection process, moved out of the hero and onto the
-       light page where it needs no scrim to stay readable. It is evidence for
-       the quality-control claim, so it sits directly under the pitch. -->
-  <section class="section-sm bg-white">
-    <div class="shell">
-      <div class="card card-lg">
-        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          <div class="lg:col-span-4">
-            <p class="eyebrow">Udhibiti wa ubora</p>
-            <h2 class="text-2xl font-semibold text-ink mt-4">Ukaguzi wa hatua nne, si moja</h2>
-            <p class="text-slate text-sm mt-3 leading-relaxed">Matatizo mengi ya ubora hugunduliwa kuchelewa mno. Ukaguzi wa hatua kwa hatua huzuia kasoro kuwa hasara.</p>
-            <a href="quality-control/" class="link-arrow text-sm mt-5">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
-          </div>
-          <div class="lg:col-span-8">
-            <div class="status-row">
-              <span class="status-dot status-done"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <span class="min-w-0 flex-1">
-                <span class="flex flex-wrap items-baseline gap-x-2.5">
-                  <span class="mono-tag text-brand">IQC</span>
-                  <span class="text-sm font-medium text-ink">Incoming quality control</span>
-                </span>
-                <span class="status-when block text-xs text-slate mt-1">Before production starts</span>
-              </span>
-            </div><div class="status-row">
-              <span class="status-dot status-done"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <span class="min-w-0 flex-1">
-                <span class="flex flex-wrap items-baseline gap-x-2.5">
-                  <span class="mono-tag text-brand">DUPRO</span>
-                  <span class="text-sm font-medium text-ink">During-production inspection</span>
-                </span>
-                <span class="status-when block text-xs text-slate mt-1">At roughly 20–30% completion</span>
-              </span>
-            </div><div class="status-row">
-              <span class="status-dot status-active"><span class="status-pulse w-2 h-2 rounded-full bg-current"></span></span>
-              <span class="min-w-0 flex-1">
-                <span class="flex flex-wrap items-baseline gap-x-2.5">
-                  <span class="mono-tag text-brand">PSI</span>
-                  <span class="text-sm font-medium text-ink">Pre-shipment inspection</span>
-                </span>
-                <span class="status-when block text-xs text-slate mt-1">At 100% production, 80%+ packed</span>
-              </span>
-            </div><div class="status-row">
-              <span class="status-dot status-idle"><span class="w-2 h-2 rounded-full border border-current"></span></span>
-              <span class="min-w-0 flex-1">
-                <span class="flex flex-wrap items-baseline gap-x-2.5">
-                  <span class="mono-tag text-brand">LOADING</span>
-                  <span class="text-sm font-medium text-ink">Container loading supervision</span>
-                </span>
-                <span class="status-when block text-xs text-slate mt-1">At the point of loading</span>
-              </span>
+      <div class="lg:col-span-6">
+        <a href="markets/" class="pill hover:border-brand-300 transition-colors">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
+          Guangzhou · Dar es Salaam · Nairobi +3
+        </a>
+
+        <!-- Two short sentences, the second in the brand gradient. The old
+             headline was "Global Sourcing & Industrial Excellence", which told
+             a first-time visitor nothing about what actually gets done. -->
+        <h1 class="h1-display text-ink mt-7">
+          <span class="line">Tunakutafutia kiwanda nchini China.</span>
+          <span class="line text-gradient">Na tunahakikisha kinatimiza.</span>
+        </h1>
+
+        <p class="lead mt-7 max-w-xl">Wasambazaji waliothibitishwa, ukaguzi katika hatua nne za uzalishaji, na usafirishaji hadi bandarini — na mtu mmoja anayekushughulikia tangu mwanzo hadi bidhaa zinakufikia.</p>
+
+        <!-- The three service lines, legible without scrolling. -->
+        <div class="chip-row mt-8">
+          <span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Ununuzi</span>
+          <span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Udhibiti wa ubora</span>
+          <span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Uanzishaji wa kiwanda</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 mt-9">
+          <button data-open-booking class="btn btn-primary btn-lg">Panga Ushauriano<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+          <a href="#how-it-works" class="btn btn-secondary btn-lg">Mchakato</a>
+        </div>
+
+        <p class="text-sm text-slate mt-7">Tutajibu ndani ya masaa 24. Hakuna malipo yanayohitajika kuomba ushauriano.</p>
+      </div>
+
+      <!-- An ILLUSTRATION of the four-stage inspection process documented on
+           quality-control.html — not a screenshot of a product, because there
+           is no product to screenshot. The stage codes and timings are the
+           real ones from _content/pages.js. -->
+      <div class="lg:col-span-6">
+        <div class="glass-panel p-6 md:p-7">
+            <div class="flex items-center justify-between gap-4 pb-5 border-b border-line">
+              <div>
+                <p class="text-ink font-medium">Ukaguzi wa hatua nne, si moja</p>
+                <p class="text-xs text-slate mt-1">Udhibiti wa ubora</p>
+              </div>
+              <span class="pill mono-tag">4 hatua</span>
             </div>
-          </div>
+
+            <div class="mt-5">
+              <div class="status-row">
+                <span class="status-dot status-done"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="min-w-0 flex-1">
+                  <span class="flex flex-wrap items-baseline gap-x-2.5">
+                    <span class="mono-tag text-brand">IQC</span>
+                    <span class="text-sm font-medium text-ink">Incoming quality control</span>
+                  </span>
+                  <span class="status-when block text-xs text-slate mt-1">Before production starts</span>
+                </span>
+              </div><div class="status-row">
+                <span class="status-dot status-done"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="min-w-0 flex-1">
+                  <span class="flex flex-wrap items-baseline gap-x-2.5">
+                    <span class="mono-tag text-brand">DUPRO</span>
+                    <span class="text-sm font-medium text-ink">During-production inspection</span>
+                  </span>
+                  <span class="status-when block text-xs text-slate mt-1">At roughly 20–30% completion</span>
+                </span>
+              </div><div class="status-row">
+                <span class="status-dot status-active"><span class="status-pulse w-2 h-2 rounded-full bg-current"></span></span>
+                <span class="min-w-0 flex-1">
+                  <span class="flex flex-wrap items-baseline gap-x-2.5">
+                    <span class="mono-tag text-brand">PSI</span>
+                    <span class="text-sm font-medium text-ink">Pre-shipment inspection</span>
+                  </span>
+                  <span class="status-when block text-xs text-slate mt-1">At 100% production, 80%+ packed</span>
+                </span>
+              </div><div class="status-row">
+                <span class="status-dot status-idle"><span class="w-2 h-2 rounded-full border border-current"></span></span>
+                <span class="min-w-0 flex-1">
+                  <span class="flex flex-wrap items-baseline gap-x-2.5">
+                    <span class="mono-tag text-brand">LOADING</span>
+                    <span class="text-sm font-medium text-ink">Container loading supervision</span>
+                  </span>
+                  <span class="status-when block text-xs text-slate mt-1">At the point of loading</span>
+                </span>
+              </div>
+            </div>
+
+            <p class="text-xs text-slate leading-relaxed mt-5 pt-5 border-t border-line">Matatizo mengi ya ubora hugunduliwa kuchelewa mno. Ukaguzi wa hatua kwa hatua huzuia kasoro kuwa hasara.</p>
+            <a href="quality-control/" class="link-arrow text-sm mt-4">Jifunze zaidi <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
         </div>
       </div>
     </div>
@@ -925,9 +918,9 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=27"></script>
-    <script src="../assets/js/api.js?v=27"></script>
-    <script src="../assets/js/site.js?v=27" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=27"></script>
+    <script src="../assets/js/config.js?v=28"></script>
+    <script src="../assets/js/api.js?v=28"></script>
+    <script src="../assets/js/site.js?v=28" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=28"></script>
   </body>
 </html>

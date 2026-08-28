@@ -29,7 +29,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '27';
+const ASSET_VERSION = '28';
 
 // Sora, matching onemartent.com — one of the two reference sites.
 //
@@ -828,87 +828,81 @@ function homePage(lang) {
   ];
 
   const body = `
-  <!-- Hero, following the Creatifix reference: a LIGHT tinted panel inset from
-       the page edges with a rounded corner, rather than a full-bleed dark
-       band. Dark text on light removes the scrim entirely — there is no
-       photograph underneath the copy any more, so nothing can drift out of
-       contrast when an image is swapped. The photo moves to its own framed
-       block on the right, which is also how the reference handles it. -->
-  <section class="hero-wrap">
-    <div class="hero-box">
-      <div class="${SHELL} grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+  <section class="hero hero-photo${images.hero.src ? '' : ' is-empty'}">
+    ${heroMedia()}
+    <div class="${SHELL} grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
 
-        <div class="lg:col-span-6">
-          <a href="markets.html" class="pill">
-            <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
-            ${hubs.slice(0, 3).join(' · ')} +${hubs.length - 3}
-          </a>
+      <div class="lg:col-span-6">
+        <a href="markets.html" class="pill hover:border-brand-300 transition-colors">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
+          ${hubs.slice(0, 3).join(' · ')} +${hubs.length - 3}
+        </a>
 
-          <!-- One accent word in solid brand blue, not a gradient. The
-               reference sets its highlight as a flat colour and it reads
-               cleaner at this size than a ramp does. -->
-          <h1 class="h1-display text-ink mt-6">
-            <span class="line">${t(lang, 'heroTitleA')}</span>
-            <span class="line text-brand">${t(lang, 'heroTitleB')}</span>
-          </h1>
+        <!-- Two short sentences, the second in the brand gradient. The old
+             headline was "Global Sourcing & Industrial Excellence", which told
+             a first-time visitor nothing about what actually gets done. -->
+        <h1 class="h1-display text-ink mt-7">
+          <span class="line">${t(lang, 'heroTitleA')}</span>
+          <span class="line text-gradient">${t(lang, 'heroTitleB')}</span>
+        </h1>
 
-          <p class="lead mt-6 max-w-lg">${t(lang, 'heroSub')}</p>
+        <p class="lead mt-7 max-w-xl">${t(lang, 'heroSub')}</p>
 
-          <div class="flex flex-wrap items-center gap-3 mt-8">
-            <button data-open-booking class="${BTN_PRIMARY}">${t(lang, 'ctaBooking')}</button>
-            <a href="#how-it-works" class="link-arrow ml-2">${t(lang, 'navProcess')} ${icon('chevronRight', 'w-4 h-4')}</a>
-          </div>
-
-          <div class="chip-row mt-9">
-            <span class="chip">${icon('globe', 'w-4 h-4')}${t(lang, 'heroBadge1')}</span>
-            <span class="chip">${icon('check', 'w-4 h-4')}${t(lang, 'heroBadge2')}</span>
-            <span class="chip">${icon('calendar', 'w-4 h-4')}${t(lang, 'heroBadge3')}</span>
-          </div>
+        <!-- The three service lines, legible without scrolling. -->
+        <div class="chip-row mt-8">
+          <span class="chip">${icon('globe', 'w-4 h-4')}${t(lang, 'heroBadge1')}</span>
+          <span class="chip">${icon('check', 'w-4 h-4')}${t(lang, 'heroBadge2')}</span>
+          <span class="chip">${icon('calendar', 'w-4 h-4')}${t(lang, 'heroBadge3')}</span>
         </div>
 
-        <div class="lg:col-span-6">
-          ${media('hero', { ratio: '4-3', className: 'hero-shot', eager: true })}
+        <div class="flex flex-col sm:flex-row gap-3 mt-9">
+          <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
+          <a href="#how-it-works" class="${BTN_SECONDARY} btn-lg">${t(lang, 'navProcess')}</a>
         </div>
+
+        <p class="text-sm text-slate mt-7">${t(lang, 'bookingDisclaimer')}</p>
       </div>
-    </div>
-  </section>
 
-  <!-- The four-stage inspection process, moved out of the hero and onto the
-       light page where it needs no scrim to stay readable. It is evidence for
-       the quality-control claim, so it sits directly under the pitch. -->
-  <section class="section-sm bg-white">
-    <div class="${SHELL}">
-      <div class="card card-lg">
-        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          <div class="lg:col-span-4">
-            <p class="${EYEBROW}">${t(lang, 'qcEyebrow')}</p>
-            <h2 class="text-2xl font-semibold text-ink mt-4">${t(lang, 'qcTitle')}</h2>
-            <p class="text-slate text-sm mt-3 leading-relaxed">${t(lang, 'qcLead')}</p>
-            <a href="quality-control.html" class="link-arrow text-sm mt-5">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
-          </div>
-          <div class="lg:col-span-8">
-            ${qcStages
-              .map((st, i) => {
-                const state = i < 2 ? 'done' : i === 2 ? 'active' : 'idle';
-                const mark =
-                  state === 'done'
-                    ? icon('check', 'w-3.5 h-3.5')
-                    : state === 'active'
-                      ? '<span class="status-pulse w-2 h-2 rounded-full bg-current"></span>'
-                      : '<span class="w-2 h-2 rounded-full border border-current"></span>';
-                return `<div class="status-row">
-              <span class="status-dot status-${state}">${mark}</span>
-              <span class="min-w-0 flex-1">
-                <span class="flex flex-wrap items-baseline gap-x-2.5">
-                  <span class="mono-tag text-brand">${st.code}</span>
-                  <span class="text-sm font-medium text-ink">${st.title}</span>
+      <!-- An ILLUSTRATION of the four-stage inspection process documented on
+           quality-control.html — not a screenshot of a product, because there
+           is no product to screenshot. The stage codes and timings are the
+           real ones from _content/pages.js. -->
+      <div class="lg:col-span-6">
+        <div class="glass-panel p-6 md:p-7">
+            <div class="flex items-center justify-between gap-4 pb-5 border-b border-line">
+              <div>
+                <p class="text-ink font-medium">${t(lang, 'qcTitle')}</p>
+                <p class="text-xs text-slate mt-1">${t(lang, 'qcEyebrow')}</p>
+              </div>
+              <span class="pill mono-tag">${qcStages.length} ${t(lang, 'qcStagesLabel')}</span>
+            </div>
+
+            <div class="mt-5">
+              ${qcStages
+                .map((st, i) => {
+                  const state = i < 2 ? 'done' : i === 2 ? 'active' : 'idle';
+                  const mark =
+                    state === 'done'
+                      ? icon('check', 'w-3.5 h-3.5')
+                      : state === 'active'
+                        ? '<span class="status-pulse w-2 h-2 rounded-full bg-current"></span>'
+                        : '<span class="w-2 h-2 rounded-full border border-current"></span>';
+                  return `<div class="status-row">
+                <span class="status-dot status-${state}">${mark}</span>
+                <span class="min-w-0 flex-1">
+                  <span class="flex flex-wrap items-baseline gap-x-2.5">
+                    <span class="mono-tag text-brand">${st.code}</span>
+                    <span class="text-sm font-medium text-ink">${st.title}</span>
+                  </span>
+                  <span class="status-when block text-xs text-slate mt-1">${st.when}</span>
                 </span>
-                <span class="status-when block text-xs text-slate mt-1">${st.when}</span>
-              </span>
-            </div>`;
-              })
-              .join('')}
-          </div>
+              </div>`;
+                })
+                .join('')}
+            </div>
+
+            <p class="text-xs text-slate leading-relaxed mt-5 pt-5 border-t border-line">${t(lang, 'qcLead')}</p>
+            <a href="quality-control.html" class="link-arrow text-sm mt-4">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
         </div>
       </div>
     </div>
