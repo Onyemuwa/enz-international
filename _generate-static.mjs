@@ -28,12 +28,20 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '21';
+const ASSET_VERSION = '22';
 
-// One weight range, one request. `display=swap` means text paints immediately
-// in the fallback and re-renders in Inter — never an invisible headline.
+// Sora, matching onemartent.com — one of the two reference sites.
+//
+// Inter is the default of nearly every framework starter, which is precisely
+// why a site built on it reads as generic however it is laid out. Sora is
+// geometric with wide apertures and a distinctive lowercase g, so it carries
+// a headline instead of just setting one.
+//
+// One family, four weights, one request. `display=swap` paints text
+// immediately in the fallback stack and re-renders in Sora, so a slow font
+// never produces an invisible headline.
 const FONT_HREF =
-  'https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap';
+  'https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap';
 
 function t(lang, key, vars) {
   let str = dict[lang]?.[key] ?? dict.en[key] ?? key;
