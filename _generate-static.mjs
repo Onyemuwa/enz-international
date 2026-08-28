@@ -29,7 +29,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '25';
+const ASSET_VERSION = '27';
 
 // Sora, matching onemartent.com — one of the two reference sites.
 //
@@ -43,6 +43,58 @@ const ASSET_VERSION = '25';
 // never produces an invisible headline.
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap';
+
+// ---------------------------------------------------------------------------
+// Clean URLs
+// ---------------------------------------------------------------------------
+// Pages are written as directories — en/services/index.html — so the address
+// bar reads /en/services/ with no .html anywhere.
+//
+// Directory output rather than a host-level rewrite (Vercel's cleanUrls,
+// Netlify's pretty URLs) because those are per-host settings: the same repo
+// would show clean URLs on Vercel and .html on GitHub Pages. This works
+// identically everywhere, with no configuration.
+//
+// The one cost is that opening a file straight off disk no longer resolves
+// directory links, since file:// has no index resolution. Any local server
+// handles it — see the README.
+
+// 'about.html' -> 'about'. Home stays special: it is the language root.
+const slugOf = (page) => page.replace(/\.html$/, '');
+const isHome = (page) => slugOf(page) === 'index';
+
+// How deep the page sits below the site root: /en/ is 1, /en/about/ is 2.
+const depthOf = (page) => (isHome(page) ? 1 : 2);
+
+// Site-root-relative path, used for canonicals, hreflang and the sitemap.
+const urlPath = (lang, page) => (isHome(page) ? `${lang}/` : `${lang}/${slugOf(page)}/`);
+
+// Rewrites a whole document's links for the depth it will be written at.
+// Doing it once here beats editing several hundred href="x.html" call sites,
+// and it cannot drift out of sync with them.
+function toCleanUrls(html, depth) {
+  const up = '../'.repeat(depth);          // page -> site root
+  const sideways = '../'.repeat(depth - 1); // page -> its own language root
+
+  return (
+    html
+      // ../assets/... and ../sitemap.xml are authored assuming depth 1
+      .replace(/(["'(])\.\.\/(assets|sitemap\.xml|site\.webmanifest)/g, (m, q, tail) => `${q}${up}${tail}`)
+      // language switcher: ../<lang>/<page>.html
+      .replace(/(["'])\.\.\/([a-z]{2})\/([a-z0-9-]+)\.html(#[^"']*)?\1/g,
+        (m, q, lang, page, hash) => `${q}${up}${lang}/${page === 'index' ? '' : page + '/'}${hash || ''}${q}`)
+      // same-language page links: about.html, insight-foo.html#bar
+      .replace(/(["'])([a-z0-9-]+)\.html(#[^"']*)?\1/g,
+        (m, q, page, hash) => {
+          // At depth 1 a link to index.html resolves to the empty string,
+          // which is not a valid href — browsers treat it as "reload the
+          // current document" but validators reject it. './' says the same
+          // thing properly.
+          const target = `${sideways}${page === 'index' ? '' : page + '/'}` || './';
+          return `${q}${target}${hash || ''}${q}`;
+        })
+  );
+}
 
 function t(lang, key, vars) {
   let str = dict[lang]?.[key] ?? dict.en[key] ?? key;
@@ -625,9 +677,9 @@ function breadcrumbsHTML(lang, items) {
 // BreadcrumbList markup so Google renders the trail under the result instead
 // of a bare URL. Built from the same items rendered above.
 function breadcrumbJsonLd(lang, page, items) {
-  const list = [{ name: t(lang, 'breadcrumbHome'), url: `${SITE_URL}/${lang}/index.html` }];
+  const list = [{ name: t(lang, 'breadcrumbHome'), url: `${SITE_URL}/${lang}/` }];
   items.forEach((item, i) => {
-    list.push({ name: item.label, url: `${SITE_URL}/${lang}/${item.href || page}` });
+    list.push({ name: item.label, url: `${SITE_URL}/${urlPath(lang, item.href || page)}` });
     void i;
   });
   return {
@@ -637,8 +689,8 @@ function breadcrumbJsonLd(lang, page, items) {
 }
 
 function seoHead({ lang, title, description, page, jsonLd, robots }) {
-  const canonical = `${SITE_URL}/${lang}/${page}`;
-  const alternates = SUPPORTED_LANGUAGES.map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE_URL}/${l}/${page}" />`).join('\n    ');
+  const canonical = `${SITE_URL}/${urlPath(lang, page)}`;
+  const alternates = SUPPORTED_LANGUAGES.map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE_URL}/${urlPath(l, page)}" />`).join('\n    ');
   const fullTitle = `${title} | ENZ INTERNATIONAL`;
   return `<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -654,7 +706,7 @@ function seoHead({ lang, title, description, page, jsonLd, robots }) {
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png" />
     <link rel="manifest" href="../site.webmanifest" />
     ${alternates}
-    <link rel="alternate" hreflang="x-default" href="${SITE_URL}/en/${page}" />
+    <link rel="alternate" hreflang="x-default" href="${SITE_URL}/${urlPath('en', page)}" />
 
     <!-- The stylesheet is a single plain file, committed to the repo. It is
          compiled from _build/tailwind.src.css only when markup changes; the
@@ -697,7 +749,7 @@ function pageShell({ lang, page, title, description, jsonLd, crumbs, bodyHTML, r
     '@type': 'Organization',
     '@id': `${SITE_URL}/#organization`,
     name: 'ENZ INTERNATIONAL',
-    url: `${SITE_URL}/${lang}/index.html`,
+    url: `${SITE_URL}/${lang}/`,
     logo: `${SITE_URL}/assets/images/enz-logo.png`,
     email: CONTACT_EMAIL,
     telephone: '+86-132-0384-0456',
@@ -714,7 +766,7 @@ function pageShell({ lang, page, title, description, jsonLd, crumbs, bodyHTML, r
   if (crumbs) graph.push(breadcrumbJsonLd(lang, page, crumbs));
   const merged = { '@context': 'https://schema.org', '@graph': graph };
 
-  return `<!DOCTYPE html>
+  const doc = `<!DOCTYPE html>
 <html lang="${lang}">
   <head>
     ${seoHead({ lang, title, description, page, jsonLd: merged, robots })}
@@ -735,6 +787,10 @@ function pageShell({ lang, page, title, description, jsonLd, crumbs, bodyHTML, r
     <script type="module" src="../assets/js/motion-effects.js?v=${ASSET_VERSION}"></script>
   </body>
 </html>`;
+
+  // Every href/src above is authored as if the page sat at /<lang>/x.html.
+  // This is the single place that translates them for the real depth.
+  return toCleanUrls(doc, depthOf(page));
 }
 
 // ============================================================================
@@ -772,81 +828,87 @@ function homePage(lang) {
   ];
 
   const body = `
-  <section class="hero hero-photo${images.hero.src ? '' : ' is-empty'}">
-    ${heroMedia()}
-    <div class="${SHELL} grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
+  <!-- Hero, following the Creatifix reference: a LIGHT tinted panel inset from
+       the page edges with a rounded corner, rather than a full-bleed dark
+       band. Dark text on light removes the scrim entirely — there is no
+       photograph underneath the copy any more, so nothing can drift out of
+       contrast when an image is swapped. The photo moves to its own framed
+       block on the right, which is also how the reference handles it. -->
+  <section class="hero-wrap">
+    <div class="hero-box">
+      <div class="${SHELL} grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
-      <div class="lg:col-span-6">
-        <a href="markets.html" class="pill hover:border-brand-300 transition-colors">
-          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
-          ${hubs.slice(0, 3).join(' · ')} +${hubs.length - 3}
-        </a>
+        <div class="lg:col-span-6">
+          <a href="markets.html" class="pill">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
+            ${hubs.slice(0, 3).join(' · ')} +${hubs.length - 3}
+          </a>
 
-        <!-- Two short sentences, the second in the brand gradient. The old
-             headline was "Global Sourcing & Industrial Excellence", which told
-             a first-time visitor nothing about what actually gets done. -->
-        <h1 class="h1-display text-ink mt-7">
-          <span class="line">${t(lang, 'heroTitleA')}</span>
-          <span class="line text-gradient">${t(lang, 'heroTitleB')}</span>
-        </h1>
+          <!-- One accent word in solid brand blue, not a gradient. The
+               reference sets its highlight as a flat colour and it reads
+               cleaner at this size than a ramp does. -->
+          <h1 class="h1-display text-ink mt-6">
+            <span class="line">${t(lang, 'heroTitleA')}</span>
+            <span class="line text-brand">${t(lang, 'heroTitleB')}</span>
+          </h1>
 
-        <p class="lead mt-7 max-w-xl">${t(lang, 'heroSub')}</p>
+          <p class="lead mt-6 max-w-lg">${t(lang, 'heroSub')}</p>
 
-        <!-- The three service lines, legible without scrolling. -->
-        <div class="chip-row mt-8">
-          <span class="chip">${icon('globe', 'w-4 h-4')}${t(lang, 'heroBadge1')}</span>
-          <span class="chip">${icon('check', 'w-4 h-4')}${t(lang, 'heroBadge2')}</span>
-          <span class="chip">${icon('calendar', 'w-4 h-4')}${t(lang, 'heroBadge3')}</span>
+          <div class="flex flex-wrap items-center gap-3 mt-8">
+            <button data-open-booking class="${BTN_PRIMARY}">${t(lang, 'ctaBooking')}</button>
+            <a href="#how-it-works" class="link-arrow ml-2">${t(lang, 'navProcess')} ${icon('chevronRight', 'w-4 h-4')}</a>
+          </div>
+
+          <div class="chip-row mt-9">
+            <span class="chip">${icon('globe', 'w-4 h-4')}${t(lang, 'heroBadge1')}</span>
+            <span class="chip">${icon('check', 'w-4 h-4')}${t(lang, 'heroBadge2')}</span>
+            <span class="chip">${icon('calendar', 'w-4 h-4')}${t(lang, 'heroBadge3')}</span>
+          </div>
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-3 mt-9">
-          <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
-          <a href="#how-it-works" class="${BTN_SECONDARY} btn-lg">${t(lang, 'navProcess')}</a>
+        <div class="lg:col-span-6">
+          ${media('hero', { ratio: '4-3', className: 'hero-shot', eager: true })}
         </div>
-
-        <p class="text-sm text-slate mt-7">${t(lang, 'bookingDisclaimer')}</p>
       </div>
+    </div>
+  </section>
 
-      <!-- An ILLUSTRATION of the four-stage inspection process documented on
-           quality-control.html — not a screenshot of a product, because there
-           is no product to screenshot. The stage codes and timings are the
-           real ones from _content/pages.js. -->
-      <div class="lg:col-span-6">
-        <div class="glass-panel p-6 md:p-7">
-            <div class="flex items-center justify-between gap-4 pb-5 border-b border-line">
-              <div>
-                <p class="text-ink font-medium">${t(lang, 'qcTitle')}</p>
-                <p class="text-xs text-slate mt-1">${t(lang, 'qcEyebrow')}</p>
-              </div>
-              <span class="pill mono-tag">${qcStages.length} ${t(lang, 'qcStagesLabel')}</span>
-            </div>
-
-            <div class="mt-5">
-              ${qcStages
-                .map((st, i) => {
-                  const state = i < 2 ? 'done' : i === 2 ? 'active' : 'idle';
-                  const mark =
-                    state === 'done'
-                      ? icon('check', 'w-3.5 h-3.5')
-                      : state === 'active'
-                        ? '<span class="status-pulse w-2 h-2 rounded-full bg-current"></span>'
-                        : '<span class="w-2 h-2 rounded-full border border-current"></span>';
-                  return `<div class="status-row">
-                <span class="status-dot status-${state}">${mark}</span>
-                <span class="min-w-0 flex-1">
-                  <span class="flex flex-wrap items-baseline gap-x-2.5">
-                    <span class="mono-tag text-brand">${st.code}</span>
-                    <span class="text-sm font-medium text-ink">${st.title}</span>
-                  </span>
-                  <span class="status-when block text-xs text-slate mt-1">${st.when}</span>
+  <!-- The four-stage inspection process, moved out of the hero and onto the
+       light page where it needs no scrim to stay readable. It is evidence for
+       the quality-control claim, so it sits directly under the pitch. -->
+  <section class="section-sm bg-white">
+    <div class="${SHELL}">
+      <div class="card card-lg">
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div class="lg:col-span-4">
+            <p class="${EYEBROW}">${t(lang, 'qcEyebrow')}</p>
+            <h2 class="text-2xl font-semibold text-ink mt-4">${t(lang, 'qcTitle')}</h2>
+            <p class="text-slate text-sm mt-3 leading-relaxed">${t(lang, 'qcLead')}</p>
+            <a href="quality-control.html" class="link-arrow text-sm mt-5">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
+          </div>
+          <div class="lg:col-span-8">
+            ${qcStages
+              .map((st, i) => {
+                const state = i < 2 ? 'done' : i === 2 ? 'active' : 'idle';
+                const mark =
+                  state === 'done'
+                    ? icon('check', 'w-3.5 h-3.5')
+                    : state === 'active'
+                      ? '<span class="status-pulse w-2 h-2 rounded-full bg-current"></span>'
+                      : '<span class="w-2 h-2 rounded-full border border-current"></span>';
+                return `<div class="status-row">
+              <span class="status-dot status-${state}">${mark}</span>
+              <span class="min-w-0 flex-1">
+                <span class="flex flex-wrap items-baseline gap-x-2.5">
+                  <span class="mono-tag text-brand">${st.code}</span>
+                  <span class="text-sm font-medium text-ink">${st.title}</span>
                 </span>
-              </div>`;
-                })
-                .join('')}
-            </div>
-
-            <p class="text-xs text-slate leading-relaxed mt-5 pt-5 border-t border-line">${t(lang, 'qcLead')}</p>
-            <a href="quality-control.html" class="link-arrow text-sm mt-4">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
+                <span class="status-when block text-xs text-slate mt-1">${st.when}</span>
+              </span>
+            </div>`;
+              })
+              .join('')}
+          </div>
         </div>
       </div>
     </div>
@@ -1121,7 +1183,7 @@ function homePage(lang) {
       {
         '@type': 'LocalBusiness',
         name: 'ENZ INTERNATIONAL',
-        url: `${SITE_URL}/${lang}/index.html`,
+        url: `${SITE_URL}/${lang}/`,
         image: `${SITE_URL}/assets/images/og-cover.png`,
         telephone: '+86-1320-384-0456',
         email: CONTACT_EMAIL,
@@ -2026,6 +2088,18 @@ for (const lang of SUPPORTED_LANGUAGES) {
   const dir = path.join(OUT, lang);
   mkdirSync(dir, { recursive: true });
 
+  // index.html stays at the language root; everything else becomes its own
+  // directory, so /en/services/ serves /en/services/index.html.
+  const emit = (page, html) => {
+    if (isHome(page)) {
+      writeFileSync(path.join(dir, 'index.html'), html);
+      return;
+    }
+    const sub = path.join(dir, slugOf(page));
+    mkdirSync(sub, { recursive: true });
+    writeFileSync(path.join(sub, 'index.html'), html);
+  };
+
   const pages = [
     ['index.html', homePage],
     ['about.html', aboutPage],
@@ -2044,15 +2118,15 @@ for (const lang of SUPPORTED_LANGUAGES) {
   ];
 
   for (const [file, builder] of pages) {
-    writeFileSync(path.join(dir, file), builder(lang));
+    emit(file, builder(lang));
   }
 
   for (const post of insights) {
-    writeFileSync(path.join(dir, `insight-${post.slug}.html`), insightPostPage(lang, post));
+    emit(`insight-${post.slug}.html`, insightPostPage(lang, post));
   }
 
-  writeFileSync(path.join(dir, 'privacy.html'), legalPage(lang, 'privacy'));
-  writeFileSync(path.join(dir, 'terms.html'), legalPage(lang, 'terms'));
+  emit('privacy.html', legalPage(lang, 'privacy'));
+  emit('terms.html', legalPage(lang, 'terms'));
 
   console.log(`Wrote ${lang}/ (${pages.length + insights.length + 2} pages)`);
 }
@@ -2072,17 +2146,17 @@ writeFileSync(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=en/index.html" />
-    <link rel="canonical" href="${SITE_URL}/en/index.html" />
+    <meta http-equiv="refresh" content="0; url=en/" />
+    <link rel="canonical" href="${SITE_URL}/en/" />
     <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512.png" />
     <title>ENZ INTERNATIONAL — Global Sourcing &amp; Industrial Excellence</title>
     <meta name="description" content="${t('en', 'heroSub')}" />
     <link rel="stylesheet" href="assets/css/site.css?v=${ASSET_VERSION}" />
   </head>
   <body class="bg-white text-ink">
-    <script>location.replace('en/index.html');</script>
+    <script>location.replace('en/');</script>
     <main class="min-h-screen flex items-center justify-center px-4 text-center">
-      <p class="lead">Redirecting to <a href="en/index.html" class="link-arrow">ENZ INTERNATIONAL</a>…</p>
+      <p class="lead">Redirecting to <a href="en/" class="link-arrow">ENZ INTERNATIONAL</a>…</p>
     </main>
   </body>
 </html>`
@@ -2113,12 +2187,12 @@ writeFileSync(
         <h1 class="h1-display text-ink mt-4">This page <span class="text-gradient">isn't here</span></h1>
         <p class="lead mt-5">The page you're looking for doesn't exist, or it may have moved. The links below will get you back on track.</p>
         <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
-          <a href="/en/index.html" class="btn btn-primary btn-lg">Back to homepage</a>
-          <a href="/en/contact.html" class="btn btn-ghost-light btn-lg">Contact us</a>
+          <a href="/en/" class="btn btn-primary btn-lg">Back to homepage</a>
+          <a href="/en/contact/" class="btn btn-secondary btn-lg">Contact us</a>
         </div>
         <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-10 text-sm">
           ${['services', 'process', 'markets', 'insights', 'faq']
-            .map((slug) => `<a href="/en/${slug}.html" class="text-slate hover:text-ink transition-colors capitalize">${slug}</a>`)
+            .map((slug) => `<a href="/en/${slug}/" class="text-slate hover:text-ink transition-colors capitalize">${slug}</a>`)
             .join('')}
         </div>
       </div>
@@ -2136,7 +2210,7 @@ writeFileSync(
       name: 'ENZ INTERNATIONAL',
       short_name: 'ENZ',
       description: t('en', 'heroSub'),
-      start_url: '/en/index.html',
+      start_url: '/en/',
       scope: '/',
       display: 'standalone',
       background_color: '#FFFFFF',
@@ -2227,9 +2301,9 @@ const priorityFor = (page) => {
 const urls = SUPPORTED_LANGUAGES.flatMap((lang) =>
   sitemapPages.map(
     (page) =>
-      `  <url>\n    <loc>${SITE_URL}/${lang}/${page}</loc>\n    <lastmod>${LASTMOD}</lastmod>\n    <priority>${priorityFor(page)}</priority>\n${SUPPORTED_LANGUAGES.map(
-        (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${SITE_URL}/${l}/${page}" />`
-      ).join('\n')}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}/en/${page}" />\n  </url>`
+      `  <url>\n    <loc>${SITE_URL}/${urlPath(lang, page)}</loc>\n    <lastmod>${LASTMOD}</lastmod>\n    <priority>${priorityFor(page)}</priority>\n${SUPPORTED_LANGUAGES.map(
+        (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${SITE_URL}/${urlPath(l, page)}" />`
+      ).join('\n')}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}/${urlPath('en', page)}" />\n  </url>`
   )
 );
 writeFileSync(

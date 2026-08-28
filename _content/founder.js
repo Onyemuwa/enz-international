@@ -26,10 +26,11 @@
 // ===========================================================================
 
 export const founder = {
-  // Taken from the repository owner. Correct it if that is not right.
-  name: 'Godwin Ubani',
+  // Surname still needed — only the first name was given, so the monogram
+  // is a single letter. Add the surname here and update `initials` to match.
+  name: 'Erick',
   role: 'Founder',
-  initials: 'GU',
+  initials: 'E',
 
   // '' renders the initials monogram. Point it at a file in assets/images/
   // once a real portrait exists, e.g. 'founder.webp' (800×800, square).
