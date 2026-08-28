@@ -142,10 +142,19 @@
         }
 
         Promise.resolve(opts.submit(form))
-          .then(function () {
+          .then(function (result) {
             form.hidden = true;
             if (success) {
               success.hidden = false;
+              // When the submission was handed to the visitor's mail client we
+              // cannot know they pressed send, so the copy swaps to say so.
+              // Claiming "we'll be in touch" would be a guess.
+              if (result && result.handedOffToMailClient) {
+                var handoff = success.querySelector('[data-handoff-note]');
+                if (handoff) handoff.hidden = false;
+                var sent = success.querySelector('[data-sent-note]');
+                if (sent) sent.hidden = true;
+              }
               if (opts.onSuccess) opts.onSuccess(form, success);
             }
           })

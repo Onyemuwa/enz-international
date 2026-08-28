@@ -5,28 +5,33 @@ document covers what's real vs. placeholder, the SEO/performance state, and how 
 
 ---
 
-## 0. THE ONE BLOCKER — forms send nothing until you set a key
+## 0. How form submissions reach you
 
-`assets/js/config.js` ships with `API_BASE_URL` and `WEB3FORMS_ACCESS_KEY` both empty. That is **mock
-mode**, and it is correct for local development: forms resolve successfully so you can click through the
-whole flow offline.
+**The forms work right now, with no key and no setup.** With `API_BASE_URL` and `WEB3FORMS_ACCESS_KEY`
+both empty in `assets/js/config.js`, submitting a form opens the visitor's own email client with the
+enquiry already written — recipient, subject and every field filled in. They press send in their mail
+app and it arrives at `CONTACT_EMAIL`.
 
-On a real domain that behaviour would be the worst bug on the site — a buyer types a genuine enquiry, is
-told it arrived, and it goes nowhere. Nobody sees an error: not the sender, not you.
+This replaced the old mock mode, which resolved successfully and sent nothing: a buyer typed a genuine
+enquiry, was told it arrived, and it reached nobody, with no error for either side to notice.
 
-So mock mode is now **local-only**. On any non-localhost host with neither backend configured, every
-submission is rejected and the form shows a visible fallback pointing at your email and phone instead.
-Nobody is silently dropped — but nobody reaches your inbox through the form either.
+Two honest limits of the mailto handoff:
 
-**To actually receive enquiries**, do one of:
+- The visitor has to press send themselves. It is a handover, not a silent submission — which is why the
+  success screen says *"we've opened your email app — press send"* rather than *"we'll be in touch"*.
+- A device with no mail client configured will do nothing visible. The success screen therefore also
+  shows your address as a plain fallback.
+
+**To upgrade to true background submission** (nothing for the visitor to do, and it works on every
+device), do one of:
 
 1. Get a free key at [web3forms.com](https://web3forms.com) (emailed to you in under a minute, no
-   account) and set `WEB3FORMS_ACCESS_KEY` in `assets/js/config.js`. Every form then emails you directly.
-2. Or run the real backend and set `API_BASE_URL`. Use this if you want submissions persisted somewhere
+   account) and set `WEB3FORMS_ACCESS_KEY`. Every form then emails you directly, silently. **Recommended.**
+2. Or run a real backend and set `API_BASE_URL`. Use this if you want submissions persisted somewhere
    you control rather than arriving purely as email.
 
-Then bump `ASSET_VERSION` in `_generate-static.mjs`, re-run it, and redeploy — otherwise browsers keep
-serving the cached `config.js`.
+Either way, bump `ASSET_VERSION` in `_generate-static.mjs`, re-run it, and redeploy — otherwise browsers
+keep serving the cached `config.js`.
 
 Verify after deploying by submitting the contact form on the live site and confirming the email arrives.
 
@@ -47,7 +52,7 @@ claims on a live company site, which isn't something to guess on your behalf.
 | Contact email | `assets/js/config.js` (`CONTACT_EMAIL`) | Domain matches (`info@enzinternational.co`) but confirm that inbox actually exists and is monitored |
 | Operational hubs / markets list | `assets/js/config.js`, page content | Confirm the cities and 5 markets (Tanzania, Kenya, DRC, US, UK) are current |
 | Privacy Policy / Terms | `privacy.html`, `terms.html` | Structural placeholder text, explicitly flagged in-page — **have a lawyer review before launch**, especially GDPR/data-processing language |
-| **Web3Forms access key** | `assets/js/config.js` | **Empty — forms reach nobody until this is set. See section 0.** |
+| Web3Forms access key | `assets/js/config.js` | Optional. Forms already work via a mailto handoff; setting a key upgrades them to silent background submission. See section 0. |
 
 ## 2. Stack
 
@@ -60,8 +65,8 @@ claims on a live company site, which isn't something to guess on your behalf.
 - **Animation**: [Motion](https://motion.dev) (`assets/js/motion-effects.js`), loaded as a native ES
   module import. Vendored at `assets/js/vendor/motion.min.js` rather than fetched from a CDN, so there is no
   third-party runtime dependency — same team and engine as Framer Motion, framework-free, so
-  it runs without React. Powers staggered reveals (`[data-reveal-group]`), count-up stats
-  (`[data-counter]`), and the hero glow parallax.
+  it runs without React. Powers staggered reveals (`[data-reveal-group]`) and count-up stats
+  (`[data-counter]`).
 
   The safety order is load-bearing: HTML and CSS render everything visible, Motion is imported, and only
   *after* a successful import is anything hidden — one element at a time, immediately before animating it
@@ -86,10 +91,9 @@ claims on a live company site, which isn't something to guess on your behalf.
    submission to your inbox. This is the recommended path given the all-static constraint — it directly
    answers "the form should arrive by email automatically" with zero infrastructure to run or pay for.
    It is a mail relay, so it delivers submissions but does not store them anywhere you can query.
-3. **Neither set** — mock mode, and **only on localhost**. Forms resolve successfully so you can click
-   through the whole flow while developing. On a deployed host this same state instead rejects the
-   submission and shows an "email us directly" fallback, because a live form that fakes success loses
-   real enquiries silently. See section 0.
+3. **Neither set** — the submission opens the visitor's own email client with the enquiry pre-written:
+   recipient, subject and every field filled in. Works everywhere with no configuration; the visitor
+   presses send. This is what runs today. See section 0.
 
 ## 4. SEO audit — current state
 

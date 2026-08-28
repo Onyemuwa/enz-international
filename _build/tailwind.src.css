@@ -33,7 +33,7 @@
      altogether; on <html> it turns the root into a scroll container, which
      silently breaks `position: sticky` on the header. Every element that
      overflows on purpose — the blurred hero glows, the marquee track — is
-     clipped by its own container instead (.section-dark, .marquee), which is
+     clipped by its own container instead (.section-feature, .marquee), which is
      both narrower in effect and safe. */
 
   /* Optical tightening on large display type — the single biggest difference
@@ -53,10 +53,7 @@
     outline-offset: 2px;
     border-radius: 5px;
   }
-  .section-dark a:focus-visible, .section-dark button:focus-visible,
-  footer a:focus-visible, footer button:focus-visible, footer input:focus-visible {
-    outline-color: #6FC1EC;
-  }
+
 
   img, svg, video { max-width: 100%; height: auto; }
 
@@ -103,7 +100,7 @@
   @media (min-width: 1024px) and (max-height: 850px) {
     .hero { padding-block: 2.25rem 3.5rem; }
     .hero .h1-display { font-size: clamp(2.25rem, 3.5vw, 3.25rem); }
-    .hero .lead-light { font-size: 1rem; }
+    .hero .lead { font-size: 1rem; }
   }
 
   /* Phone density.
@@ -113,7 +110,7 @@
      are, once stacked, just scrolling between the same amount of text. These
      are tightened on phones only — the desktop rhythm is untouched. */
   @media (max-width: 639px) {
-    .card, .card-dark { padding: 1.25rem; }
+    .card, .card-feature { padding: 1.25rem; }
     .card-lg { padding: 1.375rem; }
     .section { padding-block: 3rem; }
     .section-sm { padding-block: 2.25rem; }
@@ -144,8 +141,7 @@
     content: ''; width: 1.25rem; height: 2px; border-radius: 2px;
     background: var(--grad-brand); flex: none;
   }
-  .eyebrow-light { color: rgba(255,255,255,.62); }
-  .eyebrow-light::before { background: linear-gradient(90deg, #2AA8E4, rgba(42,168,228,0)); }
+
 
   /* Display type runs bigger and tighter than the old scale. At headline
      sizes, size and negative tracking are most of what separates "premium"
@@ -162,21 +158,20 @@
     font-size: clamp(1.875rem, 3.4vw, 2.75rem);
     line-height: 1.1; font-weight: 600; color: #0A0F14;
   }
-  .section-dark .h2-section, .h2-section.on-dark { color: #fff; }
+
   .lead { color: #5A6A75; font-size: 1.0625rem; line-height: 1.7; }
   @media (min-width: 768px) { .lead { font-size: 1.125rem; } }
-  .lead-light { color: rgba(255,255,255,.64); font-size: 1.0625rem; line-height: 1.7; }
-  @media (min-width: 768px) { .lead-light { font-size: 1.125rem; } }
+
 
   /* The one phrase in a headline that carries the brand gradient. Used once
      per page at most — it stops being an accent the second it repeats. */
-  .text-gradient {
-    background: linear-gradient(100deg, #6FC1EC 0%, #2AA8E4 40%, #FCAE42 115%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-  }
+  /* One gradient, tuned for LIGHT backgrounds. The old .text-gradient ran
+     #6FC1EC -> #FCAE42, which was built for the near-black hero; on white
+     those stops are pale enough to fail contrast outright. There is no dark
+     surface left to need a second variant. */
+  .text-gradient,
   .text-gradient-dark {
-    background: linear-gradient(100deg, #12688F 0%, #1789C2 55%, #C97A08 120%);
+    background: linear-gradient(100deg, #0E5878 0%, #12688F 45%, #C97A08 125%);
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent; color: transparent;
   }
@@ -191,6 +186,7 @@
     position: relative;
     display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
     font-weight: 500; font-size: .9375rem; line-height: 1.2;
+    min-height: 2.75rem;
     padding: .75rem 1.375rem;
     border-radius: .75rem;
     white-space: nowrap;
@@ -198,7 +194,8 @@
                 box-shadow .25s var(--ease-spring), transform .25s var(--ease-spring);
   }
   .btn-sm { padding: .5rem .875rem; font-size: .875rem; border-radius: .5rem; }
-  .btn-lg { padding: .9375rem 1.75rem; font-size: 1rem; }
+  .btn-lg { min-height: 3.25rem; padding: .9375rem 1.75rem; font-size: 1rem; }
+  form .btn[type='submit'] { min-height: 3rem; }
   .btn svg { flex: none; }
   /* The arrow leans forward on hover — the cheapest possible "this goes
      somewhere" cue, and it animates transform only, never opacity. */
@@ -232,13 +229,7 @@
     transform: translateY(-1px);
   }
 
-  .btn-ghost-light {
-    color: #fff;
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.2);
-    backdrop-filter: blur(8px);
-  }
-  .btn-ghost-light:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.34); transform: translateY(-1px); }
+
 
   .btn-dark { color: #fff; background: #0A0F14; }
   .btn-dark:hover { background: #12688F; transform: translateY(-1px); }
@@ -255,8 +246,7 @@
   .link-arrow svg { transition: transform .25s var(--ease-spring); }
   .link-arrow:hover { color: #0B4560; }
   .link-arrow:hover svg { transform: translateX(4px); }
-  .link-arrow-light { color: #6FC1EC; }
-  .link-arrow-light:hover { color: #A9D8F4; }
+
 
   /* ---------- Cards ----------------------------------------------------- */
   .card {
@@ -294,23 +284,28 @@
   /* Anchor cards get the arrow nudge for free. */
   a.card:hover .link-arrow svg, a.card:hover .btn-arrow { transform: translateX(4px); }
 
-  .card-dark {
+  .card-feature {
     position: relative;
-    background: rgba(255,255,255,.035);
-    border: 1px solid rgba(255,255,255,.1);
+    background: #fff;
+    border: 1px solid #E4E9ED;
     border-radius: 1.125rem;
     padding: 1.5rem;
-    transition: background-color .25s, border-color .25s, transform .3s var(--ease-spring);
+    box-shadow: 0 1px 2px rgba(11,18,32,.035);
+    transition: border-color .25s, box-shadow .3s var(--ease-spring), transform .3s var(--ease-spring);
   }
-  .card-dark::after {
+  .card-feature::after {
     content: ''; position: absolute; inset: -1px -1px auto -1px; height: 2px;
     border-radius: 1.125rem 1.125rem 0 0;
-    background: linear-gradient(90deg, #2AA8E4, #FCAE42);
+    background: var(--grad-brand);
     transform: scaleX(0); transform-origin: left;
     transition: transform .4s var(--ease-spring);
   }
-  .card-dark:hover { background: rgba(255,255,255,.075); border-color: rgba(255,255,255,.22); transform: translateY(-3px); }
-  .card-dark:hover::after { transform: scaleX(1); }
+  .card-feature:hover {
+    border-color: #C9DCE7;
+    box-shadow: 0 1px 2px rgba(11,18,32,.05), 0 16px 36px -12px rgba(11,18,32,.16);
+    transform: translateY(-3px);
+  }
+  .card-feature:hover::after { transform: scaleX(1); }
 
   /* Icon plate — gives every card a consistent, deliberate-looking anchor
      instead of a bare stroke icon floating in whitespace. */
@@ -325,8 +320,7 @@
   }
   .card:hover .icon-chip { border-color: #A9D8F4; }
   .icon-chip-accent { color: #C97A08; background: linear-gradient(140deg, #FFF4E3 0%, #FFFBF4 100%); border-color: #FCE3BA; }
-  .icon-chip-dark { color: #6FC1EC; background: rgba(42,168,228,.1); border-color: rgba(42,168,228,.22); }
-  .card-dark:hover .icon-chip-dark { background: rgba(42,168,228,.18); border-color: rgba(42,168,228,.4); }
+  .card-feature:hover .icon-chip { border-color: #A9D8F4; }
 
   /* Small numeric/step badge. */
   .step-badge {
@@ -347,33 +341,40 @@
   }
   .pill-neutral { color: #5A6A75; background: #F7F9FB; border-color: #E4E9ED; }
   .pill-accent { color: #C97A08; background: #FFF4E3; border-color: #FCE3BA; }
-  .pill-dark { color: #A9D8F4; background: rgba(42,168,228,.12); border-color: rgba(42,168,228,.24); }
 
-  /* ---------- Dark sections -------------------------------------------- */
-  .section-dark {
+
+  /* ---------- Feature sections ----------------------------------------- */
+  /* These were near-black bands with glowing orbs over them. That treatment
+     is the single most recognisable "generated landing page" look there is,
+     and on a sourcing firm's site it was doing nothing the content needed.
+     The bands still exist — a page of unbroken white has no rhythm — but they
+     are now a soft brand wash on the light palette. Same structural job,
+     none of the costume. */
+  .section-feature {
     position: relative;
     isolation: isolate;
-    color: #fff;
-    background: var(--grad-dark);
+    color: #0A0F14;
+    background:
+      radial-gradient(72% 80% at 12% 0%, rgba(42,168,228,.10) 0%, rgba(247,249,251,0) 62%),
+      radial-gradient(58% 70% at 92% 8%, rgba(252,174,66,.09) 0%, rgba(247,249,251,0) 60%),
+      #F7F9FB;
+    border-top: 1px solid #E4E9ED;
+    border-bottom: 1px solid #E4E9ED;
     overflow: hidden;
   }
-  /* Engineering-drawing grid, faded out toward the edges so it reads as
-     texture rather than as a table. */
-  .section-dark::before {
+  /* Engineering-drawing grid, faded toward the edges so it reads as texture
+     rather than as a table. Far fainter now that it sits on light. */
+  .section-feature::before {
     content: ''; position: absolute; inset: 0; z-index: -1;
     background-image:
-      linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      linear-gradient(rgba(11,26,36,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11,26,36,.035) 1px, transparent 1px);
     background-size: 72px 72px;
-    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 10%, transparent 75%);
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 10%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 10%, transparent 72%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 10%, transparent 72%);
   }
-  .section-dark .glow {
-    position: absolute; z-index: -1; border-radius: 999px;
-    filter: blur(90px); pointer-events: none;
-  }
-  .glow-brand { background: rgba(42,168,228,.28); }
-  .glow-accent { background: rgba(252,174,66,.16); }
+  /* The blurred orbs are gone. They were the loudest part of the effect and
+     they cost an animation on every one of these bands. */
 
   /* Light-section counterpart: a soft brand wash instead of flat white. */
   .section-wash {
@@ -429,21 +430,21 @@
   /* ---------- Footer ---------------------------------------------------- */
   .footer-heading {
     font-size: .6875rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-    color: rgba(255,255,255,.45);
+    color: #8A97A1;
   }
   .footer-link {
     display: inline-block;
-    font-size: .875rem; color: rgba(255,255,255,.62);
+    font-size: .875rem; color: #5A6A75;
     transition: color .2s, transform .2s var(--ease-spring);
   }
-  .footer-link:hover { color: #fff; transform: translateX(2px); }
+  .footer-link:hover { color: #0A0F14; transform: translateX(2px); }
   .footer-contact {
     display: inline-flex; align-items: center; gap: .625rem;
-    color: rgba(255,255,255,.7);
+    color: #5A6A75;
     transition: color .2s;
   }
-  .footer-contact svg { color: #6FC1EC; flex: none; transition: color .2s; }
-  .footer-contact:hover { color: #fff; }
+  .footer-contact svg { color: #12688F; flex: none; transition: color .2s; }
+  .footer-contact:hover { color: #0A0F14; }
 
   /* Visually hidden but available to screen readers — used for the newsletter
      label, which would otherwise duplicate the heading directly above it. */
@@ -515,13 +516,7 @@
   }
 
   /* Footer instance sits on the dark band. */
-  .lang-menu-dark > summary {
-    background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.16); color: rgba(255,255,255,.75);
-  }
-  .lang-menu-dark > summary:hover,
-  .lang-menu-dark[open] > summary {
-    background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); color: #fff;
-  }
+
 
   /* ---------- Marquee --------------------------------------------------- */
   /* Decoration on already-rendered text: if the animation never runs the row
@@ -594,15 +589,21 @@
   .faq-answer { padding: 0 .25rem 1.25rem; color: #5A6A75; font-size: .9375rem; line-height: 1.75; max-width: 62ch; }
 
   /* ---------- Forms ----------------------------------------------------- */
-  .field-label { display: block; font-size: .8125rem; font-weight: 600; color: #0A0F14; margin-bottom: .375rem; }
+  .field-label { display: block; font-size: .8125rem; font-weight: 600; color: #0A0F14; margin-bottom: .4375rem; }
+  /* Required fields say so, rather than only failing on submit. */
+  .field-label[data-required]::after { content: ' *'; color: #C0392B; font-weight: 700; }
   .field {
     width: 100%;
-    padding: .6875rem .875rem;
-    font-size: .9375rem; color: #0A0F14;
+    min-height: 3rem;
+    padding: .75rem .9375rem;
+    font-size: 1rem; line-height: 1.4; color: #0A0F14;
     background: #fff;
     border: 1px solid #E4E9ED; border-radius: .75rem;
     transition: border-color .2s, box-shadow .2s, background-color .2s;
   }
+  textarea.field { min-height: 6.5rem; resize: vertical; }
+  /* Date inputs render their own control and collapse without this. */
+  input[type='date'].field { min-height: 3rem; }
   .field::placeholder { color: #A6B1B9; }
   .field:hover { border-color: #D3DBE1; }
   .field:focus { outline: none; border-color: #12688F; box-shadow: 0 0 0 3px rgba(18,104,143,.14); }
@@ -612,18 +613,22 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235A6A75' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
     background-repeat: no-repeat; background-position: right .75rem center; background-size: .875rem;
   }
-  .field-dark { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.16); color: #fff; }
-  .field-dark::placeholder { color: rgba(255,255,255,.42); }
-  .field-dark:hover { border-color: rgba(255,255,255,.28); }
-  .field-dark:focus { border-color: #2AA8E4; box-shadow: 0 0 0 3px rgba(42,168,228,.2); background: rgba(255,255,255,.1); }
+
   .file-drop {
     display: block; width: 100%; cursor: pointer;
-    padding: 1.75rem 1rem; text-align: center;
+    padding: 1.25rem 1rem; text-align: left;
     font-size: .875rem; color: #5A6A75;
     background: #F7F9FB;
     border: 1.5px dashed #D3DBE1; border-radius: .75rem;
     transition: border-color .2s, background-color .2s, color .2s;
   }
+  .file-drop::file-selector-button {
+    margin-right: .875rem; padding: .5rem .875rem;
+    font: inherit; font-weight: 500; color: #0A0F14;
+    background: #fff; border: 1px solid #E4E9ED; border-radius: .5rem;
+    cursor: pointer; transition: border-color .2s, background-color .2s;
+  }
+  .file-drop:hover::file-selector-button { border-color: #A9D8F4; }
   .file-drop:hover { border-color: #A9D8F4; background: #EAF6FD; color: #12688F; }
 
   /* ---------- Modals ---------------------------------------------------- */
@@ -636,12 +641,13 @@
     overflow-y: auto;
   }
   .modal-panel {
-    position: relative; width: 100%; max-width: 30rem;
-    max-height: min(90vh, 44rem); overflow-y: auto;
+    position: relative; width: 100%; max-width: 34rem;
+    max-height: min(92vh, 48rem); overflow-y: auto;
     background: #fff; border-radius: 1.5rem;
     padding: 1.75rem;
     box-shadow: 0 24px 64px -12px rgba(6,13,19,.4), 0 0 0 1px rgba(11,18,32,.06);
   }
+  @media (min-width: 640px) { .modal-panel { padding: 2rem; } }
   .modal-close {
     position: absolute; top: 1rem; right: 1rem;
     display: inline-flex; align-items: center; justify-content: center;
@@ -745,36 +751,27 @@
     padding: .25rem 0 .25rem 1.125rem;
     color: #5A6A75; font-size: .9375rem; line-height: 1.75;
   }
-  .section-dark .note-accent { color: rgba(255,255,255,.72); }
+
 
   /* ---------- SaaS surface treatments ----------------------------------- */
 
   /* Fine grain over the dark bands. Flat dark gradients band visibly on wide
      screens and read as cheap; a little noise is what stops that, and it costs
      one inline SVG rather than an image request. */
-  .section-dark::after {
-    content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-    opacity: .5;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
-  }
+
 
   /* Decorative light sources that drift. Transform-only, so it composites on
      the GPU and can never affect layout or hide anything. */
-  @keyframes orbDrift {
-    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-    50%      { transform: translate3d(2.5rem, -1.75rem, 0) scale(1.08); }
-  }
-  .glow { animation: orbDrift 18s ease-in-out infinite; }
-  .glow:nth-of-type(2) { animation-duration: 24s; animation-direction: reverse; }
-  @media (prefers-reduced-motion: reduce) { .glow { animation: none; } }
+
 
   /* A gradient hairline that a solid panel sits inside — the standard way to
      make one element read as "featured" without shouting. */
   .gradient-border {
     position: relative;
-    background: linear-gradient(135deg, rgba(42,168,228,.55), rgba(252,174,66,.45) 55%, rgba(42,168,228,.2));
+    background: linear-gradient(135deg, rgba(42,168,228,.45), rgba(252,174,66,.35) 55%, rgba(42,168,228,.14));
     padding: 1px;
     border-radius: 1.375rem;
+    box-shadow: 0 1px 2px rgba(11,18,32,.04), 0 18px 40px -16px rgba(11,18,32,.16);
   }
   .gradient-border > * { border-radius: 1.3125rem; }
 
@@ -797,19 +794,19 @@
     display: flex; align-items: center; gap: .875rem;
     padding: .875rem 1rem;
     border-radius: .75rem;
-    background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.08);
+    background: #F7F9FB;
+    border: 1px solid #EEF2F5;
     transition: background-color .25s, border-color .25s, transform .3s var(--ease-spring);
   }
   .status-row + .status-row { margin-top: .5rem; }
-  .status-row:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.16); transform: translateX(3px); }
+  .status-row:hover { background: #fff; border-color: #D2EBFA; transform: translateX(3px); }
   .status-dot {
     width: 1.5rem; height: 1.5rem; flex: none; border-radius: 999px;
     display: inline-flex; align-items: center; justify-content: center;
   }
-  .status-done { background: rgba(31,168,85,.16); color: #4ADE80; border: 1px solid rgba(74,222,128,.3); }
-  .status-active { background: rgba(42,168,228,.16); color: #6FC1EC; border: 1px solid rgba(111,193,236,.35); }
-  .status-idle { background: rgba(255,255,255,.05); color: rgba(255,255,255,.35); border: 1px solid rgba(255,255,255,.12); }
+  .status-done { background: #E7F7EE; color: #157F3D; border: 1px solid #BCE6CD; }
+  .status-active { background: #EAF6FD; color: #12688F; border: 1px solid #A9D8F4; }
+  .status-idle { background: #F7F9FB; color: #A6B1B9; border: 1px solid #E4E9ED; }
   .status-active .status-pulse { animation: pulseDot 1.8s ease-in-out infinite; }
 
   /* Service chips directly under the headline: the three things the company
@@ -818,19 +815,19 @@
   .chip {
     display: inline-flex; align-items: center; gap: .5rem;
     padding: .5rem .875rem; border-radius: 999px;
-    font-size: .875rem; font-weight: 500; color: #fff;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.14);
+    font-size: .875rem; font-weight: 500; color: #0A0F14;
+    background: #fff;
+    border: 1px solid #E4E9ED;
+    box-shadow: 0 1px 2px rgba(11,18,32,.04);
     transition: background-color .2s, border-color .2s, transform .25s var(--ease-spring);
   }
-  .chip:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.28); transform: translateY(-1px); }
-  .chip svg { color: #6FC1EC; }
+  .chip:hover { border-color: #A9D8F4; transform: translateY(-1px); }
+  .chip svg { color: #12688F; }
 
   /* ---------- Misc ------------------------------------------------------ */
   .check-item { display: flex; align-items: flex-start; gap: .625rem; font-size: .875rem; line-height: 1.6; color: #5A6A75; }
   .check-item > svg { flex: none; margin-top: .1875rem; color: #12688F; }
-  .section-dark .check-item { color: rgba(255,255,255,.62); }
-  .section-dark .check-item > svg { color: #2AA8E4; }
+
 
   @media print {
     header, footer, .no-print, .fab-whatsapp, .to-top, .read-progress { display: none !important; }

@@ -132,27 +132,4 @@
     );
   });
 
-  // -------------------------------------------------------------------------
-  // 3. Hero glow parallax
-  // -------------------------------------------------------------------------
-  // Purely decorative blurred shapes behind the hero. They carry no content,
-  // so there is nothing here that can be hidden by a failure.
-  var glowLayers = document.querySelectorAll('.section-dark .glow');
-  if (glowLayers.length && window.matchMedia('(min-width: 768px)').matches) {
-    var ticking = false;
-    var onScroll = function () {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(function () {
-        var y = window.scrollY || 0;
-        glowLayers.forEach(function (layer, i) {
-          var depth = i % 2 === 0 ? 0.06 : -0.045;
-          layer.style.transform = 'translate3d(0,' + y * depth + 'px,0)';
-        });
-        ticking = false;
-      });
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
 })();

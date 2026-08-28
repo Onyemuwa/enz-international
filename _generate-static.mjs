@@ -27,7 +27,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '17';
+const ASSET_VERSION = '19';
 
 // One weight range, one request. `display=swap` means text paints immediately
 // in the fallback and re-renders in Inter — never an invisible headline.
@@ -84,16 +84,12 @@ function icon(name, cls = 'w-5 h-5') {
 // stalled transition can never hide content.
 const CARD = 'card';
 const CARD_MUTED = 'card card-muted';
-const CARD_DARK = 'card-dark';
+const CARD_FEATURE = 'card-feature';
 const BTN_PRIMARY = 'btn btn-primary';
 const BTN_SECONDARY = 'btn btn-secondary';
-const BTN_GHOST_LIGHT = 'btn btn-ghost-light';
 const EYEBROW = 'eyebrow';
-const EYEBROW_LIGHT = 'eyebrow eyebrow-light';
 const H2 = 'h2-section';
-const H2_LIGHT = 'h2-section on-dark';
 const LEAD = 'lead';
-const LEAD_LIGHT = 'lead-light';
 const SHELL = 'shell';
 
 // Centred section header — eyebrow, heading, lead. Repeated ~30 times across
@@ -107,23 +103,23 @@ const SHELL = 'shell';
 //
 // `align: 'start'` puts the heading hard left with the lead beside it, which
 // reads as an editor's decision rather than a component default.
-function sectionHead(eyebrow, title, lead, { dark = false, align = 'center' } = {}) {
+function sectionHead(eyebrow, title, lead, { align = 'center' } = {}) {
   if (align === 'start') {
     return `
       <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
         <div class="lg:col-span-6">
-          ${eyebrow ? `<p class="${dark ? EYEBROW_LIGHT : EYEBROW}">${eyebrow}</p>` : ''}
-          <h2 class="${dark ? H2_LIGHT : H2} mt-4">${title}</h2>
+          ${eyebrow ? `<p class="${EYEBROW}">${eyebrow}</p>` : ''}
+          <h2 class="${H2} mt-4">${title}</h2>
         </div>
-        ${lead ? `<div class="lg:col-span-6"><p class="${dark ? LEAD_LIGHT : LEAD}">${lead}</p></div>` : ''}
+        ${lead ? `<div class="lg:col-span-6"><p class="${LEAD}">${lead}</p></div>` : ''}
       </div>`;
   }
   const wrap = align === 'center' ? 'max-w-3xl mx-auto text-center' : 'max-w-3xl';
   return `
       <div class="${wrap}">
-        ${eyebrow ? `<p class="${dark ? EYEBROW_LIGHT : EYEBROW}">${eyebrow}</p>` : ''}
-        <h2 class="${dark ? H2_LIGHT : H2} mt-4">${title}</h2>
-        ${lead ? `<p class="${dark ? LEAD_LIGHT : LEAD} mt-5">${lead}</p>` : ''}
+        ${eyebrow ? `<p class="${EYEBROW}">${eyebrow}</p>` : ''}
+        <h2 class="${H2} mt-4">${title}</h2>
+        ${lead ? `<p class="${LEAD} mt-5">${lead}</p>` : ''}
       </div>`;
 }
 
@@ -210,17 +206,6 @@ function proofSection(lang) {
   </section>`;
 }
 
-// The two decorative light sources behind every dark band. Sizes differ per
-// section so the bands don't look copy-pasted.
-function glows(variant = 'a') {
-  const presets = {
-    a: `<div aria-hidden="true" class="glow glow-brand w-[34rem] h-[34rem] -top-40 -left-32"></div>
-        <div aria-hidden="true" class="glow glow-accent w-[26rem] h-[26rem] -bottom-32 -right-24"></div>`,
-    b: `<div aria-hidden="true" class="glow glow-brand w-[30rem] h-[30rem] -top-32 right-[-6rem]"></div>
-        <div aria-hidden="true" class="glow glow-accent w-[22rem] h-[22rem] bottom-[-8rem] left-[-4rem]"></div>`,
-  };
-  return presets[variant] || presets.a;
-}
 
 // The word "Language", in each language — the mobile menu labels the switcher
 // in the language the reader is already in, not in English.
@@ -285,7 +270,7 @@ function langSwitcher(lang, currentPage, { variant = 'light', id = 'lang' } = {}
   }).join('');
 
   return `
-        <details class="lang-menu${variant === 'dark' ? ' lang-menu-dark lang-menu-up' : ''}" data-lang-menu>
+        <details class="lang-menu${variant === 'dark' ? ' lang-menu-up' : ''}" data-lang-menu>
           <summary aria-haspopup="true" aria-label="${LANG_LABEL[lang] || 'Language'}: ${LANGUAGE_LABELS[lang]}">
             ${icon('globe', 'w-4 h-4')}
             <span>${LANGUAGE_LABELS[lang]}</span>
@@ -359,24 +344,24 @@ function footerHTML(lang, currentPage) {
         </div>`;
 
   return `
-  <footer class="section-dark">
+  <footer class="section-feature">
     <!-- Newsletter, as its own band rather than an afterthought in a column. -->
-    <div class="${SHELL} py-12 md:py-14 border-b border-white/10">
+    <div class="${SHELL} py-12 md:py-14 border-b border-line">
       <div class="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
         <div class="lg:col-span-6">
-          <h2 class="text-xl md:text-2xl font-semibold text-white">${t(lang, 'footerNewsletterTitle')}</h2>
-          <p class="text-sm text-white/60 mt-2 leading-relaxed max-w-md">${t(lang, 'footerNewsletterDesc')}</p>
+          <h2 class="text-xl md:text-2xl font-semibold text-ink">${t(lang, 'footerNewsletterTitle')}</h2>
+          <p class="text-sm text-slate mt-2 leading-relaxed max-w-md">${t(lang, 'footerNewsletterDesc')}</p>
         </div>
         <div class="lg:col-span-6">
           <form data-newsletter-form class="flex flex-col sm:flex-row gap-2.5 lg:justify-end">
             <label for="newsletter-email" class="sr-only">${t(lang, 'footerNewsletterTitle')}</label>
             <input id="newsletter-email" name="email" type="email" required autocomplete="email"
                    placeholder="${t(lang, 'footerNewsletterPlaceholder')}"
-                   class="field field-dark sm:max-w-xs" />
+                   class="field sm:max-w-xs" />
             <button type="submit" class="${BTN_PRIMARY} shrink-0">${t(lang, 'ctaSubscribe')}</button>
           </form>
-          <p data-error-slot role="alert" hidden class="text-sm text-red-300 mt-3 lg:text-right"></p>
-          <p data-newsletter-success role="status" hidden class="text-sm text-brand-bright mt-3 flex items-center gap-2 lg:justify-end">${icon('check', 'w-4 h-4')}${t(lang, 'footerNewsletterSuccess')}</p>
+          <p data-error-slot role="alert" hidden class="text-sm text-red-600 mt-3 lg:text-right"></p>
+          <p data-newsletter-success role="status" hidden class="text-sm text-brand mt-3 flex items-center gap-2 lg:justify-end">${icon('check', 'w-4 h-4')}${t(lang, 'footerNewsletterSuccess')}</p>
         </div>
       </div>
     </div>
@@ -385,7 +370,7 @@ function footerHTML(lang, currentPage) {
     <div class="${SHELL} py-12 md:py-16 grid gap-10 md:gap-8 md:grid-cols-2 lg:grid-cols-12">
       <div class="lg:col-span-4 lg:pr-8">
         <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="51" height="36" class="h-9 w-auto object-contain" loading="lazy" decoding="async" />
-        <p class="text-sm leading-relaxed mt-5 text-white/60 max-w-xs">${t(lang, 'footerAbout')}</p>
+        <p class="text-sm leading-relaxed mt-5 text-slate max-w-xs">${t(lang, 'footerAbout')}</p>
         <ul class="mt-6 space-y-3 text-sm">
           <li><a href="tel:${CONTACT_PHONE.replace(/\s/g, '')}" class="footer-contact">${icon('phone', 'w-4 h-4')}<span>${CONTACT_PHONE}</span></a></li>
           <li><a href="mailto:${CONTACT_EMAIL}" class="footer-contact">${icon('mail', 'w-4 h-4')}<span>${CONTACT_EMAIL}</span></a></li>
@@ -429,7 +414,7 @@ function footerHTML(lang, currentPage) {
     </div>
 
     <!-- Bottom bar: attribution left, hubs centre, language right. -->
-    <div class="${SHELL} py-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-5 text-xs text-white/55">
+    <div class="${SHELL} py-6 border-t border-line flex flex-col md:flex-row items-center justify-between gap-5 text-xs text-slate">
       <p class="order-2 md:order-1">&copy; <span data-current-year>${new Date().getFullYear()}</span> ENZ INTERNATIONAL. ${t(lang, 'footerRights')}</p>
       <p class="order-3 md:order-2 hidden lg:flex items-center gap-2">${icon('mapPin', 'w-3.5 h-3.5')}<span>${hubs.join(' · ')}</span></p>
       <div class="order-1 md:order-3">${langSwitcher(lang, currentPage, { variant: 'dark', id: 'lang-footer' })}</div>
@@ -510,7 +495,11 @@ function bookingModalHTML(lang) {
         <div class="text-center">
           <div class="icon-chip w-12 h-12 rounded-full mx-auto">${icon('check', 'w-6 h-6')}</div>
           <p class="text-lg font-semibold text-ink mt-4">${t(lang, 'bookingSuccessTitle')}</p>
-          <p class="text-sm text-slate mt-2">${t(lang, 'bookingSuccessDesc', { name: '<span data-success-name></span>', email: '<span data-success-email></span>' })}</p>
+          <p data-sent-note class="text-sm text-slate mt-2">${t(lang, 'bookingSuccessDesc', { name: '<span data-success-name></span>', email: '<span data-success-email></span>' })}</p>
+          <div data-handoff-note hidden>
+            <p class="text-sm text-slate mt-2">${t(lang, 'bookingHandoffDesc')}</p>
+            <p class="text-xs text-slate mt-3">${t(lang, 'bookingHandoffFallback')} <a href="mailto:${CONTACT_EMAIL}" class="text-brand underline underline-offset-2">${CONTACT_EMAIL}</a></p>
+          </div>
         </div>
         ${nextStepsHTML(lang)}
       </div>
@@ -691,12 +680,11 @@ function homePage(lang) {
   ];
 
   const body = `
-  <section class="section-dark hero">
-    ${glows('a')}
+  <section class="section-feature hero">
     <div class="${SHELL} grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
 
       <div class="lg:col-span-6">
-        <a href="markets.html" class="pill pill-dark hover:border-brand-bright/50 transition-colors">
+        <a href="markets.html" class="pill hover:border-brand-300 transition-colors">
           <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
           ${hubs.slice(0, 3).join(' · ')} +${hubs.length - 3}
         </a>
@@ -704,12 +692,12 @@ function homePage(lang) {
         <!-- Two short sentences, the second in the brand gradient. The old
              headline was "Global Sourcing & Industrial Excellence", which told
              a first-time visitor nothing about what actually gets done. -->
-        <h1 class="h1-display text-white mt-7">
+        <h1 class="h1-display text-ink mt-7">
           <span class="line">${t(lang, 'heroTitleA')}</span>
           <span class="line text-gradient">${t(lang, 'heroTitleB')}</span>
         </h1>
 
-        <p class="lead-light mt-7 max-w-xl">${t(lang, 'heroSub')}</p>
+        <p class="lead mt-7 max-w-xl">${t(lang, 'heroSub')}</p>
 
         <!-- The three service lines, legible without scrolling. -->
         <div class="chip-row mt-8">
@@ -720,10 +708,10 @@ function homePage(lang) {
 
         <div class="flex flex-col sm:flex-row gap-3 mt-9">
           <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
-          <a href="#how-it-works" class="${BTN_GHOST_LIGHT} btn-lg">${t(lang, 'navProcess')}</a>
+          <a href="#how-it-works" class="${BTN_SECONDARY} btn-lg">${t(lang, 'navProcess')}</a>
         </div>
 
-        <p class="text-sm text-white/60 mt-7">${t(lang, 'bookingDisclaimer')}</p>
+        <p class="text-sm text-slate mt-7">${t(lang, 'bookingDisclaimer')}</p>
       </div>
 
       <!-- An ILLUSTRATION of the four-stage inspection process documented on
@@ -732,13 +720,13 @@ function homePage(lang) {
            real ones from _content/pages.js. -->
       <div class="lg:col-span-6">
         <div class="gradient-border shadow-2xl">
-          <div class="bg-navy-deep/95 p-6 md:p-7">
-            <div class="flex items-center justify-between gap-4 pb-5 border-b border-white/10">
+          <div class="bg-white p-6 md:p-7">
+            <div class="flex items-center justify-between gap-4 pb-5 border-b border-line">
               <div>
-                <p class="text-white font-medium">${t(lang, 'qcTitle')}</p>
-                <p class="text-xs text-white/60 mt-1">${t(lang, 'qcEyebrow')}</p>
+                <p class="text-ink font-medium">${t(lang, 'qcTitle')}</p>
+                <p class="text-xs text-slate mt-1">${t(lang, 'qcEyebrow')}</p>
               </div>
-              <span class="pill pill-dark mono-tag">${qcStages.length} ${t(lang, 'qcStagesLabel')}</span>
+              <span class="pill mono-tag">${qcStages.length} ${t(lang, 'qcStagesLabel')}</span>
             </div>
 
             <div class="mt-5">
@@ -755,18 +743,18 @@ function homePage(lang) {
                 <span class="status-dot status-${state}">${mark}</span>
                 <span class="min-w-0 flex-1">
                   <span class="flex flex-wrap items-baseline gap-x-2.5">
-                    <span class="mono-tag text-brand-bright">${st.code}</span>
-                    <span class="text-sm font-medium text-white">${st.title}</span>
+                    <span class="mono-tag text-brand">${st.code}</span>
+                    <span class="text-sm font-medium text-ink">${st.title}</span>
                   </span>
-                  <span class="status-when block text-xs text-white/60 mt-1">${st.when}</span>
+                  <span class="status-when block text-xs text-slate mt-1">${st.when}</span>
                 </span>
               </div>`;
                 })
                 .join('')}
             </div>
 
-            <p class="text-xs text-white/60 leading-relaxed mt-5 pt-5 border-t border-white/10">${t(lang, 'qcLead')}</p>
-            <a href="quality-control.html" class="link-arrow link-arrow-light text-sm mt-4">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
+            <p class="text-xs text-slate leading-relaxed mt-5 pt-5 border-t border-line">${t(lang, 'qcLead')}</p>
+            <a href="quality-control.html" class="link-arrow text-sm mt-4">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
           </div>
         </div>
       </div>
@@ -887,22 +875,21 @@ function homePage(lang) {
 
   <!-- 5. COMMITMENTS. Stands in for testimonials until there are real ones:
        every line is a promise that can be checked, not a claim about quality. -->
-  <section class="section section-dark">
-    ${glows('b')}
+  <section class="section section-feature">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'commitEyebrow'), t(lang, 'commitTitle'), t(lang, 'commitLead'), { dark: true })}
+      ${sectionHead(t(lang, 'commitEyebrow'), t(lang, 'commitTitle'), t(lang, 'commitLead'))}
       <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
         ${commitments
           .map(
-            (c) => `<div class="${CARD_DARK}">
-          <span class="icon-chip icon-chip-dark">${icon(c.icon, 'w-5 h-5')}</span>
+            (c) => `<div class="${CARD_FEATURE}">
+          <span class="icon-chip">${icon(c.icon, 'w-5 h-5')}</span>
           <h3 class="font-medium text-[1.0625rem] mt-4">${c.title}</h3>
-          <p class="text-white/60 text-sm mt-2 leading-relaxed">${c.body}</p>
+          <p class="text-slate text-sm mt-2 leading-relaxed">${c.body}</p>
         </div>`
           )
           .join('')}
       </div>
-      <div class="text-center mt-10"><a href="about.html" class="${BTN_GHOST_LIGHT}">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
+      <div class="text-center mt-10"><a href="about.html" class="${BTN_SECONDARY}">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
     </div>
   </section>
 
@@ -1080,12 +1067,11 @@ function aboutPage(lang) {
   ];
 
   const body = `
-  <section class="section section-dark">
-    ${glows('b')}
+  <section class="section section-feature">
     <div class="shell max-w-4xl relative">
       <h1 class="h1-display">${t(lang, 'aboutTitle')}</h1>
-      <p class="text-white/75 text-lg mt-7 leading-relaxed font-light">${t(lang, 'aboutDesc')}</p>
-      <p class="text-white/65 text-lg mt-4 leading-relaxed font-light">We work as an extension of your team on the ground in China and East Africa — vetting suppliers, managing quality control, and coordinating the logistics that turn a purchase order or a factory blueprint into a delivered, working result. One point of contact owns your project from first call to final delivery, so nothing gets lost between departments or vendors.</p>
+      <p class="text-slate text-lg mt-7 leading-relaxed font-light">${t(lang, 'aboutDesc')}</p>
+      <p class="text-ink/65 text-lg mt-4 leading-relaxed font-light">We work as an extension of your team on the ground in China and East Africa — vetting suppliers, managing quality control, and coordinating the logistics that turn a purchase order or a factory blueprint into a delivered, working result. One point of contact owns your project from first call to final delivery, so nothing gets lost between departments or vendors.</p>
     </div>
   </section>
 
@@ -1150,19 +1136,18 @@ function aboutPage(lang) {
   <!-- Moved here from the homepage. "Should I be buying from China at all?"
        is a question about who we are and how we advise — it belongs on the
        page about us, not in the middle of a first-time visitor's scroll. -->
-  <section class="section section-dark">
-    ${glows('a')}
+  <section class="section section-feature">
     <div class="${SHELL} max-w-4xl">
-      ${sectionHead(t(lang, 'whyChinaEyebrow'), whyChina.title, whyChina.lead, { dark: true })}
+      ${sectionHead(t(lang, 'whyChinaEyebrow'), whyChina.title, whyChina.lead)}
       <div data-reveal-group class="grid gap-4 md:grid-cols-2 mt-14">
-        <div class="${CARD_DARK} card-lg">
-          <h3 class="font-medium text-white">${t(lang, 'whyChinaPros')}</h3>
+        <div class="${CARD_FEATURE} card-lg">
+          <h3 class="font-medium text-ink">${t(lang, 'whyChinaPros')}</h3>
           <ul class="mt-5 space-y-3">
             ${whyChina.pros.map((x) => `<li class="check-item">${icon('check', 'w-4 h-4')}<span>${x}</span></li>`).join('')}
           </ul>
         </div>
-        <div class="${CARD_DARK} card-lg">
-          <h3 class="font-medium text-white">${t(lang, 'whyChinaCons')}</h3>
+        <div class="${CARD_FEATURE} card-lg">
+          <h3 class="font-medium text-ink">${t(lang, 'whyChinaCons')}</h3>
           <ul class="mt-5 space-y-3">
             ${whyChina.cons.map((x) => `<li class="check-item">${icon('chevronRight', 'w-4 h-4 text-accent')}<span>${x}</span></li>`).join('')}
           </ul>
@@ -1225,20 +1210,20 @@ function servicesPage(lang) {
     </div>
   </section>
   ${sections}
-  <section class="section section-dark">
+  <section class="section section-feature">
     <div class="shell">
-      <div class="text-center max-w-2xl mx-auto"><h2 class="h2-section on-dark">How We Can Work Together</h2><p class="lead-light mt-4">Three engagement models, scoped to how much of the process you want us to own.</p></div>
+      <div class="text-center max-w-2xl mx-auto"><h2 class="h2-section">How We Can Work Together</h2><p class="lead mt-4">Three engagement models, scoped to how much of the process you want us to own.</p></div>
       <div data-reveal-group class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-14 max-w-5xl mx-auto">
         ${engagementModels
           .map(
             ([ttl, desc, fits, ic]) =>
-              `<div class="${CARD_DARK}">${icon(ic, 'w-8 h-8 text-brand mb-4')}<h3 class="font-semibold text-white">${ttl}</h3><p class="text-white/55 text-sm mt-2.5 leading-relaxed">${desc}</p><p class="text-brand text-xs mt-5 font-semibold uppercase tracking-wider">Best for</p><p class="text-white/70 text-sm mt-1.5">${fits}</p></div>`
+              `<div class="${CARD_FEATURE}">${icon(ic, 'w-8 h-8 text-brand mb-4')}<h3 class="font-semibold text-ink">${ttl}</h3><p class="text-slate text-sm mt-2.5 leading-relaxed">${desc}</p><p class="text-brand text-xs mt-5 font-semibold uppercase tracking-wider">Best for</p><p class="text-slate text-sm mt-1.5">${fits}</p></div>`
           )
           .join('')}
       </div>
       <div class="text-center mt-14">
         <button data-open-booking class="${BTN_PRIMARY} px-9 py-4 inline-flex items-center gap-2">${icon('calendar', 'w-5 h-5')} ${t(lang, 'ctaBooking')}</button>
-        <p class="text-white/60 text-sm mt-5">Have questions first? <a href="contact.html" class="text-brand hover:underline underline-offset-4">See our FAQ</a></p>
+        <p class="text-slate text-sm mt-5">Have questions first? <a href="contact.html" class="text-brand hover:underline underline-offset-4">See our FAQ</a></p>
       </div>
     </div>
   </section>`;
@@ -1377,7 +1362,7 @@ function contactPage(lang) {
           <p data-booking-error data-error-slot role="alert" hidden class="text-sm text-red-600">${t(lang, 'bookingErrorTitle')}</p>
           <button type="submit" data-submitting-label="${t(lang, 'bookingSubmitting')}" class="w-full ${BTN_PRIMARY} py-4">${t(lang, 'bookingSubmit')}</button>
         </form>
-        <div data-booking-success role="status" hidden class="py-6"><div class="text-center"><div class="icon-chip w-12 h-12 rounded-full mx-auto">${icon("check", "w-6 h-6")}</div><p class="text-lg font-semibold text-ink mt-4">${t(lang, "bookingSuccessTitle")}</p></div>${nextStepsHTML(lang)}</div>
+        <div data-booking-success role="status" hidden class="py-6"><div class="text-center"><div class="icon-chip w-12 h-12 rounded-full mx-auto">${icon("check", "w-6 h-6")}</div><p class="text-lg font-semibold text-ink mt-4">${t(lang, "bookingSuccessTitle")}</p><div data-handoff-note hidden><p class="text-sm text-slate mt-2">${t(lang, 'bookingHandoffDesc')}</p><p class="text-xs text-slate mt-3">${t(lang, 'bookingHandoffFallback')} <a href="mailto:${CONTACT_EMAIL}" class="text-brand underline underline-offset-2">${CONTACT_EMAIL}</a></p></div></div>${nextStepsHTML(lang)}</div>
       </div>
     </div>
   </section>
@@ -1441,16 +1426,15 @@ function pageHero(lang, { eyebrow, title, lead }) {
 // send the form — free, no obligation, answered by a person within a day.
 function closingCta(lang) {
   return `
-  <section class="section section-dark">
-    ${glows('b')}
+  <section class="section section-feature">
     <div class="${SHELL}">
       <div class="gradient-border max-w-5xl mx-auto shadow-2xl">
-        <div class="bg-navy-deep/95 px-6 py-14 md:px-16 md:py-20 text-center">
-          <h2 class="h2-section on-dark">${t(lang, 'ctaBannerTitle')}</h2>
-          <p class="lead-light mt-5 max-w-2xl mx-auto">${t(lang, 'ctaBannerDesc')}</p>
+        <div class="bg-white px-6 py-14 md:px-16 md:py-20 text-center">
+          <h2 class="h2-section">${t(lang, 'ctaBannerTitle')}</h2>
+          <p class="lead mt-5 max-w-2xl mx-auto">${t(lang, 'ctaBannerDesc')}</p>
           <div class="flex flex-col sm:flex-row justify-center gap-3 mt-10">
             <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
-            <a href="contact.html" class="${BTN_GHOST_LIGHT} btn-lg">${t(lang, 'ctaTalkToUs')}</a>
+            <a href="contact.html" class="${BTN_SECONDARY} btn-lg">${t(lang, 'ctaTalkToUs')}</a>
           </div>
           <ul class="flex flex-wrap justify-center gap-x-7 gap-y-3 mt-10 text-sm list-none">
             ${[t(lang, 'bookingNext2'), t(lang, 'bookingDisclaimer')]
@@ -2018,19 +2002,18 @@ writeFileSync(
     <link rel="stylesheet" href="${FONT_HREF}" />
   </head>
   <body class="bg-white text-ink">
-    <main class="section-dark min-h-screen flex items-center justify-center px-4 py-20">
-      ${glows('a')}
+    <main class="section-feature min-h-screen flex items-center justify-center px-4 py-20">
       <div class="text-center max-w-lg">
-        <p class="mono-tag text-brand-bright text-sm">Error 404</p>
-        <h1 class="h1-display text-white mt-4">This page <span class="text-gradient">isn't here</span></h1>
-        <p class="lead-light mt-5">The page you're looking for doesn't exist, or it may have moved. The links below will get you back on track.</p>
+        <p class="mono-tag text-brand text-sm">Error 404</p>
+        <h1 class="h1-display text-ink mt-4">This page <span class="text-gradient">isn't here</span></h1>
+        <p class="lead mt-5">The page you're looking for doesn't exist, or it may have moved. The links below will get you back on track.</p>
         <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
           <a href="/en/index.html" class="btn btn-primary btn-lg">Back to homepage</a>
           <a href="/en/contact.html" class="btn btn-ghost-light btn-lg">Contact us</a>
         </div>
         <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-10 text-sm">
           ${['services', 'process', 'markets', 'insights', 'faq']
-            .map((slug) => `<a href="/en/${slug}.html" class="text-white/55 hover:text-white transition-colors capitalize">${slug}</a>`)
+            .map((slug) => `<a href="/en/${slug}.html" class="text-slate hover:text-ink transition-colors capitalize">${slug}</a>`)
             .join('')}
         </div>
       </div>

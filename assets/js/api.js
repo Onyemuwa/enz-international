@@ -3,50 +3,76 @@
 // 1. Real backend (config.API_BASE_URL set) — talks to ../../server/.
 // 2. Web3Forms (config.WEB3FORMS_ACCESS_KEY set) — no backend at all, forms
 //    email straight to your inbox. See config.js for setup.
-// 3. Mock mode (neither set) — forms work locally, nothing is sent.
+// 3. Neither set — the submission opens the visitor's own email client.
 //
 // ---------------------------------------------------------------------------
-// MOCK MODE IS LOCAL-ONLY, AND THAT IS DELIBERATE.
+// WHY THE THIRD PATH IS A MAILTO HANDOFF AND NOT A MOCK
 // ---------------------------------------------------------------------------
-// Mock mode resolves successfully, so the form shows "thanks, we'll be in
-// touch within 24h" and nothing is sent anywhere. That is exactly what you
-// want while developing, and the worst possible behaviour on a live site: a
-// real buyer types a real enquiry, is told it arrived, and it goes nowhere.
-// There is no error for anyone to notice — not the sender, not the owner.
+// This used to resolve successfully and send nothing, so the form said
+// "thanks, we'll be in touch within 24h" while the enquiry reached nobody.
+// No error surfaced for anyone to notice: not the sender, not the owner.
 //
-// So mock mode now refuses to run off localhost. On a deployed host with
-// neither backend configured, submissions reject with `notConfigured`, and
-// site.js turns that into a visible "email us directly" fallback. A visitor
-// who wants to reach you still can; they are never quietly dropped.
+// So there is a fourth path, and it is the one that runs today: with neither
+// backend configured, a submission opens the visitor's own email client with
+// the enquiry already written — recipient, subject and body filled in from the
+// form. They press send in their mail app and it lands in your inbox.
+//
+// This needs no key, no backend and no account, so the forms work the moment
+// the site is hosted. Two honest limits: the visitor has to press send
+// themselves, so it is a handover rather than a silent submission, and a
+// device with no mail client configured will do nothing visible. The success
+// screen therefore says "we've opened your email app — press send", never
+// "thanks, we'll be in touch", because we cannot know that they sent it.
+//
+// Setting WEB3FORMS_ACCESS_KEY still upgrades every form to a true background
+// submission. This is the floor, not the ceiling.
 // ---------------------------------------------------------------------------
 window.ENZ_API = (function () {
   var BASE = window.ENZ_CONFIG.API_BASE_URL;
   var WEB3FORMS_KEY = window.ENZ_CONFIG.WEB3FORMS_ACCESS_KEY;
   var WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
-  var MOCK_DELAY_MS = 700;
 
-  function isLocalPreview() {
-    return (
-      location.protocol === 'file:' ||
-      /^(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])$/.test(location.hostname) ||
-      /\.local$/.test(location.hostname)
-    );
-  }
+  var CONTACT_EMAIL = window.ENZ_CONFIG.CONTACT_EMAIL || '';
 
-  function notConfigured() {
-    var err = new Error('No form delivery configured (see assets/js/config.js)');
-    err.notConfigured = true;
-    return Promise.reject(err);
-  }
+  // Builds a mailto: URL and hands off to the visitor's mail client.
+  //
+  // Field order is deliberate: whatever a mail client truncates, the name and
+  // the contact details survive, because a reply is impossible without them.
+  function openMailClient(subject, fields) {
+    var lines = [];
+    Object.keys(fields).forEach(function (label) {
+      var value = fields[label];
+      if (value !== undefined && value !== null && String(value).trim() !== '') {
+        lines.push(label + ': ' + value);
+      }
+    });
+    var body = lines.join('\r\n');
+    // ~1900 chars keeps the whole URL inside the shortest limit in practice
+    // (older Windows mail handlers cut off around 2000).
+    if (body.length > 1900) body = body.slice(0, 1900) + '\r\n[...]';
+    var url =
+      'mailto:' + encodeURIComponent(CONTACT_EMAIL) +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
 
-  function mockResolve(payload) {
-    // The guard lives here rather than at each call site so a future endpoint
-    // cannot forget it.
-    if (!isLocalPreview()) return notConfigured();
-    return new Promise(function (resolve) {
-      setTimeout(function () {
-        resolve(payload);
-      }, MOCK_DELAY_MS);
+    return new Promise(function (resolve, reject) {
+      if (!CONTACT_EMAIL) {
+        var e = new Error('No contact email configured');
+        e.notConfigured = true;
+        reject(e);
+        return;
+      }
+      try {
+        window.location.href = url;
+      } catch (err) {
+        var e2 = new Error('Could not open a mail client');
+        e2.notConfigured = true;
+        reject(e2);
+        return;
+      }
+      // Resolve with a flag so the UI can say "we opened your email app"
+      // rather than claiming the message was sent.
+      resolve({ handedOffToMailClient: true });
     });
   }
 
@@ -103,7 +129,15 @@ window.ENZ_API = (function () {
           return { id: 'w3f_' + Date.now(), status: 'received' };
         });
       }
-      return mockResolve({ id: 'mock_' + Date.now(), status: 'received' });
+      return openMailClient('Consultation request — ' + (data.name || 'website enquiry'), {
+        Name: data.name,
+        Email: data.email,
+        Phone: data.phone,
+        Company: data.company,
+        'Preferred date': data.date,
+        Service: data.service,
+        Message: data.message,
+      });
     },
 
     subscribeNewsletter: function (email) {
@@ -115,7 +149,7 @@ window.ENZ_API = (function () {
           }
         );
       }
-      return mockResolve({ status: 'subscribed' });
+      return openMailClient('Newsletter signup', { Email: email });
     },
 
     submitCvApplication: function (formData) {
@@ -131,7 +165,14 @@ window.ENZ_API = (function () {
           return { id: 'w3f_' + Date.now(), status: 'received' };
         });
       }
-      return mockResolve({ id: 'mock_' + Date.now(), status: 'received' });
+      // A CV cannot travel in a mailto: body, so this one asks for the file
+      // to be attached rather than pretending it was uploaded.
+      return openMailClient('CV submission — ' + (formData.get('name') || ''), {
+        Name: formData.get('name'),
+        Email: formData.get('email'),
+        Message: formData.get('message'),
+        'Please attach': 'your CV to this email before sending',
+      });
     },
   };
 })();
