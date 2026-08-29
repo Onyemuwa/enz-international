@@ -13,7 +13,7 @@ export const processSteps = [
     n: '01',
     title: 'Discovery call',
     duration: '30 minutes',
-    summary: 'We establish what you are buying or building, at what volume, to what tolerance, and by when.',
+    summary: 'What you are buying, at what volume, and by when.',
     detail: [
       'Product specification, target landed cost, and order volume — including whether this is a trial order or an ongoing programme.',
       'Your quality tolerance and any regulatory requirements in the destination market (CE, FDA, SONCAP, KEBS, and equivalents vary by product and country).',
@@ -25,7 +25,7 @@ export const processSteps = [
     n: '02',
     title: 'Supplier identification',
     duration: '1–2 weeks',
-    summary: 'We shortlist factories against your spec and verify they are what they claim to be.',
+    summary: 'Factories shortlisted against your spec, and verified.',
     detail: [
       'Shortlisting across the relevant manufacturing cluster — different provinces dominate different categories, and starting in the wrong one costs weeks.',
       'Business licence verification, export history, and production capacity checked against your volume.',
@@ -49,7 +49,7 @@ export const processSteps = [
     n: '04',
     title: 'Production and quality control',
     duration: 'Varies by product',
-    summary: 'Production is monitored and inspected at defined checkpoints, not just at the end.',
+    summary: 'Inspected at defined checkpoints, not just at the end.',
     detail: [
       'Incoming material checks before the line starts, so a substrate problem is caught before it becomes finished stock.',
       'During-production inspection at roughly 20–30% completion, when a systemic defect can still be corrected.',
@@ -125,15 +125,15 @@ export const shippingDocs = [
 ];
 
 export const industries = [
-  { icon: 'briefcase', name: 'Construction & building materials', body: 'Fixtures, fittings, tiles, sanitaryware, hardware, and finishing materials. Volume-heavy, freight-sensitive, and highly dependent on consistent tolerance across repeat orders.', considerations: ['Freight cost often exceeds unit cost — container optimisation matters more than unit price', 'Dimensional consistency across production runs', 'Destination building-standard compliance'] },
-  { icon: 'trendingUp', name: 'Industrial equipment & machinery', body: 'Production machinery, spare parts, and assembly-line equipment. Long lead times and high consequence of error, so verification before shipment is critical.', considerations: ['Voltage, frequency, and plug standards for the destination market', 'Spare-parts availability and after-sales support terms', 'Installation, commissioning, and operator training'] },
-  { icon: 'globe', name: 'Consumer goods & retail', body: 'Household products, packaging, textiles, and general merchandise. Typically the most quality-sensitive category, because defects surface as customer returns.', considerations: ['Tighter AQL limits — defects reach end customers directly', 'Packaging and labelling compliance for the destination market', 'Seasonal lead-time planning around Chinese New Year'] },
-  { icon: 'shield', name: 'Commodities & raw materials', body: 'Copper, cobalt, and select agricultural goods. Contract structure and chain-of-custody documentation matter more here than in any other category.', considerations: ['Quality specification and assay method agreed in writing', 'Chain-of-custody documentation from point of origin', 'Clear force majeure and off-spec penalty clauses'] },
+  { icon: 'briefcase', name: 'Construction & building materials', body: 'Fixtures, tiles, sanitaryware, hardware and finishing materials.', considerations: ['Freight cost often exceeds unit cost — container optimisation matters more than unit price', 'Dimensional consistency across production runs', 'Destination building-standard compliance'] },
+  { icon: 'trendingUp', name: 'Industrial equipment & machinery', body: 'Production machinery, spare parts and assembly-line equipment.', considerations: ['Voltage, frequency, and plug standards for the destination market', 'Spare-parts availability and after-sales support terms', 'Installation, commissioning, and operator training'] },
+  { icon: 'globe', name: 'Consumer goods & retail', body: 'Household products, packaging, textiles and general merchandise.', considerations: ['Tighter AQL limits — defects reach end customers directly', 'Packaging and labelling compliance for the destination market', 'Seasonal lead-time planning around Chinese New Year'] },
+  { icon: 'shield', name: 'Commodities & raw materials', body: 'Copper, cobalt and select agricultural goods.', considerations: ['Quality specification and assay method agreed in writing', 'Chain-of-custody documentation from point of origin', 'Clear force majeure and off-spec penalty clauses'] },
 ];
 
 export const comparison = {
   title: 'Direct sourcing vs. working with us',
-  subtitle: 'An honest comparison. Direct sourcing is genuinely the right call for some buyers — usually those with staff on the ground or an established supplier they already trust.',
+  subtitle: 'Direct sourcing is the right call for some buyers. Here is when.',
   rows: [
     { factor: 'Supplier verification', diy: 'You rely on platform badges and self-reported credentials', enz: 'Licence, capacity, and export history verified independently; site visits where the order justifies it' },
     { factor: 'Time to first shipment', diy: 'Often 3–6 months for a first-time buyer, most of it spent finding and vetting', enz: 'Typically shorter, because the shortlist starts from suppliers already known to the category' },

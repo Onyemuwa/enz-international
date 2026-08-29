@@ -51,22 +51,22 @@ export const commitments = [
   {
     icon: 'clock',
     title: 'A reply within one business day',
-    body: 'Every enquiry is read by a person and answered within one working day, not routed into an automated drip sequence.',
+    body: 'Read by a person, answered within one working day.',
   },
   {
     icon: 'mail',
     title: 'One named point of contact',
-    body: 'The same person owns your project from the first call to final delivery. No handoffs between departments, no re-explaining your brief.',
+    body: 'The same person from first call to delivery. No handoffs, no re-explaining.',
   },
   {
     icon: 'shield',
     title: 'A written scope before anything is signed',
-    body: 'What we will do, what it costs and how long it takes, in writing, before you commit to anything.',
+    body: 'Scope, cost and timeline in writing, before you commit.',
   },
   {
     icon: 'check',
     title: 'Inspection reports you can actually read',
-    body: 'Photographed findings against your specification at each inspection point, in plain language, not a pass/fail stamp.',
+    body: 'Photographed findings against your spec, not a pass/fail stamp.',
   },
 ];
 

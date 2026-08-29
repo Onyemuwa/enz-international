@@ -29,7 +29,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '28';
+const ASSET_VERSION = '29';
 
 // Sora, matching onemartent.com — one of the two reference sites.
 //
@@ -994,33 +994,6 @@ function homePage(lang) {
     </div>
   </section>
 
-  <!-- 4. THE HONEST COMPARISON. Naming when you are NOT the right answer is
-       the single most persuasive thing a services page can do. -->
-  <section class="section bg-gray-bg border-y border-line">
-    <div class="${SHELL} max-w-5xl">
-      ${sectionHead(t(lang, 'compareEyebrow'), comparison.title, comparison.subtitle, { align: 'start' })}
-      <div class="table-wrap mt-12">
-        <table class="table-pro">
-          <thead>
-            <tr>
-              <th scope="col" class="w-1/4">${t(lang, 'compareFactor')}</th>
-              <th scope="col">${t(lang, 'compareDiy')}</th>
-              <th scope="col" class="text-brand">${t(lang, 'compareEnz')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${comparison.rows
-              .map(
-                (r) =>
-                  `<tr><th scope="row">${r.factor}</th><td>${r.diy}</td><td class="text-ink">${r.enz}</td></tr>`
-              )
-              .join('')}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
   <!-- 5. COMMITMENTS. Stands in for testimonials until there are real ones:
        every line is a promise that can be checked, not a claim about quality. -->
   <section class="section section-feature">
@@ -1095,55 +1068,6 @@ function homePage(lang) {
         <p class="text-sm text-slate mt-5">${t(lang, 'footprintHubsLabel')}: ${hubs.join(' · ')}</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- 8. GETTING STARTED. The last objection is procedural, not commercial. -->
-  <section class="section bg-white">
-    <div class="${SHELL} max-w-4xl">
-      ${sectionHead(t(lang, 'startEyebrow'), t(lang, 'startTitle'), t(lang, 'startLead'))}
-      <ol data-reveal-group class="mt-14 space-y-4">
-        ${gettingStarted
-          .map(
-            (st) => `<li class="${CARD} flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
-          <span class="step-badge step-badge-lg">${st.n}</span>
-          <div class="flex-1">
-            <div class="flex flex-wrap items-baseline gap-3">
-              <h3 class="text-lg font-medium text-ink">${st.title}</h3>
-              <span class="pill pill-neutral mono-tag">${st.meta}</span>
-            </div>
-            <p class="text-slate text-sm mt-2 leading-relaxed">${st.body}</p>
-          </div>
-        </li>`
-          )
-          .join('')}
-      </ol>
-      <div class="text-center mt-10">
-        <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. Recent writing. This band used to carry four "read about landed
-       cost / timelines / Incoterms / mistakes" link cards on top of these
-       three posts — seven cards, 2.8 phone screens, and every one of those
-       four destinations is already in the nav and the footer. A homepage
-       should not contain a directory of itself, so the link cards went and
-       the actual writing stayed. The guide is one line away, below. -->
-  <section class="section bg-gray-bg border-y border-line">
-    <div class="${SHELL}">
-      ${sectionHead(t(lang, 'navInsights'), t(lang, 'insightsTitle'), null, { align: 'start' })}
-      <div data-reveal-group class="grid md:grid-cols-3 gap-4 mt-12">
-        ${insights
-          .map(
-            (pst) =>
-              `<a href="insight-${pst.slug}.html" class="${CARD} block group flex flex-col"><span class="pill self-start">${pst.category}</span><h3 class="text-[1.0625rem] font-medium text-ink mt-4">${pst.title}</h3><p class="text-slate text-sm mt-2 leading-relaxed flex-1">${pst.excerpt}</p><span class="link-arrow text-sm mt-4">${t(lang, 'ctaReadMore')} ${icon('chevronRight', 'w-4 h-4')}</span></a>`
-          )
-          .join('')}
-      </div>
-      <p class="text-sm text-slate mt-8">
-        ${t(lang, 'resourcesGuideLead')} <a href="resources.html" class="link-arrow">${t(lang, 'ctaSeeGuide')} ${icon('chevronRight', 'w-4 h-4')}</a>
-      </p>
     </div>
   </section>
 

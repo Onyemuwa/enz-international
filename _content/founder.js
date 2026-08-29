@@ -43,9 +43,8 @@ export const founder = {
   // DRAFT — see the header. Restates the site's existing commitments in the
   // first person. Contains no claim that is not made elsewhere on this site.
   note: [
-    'Most buyers who come to us have already been burned once. A supplier that turned out to be a trading company, an order that passed its only inspection and still arrived wrong, or a quote that looked cheap until the freight and duties landed.',
-    'None of that is bad luck. It happens because nobody on the buyer’s side is standing in the factory. So that is the job I built this business to do: verify who you are actually buying from, inspect the work while it can still be corrected, and stay the single point of contact until the goods are delivered.',
-    'If a project is not a fit for us, we say so on the first call rather than quote for it. That costs us some work and saves everyone the expensive version of finding out later.',
+    'Most buyers who come to us have already been burned once. It is rarely bad luck — it happens because nobody on their side is standing in the factory.',
+    'That is the job: verify who you are buying from, inspect while it can still be fixed, and stay the one point of contact until the goods land. If a project is not a fit, we say so on the first call.',
   ],
 
   // Optional. Leave '' to hide. A real LinkedIn profile is one of the cheapest

@@ -17,22 +17,22 @@ export const problems = [
   {
     icon: 'shield',
     title: 'You cannot verify who you are buying from',
-    body: 'Platform badges and self-reported credentials are not verification. Trading companies present themselves as factories, and you find out after the deposit has cleared.',
+    body: 'Trading companies present themselves as factories. Platform badges are not verification.',
   },
   {
     icon: 'check',
     title: 'Quality is checked once, too late to fix',
-    body: 'A single pre-shipment inspection tells you the order is wrong when it is already made and paid for. By then your options are a discount or a delay.',
+    body: 'One inspection at the end tells you it is wrong once it is made and paid for.',
   },
   {
     icon: 'trendingUp',
     title: 'The quoted price is not the price you pay',
-    body: 'Unit price is a fraction of landed cost. Freight, duties, inspection and port fees all arrive later, and a cheap EXW quote routinely lands dearer than a higher FOB one.',
+    body: 'Freight, duties and port fees arrive later. A cheap EXW quote often lands dearer than a higher FOB one.',
   },
   {
     icon: 'user',
     title: 'Nobody owns the problem when it goes wrong',
-    body: 'A supplier, a forwarder and a customs broker each answer for their own leg. The gaps between them are where orders stall, and those gaps are yours to manage.',
+    body: 'Supplier, forwarder and broker each answer for their own leg. The gaps between them are yours.',
   },
 ];
 
@@ -50,7 +50,7 @@ export const engagementModels = [
     icon: 'briefcase',
     name: 'Single sourcing project',
     tagline: 'One product, one order.',
-    body: 'Ideal for testing a new supplier relationship or a one-off procurement need, without committing to anything ongoing.',
+    body: 'Test a new supplier without committing to anything ongoing.',
     bestFor: 'First-time buyers, sample orders, seasonal purchases',
     includes: [
       'Supplier shortlisting and verification',
@@ -63,7 +63,7 @@ export const engagementModels = [
     icon: 'calendar',
     name: 'Ongoing retainer',
     tagline: 'Repeat orders, one team.',
-    body: 'Continuous sourcing and quality control across multiple SKUs and repeat order cycles, with a dedicated point of contact who already knows your specification.',
+    body: 'Ongoing sourcing and QC across repeat orders, with a contact who knows your spec.',
     bestFor: 'Growing brands with recurring purchase cycles',
     featured: true,
     includes: [
@@ -78,7 +78,7 @@ export const engagementModels = [
     icon: 'award',
     name: 'Full factory partnership',
     tagline: 'Build production, not just orders.',
-    body: 'End-to-end factory establishment, from site selection through commissioning, plus ongoing operational and sourcing support once you are running.',
+    body: 'Site selection through commissioning, plus support once you are running.',
     bestFor: 'Businesses localising production in a new market',
     includes: [
       'Feasibility study and site selection',
@@ -95,10 +95,10 @@ export const engagementModels = [
 // to describe on the call.
 // ---------------------------------------------------------------------------
 export const pricingFactors = [
-  { label: 'Scope', body: 'Sourcing only, sourcing plus logistics, or full factory setup. The more legs we own, the more of the work moves off your desk.' },
-  { label: 'Order value and volume', body: 'A single container and a rolling monthly programme need different amounts of oversight, and are priced differently.' },
-  { label: 'Product complexity', body: 'Commodity goods to a standard specification take less verification than custom-engineered or regulated products.' },
-  { label: 'Inspection depth', body: 'How many of the four inspection points you want covered, and whether the order justifies on-site factory visits.' },
+  { label: 'Scope', body: 'Sourcing, sourcing plus logistics, or full factory setup.' },
+  { label: 'Order value and volume', body: 'One container and a monthly programme need different oversight.' },
+  { label: 'Product complexity', body: 'Standard goods need less verification than custom or regulated ones.' },
+  { label: 'Inspection depth', body: 'How many of the four inspection points you want covered.' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -110,25 +110,25 @@ export const gettingStarted = [
   {
     n: '01',
     title: 'Tell us what you need',
-    body: 'Product, rough volume, target market and your timeline. A paragraph is enough; you do not need a finished specification to start.',
+    body: 'Product, volume, market, timeline. A paragraph is enough.',
     meta: '2 minutes',
   },
   {
     n: '02',
     title: 'We reply within one business day',
-    body: 'A person reads it and comes back with either questions or an honest "this is not a fit for us". No drip sequence, no sales cadence.',
+    body: 'A person replies with questions, or an honest "not a fit". No drip sequence.',
     meta: '1 business day',
   },
   {
     n: '03',
     title: 'A 30-minute scoping call',
-    body: 'We work out what the project actually involves and whether we are the right people for it. Free, and with no obligation attached.',
+    body: 'What the project involves, and whether we are right for it. Free, no obligation.',
     meta: '30 minutes',
   },
   {
     n: '04',
     title: 'A written scope, then work begins',
-    body: 'What we will do, what it costs and how long it takes, in writing. Nothing starts until you have agreed to it.',
+    body: 'Scope, cost and timeline in writing. Nothing starts until you agree.',
     meta: 'Before you commit',
   },
 ];
