@@ -2064,7 +2064,7 @@ writeFileSync(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=en/" />
+    <meta http-equiv="refresh" content="0; url=en/index.html" />
     <link rel="canonical" href="${SITE_URL}/en/" />
     <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512.png" />
     <title>ENZ INTERNATIONAL — Global Sourcing &amp; Industrial Excellence</title>
@@ -2072,9 +2072,22 @@ writeFileSync(
     <link rel="stylesheet" href="assets/css/site.css?v=${ASSET_VERSION}" />
   </head>
   <body class="bg-white text-ink">
-    <script>location.replace('en/');</script>
+    <script>
+      // On a server, 'en/' is the clean URL and resolves to en/index.html.
+      // Opened straight off disk it is a DIRECTORY, and file:// has no index
+      // resolution — the browser shows a file listing instead of the site.
+      // So from disk, go to the file itself.
+      location.replace(location.protocol === 'file:' ? 'en/index.html' : 'en/');
+    </script>
     <main class="min-h-screen flex items-center justify-center px-4 text-center">
-      <p class="lead">Redirecting to <a href="en/" class="link-arrow">ENZ INTERNATIONAL</a>…</p>
+      <div>
+        <p class="lead">Redirecting to <a href="en/index.html" class="link-arrow">ENZ INTERNATIONAL</a>…</p>
+        <p class="text-sm text-slate mt-6 max-w-md mx-auto">
+          Opening these files directly shows the landing page, but its links will not work:
+          the site uses clean URLs, which need a server. Run <strong>preview.bat</strong>
+          (or <code>node preview.mjs</code>) and open <strong>localhost:5500/en/</strong> instead.
+        </p>
+      </div>
     </main>
   </body>
 </html>`
