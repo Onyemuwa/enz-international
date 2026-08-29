@@ -132,4 +132,89 @@
     );
   });
 
+  // -------------------------------------------------------------------------
+  // 3. The checkpoint tracker
+  // -------------------------------------------------------------------------
+  // The four inspection stages fill along their rail as the section is
+  // reached, the way a shipment clears checkpoints. This is the site's one
+  // signature interaction, and it is built from what the business actually
+  // does rather than from an effect looking for a home.
+  //
+  // Note the order, which is the same discipline as the reveals above:
+  // `is-armed` (which empties the rail) is added INSIDE the observer, one
+  // frame before `is-tracking` animates it back. Until the section is reached
+  // the rail is drawn full and every checkpoint is legible, so a failure here
+  // leaves a finished diagram rather than an empty one.
+  document.querySelectorAll('[data-tracker]').forEach(function (tracker) {
+    var run = false;
+    inView(
+      tracker,
+      function () {
+        if (run) return;
+        run = true;
+        tracker.classList.add('is-armed');
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            tracker.classList.add('is-tracking');
+          });
+        });
+      },
+      { amount: 0.4 }
+    );
+    // Whatever happened, the rail ends up drawn.
+    setTimeout(function () {
+      tracker.classList.remove('is-armed');
+      tracker.classList.add('is-tracking');
+    }, 4000);
+  });
+
+  // -------------------------------------------------------------------------
+  // 4. Image wipes
+  // -------------------------------------------------------------------------
+  // Photographs are uncovered rather than faded in. Armed inside the observer
+  // for the same reason, so an image that is never scrolled to is never
+  // clipped in the first place.
+  document.querySelectorAll('.media > img').forEach(function (img) {
+    var frame = img.parentElement;
+    var run = false;
+    inView(
+      frame,
+      function () {
+        if (run) return;
+        run = true;
+        frame.classList.add('is-armed');
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            frame.classList.add('is-revealed');
+          });
+        });
+        setTimeout(function () {
+          frame.classList.remove('is-armed', 'is-revealed');
+        }, 1600);
+      },
+      { amount: 0.2 }
+    );
+  });
+
+  // -------------------------------------------------------------------------
+  // 5. Magnetic primary button
+  // -------------------------------------------------------------------------
+  // Transform only, so it can never move anything around it. Pointer-fine only
+  // — on a touch screen there is no cursor to lean toward, and the listeners
+  // would just be dead weight.
+  if (window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll('.btn-primary').forEach(function (btn) {
+      btn.classList.add('is-magnetic');
+      btn.addEventListener('mousemove', function (e) {
+        var r = btn.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+        var dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+        btn.style.transform = 'translate(' + dx * 5 + 'px,' + dy * 4 + 'px)';
+      });
+      btn.addEventListener('mouseleave', function () {
+        btn.style.transform = '';
+      });
+    });
+  }
+
 })();

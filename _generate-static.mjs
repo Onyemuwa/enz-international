@@ -29,7 +29,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '30';
+const ASSET_VERSION = '31';
 
 // Sora, matching onemartent.com — one of the two reference sites.
 //
@@ -166,11 +166,13 @@ const SHELL = 'shell';
 //
 // `align: 'start'` puts the heading hard left with the lead beside it, which
 // reads as an editor's decision rather than a component default.
-function sectionHead(eyebrow, title, lead, { align = 'center' } = {}) {
+function sectionHead(eyebrow, title, lead, { align = 'center', index = null } = {}) {
+  const idx = index ? `<span class="section-index">${index}</span>` : '';
   if (align === 'start') {
     return `
       <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
         <div class="lg:col-span-6">
+          ${idx}
           ${eyebrow ? `<p class="${EYEBROW}">${eyebrow}</p>` : ''}
           <h2 class="${H2} mt-4">${title}</h2>
         </div>
@@ -180,6 +182,7 @@ function sectionHead(eyebrow, title, lead, { align = 'center' } = {}) {
   const wrap = align === 'center' ? 'max-w-3xl mx-auto text-center' : 'max-w-3xl';
   return `
       <div class="${wrap}">
+        ${idx}
         ${eyebrow ? `<p class="${EYEBROW}">${eyebrow}</p>` : ''}
         <h2 class="${H2} mt-4">${title}</h2>
         ${lead ? `<p class="${LEAD} mt-5">${lead}</p>` : ''}
@@ -877,7 +880,8 @@ function homePage(lang) {
               <span class="pill mono-tag">${qcStages.length} ${t(lang, 'qcStagesLabel')}</span>
             </div>
 
-            <div class="mt-5">
+            <div class="tracker mt-5" data-tracker>
+              <span class="tracker-rail" aria-hidden="true"></span>
               ${qcStages
                 .map((st, i) => {
                   const state = i < 2 ? 'done' : i === 2 ? 'active' : 'idle';
@@ -928,7 +932,7 @@ function homePage(lang) {
        the first screen has no reason to read the second. -->
   <section class="section section-wash hairline-top">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'problemEyebrow'), t(lang, 'problemTitle'), t(lang, 'problemLead'))}
+      ${sectionHead(t(lang, 'problemEyebrow'), t(lang, 'problemTitle'), t(lang, 'problemLead'), { index: '01' })}
       <div data-reveal-group class="grid sm:grid-cols-2 gap-4 mt-14 max-w-5xl mx-auto">
         ${problems
           .map(
@@ -946,7 +950,7 @@ function homePage(lang) {
   <!-- 2. WHAT WE DO. Three lines, all visible at once. -->
   <section class="section bg-gray-bg border-y border-line">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'navServices'), t(lang, 'servicesTitle'), t(lang, 'servicesSubtitle'), { align: 'start' })}
+      ${sectionHead(t(lang, 'navServices'), t(lang, 'servicesTitle'), t(lang, 'servicesSubtitle'), { align: 'start', index: '02' })}
       <!-- Bento rather than a fourth identical three-up grid: the first
            service gets a tall feature tile, the other two stack beside it. The
            asymmetry is what stops the page reading as a list of equivalent
@@ -975,7 +979,7 @@ function homePage(lang) {
   <!-- 3. HOW IT WORKS. Anchor target for the hero's secondary CTA. -->
   <section id="how-it-works" class="section bg-white">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'navProcess'), t(lang, 'processTitle'), t(lang, 'processLead'), { align: 'start' })}
+      ${sectionHead(t(lang, 'navProcess'), t(lang, 'processTitle'), t(lang, 'processLead'), { align: 'start', index: '03' })}
       <ol data-reveal-group class="rail grid gap-4 md:grid-cols-2 lg:grid-cols-5 mt-14">
         ${processSteps
           .map(
@@ -998,7 +1002,7 @@ function homePage(lang) {
        every line is a promise that can be checked, not a claim about quality. -->
   <section class="section section-feature">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'commitEyebrow'), t(lang, 'commitTitle'), t(lang, 'commitLead'))}
+      ${sectionHead(t(lang, 'commitEyebrow'), t(lang, 'commitTitle'), t(lang, 'commitLead'), { index: '04' })}
       <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
         ${commitments
           .map(
@@ -1021,7 +1025,7 @@ function homePage(lang) {
   <!-- 6. ENGAGEMENT. The question every serious buyer asks second. -->
   <section class="section bg-white">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'engageEyebrow'), t(lang, 'engageTitle'), t(lang, 'engageLead'), { align: 'start' })}
+      ${sectionHead(t(lang, 'engageEyebrow'), t(lang, 'engageTitle'), t(lang, 'engageLead'), { align: 'start', index: '05' })}
       <div data-reveal-group class="grid lg:grid-cols-3 gap-5 mt-14 items-start">
         ${engagementModels.map((m) => engagementCard(lang, m)).join('')}
       </div>
@@ -1035,7 +1039,7 @@ function homePage(lang) {
        grids in sequence; one section answers both questions. -->
   <section class="section bg-gray-bg border-y border-line">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'whoEyebrow'), t(lang, 'whoTitle'), t(lang, 'whoLead'), { align: 'start' })}
+      ${sectionHead(t(lang, 'whoEyebrow'), t(lang, 'whoTitle'), t(lang, 'whoLead'), { align: 'start', index: '06' })}
       <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
         ${industries
           .map(

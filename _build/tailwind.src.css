@@ -962,6 +962,120 @@
   .check-item > svg { flex: none; margin-top: .1875rem; color: #0171BA; }
 
 
+  /* =========================================================================
+     SIGNATURE INTERACTION — the checkpoint tracker
+     =========================================================================
+     "Four inspection points, not one" is the single claim this business is
+     built on, and it was rendered as a bulleted list. Here it becomes the
+     thing it describes: a rail with four checkpoints that fills as you scroll
+     past it, the way a shipment clears stages.
+
+     The concept comes from the subject matter rather than from a trend, which
+     is the difference between an interaction and an effect.
+
+     FAIL-SAFE, as everything animated in this codebase must be. The static
+     state below is the COMPLETE state: rail drawn, every checkpoint visible
+     and correctly marked. Script only adds .is-tracking, which animates the
+     fill and pulses each node as it is reached. If the script never runs, the
+     section is a finished, legible diagram — nothing is hidden waiting to be
+     revealed. */
+  .tracker { position: relative; }
+
+  /* The rail, and the fill that travels it. */
+  .tracker-rail {
+    position: absolute; left: .8125rem; top: 1.25rem; bottom: 1.25rem; width: 2px;
+    background: #E7ECF0;
+    border-radius: 2px;
+  }
+  .tracker-rail::after {
+    content: ''; position: absolute; inset: 0 0 auto 0;
+    height: 100%;
+    background: #0171BA;
+    border-radius: 2px;
+    transform-origin: top;
+    transform: scaleY(1);
+  }
+  /* Only once script has taken over does the fill start from empty. */
+  .tracker.is-armed .tracker-rail::after { transform: scaleY(0); }
+  .tracker.is-tracking .tracker-rail::after {
+    transform: scaleY(1);
+    transition: transform 1.6s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .tracker .status-row { position: relative; background: transparent; border-color: transparent; }
+  .tracker .status-row:hover { background: #FAFBFC; border-color: #E7ECF0; transform: none; }
+
+  /* Each checkpoint marks its arrival once — a brief ring, not a loop. */
+  @keyframes checkpointArrive {
+    0%   { box-shadow: 0 0 0 0 rgba(1,113,186,.45); }
+    70%  { box-shadow: 0 0 0 .5rem rgba(1,113,186,0); }
+    100% { box-shadow: 0 0 0 0 rgba(1,113,186,0); }
+  }
+  .tracker.is-tracking .status-dot { animation: checkpointArrive .9s ease-out both; }
+  .tracker.is-tracking .status-row:nth-child(1) .status-dot { animation-delay: .15s; }
+  .tracker.is-tracking .status-row:nth-child(2) .status-dot { animation-delay: .5s; }
+  .tracker.is-tracking .status-row:nth-child(3) .status-dot { animation-delay: .85s; }
+  .tracker.is-tracking .status-row:nth-child(4) .status-dot { animation-delay: 1.2s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tracker.is-armed .tracker-rail::after { transform: scaleY(1); }
+    .tracker .status-dot { animation: none !important; }
+  }
+
+  /* =========================================================================
+     EDITORIAL SCALE
+     =========================================================================
+     Award-shortlisted work is nearly always carrying a wide contrast between
+     display and body sizes. This site had a narrow one: headings large, body
+     nearly as large, so nothing led. Section headings go up, body stays where
+     it is, and the gap does the work. */
+  .h2-section {
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1.02;
+    font-weight: 600;
+    letter-spacing: -.038em;
+    color: #1E2E40;
+  }
+
+  /* A section's index, set large and quiet in the margin. Editorial, and it
+     gives the eye somewhere to land between bands. */
+  .section-index {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .75rem; font-weight: 600; letter-spacing: .18em;
+    color: #5A6A75;
+    display: block;
+    margin-bottom: 1.25rem;
+  }
+
+  /* =========================================================================
+     IMAGE REVEAL
+     =========================================================================
+     A wipe rather than a fade: the photograph is uncovered, which reads as
+     deliberate where a fade reads as a loading state.
+
+     Same fail-safe order — the image is fully visible by default. Script adds
+     .is-armed to clip it, immediately before animating it open. */
+  .media.is-armed > img { clip-path: inset(0 0 100% 0); }
+  .media.is-revealed > img {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 1s cubic-bezier(.22, 1, .36, 1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .media.is-armed > img, .media.is-revealed > img { clip-path: none; transition: none; }
+  }
+
+  /* =========================================================================
+     BUTTON DETAIL
+     =========================================================================
+     The primary CTA leans very slightly toward the cursor. Subtle enough that
+     it registers as responsiveness rather than as a trick, and it is transform
+     only, so it cannot affect layout. */
+  .btn-primary { will-change: transform; }
+  .btn-primary.is-magnetic { transition: transform .18s cubic-bezier(.22,1,.36,1), background-color .18s; }
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary.is-magnetic { transform: none !important; }
+  }
+
   @media print {
     header, footer, .no-print, .fab-whatsapp, .to-top, .read-progress { display: none !important; }
     body { background: #fff !important; }
