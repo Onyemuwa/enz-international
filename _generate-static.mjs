@@ -29,7 +29,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '29';
+const ASSET_VERSION = '30';
 
 // Sora, matching onemartent.com — one of the two reference sites.
 //
@@ -271,7 +271,7 @@ function founderSection(lang, { compact = false } = {}) {
 // dedicated pricing page so the two can never drift apart.
 function engagementCard(lang, m, { detailed = false } = {}) {
   const featured = m.featured
-    ? 'border-brand-200 shadow-lift ring-1 ring-brand-100'
+    ? 'border-brand-300'
     : '';
   return `
         <div class="${CARD} card-lg flex flex-col h-full ${featured}">
@@ -911,7 +911,7 @@ function homePage(lang) {
   <!-- Stat strip, lifted over the seam between the dark hero and the page. -->
   <section class="bg-white">
     <div class="${SHELL}">
-      <div class="-mt-16 md:-mt-20 relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-2xl border border-line shadow-lift overflow-hidden">
+      <div class="-mt-16 md:-mt-20 relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-2xl border border-line border overflow-hidden">
         ${stats
           .map(
             ([key, value, suffix]) => `<div class="bg-white p-6 md:p-8 text-center">
@@ -1513,7 +1513,7 @@ function closingCta(lang) {
   return `
   <section class="section section-feature">
     <div class="${SHELL}">
-      <div class="gradient-border max-w-5xl mx-auto shadow-2xl">
+      <div class="gradient-border max-w-5xl mx-auto">
         <div class="bg-white px-6 py-14 md:px-16 md:py-20 text-center">
           <h2 class="h2-section">${t(lang, 'ctaBannerTitle')}</h2>
           <p class="lead mt-5 max-w-2xl mx-auto">${t(lang, 'ctaBannerDesc')}</p>

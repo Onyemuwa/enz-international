@@ -155,10 +155,7 @@
     font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
     color: #0171BA;
   }
-  .eyebrow::before {
-    content: ''; width: 1.25rem; height: 2px; border-radius: 2px;
-    background: var(--grad-brand); flex: none;
-  }
+
 
 
   /* Display type runs bigger and tighter than the old scale. At headline
@@ -222,38 +219,26 @@
 
   .btn-primary {
     color: #fff;
-    background: var(--grad-brand-text);
-    background-size: 150% 150%;
-    background-position: 0% 50%;
-    box-shadow: 0 1px 2px rgba(11,18,32,.14), 0 6px 18px -6px rgba(1,113,186,.5);
-    transition: background-position .45s var(--ease-spring), box-shadow .25s var(--ease-spring),
-                transform .25s var(--ease-spring);
+    background: #0171BA;
+    transition: background-color .18s;
   }
-  .btn-primary:hover {
-    background-position: 100% 50%;
-    box-shadow: 0 2px 4px rgba(11,18,32,.16), 0 12px 28px -8px rgba(1,113,186,.6);
-    transform: translateY(-1px);
-  }
-  .btn-primary:active { transform: translateY(0); }
+  .btn-primary:hover { background: #015C96; }
+
 
   .btn-secondary {
-    color: #1E2E40; background: #fff;
-    border: 1px solid #E4E9ED;
-    box-shadow: 0 1px 2px rgba(11,18,32,.04);
+    color: #1E2E40; background: transparent;
+    border: 1px solid #D3DBE1;
+    transition: border-color .18s;
   }
-  .btn-secondary:hover {
-    border-color: #A9D8F4; background: #F7F9FB;
-    box-shadow: 0 1px 2px rgba(11,18,32,.05), 0 8px 20px -8px rgba(11,18,32,.14);
-    transform: translateY(-1px);
-  }
+  .btn-secondary:hover { border-color: #1E2E40; }
 
 
 
   .btn-dark { color: #fff; background: #1E2E40; }
   .btn-dark:hover { background: #0171BA; transform: translateY(-1px); }
 
-  .btn-whatsapp { color: #fff; background: #1FA855; }
-  .btn-whatsapp:hover { background: #16833F; transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgba(31,168,85,.8); }
+  .btn-whatsapp { color: #fff; background: #15803D; }
+  .btn-whatsapp:hover { background: #0F6B33; transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgba(31,168,85,.8); }
 
   /* Text link that grows an arrow. */
   .link-arrow {
@@ -270,73 +255,48 @@
   .card {
     position: relative;
     background: #fff;
-    border: 1px solid transparent;
-    border-radius: 1.25rem;
+    border: 1px solid #E7ECF0;
+    border-radius: .75rem;
     padding: 1.75rem;
-    box-shadow: 0 4px 60px rgba(8,15,30,.07), 0 1px 2px rgba(8,15,30,.03);
-    transition: border-color .25s, box-shadow .3s var(--ease-spring),
-                transform .3s var(--ease-spring), background-color .25s;
+    transition: border-color .18s;
   }
   /* A hairline of brand gradient wipes across the top edge on hover. It is a
      pseudo-element, so it can never hide the card's own content. */
-  .card::after {
-    content: ''; position: absolute; inset: -1px -1px auto -1px; height: 2px;
-    border-radius: 1.25rem 1.25rem 0 0;
-    background: var(--grad-brand);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform .4s var(--ease-spring);
-  }
-  .card:hover {
-    box-shadow: 0 12px 70px rgba(8,15,30,.12), 0 2px 6px rgba(8,15,30,.05);
-    transform: translateY(-4px);
-  }
-  .card:hover::after { transform: scaleX(1); }
-  .card-muted { background: #F7F9FB; box-shadow: none; border-color: #EEF2F5; }
-  .card-muted:hover { background: #fff; box-shadow: 0 12px 70px rgba(8,15,30,.10); border-color: transparent; }
+
+  .card:hover { border-color: #A9BFCE; }
+
+  .card-muted { background: #FAFBFC; }
+  .card-muted:hover { background: #fff; }
   .card-flat { box-shadow: none; }
   .card-flat:hover { transform: none; }
   .card-lg { padding: 2rem; }
   @media (min-width: 768px) { .card-lg { padding: 2.5rem; } }
 
   /* Anchor cards get the arrow nudge for free. */
-  a.card:hover .link-arrow svg, a.card:hover .btn-arrow { transform: translateX(4px); }
+
 
   .card-feature {
     position: relative;
     background: #fff;
-    border: 1px solid transparent;
-    border-radius: 1.25rem;
+    border: 1px solid #E7ECF0;
+    border-radius: .75rem;
     padding: 1.75rem;
-    box-shadow: 0 4px 60px rgba(8,15,30,.07), 0 1px 2px rgba(8,15,30,.03);
-    transition: border-color .25s, box-shadow .3s var(--ease-spring), transform .3s var(--ease-spring);
+    transition: border-color .18s;
   }
-  .card-feature::after {
-    content: ''; position: absolute; inset: -1px -1px auto -1px; height: 2px;
-    border-radius: 1.25rem 1.25rem 0 0;
-    background: var(--grad-brand);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform .4s var(--ease-spring);
-  }
-  .card-feature:hover {
-    box-shadow: 0 12px 70px rgba(8,15,30,.12), 0 2px 6px rgba(8,15,30,.05);
-    transform: translateY(-4px);
-  }
-  .card-feature:hover::after { transform: scaleX(1); }
+
+  .card-feature:hover { border-color: #A9BFCE; }
+
 
   /* Icon plate — gives every card a consistent, deliberate-looking anchor
      instead of a bare stroke icon floating in whitespace. */
   .icon-chip {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 2.75rem; height: 2.75rem; flex: none;
-    border-radius: .875rem;
+    flex: none;
     color: #0171BA;
-    background: linear-gradient(140deg, #EAF6FD 0%, #F7FCFF 100%);
-    border: 1px solid #D2EBFA;
-    transition: color .25s, background-color .25s, border-color .25s;
   }
-  .card:hover .icon-chip { border-color: #A9D8F4; }
-  .icon-chip-accent { color: #C97A08; background: linear-gradient(140deg, #FFF4E3 0%, #FFFBF4 100%); border-color: #FCE3BA; }
-  .card-feature:hover .icon-chip { border-color: #A9D8F4; }
+
+  .icon-chip-accent { color: #C97A08; }
+
 
   /* Small numeric/step badge. */
   .step-badge {
@@ -353,7 +313,7 @@
     display: inline-flex; align-items: center; gap: .375rem;
     padding: .25rem .625rem; border-radius: 999px;
     font-size: .75rem; font-weight: 600; line-height: 1.4;
-    color: #0171BA; background: #EAF6FD; border: 1px solid #D2EBFA;
+    color: #0171BA; background: transparent; border: 1px solid #D2EBFA;
   }
   .pill-neutral { color: #5A6A75; background: #F7F9FB; border-color: #E4E9ED; }
   .pill-accent { color: #C97A08; background: #FFF4E3; border-color: #FCE3BA; }
@@ -366,12 +326,11 @@
      about being a placeholder while still looking composed. */
   .monogram {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 7rem; height: 7rem;
+    width: 3.5rem; height: 3.5rem; flex: none;
     border-radius: 999px;
-    font-size: 1.875rem; font-weight: 600; letter-spacing: .02em;
+    background: #0171BA;
     color: #fff;
-    background: var(--grad-brand-text);
-    box-shadow: 0 10px 30px -10px rgba(1,113,186,.55);
+    font-size: 1.125rem; font-weight: 600; letter-spacing: .02em;
   }
 
   /* ---------- Media ----------------------------------------------------- */
@@ -381,8 +340,8 @@
   .media {
     position: relative;
     overflow: hidden;
-    border-radius: 1.125rem;
-    background: linear-gradient(140deg, #015C96 0%, #0171BA 45%, #0E8AD8 100%);
+    border-radius: .75rem;
+    background: #EEF2F5;
     isolation: isolate;
   }
   .media > img {
@@ -398,15 +357,7 @@
 
   /* The placeholder state: a subtle diagonal weave over the brand gradient,
      plus a centred label naming what belongs there. */
-  .media-empty::before {
-    content: '';
-    position: absolute; inset: 0; z-index: 1;
-    background-image: repeating-linear-gradient(
-      135deg,
-      rgba(255,255,255,.055) 0 12px,
-      rgba(255,255,255,0) 12px 24px
-    );
-  }
+
   .media-empty > .media-note {
     position: absolute; inset: 0; z-index: 2;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -469,9 +420,8 @@
   .hero-photo .border-line { border-color: rgba(255,255,255,.16); }
   .hero-photo .pill {
     color: #fff;
-    background: rgba(255,255,255,.12);
+    background: rgba(255,255,255,.14);
     border-color: rgba(255,255,255,.26);
-    backdrop-filter: blur(8px);
   }
   .hero-photo .pill:hover { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.4); }
   .hero-photo .h2-section, .hero-photo h1 { color: #fff; }
@@ -486,20 +436,18 @@
      stops only, resolving to near-white, so the phrase stays legible the whole
      way across and the emphasis comes from brightness instead of hue. */
   .hero-photo .text-gradient {
-    background: linear-gradient(100deg, #6FC1EC 0%, #A9D8F4 45%, #F2F9FE 100%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
+    background: none;
+    -webkit-text-fill-color: #9BD0F5;
+    color: #9BD0F5;
   }
   /* Chips and the proof panel sit on the photo, so they go translucent. */
   .hero-photo .chip {
-    color: #fff; background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.2);
-    backdrop-filter: blur(8px); box-shadow: none;
+    color: #fff; background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.24);
   }
   .hero-photo .chip:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.34); }
   .hero-photo .chip svg { color: #6FC1EC; }
   .hero-photo .btn-secondary {
-    color: #fff; background: rgba(255,255,255,.1);
-    border-color: rgba(255,255,255,.24); backdrop-filter: blur(8px); box-shadow: none;
+    color: #fff; background: transparent; border-color: rgba(255,255,255,.4);
   }
   .hero-photo .btn-secondary:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.4); }
   .hero-photo a:focus-visible, .hero-photo button:focus-visible { outline-color: #A9D8F4; }
@@ -511,12 +459,9 @@
      fallback. Tinting toward near-black instead gives the text a consistent
      dark ground whatever the photo behind it is doing. */
   .glass-panel {
-    background: rgba(7,18,28,.62);
-    border: 1px solid rgba(255,255,255,.18);
-    border-radius: 1.375rem;
-    backdrop-filter: blur(18px) saturate(140%);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
-    box-shadow: 0 24px 60px -20px rgba(6,13,19,.6);
+    background: rgba(6,13,19,.72);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: .75rem;
     color: #fff;
   }
   .glass-panel .status-row {
@@ -556,33 +501,19 @@
     position: relative;
     isolation: isolate;
     color: #1E2E40;
-    background:
-      radial-gradient(72% 80% at 12% 0%, rgba(1,113,186,.07) 0%, rgba(250,251,252,0) 62%),
-      radial-gradient(58% 70% at 92% 8%, rgba(252,174,66,.06) 0%, rgba(250,251,252,0) 60%),
-      #FAFBFC;
+    background: #FAFBFC;
     overflow: hidden;
   }
   /* Engineering-drawing grid, faded toward the edges so it reads as texture
      rather than as a table. Far fainter now that it sits on light. */
-  .section-feature::before {
-    content: ''; position: absolute; inset: 0; z-index: -1;
-    background-image:
-      linear-gradient(rgba(11,26,36,.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(11,26,36,.035) 1px, transparent 1px);
-    background-size: 72px 72px;
-    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 10%, transparent 72%);
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 10%, transparent 72%);
-  }
+
   /* The blurred orbs are gone. They were the loudest part of the effect and
      they cost an animation on every one of these bands. */
 
   /* Light-section counterpart: a soft brand wash instead of flat white. */
   .section-wash {
     position: relative; isolation: isolate;
-    background:
-      radial-gradient(60% 70% at 12% 0%, rgba(42,168,228,.07) 0%, rgba(255,255,255,0) 60%),
-      radial-gradient(50% 60% at 92% 8%, rgba(252,174,66,.06) 0%, rgba(255,255,255,0) 60%),
-      #fff;
+    background: #fff;
   }
 
   /* ---------- Header ---------------------------------------------------- */
@@ -760,8 +691,7 @@
   /* ---------- Tables ---------------------------------------------------- */
   .table-wrap {
     overflow-x: auto;
-    border: 1px solid #E4E9ED; border-radius: 1.125rem; background: #fff;
-    box-shadow: 0 1px 2px rgba(11,18,32,.04);
+    border: 1px solid #E7ECF0; border-radius: .75rem; background: #fff;
     -webkit-overflow-scrolling: touch;
   }
   .table-pro { width: 100%; min-width: 36rem; border-collapse: collapse; text-align: left; }
@@ -849,7 +779,7 @@
     max-height: min(92vh, 48rem); overflow-y: auto;
     background: #fff; border-radius: 1.5rem;
     padding: 1.75rem;
-    box-shadow: 0 24px 64px -12px rgba(6,13,19,.4), 0 0 0 1px rgba(11,18,32,.06);
+    box-shadow: 0 16px 48px -16px rgba(6,13,19,.3);
   }
   @media (min-width: 640px) { .modal-panel { padding: 2rem; } }
   .modal-close {
@@ -866,12 +796,12 @@
     position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 40;
     display: inline-flex; align-items: center;
     height: 3.25rem; padding: 0 1rem;
-    color: #fff; background: #1FA855;
+    color: #fff; background: #15803D;
     border-radius: 999px;
     box-shadow: 0 10px 30px -8px rgba(31,168,85,.6);
     transition: background-color .2s, box-shadow .25s, transform .25s var(--ease-spring);
   }
-  .fab-whatsapp:hover { background: #16833F; transform: translateY(-2px); }
+  .fab-whatsapp:hover { background: #0F6B33; transform: translateY(-2px); }
 
   /* On a phone the hero's CTAs go full-width and land at roughly the same
      height as this button, so the floating action sat directly on top of
@@ -972,12 +902,11 @@
      make one element read as "featured" without shouting. */
   .gradient-border {
     position: relative;
-    background: linear-gradient(135deg, rgba(42,168,228,.45), rgba(252,174,66,.35) 55%, rgba(42,168,228,.14));
+    background: #E7ECF0;
     padding: 1px;
-    border-radius: 1.375rem;
-    box-shadow: 0 1px 2px rgba(11,18,32,.04), 0 18px 40px -16px rgba(11,18,32,.16);
+    border-radius: .75rem;
   }
-  .gradient-border > * { border-radius: 1.3125rem; }
+  .gradient-border > * { border-radius: calc(.75rem - 1px); }
 
   /* Bento: one tall feature tile beside a stack of shorter ones. Breaks the
      "another grid of identical cards" monotony that made the page read as a
@@ -1025,7 +954,7 @@
     box-shadow: 0 1px 2px rgba(11,18,32,.04);
     transition: background-color .2s, border-color .2s, transform .25s var(--ease-spring);
   }
-  .chip:hover { border-color: #A9D8F4; transform: translateY(-1px); }
+  .chip:hover { border-color: #A9BFCE; }
   .chip svg { color: #0171BA; }
 
   /* ---------- Misc ------------------------------------------------------ */
