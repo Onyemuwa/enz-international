@@ -25,7 +25,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../../assets/css/site.css?v=31" />
+    <link rel="stylesheet" href="../../assets/css/site.css?v=32" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -139,7 +139,88 @@
     <div class="shell max-w-4xl">
       <h2 class="h2-section">Quel Incoterm demander</h2>
       <p class="lead mt-5">L'Incoterm détermine qui paie quoi et où le risque est transféré.</p>
-      <div class="mt-10 space-y-4">
+      
+      <div class="handover" data-handover-diagram>
+        <div class="handover-terms" role="group" aria-label="Choisissez un Incoterm"><button type="button" class="handover-term" data-term="EXW"
+              aria-pressed="false"
+              data-cost-to="0" data-risk-to="0"
+              data-summary="You collect from the factory gate and carry everything after that, including export clearance." data-watch="The cheapest headline price and the most work. Export clearance in the seller’s own country is on you, which many first-time buyers are not set up to do.">
+              <span class="t-code">EXW</span>
+              <span class="t-name">Ex Works</span>
+            </button><button type="button" class="handover-term" data-term="FOB"
+              aria-pressed="true"
+              data-cost-to="3" data-risk-to="3"
+              data-summary="The seller delivers, clears for export and loads the vessel. Cost and risk both pass once loaded." data-watch="The most balanced starting point for sea freight from China, and the one to ask for if you are unsure.">
+              <span class="t-code">FOB</span>
+              <span class="t-name">Free On Board</span>
+            </button><button type="button" class="handover-term" data-term="CIF"
+              aria-pressed="false"
+              data-cost-to="5" data-risk-to="3"
+              data-summary="The seller pays freight and insurance to the destination port — but risk passes at loading, not on arrival." data-watch="The gap on this diagram is the point. The seller pays to get it there; if it is lost mid-ocean the loss is yours, covered by insurance they selected. They also choose the forwarder, so you lose control of routing, timing and the fees you meet on arrival.">
+              <span class="t-code">CIF</span>
+              <span class="t-name">Cost, Insurance & Freight</span>
+            </button><button type="button" class="handover-term" data-term="DDP"
+              aria-pressed="false"
+              data-cost-to="7" data-risk-to="7"
+              data-summary="The seller carries everything to your door, import duties included." data-watch="Simplest for you and the highest quoted price. Verify duties are genuinely paid — an underdeclared DDP shipment becomes your legal problem, not the seller’s.">
+              <span class="t-code">DDP</span>
+              <span class="t-name">Delivered Duty Paid</span>
+            </button></div>
+
+        <div class="handover-track" data-handover-track><div class="handover-stage" data-stage="0" data-cost="seller" data-risk="seller">
+            <span class="handover-node" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-cost" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-risk" aria-hidden="true"></span>
+            <span class="handover-label">Factory</span>
+          </div><div class="handover-stage" data-stage="1" data-cost="seller" data-risk="seller">
+            <span class="handover-node" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-cost" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-risk" aria-hidden="true"></span>
+            <span class="handover-label">Inland transit</span>
+          </div><div class="handover-stage" data-stage="2" data-cost="seller" data-risk="seller">
+            <span class="handover-node" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-cost" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-risk" aria-hidden="true"></span>
+            <span class="handover-label">Export clearance</span>
+          </div><div class="handover-stage" data-stage="3" data-cost="seller" data-risk="seller" data-handover="true">
+            <span class="handover-node" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-cost" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-risk" aria-hidden="true"></span>
+            <span class="handover-label">Loaded on vessel</span>
+          </div><div class="handover-stage" data-stage="4" data-cost="buyer" data-risk="buyer">
+            <span class="handover-node" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-cost" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-risk" aria-hidden="true"></span>
+            <span class="handover-label">Ocean freight</span>
+          </div><div class="handover-stage" data-stage="5" data-cost="buyer" data-risk="buyer">
+            <span class="handover-node" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-cost" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-risk" aria-hidden="true"></span>
+            <span class="handover-label">Arrival port</span>
+          </div><div class="handover-stage" data-stage="6" data-cost="buyer" data-risk="buyer">
+            <span class="handover-node" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-cost" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-risk" aria-hidden="true"></span>
+            <span class="handover-label">Import duty & VAT</span>
+          </div><div class="handover-stage" data-stage="7" data-cost="buyer" data-risk="buyer">
+            <span class="handover-node" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-cost" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-risk" aria-hidden="true"></span>
+            <span class="handover-label">Final delivery</span>
+          </div></div>
+
+        <div class="handover-legend">
+          <span class="handover-key handover-key-cost"><i></i>Coût vendeur</span>
+          <span class="handover-key handover-key-risk"><i></i>Risque vendeur</span>
+          <span class="handover-key handover-key-yours"><i></i>À votre charge</span>
+        </div>
+
+        <div class="handover-note" role="status" aria-live="polite">
+          <p><strong data-handover-code>FOB</strong> — <span data-handover-summary>The seller delivers, clears for export and loads the vessel. Cost and risk both pass once loaded.</span></p>
+          <p class="mt-2" data-handover-watch>The most balanced starting point for sea freight from China, and the one to ask for if you are unsure.</p>
+        </div>
+      </div>
+      <div class="mt-14 space-y-4">
         <div class="card">
           <div class="flex flex-wrap items-baseline gap-3">
             <span class="text-brand font-semibold">EXW</span>
@@ -345,9 +426,9 @@
       </div>
     </div>
   </div>
-    <script src="../../assets/js/config.js?v=31"></script>
-    <script src="../../assets/js/api.js?v=31"></script>
-    <script src="../../assets/js/site.js?v=31" defer></script>
-    <script type="module" src="../../assets/js/motion-effects.js?v=31"></script>
+    <script src="../../assets/js/config.js?v=32"></script>
+    <script src="../../assets/js/api.js?v=32"></script>
+    <script src="../../assets/js/site.js?v=32" defer></script>
+    <script type="module" src="../../assets/js/motion-effects.js?v=32"></script>
   </body>
 </html>

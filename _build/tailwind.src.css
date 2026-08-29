@@ -1076,6 +1076,102 @@
     .btn-primary.is-magnetic { transform: none !important; }
   }
 
+  /* =========================================================================
+     HANDOVER DIAGRAM
+     =========================================================================
+     Where responsibility passes under each Incoterm, drawn on the journey it
+     actually happens on. Two tracks, because cost and risk do not always
+     transfer at the same point — under CIF they are two stages apart, and the
+     gap between the tracks IS the explanation.
+
+     Server-rendered complete: the default term's state is in the HTML with
+     every stage labelled, so with no JavaScript this is a finished diagram of
+     FOB. Script only swaps which term is selected. */
+  .handover { position: relative; }
+
+  .handover-terms { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .handover-term {
+    display: inline-flex; flex-direction: column; gap: .125rem;
+    padding: .625rem 1rem;
+    border: 1px solid #E7ECF0; border-radius: .5rem;
+    background: #fff; cursor: pointer; text-align: left;
+    transition: border-color .18s, background-color .18s;
+  }
+  .handover-term:hover { border-color: #A9BFCE; }
+  .handover-term[aria-pressed='true'] { border-color: #0171BA; background: #F4F9FD; }
+  .handover-term .t-code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .8125rem; font-weight: 700; letter-spacing: .04em; color: #1E2E40;
+  }
+  .handover-term[aria-pressed='true'] .t-code { color: #0171BA; }
+  .handover-term .t-name { font-size: .6875rem; color: #5A6A75; }
+
+  /* The journey. A grid so the tracks and the labels share one set of columns
+     and can never drift out of alignment. */
+  .handover-track { display: grid; gap: 0; margin-top: 2rem; }
+  .handover-stage { position: relative; min-width: 0; }
+
+  /* Each stage owns its segment of the rail. Colouring per-segment rather than
+     drawing one bar and masking it means the split lands exactly on a stage
+     boundary at every viewport, with no arithmetic. */
+  .handover-seg {
+    height: 4px; border-radius: 2px; background: #E7ECF0;
+    transition: background-color .45s cubic-bezier(.22,1,.36,1);
+  }
+  .handover-seg + .handover-seg { margin-top: .375rem; }
+  .handover-stage[data-cost='seller'] .handover-seg-cost { background: #0171BA; }
+  .handover-stage[data-risk='seller'] .handover-seg-risk { background: #1E2E40; }
+
+  .handover-node {
+    position: absolute; top: -.3125rem; left: 0;
+    width: .875rem; height: .875rem; border-radius: 999px;
+    background: #fff; border: 2px solid #D3DBE1;
+    transition: border-color .45s, transform .45s cubic-bezier(.22,1,.36,1);
+  }
+  .handover-stage[data-cost='seller'] .handover-node { border-color: #0171BA; }
+  /* The stage where it changes hands. */
+  .handover-stage[data-handover='true'] .handover-node {
+    border-color: #0171BA; background: #0171BA; transform: scale(1.35);
+  }
+
+  .handover-label {
+    display: block; margin-top: .875rem;
+    font-size: .6875rem; line-height: 1.35; color: #5A6A75;
+    padding-right: .75rem;
+  }
+  .handover-stage[data-cost='seller'] .handover-label { color: #1E2E40; }
+
+  .handover-legend { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 1.75rem; }
+  .handover-key { display: inline-flex; align-items: center; gap: .5rem; font-size: .75rem; color: #5A6A75; }
+  .handover-key i { width: 1.5rem; height: 4px; border-radius: 2px; display: inline-block; }
+  .handover-key-cost i { background: #0171BA; }
+  .handover-key-risk i { background: #1E2E40; }
+  .handover-key-yours i { background: #E7ECF0; }
+
+  /* Desktop: the journey runs left to right, as it does in life. */
+  @media (min-width: 768px) {
+    .handover-track { grid-template-columns: repeat(8, 1fr); }
+    .handover-label { min-height: 3.25rem; }
+  }
+  /* Phone: eight stages cannot be eight columns. It becomes a vertical list,
+     the rail rotates to a left-hand spine, and every label stays readable. */
+  @media (max-width: 767px) {
+    .handover-track { grid-template-columns: 1fr; gap: 0; }
+    .handover-stage { display: grid; grid-template-columns: 1.25rem 1fr; align-items: start; column-gap: .875rem; padding-bottom: 1rem; }
+    .handover-seg { width: 4px; height: 100%; min-height: 2.25rem; grid-column: 1; grid-row: 1; margin: 0 0 0 .125rem; }
+    .handover-seg-risk { margin-left: .625rem; }
+    .handover-seg + .handover-seg { margin-top: 0; }
+    .handover-node { position: static; grid-column: 1; grid-row: 1; margin-top: 0; }
+    .handover-label { grid-column: 2; grid-row: 1; margin-top: -.125rem; font-size: .8125rem; }
+  }
+
+  .handover-note {
+    margin-top: 1.75rem; padding: 1.125rem 1.25rem;
+    border: 1px solid #E7ECF0; border-radius: .75rem; background: #FAFBFC;
+  }
+  .handover-note p { font-size: .875rem; line-height: 1.7; color: #5A6A75; }
+  .handover-note strong { color: #1E2E40; font-weight: 600; }
+
   @media print {
     header, footer, .no-print, .fab-whatsapp, .to-top, .read-progress { display: none !important; }
     body { background: #fff !important; }

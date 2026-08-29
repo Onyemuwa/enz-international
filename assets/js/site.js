@@ -218,6 +218,51 @@
     });
   });
 
+  // ---------- Handover diagram ----------
+  // Switches which Incoterm the diagram is showing. The markup already holds a
+  // complete, correct diagram of the default term, so this is enhancement: with
+  // no JavaScript the reader still gets an accurate picture of FOB, just not a
+  // switchable one.
+  //
+  // Every value it needs is on the buttons as data attributes, so the term
+  // definitions live in exactly one place (_content/handover.js) and this file
+  // never has to know what an Incoterm is.
+  document.querySelectorAll('[data-handover-diagram]').forEach(function (root) {
+    var buttons = root.querySelectorAll('[data-term]');
+    var stages = root.querySelectorAll('[data-stage]');
+    var codeEl = root.querySelector('[data-handover-code]');
+    var summaryEl = root.querySelector('[data-handover-summary]');
+    var watchEl = root.querySelector('[data-handover-watch]');
+
+    function select(btn) {
+      var costTo = parseInt(btn.getAttribute('data-cost-to'), 10);
+      var riskTo = parseInt(btn.getAttribute('data-risk-to'), 10);
+
+      buttons.forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+
+      stages.forEach(function (stage) {
+        var i = parseInt(stage.getAttribute('data-stage'), 10);
+        stage.setAttribute('data-cost', i <= costTo ? 'seller' : 'buyer');
+        stage.setAttribute('data-risk', i <= riskTo ? 'seller' : 'buyer');
+        // The node that marks the point of handover.
+        if (i === costTo) stage.setAttribute('data-handover', 'true');
+        else stage.removeAttribute('data-handover');
+      });
+
+      if (codeEl) codeEl.textContent = btn.getAttribute('data-term');
+      if (summaryEl) summaryEl.textContent = btn.getAttribute('data-summary');
+      if (watchEl) watchEl.textContent = btn.getAttribute('data-watch');
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        select(btn);
+      });
+    });
+  });
+
   // ---------- Language menu ----------
   // The menu is a <details> containing real links, so it already opens,
   // navigates and is keyboard-operable with no JavaScript at all. Everything

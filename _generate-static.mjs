@@ -17,6 +17,7 @@ import { landedCost, commonMistakes, paymentTerms, timelines, glossary, whyChina
 import { problems, engagementModels, pricingFactors, gettingStarted } from './_content/narrative.js';
 import { testimonials, caseStudies, commitments } from './_content/proof.js';
 import { images, industryImages } from './_content/images.js';
+import { journey, terms as handoverTerms, defaultTerm } from './_content/handover.js';
 import { founder } from './_content/founder.js';
 
 const OUT = path.resolve('.'); // repo root — this IS the site
@@ -29,7 +30,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '31';
+const ASSET_VERSION = '32';
 
 // Sora, matching onemartent.com — one of the two reference sites.
 //
@@ -187,6 +188,65 @@ function sectionHead(eyebrow, title, lead, { align = 'center', index = null } = 
         <h2 class="${H2} mt-4">${title}</h2>
         ${lead ? `<p class="${LEAD} mt-5">${lead}</p>` : ''}
       </div>`;
+}
+
+// The Incoterms handover diagram — see _content/handover.js for the reasoning.
+//
+// Server-rendered in its default state, with every stage, both tracks and the
+// note already correct. Script only re-points the selection, so with no
+// JavaScript this is a complete, accurate diagram of FOB rather than an empty
+// shell waiting to be filled.
+function handoverDiagram(lang) {
+  const active = handoverTerms.find((x) => x.code === defaultTerm) || handoverTerms[0];
+
+  const stages = journey
+    .map((stg, i) => {
+      const cost = i <= active.costTo ? 'seller' : 'buyer';
+      const risk = i <= active.riskTo ? 'seller' : 'buyer';
+      const isHandover = i === active.costTo;
+      return `<div class="handover-stage" data-stage="${i}" data-cost="${cost}" data-risk="${risk}"${isHandover ? ' data-handover="true"' : ''}>
+            <span class="handover-node" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-cost" aria-hidden="true"></span>
+            <span class="handover-seg handover-seg-risk" aria-hidden="true"></span>
+            <span class="handover-label">${stg.label}</span>
+          </div>`;
+    })
+    .join('');
+
+  const buttons = handoverTerms
+    .map(
+      (tm) => `<button type="button" class="handover-term" data-term="${tm.code}"
+              aria-pressed="${tm.code === active.code}"
+              data-cost-to="${tm.costTo}" data-risk-to="${tm.riskTo}"
+              data-summary="${escapeAttr(tm.summary)}" data-watch="${escapeAttr(tm.watch)}">
+              <span class="t-code">${tm.code}</span>
+              <span class="t-name">${tm.name}</span>
+            </button>`
+    )
+    .join('');
+
+  return `
+      <div class="handover" data-handover-diagram>
+        <div class="handover-terms" role="group" aria-label="${t(lang, 'handoverPick')}">${buttons}</div>
+
+        <div class="handover-track" data-handover-track>${stages}</div>
+
+        <div class="handover-legend">
+          <span class="handover-key handover-key-cost"><i></i>${t(lang, 'handoverCost')}</span>
+          <span class="handover-key handover-key-risk"><i></i>${t(lang, 'handoverRisk')}</span>
+          <span class="handover-key handover-key-yours"><i></i>${t(lang, 'handoverYours')}</span>
+        </div>
+
+        <div class="handover-note" role="status" aria-live="polite">
+          <p><strong data-handover-code>${active.code}</strong> — <span data-handover-summary>${active.summary}</span></p>
+          <p class="mt-2" data-handover-watch>${active.watch}</p>
+        </div>
+      </div>`;
+}
+
+// Attribute-safe: these strings carry apostrophes and quotes.
+function escapeAttr(v) {
+  return String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 }
 
 // Renders an image slot from the manifest in _content/images.js.
@@ -1696,7 +1756,8 @@ function logisticsPage(lang) {
     <div class="shell max-w-4xl">
       <h2 class="${H2}">${t(lang, 'incotermsTitle')}</h2>
       <p class="${LEAD} mt-5">${t(lang, 'incotermsLead')}</p>
-      <div class="mt-10 space-y-4">${terms}</div>
+      ${handoverDiagram(lang)}
+      <div class="mt-14 space-y-4">${terms}</div>
     </div>
   </section>
   <section class="section bg-gray-bg border-y border-line">
