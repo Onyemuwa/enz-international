@@ -12,14 +12,23 @@ small scripts, and the Motion bundle. Nothing is compiled, fetched, or generated
 
 ## Run it locally
 
-Pick whichever you have — none of them are required to deploy, only to preview:
+**Double-click `preview.bat`** (Windows), or run:
 
 ```bash
-npx serve .
-# or: python -m http.server 8080
+node preview.mjs
 ```
 
-Or just open `en/index.html` directly in a browser.
+Then open **http://localhost:5500/en/**. Nothing to install — `preview.mjs` is a
+~40-line zero-dependency Node server, so it works offline.
+
+> **Do not open the files directly from the folder.** The site uses clean URLs
+> (`/en/services/`, no `.html`), which are real directories containing an
+> `index.html`. `file://` has no directory-index resolution, so a browser opening
+> the folder shows a *file listing* instead of the page, and every link lands on
+> another listing. Any web server resolves this correctly; the one above is the
+> smallest possible.
+
+`npx serve .` and `python -m http.server 8080` both work too, if you prefer them.
 
 ## Deploy it
 
