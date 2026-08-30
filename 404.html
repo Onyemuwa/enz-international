@@ -5,27 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, follow" />
     <title>Page not found | ENZ INTERNATIONAL</title>
-    <meta name="theme-color" content="#0B1A24" />
+    <meta name="theme-color" content="#0171BA" />
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/images/favicon-512.png" />
-    <link rel="stylesheet" href="/assets/css/site.css?v=33" />
+
+    <!-- ===================================================================
+         THIS PAGE IS SELF-CONTAINED ON PURPOSE.
+         ===================================================================
+         A 404 is served for URLs that do not exist, from any depth, on any
+         host. It is the one page that has to work when something has already
+         gone wrong, so it cannot depend on an external stylesheet resolving:
+
+         - Root-relative /assets/... is correct at a domain root and WRONG
+           under a subpath (user.github.io/repo/), where it resolves outside
+           the site and 404s in turn — leaving an unstyled error page.
+         - Relative assets/... is correct at one depth only, and a 404 can be
+           served for /a/b/c/nonsense.
+
+         So the styles it needs are inlined. The external stylesheet is still
+         linked afterwards for the fonts and to match the rest of the site
+         where it does resolve, but nothing here depends on it arriving.
+         =================================================================== -->
+    <style>
+      *,*::before,*::after{box-sizing:border-box}
+      body{margin:0;background:#FAFBFC;color:#1E2E40;
+        font-family:'Sora','Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+        -webkit-font-smoothing:antialiased}
+      .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:5rem 1rem;text-align:center}
+      .inner{max-width:34rem}
+      .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+        font-size:.8125rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#0171BA;margin:0}
+      h1{font-size:clamp(2.375rem,5.8vw,4.25rem);line-height:1.06;font-weight:600;
+        letter-spacing:-.032em;margin:1rem 0 0}
+      h1 .accent{color:#0171BA}
+      .lead{color:#5A6A75;font-size:1rem;line-height:1.75;margin:1.25rem 0 0}
+      .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;margin-top:2.25rem}
+      .btn{display:inline-flex;align-items:center;justify-content:center;min-height:3.375rem;
+        padding:1rem 2rem;border-radius:999px;font-size:1rem;font-weight:500;text-decoration:none;
+        border:1px solid transparent;transition:background-color .18s,border-color .18s}
+      .btn-primary{background:#0171BA;color:#fff}
+      .btn-primary:hover{background:#015C96}
+      .btn-secondary{border-color:#D3DBE1;color:#1E2E40}
+      .btn-secondary:hover{border-color:#1E2E40}
+      .more{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.5rem;margin-top:2.5rem;font-size:.875rem}
+      .more a{color:#5A6A75;text-decoration:none;text-transform:capitalize;transition:color .18s}
+      .more a:hover{color:#1E2E40}
+      a:focus-visible{outline:2px solid #0171BA;outline-offset:2px;border-radius:5px}
+      @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms !important}}
+    </style>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" />
   </head>
-  <body class="bg-white text-ink">
-    <main class="section-feature min-h-screen flex items-center justify-center px-4 py-20">
-      <div class="text-center max-w-lg">
-        <p class="mono-tag text-brand text-sm">Error 404</p>
-        <h1 class="h1-display text-ink mt-4">This page <span class="text-gradient">isn't here</span></h1>
-        <p class="lead mt-5">The page you're looking for doesn't exist, or it may have moved. The links below will get you back on track.</p>
-        <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
-          <a href="/en/" class="btn btn-primary btn-lg">Back to homepage</a>
-          <a href="/en/contact/" class="btn btn-secondary btn-lg">Contact us</a>
+  <body>
+    <main class="wrap">
+      <div class="inner">
+        <p class="code">Error 404</p>
+        <h1>This page <span class="accent">isn't here</span></h1>
+        <p class="lead">The page you're looking for doesn't exist, or it may have moved. The links below will get you back on track.</p>
+        <div class="actions">
+          <a href="/en/" data-to="" class="btn btn-primary">Back to homepage</a>
+          <a href="/en/contact/" data-to="contact/" class="btn btn-secondary">Contact us</a>
         </div>
-        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-10 text-sm">
-          <a href="/en/services/" class="text-slate hover:text-ink transition-colors capitalize">services</a><a href="/en/process/" class="text-slate hover:text-ink transition-colors capitalize">process</a><a href="/en/markets/" class="text-slate hover:text-ink transition-colors capitalize">markets</a><a href="/en/insights/" class="text-slate hover:text-ink transition-colors capitalize">insights</a><a href="/en/faq/" class="text-slate hover:text-ink transition-colors capitalize">faq</a>
+        <div class="more">
+          <a href="/en/services/" data-to="services/">services</a><a href="/en/process/" data-to="process/">process</a><a href="/en/markets/" data-to="markets/">markets</a><a href="/en/insights/" data-to="insights/">insights</a><a href="/en/faq/" data-to="faq/">faq</a>
         </div>
       </div>
     </main>
+
+    <!-- Root-relative hrefs above are correct for a domain-root deployment and
+         are what a crawler and a no-script visitor follow. This repoints them
+         if the site turns out to be served from a subpath, which the markup
+         alone cannot know. Everything still works without it. -->
+    <script>
+      (function () {
+        var path = location.pathname;
+        // /repo/en/nonsense -> "/repo"; /en/nonsense -> ""
+        var m = path.match(/^(.*?)\/(?:en|sw|fr|zh)\//);
+        var base = m ? m[1] : '';
+        // A 404 under a subpath with no language segment, e.g. /repo/nope
+        if (!m && path.lastIndexOf('/') > 0) base = path.slice(0, path.indexOf('/', 1));
+        if (!base) return;
+        var links = document.querySelectorAll('[data-to]');
+        for (var i = 0; i < links.length; i++) {
+          links[i].setAttribute('href', base + '/en/' + links[i].getAttribute('data-to'));
+        }
+      })();
+    </script>
   </body>
 </html>
