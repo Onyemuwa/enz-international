@@ -185,11 +185,7 @@
      those stops are pale enough to fail contrast outright. There is no dark
      surface left to need a second variant. */
   .text-gradient,
-  .text-gradient-dark {
-    background: linear-gradient(100deg, #015C96 0%, #0171BA 45%, #C97A08 125%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-  }
+  .text-gradient-dark { color: #0171BA; }
 
   .mono-tag {
     font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;

@@ -1,0 +1,4 @@
+# Clean-URL migration: /en/services.html -> /en/services/
+# 301 so search engines move their index across rather than keeping both.
+/:lang/index.html   /:lang/       301
+/:lang/:page.html   /:lang/:page/ 301

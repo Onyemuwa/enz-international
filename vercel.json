@@ -5,6 +5,18 @@
   "outputDirectory": ".",
   "cleanUrls": false,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:lang(en|sw|fr|zh)/index.html",
+      "destination": "/:lang/",
+      "permanent": true
+    },
+    {
+      "source": "/:lang(en|sw|fr|zh)/:page.html",
+      "destination": "/:lang/:page/",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
