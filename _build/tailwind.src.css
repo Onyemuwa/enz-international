@@ -117,7 +117,6 @@
   @media (min-width: 768px) { .hero { padding-block: 4rem 7rem; } }
   @media (min-width: 1024px) and (max-height: 850px) {
     .hero { padding-block: 2.25rem 3.5rem; }
-    .hero .h1-display { font-size: clamp(2.25rem, 3.5vw, 3.25rem); }
     .hero .lead { font-size: 1rem; }
   }
 
@@ -169,6 +168,38 @@
     letter-spacing: -.032em;
   }
   .h1-display .line { display: block; }
+
+  /* Hero headline: sized against its own column, not the viewport.
+     `.shell` stops growing at 80rem, so past a ~1280px viewport the headline's
+     column is frozen at a fixed pixel width while a vw-based font-size keeps
+     climbing to its cap. The headline is authored as two spans, one sentence
+     each — and it was rendering as four lines on a 1440 laptop, five in French
+     and Swahili, because the type outgrew a column that had stopped growing.
+     Container units track the box the text actually occupies, so the two
+     sentences stay two lines at every laptop width. `balance` keeps a language
+     that still has to wrap from orphaning one word on a line by itself. */
+  .hero .h1-copy { container-type: inline-size; }
+  .hero .h1-copy .h1-display {
+    font-size: clamp(2.375rem, 6.9cqi, 3.5rem);
+    text-wrap: balance;
+  }
+  @media (min-width: 1024px) and (max-height: 850px) {
+    .hero .h1-copy .h1-display { font-size: clamp(2.25rem, 6.4cqi, 3.125rem); }
+  }
+
+  /* French and Swahili run roughly 25% longer than English for the same
+     sentence, so at the English size their two sentences wrap into four lines
+     — exactly what the container sizing above exists to prevent. They get one
+     step down. Nobody sees two languages side by side, and a two-line headline
+     slightly smaller reads far better than a four-line one at full size. */
+  :lang(fr) .hero .h1-copy .h1-display,
+  :lang(sw) .hero .h1-copy .h1-display {
+    font-size: clamp(2.125rem, 5.5cqi, 2.875rem);
+  }
+  @media (min-width: 1024px) and (max-height: 850px) {
+    :lang(fr) .hero .h1-copy .h1-display,
+    :lang(sw) .hero .h1-copy .h1-display { font-size: clamp(2rem, 5.2cqi, 2.75rem); }
+  }
   .h2-section {
     font-size: clamp(2.125rem, 4.2vw, 3.5rem);
     line-height: 1.08; font-weight: 600; letter-spacing: -.03em; color: #1E2E40;

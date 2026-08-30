@@ -30,7 +30,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '33';
+const ASSET_VERSION = '34';
 
 // Sora, matching onemartent.com — one of the two reference sites.
 //
@@ -895,7 +895,7 @@ function homePage(lang) {
     ${heroMedia()}
     <div class="${SHELL} grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
 
-      <div class="lg:col-span-6">
+      <div class="h1-copy lg:col-span-7">
         <a href="markets.html" class="pill hover:border-brand-300 transition-colors">
           <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
           ${hubs.slice(0, 3).join(' · ')} +${hubs.length - 3}
@@ -930,7 +930,7 @@ function homePage(lang) {
            quality-control.html — not a screenshot of a product, because there
            is no product to screenshot. The stage codes and timings are the
            real ones from _content/pages.js. -->
-      <div class="lg:col-span-6">
+      <div class="lg:col-span-5">
         <div class="glass-panel p-6 md:p-7">
             <div class="flex items-center justify-between gap-4 pb-5 border-b border-line">
               <div>
