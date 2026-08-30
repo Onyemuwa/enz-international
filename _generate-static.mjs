@@ -2369,7 +2369,22 @@ writeFileSync(
       buildCommand: null,
       outputDirectory: '.',
       cleanUrls: false,
-      trailingSlash: false,
+      // MUST be true, and this is not cosmetic.
+      //
+      // Pages are directories (en/services/index.html) and every internal link
+      // is relative (../about/). Relative resolution depends entirely on the
+      // trailing slash:
+      //
+      //   at /en/services/  ->  ../about/  =  /en/about/   correct
+      //   at /en/services   ->  ../about/  =  /about/      404
+      //
+      // With trailingSlash:false Vercel 308s /en/services/ to /en/services,
+      // stripping the slash, and from there every nav link on the page
+      // resolves one directory too high. Land on the homepage, click anything,
+      // get "Page not found" — which is exactly what it did in production
+      // while every local check passed, because the dev server does not
+      // rewrite trailing slashes.
+      trailingSlash: true,
       // Clean-URL migration: the old /en/services.html addresses must 301 to
       // /en/services/ or every existing bookmark and search result 404s.
       redirects: [

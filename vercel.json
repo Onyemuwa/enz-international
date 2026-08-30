@@ -4,7 +4,7 @@
   "buildCommand": null,
   "outputDirectory": ".",
   "cleanUrls": false,
-  "trailingSlash": false,
+  "trailingSlash": true,
   "redirects": [
     {
       "source": "/:lang(en|sw|fr|zh)/index.html",
