@@ -4,7 +4,7 @@
 // solely so this script has something to read — see _content/README).
 // Run with: node _generate-static.mjs
 
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import dict, { SUPPORTED_LANGUAGES, LOCALE_MAP, LANGUAGE_LABELS } from './_content/translations.js';
 import { services } from './_content/services.js';
@@ -21,6 +21,42 @@ import { journey, terms as handoverTerms, defaultTerm } from './_content/handove
 import { founder } from './_content/founder.js';
 
 const OUT = path.resolve('.'); // repo root — this IS the site
+const OUT_IMAGES = path.join(OUT, 'assets', 'images');
+
+// Responsive image variants, produced by `_build/responsive-images.mjs`.
+//
+// Photography is the heaviest thing on this site, and before this every
+// visitor got the full-size file regardless of screen: a phone at 390 CSS px
+// pulled the 1920 px, 415 KB hero in order to paint it 390 px wide. srcset
+// lets the browser take the width it actually needs, which is ~187 KB across
+// the whole page instead of ~1.9 MB. This site's audience is substantially on
+// mobile networks in East Africa and the DRC, where that gap is the difference
+// between a fast page and an abandoned one.
+//
+// If the manifest is missing the site still builds and every <img> falls back
+// to its original single src, so this is an optimisation and never a hard
+// dependency. Regenerate with: cd _build && npm run images
+const VARIANTS = (() => {
+  const f = path.join(OUT_IMAGES, 'manifest.json');
+  if (!existsSync(f)) {
+    console.warn('! assets/images/manifest.json missing - images ship at full size only');
+    return {};
+  }
+  return JSON.parse(readFileSync(f, 'utf8'));
+})();
+
+// Builds width/height (+ srcset/sizes where variants exist) for one image file.
+// Intrinsic width/height are emitted even without variants: the .media wrapper
+// already reserves space via aspect-ratio, but the attributes keep the image
+// from collapsing if the stylesheet ever fails to arrive.
+function srcsetAttrs(fileName, sizes) {
+  const entry = VARIANTS[fileName];
+  if (!entry) return '';
+  const dims = ` width="${entry.width}" height="${entry.height}"`;
+  if (!entry.variants || entry.variants.length < 2) return dims;
+  const set = entry.variants.map((v) => `../assets/images/${v.file} ${v.w}w`).join(', ');
+  return `${dims} srcset="${set}" sizes="${sizes}"`;
+}
 const SITE_URL = 'https://enzinternational.co';
 const WHATSAPP_NUMBER = '8613203840456';
 const CONTACT_PHONE = '+86 132 0384 0456';
@@ -271,10 +307,15 @@ function media(slot, { ratio = '16-9', className = '', eager = false, sizes = ''
           </div>`;
   }
 
+  // A slot image is laid out inside a card or a half-width column, never
+  // full-bleed, so the default describes that: full width on a phone, about
+  // half the viewport once the grids go multi-column. Callers pass `sizes`
+  // when their slot is narrower than that.
+  const sizeHint = sizes || '(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw';
   return `<div class="media media-${ratio} ${className}">
             <img src="../assets/images/${conf.src}" alt="${conf.alt}"
                  loading="${eager ? 'eager' : 'lazy'}" decoding="async"
-                 ${eager ? 'fetchpriority="high"' : ''}${sizes ? ` sizes="${sizes}"` : ''} />
+                 ${eager ? 'fetchpriority="high"' : ''}${srcsetAttrs(conf.src, sizeHint)} />
           </div>`;
 }
 
@@ -286,7 +327,7 @@ function heroMedia() {
   if (!conf.src) return '';
   return `
     <div class="hero-media" aria-hidden="true">
-      <img src="../assets/images/${conf.src}" alt="" loading="eager" decoding="async" fetchpriority="high" />
+      <img src="../assets/images/${conf.src}" alt="" loading="eager" decoding="async" fetchpriority="high"${srcsetAttrs(conf.src, '100vw')} />
     </div>`;
 }
 

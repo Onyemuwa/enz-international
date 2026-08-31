@@ -1,0 +1,212 @@
+{
+  "about-team.webp": {
+    "width": 1400,
+    "height": 933,
+    "variants": [
+      {
+        "w": 400,
+        "file": "about-team-400w.webp",
+        "kb": 17
+      },
+      {
+        "w": 800,
+        "file": "about-team-800w.webp",
+        "kb": 44
+      },
+      {
+        "w": 1200,
+        "file": "about-team-1200w.webp",
+        "kb": 76
+      },
+      {
+        "w": 1400,
+        "file": "about-team-1400w.webp",
+        "kb": 102
+      }
+    ]
+  },
+  "factory-setup.webp": {
+    "width": 1100,
+    "height": 734,
+    "variants": [
+      {
+        "w": 400,
+        "file": "factory-setup-400w.webp",
+        "kb": 23
+      },
+      {
+        "w": 800,
+        "file": "factory-setup-800w.webp",
+        "kb": 65
+      },
+      {
+        "w": 1100,
+        "file": "factory-setup-1100w.webp",
+        "kb": 113
+      }
+    ]
+  },
+  "hero-factory.webp": {
+    "width": 1920,
+    "height": 907,
+    "variants": [
+      {
+        "w": 400,
+        "file": "hero-factory-400w.webp",
+        "kb": 19
+      },
+      {
+        "w": 800,
+        "file": "hero-factory-800w.webp",
+        "kb": 58
+      },
+      {
+        "w": 1200,
+        "file": "hero-factory-1200w.webp",
+        "kb": 108
+      },
+      {
+        "w": 1600,
+        "file": "hero-factory-1600w.webp",
+        "kb": 161
+      },
+      {
+        "w": 1920,
+        "file": "hero-factory-1920w.webp",
+        "kb": 245
+      }
+    ]
+  },
+  "ind-commodities.webp": {
+    "width": 800,
+    "height": 533,
+    "variants": [
+      {
+        "w": 400,
+        "file": "ind-commodities-400w.webp",
+        "kb": 22
+      },
+      {
+        "w": 800,
+        "file": "ind-commodities-800w.webp",
+        "kb": 75
+      }
+    ]
+  },
+  "ind-construction.webp": {
+    "width": 800,
+    "height": 480,
+    "variants": [
+      {
+        "w": 400,
+        "file": "ind-construction-400w.webp",
+        "kb": 15
+      },
+      {
+        "w": 800,
+        "file": "ind-construction-800w.webp",
+        "kb": 35
+      }
+    ]
+  },
+  "ind-consumer.webp": {
+    "width": 800,
+    "height": 533,
+    "variants": [
+      {
+        "w": 400,
+        "file": "ind-consumer-400w.webp",
+        "kb": 24
+      },
+      {
+        "w": 800,
+        "file": "ind-consumer-800w.webp",
+        "kb": 72
+      }
+    ]
+  },
+  "ind-machinery.webp": {
+    "width": 800,
+    "height": 502,
+    "variants": [
+      {
+        "w": 400,
+        "file": "ind-machinery-400w.webp",
+        "kb": 21
+      },
+      {
+        "w": 800,
+        "file": "ind-machinery-800w.webp",
+        "kb": 54
+      }
+    ]
+  },
+  "markets-port.webp": {
+    "width": 1600,
+    "height": 851,
+    "variants": [
+      {
+        "w": 400,
+        "file": "markets-port-400w.webp",
+        "kb": 16
+      },
+      {
+        "w": 800,
+        "file": "markets-port-800w.webp",
+        "kb": 51
+      },
+      {
+        "w": 1200,
+        "file": "markets-port-1200w.webp",
+        "kb": 88
+      },
+      {
+        "w": 1600,
+        "file": "markets-port-1600w.webp",
+        "kb": 149
+      }
+    ]
+  },
+  "quality-inspection.webp": {
+    "width": 1100,
+    "height": 733,
+    "variants": [
+      {
+        "w": 400,
+        "file": "quality-inspection-400w.webp",
+        "kb": 10
+      },
+      {
+        "w": 800,
+        "file": "quality-inspection-800w.webp",
+        "kb": 23
+      },
+      {
+        "w": 1100,
+        "file": "quality-inspection-1100w.webp",
+        "kb": 36
+      }
+    ]
+  },
+  "sourcing.webp": {
+    "width": 1100,
+    "height": 585,
+    "variants": [
+      {
+        "w": 400,
+        "file": "sourcing-400w.webp",
+        "kb": 20
+      },
+      {
+        "w": 800,
+        "file": "sourcing-800w.webp",
+        "kb": 58
+      },
+      {
+        "w": 1100,
+        "file": "sourcing-1100w.webp",
+        "kb": 105
+      }
+    ]
+  }
+}

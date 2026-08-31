@@ -5,9 +5,11 @@
   "description": "Optional dev-only tooling. Compiles assets/css/site.css from Tailwind. The SITE itself has no build step — the compiled CSS is committed.",
   "scripts": {
     "css": "tailwindcss -c ./tailwind.config.cjs -i ./tailwind.src.css -o ../assets/css/site.css --minify",
-    "css:watch": "tailwindcss -c ./tailwind.config.cjs -i ./tailwind.src.css -o ../assets/css/site.css --watch"
+    "css:watch": "tailwindcss -c ./tailwind.config.cjs -i ./tailwind.src.css -o ../assets/css/site.css --watch",
+    "images": "node ./responsive-images.mjs"
   },
   "devDependencies": {
+    "sharp": "^0.35.4",
     "tailwindcss": "3.4.17"
   }
 }
