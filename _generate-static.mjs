@@ -6,6 +6,7 @@
 
 import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import dict, { SUPPORTED_LANGUAGES, LOCALE_MAP, LANGUAGE_LABELS } from './_content/translations.js';
 import { services } from './_content/services.js';
 import { insights } from './_content/insights.js';
@@ -2457,7 +2458,55 @@ Sitemap: ${SITE_URL}/sitemap.xml
 );
 
 const sitemapPages = ALL_PAGES;
-const LASTMOD = new Date().toISOString().slice(0, 10);
+const TODAY = new Date().toISOString().slice(0, 10);
+
+// Per-page <lastmod>, derived from git rather than from the clock.
+//
+// This used to be `new Date()` for every URL, which told search engines that
+// all 76 pages changed on every single rebuild — including a rebuild that only
+// touched one stylesheet. Google discounts lastmod it can see is unreliable,
+// so a field that is wrong on 75 pages costs the one page where it is right.
+//
+// Instead: a page whose generated HTML differs from what is committed really
+// did change now, so it gets today. Every other page reports the date of the
+// last commit that actually touched its file. Both facts come from git, so
+// they stay true without anyone maintaining them.
+//
+// If git is unavailable (a tarball, a fresh checkout with no history, a CI box
+// without the binary) this degrades to today's date for everything, which is
+// exactly the old behaviour — the sitemap is never wrong in a way that breaks
+// the build.
+const lastmodFor = (() => {
+  const git = (args) =>
+    execFileSync('git', args, { cwd: OUT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+
+  let dirty = new Set();
+  let committed = new Map();
+  try {
+    // Files whose working-tree content differs from HEAD, i.e. changed by this run.
+    for (const line of git(['status', '--porcelain']).split('\n')) {
+      const f = line.slice(3).trim();
+      if (f) dirty.add(f.replace(/^"|"$/g, ''));
+    }
+    // Newest commit date per path, in one pass over the log.
+    let date = null;
+    for (const line of git(['log', '--format=%cs', '--name-only']).split('\n')) {
+      const t = line.trim();
+      if (!t) continue;
+      if (/^\d{4}-\d{2}-\d{2}$/.test(t)) date = t;
+      else if (date && !committed.has(t)) committed.set(t, date);
+    }
+  } catch {
+    console.warn('! git unavailable - sitemap lastmod falls back to today for every URL');
+    return () => TODAY;
+  }
+
+  return (file) => (dirty.has(file) ? TODAY : committed.get(file) || TODAY);
+})();
+
+// The repo-relative file that serves a given page, matching what emit() writes.
+const outFileFor = (lang, page) =>
+  isHome(page) ? `${lang}/index.html` : `${lang}/${slugOf(page)}/index.html`;
 // Home outranks a legal page; a hub outranks a leaf.
 const priorityFor = (page) => {
   if (page === 'index.html') return '1.0';
@@ -2468,7 +2517,7 @@ const priorityFor = (page) => {
 const urls = SUPPORTED_LANGUAGES.flatMap((lang) =>
   sitemapPages.map(
     (page) =>
-      `  <url>\n    <loc>${SITE_URL}/${urlPath(lang, page)}</loc>\n    <lastmod>${LASTMOD}</lastmod>\n    <priority>${priorityFor(page)}</priority>\n${SUPPORTED_LANGUAGES.map(
+      `  <url>\n    <loc>${SITE_URL}/${urlPath(lang, page)}</loc>\n    <lastmod>${lastmodFor(outFileFor(lang, page))}</lastmod>\n    <priority>${priorityFor(page)}</priority>\n${SUPPORTED_LANGUAGES.map(
         (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${SITE_URL}/${urlPath(l, page)}" />`
       ).join('\n')}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}/${urlPath('en', page)}" />\n  </url>`
   )
