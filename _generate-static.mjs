@@ -793,10 +793,50 @@ function breadcrumbJsonLd(lang, page, items) {
   };
 }
 
+// Meta descriptions get about 160 characters in a search result before they
+// are cut off mid-word. Several pages reuse a paragraph of body copy for the
+// description — reasonable, since it is already the page's own summary — but
+// body copy runs long: the About page's was 242 characters, so a third of it
+// was never shown.
+//
+// This trims rather than rewrites, and prefers a boundary a reader would have
+// chosen anyway: the last complete sentence, then a clause break, and only as
+// a last resort a word boundary with an ellipsis. Nothing is invented, and a
+// description already inside the budget is returned untouched.
+function clampDescription(text, max = 160) {
+  if (!text || text.length <= max) return text;
+
+  const head = text.slice(0, max + 1);
+
+  const sentence = Math.max(head.lastIndexOf('. '), head.lastIndexOf('! '), head.lastIndexOf('? '));
+  if (sentence > max * 0.55) return text.slice(0, sentence + 1);
+
+  for (const sep of [' — ', ' – ', '; ', ', ']) {
+    const at = head.lastIndexOf(sep);
+    if (at > max * 0.6) return text.slice(0, at);
+  }
+
+  const word = head.lastIndexOf(' ');
+  return text.slice(0, word > 0 ? word : max).replace(/[,;:—–-]$/, '') + '…';
+}
+
 function seoHead({ lang, title, description, page, jsonLd, robots }) {
+  description = clampDescription(description);
   const canonical = `${SITE_URL}/${urlPath(lang, page)}`;
   const alternates = SUPPORTED_LANGUAGES.map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE_URL}/${urlPath(l, page)}" />`).join('\n    ');
-  const fullTitle = `${title} | ENZ INTERNATIONAL`;
+  // Google renders roughly 60 characters of a <title> before truncating, and
+  // the brand suffix alone is 21 of them — enough to push 18 pages past the
+  // cut, where the tail that gets dropped is the brand we added it for.
+  //
+  // So the suffix adapts instead of being fixed: full brand when it fits, the
+  // short form when it doesn't, and no suffix at all when the page's own title
+  // already fills the budget. Characters go to the words that describe the
+  // page, and nothing is ever truncated mid-phrase — a long title is left
+  // whole rather than cut, because Google cutting it reads better than we do.
+  const withBrand = `${title} | ENZ INTERNATIONAL`;
+  const withShortBrand = `${title} | ENZ`;
+  const fullTitle =
+    withBrand.length <= 60 ? withBrand : withShortBrand.length <= 60 ? withShortBrand : title;
   return `<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0B1A24" media="(prefers-color-scheme: dark)" />
