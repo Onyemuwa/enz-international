@@ -25,7 +25,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../../assets/css/site.css?v=34" />
+    <link rel="stylesheet" href="../../assets/css/site.css?v=35" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -156,13 +156,24 @@
           <p data-booking-error data-error-slot role="alert" hidden class="text-sm text-red-600">Une erreur s'est produite</p>
           <button type="submit" data-submitting-label="Envoi…" class="w-full btn btn-primary py-4">Demander une consultation</button>
         </form>
-        <div data-booking-success role="status" hidden class="py-6"><div class="text-center"><div class="icon-chip w-12 h-12 rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div><p class="text-lg font-semibold text-ink mt-4">Demande reçue</p><div data-handoff-note hidden><p class="text-sm text-slate mt-2">Nous avons rédigé la demande pour vous. Appuyez sur envoyer dans votre messagerie et elle nous parvient aussitôt.</p><p class="text-xs text-slate mt-3">Rien ne s'est ouvert ? Écrivez-nous directement à <a href="mailto:info@enzinternational.co" class="text-brand underline underline-offset-2">info@enzinternational.co</a></p></div></div>
+        <div data-booking-success role="status" hidden class="py-6">
+        <div class="text-center">
+          <div class="icon-chip w-12 h-12 rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p class="text-lg font-semibold text-ink mt-4">Demande reçue</p>
+          <p data-sent-note class="text-sm text-slate mt-2">Merci, <span data-success-name></span>. Un membre de notre équipe contactera <span data-success-email></span> sous peu.</p>
+          <div data-handoff-note hidden>
+            <p class="text-sm text-slate mt-2">Nous avons rédigé la demande pour vous. Appuyez sur envoyer dans votre messagerie et elle nous parvient aussitôt.</p>
+            <p class="text-xs text-slate mt-3">Rien ne s'est ouvert ? Écrivez-nous directement à <a href="mailto:info@enzinternational.co" class="text-brand underline underline-offset-2">info@enzinternational.co</a></p>
+          </div>
+        </div>
+        
         <div class="mt-7 pt-6 border-t border-line text-left">
           <p class="eyebrow text-slate">La suite</p>
           <ol class="mt-4 space-y-3">
             <li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">1</span><span>Nous étudions votre demande et l'orientons vers le bon spécialiste.</span></li><li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">2</span><span>Vous recevez une réponse sous un jour ouvré — pas une séquence automatisée.</span></li><li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">3</span><span>Si cela correspond, nous planifions un appel de 30 minutes à votre convenance.</span></li>
           </ol>
-        </div></div>
+        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -342,9 +353,9 @@
       </div>
     </div>
   </div>
-    <script src="../../assets/js/config.js?v=34"></script>
-    <script src="../../assets/js/api.js?v=34"></script>
-    <script src="../../assets/js/site.js?v=34" defer></script>
-    <script type="module" src="../../assets/js/motion-effects.js?v=34"></script>
+    <script src="../../assets/js/config.js?v=35"></script>
+    <script src="../../assets/js/api.js?v=35"></script>
+    <script src="../../assets/js/site.js?v=35" defer></script>
+    <script type="module" src="../../assets/js/motion-effects.js?v=35"></script>
   </body>
 </html>

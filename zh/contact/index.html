@@ -25,7 +25,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../../assets/css/site.css?v=34" />
+    <link rel="stylesheet" href="../../assets/css/site.css?v=35" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -156,13 +156,24 @@
           <p data-booking-error data-error-slot role="alert" hidden class="text-sm text-red-600">出现错误</p>
           <button type="submit" data-submitting-label="发送中…" class="w-full btn btn-primary py-4">请求咨询</button>
         </form>
-        <div data-booking-success role="status" hidden class="py-6"><div class="text-center"><div class="icon-chip w-12 h-12 rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div><p class="text-lg font-semibold text-ink mt-4">请求已收到</p><div data-handoff-note hidden><p class="text-sm text-slate mt-2">我们已为你写好这封询价邮件。在邮件应用中点击发送，它会立即送达我们。</p><p class="text-xs text-slate mt-3">没有打开？可直接发邮件至 <a href="mailto:info@enzinternational.co" class="text-brand underline underline-offset-2">info@enzinternational.co</a></p></div></div>
+        <div data-booking-success role="status" hidden class="py-6">
+        <div class="text-center">
+          <div class="icon-chip w-12 h-12 rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p class="text-lg font-semibold text-ink mt-4">请求已收到</p>
+          <p data-sent-note class="text-sm text-slate mt-2">谢谢，<span data-success-name></span>。我们的团队成员会尽快联系 <span data-success-email></span>。</p>
+          <div data-handoff-note hidden>
+            <p class="text-sm text-slate mt-2">我们已为你写好这封询价邮件。在邮件应用中点击发送，它会立即送达我们。</p>
+            <p class="text-xs text-slate mt-3">没有打开？可直接发邮件至 <a href="mailto:info@enzinternational.co" class="text-brand underline underline-offset-2">info@enzinternational.co</a></p>
+          </div>
+        </div>
+        
         <div class="mt-7 pt-6 border-t border-line text-left">
           <p class="eyebrow text-slate">接下来会发生什么</p>
           <ol class="mt-4 space-y-3">
             <li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">1</span><span>我们会审阅您的需求，并安排合适的专员对接。</span></li><li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">2</span><span>您将在一个工作日内收到回复——不是自动群发邮件。</span></li><li class="flex gap-3 text-sm text-slate"><span class="step-badge w-6 h-6">3</span><span>如果合适，我们会安排一次30分钟的通话，时间由您决定。</span></li>
           </ol>
-        </div></div>
+        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -342,9 +353,9 @@
       </div>
     </div>
   </div>
-    <script src="../../assets/js/config.js?v=34"></script>
-    <script src="../../assets/js/api.js?v=34"></script>
-    <script src="../../assets/js/site.js?v=34" defer></script>
-    <script type="module" src="../../assets/js/motion-effects.js?v=34"></script>
+    <script src="../../assets/js/config.js?v=35"></script>
+    <script src="../../assets/js/api.js?v=35"></script>
+    <script src="../../assets/js/site.js?v=35" defer></script>
+    <script type="module" src="../../assets/js/motion-effects.js?v=35"></script>
   </body>
 </html>

@@ -67,7 +67,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '34';
+const ASSET_VERSION = '35';
 
 // Sora, matching onemartent.com — one of the two reference sites.
 //
@@ -674,6 +674,39 @@ function footerHTML(lang, currentPage) {
 // Shown after a successful enquiry. Answering "what now?" at the moment of
 // submission is the cheapest way to stop a lead going cold — it replaces an
 // ambiguous silence with a stated turnaround the sender can hold us to.
+// The panel shown after a booking form is submitted.
+//
+// Both booking forms — the modal and the one on the contact page — render this
+// same function. They used to be two hand-written copies, and they drifted:
+// one lost its <p data-sent-note> and with it the [data-success-name] and
+// [data-success-email] spans that site.js fills in. A visitor on that page saw
+// a tick, a heading, and no sentence.
+//
+// It hid for a long time because the mail-client handoff was the default path,
+// and that shows the OTHER note. As soon as submissions became automatic the
+// gap became the normal case. One source removes the whole class of bug.
+//
+// Both notes are always present. site.js reveals whichever matches what
+// actually happened: data-sent-note when the submission was delivered,
+// data-handoff-note when it was handed to the visitor's mail app instead.
+function bookingSuccessBlock(lang) {
+  return `<div data-booking-success role="status" hidden class="py-6">
+        <div class="text-center">
+          <div class="icon-chip w-12 h-12 rounded-full mx-auto">${icon('check', 'w-6 h-6')}</div>
+          <p class="text-lg font-semibold text-ink mt-4">${t(lang, 'bookingSuccessTitle')}</p>
+          <p data-sent-note class="text-sm text-slate mt-2">${t(lang, 'bookingSuccessDesc', {
+            name: '<span data-success-name></span>',
+            email: '<span data-success-email></span>',
+          })}</p>
+          <div data-handoff-note hidden>
+            <p class="text-sm text-slate mt-2">${t(lang, 'bookingHandoffDesc')}</p>
+            <p class="text-xs text-slate mt-3">${t(lang, 'bookingHandoffFallback')} <a href="mailto:${CONTACT_EMAIL}" class="text-brand underline underline-offset-2">${CONTACT_EMAIL}</a></p>
+          </div>
+        </div>
+        ${nextStepsHTML(lang)}
+      </div>`;
+}
+
 function nextStepsHTML(lang) {
   const steps = [t(lang, 'bookingNext1'), t(lang, 'bookingNext2'), t(lang, 'bookingNext3')];
   return `
@@ -740,18 +773,7 @@ function bookingModalHTML(lang) {
         <button type="submit" data-submitting-label="${t(lang, 'bookingSubmitting')}" class="w-full ${BTN_PRIMARY} py-4">${t(lang, 'bookingSubmit')}</button>
         <p class="text-xs text-slate text-center">${t(lang, 'bookingDisclaimer')}</p>
       </form>
-      <div data-booking-success role="status" hidden class="py-6">
-        <div class="text-center">
-          <div class="icon-chip w-12 h-12 rounded-full mx-auto">${icon('check', 'w-6 h-6')}</div>
-          <p class="text-lg font-semibold text-ink mt-4">${t(lang, 'bookingSuccessTitle')}</p>
-          <p data-sent-note class="text-sm text-slate mt-2">${t(lang, 'bookingSuccessDesc', { name: '<span data-success-name></span>', email: '<span data-success-email></span>' })}</p>
-          <div data-handoff-note hidden>
-            <p class="text-sm text-slate mt-2">${t(lang, 'bookingHandoffDesc')}</p>
-            <p class="text-xs text-slate mt-3">${t(lang, 'bookingHandoffFallback')} <a href="mailto:${CONTACT_EMAIL}" class="text-brand underline underline-offset-2">${CONTACT_EMAIL}</a></p>
-          </div>
-        </div>
-        ${nextStepsHTML(lang)}
-      </div>
+      ${bookingSuccessBlock(lang)}
     </div>
   </div>`;
 }
@@ -1593,7 +1615,7 @@ function contactPage(lang) {
           <p data-booking-error data-error-slot role="alert" hidden class="text-sm text-red-600">${t(lang, 'bookingErrorTitle')}</p>
           <button type="submit" data-submitting-label="${t(lang, 'bookingSubmitting')}" class="w-full ${BTN_PRIMARY} py-4">${t(lang, 'bookingSubmit')}</button>
         </form>
-        <div data-booking-success role="status" hidden class="py-6"><div class="text-center"><div class="icon-chip w-12 h-12 rounded-full mx-auto">${icon("check", "w-6 h-6")}</div><p class="text-lg font-semibold text-ink mt-4">${t(lang, "bookingSuccessTitle")}</p><div data-handoff-note hidden><p class="text-sm text-slate mt-2">${t(lang, 'bookingHandoffDesc')}</p><p class="text-xs text-slate mt-3">${t(lang, 'bookingHandoffFallback')} <a href="mailto:${CONTACT_EMAIL}" class="text-brand underline underline-offset-2">${CONTACT_EMAIL}</a></p></div></div>${nextStepsHTML(lang)}</div>
+        ${bookingSuccessBlock(lang)}
       </div>
     </div>
   </section>
