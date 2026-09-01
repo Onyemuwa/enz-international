@@ -32,6 +32,13 @@ export const ALL_PAGES = [
   'markets.html',
   'insights.html',
   ...insights.map((p) => `insight-${p.slug}.html`),
+  // One page per service and per market.
+  //
+  // These were anchor sections on services.html and markets.html, which meant
+  // five countries competed for relevance on a single URL and none could rank
+  // for its own market. The hub pages still exist and now link here.
+  ...services.map((s) => `${s.slug}.html`),
+  ...markets.map((m) => `${m.slug}.html`),
   'process.html',
   'pricing.html',
   'industries.html',

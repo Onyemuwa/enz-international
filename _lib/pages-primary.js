@@ -17,6 +17,7 @@ import { images, industryImages } from '../_content/images.js';
 import { testimonials, commitments } from '../_content/proof.js';
 import { services } from '../_content/services.js';
 import { insights } from '../_content/insights.js';
+import { authorFor } from '../_content/authors.js';
 import { markets } from '../_content/markets.js';
 import { faqs } from '../_content/faqs.js';
 import { problems, engagementModels } from '../_content/narrative.js';
@@ -481,7 +482,7 @@ export function servicesPage(lang) {
     ['Full Factory Partnership', 'End-to-end factory establishment plus ongoing operational and sourcing support after commissioning.', 'Businesses localizing production in a new market', 'award'],
   ];
 
-  const jumpNav = services.map((s) => `<a href="#${s.slug}" class="btn btn-secondary btn-sm">${t(lang, s.titleKey)}</a>`).join('');
+  const jumpNav = services.map((s) => `<a href="${s.slug}.html" class="btn btn-secondary btn-sm">${t(lang, s.titleKey)}</a>`).join('');
 
   const sections = services
     .map(
@@ -494,7 +495,10 @@ export function servicesPage(lang) {
           <p class="text-brand font-medium mt-2">${service.tagline}</p>
           <p class="text-slate mt-5 leading-relaxed">${t(lang, service.descKey)}</p>
           <ul class="mt-7 space-y-3.5">${service.features.map((f) => `<li class="flex items-start gap-2.5 text-sm text-slate"><span class="mt-0.5">${icon('check', 'w-4 h-4')}</span><span>${f}</span></li>`).join('')}</ul>
-          <button data-open-booking class="mt-9 ${BTN_PRIMARY} px-7 py-3.5 inline-flex items-center gap-2">${icon('calendar', 'w-4 h-4')} ${t(lang, 'ctaBooking')}</button>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="${service.slug}.html" class="${BTN_PRIMARY} px-7 py-3.5 inline-flex items-center gap-2">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
+            <button data-open-booking class="btn btn-secondary px-7 py-3.5 inline-flex items-center gap-2">${icon('calendar', 'w-4 h-4')} ${t(lang, 'ctaBooking')}</button>
+          </div>
         </div>
         <ol class="card card-lg space-y-6">
           ${service.process.map((p, i) => `<li class="flex gap-4"><span class="step-badge step-badge-lg">${i + 1}</span><div><p class="font-semibold text-ink">${p.step}</p><p class="text-sm text-slate mt-0.5">${p.desc}</p></div></li>`).join('')}
@@ -542,7 +546,7 @@ export function servicesPage(lang) {
 
 export function marketsPage(lang) {
   const cards = markets
-    .map((m) => `<a href="#market-${m.slug}" class="${CARD_MUTED} flex items-start gap-4"><span class="step-badge step-badge-lg">${m.region}</span><div><h2 class="font-semibold text-ink">${m.name}</h2><p class="text-sm text-slate mt-1">${m.heroLine}</p></div>${icon('chevronRight', 'w-5 h-5 text-slate-light ml-auto shrink-0 self-center')}</a>`)
+    .map((m) => `<a href="${m.slug}.html" class="${CARD_MUTED} flex items-start gap-4"><span class="step-badge step-badge-lg">${m.region}</span><div><h2 class="font-semibold text-ink">${m.name}</h2><p class="text-sm text-slate mt-1">${m.heroLine}</p></div>${icon('chevronRight', 'w-5 h-5 text-slate-light ml-auto shrink-0 self-center')}</a>`)
     .join('');
 
   const detailSections = markets
@@ -553,7 +557,10 @@ export function marketsPage(lang) {
         <span class="pill">${m.region} · ${m.fullName || m.name}</span>
         <h2 class="h2-section mt-5">${m.heroLine}</h2>
         <p class="text-slate mt-5 leading-relaxed">${m.intro}</p>
-        <button data-open-booking class="mt-7 ${BTN_PRIMARY} px-7 py-3.5 inline-flex items-center gap-2">${icon('calendar', 'w-4 h-4')} ${t(lang, 'ctaBooking')}</button>
+        <div class="mt-7 flex flex-wrap gap-3 justify-center">
+          <a href="${m.slug}.html" class="${BTN_PRIMARY} px-7 py-3.5 inline-flex items-center gap-2">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
+          <button data-open-booking class="btn btn-secondary px-7 py-3.5 inline-flex items-center gap-2">${icon('calendar', 'w-4 h-4')} ${t(lang, 'ctaBooking')}</button>
+        </div>
       </div>
     </section>`
     )
@@ -604,6 +611,70 @@ export function insightsListPage(lang) {
 
 export function insightPostPage(lang, post) {
   const page = `insight-${post.slug}.html`;
+
+  // ---- author ------------------------------------------------------------
+  // Defaults to the organisation. Set `byline` in _content/authors.js to
+  // 'founder' to credit a named person instead — see the warning in that file
+  // about what a byline actually asserts.
+  const author = authorFor(post);
+  const authorEntity =
+    author.kind === 'person'
+      ? {
+          '@type': 'Person',
+          name: author.name,
+          jobTitle: author.role,
+          worksFor: { '@id': `${SITE_URL}/#organization` },
+          knowsAbout: author.knowsAbout,
+          ...(author.linkedin ? { sameAs: [author.linkedin] } : {}),
+        }
+      : { '@id': `${SITE_URL}/#organization` };
+
+  const authorBox =
+    author.kind === 'person'
+      ? `
+      <aside class="${CARD} mt-14 flex items-start gap-5">
+        ${
+          author.photo
+            ? `<img src="../assets/images/${author.photo}" alt="${author.photoAlt || author.name}" width="64" height="64" loading="lazy" decoding="async" class="w-16 h-16 rounded-full object-cover shrink-0" />`
+            : `<span aria-hidden="true" class="w-16 h-16 rounded-full bg-brand text-white grid place-items-center text-xl font-semibold shrink-0">${author.initials}</span>`
+        }
+        <div>
+          <p class="text-xs uppercase tracking-wider text-slate font-semibold">${t(lang, 'insightsPublished')}</p>
+          <p class="font-semibold text-ink mt-1">${author.name}${author.role ? ` — ${author.role}` : ''}</p>
+          ${author.location ? `<p class="text-sm text-slate mt-0.5">${author.location}</p>` : ''}
+          ${(author.bio || []).map((p) => `<p class="text-sm text-slate mt-3 leading-relaxed">${p}</p>`).join('')}
+          <a href="about.html" class="text-brand text-sm font-medium mt-4 inline-flex items-center gap-1.5">${t(lang, 'navAbout')} ${icon('chevronRight', 'w-4 h-4')}</a>
+        </div>
+      </aside>`
+      : '';
+
+  // ---- related articles --------------------------------------------------
+  // Each article previously ended at "back to list", so a reader who finished
+  // one had exactly one place to go and the other articles had a single
+  // inbound link each. Linking siblings spreads that and keeps a reader who is
+  // already engaged on the site.
+  const siblings = insights.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const relatedSection = siblings.length
+    ? `
+  <section class="section bg-gray-bg">
+    <div class="shell max-w-4xl">
+      <h2 class="h2-section text-center">${t(lang, 'insightsTitle')}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-${Math.min(siblings.length, 3)} gap-6 mt-10">
+        ${siblings
+          .map(
+            (p) => `<a href="insight-${p.slug}.html" class="${CARD_FEATURE}">
+              <span class="pill">${p.category}</span>
+              <h3 class="font-semibold text-ink mt-4 leading-snug">${p.title}</h3>
+              <p class="text-slate text-sm mt-2.5 leading-relaxed">${p.excerpt}</p>
+              <span class="text-brand text-sm font-medium mt-5 inline-flex items-center gap-1.5">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</span>
+            </a>`
+          )
+          .join('')}
+      </div>
+    </div>
+  </section>`
+    : '';
+
   const body = `
   <article class="section bg-white">
     <div class="shell max-w-3xl">
@@ -611,11 +682,29 @@ export function insightPostPage(lang, post) {
       <h1 class="h1-display text-ink mt-5">${post.title}</h1>
       <div class="text-sm text-slate mt-5 flex items-center gap-2"><span>${t(lang, 'insightsPublished')}</span><time datetime="${post.publishedDate}">${post.publishedDate}</time><span aria-hidden="true">·</span><span>${post.readTime} ${t(lang, 'insightsReadTime')}</span></div>
       <div class="mt-12 space-y-7">${post.body.map((para) => `<p >${para}</p>`).join('')}</div>
+      ${authorBox}
       <a href="insights.html" class="inline-flex items-center gap-2 mt-14 text-ink font-medium hover:text-brand transition">${icon('arrowLeft', 'w-4 h-4')} ${t(lang, 'insightsBackToList')}</a>
     </div>
-  </article>`;
+  </article>
+  ${relatedSection}`;
 
-  const jsonLd = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.title, description: post.excerpt, datePublished: post.publishedDate, author: { '@type': 'Organization', name: 'ENZ INTERNATIONAL' } };
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.publishedDate,
+    // dateModified matters to Google and defaults to the publish date rather
+    // than today's — claiming an article was updated when it was not is the
+    // same class of untruth as a sitemap that stamps everything with the
+    // current date.
+    dateModified: post.updatedDate || post.publishedDate,
+    inLanguage: lang,
+    isAccessibleForFree: true,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/${lang}/insight-${post.slug}/` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    author: authorEntity,
+  };
 
   return pageShell({ lang, page, title: post.title, description: post.excerpt, jsonLd, crumbs: [{ label: t(lang, 'navInsights'), href: 'insights.html' }, { label: post.title }], bodyHTML: body });
 }
@@ -676,7 +765,44 @@ export function contactPage(lang) {
     </div>
   </section>`;
 
-  return pageShell({ lang, page: 'contact.html', title: t(lang, 'contactTitle'), description: t(lang, 'contactSubtitle'), crumbs: [{ label: t(lang, 'navContact') }], bodyHTML: body });
+  // LocalBusiness belongs here as much as on the home page — this is the page
+  // that carries the address, the phone number and the hours, and it is the
+  // one a "China sourcing agent near me" style query should be able to resolve
+  // to. The FAQPage entity mirrors the questions actually rendered above.
+  const jsonLd = {
+    '@graph': [
+      {
+        '@type': 'LocalBusiness',
+        '@id': `${SITE_URL}/${lang}/contact/#localbusiness`,
+        name: 'ENZ INTERNATIONAL',
+        url: `${SITE_URL}/${lang}/contact/`,
+        image: `${SITE_URL}/assets/images/og-cover.png`,
+        logo: `${SITE_URL}/assets/images/enz-logo.png`,
+        telephone: '+86-1320-384-0456',
+        email: CONTACT_EMAIL,
+        address: { '@type': 'PostalAddress', addressLocality: 'Guangzhou', addressCountry: 'CN' },
+        areaServed: regions.map((r) => ({ '@type': 'Country', name: r.name })),
+        parentOrganization: { '@id': `${SITE_URL}/#organization` },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'sales',
+          email: CONTACT_EMAIL,
+          telephone: '+86-1320-384-0456',
+          availableLanguage: ['en', 'sw', 'fr', 'zh'],
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: { '@type': 'Answer', text: f.answer },
+        })),
+      },
+    ],
+  };
+
+  return pageShell({ lang, page: 'contact.html', title: t(lang, 'contactTitle'), description: t(lang, 'contactSubtitle'), jsonLd, crumbs: [{ label: t(lang, 'navContact') }], bodyHTML: body });
 }
 
 export function careersPage(lang) {

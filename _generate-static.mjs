@@ -24,6 +24,7 @@ import { icon } from './_lib/icons.js';
 import { ALL_PAGES } from './_lib/nav.js';
 import { aboutPage, careersPage, contactPage, homePage, insightPostPage, insightsListPage, marketsPage, servicesPage } from './_lib/pages-primary.js';
 import { faqPage, industriesPage, legalPage, logisticsPage, pricingPage, processPage, qualityControlPage, resourcesPage } from './_lib/pages-detail.js';
+import { servicePage, marketPage } from './_lib/pages-landing.js';
 import { media } from './_lib/components.js';
 
 
@@ -106,10 +107,19 @@ for (const lang of SUPPORTED_LANGUAGES) {
     emit(`insight-${post.slug}.html`, insightPostPage(lang, post));
   }
 
+  // One landing page per service and per market. See _lib/pages-landing.js for
+  // why these are their own URLs rather than anchors on the hub pages.
+  for (const service of services) {
+    emit(`${service.slug}.html`, servicePage(lang, service));
+  }
+  for (const market of markets) {
+    emit(`${market.slug}.html`, marketPage(lang, market));
+  }
+
   emit('privacy.html', legalPage(lang, 'privacy'));
   emit('terms.html', legalPage(lang, 'terms'));
 
-  console.log(`Wrote ${lang}/ (${pages.length + insights.length + 2} pages)`);
+  console.log(`Wrote ${lang}/ (${pages.length + insights.length + services.length + markets.length + 2} pages)`);
 }
 
 // ---------------------------------------------------------------------------
