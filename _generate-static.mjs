@@ -67,7 +67,7 @@ const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-const ASSET_VERSION = '35';
+const ASSET_VERSION = '36';
 
 // Sora, matching onemartent.com — one of the two reference sites.
 //
@@ -2144,6 +2144,7 @@ function legalPage(lang, type) {
   const content = isPrivacy
     ? `<p>ENZ INTERNATIONAL ("we", "us") collects information you provide directly — such as your name, email, and project details submitted through our consultation and newsletter forms — in order to respond to your enquiry and, where you've opted in, send occasional updates.</p>
        <h2 >What we collect</h2><p>Contact-form and booking submissions, newsletter sign-up emails, and — once analytics tooling is connected — standard usage data.</p>
+       <h2 >How your submission reaches us</h2><p>This website has no server of its own. When you submit a form, the details you typed are passed to a third-party form-delivery service, which relays them to our inbox as an email. That provider processes your submission only to deliver it, and may retain it briefly so a message is not lost in transit. We do not sell what you send us, and we do not use it for anything other than responding to your enquiry.</p>
        <h2 >Your rights</h2><p>You may have the right to access, correct, or delete your data, or withdraw consent for marketing emails at any time.</p>
        <h2 >Contact</h2><p>Questions can be sent to <a href="mailto:${CONTACT_EMAIL}" class="text-brand hover:underline">${CONTACT_EMAIL}</a>.</p>`
     : `<p>These terms govern your use of the ENZ INTERNATIONAL website. By using this site, you agree to use it only for lawful purposes.</p>

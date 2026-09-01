@@ -130,9 +130,42 @@
       var success = opts.successSelector ? scope.querySelector(opts.successSelector) : null;
       var errorEl = form.querySelector('[data-error-slot]') || scope.querySelector('[data-error-slot]');
 
+      // Spam trap.
+      //
+      // Submissions now go straight to the inbox with nobody reviewing them,
+      // so a public form on a public domain will collect bot mail. This is a
+      // field a person can neither see nor tab into, so anything that fills it
+      // is automated.
+      //
+      // It is injected here rather than written into each form's markup for
+      // the same reason the success panel became one builder: three hand-kept
+      // copies eventually become two.
+      //
+      // The name is deliberately dull and autocomplete is off. Password
+      // managers cheerfully autofill anything called "website", "address" or
+      // "company", and a false positive here silently discards a real
+      // enquiry — the one outcome this whole file exists to prevent.
+      var trap = document.createElement('input');
+      trap.type = 'text';
+      trap.name = '_trap_field';
+      trap.tabIndex = -1;
+      trap.setAttribute('autocomplete', 'off');
+      trap.setAttribute('aria-hidden', 'true');
+      trap.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0';
+      form.appendChild(trap);
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         if (errorEl) errorEl.hidden = true;
+
+        // Trap filled: drop it without sending. An error message would tell a
+        // bot exactly what to change next time, and there is no person on the
+        // other side to mislead with the success panel.
+        if (trap.value) {
+          form.hidden = true;
+          if (success) success.hidden = false;
+          return;
+        }
 
         var submitBtn = form.querySelector('button[type="submit"]');
         var originalLabel = submitBtn ? submitBtn.textContent : '';
