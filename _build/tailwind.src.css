@@ -594,14 +594,24 @@
     font-size: .6875rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
     color: #5A6A75;
   }
+  /* min-height is the WCAG 2.2 target-size minimum (SC 2.5.8, AA): 24px.
+     At .875rem these links were painting 20-21px tall, so every footer link
+     and every contact line was a target too small to hit reliably on a phone
+     — and this site's audience is heavily on phones. inline-flex centres the
+     text inside the taller box, so the type does not move; only the hit area
+     grows. The inline "Learn more" links inside sentences are deliberately
+     left alone: SC 2.5.8 exempts links in a run of text, and padding them
+     would break the line spacing of the paragraph around them. */
   .footer-link {
-    display: inline-block;
+    display: inline-flex; align-items: center;
+    min-height: 1.5rem;
     font-size: .875rem; color: #5A6A75;
     transition: color .2s, transform .2s var(--ease-spring);
   }
   .footer-link:hover { color: #1E2E40; transform: translateX(2px); }
   .footer-contact {
     display: inline-flex; align-items: center; gap: .625rem;
+    min-height: 1.5rem;
     color: #5A6A75;
     transition: color .2s;
   }
