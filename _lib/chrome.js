@@ -71,7 +71,7 @@ export function headerHTML(lang, currentPage) {
   <header class="site-header" data-site-header>
     <div class="${SHELL} flex items-center justify-between gap-6 h-[4.25rem]">
       <a href="index.html" class="flex items-center shrink-0" aria-label="ENZ INTERNATIONAL — home">
-        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="51" height="36" class="h-9 w-auto object-contain" fetchpriority="high" />
+        <img src="../assets/images/enz-logo-204.png" alt="ENZ INTERNATIONAL" width="51" height="36" class="h-9 w-auto object-contain" fetchpriority="high" />
       </a>
       <nav class="hidden xl:flex items-center gap-5 2xl:gap-7 min-w-0 text-[0.875rem] 2xl:text-[0.9375rem] font-medium" aria-label="Primary">
         ${links}
@@ -146,7 +146,7 @@ export function footerHTML(lang, currentPage) {
     <!-- Brand block plus three evenly weighted link columns. -->
     <div class="${SHELL} py-12 md:py-16 grid gap-10 md:gap-8 md:grid-cols-2 lg:grid-cols-12">
       <div class="lg:col-span-4 lg:pr-8">
-        <img src="../assets/images/enz-logo.png" alt="ENZ INTERNATIONAL" width="51" height="36" class="h-9 w-auto object-contain" loading="lazy" decoding="async" />
+        <img src="../assets/images/enz-logo-204.png" alt="ENZ INTERNATIONAL" width="51" height="36" class="h-9 w-auto object-contain" loading="lazy" decoding="async" />
         <p class="text-sm leading-relaxed mt-5 text-slate max-w-xs">${t(lang, 'footerAbout')}</p>
         <ul class="mt-6 space-y-3 text-sm">
           <li><a href="tel:${CONTACT_PHONE.replace(/\s/g, '')}" class="footer-contact">${icon('phone', 'w-4 h-4')}<span>${CONTACT_PHONE}</span></a></li>

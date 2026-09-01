@@ -91,6 +91,38 @@ for (const file of sources) {
   console.log(`${file.padEnd(30)} ${meta.width}x${meta.height}  ->  ${ladder}`);
 }
 
+// ---------------------------------------------------------------------------
+// The logo, which is its own case.
+// ---------------------------------------------------------------------------
+// enz-logo.png is 1828x1300 and 72 KB, and it is painted at 51x36 in the
+// header and footer of all 76 pages. That was the single heaviest thing on the
+// page after the hero, spent on an image displayed at 3% of its width.
+//
+// It is NOT simply replaced, because the high-resolution file is still the
+// right answer for the JSON-LD `logo` field — structured-data consumers want a
+// large logo, and shrinking it there would be a downgrade nobody sees on the
+// page. So the original stays for that, and this writes a display-size copy
+// for the two <img> tags.
+//
+// PNG rather than WebP: a flat logo with alpha palettes extremely well, so
+// PNG comes out roughly half the size of WebP here. 204px is 4x the 51px CSS
+// width, which stays sharp on a 3x phone.
+const LOGO_DISPLAY_WIDTH = 204;
+const logoSrc = path.join(IMG, 'enz-logo.png');
+if (existsSync(logoSrc)) {
+  const out = path.join(IMG, `enz-logo-${LOGO_DISPLAY_WIDTH}.png`);
+  const meta = await sharp(logoSrc).metadata();
+  await sharp(logoSrc)
+    .resize({ width: LOGO_DISPLAY_WIDTH, withoutEnlargement: true })
+    .png({ compressionLevel: 9, palette: true, quality: 90 })
+    .toFile(out);
+  const wasKB = Math.round(statSync(logoSrc).size / 1024);
+  const nowKB = Math.round(statSync(out).size / 1024);
+  const h = Math.round((meta.height / meta.width) * LOGO_DISPLAY_WIDTH);
+  manifest['enz-logo-display'] = { width: LOGO_DISPLAY_WIDTH, height: h, variants: [] };
+  console.log(`\nenz-logo.png ${meta.width}x${meta.height} ${wasKB}KB -> enz-logo-${LOGO_DISPLAY_WIDTH}.png ${LOGO_DISPLAY_WIDTH}x${h} ${nowKB}KB (header/footer only; original kept for JSON-LD)`);
+}
+
 // The generator reads this to build srcset and to emit intrinsic width/height.
 // Written as JSON rather than JS so it is obviously derived data that nobody
 // should hand-edit.

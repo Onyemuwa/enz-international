@@ -208,5 +208,10 @@
         "kb": 105
       }
     ]
+  },
+  "enz-logo-display": {
+    "width": 204,
+    "height": 145,
+    "variants": []
   }
 }

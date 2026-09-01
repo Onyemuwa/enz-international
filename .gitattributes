@@ -1,0 +1,30 @@
+# Line endings, settled once.
+#
+# The generator writes LF. Windows checkouts with core.autocrlf=true were
+# converting on checkout, so every commit printed a "LF will be replaced by
+# CRLF" warning for all 155 generated files — 155 lines of noise that made real
+# warnings easy to miss.
+#
+# LF everywhere means the working tree matches what the generator writes and
+# what the repo stores, so regenerating on Windows, macOS or CI produces the
+# same bytes and the output-hash check in _build/verify-output.mjs stays
+# meaningful across machines.
+* text=auto eol=lf
+
+# Binary: never convert, never diff as text.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary
+
+# Generated. Collapsed in diffs and review — the source of truth is
+# _generate-static.mjs and _lib/, not these.
+en/**   linguist-generated=true
+sw/**   linguist-generated=true
+fr/**   linguist-generated=true
+zh/**   linguist-generated=true
+assets/css/site.css   linguist-generated=true
+sitemap.xml           linguist-generated=true
