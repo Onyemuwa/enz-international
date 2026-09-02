@@ -18,6 +18,7 @@ import { testimonials, commitments } from '../_content/proof.js';
 import { services } from '../_content/services.js';
 import { insights } from '../_content/insights.js';
 import { authorFor } from '../_content/authors.js';
+import { homeStats } from '../_content/stats.js';
 import { markets } from '../_content/markets.js';
 import { faqs } from '../_content/faqs.js';
 import { problems, engagementModels } from '../_content/narrative.js';
@@ -25,12 +26,10 @@ import { processSteps, qcStages, industries } from '../_content/pages.js';
 import { whyChina } from '../_content/pages2.js';
 
 export function homePage(lang) {
-  const stats = [
-    ['statYears', 10, '+'],
-    ['statMarkets', 50, '+'],
-    ['statProjects', 200, '+'],
-    ['statSatisfaction', 98, '%'],
-  ];
+  // Counted from the content that renders the site — see _content/stats.js
+  // for why the old 10+/50+/200+/98% set was removed. The short version: it
+  // claimed 50+ markets on a site that lists five.
+  const stats = homeStats.map((st) => [st.labelKey, st.value, st.suffix]);
   const nextSteps = [t(lang, 'bookingNext1'), t(lang, 'bookingNext2'), t(lang, 'bookingNext3')];
 
   // The three service lines, stated plainly. This replaced a two-tab widget:

@@ -457,24 +457,49 @@ export function pricingPage(lang) {
   });
 }
 
+// Shown on the privacy and terms pages. A policy with no date on it reads as
+// abandoned; bump this whenever the wording changes. It is deliberately a
+// fixed string rather than today's date — regenerating the site is not the
+// same event as revising a policy, and stamping it would claim it was.
+const LEGAL_UPDATED = '1 September 2026';
+
 export function legalPage(lang, type) {
   const isPrivacy = type === 'privacy';
   const title = isPrivacy ? t(lang, 'footerPrivacy') : t(lang, 'footerTerms');
+  // These describe what this website ACTUALLY does, which is something the
+  // code can be checked against rather than something drafted from a template:
+  // there is no analytics, no tag manager, no advertising pixel, no cookie of
+  // any kind, and no server of our own. That was verified by searching the
+  // shipped JavaScript for document.cookie, localStorage, sessionStorage,
+  // gtag and analytics — none are present.
+  //
+  // A short, true policy beats a long, generic one, and the previous version
+  // said usage data was collected "once analytics tooling is connected", which
+  // described a plan rather than a fact.
+  //
+  // This is a factual description of the site's data handling, NOT legal
+  // advice, and it is not a substitute for review by a qualified adviser —
+  // particularly on UK/EU obligations, since you take enquiries from both.
   const content = isPrivacy
-    ? `<p>ENZ INTERNATIONAL ("we", "us") collects information you provide directly — such as your name, email, and project details submitted through our consultation and newsletter forms — in order to respond to your enquiry and, where you've opted in, send occasional updates.</p>
-       <h2 >What we collect</h2><p>Contact-form and booking submissions, newsletter sign-up emails, and — once analytics tooling is connected — standard usage data.</p>
-       <h2 >How your submission reaches us</h2><p>This website has no server of its own. When you submit a form, the details you typed are passed to a third-party form-delivery service, which relays them to our inbox as an email. That provider processes your submission only to deliver it, and may retain it briefly so a message is not lost in transit. We do not sell what you send us, and we do not use it for anything other than responding to your enquiry.</p>
-       <h2 >Your rights</h2><p>You may have the right to access, correct, or delete your data, or withdraw consent for marketing emails at any time.</p>
-       <h2 >Contact</h2><p>Questions can be sent to <a href="mailto:${CONTACT_EMAIL}" class="text-brand hover:underline">${CONTACT_EMAIL}</a>.</p>`
-    : `<p>These terms govern your use of the ENZ INTERNATIONAL website. By using this site, you agree to use it only for lawful purposes.</p>
-       <h2 >No binding offer</h2><p>Content on this site is informational and does not constitute a binding offer. Engagements are governed by separately signed contracts.</p>
-       <h2 >Contact</h2><p>Questions can be sent to <a href="mailto:${CONTACT_EMAIL}" class="text-brand hover:underline">${CONTACT_EMAIL}</a>.</p>`;
+    ? `<p>ENZ INTERNATIONAL ("we", "us") collects only what you type into a form on this site — your name, email address, phone number, company and the details of your enquiry — and uses it only to reply to you.</p>
+       <h2 >What we collect</h2><p>Consultation and contact form submissions, newsletter sign-up addresses, and career applications. Nothing else. We do not ask for, and have no way to receive, payment details through this website.</p>
+       <h2 >What we do not do</h2><p>This site sets <strong>no cookies</strong>. It runs no analytics, no advertising pixels and no third-party tracking scripts, so we do not build a profile of you, follow you across other websites, or know that you visited unless you contact us. Nothing you submit is ever sold or shared for marketing.</p>
+       <h2 >How your submission reaches us</h2><p>This website has no server of its own. When you submit a form, what you typed is passed to a third-party form-delivery service which relays it to our inbox as an email, and may hold it briefly so a message is not lost in transit. If that relay is unavailable, the form instead opens your own email application with the enquiry pre-written, and nothing is sent until you press send.</p>
+       <h2 >How long we keep it</h2><p>Enquiries stay in our email for as long as we may reasonably need them to deal with your request and any follow-up. Ask us to delete yours and we will.</p>
+       <h2 >Your rights</h2><p>You can ask us what we hold about you, ask us to correct or delete it, or withdraw consent for marketing emails at any time — just write to the address below. If you are in the UK or EU you may also complain to your national data protection authority.</p>
+       <h2 >Contact</h2><p>Privacy questions and deletion requests: <a href="mailto:${CONTACT_EMAIL}" class="text-brand hover:underline">${CONTACT_EMAIL}</a>.</p>`
+    : `<p>These terms govern your use of the ENZ INTERNATIONAL website. By using this site you agree to use it only for lawful purposes.</p>
+       <h2 >Nothing here is a binding offer</h2><p>Everything published on this site is informational. Descriptions of services, processes, timelines and inspection stages explain how we work; they are not a quotation, a warranty or a contract. Any engagement is governed solely by a separately signed agreement, and where that agreement and this website disagree, the agreement wins.</p>
+       <h2 >No pricing is published</h2><p>We do not publish rates, because the cost of a sourcing, inspection or factory-setup project depends on scope. Any figure you receive from us in writing is the one that applies.</p>
+       <h2 >Guidance, not professional advice</h2><p>Our articles and reference pages — including material on Incoterms, AQL sampling, customs documentation and import procedure — are general industry guidance. They are not legal, tax, customs or financial advice, and you should confirm anything that carries risk with a qualified adviser in your own jurisdiction before acting on it.</p>
+       <h2 >Third-party links</h2><p>Where we link to another organisation's website we do not control it and are not responsible for its content or its handling of your data.</p>
+       <h2 >Contact</h2><p>Questions about these terms: <a href="mailto:${CONTACT_EMAIL}" class="text-brand hover:underline">${CONTACT_EMAIL}</a>.</p>`;
 
   const body = `
   <section class="section bg-white">
     <div class="shell max-w-3xl">
       <h1 class="h2-section">${title}</h1>
-      <p class="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-4 py-2.5 mb-9">Placeholder text — not reviewed by counsel. Replace before launch.</p>
+      <p class="text-sm text-slate mb-9">Last updated ${LEGAL_UPDATED}</p>
       <div class="prose-enz">${content}</div>
     </div>
   </section>`;

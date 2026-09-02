@@ -7,33 +7,36 @@ document covers what's real vs. placeholder, the SEO/performance state, and how 
 
 ## 0. How form submissions reach you
 
-**The forms work right now, with no key and no setup.** With `API_BASE_URL` and `WEB3FORMS_ACCESS_KEY`
-both empty in `assets/js/config.js`, submitting a form opens the visitor's own email client with the
-enquiry already written — recipient, subject and every field filled in. They press send in their mail
-app and it arrives at `CONTACT_EMAIL`.
+**Forms deliver automatically right now.** A visitor presses Submit and the enquiry arrives at
+`CONTACT_EMAIL` with nothing further for them to do. Delivery is chosen in `assets/js/config.js`,
+first configured option wins:
 
-This replaced the old mock mode, which resolved successfully and sent nothing: a buyer typed a genuine
-enquiry, was told it arrived, and it reached nobody, with no error for either side to notice.
+| | needs | automatic |
+|---|---|---|
+| `API_BASE_URL` | your own backend | yes |
+| `WEB3FORMS_ACCESS_KEY` | a free key, no account | yes — **recommended** |
+| `FORMSUBMIT_EMAIL` | nothing | yes — **live now** |
+| nothing set | — | no, opens the visitor's mail app |
 
-Two honest limits of the mailto handoff:
+**Every automatic path falls back to the mail-app handoff if the send fails** — offline visitor, ad
+blocker eating a third-party POST, relay down. A form must never show success and drop the enquiry;
+when it falls back the copy changes to "press send", so we only claim what we can actually know.
 
-- The visitor has to press send themselves. It is a handover, not a silent submission — which is why the
-  success screen says *"we've opened your email app — press send"* rather than *"we'll be in touch"*.
-- A device with no mail client configured will do nothing visible. The success screen therefore also
-  shows your address as a plain fallback.
+### Two things to do
 
-**To upgrade to true background submission** (nothing for the visitor to do, and it works on every
-device), do one of:
+1. **Activate FormSubmit** (required while it is the live path). It holds mail until the address is
+   confirmed. Submit one test enquiry on the live site, then click the activation link it emails to
+   `info@enzinternational.co` — **check spam**. Until you do, submissions are held, not delivered.
+2. **Then move to Web3Forms.** Free key in ~30s at [web3forms.com](https://web3forms.com), no account.
+   Paste it into `WEB3FORMS_ACCESS_KEY`. It is checked *before* FormSubmit, so it takes over with no
+   code change. You gain 250 submissions/month, a 30-day submission archive (an email lost to a spam
+   filter stops being a lost lead) and a published DPA you can name in the privacy policy.
 
-1. Get a free key at [web3forms.com](https://web3forms.com) (emailed to you in under a minute, no
-   account) and set `WEB3FORMS_ACCESS_KEY`. Every form then emails you directly, silently. **Recommended.**
-2. Or run a real backend and set `API_BASE_URL`. Use this if you want submissions persisted somewhere
-   you control rather than arriving purely as email.
+After changing `config.js`: bump `ASSET_VERSION` in `_lib/site-config.js`, run
+`node _generate-static.mjs`, redeploy. Otherwise browsers keep serving the cached config.
 
-Either way, bump `ASSET_VERSION` in `_generate-static.mjs`, re-run it, and redeploy — otherwise browsers
-keep serving the cached `config.js`.
-
-Verify after deploying by submitting the contact form on the live site and confirming the email arrives.
+The careers/CV form stays a mail handoff on purpose — FormSubmit's AJAX endpoint takes JSON, not
+files, so a CV would be silently dropped while the applicant was told it went through.
 
 ---
 
@@ -52,8 +55,10 @@ claims on a live company site, which isn't something to guess on your behalf.
 | HQ address for the embedded map | `contact.html` (all languages) | Currently centers on "Guangzhou, China" generically — swap in the real street address |
 | Contact email | `assets/js/config.js` (`CONTACT_EMAIL`) | Domain matches (`info@enzinternational.co`) but confirm that inbox actually exists and is monitored |
 | Operational hubs / markets list | `assets/js/config.js`, page content | Confirm the cities and 5 markets (Tanzania, Kenya, DRC, US, UK) are current |
-| Privacy Policy / Terms | `privacy.html`, `terms.html` | Structural placeholder text, explicitly flagged in-page — **have a lawyer review before launch**, especially GDPR/data-processing language |
-| Web3Forms access key | `assets/js/config.js` | Optional. Forms already work via a mailto handoff; setting a key upgrades them to silent background submission. See section 0. |
+| Privacy Policy / Terms | `_lib/pages-detail.js` | Rewritten to describe what the site **actually does** — no cookies, no analytics, no tracking (verified against the shipped JS), and how the form relay works. The in-page "placeholder" banner is gone. Still worth a legal review for UK/EU obligations, but it is no longer placeholder text |
+| **Activate form delivery** | `assets/js/config.js` | **Launch blocker.** See section 0 — one test submission plus one click in your inbox. |
+| Homepage stat strip | `_content/stats.js` | Now counted from the site's own content (5 markets, 4 inspection stages, 3 service lines, 24h response). The old 10+/50+/200+/98% set was removed: it claimed 50+ markets on a site listing five. Add real track-record numbers with `confirmed: true` |
+| Article bylines | `_content/authors.js` | Credited to the organisation. Set `byline` to `'founder'` only if Erick genuinely authored/owns them |
 
 ## 2. Stack
 

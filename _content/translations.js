@@ -120,6 +120,9 @@ const dict = {
     statsTitle: 'Our Impact in Numbers',
     statYears: 'Years Active',
     statMarkets: 'Markets Served',
+    statStages: 'Inspection Stages',
+    statServices: 'Service Lines',
+    statResponse: 'Response Time',
     statProjects: 'Projects Delivered',
     statSatisfaction: 'Client Satisfaction',
 
@@ -390,6 +393,9 @@ const dict = {
     statsTitle: 'Athari Zetu kwa Nambari',
     statYears: 'Miaka ya Uzoefu',
     statMarkets: 'Masoko Yanayohudumiwa',
+    statStages: 'Hatua za Ukaguzi',
+    statServices: 'Aina za Huduma',
+    statResponse: 'Muda wa Kujibu',
     statProjects: 'Miradi Iliyokamilika',
     statSatisfaction: 'Kuridhika kwa Wateja',
 
@@ -646,6 +652,9 @@ const dict = {
     statsTitle: 'Notre impact en chiffres',
     statYears: "Années d'activité",
     statMarkets: 'Marchés desservis',
+    statStages: "Étapes d'inspection",
+    statServices: 'Domaines de service',
+    statResponse: 'Délai de réponse',
     statProjects: 'Projets livrés',
     statSatisfaction: 'Satisfaction client',
 
@@ -902,6 +911,9 @@ const dict = {
     statsTitle: '我们的影响力数据',
     statYears: '运营年限',
     statMarkets: '服务市场',
+    statStages: '检验阶段',
+    statServices: '服务领域',
+    statResponse: '响应时间',
     statProjects: '已完成项目',
     statSatisfaction: '客户满意度',
 
