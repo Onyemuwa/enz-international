@@ -23,7 +23,7 @@ export const CONTACT_EMAIL = 'info@enzinternational.co';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-export const ASSET_VERSION = '40';
+export const ASSET_VERSION = '41';
 
 // Sora, matching onemartent.com — one of the two reference sites.
 //

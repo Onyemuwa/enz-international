@@ -16,6 +16,8 @@ import { media } from './components.js';
 import { headerHTML, footerHTML, bookingModalHTML, whatsappButtonHTML, breadcrumbsHTML, breadcrumbJsonLd } from './chrome.js';
 import { SUPPORTED_LANGUAGES, LOCALE_MAP } from '../_content/translations.js';
 import { regions } from '../_content/regions.js';
+import { seoDescriptionFor } from '../_content/seo.js';
+import { sameAs, twitterHandle } from '../_content/social.js';
 import { images } from '../_content/images.js';
 import { timelines, glossary } from '../_content/pages2.js';
 
@@ -37,7 +39,12 @@ export function clampDescription(text, max = 160) {
 }
 
 export function seoHead({ lang, title, description, page, jsonLd, robots }) {
-  description = clampDescription(description);
+  // A page's visible lead is written to sit under a heading; a meta
+  // description is written to be clicked in a result list. They are different
+  // jobs, so _content/seo.js holds purpose-written copy at 150-160 characters
+  // and the subtitle is only the fallback. Reusing the subtitle left Google
+  // 40-90 unused characters, which it filled by scraping the page instead.
+  description = clampDescription(seoDescriptionFor(page, description));
   const canonical = `${SITE_URL}/${urlPath(lang, page)}`;
   const alternates = SUPPORTED_LANGUAGES.map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE_URL}/${urlPath(l, page)}" />`).join('\n    ');
   // Google renders roughly 60 characters of a <title> before truncating, and
@@ -97,6 +104,10 @@ export function seoHead({ lang, title, description, page, jsonLd, robots }) {
     <meta name="twitter:title" content="${fullTitle}" />
     <meta name="twitter:description" content="${description}" />
     <meta name="twitter:image" content="${SITE_URL}/assets/images/og-cover.png" />
+    <meta name="twitter:image:alt" content="ENZ INTERNATIONAL — global sourcing and industrial excellence" />${
+      twitterHandle ? `
+    <meta name="twitter:site" content="${twitterHandle}" />` : ''
+    }
     ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : ''}`;
 }
 
@@ -115,6 +126,10 @@ export function pageShell({ lang, page, title, description, jsonLd, crumbs, body
     email: CONTACT_EMAIL,
     telephone: '+86-132-0384-0456',
     areaServed: regions.map((r) => r.name),
+    // Confirms that this site, the LinkedIn page and the rest are one
+    // organisation rather than unrelated results. Omitted entirely while
+    // _content/social.js is empty — an empty sameAs is worse than none.
+    ...(sameAs.length ? { sameAs } : {}),
   });
   graph.push({
     '@type': 'WebSite',

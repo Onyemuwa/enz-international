@@ -6,7 +6,9 @@
   "scripts": {
     "css": "tailwindcss -c ./tailwind.config.cjs -i ./tailwind.src.css -o ../assets/css/site.css --minify",
     "css:watch": "tailwindcss -c ./tailwind.config.cjs -i ./tailwind.src.css -o ../assets/css/site.css --watch",
-    "images": "node ./responsive-images.mjs"
+    "images": "node ./responsive-images.mjs",
+    "check:seo": "node ./check-seo.mjs",
+    "verify": "node ./verify-output.mjs check && node ./check-seo.mjs"
   },
   "devDependencies": {
     "sharp": "^0.35.4",
