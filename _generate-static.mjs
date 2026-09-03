@@ -377,9 +377,15 @@ writeFileSync(
         // _content/translations.js. These 301s mean every URL Google already
         // indexed lands on the English equivalent instead of a 404, which is
         // how ranking signal is carried across rather than thrown away.
-        { source: '/:lang(sw|fr|zh)', destination: '/en/', permanent: true },
-        { source: '/:lang(sw|fr|zh)/', destination: '/en/', permanent: true },
-        { source: '/:lang(sw|fr|zh)/:page*', destination: '/en/:page*', permanent: true },
+        //
+        // Written out per language rather than as /:lang(sw|fr|zh)/:page*.
+        // That combined form matched the bare /fr/ but NOT nested paths, so
+        // /sw/services/ was still 404ing in production while the rule looked
+        // correct in the config. Verified against the live site, not assumed.
+        ...['sw', 'fr', 'zh'].flatMap((l) => [
+          { source: `/${l}`, destination: '/en/', permanent: true },
+          { source: `/${l}/:path*`, destination: '/en/:path*', permanent: true },
+        ]),
       ],
       headers: [
         { source: '/(.*)', headers: SECURITY_HEADERS.map(([key, value]) => ({ key, value })) },

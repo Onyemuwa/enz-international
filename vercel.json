@@ -17,18 +17,33 @@
       "permanent": true
     },
     {
-      "source": "/:lang(sw|fr|zh)",
+      "source": "/sw",
       "destination": "/en/",
       "permanent": true
     },
     {
-      "source": "/:lang(sw|fr|zh)/",
+      "source": "/sw/:path*",
+      "destination": "/en/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/fr",
       "destination": "/en/",
       "permanent": true
     },
     {
-      "source": "/:lang(sw|fr|zh)/:page*",
-      "destination": "/en/:page*",
+      "source": "/fr/:path*",
+      "destination": "/en/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/zh",
+      "destination": "/en/",
+      "permanent": true
+    },
+    {
+      "source": "/zh/:path*",
+      "destination": "/en/:path*",
       "permanent": true
     }
   ],
