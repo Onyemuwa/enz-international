@@ -24,6 +24,11 @@ import { markets } from '../_content/markets.js';
 import { industries, resources } from '../_content/pages.js';
 
 export function langInline(lang, currentPage) {
+  // A picker offering one language is dead UI: it costs a tap target in the
+  // header, it implies translations that do not exist, and it is one more
+  // thing for a screen-reader user to move through for no gain. It comes back
+  // on its own the moment a second language is added to SUPPORTED_LANGUAGES.
+  if (SUPPORTED_LANGUAGES.length < 2) return '';
   return `
           <div class="lang-inline">
             ${SUPPORTED_LANGUAGES.map(
@@ -39,6 +44,11 @@ export function langInline(lang, currentPage) {
 //
 // `variant: 'dark'` styles it for the footer band and opens it upward.
 export function langSwitcher(lang, currentPage, { variant = 'light', id = 'lang' } = {}) {
+  // A picker offering one language is dead UI: it costs a tap target in the
+  // header, it implies translations that do not exist, and it is one more
+  // thing for a screen-reader user to move through for no gain. It comes back
+  // on its own the moment a second language is added to SUPPORTED_LANGUAGES.
+  if (SUPPORTED_LANGUAGES.length < 2) return '';
   const options = SUPPORTED_LANGUAGES.map((l) => {
     const current = l === lang;
     return `<a href="../${l}/${currentPage}" hreflang="${l}" lang="${l}"${current ? ' aria-current="true"' : ''}>

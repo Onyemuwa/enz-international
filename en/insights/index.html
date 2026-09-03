@@ -15,9 +15,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../../assets/images/apple-touch-icon.png" />
     <link rel="manifest" href="../../site.webmanifest" />
     <link rel="alternate" hreflang="en" href="https://enzinternational.co/en/insights/" />
-    <link rel="alternate" hreflang="sw" href="https://enzinternational.co/sw/insights/" />
-    <link rel="alternate" hreflang="fr" href="https://enzinternational.co/fr/insights/" />
-    <link rel="alternate" hreflang="zh" href="https://enzinternational.co/zh/insights/" />
     <link rel="alternate" hreflang="x-default" href="https://enzinternational.co/en/insights/" />
 
     <!-- The stylesheet is a single plain file, committed to the repo. It is
@@ -25,7 +22,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../../assets/css/site.css?v=41" />
+    <link rel="stylesheet" href="../../assets/css/site.css?v=42" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,9 +40,7 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="ENZ INTERNATIONAL — global sourcing and industrial excellence" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="sw_TZ" />
-    <meta property="og:locale:alternate" content="fr_FR" />
-    <meta property="og:locale:alternate" content="zh_CN" />
+    
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Industry Insights | ENZ INTERNATIONAL" />
     <meta name="twitter:description" content="Practical guidance on sourcing from China: vetting suppliers, managing lead times, protecting quality, Incoterms and landed cost. Written for importers." />
@@ -73,22 +68,6 @@
       </nav>
       <div class="hidden xl:flex items-center gap-2 2xl:gap-2.5 shrink-0">
         
-        <details class="lang-menu" data-lang-menu>
-          <summary aria-haspopup="true" aria-label="Language: English">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <span>English</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 lang-caret" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </summary>
-          <div class="lang-panel" role="menu" id="lang-panel"><a href="../../en/insights/" hreflang="en" lang="en" aria-current="true">
-            <span>English</span><span class="lang-code">en</span>
-          </a><a href="../../sw/insights/" hreflang="sw" lang="sw">
-            <span>Kiswahili</span><span class="lang-code">sw</span>
-          </a><a href="../../fr/insights/" hreflang="fr" lang="fr">
-            <span>Français</span><span class="lang-code">fr</span>
-          </a><a href="../../zh/insights/" hreflang="zh" lang="zh">
-            <span>中文</span><span class="lang-code">zh</span>
-          </a></div>
-        </details>
         <button data-open-booking class="btn btn-primary btn-sm">Book a call<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
       </div>
       <div class="flex xl:hidden items-center gap-2">
@@ -113,9 +92,6 @@
           <div class="pt-4 mt-2 border-t border-line">
             <span class="block text-[0.6875rem] font-semibold tracking-[0.14em] uppercase text-slate mb-3">Language</span>
             
-          <div class="lang-inline">
-            <a href="../../en/insights/" hreflang="en" lang="en" aria-current="true">English</a><a href="../../sw/insights/" hreflang="sw" lang="sw">Kiswahili</a><a href="../../fr/insights/" hreflang="fr" lang="fr">Français</a><a href="../../zh/insights/" hreflang="zh" lang="zh">中文</a>
-          </div>
           </div>
         </div>
       </div>
@@ -213,23 +189,7 @@
     <div class="shell py-6 border-t border-line flex flex-col md:flex-row items-center justify-between gap-5 text-xs text-slate">
       <p class="order-2 md:order-1">&copy; <span data-current-year>2026</span> ENZ INTERNATIONAL. All rights reserved.</p>
       <p class="order-3 md:order-2 hidden lg:flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Guangzhou · Dar es Salaam · Nairobi · Kinshasa · London · New York</span></p>
-      <div class="order-1 md:order-3">
-        <details class="lang-menu lang-menu-up" data-lang-menu>
-          <summary aria-haspopup="true" aria-label="Language: English">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <span>English</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 lang-caret" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </summary>
-          <div class="lang-panel" role="menu" id="lang-footer-panel"><a href="../../en/insights/" hreflang="en" lang="en" aria-current="true">
-            <span>English</span><span class="lang-code">en</span>
-          </a><a href="../../sw/insights/" hreflang="sw" lang="sw">
-            <span>Kiswahili</span><span class="lang-code">sw</span>
-          </a><a href="../../fr/insights/" hreflang="fr" lang="fr">
-            <span>Français</span><span class="lang-code">fr</span>
-          </a><a href="../../zh/insights/" hreflang="zh" lang="zh">
-            <span>中文</span><span class="lang-code">zh</span>
-          </a></div>
-        </details></div>
+      <div class="order-1 md:order-3"></div>
     </div>
   </footer>
     
@@ -300,9 +260,9 @@
       </div>
     </div>
   </div>
-    <script src="../../assets/js/config.js?v=41"></script>
-    <script src="../../assets/js/api.js?v=41"></script>
-    <script src="../../assets/js/site.js?v=41" defer></script>
-    <script type="module" src="../../assets/js/motion-effects.js?v=41"></script>
+    <script src="../../assets/js/config.js?v=42"></script>
+    <script src="../../assets/js/api.js?v=42"></script>
+    <script src="../../assets/js/site.js?v=42" defer></script>
+    <script type="module" src="../../assets/js/motion-effects.js?v=42"></script>
   </body>
 </html>

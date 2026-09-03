@@ -316,8 +316,16 @@ writeFileSync(
   path.join(OUT, '_redirects'),
   `# Clean-URL migration: /en/services.html -> /en/services/
 # 301 so search engines move their index across rather than keeping both.
-/:lang/index.html   /:lang/       301
-/:lang/:page.html   /:lang/:page/ 301
+/en/index.html   /en/       301
+/en/:page.html   /en/:page/ 301
+
+# Retired languages. /sw/, /fr/ and /zh/ served English body copy while
+# claiming to be translated, so they were withdrawn - see the header of
+# _content/translations.js. These 301s carry indexed URLs to the English
+# equivalent instead of 404ing them.
+/sw/*   /en/:splat   301
+/fr/*   /en/:splat   301
+/zh/*   /en/:splat   301
 `
 );
 
@@ -362,8 +370,16 @@ writeFileSync(
       // Clean-URL migration: the old /en/services.html addresses must 301 to
       // /en/services/ or every existing bookmark and search result 404s.
       redirects: [
-        { source: '/:lang(en|sw|fr|zh)/index.html', destination: '/:lang/', permanent: true },
-        { source: '/:lang(en|sw|fr|zh)/:page.html', destination: '/:lang/:page/', permanent: true },
+        { source: '/:lang(en)/index.html', destination: '/:lang/', permanent: true },
+        { source: '/:lang(en)/:page.html', destination: '/:lang/:page/', permanent: true },
+        // Retired languages. /sw/, /fr/ and /zh/ served English body copy while
+        // claiming to be translated, so they were withdrawn — see the header of
+        // _content/translations.js. These 301s mean every URL Google already
+        // indexed lands on the English equivalent instead of a 404, which is
+        // how ranking signal is carried across rather than thrown away.
+        { source: '/:lang(sw|fr|zh)', destination: '/en/', permanent: true },
+        { source: '/:lang(sw|fr|zh)/', destination: '/en/', permanent: true },
+        { source: '/:lang(sw|fr|zh)/:page*', destination: '/en/:page*', permanent: true },
       ],
       headers: [
         { source: '/(.*)', headers: SECURITY_HEADERS.map(([key, value]) => ({ key, value })) },

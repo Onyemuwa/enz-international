@@ -49,7 +49,7 @@ claims on a live company site, which isn't something to guess on your behalf.
 |---|---|---|
 | Real production domain | ✅ done — `enzinternational.co`, set in `_generate-static.mjs` and baked into every canonical/hreflang tag, `robots.txt`, and `sitemap.xml` | Point your DNS at whichever host you use — `vercel.json` and `_headers` are both committed, so Vercel, Netlify, Cloudflare Pages, and GitHub Pages all work with no build command |
 | **Photography** | `_content/images.js` | **The biggest visual upgrade available.** The site had two images on it, both the logo. Ten image slots are now built into the layouts and render a branded gradient until filled. Each entry carries the exact filename, pixel size and a brief describing what to buy. Drop files into `assets/images/`, set `src`, regenerate |
-| Team bios/photos | `en/about.html` (and sw/fr/zh) | Currently shows a "coming soon" placeholder instead of fake names — add a real team grid when you have photos/bios |
+| Team bios/photos | `_lib/pages-primary.js` | Shows the founder note rather than fake names — add a real team grid when you have photos/bios |
 | Client testimonials/case studies | `_content/proof.js` | Sections are built and styled but render nothing while the arrays are empty. Add real, permissioned entries and they appear automatically — nothing fabricated is shipped |
 | Certifications (e.g. "ISO 9001") | Hero trust badges say "Certifications on request" | Add a specific certification only once you can point to a real, current certificate |
 | HQ address for the embedded map | `contact.html` (all languages) | Currently centers on "Guangzhou, China" generically — swap in the real street address |
@@ -62,8 +62,9 @@ claims on a live company site, which isn't something to guess on your behalf.
 
 ## 2. Stack
 
-- **Markup**: hand-written semantic HTML, one real file per page per language (76 pages total: 19 pages ×
-  4 languages, plus a root redirect and a shared 404).
+- **Markup**: hand-written semantic HTML, one real file per page (27 pages, plus a root redirect and a
+  shared 404). English-only — see the header of `_content/translations.js` for why `/sw/`, `/fr/` and
+  `/zh/` were withdrawn, and the four steps to publish a language properly.
 - **Styling**: one plain stylesheet, `assets/css/site.css`, committed to the repo. It is compiled from
   `_build/tailwind.src.css` only when markup changes — deploying still needs no build step. This
   replaced the Tailwind Play CDN, which ships a compiler to every visitor, warns in the console, and
@@ -107,7 +108,7 @@ claims on a live company site, which isn't something to guess on your behalf.
 |---|---|
 | Unique `<title>`/description per page/language | ✅ |
 | Canonical URLs | ✅ |
-| hreflang (all 4 languages + x-default) | ✅ |
+| hreflang (published languages + x-default) | ✅ — every tag now describes a page genuinely in that language |
 | Open Graph / Twitter Card | ✅ (add a real 1200×630 `og-cover.jpg` and a real domain before launch) |
 | JSON-LD structured data | ✅ one merged `@graph` per page: Organization + WebSite sitewide, plus LocalBusiness/FAQPage (home), Service list (services, pricing), HowTo (process), BreadcrumbList (inner pages), BlogPosting (insight posts) |
 | `robots.txt` + `sitemap.xml` | ✅ 76 URLs with `lastmod`/`priority`; nothing is excluded. Privacy and terms are indexable — a reachable privacy policy is a trust signal, and hiding it gained nothing |
@@ -124,7 +125,7 @@ domain age/authority, and content velocity (3 blog posts is a start, not a full 
 
 - [x] One compiled stylesheet (~42KB minified) instead of a CDN compiler on the critical path
 - [x] Font `preconnect` + `display=swap`
-- [x] Motion vendored locally — one fetch, cached by the browser across all 76 pages
+- [x] Motion vendored locally — one fetch, cached by the browser across all 27 pages
 - [x] No horizontal overflow at 360/768/1280 in any language
 - [x] Cache + security headers shipped in `_headers` and `vercel.json`
 - [ ] Image optimization / WebP — revisit once real photography (team, facilities) is added

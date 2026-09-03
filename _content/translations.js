@@ -1,10 +1,49 @@
 // Central translation dictionary.
-// Nav/footer/forms/CTAs are fully localized for all 4 languages.
-// Long-form page copy (About story, blog posts) is authored in English first;
-// sw/fr/zh translations for that deep content are a follow-up phase — see SETUP.md.
-// t() falls back to English automatically when a key is missing in the active language.
+//
+// ===========================================================================
+// THE SITE SHIPS ENGLISH-ONLY. HERE IS WHY, AND HOW TO TURN A LANGUAGE ON.
+// ===========================================================================
+// Nav, footer, forms, CTAs and labels ARE translated for all four languages —
+// that work is intact below and nothing has been deleted.
+//
+// What was never translated is the body copy: service features, market
+// intros, FAQ answers, article text, the legal pages. All of that lives in
+// _content/*.js in English only, and t() falls back to English for a missing
+// key. So /fr/ was serving an English page while <html lang="fr"> and a
+// hreflang="fr" tag told Google and every browser it was French.
+//
+// That is worse than having no French page at all:
+//   * A French buyer clicks a French result and lands on English.
+//   * Google sees four URLs of near-identical English content and has to pick
+//     one, which splits ranking signals instead of adding reach.
+//   * hreflang is a promise about a page's language. Ours was not true.
+//
+// So the site publishes only what it can actually deliver. 108 pages became
+// 27, every hreflang tag now describes a page that really is in that
+// language, and /sw/, /fr/ and /zh/ 301 to their English equivalents so no
+// indexed URL breaks.
+//
+// ---------------------------------------------------------------------------
+// TO PUBLISH A LANGUAGE
+// ---------------------------------------------------------------------------
+//  1. Translate the body copy in _content/ for that language. This is the
+//     real work — roughly 200 strings, much of it contract-adjacent, so it
+//     wants a human translator who knows sourcing terminology rather than a
+//     machine pass. A mistranslated Incoterm is a commercial problem.
+//  2. Add the language code to SUPPORTED_LANGUAGES below.
+//  3. Run `node _generate-static.mjs`, then `cd _build && npm run verify`.
+//  4. Delete that language's redirect rule from vercel.json and _redirects.
+//
+// Everything else — the switcher, hreflang, the sitemap, the locale tags —
+// keys off this one array and picks the language up automatically.
+// ===========================================================================
 
-export const SUPPORTED_LANGUAGES = ['en', 'sw', 'fr', 'zh'];
+/** Languages actually published. Add a code here only once its body copy is translated. */
+export const SUPPORTED_LANGUAGES = ['en'];
+
+/** Every language with UI strings below, published or not. Used by tooling. */
+export const TRANSLATED_UI_LANGUAGES = ['en', 'sw', 'fr', 'zh'];
+
 export const DEFAULT_LANGUAGE = 'en';
 
 export const LANGUAGE_LABELS = {
