@@ -109,6 +109,24 @@ export const industryImages = {
     src: 'ind-commodities.webp', file: 'ind-commodities.webp',
     alt: 'Raw copper and mineral stock at a bulk handling facility',
   },
+  // These three ship empty on purpose, same as every other slot in this file
+  // until a real photo is dropped in — see the file header. They are NOT
+  // filled with imagery pulled from a reference site: an image of a specific
+  // named company's product implies ENZ inspected that exact machine, which
+  // nobody here has. A gradient placeholder here is honest; a stranger's
+  // product photo under this industry's name would not be.
+  'Agriculture & food processing': {
+    src: '', file: 'ind-agriculture.webp',
+    alt: 'Grain or produce moving through a processing line',
+  },
+  'Packaging & printing': {
+    src: '', file: 'ind-packaging.webp',
+    alt: 'Printed packaging coming off a converting line',
+  },
+  'Textiles & apparel': {
+    src: '', file: 'ind-textiles.webp',
+    alt: 'Fabric on a knitting or weaving line',
+  },
 };
 // Every industry card uses this size.
 export const INDUSTRY_IMAGE_SIZE = '800×500 (16:10)';
