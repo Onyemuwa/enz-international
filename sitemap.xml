@@ -134,6 +134,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://enzinternational.co/en/industries/" />
   </url>
   <url>
+    <loc>https://enzinternational.co/en/equipment/</loc>
+    <lastmod>2026-09-03</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://enzinternational.co/en/equipment/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://enzinternational.co/en/equipment/" />
+  </url>
+  <url>
     <loc>https://enzinternational.co/en/quality-control/</loc>
     <lastmod>2026-09-03</lastmod>
     <priority>0.8</priority>

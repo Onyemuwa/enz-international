@@ -50,8 +50,23 @@ export function toCleanUrls(html, depth) {
 
   return (
     html
-      // ../assets/... and ../sitemap.xml are authored assuming depth 1
-      .replace(/(["'(])\.\.\/(assets|sitemap\.xml|site\.webmanifest)/g, (m, q, tail) => `${q}${up}${tail}`)
+      // ../assets/... and ../sitemap.xml are authored assuming depth 1.
+      //
+      // The preceding-character class matters: a quote or '(' marks the start
+      // of an href/src, but a srcset holds several comma-separated URLs in
+      // ONE attribute value — "x-400w.webp 400w, ../assets/x-800w.webp 800w"
+      // — where every entry after the first is preceded by a space, not a
+      // quote. Without \s here, only the first srcset candidate ever got
+      // rewritten and every subsequent one 404'd at any depth below 1; it
+      // shipped unnoticed because depth-1 pages (home) have up === '../'
+      // regardless, so the bug was invisible until a depth-2 page carried a
+      // multi-variant image — which about.html already did, in production.
+      //
+      // \s is deliberately not a bare wildcard: it still refuses to match
+      // '../assets' when it is preceded by '.' or '/', i.e. embedded inside
+      // an already-deeper '../../assets' chain, which would otherwise be
+      // rewritten a second time and corrupted.
+      .replace(/(["'(]|\s)\.\.\/(assets|sitemap\.xml|site\.webmanifest)/g, (m, q, tail) => `${q}${up}${tail}`)
       // language switcher: ../<lang>/<page>.html
       .replace(/(["'])\.\.\/([a-z]{2})\/([a-z0-9-]+)\.html(#[^"']*)?\1/g,
         (m, q, lang, page, hash) => `${q}${up}${lang}/${page === 'index' ? '' : page + '/'}${hash || ''}${q}`)

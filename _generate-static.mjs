@@ -24,6 +24,7 @@ import { icon } from './_lib/icons.js';
 import { ALL_PAGES } from './_lib/nav.js';
 import { aboutPage, careersPage, contactPage, homePage, insightPostPage, insightsListPage, marketsPage, servicesPage } from './_lib/pages-primary.js';
 import { faqPage, industriesPage, legalPage, logisticsPage, pricingPage, processPage, qualityControlPage, resourcesPage } from './_lib/pages-detail.js';
+import { equipmentPage } from './_lib/pages-equipment.js';
 import { servicePage, marketPage } from './_lib/pages-landing.js';
 import { media } from './_lib/components.js';
 
@@ -92,6 +93,7 @@ for (const lang of SUPPORTED_LANGUAGES) {
     ['careers.html', careersPage],
     ['process.html', processPage],
     ['industries.html', industriesPage],
+    ['equipment.html', equipmentPage],
     ['quality-control.html', qualityControlPage],
     ['logistics.html', logisticsPage],
     ['faq.html', faqPage],
