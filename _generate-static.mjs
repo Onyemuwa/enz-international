@@ -378,14 +378,26 @@ writeFileSync(
         // indexed lands on the English equivalent instead of a 404, which is
         // how ranking signal is carried across rather than thrown away.
         //
-        // Written out per language rather than as /:lang(sw|fr|zh)/:page*.
-        // That combined form matched the bare /fr/ but NOT nested paths, so
-        // /sw/services/ was still 404ing in production while the rule looked
-        // correct in the config. Verified against the live site, not assumed.
-        ...['sw', 'fr', 'zh'].flatMap((l) => [
-          { source: `/${l}`, destination: '/en/', permanent: true },
-          { source: `/${l}/:path*`, destination: '/en/:path*', permanent: true },
-        ]),
+        // ONE rule per language, and the (.*) matters.
+        //
+        // trailingSlash: true makes Vercel normalise the incoming path BEFORE
+        // redirects are evaluated, so /sw is 308'd to /sw/ and every source
+        // must therefore be able to match a path that ends in a slash.
+        //
+        // Two earlier attempts failed on exactly this:
+        //   /:lang(sw|fr|zh)/:page*  matched the bare /fr/ but no nested path
+        //   /sw/:path*               matched neither, because :path* stops at
+        //                            the segment boundary and cannot absorb
+        //                            the trailing slash
+        //
+        // /sw/:path(.*) captures "services/" slash and all, so the destination
+        // rebuilds /en/services/ intact — and it also matches /sw/ itself,
+        // where :path is empty and the destination is just /en/.
+        ...['sw', 'fr', 'zh'].map((l) => ({
+          source: `/${l}/:path(.*)`,
+          destination: '/en/:path',
+          permanent: true,
+        })),
       ],
       headers: [
         { source: '/(.*)', headers: SECURITY_HEADERS.map(([key, value]) => ({ key, value })) },
