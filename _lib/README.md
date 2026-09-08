@@ -52,14 +52,28 @@ compiled to nothing because `npm run css` ran against HTML that still had the
 old markup, one command before `node _generate-static.mjs` wrote the new
 classes into it.
 
-Correct order:
+Correct order — and there really are four steps, not three, because a fix
+that stops at step 3 ships a stylesheet nobody's browser will actually fetch:
+
 ```bash
-node _generate-static.mjs   # 1. HTML now contains the new class names
-cd _build && npm run css    # 2. THEN scan and compile — never before
+# 1. Bump ASSET_VERSION in _lib/site-config.js FIRST.
+node _generate-static.mjs   # 2. HTML now contains the new class names AND ?v=<new>
+cd _build && npm run css    # 3. THEN scan and compile — never before
+cd .. && node _generate-static.mjs   # 4. no-op on content, but confirms it's consistent
 ```
-If a class was already purged once, running `npm run css` again after step 1
-is the whole fix — no need to re-run the generator a second time, since
-compiling the stylesheet never changes the HTML.
+
+Both mistakes shipped for real on this project, back to back, in the same
+fix. First: running step 3 before step 2, so Tailwind's content scan saw the
+OLD HTML and purged a class that was never in it yet — see above. Second,
+fixing THAT: rebuilding `site.css` without bumping `ASSET_VERSION` first.
+Every page still linked `site.css?v=<old>`, so a browser or CDN edge that had
+already cached that exact URL kept serving the broken file — a direct,
+uncached fetch of the origin showed the fix; a real browser tab did not,
+because the query string identifying "this version of the file" hadn't
+changed even though the file's content had. `ASSET_VERSION` is the whole
+cache-busting mechanism for every CSS and JS asset on the site; changing what
+a URL serves without changing the URL defeats it by construction, not by
+misconfiguration.
 
 **Refactoring should not change output.** There is a check for that:
 
