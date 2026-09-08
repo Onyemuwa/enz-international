@@ -346,6 +346,53 @@
     });
   }
 
+  // ---------- Equipment search ----------
+  // Client side only, filtering the 35 cards already in the page — there is
+  // no search backend and nothing to index, so it can never return a result
+  // that does not match what is actually published.
+  //
+  // A category section hides itself once every one of its own cards is
+  // filtered out, rather than sitting there as an empty heading over nothing.
+  // The per-category "N types" badge becomes "N of M" while a query is
+  // active, so the count on screen is never a stale claim once filtering
+  // starts changing what is visible under it.
+  var equipSearch = document.querySelector('[data-equipment-search]');
+  if (equipSearch) {
+    var equipSections = Array.prototype.slice.call(document.querySelectorAll('[data-equipment-section]'));
+    var equipEmpty = document.querySelector('[data-equipment-empty]');
+    var ofLabel = equipSearch.getAttribute('data-of-label') || 'of';
+    var typeLabel = equipSearch.getAttribute('data-type-label') || 'type';
+    var typesLabel = equipSearch.getAttribute('data-types-label') || 'types';
+
+    var filterEquipment = function () {
+      var q = equipSearch.value.trim().toLowerCase();
+      var anyVisible = false;
+
+      equipSections.forEach(function (section) {
+        var cards = Array.prototype.slice.call(section.querySelectorAll('[data-equipment-card]'));
+        var visible = 0;
+        cards.forEach(function (card) {
+          var match = !q || (card.getAttribute('data-search') || '').indexOf(q) !== -1;
+          card.hidden = !match;
+          if (match) visible++;
+        });
+        section.hidden = visible === 0;
+        if (visible > 0) anyVisible = true;
+
+        var countEl = section.querySelector('[data-equipment-count]');
+        if (countEl) {
+          countEl.textContent = q
+            ? visible + ' ' + ofLabel + ' ' + cards.length
+            : cards.length + ' ' + (cards.length === 1 ? typeLabel : typesLabel);
+        }
+      });
+
+      if (equipEmpty) equipEmpty.hidden = !q || anyVisible;
+    };
+
+    equipSearch.addEventListener('input', filterEquipment);
+  }
+
   // ---------- Footer year ----------
   document.querySelectorAll('[data-current-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();

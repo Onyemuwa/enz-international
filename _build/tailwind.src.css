@@ -345,6 +345,29 @@
   .pill-neutral { color: #5A6A75; background: #F7F9FB; border-color: #E4E9ED; }
   .pill-accent { color: #C97A08; background: #FFF4E3; border-color: #FCE3BA; }
 
+  /* ---------- Equipment category tabs ------------------------------------
+     A denser, more storefront-like bar than a row of pill buttons — closer to
+     a shop's category strip than a set of secondary CTAs, which is what these
+     were before. Horizontal scroll rather than wrapping on a phone: seven
+     categories wrapping to three lines pushes the whole product grid down;
+     seven categories in one scrollable strip reads as a menu, the way it
+     would in a real store. */
+  .equipment-tabs {
+    display: flex; gap: 1.75rem; overflow-x: auto; padding-bottom: .25rem;
+    scrollbar-width: none;
+  }
+  .equipment-tabs::-webkit-scrollbar { display: none; }
+  .equipment-tab {
+    flex: none;
+    padding: .625rem .125rem;
+    font-size: .875rem; font-weight: 600; color: #5A6A75;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color .18s, border-color .18s;
+  }
+  .equipment-tab:hover { color: #1E2E40; }
+  .equipment-tab:focus-visible { color: #0171BA; border-color: #0171BA; }
+
 
   /* ---------- Founder monogram ------------------------------------------ */
   /* Stands in for a portrait. Deliberately NOT a stock photo of a person:

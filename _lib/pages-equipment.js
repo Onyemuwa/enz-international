@@ -37,7 +37,11 @@ function productCard(lang, item) {
     { src: item.image, file: item.image || `${slugify(item.name)}.webp`, alt: item.use },
     { ratio: '4-3', className: 'card-media' }
   );
-  return `<article class="${CARD} flex flex-col">
+  // data-search holds a plain-text haystack (name + description) that
+  // assets/js/site.js filters against as the visitor types. Built here, once,
+  // rather than re-read from rendered text on every keystroke.
+  const haystack = escapeAttr(`${item.name} ${item.use}`.toLowerCase());
+  return `<article class="${CARD} flex flex-col" data-equipment-card data-search="${haystack}">
     ${photo}
     <h3 class="font-semibold text-ink leading-snug">${item.name}</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">${item.use}</p>
@@ -53,26 +57,26 @@ function productCard(lang, item) {
 }
 
 export function equipmentPage(lang) {
-  // A pill nav under the hero — "browse by category" — jumping to each
+  // A tab-style nav under the hero — "browse by category" — jumping to each
   // section anchor. The storefront-style equivalent of a shop's category
   // menu, and genuinely useful once the page holds 35 products: nobody should
   // have to scroll past six categories to reach the seventh.
   const categoryNav = equipmentCategories
-    .map((cat) => `<a href="#${slugify(cat.industry)}" class="btn btn-secondary btn-sm">${cat.industry}</a>`)
+    .map((cat) => `<a href="#${slugify(cat.industry)}" class="equipment-tab">${cat.industry}</a>`)
     .join('');
 
   const sections = equipmentCategories
     .map((cat, idx) => {
       const cards = cat.items.map((item) => productCard(lang, item)).join('');
       return `
-    <section id="${slugify(cat.industry)}" class="section scroll-mt-24 ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-bg'}">
+    <section id="${slugify(cat.industry)}" data-equipment-section class="section scroll-mt-24 ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-bg'}">
       <div class="${SHELL} max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
             <h2 class="h2-section text-2xl">${cat.industry}</h2>
             <p class="text-slate mt-2.5 leading-relaxed">${cat.intro}</p>
           </div>
-          <span class="pill mono-tag shrink-0">${cat.items.length} ${cat.items.length === 1 ? 'type' : 'types'}</span>
+          <span data-equipment-count class="pill mono-tag shrink-0">${cat.items.length} ${cat.items.length === 1 ? 'type' : 'types'}</span>
         </div>
         <div data-reveal-group class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">${cards}</div>
       </div>
@@ -85,9 +89,22 @@ export function equipmentPage(lang) {
   <section class="section-sm bg-white pt-0">
     <div class="${SHELL} max-w-6xl space-y-6">
       <p class="text-sm text-slate bg-gray-bg border border-line rounded-lg px-4 py-3">${t(lang, 'equipmentDisclaimer')}</p>
-      <nav aria-label="${t(lang, 'equipmentShopByCategory')}" class="flex flex-wrap gap-2.5">${categoryNav}</nav>
+
+      <!-- Client-side only: filters the 35 cards already on the page as the
+           visitor types. No search backend, no index to keep in sync — it
+           cannot return a result that does not match what is actually
+           published, which a server-side search over stale data could. -->
+      <div class="relative max-w-xl">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-light pointer-events-none">${icon('search', 'w-4.5 h-4.5')}</span>
+        <input type="search" data-equipment-search
+               data-of-label="${t(lang, 'equipmentCountOf')}" data-type-label="${t(lang, 'equipmentCountType')}" data-types-label="${t(lang, 'equipmentCountTypes')}"
+               placeholder="${t(lang, 'equipmentSearchPlaceholder')}" aria-label="${t(lang, 'equipmentSearchPlaceholder')}" class="field w-full pl-11" />
+      </div>
+
+      <nav aria-label="${t(lang, 'equipmentShopByCategory')}" data-equipment-tabs class="equipment-tabs">${categoryNav}</nav>
     </div>
   </section>
+  <p data-equipment-empty hidden class="text-center text-slate max-w-md mx-auto py-16 px-4">${t(lang, 'equipmentSearchNoResults')}</p>
   ${sections}
   ${closingCta(lang)}`;
 
