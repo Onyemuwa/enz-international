@@ -19,7 +19,10 @@ import { pageHero, closingCta } from './page-parts.js';
 import { equipmentCategories } from '../_content/equipment.js';
 import { SITE_URL } from './site-config.js';
 
-const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+// Exported so any page that links to a category anchor on /equipment/ —
+// the homepage teaser does — computes the exact same id this page renders,
+// rather than keeping its own copy that could drift out of sync.
+export const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
 function specChip(label, value) {
   return `<div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">${label}</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">${value}</p></div>`;

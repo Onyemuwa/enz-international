@@ -22,7 +22,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=46" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=47" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -623,6 +623,94 @@
     </div>
   </section>
 
+  <!-- 8. FEATURED EQUIPMENT. One example per category (of 35 total), each
+       linking straight to that category on the full storefront rather than
+       opening a quote here — the homepage's job is to show the range exists
+       and get a visitor to the page built for browsing it, not to duplicate
+       that page's grid inline. -->
+  <section class="section bg-white">
+    <div class="shell">
+      
+      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+        <div class="lg:col-span-6">
+          
+          <p class="eyebrow">Equipment</p>
+          <h2 class="h2-section mt-4">Equipment we help you source</h2>
+        </div>
+        <div class="lg:col-span-6"><p class="lead">One example per category — 35 in total, sourced against your brief, not stocked.</p></div>
+      </div>
+      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
+        <a href="equipment/#construction-building-materials" class="card block group">
+          <div class="media media-4-3 card-media">
+            <img src="../assets/images/ceramic-tile-press-kiln-line.webp" alt="Forms and fires clay or porcelain body into finished floor or wall tile."
+                 loading="lazy" decoding="async"
+                  width="1200" height="801" srcset="../assets/images/ceramic-tile-press-kiln-line-400w.webp 400w, ../assets/images/ceramic-tile-press-kiln-line-800w.webp 800w, ../assets/images/ceramic-tile-press-kiln-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+          </div>
+          <span class="pill mono-tag">Construction & building materials</span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Ceramic tile press & kiln line</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Forms and fires clay or porcelain body into finished floor or wall tile.</p>
+        </a><a href="equipment/#industrial-equipment-machinery" class="card block group">
+          <div class="media media-4-3 card-media">
+            <img src="../assets/images/cnc-machining-centre.webp" alt="Cuts, drills and mills metal or plastic parts to specification from a digital design."
+                 loading="lazy" decoding="async"
+                  width="1200" height="1800" srcset="../assets/images/cnc-machining-centre-400w.webp 400w, ../assets/images/cnc-machining-centre-800w.webp 800w, ../assets/images/cnc-machining-centre-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+          </div>
+          <span class="pill mono-tag">Industrial equipment & machinery</span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">CNC machining centre</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Cuts, drills and mills metal or plastic parts to specification from a digital design.</p>
+        </a><a href="equipment/#consumer-goods-retail" class="card block group">
+          <div class="media media-4-3 card-media">
+            <img src="../assets/images/household-plastics-production-line.webp" alt="Moulds and finishes household plastic goods — containers, fixtures, general merchandise."
+                 loading="lazy" decoding="async"
+                  width="1200" height="800" srcset="../assets/images/household-plastics-production-line-400w.webp 400w, ../assets/images/household-plastics-production-line-800w.webp 800w, ../assets/images/household-plastics-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+          </div>
+          <span class="pill mono-tag">Consumer goods & retail</span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Household plastics production line</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Moulds and finishes household plastic goods — containers, fixtures, general merchandise.</p>
+        </a><a href="equipment/#commodities-raw-materials" class="card block group">
+          <div class="media media-4-3 card-media">
+            <img src="../assets/images/ore-flotation-concentration-line.webp" alt="Separates valuable mineral from waste rock to produce a saleable concentrate."
+                 loading="lazy" decoding="async"
+                  width="1200" height="752" srcset="../assets/images/ore-flotation-concentration-line-400w.webp 400w, ../assets/images/ore-flotation-concentration-line-800w.webp 800w, ../assets/images/ore-flotation-concentration-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+          </div>
+          <span class="pill mono-tag">Commodities & raw materials</span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Ore flotation & concentration line</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Separates valuable mineral from waste rock to produce a saleable concentrate.</p>
+        </a><a href="equipment/#agriculture-food-processing" class="card block group">
+          <div class="media media-4-3 card-media">
+            <img src="../assets/images/rice-maize-milling-line.webp" alt="Hulls, polishes and grades grain into a finished, saleable product."
+                 loading="lazy" decoding="async"
+                  width="1200" height="835" srcset="../assets/images/rice-maize-milling-line-400w.webp 400w, ../assets/images/rice-maize-milling-line-800w.webp 800w, ../assets/images/rice-maize-milling-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+          </div>
+          <span class="pill mono-tag">Agriculture & food processing</span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Rice/maize milling line</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Hulls, polishes and grades grain into a finished, saleable product.</p>
+        </a><a href="equipment/#packaging-printing" class="card block group">
+          <div class="media media-4-3 card-media">
+            <img src="../assets/images/flexographic-printing-press.webp" alt="Prints multi-colour graphics onto flexible packaging film."
+                 loading="lazy" decoding="async"
+                  width="1200" height="800" srcset="../assets/images/flexographic-printing-press-400w.webp 400w, ../assets/images/flexographic-printing-press-800w.webp 800w, ../assets/images/flexographic-printing-press-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+          </div>
+          <span class="pill mono-tag">Packaging & printing</span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Flexographic printing press</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Prints multi-colour graphics onto flexible packaging film.</p>
+        </a><a href="equipment/#textiles-apparel" class="card block group">
+          <div class="media media-4-3 card-media">
+            <img src="../assets/images/circular-flat-knitting-line.webp" alt="Knits yarn into fabric for apparel and household textiles."
+                 loading="lazy" decoding="async"
+                  width="1200" height="1600" srcset="../assets/images/circular-flat-knitting-line-400w.webp 400w, ../assets/images/circular-flat-knitting-line-800w.webp 800w, ../assets/images/circular-flat-knitting-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+          </div>
+          <span class="pill mono-tag">Textiles & apparel</span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Circular/flat knitting line</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">Knits yarn into fabric for apparel and household textiles.</p>
+        </a>
+      </div>
+      <div class="text-center mt-10">
+        <a href="equipment/" class="btn btn-primary">Browse all equipment <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+      </div>
+    </div>
+  </section>
+
   <!-- 10. FAQ. -->
   <section class="section bg-white">
     <div class="shell">
@@ -812,9 +900,9 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=46"></script>
-    <script src="../assets/js/api.js?v=46"></script>
-    <script src="../assets/js/site.js?v=46" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=46"></script>
+    <script src="../assets/js/config.js?v=47"></script>
+    <script src="../assets/js/api.js?v=47"></script>
+    <script src="../assets/js/site.js?v=47" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=47"></script>
   </body>
 </html>

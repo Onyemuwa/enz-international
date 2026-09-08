@@ -23,6 +23,8 @@ import { markets } from '../_content/markets.js';
 import { faqs } from '../_content/faqs.js';
 import { problems, engagementModels } from '../_content/narrative.js';
 import { processSteps, qcStages, industries } from '../_content/pages.js';
+import { equipmentCategories } from '../_content/equipment.js';
+import { slugify } from './pages-equipment.js';
 import { whyChina } from '../_content/pages2.js';
 
 export function homePage(lang) {
@@ -285,6 +287,33 @@ export function homePage(lang) {
         </div>
         <p class="text-sm text-slate mt-5">${t(lang, 'footprintHubsLabel')}: ${hubs.join(' · ')}</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FEATURED EQUIPMENT. One example per category (of 35 total), each
+       linking straight to that category on the full storefront rather than
+       opening a quote here — the homepage's job is to show the range exists
+       and get a visitor to the page built for browsing it, not to duplicate
+       that page's grid inline. -->
+  <section class="section bg-white">
+    <div class="${SHELL}">
+      ${sectionHead(t(lang, 'equipmentHomeEyebrow'), t(lang, 'equipmentHomeTitle'), t(lang, 'equipmentHomeLead'), { align: 'start' })}
+      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
+        ${equipmentCategories
+          .map((cat) => {
+            const item = cat.items[0];
+            return `<a href="equipment.html#${slugify(cat.industry)}" class="${CARD} block group">
+          ${media({ src: item.image, file: item.image, alt: item.use }, { ratio: '4-3', className: 'card-media' })}
+          <span class="pill mono-tag">${cat.industry}</span>
+          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">${item.name}</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">${item.use}</p>
+        </a>`;
+          })
+          .join('')}
+      </div>
+      <div class="text-center mt-10">
+        <a href="equipment.html" class="${BTN_PRIMARY}">${t(lang, 'equipmentViewAllCta')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
       </div>
     </div>
   </section>
