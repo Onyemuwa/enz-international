@@ -38,8 +38,28 @@ no module imports one listed below it.
 
 ## Changing something
 
-Run `node _generate-static.mjs` from the repo root. It rewrites all 76 pages in
+Run `node _generate-static.mjs` from the repo root. It rewrites all pages in
 place.
+
+**If the change adds or renames a CSS class used in `_lib/`, regenerate the
+HTML *before* rebuilding the stylesheet, never after.** `_build/tailwind.
+config.cjs`'s `content` glob scans the *generated* `en/**/*.html` output and
+`assets/js/**/*.js` — it does not scan `_lib/*.js`. A class that exists only in
+a `_lib/` template and not yet in any generated HTML file is invisible to that
+scan and gets silently purged from `site.css`, even though it is a real,
+intentional, hand-written rule. It shipped once already: `.equipment-tabs`
+compiled to nothing because `npm run css` ran against HTML that still had the
+old markup, one command before `node _generate-static.mjs` wrote the new
+classes into it.
+
+Correct order:
+```bash
+node _generate-static.mjs   # 1. HTML now contains the new class names
+cd _build && npm run css    # 2. THEN scan and compile — never before
+```
+If a class was already purged once, running `npm run css` again after step 1
+is the whole fix — no need to re-run the generator a second time, since
+compiling the stylesheet never changes the HTML.
 
 **Refactoring should not change output.** There is a check for that:
 
