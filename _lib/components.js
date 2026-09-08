@@ -124,8 +124,15 @@ export function escapeAttr(v) {
 //
 // `eager` is for above-the-fold images only — everything else is lazy, because
 // a photo-led page with eager images would block first paint on all of them.
+// `slot` is normally a string key looked up in the two sitewide image maps —
+// the original, and still the common, case. It can also be a {src, file, alt}
+// object passed directly, for content with too many individual photo slots to
+// register into a shared map one at a time (35 equipment items, each its own
+// slot, would otherwise mean 35 new entries in images.js alongside the
+// hero/about/industry photos it was written for). Same empty-slot contract
+// either way: a config with `src: ''` renders the deliberate placeholder.
 export function media(slot, { ratio = '16-9', className = '', eager = false, sizes = '' } = {}) {
-  const conf = images[slot] || industryImages[slot];
+  const conf = typeof slot === 'string' ? images[slot] || industryImages[slot] : slot;
   if (!conf) throw new Error(`Unknown image slot: ${slot}`);
 
   if (!conf.src) {

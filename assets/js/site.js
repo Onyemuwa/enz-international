@@ -99,9 +99,28 @@
     if (lastFocused && lastFocused.focus) lastFocused.focus();
   }
 
+  // A booking trigger can carry data-quote-for="<product name>" — the
+  // equipment page's "Request a Quote" buttons do this — so the enquiry
+  // arrives already saying which product it is about instead of a generic
+  // "I'd like a consultation" with the visitor left to type the name
+  // themselves from memory two clicks later.
+  //
+  // It only ever PREPENDS to whatever the visitor goes on to type; it never
+  // overwrites a message they already started, and a second click with a
+  // different product replaces its own line rather than stacking duplicates.
   document.querySelectorAll('[data-open-booking]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      openModal(document.getElementById('booking-modal'));
+      var modal = document.getElementById('booking-modal');
+      var product = btn.getAttribute('data-quote-for');
+      if (product) {
+        var msg = modal && modal.querySelector('#booking-message, [name="message"]');
+        if (msg) {
+          var line = 'Quote request: ' + product;
+          var rest = msg.value.replace(/^Quote request: .*(\r?\n)?/, '');
+          msg.value = rest ? line + '\n' + rest : line;
+        }
+      }
+      openModal(modal);
     });
   });
   document.querySelectorAll('[data-close-modal]').forEach(function (btn) {
