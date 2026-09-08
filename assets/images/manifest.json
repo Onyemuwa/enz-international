@@ -25,6 +25,363 @@
       }
     ]
   },
+  "aluminium-profile-extrusion-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "aluminium-profile-extrusion-line-400w.webp",
+        "kb": 32
+      },
+      {
+        "w": 800,
+        "file": "aluminium-profile-extrusion-line-800w.webp",
+        "kb": 90
+      },
+      {
+        "w": 1200,
+        "file": "aluminium-profile-extrusion-line-1200w.webp",
+        "kb": 187
+      }
+    ]
+  },
+  "animal-feed-pellet-line.webp": {
+    "width": 1200,
+    "height": 820,
+    "variants": [
+      {
+        "w": 400,
+        "file": "animal-feed-pellet-line-400w.webp",
+        "kb": 37
+      },
+      {
+        "w": 800,
+        "file": "animal-feed-pellet-line-800w.webp",
+        "kb": 104
+      },
+      {
+        "w": 1200,
+        "file": "animal-feed-pellet-line-1200w.webp",
+        "kb": 228
+      }
+    ]
+  },
+  "automated-packaging-palletising-line.webp": {
+    "width": 1200,
+    "height": 801,
+    "variants": [
+      {
+        "w": 400,
+        "file": "automated-packaging-palletising-line-400w.webp",
+        "kb": 20
+      },
+      {
+        "w": 800,
+        "file": "automated-packaging-palletising-line-800w.webp",
+        "kb": 52
+      },
+      {
+        "w": 1200,
+        "file": "automated-packaging-palletising-line-1200w.webp",
+        "kb": 97
+      }
+    ]
+  },
+  "blister-thermoforming-packaging-line.webp": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "blister-thermoforming-packaging-line-400w.webp",
+        "kb": 11
+      },
+      {
+        "w": 800,
+        "file": "blister-thermoforming-packaging-line-800w.webp",
+        "kb": 27
+      },
+      {
+        "w": 1200,
+        "file": "blister-thermoforming-packaging-line-1200w.webp",
+        "kb": 50
+      }
+    ]
+  },
+  "ceramic-tile-press-kiln-line.webp": {
+    "width": 1200,
+    "height": 801,
+    "variants": [
+      {
+        "w": 400,
+        "file": "ceramic-tile-press-kiln-line-400w.webp",
+        "kb": 11
+      },
+      {
+        "w": 800,
+        "file": "ceramic-tile-press-kiln-line-800w.webp",
+        "kb": 24
+      },
+      {
+        "w": 1200,
+        "file": "ceramic-tile-press-kiln-line-1200w.webp",
+        "kb": 41
+      }
+    ]
+  },
+  "circular-flat-knitting-line.webp": {
+    "width": 1200,
+    "height": 1600,
+    "variants": [
+      {
+        "w": 400,
+        "file": "circular-flat-knitting-line-400w.webp",
+        "kb": 36
+      },
+      {
+        "w": 800,
+        "file": "circular-flat-knitting-line-800w.webp",
+        "kb": 102
+      },
+      {
+        "w": 1200,
+        "file": "circular-flat-knitting-line-1200w.webp",
+        "kb": 212
+      }
+    ]
+  },
+  "cnc-machining-centre.webp": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "cnc-machining-centre-400w.webp",
+        "kb": 33
+      },
+      {
+        "w": 800,
+        "file": "cnc-machining-centre-800w.webp",
+        "kb": 82
+      },
+      {
+        "w": 1200,
+        "file": "cnc-machining-centre-1200w.webp",
+        "kb": 148
+      }
+    ]
+  },
+  "coffee-cocoa-wet-dry-processing-line.webp": {
+    "width": 1200,
+    "height": 798,
+    "variants": [
+      {
+        "w": 400,
+        "file": "coffee-cocoa-wet-dry-processing-line-400w.webp",
+        "kb": 23
+      },
+      {
+        "w": 800,
+        "file": "coffee-cocoa-wet-dry-processing-line-800w.webp",
+        "kb": 63
+      },
+      {
+        "w": 1200,
+        "file": "coffee-cocoa-wet-dry-processing-line-1200w.webp",
+        "kb": 125
+      }
+    ]
+  },
+  "cold-chain-storage-handling-system.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "cold-chain-storage-handling-system-400w.webp",
+        "kb": 9
+      },
+      {
+        "w": 800,
+        "file": "cold-chain-storage-handling-system-800w.webp",
+        "kb": 25
+      },
+      {
+        "w": 1200,
+        "file": "cold-chain-storage-handling-system-1200w.webp",
+        "kb": 52
+      }
+    ]
+  },
+  "concrete-block-paver-making-machine.webp": {
+    "width": 1200,
+    "height": 798,
+    "variants": [
+      {
+        "w": 400,
+        "file": "concrete-block-paver-making-machine-400w.webp",
+        "kb": 17
+      },
+      {
+        "w": 800,
+        "file": "concrete-block-paver-making-machine-800w.webp",
+        "kb": 45
+      },
+      {
+        "w": 1200,
+        "file": "concrete-block-paver-making-machine-1200w.webp",
+        "kb": 87
+      }
+    ]
+  },
+  "copper-cathode-electro-refining-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "copper-cathode-electro-refining-line-400w.webp",
+        "kb": 7
+      },
+      {
+        "w": 800,
+        "file": "copper-cathode-electro-refining-line-800w.webp",
+        "kb": 19
+      },
+      {
+        "w": 1200,
+        "file": "copper-cathode-electro-refining-line-1200w.webp",
+        "kb": 36
+      }
+    ]
+  },
+  "corrugated-box-printing-converting-line.webp": {
+    "width": 1200,
+    "height": 900,
+    "variants": [
+      {
+        "w": 400,
+        "file": "corrugated-box-printing-converting-line-400w.webp",
+        "kb": 17
+      },
+      {
+        "w": 800,
+        "file": "corrugated-box-printing-converting-line-800w.webp",
+        "kb": 44
+      },
+      {
+        "w": 1200,
+        "file": "corrugated-box-printing-converting-line-1200w.webp",
+        "kb": 88
+      }
+    ]
+  },
+  "corrugated-carton-production-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "corrugated-carton-production-line-400w.webp",
+        "kb": 16
+      },
+      {
+        "w": 800,
+        "file": "corrugated-carton-production-line-800w.webp",
+        "kb": 43
+      },
+      {
+        "w": 1200,
+        "file": "corrugated-carton-production-line-1200w.webp",
+        "kb": 86
+      }
+    ]
+  },
+  "dairy-processing-packaging-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "dairy-processing-packaging-line-400w.webp",
+        "kb": 12
+      },
+      {
+        "w": 800,
+        "file": "dairy-processing-packaging-line-800w.webp",
+        "kb": 33
+      },
+      {
+        "w": 1200,
+        "file": "dairy-processing-packaging-line-1200w.webp",
+        "kb": 69
+      }
+    ]
+  },
+  "dyeing-finishing-line.webp": {
+    "width": 1200,
+    "height": 733,
+    "variants": [
+      {
+        "w": 400,
+        "file": "dyeing-finishing-line-400w.webp",
+        "kb": 13
+      },
+      {
+        "w": 800,
+        "file": "dyeing-finishing-line-800w.webp",
+        "kb": 35
+      },
+      {
+        "w": 1200,
+        "file": "dyeing-finishing-line-1200w.webp",
+        "kb": 71
+      }
+    ]
+  },
+  "edible-oil-pressing-refining-line.webp": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "edible-oil-pressing-refining-line-400w.webp",
+        "kb": 12
+      },
+      {
+        "w": 800,
+        "file": "edible-oil-pressing-refining-line-800w.webp",
+        "kb": 29
+      },
+      {
+        "w": 1200,
+        "file": "edible-oil-pressing-refining-line-1200w.webp",
+        "kb": 50
+      }
+    ]
+  },
+  "embroidery-finishing-line.webp": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "embroidery-finishing-line-400w.webp",
+        "kb": 19
+      },
+      {
+        "w": 800,
+        "file": "embroidery-finishing-line-800w.webp",
+        "kb": 46
+      },
+      {
+        "w": 1200,
+        "file": "embroidery-finishing-line-1200w.webp",
+        "kb": 85
+      }
+    ]
+  },
   "factory-setup.webp": {
     "width": 1100,
     "height": 734,
@@ -43,6 +400,90 @@
         "w": 1100,
         "file": "factory-setup-1100w.webp",
         "kb": 113
+      }
+    ]
+  },
+  "flexographic-printing-press.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "flexographic-printing-press-400w.webp",
+        "kb": 11
+      },
+      {
+        "w": 800,
+        "file": "flexographic-printing-press-800w.webp",
+        "kb": 27
+      },
+      {
+        "w": 1200,
+        "file": "flexographic-printing-press-1200w.webp",
+        "kb": 47
+      }
+    ]
+  },
+  "fruit-vegetable-processing-line.webp": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "fruit-vegetable-processing-line-400w.webp",
+        "kb": 34
+      },
+      {
+        "w": 800,
+        "file": "fruit-vegetable-processing-line-800w.webp",
+        "kb": 90
+      },
+      {
+        "w": 1200,
+        "file": "fruit-vegetable-processing-line-1200w.webp",
+        "kb": 191
+      }
+    ]
+  },
+  "garment-cut-and-sew-production-line.webp": {
+    "width": 1200,
+    "height": 675,
+    "variants": [
+      {
+        "w": 400,
+        "file": "garment-cut-and-sew-production-line-400w.webp",
+        "kb": 10
+      },
+      {
+        "w": 800,
+        "file": "garment-cut-and-sew-production-line-800w.webp",
+        "kb": 24
+      },
+      {
+        "w": 1200,
+        "file": "garment-cut-and-sew-production-line-1200w.webp",
+        "kb": 41
+      }
+    ]
+  },
+  "grain-milling-processing-line.webp": {
+    "width": 1200,
+    "height": 1600,
+    "variants": [
+      {
+        "w": 400,
+        "file": "grain-milling-processing-line-400w.webp",
+        "kb": 26
+      },
+      {
+        "w": 800,
+        "file": "grain-milling-processing-line-800w.webp",
+        "kb": 95
+      },
+      {
+        "w": 1200,
+        "file": "grain-milling-processing-line-1200w.webp",
+        "kb": 247
       }
     ]
   },
@@ -74,6 +515,48 @@
         "w": 1920,
         "file": "hero-factory-1920w.webp",
         "kb": 245
+      }
+    ]
+  },
+  "household-appliance-assembly-line.webp": {
+    "width": 1200,
+    "height": 797,
+    "variants": [
+      {
+        "w": 400,
+        "file": "household-appliance-assembly-line-400w.webp",
+        "kb": 12
+      },
+      {
+        "w": 800,
+        "file": "household-appliance-assembly-line-800w.webp",
+        "kb": 28
+      },
+      {
+        "w": 1200,
+        "file": "household-appliance-assembly-line-1200w.webp",
+        "kb": 49
+      }
+    ]
+  },
+  "household-plastics-production-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "household-plastics-production-line-400w.webp",
+        "kb": 5
+      },
+      {
+        "w": 800,
+        "file": "household-plastics-production-line-800w.webp",
+        "kb": 11
+      },
+      {
+        "w": 1200,
+        "file": "household-plastics-production-line-1200w.webp",
+        "kb": 20
       }
     ]
   },
@@ -141,6 +624,48 @@
       }
     ]
   },
+  "industrial-welding-robotic-assembly-cell.webp": {
+    "width": 1200,
+    "height": 765,
+    "variants": [
+      {
+        "w": 400,
+        "file": "industrial-welding-robotic-assembly-cell-400w.webp",
+        "kb": 11
+      },
+      {
+        "w": 800,
+        "file": "industrial-welding-robotic-assembly-cell-800w.webp",
+        "kb": 28
+      },
+      {
+        "w": 1200,
+        "file": "industrial-welding-robotic-assembly-cell-1200w.webp",
+        "kb": 56
+      }
+    ]
+  },
+  "label-printing-die-cutting-line.webp": {
+    "width": 1200,
+    "height": 1804,
+    "variants": [
+      {
+        "w": 400,
+        "file": "label-printing-die-cutting-line-400w.webp",
+        "kb": 14
+      },
+      {
+        "w": 800,
+        "file": "label-printing-die-cutting-line-800w.webp",
+        "kb": 33
+      },
+      {
+        "w": 1200,
+        "file": "label-printing-die-cutting-line-1200w.webp",
+        "kb": 57
+      }
+    ]
+  },
   "markets-port.webp": {
     "width": 1600,
     "height": 851,
@@ -167,6 +692,111 @@
       }
     ]
   },
+  "nonwoven-fabric-production-line.webp": {
+    "width": 1200,
+    "height": 721,
+    "variants": [
+      {
+        "w": 400,
+        "file": "nonwoven-fabric-production-line-400w.webp",
+        "kb": 14
+      },
+      {
+        "w": 800,
+        "file": "nonwoven-fabric-production-line-800w.webp",
+        "kb": 34
+      },
+      {
+        "w": 1200,
+        "file": "nonwoven-fabric-production-line-1200w.webp",
+        "kb": 66
+      }
+    ]
+  },
+  "ore-flotation-concentration-line.webp": {
+    "width": 1200,
+    "height": 752,
+    "variants": [
+      {
+        "w": 400,
+        "file": "ore-flotation-concentration-line-400w.webp",
+        "kb": 26
+      },
+      {
+        "w": 800,
+        "file": "ore-flotation-concentration-line-800w.webp",
+        "kb": 90
+      },
+      {
+        "w": 1200,
+        "file": "ore-flotation-concentration-line-1200w.webp",
+        "kb": 233
+      }
+    ]
+  },
+  "pet-bottle-blow-moulding-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "pet-bottle-blow-moulding-line-400w.webp",
+        "kb": 19
+      },
+      {
+        "w": 800,
+        "file": "pet-bottle-blow-moulding-line-800w.webp",
+        "kb": 46
+      },
+      {
+        "w": 1200,
+        "file": "pet-bottle-blow-moulding-line-1200w.webp",
+        "kb": 84
+      }
+    ]
+  },
+  "plastic-injection-moulding-machine.webp": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "plastic-injection-moulding-machine-400w.webp",
+        "kb": 32
+      },
+      {
+        "w": 800,
+        "file": "plastic-injection-moulding-machine-800w.webp",
+        "kb": 81
+      },
+      {
+        "w": 1200,
+        "file": "plastic-injection-moulding-machine-1200w.webp",
+        "kb": 151
+      }
+    ]
+  },
+  "pouch-sachet-forming-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "pouch-sachet-forming-line-400w.webp",
+        "kb": 11
+      },
+      {
+        "w": 800,
+        "file": "pouch-sachet-forming-line-800w.webp",
+        "kb": 28
+      },
+      {
+        "w": 1200,
+        "file": "pouch-sachet-forming-line-1200w.webp",
+        "kb": 51
+      }
+    ]
+  },
   "quality-inspection.webp": {
     "width": 1100,
     "height": 733,
@@ -188,6 +818,69 @@
       }
     ]
   },
+  "rice-maize-milling-line.webp": {
+    "width": 1200,
+    "height": 835,
+    "variants": [
+      {
+        "w": 400,
+        "file": "rice-maize-milling-line-400w.webp",
+        "kb": 15
+      },
+      {
+        "w": 800,
+        "file": "rice-maize-milling-line-800w.webp",
+        "kb": 46
+      },
+      {
+        "w": 1200,
+        "file": "rice-maize-milling-line-1200w.webp",
+        "kb": 115
+      }
+    ]
+  },
+  "sanitaryware-slip-casting-glazing-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "sanitaryware-slip-casting-glazing-line-400w.webp",
+        "kb": 7
+      },
+      {
+        "w": 800,
+        "file": "sanitaryware-slip-casting-glazing-line-800w.webp",
+        "kb": 16
+      },
+      {
+        "w": 1200,
+        "file": "sanitaryware-slip-casting-glazing-line-1200w.webp",
+        "kb": 27
+      }
+    ]
+  },
+  "sheet-metal-laser-cutting-bending-line.webp": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "sheet-metal-laser-cutting-bending-line-400w.webp",
+        "kb": 19
+      },
+      {
+        "w": 800,
+        "file": "sheet-metal-laser-cutting-bending-line-800w.webp",
+        "kb": 54
+      },
+      {
+        "w": 1200,
+        "file": "sheet-metal-laser-cutting-bending-line-1200w.webp",
+        "kb": 116
+      }
+    ]
+  },
   "sourcing.webp": {
     "width": 1100,
     "height": 585,
@@ -206,6 +899,48 @@
         "w": 1100,
         "file": "sourcing-1100w.webp",
         "kb": 105
+      }
+    ]
+  },
+  "steel-door-window-fabrication-line.webp": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "steel-door-window-fabrication-line-400w.webp",
+        "kb": 9
+      },
+      {
+        "w": 800,
+        "file": "steel-door-window-fabrication-line-800w.webp",
+        "kb": 22
+      },
+      {
+        "w": 1200,
+        "file": "steel-door-window-fabrication-line-1200w.webp",
+        "kb": 40
+      }
+    ]
+  },
+  "weaving-loom-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "weaving-loom-line-400w.webp",
+        "kb": 23
+      },
+      {
+        "w": 800,
+        "file": "weaving-loom-line-800w.webp",
+        "kb": 63
+      },
+      {
+        "w": 1200,
+        "file": "weaving-loom-line-1200w.webp",
+        "kb": 127
       }
     ]
   },
