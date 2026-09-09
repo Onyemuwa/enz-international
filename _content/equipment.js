@@ -72,6 +72,12 @@ export const equipmentCategories = [
         power: '40–180 kW',
         capacity: '3,000–8,000 m²/day',
         leadTime: '75–120 days',
+        specs: [
+          'Hydraulic press cycle down to single-digit seconds per tile, tuned to body thickness',
+          'Roller-hearth or shuttle kiln firing, matched to porcelain or ceramic body',
+          'Automatic glaze line for single-fire or double-fire production',
+          'PLC-controlled firing curve with temperature-log traceability',
+        ],
       },
       {
         name: 'Sanitaryware slip-casting & glazing line',
@@ -80,6 +86,12 @@ export const equipmentCategories = [
         power: '20–90 kW',
         capacity: '500–2,000 pcs/day',
         leadTime: '90–120 days',
+        specs: [
+          'Pressure or gravity slip-casting moulds, sized to basin, cistern or WC-pan geometry',
+          'Automated glazing booth with spray-robot or manual touch-up stations',
+          'Humidity-controlled drying chamber to reduce cracking before firing',
+          'Mould-change tooling for running multiple products on one cell',
+        ],
       },
       {
         name: 'Aluminium profile extrusion line',
@@ -88,6 +100,12 @@ export const equipmentCategories = [
         power: '150–800 kW',
         capacity: '1,500–4,000 t/year',
         leadTime: '90–150 days',
+        specs: [
+          'Extrusion press rated 800–2,600 tonnes, matched to profile complexity',
+          'Billet-heating furnace, induction or gas-fired',
+          'In-line quench, stretch and cut-to-length stations',
+          'Ageing oven for T5/T6 temper, sized to daily extrusion volume',
+        ],
       },
       {
         name: 'Concrete block & paver making machine',
@@ -96,6 +114,12 @@ export const equipmentCategories = [
         power: '15–60 kW',
         capacity: '3,000–12,000 blocks/day',
         leadTime: '45–75 days',
+        specs: [
+          'Vibration-pressed forming head, mould interchangeable for block, kerb or paver profiles',
+          'Automatic pallet feed and stacking to cut labour per shift',
+          'Batching-plant integration for a consistent mix ratio',
+          'Curing chamber or yard-curing option, depending on site space',
+        ],
       },
       {
         name: 'Steel door & window fabrication line',
@@ -104,6 +128,12 @@ export const equipmentCategories = [
         power: '20–80 kW',
         capacity: '200–600 units/day',
         leadTime: '60–90 days',
+        specs: [
+          'CNC punching and cutting stations sized to standard door/window gauges',
+          'Automated welding jigs for corner and frame joints',
+          'Powder-coat or galvanising line integration for finishing',
+          'Hardware-fitting station for locks, hinges and closers',
+        ],
       },
     ],
   },
@@ -119,6 +149,12 @@ export const equipmentCategories = [
         power: '15–75 kW',
         capacity: 'Varies by part geometry',
         leadTime: '45–90 days',
+        specs: [
+          '3-, 4- or 5-axis configurations, matched to part complexity',
+          'Tool-changer capacity from 20 to 40+ stations for unattended runs',
+          'Coolant-through-spindle option for deep-hole and hard-metal work',
+          'Compatible with common CAM software — Mastercam, Fusion, SolidCAM',
+        ],
       },
       {
         name: 'Plastic injection moulding machine',
@@ -127,6 +163,12 @@ export const equipmentCategories = [
         power: '20–150 kW',
         capacity: '500–5,000 shots/day',
         leadTime: '60–90 days',
+        specs: [
+          'Clamping force from 80 to 1,000+ tonnes, sized to part and mould',
+          'Servo-hydraulic or all-electric drive, trading energy use against cycle time',
+          'Multi-cavity mould compatibility for high-volume small parts',
+          'Robotic take-off arm integration for unmanned cycling',
+        ],
       },
       {
         name: 'Automated packaging & palletising line',
@@ -135,6 +177,12 @@ export const equipmentCategories = [
         power: '10–60 kW',
         capacity: '20–80 cartons/min',
         leadTime: '60–100 days',
+        specs: [
+          'Modular design — filling, sealing, labelling and case-packing stations added as needed',
+          'Robotic or gantry palletiser rated to the daily throughput target',
+          'Vision-based inspection for fill-level and label checks',
+          'Changeover tooling for running multiple SKUs on one line',
+        ],
       },
       {
         name: 'Sheet metal laser cutting & bending line',
@@ -143,6 +191,12 @@ export const equipmentCategories = [
         power: '10–40 kW',
         capacity: 'Varies by part geometry',
         leadTime: '45–75 days',
+        specs: [
+          'Fibre laser cutting up to 20–25mm mild steel, thinner for stainless or aluminium',
+          'CNC press brake with tonnage matched to sheet gauge and bend length',
+          'Nesting software to minimise material waste per sheet',
+          'Automatic sheet loading and unloading for lights-out cutting runs',
+        ],
       },
       {
         name: 'Industrial welding & robotic assembly cell',
@@ -151,6 +205,12 @@ export const equipmentCategories = [
         power: '15–90 kW',
         capacity: '500–2,000 joints/day',
         leadTime: '75–120 days',
+        specs: [
+          '6-axis robotic arm with MIG/MAG or spot-welding end effector',
+          'Positioner-integrated cell for multi-sided part access',
+          'Vision-guided seam tracking for parts with dimensional variance',
+          'Safety-rated enclosure meeting standard robotic-cell guarding requirements',
+        ],
       },
     ],
   },
@@ -166,6 +226,12 @@ export const equipmentCategories = [
         power: '30–120 kW',
         capacity: '2,000–10,000 pcs/day',
         leadTime: '60–90 days',
+        specs: [
+          'Injection or blow-moulding, matched to product geometry — rigid vs. hollow',
+          'Multi-cavity tooling for high-volume SKUs like containers and fixtures',
+          'In-line trimming and quality-check stations',
+          'Colour-masterbatch dosing for consistent product colour across runs',
+        ],
       },
       {
         name: 'Corrugated carton production line',
@@ -174,6 +240,12 @@ export const equipmentCategories = [
         power: '40–200 kW',
         capacity: '15,000–40,000 m²/day',
         leadTime: '75–120 days',
+        specs: [
+          'Corrugator rated to board flute type (A/B/C/E) and daily linear-metre output',
+          'Flexo printer-slotter for branded, printed cartons in one pass',
+          'Die-cutting station for custom box shapes beyond standard slotted cartons',
+          'Bundling and strapping station for palletised dispatch',
+        ],
       },
       {
         name: 'PET bottle blow-moulding line',
@@ -182,6 +254,12 @@ export const equipmentCategories = [
         power: '20–100 kW',
         capacity: '3,000–15,000 bottles/hour',
         leadTime: '60–100 days',
+        specs: [
+          'Two-stage (preform-to-bottle) or single-stage, depending on volume and SKU count',
+          'Mould-change tooling for running multiple bottle shapes on one machine',
+          'In-line leak testing before the filling-line handoff',
+          'Energy-recovery options on the preform-heating stage',
+        ],
       },
       {
         name: 'Garment cut-and-sew production line',
@@ -190,6 +268,12 @@ export const equipmentCategories = [
         power: '5–20 kW',
         capacity: '500–2,000 pcs/day',
         leadTime: '60–90 days',
+        specs: [
+          'Automated or manual fabric-spreading and cutting stations',
+          'Sewing-line layout sized to garment complexity and daily unit target',
+          'Finishing stations — pressing, quality check, folding and packing',
+          'Compatible with woven and knit fabric types',
+        ],
       },
       {
         name: 'Household appliance assembly line',
@@ -198,6 +282,12 @@ export const equipmentCategories = [
         power: '10–40 kW',
         capacity: '500–3,000 units/day',
         leadTime: '60–90 days',
+        specs: [
+          'Modular assembly stations, reconfigurable for different appliance models',
+          'In-line electrical safety testing before packing',
+          'Component-kitting area to reduce line-side inventory',
+          'Final-pack station with carton, manual and accessory insertion',
+        ],
       },
     ],
   },
@@ -213,6 +303,12 @@ export const equipmentCategories = [
         power: '200–1,200 kW',
         capacity: '100–1,000 t/day feed',
         leadTime: '120–180 days',
+        specs: [
+          'Flotation cell bank sized to feed tonnage and mineral liberation size',
+          'Crushing and grinding circuit upstream, matched to ore hardness',
+          'Reagent dosing system for collector, frother and depressant control',
+          'Thickener and filter press for concentrate dewatering',
+        ],
       },
       {
         name: 'Grain milling & processing line',
@@ -221,6 +317,12 @@ export const equipmentCategories = [
         power: '50–300 kW',
         capacity: '50–300 t/day',
         leadTime: '75–120 days',
+        specs: [
+          'Cleaning and de-stoning stage ahead of the mill, to protect equipment',
+          'Roller mill or hammer mill, matched to grain type and target fineness',
+          'Sifting and grading stations for multiple product grades',
+          'Bagging and weighing station for retail or bulk-sack output',
+        ],
       },
       {
         name: 'Cold-chain storage & handling system',
@@ -229,6 +331,12 @@ export const equipmentCategories = [
         power: '20–100 kW',
         capacity: '200–2,000 m³ storage',
         leadTime: '60–100 days',
+        specs: [
+          'Refrigeration capacity sized to storage volume and product turnover',
+          'Temperature-zone segregation for products with different holding requirements',
+          'Data-logging for cold-chain compliance and audit trail',
+          'Loading-dock design to minimise temperature excursion during transfer',
+        ],
       },
       {
         name: 'Copper cathode electro-refining line',
@@ -237,6 +345,12 @@ export const equipmentCategories = [
         power: '500–3,000 kW',
         capacity: '50–300 t/day',
         leadTime: '150–210 days',
+        specs: [
+          'Electrolytic cell bank sized to the daily cathode-production target',
+          'Anode-casting station upstream, matched to blister-copper feed',
+          'Cathode-stripping machine for automated harvesting',
+          'Electrolyte purification circuit to maintain cathode purity grade',
+        ],
       },
       {
         name: 'Coffee & cocoa wet/dry processing line',
@@ -245,6 +359,12 @@ export const equipmentCategories = [
         power: '20–100 kW',
         capacity: '5–30 t/day',
         leadTime: '75–120 days',
+        specs: [
+          'Pulping and fermentation tanks sized to daily cherry or pod intake',
+          'Mechanical or raised-bed drying, matched to climate and throughput',
+          'Hulling and grading station for export-grade bean sizing',
+          'Moisture-testing station for consistent export moisture content',
+        ],
       },
     ],
   },
@@ -260,6 +380,12 @@ export const equipmentCategories = [
         power: '30–150 kW',
         capacity: '20–150 t/day',
         leadTime: '60–100 days',
+        specs: [
+          'Pre-cleaning, husking and whitening stages in one integrated line',
+          'Colour-sorter option for export-grade product',
+          'By-product recovery — bran, husk — for secondary revenue',
+          'Packaging station sized to bag weight and daily output target',
+        ],
       },
       {
         name: 'Animal feed pellet line',
@@ -268,6 +394,12 @@ export const equipmentCategories = [
         power: '15–90 kW',
         capacity: '1–10 t/hour',
         leadTime: '60–90 days',
+        specs: [
+          'Hammer mill for raw-material grinding ahead of the pellet press',
+          'Conditioner for steam treatment, improving pellet durability',
+          'Ring-die or flat-die pellet press, matched to output tonnage',
+          'Cooling and screening station before bagging',
+        ],
       },
       {
         name: 'Edible oil pressing & refining line',
@@ -276,6 +408,12 @@ export const equipmentCategories = [
         power: '30–200 kW',
         capacity: '10–100 t/day seed',
         leadTime: '90–150 days',
+        specs: [
+          'Mechanical expeller press, with solvent-extraction option for higher yield',
+          'Degumming, neutralising, bleaching and deodorising stages',
+          'Filtration and polishing stage for clear, bottled-grade oil',
+          'Bottling and capping line integration for finished-goods output',
+        ],
       },
       {
         name: 'Fruit & vegetable processing line',
@@ -284,6 +422,12 @@ export const equipmentCategories = [
         power: '15–75 kW',
         capacity: '2–20 t/day',
         leadTime: '60–100 days',
+        specs: [
+          'Washing, sorting and grading stations ahead of cutting or processing',
+          'Blanching or pasteurising stage, matched to product and shelf-life target',
+          'Freezing (IQF) or canning line options for preservation method',
+          'Packaging station for retail pack or bulk export format',
+        ],
       },
       {
         name: 'Dairy processing & packaging line',
@@ -292,6 +436,12 @@ export const equipmentCategories = [
         power: '20–100 kW',
         capacity: '2,000–20,000 L/day',
         leadTime: '75–120 days',
+        specs: [
+          'Pasteurisation — HTST or batch — matched to daily milk-intake volume',
+          'Homogenisation stage for consistent product texture',
+          'Filling line compatible with pouch, bottle or carton formats',
+          'CIP (clean-in-place) system for hygiene compliance between runs',
+        ],
       },
     ],
   },
@@ -307,6 +457,12 @@ export const equipmentCategories = [
         power: '15–60 kW',
         capacity: '100–300 m/min',
         leadTime: '60–90 days',
+        specs: [
+          'In-line multi-colour stations, typically 4–8, matched to design complexity',
+          'Compatible with film, paper and light-board substrates',
+          'Anilox roller system for consistent ink lay-down',
+          'In-line slitting and rewinding for finished-roll output',
+        ],
       },
       {
         name: 'Pouch & sachet forming line',
@@ -315,6 +471,12 @@ export const equipmentCategories = [
         power: '10–40 kW',
         capacity: '60–200 pouches/min',
         leadTime: '60–90 days',
+        specs: [
+          'Vertical or horizontal form-fill-seal, matched to product — liquid, powder or granule',
+          'Multi-lane configuration for small-sachet high-speed output',
+          'Nitrogen-flush option for oxygen-sensitive products',
+          'Date-coding and batch-printing integration',
+        ],
       },
       {
         name: 'Label printing & die-cutting line',
@@ -323,6 +485,12 @@ export const equipmentCategories = [
         power: '5–20 kW',
         capacity: '30–100 m/min',
         leadTime: '45–75 days',
+        specs: [
+          'Digital or flexo printing, matched to run length and colour requirements',
+          'Rotary die-cutting station for custom label shapes',
+          'Lamination option for durability in outdoor or wet conditions',
+          'Slitting and rewinding to finished roll widths for the labelling line',
+        ],
       },
       {
         name: 'Blister & thermoforming packaging line',
@@ -331,6 +499,12 @@ export const equipmentCategories = [
         power: '15–60 kW',
         capacity: '40–150 packs/min',
         leadTime: '60–90 days',
+        specs: [
+          'Forming station sized to blister-cavity depth and pack format',
+          'Sealing station compatible with foil-backed or push-through blister types',
+          'In-line leak and seal-integrity testing',
+          'Cutting and trimming station for finished-pack output',
+        ],
       },
       {
         name: 'Corrugated box printing & converting line',
@@ -339,6 +513,12 @@ export const equipmentCategories = [
         power: '30–120 kW',
         capacity: '8,000–20,000 boxes/day',
         leadTime: '75–110 days',
+        specs: [
+          'Flexo print-slotter for branded box printing in one pass',
+          'Die-cutting station for custom box shapes and structural designs',
+          'Stitching or gluing station for box-closure method',
+          'Bundling station for palletised, ready-to-ship output',
+        ],
       },
     ],
   },
@@ -354,6 +534,12 @@ export const equipmentCategories = [
         power: '5–15 kW per machine',
         capacity: '80–200 kg/day per machine',
         leadTime: '45–75 days',
+        specs: [
+          'Gauge range matched to fabric-weight target — fine gauge for lightweight, coarse for heavier fabric',
+          'Multiple-feeder configuration for pattern and jacquard capability',
+          'Yarn-tension control for consistent fabric quality across the run',
+          'Compatible with cotton, synthetic and blended yarns',
+        ],
       },
       {
         name: 'Weaving loom line',
@@ -362,6 +548,12 @@ export const equipmentCategories = [
         power: '5–20 kW per loom',
         capacity: '200–600 m/day per loom',
         leadTime: '60–90 days',
+        specs: [
+          'Rapier, air-jet or water-jet looms, matched to yarn type and fabric weight',
+          'Warping and sizing stations upstream to prepare the warp beam',
+          'Electronic jacquard option for patterned fabric',
+          'Fabric-inspection station for defect detection before finishing',
+        ],
       },
       {
         name: 'Dyeing & finishing line',
@@ -370,6 +562,12 @@ export const equipmentCategories = [
         power: '30–150 kW',
         capacity: '2–10 t/day fabric',
         leadTime: '75–110 days',
+        specs: [
+          'Batch (jet/jigger) or continuous dyeing, matched to fabric type and order volume',
+          'Colour-matching and recipe-management system for repeatable shades',
+          'Finishing stage — softening, calendering, sanforising — per fabric end-use',
+          'Effluent-treatment integration for wastewater compliance',
+        ],
       },
       {
         name: 'Nonwoven fabric production line',
@@ -378,6 +576,12 @@ export const equipmentCategories = [
         power: '50–250 kW',
         capacity: '1,000–5,000 kg/day',
         leadTime: '90–130 days',
+        specs: [
+          'Spunbond, meltblown or needle-punch process, matched to end application',
+          'Web-forming and bonding stages sized to target GSM',
+          'Winding and slitting station for finished-roll widths',
+          'Compatible with polypropylene, polyester and blended fibres',
+        ],
       },
       {
         name: 'Embroidery & finishing line',
@@ -386,6 +590,12 @@ export const equipmentCategories = [
         power: '5–15 kW',
         capacity: '200–1,000 pcs/day',
         leadTime: '45–75 days',
+        specs: [
+          'Multi-head embroidery machine, head count matched to daily order volume',
+          'Digitising-software compatibility for custom design conversion',
+          'Thread-break detection to reduce rework',
+          'Finishing station for trimming, pressing and folding before packing',
+        ],
       },
     ],
   },

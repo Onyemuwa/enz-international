@@ -54,7 +54,7 @@ export function homePage(lang) {
       <div class="h1-copy lg:col-span-7">
         <a href="markets.html" class="pill hover:border-brand-300 transition-colors">
           <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
-          ${hubs.slice(0, 3).join(' · ')} +${hubs.length - 3}
+          ${t(lang, 'heroOrigin')}
         </a>
 
         <!-- Two short sentences, the second in the brand gradient. The old

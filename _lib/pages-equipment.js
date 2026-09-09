@@ -37,14 +37,20 @@ function productCard(lang, item) {
     { src: item.image, file: item.image || `${slugify(item.name)}.webp`, alt: item.use },
     { ratio: '4-3', className: 'card-media' }
   );
-  // data-search holds a plain-text haystack (name + description) that
-  // assets/js/site.js filters against as the visitor types. Built here, once,
-  // rather than re-read from rendered text on every keystroke.
-  const haystack = escapeAttr(`${item.name} ${item.use}`.toLowerCase());
+  // data-search holds a plain-text haystack (name + description + every spec
+  // line) that assets/js/site.js filters against as the visitor types. Built
+  // here, once, rather than re-read from rendered text on every keystroke —
+  // and including the specs means a search for "robotic" or "PLC" finds the
+  // right machines, not just a search on the product name.
+  const specsList = (item.specs || [])
+    .map((s) => `<li class="flex items-start gap-2"><span class="mt-0.5 shrink-0">${icon('check', 'w-3.5 h-3.5 text-brand')}</span><span>${s}</span></li>`)
+    .join('');
+  const haystack = escapeAttr(`${item.name} ${item.use} ${(item.specs || []).join(' ')}`.toLowerCase());
   return `<article class="${CARD} flex flex-col" data-equipment-card data-search="${haystack}">
     ${photo}
     <h3 class="font-semibold text-ink leading-snug">${item.name}</h3>
-    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">${item.use}</p>
+    <p class="text-slate text-sm mt-2 leading-relaxed">${item.use}</p>
+    ${specsList ? `<ul class="mt-4 space-y-2 text-sm text-slate leading-snug flex-1">${specsList}</ul>` : '<div class="flex-1"></div>'}
     <div class="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-line">
       ${specChip(t(lang, 'equipmentSpecPower'), item.power)}
       ${specChip(t(lang, 'equipmentSpecCapacity'), item.capacity)}
