@@ -391,6 +391,18 @@
     };
 
     equipSearch.addEventListener('input', filterEquipment);
+
+    // The homepage hero has its own search box that submits here as a plain
+    // GET (?q=...) rather than duplicating this filter client-side a second
+    // time. One filter, two entry points: land with a query already in the
+    // URL and it runs immediately, exactly as if it had been typed here.
+    var presetQuery = new URLSearchParams(window.location.search).get('q');
+    if (presetQuery) {
+      equipSearch.value = presetQuery;
+      filterEquipment();
+      var firstSection = document.querySelector('[data-equipment-section]:not([hidden])');
+      if (firstSection) firstSection.scrollIntoView({ block: 'start' });
+    }
   }
 
   // ---------- Footer year ----------

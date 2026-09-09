@@ -22,7 +22,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=49" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=50" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -125,11 +125,23 @@
 
         <p class="lead mt-7 max-w-xl">Verified suppliers, four inspection stages, freight to your port. One contact throughout.</p>
 
-        <!-- The three service lines, legible without scrolling. -->
-        <div class="chip-row mt-8">
-          <span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Sourcing</span>
-          <span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Quality control</span>
-          <span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Factory setup</span>
+        <!-- The search box is the hero's primary action, not an afterthought
+             below it — Equipment is the one page on this site that is
+             genuinely searchable, so it earns the spot. Submits as a plain
+             GET to equipment/?q=..., which the equipment page reads on load
+             and feeds into the same client-side filter the page's own search
+             box already uses — one filter, two entry points. -->
+        <form action="equipment/" method="get" role="search" class="hero-search mt-8">
+          <label for="hero-search-input" class="sr-only">Search for a machine type — "tile press", "cnc", "cold storage"…</label>
+          <span class="hero-search-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+          <input type="search" id="hero-search-input" name="q" autocomplete="off" class="hero-search-input" placeholder="Search equipment — "cnc", "cold storage", "tile press"…" />
+          <button type="submit" class="hero-search-btn" aria-label="Search for a machine type — "tile press", "cnc", "cold storage"…"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+        </form>
+
+        <!-- Category shortcuts — the catalogue one tap away without typing. -->
+        <div class="mt-5 flex flex-wrap gap-2.5">
+          <a href="equipment/#construction-building-materials" class="hero-cat-chip">Construction & building materials</a><a href="equipment/#industrial-equipment-machinery" class="hero-cat-chip">Industrial equipment & machinery</a><a href="equipment/#consumer-goods-retail" class="hero-cat-chip">Consumer goods & retail</a><a href="equipment/#commodities-raw-materials" class="hero-cat-chip">Commodities & raw materials</a>
+          <a href="equipment/" class="hero-cat-chip hero-cat-chip-all">Browse all equipment →</a>
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 mt-9">
@@ -137,7 +149,17 @@
           <a href="#how-it-works" class="btn btn-secondary btn-lg">Process</a>
         </div>
 
-        <p class="text-sm text-slate mt-7">We'll respond within 24h. No payment is required to request a consultation.</p>
+        <!-- The three service lines moved here from directly under the
+             headline — a trust row under the primary action, same position
+             this pattern uses on the sibling site, rather than crowding the
+             search box out of the first thing a visitor reads. -->
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate">
+          <span class="inline-flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Sourcing</span>
+          <span class="inline-flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Quality control</span>
+          <span class="inline-flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Factory setup</span>
+        </div>
+
+        <p class="text-sm text-slate mt-4">We'll respond within 24h. No payment is required to request a consultation.</p>
       </div>
 
       <!-- An ILLUSTRATION of the four-stage inspection process documented on
@@ -630,14 +652,13 @@
        that page's grid inline. -->
   <section class="section bg-white">
     <div class="shell">
-      
-      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
-        <div class="lg:col-span-6">
-          
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="max-w-xl">
           <p class="eyebrow">Equipment</p>
-          <h2 class="h2-section mt-4">Equipment we help you source</h2>
+          <h2 class="h2-section mt-5">Equipment we help you source</h2>
+          <p class="lead mt-4">One example per category — 35 in total, sourced against your brief, not stocked.</p>
         </div>
-        <div class="lg:col-span-6"><p class="lead">One example per category — 35 in total, sourced against your brief, not stocked.</p></div>
+        <a href="equipment/" class="link-arrow shrink-0">Browse all equipment <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
       </div>
       <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
         <a href="equipment/#construction-building-materials" class="card block group">
@@ -704,9 +725,6 @@
           <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Circular/flat knitting line</h3>
           <p class="text-slate text-sm mt-2 leading-relaxed">Knits yarn into fabric for apparel and household textiles.</p>
         </a>
-      </div>
-      <div class="text-center mt-10">
-        <a href="equipment/" class="btn btn-primary">Browse all equipment <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
       </div>
     </div>
   </section>
@@ -900,9 +918,9 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=49"></script>
-    <script src="../assets/js/api.js?v=49"></script>
-    <script src="../assets/js/site.js?v=49" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=49"></script>
+    <script src="../assets/js/config.js?v=50"></script>
+    <script src="../assets/js/api.js?v=50"></script>
+    <script src="../assets/js/site.js?v=50" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=50"></script>
   </body>
 </html>

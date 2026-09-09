@@ -7,7 +7,7 @@
 import { SITE_URL, WHATSAPP_NUMBER, CONTACT_PHONE, CONTACT_EMAIL } from './site-config.js';
 import { t } from './i18n.js';
 import { icon } from './icons.js';
-import { CARD, CARD_MUTED, CARD_FEATURE, BTN_PRIMARY, BTN_SECONDARY, LEAD, SHELL } from './tokens.js';
+import { CARD, CARD_MUTED, CARD_FEATURE, BTN_PRIMARY, BTN_SECONDARY, EYEBROW, H2, LEAD, SHELL } from './tokens.js';
 import { sectionHead, media, heroMedia, founderSection, engagementCard, proofSection } from './components.js';
 import { bookingSuccessBlock } from './chrome.js';
 import { pageShell } from './page-shell.js';
@@ -67,11 +67,26 @@ export function homePage(lang) {
 
         <p class="lead mt-7 max-w-xl">${t(lang, 'heroSub')}</p>
 
-        <!-- The three service lines, legible without scrolling. -->
-        <div class="chip-row mt-8">
-          <span class="chip">${icon('globe', 'w-4 h-4')}${t(lang, 'heroBadge1')}</span>
-          <span class="chip">${icon('check', 'w-4 h-4')}${t(lang, 'heroBadge2')}</span>
-          <span class="chip">${icon('calendar', 'w-4 h-4')}${t(lang, 'heroBadge3')}</span>
+        <!-- The search box is the hero's primary action, not an afterthought
+             below it — Equipment is the one page on this site that is
+             genuinely searchable, so it earns the spot. Submits as a plain
+             GET to equipment/?q=..., which the equipment page reads on load
+             and feeds into the same client-side filter the page's own search
+             box already uses — one filter, two entry points. -->
+        <form action="equipment.html" method="get" role="search" class="hero-search mt-8">
+          <label for="hero-search-input" class="sr-only">${t(lang, 'equipmentSearchPlaceholder')}</label>
+          <span class="hero-search-icon">${icon('search', 'w-4 h-4')}</span>
+          <input type="search" id="hero-search-input" name="q" autocomplete="off" class="hero-search-input" placeholder="${t(lang, 'heroSearchPlaceholder')}" />
+          <button type="submit" class="hero-search-btn" aria-label="${t(lang, 'equipmentSearchPlaceholder')}">${icon('chevronRight', 'w-4 h-4')}</button>
+        </form>
+
+        <!-- Category shortcuts — the catalogue one tap away without typing. -->
+        <div class="mt-5 flex flex-wrap gap-2.5">
+          ${equipmentCategories
+            .slice(0, 4)
+            .map((cat) => `<a href="equipment.html#${slugify(cat.industry)}" class="hero-cat-chip">${cat.industry}</a>`)
+            .join('')}
+          <a href="equipment.html" class="hero-cat-chip hero-cat-chip-all">${t(lang, 'equipmentViewAllCta')} →</a>
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 mt-9">
@@ -79,7 +94,17 @@ export function homePage(lang) {
           <a href="#how-it-works" class="${BTN_SECONDARY} btn-lg">${t(lang, 'navProcess')}</a>
         </div>
 
-        <p class="text-sm text-slate mt-7">${t(lang, 'bookingDisclaimer')}</p>
+        <!-- The three service lines moved here from directly under the
+             headline — a trust row under the primary action, same position
+             this pattern uses on the sibling site, rather than crowding the
+             search box out of the first thing a visitor reads. -->
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate">
+          <span class="inline-flex items-center gap-2">${icon('globe', 'w-3.5 h-3.5 text-brand')}${t(lang, 'heroBadge1')}</span>
+          <span class="inline-flex items-center gap-2">${icon('check', 'w-3.5 h-3.5 text-brand')}${t(lang, 'heroBadge2')}</span>
+          <span class="inline-flex items-center gap-2">${icon('calendar', 'w-3.5 h-3.5 text-brand')}${t(lang, 'heroBadge3')}</span>
+        </div>
+
+        <p class="text-sm text-slate mt-4">${t(lang, 'bookingDisclaimer')}</p>
       </div>
 
       <!-- An ILLUSTRATION of the four-stage inspection process documented on
@@ -298,7 +323,14 @@ export function homePage(lang) {
        that page's grid inline. -->
   <section class="section bg-white">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'equipmentHomeEyebrow'), t(lang, 'equipmentHomeTitle'), t(lang, 'equipmentHomeLead'), { align: 'start' })}
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="max-w-xl">
+          <p class="${EYEBROW}">${t(lang, 'equipmentHomeEyebrow')}</p>
+          <h2 class="${H2} mt-5">${t(lang, 'equipmentHomeTitle')}</h2>
+          <p class="${LEAD} mt-4">${t(lang, 'equipmentHomeLead')}</p>
+        </div>
+        <a href="equipment.html" class="link-arrow shrink-0">${t(lang, 'equipmentViewAllCta')} ${icon('chevronRight', 'w-4 h-4')}</a>
+      </div>
       <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
         ${equipmentCategories
           .map((cat) => {
@@ -311,9 +343,6 @@ export function homePage(lang) {
         </a>`;
           })
           .join('')}
-      </div>
-      <div class="text-center mt-10">
-        <a href="equipment.html" class="${BTN_PRIMARY}">${t(lang, 'equipmentViewAllCta')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
       </div>
     </div>
   </section>

@@ -107,6 +107,7 @@ const dict = {
     equipmentHomeLead: 'One example per category — 35 in total, sourced against your brief, not stocked.',
     equipmentViewAllCta: 'Browse all equipment',
     equipmentSearchPlaceholder: 'Search for a machine type — "tile press", "cnc", "cold storage"…',
+    heroSearchPlaceholder: 'Search equipment — "cnc", "cold storage", "tile press"…',
     equipmentSearchNoResults: 'No matches. Tell us what you need instead — we source things that aren’t on this page too.',
     equipmentCountOf: 'of',
     equipmentCountType: 'type',
