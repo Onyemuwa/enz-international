@@ -8,12 +8,12 @@ import { SITE_URL, WHATSAPP_NUMBER, CONTACT_PHONE, CONTACT_EMAIL } from './site-
 import { t } from './i18n.js';
 import { icon } from './icons.js';
 import { CARD, CARD_MUTED, CARD_FEATURE, BTN_PRIMARY, BTN_SECONDARY, EYEBROW, H2, LEAD, SHELL } from './tokens.js';
-import { sectionHead, media, heroMedia, founderSection, engagementCard, proofSection } from './components.js';
+import { sectionHead, media, heroMedia, founderSection, proofSection } from './components.js';
 import { bookingSuccessBlock } from './chrome.js';
 import { pageShell } from './page-shell.js';
 import { closingCta } from './page-parts.js';
 import { regions, hubs } from '../_content/regions.js';
-import { images, industryImages } from '../_content/images.js';
+import { images } from '../_content/images.js';
 import { testimonials, commitments } from '../_content/proof.js';
 import { services } from '../_content/services.js';
 import { insights } from '../_content/insights.js';
@@ -21,7 +21,6 @@ import { authorFor } from '../_content/authors.js';
 import { homeStats } from '../_content/stats.js';
 import { markets } from '../_content/markets.js';
 import { faqs } from '../_content/faqs.js';
-import { problems, engagementModels } from '../_content/narrative.js';
 import { processSteps, qcStages, industries } from '../_content/pages.js';
 import { equipmentCategories } from '../_content/equipment.js';
 import { slugify } from './pages-equipment.js';
@@ -169,29 +168,10 @@ export function homePage(lang) {
     </div>
   </section>
 
-  <!-- 1. THE PROBLEM. A visitor who doesn't recognise their own situation in
-       the first screen has no reason to read the second. -->
-  <section class="section section-wash hairline-top">
-    <div class="${SHELL}">
-      ${sectionHead(t(lang, 'problemEyebrow'), t(lang, 'problemTitle'), t(lang, 'problemLead'), { index: '01' })}
-      <div data-reveal-group class="grid sm:grid-cols-2 gap-4 mt-14 max-w-5xl mx-auto">
-        ${problems
-          .map(
-            (pr) => `<div class="${CARD}">
-          <span class="icon-chip icon-chip-accent">${icon(pr.icon, 'w-5 h-5')}</span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">${pr.title}</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">${pr.body}</p>
-        </div>`
-          )
-          .join('')}
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. WHAT WE DO. Three lines, all visible at once. -->
+  <!-- 1. WHAT WE DO. Three lines, all visible at once. -->
   <section class="section bg-gray-bg border-y border-line">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'navServices'), t(lang, 'servicesTitle'), t(lang, 'servicesSubtitle'), { align: 'start', index: '02' })}
+      ${sectionHead(t(lang, 'navServices'), t(lang, 'servicesTitle'), t(lang, 'servicesSubtitle'), { align: 'start', index: '01' })}
       <!-- Bento rather than a fourth identical three-up grid: the first
            service gets a tall feature tile, the other two stack beside it. The
            asymmetry is what stops the page reading as a list of equivalent
@@ -217,106 +197,7 @@ export function homePage(lang) {
     </div>
   </section>
 
-  <!-- 3. HOW IT WORKS. Anchor target for the hero's secondary CTA. -->
-  <section id="how-it-works" class="section bg-white">
-    <div class="${SHELL}">
-      ${sectionHead(t(lang, 'navProcess'), t(lang, 'processTitle'), t(lang, 'processLead'), { align: 'start', index: '03' })}
-      <ol data-reveal-group class="rail grid gap-4 md:grid-cols-2 lg:grid-cols-5 mt-14">
-        ${processSteps
-          .map(
-            (st) => `<li class="${CARD} bg-white">
-          <div class="flex items-center justify-between gap-2">
-            <span class="step-badge">${st.n}</span>
-            <span class="pill pill-neutral mono-tag">${st.duration}</span>
-          </div>
-          <h3 class="font-medium text-ink mt-4">${st.title}</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">${st.summary}</p>
-        </li>`
-          )
-          .join('')}
-      </ol>
-      <div class="text-center mt-10"><a href="process.html" class="${BTN_SECONDARY}">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
-    </div>
-  </section>
-
-  <!-- 5. COMMITMENTS. Stands in for testimonials until there are real ones:
-       every line is a promise that can be checked, not a claim about quality. -->
-  <section class="section section-feature">
-    <div class="${SHELL}">
-      ${sectionHead(t(lang, 'commitEyebrow'), t(lang, 'commitTitle'), t(lang, 'commitLead'), { index: '04' })}
-      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
-        ${commitments
-          .map(
-            (c) => `<div class="${CARD_FEATURE}">
-          <span class="icon-chip">${icon(c.icon, 'w-5 h-5')}</span>
-          <h3 class="font-medium text-[1.0625rem] mt-4">${c.title}</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">${c.body}</p>
-        </div>`
-          )
-          .join('')}
-      </div>
-      <div class="text-center mt-10"><a href="about.html" class="${BTN_SECONDARY}">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
-    </div>
-  </section>
-
-  ${founderSection(lang, { compact: true })}
-
-  ${proofSection(lang)}
-
-  <!-- 6. ENGAGEMENT. The question every serious buyer asks second. -->
-  <section class="section bg-white">
-    <div class="${SHELL}">
-      ${sectionHead(t(lang, 'engageEyebrow'), t(lang, 'engageTitle'), t(lang, 'engageLead'), { align: 'start', index: '05' })}
-      <div data-reveal-group class="grid lg:grid-cols-3 gap-5 mt-14 items-start">
-        ${engagementModels.map((m) => engagementCard(lang, m)).join('')}
-      </div>
-      <div class="text-center mt-10">
-        <a href="pricing.html" class="${BTN_SECONDARY}">${t(lang, 'ctaSeeEngagement')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. WHO AND WHERE. Industries and markets were two near-identical card
-       grids in sequence; one section answers both questions. -->
-  <section class="section bg-gray-bg border-y border-line">
-    <div class="${SHELL}">
-      ${sectionHead(t(lang, 'whoEyebrow'), t(lang, 'whoTitle'), t(lang, 'whoLead'), { align: 'start', index: '06' })}
-      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
-        ${industries
-          .map(
-            (ind) => `<a href="industries.html" class="${CARD} block group">
-          ${industryImages[ind.name] ? media(ind.name, { ratio: '16-10', className: 'card-media' }) : ''}
-          <span class="icon-chip">${icon(ind.icon, 'w-5 h-5')}</span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-4">${ind.name}</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">${ind.body}</p>
-        </a>`
-          )
-          .join('')}
-      </div>
-
-      <div class="mt-10 rounded-2xl border border-line bg-white overflow-hidden">
-        ${media('markets', { ratio: '16-9', className: 'rounded-none max-h-64' })}
-        <div class="p-6 md:p-8">
-        <div class="flex flex-wrap items-baseline justify-between gap-4">
-          <h3 class="text-lg font-medium text-ink">${t(lang, 'footprintTitle')}</h3>
-          <a href="markets.html" class="link-arrow text-sm">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mt-6">
-          ${regions
-            .map(
-              (r) => `<a href="markets.html" class="flex items-center gap-2.5 rounded-lg border border-line bg-gray-bg px-3.5 py-3 hover:border-brand-200 hover:bg-white transition-colors">
-            <span class="step-badge">${r.code}</span><span class="text-sm font-medium text-ink">${r.name}</span>
-          </a>`
-            )
-            .join('')}
-        </div>
-        <p class="text-sm text-slate mt-5">${t(lang, 'footprintHubsLabel')}: ${hubs.join(' · ')}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. FEATURED EQUIPMENT. One example per category (of 35 total), each
+  <!-- FEATURED EQUIPMENT. One example per category (of 35 total), each
        linking straight to that category on the full storefront rather than
        opening a quote here — the homepage's job is to show the range exists
        and get a visitor to the page built for browsing it, not to duplicate
@@ -347,31 +228,95 @@ export function homePage(lang) {
     </div>
   </section>
 
-  <!-- 10. FAQ. -->
-  <section class="section bg-white">
+
+  <!-- 2. HOW IT WORKS. Anchor target for the hero's secondary CTA. -->
+  <section id="how-it-works" class="section bg-white">
     <div class="${SHELL}">
-      ${sectionHead('FAQ', t(lang, 'faqHomeTitle'), t(lang, 'faqHomeSubtitle'))}
-      <div class="max-w-3xl mx-auto mt-12 border-t border-line">
-        ${faqs
+      ${sectionHead(t(lang, 'navProcess'), t(lang, 'processTitle'), t(lang, 'processLead'), { align: 'start', index: '02' })}
+      <ol data-reveal-group class="rail grid gap-4 md:grid-cols-2 lg:grid-cols-5 mt-14">
+        ${processSteps
           .map(
-            (f, idx) => `
-        <div class="faq-item">
-          <h3><button class="faq-question" aria-expanded="false" aria-controls="home-faq-${idx}" id="home-faq-btn-${idx}"><span>${f.question}</span>${icon('chevronDown', 'w-5 h-5 faq-chevron')}</button></h3>
-          <div id="home-faq-${idx}" role="region" aria-labelledby="home-faq-btn-${idx}" hidden class="faq-answer">${f.answer}</div>
+            (st) => `<li class="${CARD} bg-white">
+          <div class="flex items-center justify-between gap-2">
+            <span class="step-badge">${st.n}</span>
+            <span class="pill pill-neutral mono-tag">${st.duration}</span>
+          </div>
+          <h3 class="font-medium text-ink mt-4">${st.title}</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">${st.summary}</p>
+        </li>`
+          )
+          .join('')}
+      </ol>
+      <div class="text-center mt-10"><a href="process.html" class="${BTN_SECONDARY}">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
+    </div>
+  </section>
+
+  <!-- 3. COMMITMENTS. Stands in for testimonials until there are real ones:
+       every line is a promise that can be checked, not a claim about quality. -->
+  <section class="section section-feature">
+    <div class="${SHELL}">
+      ${sectionHead(t(lang, 'commitEyebrow'), t(lang, 'commitTitle'), t(lang, 'commitLead'), { index: '03' })}
+      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
+        ${commitments
+          .map(
+            (c) => `<div class="${CARD_FEATURE}">
+          <span class="icon-chip">${icon(c.icon, 'w-5 h-5')}</span>
+          <h3 class="font-medium text-[1.0625rem] mt-4">${c.title}</h3>
+          <p class="text-slate text-sm mt-2 leading-relaxed">${c.body}</p>
         </div>`
           )
           .join('')}
       </div>
-      <div class="text-center mt-10"><a href="faq.html" class="${BTN_SECONDARY}">${t(lang, 'faqSeeAll')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
+      <div class="text-center mt-10"><a href="about.html" class="${BTN_SECONDARY}">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
     </div>
   </section>
 
+  ${founderSection(lang, { compact: true })}
+
+  ${proofSection(lang)}
+
+  <!-- WHO AND WHERE, trimmed to markets. The industries grid that used to
+       open this section duplicated the equipment section above almost
+       exactly — same categories, same photography, same "explore" link, two
+       sections apart on one page. industries.html still carries the full
+       version; the nav still links to it by name. -->
+  <section class="section bg-gray-bg border-y border-line">
+    <div class="${SHELL}">
+      ${sectionHead(t(lang, 'footprintEyebrow'), t(lang, 'footprintTitle'), t(lang, 'footprintLead'), { align: 'start', index: '04' })}
+
+      <div class="mt-14 max-w-5xl mx-auto rounded-2xl border border-line bg-white overflow-hidden">
+        <div class="mt-10 rounded-2xl border border-line bg-white overflow-hidden">
+        ${media('markets', { ratio: '16-9', className: 'rounded-none max-h-64' })}
+        <div class="p-6 md:p-8">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          ${regions
+            .map(
+              (r) => `<a href="markets.html" class="flex items-center gap-2.5 rounded-lg border border-line bg-gray-bg px-3.5 py-3 hover:border-brand-200 hover:bg-white transition-colors">
+            <span class="step-badge">${r.code}</span><span class="text-sm font-medium text-ink">${r.name}</span>
+          </a>`
+            )
+            .join('')}
+        </div>
+        <p class="text-sm text-slate mt-5">${t(lang, 'footprintHubsLabel')}: ${hubs.join(' · ')}</p>
+          <div class="mt-8"><a href="markets.html" class="${BTN_SECONDARY}">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
   ${closingCta(lang)}`;
 
-  // @graph so one script can carry several entity types. FAQPage makes the
-  // homepage eligible for expandable FAQ rich results in search — built from
-  // the same real answers rendered above, never a schema-only copy (Google
-  // treats visible/markup mismatch as a violation).
+  // @graph so one script can carry several entity types.
+  //
+  // FAQPage used to live here too, built from the same faqs[] rendered as a
+  // visible accordion further down the page. The homepage simplification
+  // that cut that accordion (fewer sections, faster path to a quote) removed
+  // the visible answers it was mirroring — keeping the schema after that
+  // would be exactly the visible/markup mismatch this comment used to warn
+  // against avoiding. The FAQPage entity still ships correctly on faq.html,
+  // where the questions are still real, visible content.
   const jsonLd = {
     '@graph': [
       {
@@ -383,14 +328,6 @@ export function homePage(lang) {
         email: CONTACT_EMAIL,
         address: { '@type': 'PostalAddress', addressLocality: 'Guangzhou', addressCountry: 'CN' },
         areaServed: regions.map((r) => r.name),
-      },
-      {
-        '@type': 'FAQPage',
-        mainEntity: faqs.map((f) => ({
-          '@type': 'Question',
-          name: f.question,
-          acceptedAnswer: { '@type': 'Answer', text: f.answer },
-        })),
       },
     ],
   };

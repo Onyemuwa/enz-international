@@ -42,6 +42,12 @@ function productCard(lang, item) {
   // here, once, rather than re-read from rendered text on every keystroke —
   // and including the specs means a search for "robotic" or "PLC" finds the
   // right machines, not just a search on the product name.
+  // The 4 spec bullets are real and worth having, but showing all of them on
+  // every one of 35 cards by default is 140 lines of dense text standing
+  // between a visitor and the one button that matters — the opposite of a
+  // catalogue you can scan in a minute. <details> keeps them one click away
+  // rather than deleting them: closed is the fast path, open is still there
+  // for anyone who wants the depth.
   const specsList = (item.specs || [])
     .map((s) => `<li class="flex items-start gap-2"><span class="mt-0.5 shrink-0">${icon('check', 'w-3.5 h-3.5 text-brand')}</span><span>${s}</span></li>`)
     .join('');
@@ -49,13 +55,16 @@ function productCard(lang, item) {
   return `<article class="${CARD} flex flex-col" data-equipment-card data-search="${haystack}">
     ${photo}
     <h3 class="font-semibold text-ink leading-snug">${item.name}</h3>
-    <p class="text-slate text-sm mt-2 leading-relaxed">${item.use}</p>
-    ${specsList ? `<ul class="mt-4 space-y-2 text-sm text-slate leading-snug flex-1">${specsList}</ul>` : '<div class="flex-1"></div>'}
-    <div class="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-line">
+    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">${item.use}</p>
+    <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-line">
       ${specChip(t(lang, 'equipmentSpecPower'), item.power)}
       ${specChip(t(lang, 'equipmentSpecCapacity'), item.capacity)}
       ${specChip(t(lang, 'equipmentSpecLeadTime'), item.leadTime)}
     </div>
+    ${specsList ? `<details class="mt-3 group">
+      <summary class="text-xs font-semibold text-brand cursor-pointer list-none inline-flex items-center gap-1">${t(lang, 'equipmentSpecsToggle')} ${icon('chevronDown', 'w-3.5 h-3.5 transition-transform group-open:rotate-180')}</summary>
+      <ul class="mt-3 space-y-2 text-sm text-slate leading-snug">${specsList}</ul>
+    </details>` : ''}
     <button data-open-booking data-quote-for="${escapeAttr(item.name)}" class="mt-5 w-full btn btn-primary btn-sm justify-center">
       ${t(lang, 'equipmentRequestCta')} ${icon('chevronRight', 'w-4 h-4')}
     </button>

@@ -101,6 +101,7 @@ const dict = {
     equipmentSpecCapacity: 'Typical capacity',
     equipmentSpecLeadTime: 'Typical lead time',
     equipmentRequestCta: 'Request a Quote',
+    equipmentSpecsToggle: 'Full specs',
     equipmentShopByCategory: 'Browse by category',
     equipmentHomeEyebrow: 'Equipment',
     equipmentHomeTitle: 'Equipment we help you source',
@@ -210,7 +211,9 @@ const dict = {
     why6Desc: 'Staged quality control and clearly written contract terms protect you at every step, not just at the end.',
 
     // Footprint
+    footprintEyebrow: 'Where we deliver',
     footprintTitle: 'Global Footprint',
+    footprintLead: 'Local presence in the markets we serve most — freight goes anywhere else too.',
     footprintHubsLabel: 'Operational hubs',
 
     // Insights
