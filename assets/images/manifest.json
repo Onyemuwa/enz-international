@@ -67,6 +67,27 @@
       }
     ]
   },
+  "aseptic-carton-filling-line.webp": {
+    "width": 1200,
+    "height": 901,
+    "variants": [
+      {
+        "w": 400,
+        "file": "aseptic-carton-filling-line-400w.webp",
+        "kb": 20
+      },
+      {
+        "w": 800,
+        "file": "aseptic-carton-filling-line-800w.webp",
+        "kb": 55
+      },
+      {
+        "w": 1200,
+        "file": "aseptic-carton-filling-line-1200w.webp",
+        "kb": 117
+      }
+    ]
+  },
   "automated-packaging-palletising-line.webp": {
     "width": 1200,
     "height": 801,
@@ -106,6 +127,27 @@
         "w": 1200,
         "file": "blister-thermoforming-packaging-line-1200w.webp",
         "kb": 50
+      }
+    ]
+  },
+  "cassava-starch-processing-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "cassava-starch-processing-line-400w.webp",
+        "kb": 29
+      },
+      {
+        "w": 800,
+        "file": "cassava-starch-processing-line-800w.webp",
+        "kb": 94
+      },
+      {
+        "w": 1200,
+        "file": "cassava-starch-processing-line-1200w.webp",
+        "kb": 214
       }
     ]
   },
@@ -298,6 +340,27 @@
       }
     ]
   },
+  "cotton-ginning-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "cotton-ginning-line-400w.webp",
+        "kb": 18
+      },
+      {
+        "w": 800,
+        "file": "cotton-ginning-line-800w.webp",
+        "kb": 47
+      },
+      {
+        "w": 1200,
+        "file": "cotton-ginning-line-1200w.webp",
+        "kb": 87
+      }
+    ]
+  },
   "dairy-processing-packaging-line.webp": {
     "width": 1200,
     "height": 800,
@@ -316,6 +379,27 @@
         "w": 1200,
         "file": "dairy-processing-packaging-line-1200w.webp",
         "kb": 69
+      }
+    ]
+  },
+  "denim-washing-finishing-line.webp": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "denim-washing-finishing-line-400w.webp",
+        "kb": 22
+      },
+      {
+        "w": 800,
+        "file": "denim-washing-finishing-line-800w.webp",
+        "kb": 61
+      },
+      {
+        "w": 1200,
+        "file": "denim-washing-finishing-line-1200w.webp",
+        "kb": 125
       }
     ]
   },
@@ -445,6 +529,27 @@
       }
     ]
   },
+  "furniture-production-line-wood-panel.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "furniture-production-line-wood-panel-400w.webp",
+        "kb": 12
+      },
+      {
+        "w": 800,
+        "file": "furniture-production-line-wood-panel-800w.webp",
+        "kb": 28
+      },
+      {
+        "w": 1200,
+        "file": "furniture-production-line-wood-panel-1200w.webp",
+        "kb": 48
+      }
+    ]
+  },
   "garment-cut-and-sew-production-line.webp": {
     "width": 1200,
     "height": 675,
@@ -466,6 +571,27 @@
       }
     ]
   },
+  "gold-ore-processing-cil-cip-plant.webp": {
+    "width": 1200,
+    "height": 799,
+    "variants": [
+      {
+        "w": 400,
+        "file": "gold-ore-processing-cil-cip-plant-400w.webp",
+        "kb": 27
+      },
+      {
+        "w": 800,
+        "file": "gold-ore-processing-cil-cip-plant-800w.webp",
+        "kb": 96
+      },
+      {
+        "w": 1200,
+        "file": "gold-ore-processing-cil-cip-plant-1200w.webp",
+        "kb": 246
+      }
+    ]
+  },
   "grain-milling-processing-line.webp": {
     "width": 1200,
     "height": 1600,
@@ -484,6 +610,27 @@
         "w": 1200,
         "file": "grain-milling-processing-line-1200w.webp",
         "kb": 247
+      }
+    ]
+  },
+  "gypsum-plasterboard-production-line.webp": {
+    "width": 1200,
+    "height": 900,
+    "variants": [
+      {
+        "w": 400,
+        "file": "gypsum-plasterboard-production-line-400w.webp",
+        "kb": 13
+      },
+      {
+        "w": 800,
+        "file": "gypsum-plasterboard-production-line-800w.webp",
+        "kb": 33
+      },
+      {
+        "w": 1200,
+        "file": "gypsum-plasterboard-production-line-1200w.webp",
+        "kb": 63
       }
     ]
   },
@@ -560,6 +707,27 @@
       }
     ]
   },
+  "hydraulic-press-general-purpose.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "hydraulic-press-general-purpose-400w.webp",
+        "kb": 7
+      },
+      {
+        "w": 800,
+        "file": "hydraulic-press-general-purpose-800w.webp",
+        "kb": 19
+      },
+      {
+        "w": 1200,
+        "file": "hydraulic-press-general-purpose-1200w.webp",
+        "kb": 33
+      }
+    ]
+  },
   "ind-commodities.webp": {
     "width": 800,
     "height": 533,
@@ -621,6 +789,27 @@
         "w": 800,
         "file": "ind-machinery-800w.webp",
         "kb": 54
+      }
+    ]
+  },
+  "industrial-air-compressor-pneumatic-system.webp": {
+    "width": 1200,
+    "height": 718,
+    "variants": [
+      {
+        "w": 400,
+        "file": "industrial-air-compressor-pneumatic-system-400w.webp",
+        "kb": 11
+      },
+      {
+        "w": 800,
+        "file": "industrial-air-compressor-pneumatic-system-800w.webp",
+        "kb": 27
+      },
+      {
+        "w": 1200,
+        "file": "industrial-air-compressor-pneumatic-system-1200w.webp",
+        "kb": 51
       }
     ]
   },
@@ -689,6 +878,27 @@
         "w": 1600,
         "file": "markets-port-1600w.webp",
         "kb": 149
+      }
+    ]
+  },
+  "nonwoven-bag-pp-woven-sack-production-line.webp": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "nonwoven-bag-pp-woven-sack-production-line-400w.webp",
+        "kb": 59
+      },
+      {
+        "w": 800,
+        "file": "nonwoven-bag-pp-woven-sack-production-line-800w.webp",
+        "kb": 163
+      },
+      {
+        "w": 1200,
+        "file": "nonwoven-bag-pp-woven-sack-production-line-1200w.webp",
+        "kb": 378
       }
     ]
   },
@@ -797,6 +1007,48 @@
       }
     ]
   },
+  "poultry-processing-packing-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "poultry-processing-packing-line-400w.webp",
+        "kb": 14
+      },
+      {
+        "w": 800,
+        "file": "poultry-processing-packing-line-800w.webp",
+        "kb": 35
+      },
+      {
+        "w": 1200,
+        "file": "poultry-processing-packing-line-1200w.webp",
+        "kb": 61
+      }
+    ]
+  },
+  "precast-concrete-panel-production-line.webp": {
+    "width": 1200,
+    "height": 900,
+    "variants": [
+      {
+        "w": 400,
+        "file": "precast-concrete-panel-production-line-400w.webp",
+        "kb": 29
+      },
+      {
+        "w": 800,
+        "file": "precast-concrete-panel-production-line-800w.webp",
+        "kb": 90
+      },
+      {
+        "w": 1200,
+        "file": "precast-concrete-panel-production-line-1200w.webp",
+        "kb": 199
+      }
+    ]
+  },
   "quality-inspection.webp": {
     "width": 1100,
     "height": 733,
@@ -881,6 +1133,27 @@
       }
     ]
   },
+  "shrink-wrap-bundling-line.webp": {
+    "width": 1200,
+    "height": 1600,
+    "variants": [
+      {
+        "w": 400,
+        "file": "shrink-wrap-bundling-line-400w.webp",
+        "kb": 28
+      },
+      {
+        "w": 800,
+        "file": "shrink-wrap-bundling-line-800w.webp",
+        "kb": 76
+      },
+      {
+        "w": 1200,
+        "file": "shrink-wrap-bundling-line-1200w.webp",
+        "kb": 151
+      }
+    ]
+  },
   "sourcing.webp": {
     "width": 1100,
     "height": 585,
@@ -920,6 +1193,48 @@
         "w": 1200,
         "file": "steel-door-window-fabrication-line-1200w.webp",
         "kb": 40
+      }
+    ]
+  },
+  "textile-printing-digital-screen-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "textile-printing-digital-screen-line-400w.webp",
+        "kb": 41
+      },
+      {
+        "w": 800,
+        "file": "textile-printing-digital-screen-line-800w.webp",
+        "kb": 108
+      },
+      {
+        "w": 1200,
+        "file": "textile-printing-digital-screen-line-1200w.webp",
+        "kb": 241
+      }
+    ]
+  },
+  "toy-injection-moulding-assembly-line.webp": {
+    "width": 1200,
+    "height": 800,
+    "variants": [
+      {
+        "w": 400,
+        "file": "toy-injection-moulding-assembly-line-400w.webp",
+        "kb": 18
+      },
+      {
+        "w": 800,
+        "file": "toy-injection-moulding-assembly-line-800w.webp",
+        "kb": 40
+      },
+      {
+        "w": 1200,
+        "file": "toy-injection-moulding-assembly-line-1200w.webp",
+        "kb": 68
       }
     ]
   },
