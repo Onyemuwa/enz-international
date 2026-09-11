@@ -224,19 +224,30 @@
   }
 
   /* ---------- Buttons --------------------------------------------------- */
+  /* A moderate rounded-rect, not a full pill. Every chip, tag and badge on
+     this site is deliberately pill-shaped (.pill, .chip, .hero-cat-chip,
+     .equipment-tab) — that's the right shape for a label. A CTA button is a
+     different job, and a full-pill CTA is the one shape that reads as
+     consumer-app rather than enterprise-B2B (Stripe, Linear and Ramp all use
+     a tight, near-rectangular radius on their primary actions, never a
+     pill). 10px sits between the card radius (12px) and the badge radius
+     (8px) already in use elsewhere, so it reads considered rather than
+     arbitrary. Floating/icon-only round buttons (.fab-whatsapp, .to-top,
+     .hero-search-btn) are unrelated — a circular icon action is correct in
+     any register and stays untouched. */
   .btn {
     position: relative;
     display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
     font-weight: 500; font-size: .9375rem; line-height: 1.2;
     min-height: 2.875rem;
     padding: .8125rem 1.625rem;
-    border-radius: 999px;
+    border-radius: .625rem;
     white-space: nowrap;
     transition: background-color .2s, border-color .2s, color .2s,
                 box-shadow .25s var(--ease-spring), transform .25s var(--ease-spring);
   }
-  .btn-sm { min-height: 2.375rem; padding: .5rem 1.125rem; font-size: .875rem; border-radius: 999px; }
-  .btn-lg { min-height: 3.375rem; padding: 1rem 2rem; font-size: 1rem; }
+  .btn-sm { min-height: 2.375rem; padding: .5rem 1.125rem; font-size: .875rem; border-radius: .5rem; }
+  .btn-lg { min-height: 3.375rem; padding: 1rem 2rem; font-size: 1rem; border-radius: .75rem; }
   form .btn[type='submit'] { min-height: 3rem; }
   .btn svg { flex: none; }
   /* The arrow leans forward on hover — the cheapest possible "this goes
