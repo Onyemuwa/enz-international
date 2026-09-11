@@ -14,16 +14,20 @@ import { industries, resources } from '../_content/pages.js';
 
 export const LANG_LABEL = { en: 'Language', sw: 'Lugha', fr: 'Langue', zh: '语言' };
 
+// `more: true` sends an item into the header's "More" dropdown instead of the
+// top-level bar — six primary links plus a disclosure, rather than nine links
+// competing for one row. Only the desktop header reads the flag: the mobile
+// menu has room to scroll, so it renders every item in one flat list.
 export const NAV_ITEMS = [
   { page: 'index.html', key: 'navHome' },
-  { page: 'services.html', key: 'navServices' },
-  { page: 'process.html', key: 'navProcess' },
-  { page: 'pricing.html', key: 'navPricing' },
-  { page: 'markets.html', key: 'navMarkets' },
   { page: 'equipment.html', key: 'navEquipment' },
+  { page: 'services.html', key: 'navServices' },
+  { page: 'markets.html', key: 'navMarkets' },
   { page: 'about.html', key: 'navAbout' },
-  { page: 'insights.html', key: 'navInsights' },
   { page: 'contact.html', key: 'navContact' },
+  { page: 'process.html', key: 'navProcess', more: true },
+  { page: 'pricing.html', key: 'navPricing', more: true },
+  { page: 'insights.html', key: 'navInsights', more: true },
 ];
 
 export const ALL_PAGES = [

@@ -68,10 +68,34 @@ export function langSwitcher(lang, currentPage, { variant = 'light', id = 'lang'
 }
 
 export function headerHTML(lang, currentPage) {
-  const links = NAV_ITEMS.map(
+  // Six primary links plus a "More" disclosure, rather than nine competing
+  // for one row — the shape a storefront-style nav uses once it has more
+  // sections than fit comfortably in a straight line. See the `more` flag on
+  // NAV_ITEMS. The dropdown reuses the .lang-menu/.lang-panel pill-with-
+  // chevron pattern already built for the language switcher below, rather
+  // than a second disclosure component doing the same job.
+  const primaryItems = NAV_ITEMS.filter((item) => !item.more);
+  const moreItems = NAV_ITEMS.filter((item) => item.more);
+  const moreIsCurrent = moreItems.some((item) => item.page === currentPage);
+
+  const links = primaryItems.map(
     (item) =>
       `<a href="${item.page}" class="nav-link"${item.page === currentPage ? ' aria-current="page"' : ''}>${t(lang, item.key)}</a>`
   ).join('\n');
+  const moreLinks = moreItems.map(
+    (item) =>
+      `<a href="${item.page}" role="menuitem"${item.page === currentPage ? ' aria-current="true"' : ''}>${t(lang, item.key)}</a>`
+  ).join('');
+  const moreMenu = moreItems.length
+    ? `
+        <details class="lang-menu" data-nav-more>
+          <summary aria-haspopup="true" aria-label="${t(lang, 'navMore')}"${moreIsCurrent ? ' aria-current="page"' : ''}>
+            <span>${t(lang, 'navMore')}</span>
+            ${icon('chevronDown', 'w-3.5 h-3.5 lang-caret')}
+          </summary>
+          <div class="lang-panel" role="menu">${moreLinks}</div>
+        </details>`
+    : '';
   const mobileLinks = NAV_ITEMS.map(
     (item) =>
       `<a href="${item.page}" class="nav-link-mobile"${item.page === currentPage ? ' aria-current="page"' : ''}>${t(lang, item.key)}${icon('chevronRight', 'w-4 h-4 opacity-40')}</a>`
@@ -85,6 +109,7 @@ export function headerHTML(lang, currentPage) {
       </a>
       <nav class="hidden xl:flex items-center gap-5 2xl:gap-7 min-w-0 text-[0.875rem] 2xl:text-[0.9375rem] font-medium" aria-label="Primary">
         ${links}
+        ${moreMenu}
       </nav>
       <div class="hidden xl:flex items-center gap-2 2xl:gap-2.5 shrink-0">
         ${langSwitcher(lang, currentPage)}

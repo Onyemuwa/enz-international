@@ -315,12 +315,15 @@
     });
   });
 
-  // ---------- Language menu ----------
-  // The menu is a <details> containing real links, so it already opens,
-  // navigates and is keyboard-operable with no JavaScript at all. Everything
+  // ---------- Language menu / header "More" menu ----------
+  // Both are a <details> containing real links, so they already open,
+  // navigate and are keyboard-operable with no JavaScript at all. Everything
   // below is polish on top of that: close when you click elsewhere, close on
-  // Escape, and never leave two menus open at once.
-  var langMenus = document.querySelectorAll('[data-lang-menu]');
+  // Escape, and never leave two menus open at once. They share one behaviour
+  // because they share the same .lang-menu/.lang-panel markup — see
+  // headerHTML() in _lib/chrome.js for why the header's "More" dropdown
+  // reuses the language switcher's pill-with-chevron pattern.
+  var langMenus = document.querySelectorAll('[data-lang-menu], [data-nav-more]');
   if (langMenus.length) {
     document.addEventListener('click', function (e) {
       langMenus.forEach(function (menu) {
@@ -404,6 +407,75 @@
       if (firstSection) firstSection.scrollIntoView({ block: 'start' });
     }
   }
+
+  // ---------- Carousel (homepage featured equipment) ----------
+  // A thin layer over native scroll-snap: the track is horizontally
+  // scrollable and swipeable with no script at all, so a build with this
+  // disabled (or a script error) still leaves a fully usable row of cards.
+  // Arrows step by one item's width; dots reflect and jump to the item
+  // currently at the start of the visible area.
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // A hidden/backgrounded tab can throttle the rAF-driven smooth-scroll
+  // animation indefinitely, leaving an arrow or dot click looking like it did
+  // nothing. Read per-click, not once at load, since a tab's visibility can
+  // change mid-session.
+  var scrollBehavior = function () {
+    return reduceMotion || document.hidden ? 'auto' : 'smooth';
+  };
+  document.querySelectorAll('[data-carousel]').forEach(function (root) {
+    var track = root.querySelector('[data-carousel-track]');
+    var items = track ? Array.prototype.slice.call(track.children) : [];
+    if (!track || !items.length) return;
+
+    var prevBtn = root.querySelector('[data-carousel-prev]');
+    var nextBtn = root.querySelector('[data-carousel-next]');
+    var dotsWrap = root.nextElementSibling && root.nextElementSibling.hasAttribute('data-carousel-dots') ? root.nextElementSibling : null;
+    var dots = [];
+
+    if (dotsWrap) {
+      items.forEach(function (item, i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'carousel-dot';
+        dot.setAttribute('aria-label', 'Go to item ' + (i + 1) + ' of ' + items.length);
+        dot.addEventListener('click', function () {
+          item.scrollIntoView({ behavior: scrollBehavior(), inline: 'start', block: 'nearest' });
+        });
+        dotsWrap.appendChild(dot);
+      });
+      dots = Array.prototype.slice.call(dotsWrap.children);
+    }
+
+    var updateState = function () {
+      var trackLeft = track.getBoundingClientRect().left;
+      var closest = 0;
+      var closestDist = Infinity;
+      items.forEach(function (item, i) {
+        var dist = Math.abs(item.getBoundingClientRect().left - trackLeft);
+        if (dist < closestDist) { closestDist = dist; closest = i; }
+      });
+      dots.forEach(function (dot, i) { dot.classList.toggle('is-active', i === closest); });
+      if (prevBtn) prevBtn.disabled = track.scrollLeft <= 4;
+      if (nextBtn) nextBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+    };
+
+    var step = function (dir) {
+      var amount = (items[0].getBoundingClientRect().width || track.clientWidth) + 24;
+      track.scrollBy({ left: dir * amount, behavior: scrollBehavior() });
+    };
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { step(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { step(1); });
+
+    var scheduled = false;
+    track.addEventListener('scroll', function () {
+      if (scheduled) return;
+      scheduled = true;
+      window.requestAnimationFrame(function () { updateState(); scheduled = false; });
+    });
+    window.addEventListener('resize', updateState);
+    updateState();
+  });
 
   // ---------- Footer year ----------
   document.querySelectorAll('[data-current-year]').forEach(function (el) {

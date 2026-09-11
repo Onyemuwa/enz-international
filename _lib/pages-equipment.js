@@ -43,7 +43,7 @@ function productCard(lang, item) {
   // and including the specs means a search for "robotic" or "PLC" finds the
   // right machines, not just a search on the product name.
   // The 4 spec bullets are real and worth having, but showing all of them on
-  // every one of 35 cards by default is 140 lines of dense text standing
+  // every one of 50 cards by default is 200 lines of dense text standing
   // between a visitor and the one button that matters — the opposite of a
   // catalogue you can scan in a minute. <details> keeps them one click away
   // rather than deleting them: closed is the fast path, open is still there
@@ -74,7 +74,7 @@ function productCard(lang, item) {
 export function equipmentPage(lang) {
   // A tab-style nav under the hero — "browse by category" — jumping to each
   // section anchor. The storefront-style equivalent of a shop's category
-  // menu, and genuinely useful once the page holds 35 products: nobody should
+  // menu, and genuinely useful once the page holds 50 products: nobody should
   // have to scroll past six categories to reach the seventh.
   const categoryNav = equipmentCategories
     .map((cat) => `<a href="#${slugify(cat.industry)}" class="equipment-tab">${cat.industry}</a>`)
@@ -105,7 +105,7 @@ export function equipmentPage(lang) {
     <div class="${SHELL} max-w-6xl space-y-6">
       <p class="text-sm text-slate bg-gray-bg border border-line rounded-lg px-4 py-3">${t(lang, 'equipmentDisclaimer')}</p>
 
-      <!-- Client-side only: filters the 35 cards already on the page as the
+      <!-- Client-side only: filters the 50 cards already on the page as the
            visitor types. No search backend, no index to keep in sync — it
            cannot return a result that does not match what is actually
            published, which a server-side search over stale data could. -->

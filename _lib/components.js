@@ -127,8 +127,8 @@ export function escapeAttr(v) {
 // `slot` is normally a string key looked up in the two sitewide image maps —
 // the original, and still the common, case. It can also be a {src, file, alt}
 // object passed directly, for content with too many individual photo slots to
-// register into a shared map one at a time (35 equipment items, each its own
-// slot, would otherwise mean 35 new entries in images.js alongside the
+// register into a shared map one at a time (50 equipment items, each its own
+// slot, would otherwise mean 50 new entries in images.js alongside the
 // hero/about/industry photos it was written for). Same empty-slot contract
 // either way: a config with `src: ''` renders the deliberate placeholder.
 export function media(slot, { ratio = '16-9', className = '', eager = false, sizes = '' } = {}) {

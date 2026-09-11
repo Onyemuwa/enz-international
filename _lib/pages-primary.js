@@ -46,11 +46,17 @@ export function homePage(lang) {
   ];
 
   const body = `
-  <section class="hero hero-photo${images.hero.src ? '' : ' is-empty'}">
+  <!-- Full-bleed, single-column and centred — headline then search then
+       nothing else competing for the first look, the storefront-style shape
+       asked for in place of the old two-column hero (headline+search beside
+       a QC-tracker panel). The tracker is real, useful content, so it isn't
+       cut — it moves to its own centred strip below the fold, still inside
+       the dark hero band, once the search has had the first move. -->
+  <section class="hero hero-photo hero-centered${images.hero.src ? '' : ' is-empty'}">
     ${heroMedia()}
-    <div class="${SHELL} grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
+    <div class="${SHELL}">
 
-      <div class="h1-copy lg:col-span-7">
+      <div class="h1-copy max-w-3xl mx-auto text-center">
         <a href="markets.html" class="pill hover:border-brand-300 transition-colors">
           <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
           ${t(lang, 'heroOrigin')}
@@ -64,7 +70,7 @@ export function homePage(lang) {
           <span class="line text-gradient">${t(lang, 'heroTitleB')}</span>
         </h1>
 
-        <p class="lead mt-7 max-w-xl">${t(lang, 'heroSub')}</p>
+        <p class="lead mt-7 max-w-xl mx-auto">${t(lang, 'heroSub')}</p>
 
         <!-- The search box is the hero's primary action, not an afterthought
              below it — Equipment is the one page on this site that is
@@ -80,7 +86,7 @@ export function homePage(lang) {
         </form>
 
         <!-- Category shortcuts — the catalogue one tap away without typing. -->
-        <div class="mt-5 flex flex-wrap gap-2.5">
+        <div class="mt-5 flex flex-wrap justify-center gap-2.5">
           ${equipmentCategories
             .slice(0, 4)
             .map((cat) => `<a href="equipment.html#${slugify(cat.industry)}" class="hero-cat-chip">${cat.industry}</a>`)
@@ -88,7 +94,7 @@ export function homePage(lang) {
           <a href="equipment.html" class="hero-cat-chip hero-cat-chip-all">${t(lang, 'equipmentViewAllCta')} →</a>
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-3 mt-9">
+        <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
           <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
           <a href="#how-it-works" class="${BTN_SECONDARY} btn-lg">${t(lang, 'navProcess')}</a>
         </div>
@@ -97,7 +103,7 @@ export function homePage(lang) {
              headline — a trust row under the primary action, same position
              this pattern uses on the sibling site, rather than crowding the
              search box out of the first thing a visitor reads. -->
-        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate">
+        <div class="mt-7 flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs text-slate">
           <span class="inline-flex items-center gap-2">${icon('globe', 'w-3.5 h-3.5 text-brand')}${t(lang, 'heroBadge1')}</span>
           <span class="inline-flex items-center gap-2">${icon('check', 'w-3.5 h-3.5 text-brand')}${t(lang, 'heroBadge2')}</span>
           <span class="inline-flex items-center gap-2">${icon('calendar', 'w-3.5 h-3.5 text-brand')}${t(lang, 'heroBadge3')}</span>
@@ -110,7 +116,7 @@ export function homePage(lang) {
            quality-control.html — not a screenshot of a product, because there
            is no product to screenshot. The stage codes and timings are the
            real ones from _content/pages.js. -->
-      <div class="lg:col-span-5">
+      <div class="max-w-2xl mx-auto mt-16">
         <div class="glass-panel p-6 md:p-7">
             <div class="flex items-center justify-between gap-4 pb-5 border-b border-line">
               <div>
@@ -197,11 +203,14 @@ export function homePage(lang) {
     </div>
   </section>
 
-  <!-- FEATURED EQUIPMENT. One example per category (of 35 total), each
+  <!-- FEATURED EQUIPMENT. One example per category (of 50 total), each
        linking straight to that category on the full storefront rather than
        opening a quote here — the homepage's job is to show the range exists
        and get a visitor to the page built for browsing it, not to duplicate
-       that page's grid inline. -->
+       that page's grid inline. A horizontal carousel rather than a static
+       grid: it reads as a range worth scrolling through, the way a storefront
+       shows its lineup, without every category fighting for a fixed slot in
+       a 4-column row that only lines up evenly on wide screens. -->
   <section class="section bg-white">
     <div class="${SHELL}">
       <div class="flex flex-wrap items-end justify-between gap-6">
@@ -212,19 +221,24 @@ export function homePage(lang) {
         </div>
         <a href="equipment.html" class="link-arrow shrink-0">${t(lang, 'equipmentViewAllCta')} ${icon('chevronRight', 'w-4 h-4')}</a>
       </div>
-      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
-        ${equipmentCategories
-          .map((cat) => {
-            const item = cat.items[0];
-            return `<a href="equipment.html#${slugify(cat.industry)}" class="${CARD} block group">
-          ${media({ src: item.image, file: item.image, alt: item.use }, { ratio: '4-3', className: 'card-media' })}
-          <span class="pill mono-tag">${cat.industry}</span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">${item.name}</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">${item.use}</p>
-        </a>`;
-          })
-          .join('')}
+      <div class="carousel mt-14" data-carousel>
+        <button type="button" data-carousel-prev class="carousel-arrow carousel-arrow-prev" aria-label="${t(lang, 'carouselPrev')}">${icon('chevronLeft', 'w-4.5 h-4.5')}</button>
+        <div class="carousel-track" data-carousel-track>
+          ${equipmentCategories
+            .map((cat) => {
+              const item = cat.items[0];
+              return `<a href="equipment.html#${slugify(cat.industry)}" class="${CARD} carousel-item block group">
+            ${media({ src: item.image, file: item.image, alt: item.use }, { ratio: '4-3', className: 'card-media' })}
+            <span class="pill mono-tag">${cat.industry}</span>
+            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">${item.name}</h3>
+            <p class="text-slate text-sm mt-2 leading-relaxed">${item.use}</p>
+          </a>`;
+            })
+            .join('')}
+        </div>
+        <button type="button" data-carousel-next class="carousel-arrow carousel-arrow-next" aria-label="${t(lang, 'carouselNext')}">${icon('chevronRight', 'w-4.5 h-4.5')}</button>
       </div>
+      <div class="carousel-dots" data-carousel-dots></div>
     </div>
   </section>
 

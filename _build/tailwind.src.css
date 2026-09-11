@@ -1027,7 +1027,7 @@
      purpose, since that shape is what was actually being asked for. */
   .hero-search {
     position: relative; display: flex; align-items: center;
-    max-width: 34rem;
+    max-width: 38rem; margin-inline: auto;
   }
   .hero-search-icon {
     position: absolute; left: 1.25rem; color: #8A97A1; pointer-events: none;
@@ -1073,6 +1073,54 @@
   @media (prefers-reduced-motion: reduce) {
     .hero-search-input, .hero-search-btn, .hero-cat-chip { transition: none; }
     .hero-search-btn:active { transform: none; }
+  }
+
+  /* ---------- Carousel (homepage featured equipment) --------------------
+     A horizontal, scroll-snapping row with arrow controls either side and a
+     dot per item below — the storefront pattern for showing a lineup that
+     is too long for one static row, without paginating it behind a click.
+     The scroll container is the whole mechanism: arrows and dots are a thin
+     layer of convenience over native scroll-snap, so with JS disabled this
+     is still a swipeable, fully navigable row of cards. */
+  .carousel { position: relative; }
+  .carousel-track {
+    display: flex; gap: 1.5rem;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    -ms-overflow-style: none; scrollbar-width: none;
+  }
+  .carousel-track::-webkit-scrollbar { display: none; }
+  .carousel-item { scroll-snap-align: start; flex: 0 0 calc(82% - .75rem); }
+  @media (min-width: 640px) { .carousel-item { flex-basis: calc(50% - .75rem); } }
+  @media (min-width: 1024px) { .carousel-item { flex-basis: calc(33.333% - 1rem); } }
+
+  .carousel-arrow {
+    position: absolute; top: 40%; transform: translateY(-50%); z-index: 5;
+    width: 2.75rem; height: 2.75rem; border-radius: 999px;
+    background: #fff; border: 1px solid #E4E9ED; color: #1E2E40;
+    display: none; align-items: center; justify-content: center;
+    box-shadow: 0 1px 2px rgba(11,18,32,.06), 0 16px 32px -16px rgba(11,18,32,.28);
+    transition: border-color .2s, box-shadow .2s, opacity .2s;
+  }
+  @media (min-width: 768px) {
+    .carousel-arrow { display: inline-flex; }
+    .carousel-arrow-prev { left: -1.375rem; }
+    .carousel-arrow-next { right: -1.375rem; }
+  }
+  .carousel-arrow:hover { border-color: #A9D8F4; }
+  .carousel-arrow:disabled { opacity: .35; pointer-events: none; }
+
+  .carousel-dots { display: flex; justify-content: center; gap: .5rem; margin-top: 1.5rem; }
+  .carousel-dot {
+    width: .5rem; height: .5rem; border-radius: 999px; padding: 0;
+    background: #E4E9ED; border: 0; cursor: pointer;
+    transition: background-color .2s, width .2s;
+  }
+  .carousel-dot:hover { background: #C7D1D8; }
+  .carousel-dot.is-active { background: #0171BA; width: 1.5rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-track { scroll-behavior: auto; }
+    .carousel-arrow, .carousel-dot { transition: none; }
   }
 
   /* ---------- Misc ------------------------------------------------------ */

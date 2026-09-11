@@ -22,7 +22,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=53" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=54" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -58,14 +58,19 @@
       </a>
       <nav class="hidden xl:flex items-center gap-5 2xl:gap-7 min-w-0 text-[0.875rem] 2xl:text-[0.9375rem] font-medium" aria-label="Primary">
         <a href="./" class="nav-link" aria-current="page">Home</a>
-<a href="services/" class="nav-link">Services</a>
-<a href="process/" class="nav-link">Process</a>
-<a href="pricing/" class="nav-link">Engagement</a>
-<a href="markets/" class="nav-link">Markets</a>
 <a href="equipment/" class="nav-link">Equipment</a>
+<a href="services/" class="nav-link">Services</a>
+<a href="markets/" class="nav-link">Markets</a>
 <a href="about/" class="nav-link">About</a>
-<a href="insights/" class="nav-link">Insights</a>
 <a href="contact/" class="nav-link">Contact</a>
+        
+        <details class="lang-menu" data-nav-more>
+          <summary aria-haspopup="true" aria-label="More">
+            <span>More</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 lang-caret" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="lang-panel" role="menu"><a href="process/" role="menuitem">Process</a><a href="pricing/" role="menuitem">Engagement</a><a href="insights/" role="menuitem">Insights</a></div>
+        </details>
       </nav>
       <div class="hidden xl:flex items-center gap-2 2xl:gap-2.5 shrink-0">
         
@@ -81,14 +86,14 @@
     <nav id="mobile-nav" hidden aria-label="Primary" class="xl:hidden bg-white border-t border-line shadow-lg max-h-[calc(100vh-4.25rem)] overflow-y-auto">
       <div class="shell py-5 text-[0.9375rem]">
         <a href="./" class="nav-link-mobile" aria-current="page">Home<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="equipment/" class="nav-link-mobile">Equipment<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
 <a href="services/" class="nav-link-mobile">Services<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="markets/" class="nav-link-mobile">Markets<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="about/" class="nav-link-mobile">About<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+<a href="contact/" class="nav-link-mobile">Contact<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
 <a href="process/" class="nav-link-mobile">Process<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
 <a href="pricing/" class="nav-link-mobile">Engagement<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
-<a href="markets/" class="nav-link-mobile">Markets<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
-<a href="equipment/" class="nav-link-mobile">Equipment<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
-<a href="about/" class="nav-link-mobile">About<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
 <a href="insights/" class="nav-link-mobile">Insights<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
-<a href="contact/" class="nav-link-mobile">Contact<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
         <div class="pt-5 space-y-3">
           <button data-open-booking class="btn btn-primary w-full">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
           <div class="pt-4 mt-2 border-t border-line">
@@ -102,14 +107,20 @@
     
     <main id="main-content">
       
-  <section class="hero hero-photo">
+  <!-- Full-bleed, single-column and centred — headline then search then
+       nothing else competing for the first look, the storefront-style shape
+       asked for in place of the old two-column hero (headline+search beside
+       a QC-tracker panel). The tracker is real, useful content, so it isn't
+       cut — it moves to its own centred strip below the fold, still inside
+       the dark hero band, once the search has had the first move. -->
+  <section class="hero hero-photo hero-centered">
     
     <div class="hero-media" aria-hidden="true">
       <img src="../assets/images/hero-factory.webp" alt="" loading="eager" decoding="async" fetchpriority="high" width="1920" height="907" srcset="../assets/images/hero-factory-400w.webp 400w, ../assets/images/hero-factory-800w.webp 800w, ../assets/images/hero-factory-1200w.webp 1200w, ../assets/images/hero-factory-1600w.webp 1600w, ../assets/images/hero-factory-1920w.webp 1920w" sizes="100vw" />
     </div>
-    <div class="shell grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
+    <div class="shell">
 
-      <div class="h1-copy lg:col-span-7">
+      <div class="h1-copy max-w-3xl mx-auto text-center">
         <a href="markets/" class="pill hover:border-brand-300 transition-colors">
           <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
           Sourced in Guangzhou, China — shipped worldwide
@@ -123,7 +134,7 @@
           <span class="line text-gradient">And make sure it delivers.</span>
         </h1>
 
-        <p class="lead mt-7 max-w-xl">Verified suppliers, four inspection stages, freight to your port. One contact throughout.</p>
+        <p class="lead mt-7 max-w-xl mx-auto">Verified suppliers, four inspection stages, freight to your port. One contact throughout.</p>
 
         <!-- The search box is the hero's primary action, not an afterthought
              below it — Equipment is the one page on this site that is
@@ -139,12 +150,12 @@
         </form>
 
         <!-- Category shortcuts — the catalogue one tap away without typing. -->
-        <div class="mt-5 flex flex-wrap gap-2.5">
+        <div class="mt-5 flex flex-wrap justify-center gap-2.5">
           <a href="equipment/#construction-building-materials" class="hero-cat-chip">Construction & building materials</a><a href="equipment/#industrial-equipment-machinery" class="hero-cat-chip">Industrial equipment & machinery</a><a href="equipment/#consumer-goods-retail" class="hero-cat-chip">Consumer goods & retail</a><a href="equipment/#commodities-raw-materials" class="hero-cat-chip">Commodities & raw materials</a>
           <a href="equipment/" class="hero-cat-chip hero-cat-chip-all">Browse all equipment →</a>
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-3 mt-9">
+        <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
           <button data-open-booking class="btn btn-primary btn-lg">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
           <a href="#how-it-works" class="btn btn-secondary btn-lg">Process</a>
         </div>
@@ -153,7 +164,7 @@
              headline — a trust row under the primary action, same position
              this pattern uses on the sibling site, rather than crowding the
              search box out of the first thing a visitor reads. -->
-        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate">
+        <div class="mt-7 flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs text-slate">
           <span class="inline-flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Sourcing</span>
           <span class="inline-flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Quality control</span>
           <span class="inline-flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Factory setup</span>
@@ -166,7 +177,7 @@
            quality-control.html — not a screenshot of a product, because there
            is no product to screenshot. The stage codes and timings are the
            real ones from _content/pages.js. -->
-      <div class="lg:col-span-5">
+      <div class="max-w-2xl mx-auto mt-16">
         <div class="glass-panel p-6 md:p-7">
             <div class="flex items-center justify-between gap-4 pb-5 border-b border-line">
               <div>
@@ -307,87 +318,95 @@
     </div>
   </section>
 
-  <!-- FEATURED EQUIPMENT. One example per category (of 35 total), each
+  <!-- FEATURED EQUIPMENT. One example per category (of 50 total), each
        linking straight to that category on the full storefront rather than
        opening a quote here — the homepage's job is to show the range exists
        and get a visitor to the page built for browsing it, not to duplicate
-       that page's grid inline. -->
+       that page's grid inline. A horizontal carousel rather than a static
+       grid: it reads as a range worth scrolling through, the way a storefront
+       shows its lineup, without every category fighting for a fixed slot in
+       a 4-column row that only lines up evenly on wide screens. -->
   <section class="section bg-white">
     <div class="shell">
       <div class="flex flex-wrap items-end justify-between gap-6">
         <div class="max-w-xl">
           <p class="eyebrow">Equipment</p>
           <h2 class="h2-section mt-5">Equipment we help you source</h2>
-          <p class="lead mt-4">One example per category — 35 in total, sourced against your brief, not stocked.</p>
+          <p class="lead mt-4">One example per category — 50 in total, sourced against your brief, not stocked.</p>
         </div>
         <a href="equipment/" class="link-arrow shrink-0">Browse all equipment <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
       </div>
-      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
-        <a href="equipment/#construction-building-materials" class="card block group">
-          <div class="media media-4-3 card-media">
+      <div class="carousel mt-14" data-carousel>
+        <button type="button" data-carousel-prev class="carousel-arrow carousel-arrow-prev" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4.5 h-4.5" aria-hidden="true"><polyline points="15 6 9 12 15 18"/></svg></button>
+        <div class="carousel-track" data-carousel-track>
+          <a href="equipment/#construction-building-materials" class="card carousel-item block group">
+            <div class="media media-4-3 card-media">
             <img src="../assets/images/ceramic-tile-press-kiln-line.webp" alt="Forms and fires clay or porcelain body into finished floor or wall tile."
                  loading="lazy" decoding="async"
                   width="1200" height="801" srcset="../assets/images/ceramic-tile-press-kiln-line-400w.webp 400w, ../assets/images/ceramic-tile-press-kiln-line-800w.webp 800w, ../assets/images/ceramic-tile-press-kiln-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-          <span class="pill mono-tag">Construction & building materials</span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Ceramic tile press & kiln line</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">Forms and fires clay or porcelain body into finished floor or wall tile.</p>
-        </a><a href="equipment/#industrial-equipment-machinery" class="card block group">
-          <div class="media media-4-3 card-media">
+            <span class="pill mono-tag">Construction & building materials</span>
+            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Ceramic tile press & kiln line</h3>
+            <p class="text-slate text-sm mt-2 leading-relaxed">Forms and fires clay or porcelain body into finished floor or wall tile.</p>
+          </a><a href="equipment/#industrial-equipment-machinery" class="card carousel-item block group">
+            <div class="media media-4-3 card-media">
             <img src="../assets/images/cnc-machining-centre.webp" alt="Cuts, drills and mills metal or plastic parts to specification from a digital design."
                  loading="lazy" decoding="async"
                   width="1200" height="1800" srcset="../assets/images/cnc-machining-centre-400w.webp 400w, ../assets/images/cnc-machining-centre-800w.webp 800w, ../assets/images/cnc-machining-centre-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-          <span class="pill mono-tag">Industrial equipment & machinery</span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">CNC machining centre</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">Cuts, drills and mills metal or plastic parts to specification from a digital design.</p>
-        </a><a href="equipment/#consumer-goods-retail" class="card block group">
-          <div class="media media-4-3 card-media">
+            <span class="pill mono-tag">Industrial equipment & machinery</span>
+            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">CNC machining centre</h3>
+            <p class="text-slate text-sm mt-2 leading-relaxed">Cuts, drills and mills metal or plastic parts to specification from a digital design.</p>
+          </a><a href="equipment/#consumer-goods-retail" class="card carousel-item block group">
+            <div class="media media-4-3 card-media">
             <img src="../assets/images/household-plastics-production-line.webp" alt="Moulds and finishes household plastic goods — containers, fixtures, general merchandise."
                  loading="lazy" decoding="async"
                   width="1200" height="800" srcset="../assets/images/household-plastics-production-line-400w.webp 400w, ../assets/images/household-plastics-production-line-800w.webp 800w, ../assets/images/household-plastics-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-          <span class="pill mono-tag">Consumer goods & retail</span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Household plastics production line</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">Moulds and finishes household plastic goods — containers, fixtures, general merchandise.</p>
-        </a><a href="equipment/#commodities-raw-materials" class="card block group">
-          <div class="media media-4-3 card-media">
+            <span class="pill mono-tag">Consumer goods & retail</span>
+            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Household plastics production line</h3>
+            <p class="text-slate text-sm mt-2 leading-relaxed">Moulds and finishes household plastic goods — containers, fixtures, general merchandise.</p>
+          </a><a href="equipment/#commodities-raw-materials" class="card carousel-item block group">
+            <div class="media media-4-3 card-media">
             <img src="../assets/images/ore-flotation-concentration-line.webp" alt="Separates valuable mineral from waste rock to produce a saleable concentrate."
                  loading="lazy" decoding="async"
                   width="1200" height="752" srcset="../assets/images/ore-flotation-concentration-line-400w.webp 400w, ../assets/images/ore-flotation-concentration-line-800w.webp 800w, ../assets/images/ore-flotation-concentration-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-          <span class="pill mono-tag">Commodities & raw materials</span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Ore flotation & concentration line</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">Separates valuable mineral from waste rock to produce a saleable concentrate.</p>
-        </a><a href="equipment/#agriculture-food-processing" class="card block group">
-          <div class="media media-4-3 card-media">
+            <span class="pill mono-tag">Commodities & raw materials</span>
+            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Ore flotation & concentration line</h3>
+            <p class="text-slate text-sm mt-2 leading-relaxed">Separates valuable mineral from waste rock to produce a saleable concentrate.</p>
+          </a><a href="equipment/#agriculture-food-processing" class="card carousel-item block group">
+            <div class="media media-4-3 card-media">
             <img src="../assets/images/rice-maize-milling-line.webp" alt="Hulls, polishes and grades grain into a finished, saleable product."
                  loading="lazy" decoding="async"
                   width="1200" height="835" srcset="../assets/images/rice-maize-milling-line-400w.webp 400w, ../assets/images/rice-maize-milling-line-800w.webp 800w, ../assets/images/rice-maize-milling-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-          <span class="pill mono-tag">Agriculture & food processing</span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Rice/maize milling line</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">Hulls, polishes and grades grain into a finished, saleable product.</p>
-        </a><a href="equipment/#packaging-printing" class="card block group">
-          <div class="media media-4-3 card-media">
+            <span class="pill mono-tag">Agriculture & food processing</span>
+            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Rice/maize milling line</h3>
+            <p class="text-slate text-sm mt-2 leading-relaxed">Hulls, polishes and grades grain into a finished, saleable product.</p>
+          </a><a href="equipment/#packaging-printing" class="card carousel-item block group">
+            <div class="media media-4-3 card-media">
             <img src="../assets/images/flexographic-printing-press.webp" alt="Prints multi-colour graphics onto flexible packaging film."
                  loading="lazy" decoding="async"
                   width="1200" height="800" srcset="../assets/images/flexographic-printing-press-400w.webp 400w, ../assets/images/flexographic-printing-press-800w.webp 800w, ../assets/images/flexographic-printing-press-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-          <span class="pill mono-tag">Packaging & printing</span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Flexographic printing press</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">Prints multi-colour graphics onto flexible packaging film.</p>
-        </a><a href="equipment/#textiles-apparel" class="card block group">
-          <div class="media media-4-3 card-media">
+            <span class="pill mono-tag">Packaging & printing</span>
+            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Flexographic printing press</h3>
+            <p class="text-slate text-sm mt-2 leading-relaxed">Prints multi-colour graphics onto flexible packaging film.</p>
+          </a><a href="equipment/#textiles-apparel" class="card carousel-item block group">
+            <div class="media media-4-3 card-media">
             <img src="../assets/images/circular-flat-knitting-line.webp" alt="Knits yarn into fabric for apparel and household textiles."
                  loading="lazy" decoding="async"
                   width="1200" height="1600" srcset="../assets/images/circular-flat-knitting-line-400w.webp 400w, ../assets/images/circular-flat-knitting-line-800w.webp 800w, ../assets/images/circular-flat-knitting-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-          <span class="pill mono-tag">Textiles & apparel</span>
-          <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Circular/flat knitting line</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">Knits yarn into fabric for apparel and household textiles.</p>
-        </a>
+            <span class="pill mono-tag">Textiles & apparel</span>
+            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Circular/flat knitting line</h3>
+            <p class="text-slate text-sm mt-2 leading-relaxed">Knits yarn into fabric for apparel and household textiles.</p>
+          </a>
+        </div>
+        <button type="button" data-carousel-next class="carousel-arrow carousel-arrow-next" aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4.5 h-4.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
       </div>
+      <div class="carousel-dots" data-carousel-dots></div>
     </div>
   </section>
 
@@ -704,9 +723,9 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=53"></script>
-    <script src="../assets/js/api.js?v=53"></script>
-    <script src="../assets/js/site.js?v=53" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=53"></script>
+    <script src="../assets/js/config.js?v=54"></script>
+    <script src="../assets/js/api.js?v=54"></script>
+    <script src="../assets/js/site.js?v=54" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=54"></script>
   </body>
 </html>
