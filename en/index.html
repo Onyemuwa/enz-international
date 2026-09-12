@@ -22,7 +22,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=55" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=56" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -318,14 +318,11 @@
     </div>
   </section>
 
-  <!-- FEATURED EQUIPMENT. One example per category (of 50 total), each
-       linking straight to that category on the full storefront rather than
-       opening a quote here — the homepage's job is to show the range exists
-       and get a visitor to the page built for browsing it, not to duplicate
-       that page's grid inline. A horizontal carousel rather than a static
-       grid: it reads as a range worth scrolling through, the way a storefront
-       shows its lineup, without every category fighting for a fixed slot in
-       a 4-column row that only lines up evenly on wide screens. -->
+  <!-- FEATURED EQUIPMENT. One example per category (of 50 total), the exact
+       same product card the full storefront uses (photo, spec chips,
+       collapsed specs, "Request a Quote") — a static grid, not a carousel,
+       so what a visitor sees here is what they'll see when they click through
+       rather than a thinner preview version. -->
   <section class="section bg-white">
     <div class="shell">
       <div class="flex flex-wrap items-end justify-between gap-6">
@@ -336,77 +333,149 @@
         </div>
         <a href="equipment/" class="link-arrow shrink-0">Browse all equipment <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
       </div>
-      <div class="carousel mt-14" data-carousel>
-        <button type="button" data-carousel-prev class="carousel-arrow carousel-arrow-prev" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4.5 h-4.5" aria-hidden="true"><polyline points="15 6 9 12 15 18"/></svg></button>
-        <div class="carousel-track" data-carousel-track>
-          <a href="equipment/#construction-building-materials" class="card carousel-item block group">
-            <div class="media media-4-3 card-media">
+      <div data-reveal-group class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
+        <article class="card flex flex-col" data-equipment-card data-search="ceramic tile press &amp; kiln line forms and fires clay or porcelain body into finished floor or wall tile. hydraulic press cycle down to single-digit seconds per tile, tuned to body thickness roller-hearth or shuttle kiln firing, matched to porcelain or ceramic body automatic glaze line for single-fire or double-fire production plc-controlled firing curve with temperature-log traceability">
+    <div class="media media-4-3 card-media">
             <img src="../assets/images/ceramic-tile-press-kiln-line.webp" alt="Forms and fires clay or porcelain body into finished floor or wall tile."
                  loading="lazy" decoding="async"
                   width="1200" height="801" srcset="../assets/images/ceramic-tile-press-kiln-line-400w.webp 400w, ../assets/images/ceramic-tile-press-kiln-line-800w.webp 800w, ../assets/images/ceramic-tile-press-kiln-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-            <span class="pill mono-tag">Construction & building materials</span>
-            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Ceramic tile press & kiln line</h3>
-            <p class="text-slate text-sm mt-2 leading-relaxed">Forms and fires clay or porcelain body into finished floor or wall tile.</p>
-          </a><a href="equipment/#industrial-equipment-machinery" class="card carousel-item block group">
-            <div class="media media-4-3 card-media">
+    <h3 class="font-semibold text-ink leading-snug">Ceramic tile press & kiln line</h3>
+    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms and fires clay or porcelain body into finished floor or wall tile.</p>
+    <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-line">
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Power</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">40–180 kW</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical capacity</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">3,000–8,000 m²/day</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical lead time</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">75–120 days</p></div>
+    </div>
+    <details class="mt-3 group">
+      <summary class="text-xs font-semibold text-brand cursor-pointer list-none inline-flex items-center gap-1">Full specs <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 transition-transform group-open:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <ul class="mt-3 space-y-2 text-sm text-slate leading-snug"><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Hydraulic press cycle down to single-digit seconds per tile, tuned to body thickness</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Roller-hearth or shuttle kiln firing, matched to porcelain or ceramic body</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Automatic glaze line for single-fire or double-fire production</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>PLC-controlled firing curve with temperature-log traceability</span></li></ul>
+    </details>
+    <button data-open-booking data-quote-for="Ceramic tile press &amp; kiln line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+  </article><article class="card flex flex-col" data-equipment-card data-search="cnc machining centre cuts, drills and mills metal or plastic parts to specification from a digital design. 3-, 4- or 5-axis configurations, matched to part complexity tool-changer capacity from 20 to 40+ stations for unattended runs coolant-through-spindle option for deep-hole and hard-metal work compatible with common cam software — mastercam, fusion, solidcam">
+    <div class="media media-4-3 card-media">
             <img src="../assets/images/cnc-machining-centre.webp" alt="Cuts, drills and mills metal or plastic parts to specification from a digital design."
                  loading="lazy" decoding="async"
                   width="1200" height="1800" srcset="../assets/images/cnc-machining-centre-400w.webp 400w, ../assets/images/cnc-machining-centre-800w.webp 800w, ../assets/images/cnc-machining-centre-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-            <span class="pill mono-tag">Industrial equipment & machinery</span>
-            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">CNC machining centre</h3>
-            <p class="text-slate text-sm mt-2 leading-relaxed">Cuts, drills and mills metal or plastic parts to specification from a digital design.</p>
-          </a><a href="equipment/#consumer-goods-retail" class="card carousel-item block group">
-            <div class="media media-4-3 card-media">
+    <h3 class="font-semibold text-ink leading-snug">CNC machining centre</h3>
+    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts, drills and mills metal or plastic parts to specification from a digital design.</p>
+    <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-line">
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Power</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">15–75 kW</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical capacity</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">Varies by part geometry</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical lead time</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">45–90 days</p></div>
+    </div>
+    <details class="mt-3 group">
+      <summary class="text-xs font-semibold text-brand cursor-pointer list-none inline-flex items-center gap-1">Full specs <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 transition-transform group-open:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <ul class="mt-3 space-y-2 text-sm text-slate leading-snug"><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>3-, 4- or 5-axis configurations, matched to part complexity</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Tool-changer capacity from 20 to 40+ stations for unattended runs</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Coolant-through-spindle option for deep-hole and hard-metal work</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Compatible with common CAM software — Mastercam, Fusion, SolidCAM</span></li></ul>
+    </details>
+    <button data-open-booking data-quote-for="CNC machining centre" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+  </article><article class="card flex flex-col" data-equipment-card data-search="household plastics production line moulds and finishes household plastic goods — containers, fixtures, general merchandise. injection or blow-moulding, matched to product geometry — rigid vs. hollow multi-cavity tooling for high-volume skus like containers and fixtures in-line trimming and quality-check stations colour-masterbatch dosing for consistent product colour across runs">
+    <div class="media media-4-3 card-media">
             <img src="../assets/images/household-plastics-production-line.webp" alt="Moulds and finishes household plastic goods — containers, fixtures, general merchandise."
                  loading="lazy" decoding="async"
                   width="1200" height="800" srcset="../assets/images/household-plastics-production-line-400w.webp 400w, ../assets/images/household-plastics-production-line-800w.webp 800w, ../assets/images/household-plastics-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-            <span class="pill mono-tag">Consumer goods & retail</span>
-            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Household plastics production line</h3>
-            <p class="text-slate text-sm mt-2 leading-relaxed">Moulds and finishes household plastic goods — containers, fixtures, general merchandise.</p>
-          </a><a href="equipment/#commodities-raw-materials" class="card carousel-item block group">
-            <div class="media media-4-3 card-media">
+    <h3 class="font-semibold text-ink leading-snug">Household plastics production line</h3>
+    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Moulds and finishes household plastic goods — containers, fixtures, general merchandise.</p>
+    <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-line">
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Power</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">30–120 kW</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical capacity</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">2,000–10,000 pcs/day</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical lead time</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">60–90 days</p></div>
+    </div>
+    <details class="mt-3 group">
+      <summary class="text-xs font-semibold text-brand cursor-pointer list-none inline-flex items-center gap-1">Full specs <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 transition-transform group-open:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <ul class="mt-3 space-y-2 text-sm text-slate leading-snug"><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Injection or blow-moulding, matched to product geometry — rigid vs. hollow</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Multi-cavity tooling for high-volume SKUs like containers and fixtures</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>In-line trimming and quality-check stations</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Colour-masterbatch dosing for consistent product colour across runs</span></li></ul>
+    </details>
+    <button data-open-booking data-quote-for="Household plastics production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+  </article><article class="card flex flex-col" data-equipment-card data-search="ore flotation &amp; concentration line separates valuable mineral from waste rock to produce a saleable concentrate. flotation cell bank sized to feed tonnage and mineral liberation size crushing and grinding circuit upstream, matched to ore hardness reagent dosing system for collector, frother and depressant control thickener and filter press for concentrate dewatering">
+    <div class="media media-4-3 card-media">
             <img src="../assets/images/ore-flotation-concentration-line.webp" alt="Separates valuable mineral from waste rock to produce a saleable concentrate."
                  loading="lazy" decoding="async"
                   width="1200" height="752" srcset="../assets/images/ore-flotation-concentration-line-400w.webp 400w, ../assets/images/ore-flotation-concentration-line-800w.webp 800w, ../assets/images/ore-flotation-concentration-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-            <span class="pill mono-tag">Commodities & raw materials</span>
-            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Ore flotation & concentration line</h3>
-            <p class="text-slate text-sm mt-2 leading-relaxed">Separates valuable mineral from waste rock to produce a saleable concentrate.</p>
-          </a><a href="equipment/#agriculture-food-processing" class="card carousel-item block group">
-            <div class="media media-4-3 card-media">
+    <h3 class="font-semibold text-ink leading-snug">Ore flotation & concentration line</h3>
+    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Separates valuable mineral from waste rock to produce a saleable concentrate.</p>
+    <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-line">
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Power</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">200–1,200 kW</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical capacity</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">100–1,000 t/day feed</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical lead time</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">120–180 days</p></div>
+    </div>
+    <details class="mt-3 group">
+      <summary class="text-xs font-semibold text-brand cursor-pointer list-none inline-flex items-center gap-1">Full specs <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 transition-transform group-open:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <ul class="mt-3 space-y-2 text-sm text-slate leading-snug"><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Flotation cell bank sized to feed tonnage and mineral liberation size</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Crushing and grinding circuit upstream, matched to ore hardness</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Reagent dosing system for collector, frother and depressant control</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Thickener and filter press for concentrate dewatering</span></li></ul>
+    </details>
+    <button data-open-booking data-quote-for="Ore flotation &amp; concentration line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+  </article><article class="card flex flex-col" data-equipment-card data-search="rice/maize milling line hulls, polishes and grades grain into a finished, saleable product. pre-cleaning, husking and whitening stages in one integrated line colour-sorter option for export-grade product by-product recovery — bran, husk — for secondary revenue packaging station sized to bag weight and daily output target">
+    <div class="media media-4-3 card-media">
             <img src="../assets/images/rice-maize-milling-line.webp" alt="Hulls, polishes and grades grain into a finished, saleable product."
                  loading="lazy" decoding="async"
                   width="1200" height="835" srcset="../assets/images/rice-maize-milling-line-400w.webp 400w, ../assets/images/rice-maize-milling-line-800w.webp 800w, ../assets/images/rice-maize-milling-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-            <span class="pill mono-tag">Agriculture & food processing</span>
-            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Rice/maize milling line</h3>
-            <p class="text-slate text-sm mt-2 leading-relaxed">Hulls, polishes and grades grain into a finished, saleable product.</p>
-          </a><a href="equipment/#packaging-printing" class="card carousel-item block group">
-            <div class="media media-4-3 card-media">
+    <h3 class="font-semibold text-ink leading-snug">Rice/maize milling line</h3>
+    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Hulls, polishes and grades grain into a finished, saleable product.</p>
+    <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-line">
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Power</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">30–150 kW</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical capacity</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">20–150 t/day</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical lead time</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">60–100 days</p></div>
+    </div>
+    <details class="mt-3 group">
+      <summary class="text-xs font-semibold text-brand cursor-pointer list-none inline-flex items-center gap-1">Full specs <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 transition-transform group-open:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <ul class="mt-3 space-y-2 text-sm text-slate leading-snug"><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Pre-cleaning, husking and whitening stages in one integrated line</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Colour-sorter option for export-grade product</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>By-product recovery — bran, husk — for secondary revenue</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Packaging station sized to bag weight and daily output target</span></li></ul>
+    </details>
+    <button data-open-booking data-quote-for="Rice/maize milling line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+  </article><article class="card flex flex-col" data-equipment-card data-search="flexographic printing press prints multi-colour graphics onto flexible packaging film. in-line multi-colour stations, typically 4–8, matched to design complexity compatible with film, paper and light-board substrates anilox roller system for consistent ink lay-down in-line slitting and rewinding for finished-roll output">
+    <div class="media media-4-3 card-media">
             <img src="../assets/images/flexographic-printing-press.webp" alt="Prints multi-colour graphics onto flexible packaging film."
                  loading="lazy" decoding="async"
                   width="1200" height="800" srcset="../assets/images/flexographic-printing-press-400w.webp 400w, ../assets/images/flexographic-printing-press-800w.webp 800w, ../assets/images/flexographic-printing-press-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-            <span class="pill mono-tag">Packaging & printing</span>
-            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Flexographic printing press</h3>
-            <p class="text-slate text-sm mt-2 leading-relaxed">Prints multi-colour graphics onto flexible packaging film.</p>
-          </a><a href="equipment/#textiles-apparel" class="card carousel-item block group">
-            <div class="media media-4-3 card-media">
+    <h3 class="font-semibold text-ink leading-snug">Flexographic printing press</h3>
+    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Prints multi-colour graphics onto flexible packaging film.</p>
+    <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-line">
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Power</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">15–60 kW</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical capacity</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">100–300 m/min</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical lead time</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">60–90 days</p></div>
+    </div>
+    <details class="mt-3 group">
+      <summary class="text-xs font-semibold text-brand cursor-pointer list-none inline-flex items-center gap-1">Full specs <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 transition-transform group-open:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <ul class="mt-3 space-y-2 text-sm text-slate leading-snug"><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>In-line multi-colour stations, typically 4–8, matched to design complexity</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Compatible with film, paper and light-board substrates</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Anilox roller system for consistent ink lay-down</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>In-line slitting and rewinding for finished-roll output</span></li></ul>
+    </details>
+    <button data-open-booking data-quote-for="Flexographic printing press" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+  </article><article class="card flex flex-col" data-equipment-card data-search="circular/flat knitting line knits yarn into fabric for apparel and household textiles. gauge range matched to fabric-weight target — fine gauge for lightweight, coarse for heavier fabric multiple-feeder configuration for pattern and jacquard capability yarn-tension control for consistent fabric quality across the run compatible with cotton, synthetic and blended yarns">
+    <div class="media media-4-3 card-media">
             <img src="../assets/images/circular-flat-knitting-line.webp" alt="Knits yarn into fabric for apparel and household textiles."
                  loading="lazy" decoding="async"
                   width="1200" height="1600" srcset="../assets/images/circular-flat-knitting-line-400w.webp 400w, ../assets/images/circular-flat-knitting-line-800w.webp 800w, ../assets/images/circular-flat-knitting-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
           </div>
-            <span class="pill mono-tag">Textiles & apparel</span>
-            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">Circular/flat knitting line</h3>
-            <p class="text-slate text-sm mt-2 leading-relaxed">Knits yarn into fabric for apparel and household textiles.</p>
-          </a>
-        </div>
-        <button type="button" data-carousel-next class="carousel-arrow carousel-arrow-next" aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4.5 h-4.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+    <h3 class="font-semibold text-ink leading-snug">Circular/flat knitting line</h3>
+    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Knits yarn into fabric for apparel and household textiles.</p>
+    <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-line">
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Power</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">5–15 kW per machine</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical capacity</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">80–200 kg/day per machine</p></div>
+      <div><p class="text-[0.625rem] font-semibold tracking-[0.08em] uppercase text-slate-light">Typical lead time</p><p class="text-sm text-ink font-medium mt-0.5 leading-tight">45–75 days</p></div>
+    </div>
+    <details class="mt-3 group">
+      <summary class="text-xs font-semibold text-brand cursor-pointer list-none inline-flex items-center gap-1">Full specs <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 transition-transform group-open:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <ul class="mt-3 space-y-2 text-sm text-slate leading-snug"><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Gauge range matched to fabric-weight target — fine gauge for lightweight, coarse for heavier fabric</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Multiple-feeder configuration for pattern and jacquard capability</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Yarn-tension control for consistent fabric quality across the run</span></li><li class="flex items-start gap-2"><span class="mt-0.5 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span>Compatible with cotton, synthetic and blended yarns</span></li></ul>
+    </details>
+    <button data-open-booking data-quote-for="Circular/flat knitting line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+  </article>
       </div>
-      <div class="carousel-dots" data-carousel-dots></div>
     </div>
   </section>
 
@@ -723,9 +792,9 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=55"></script>
-    <script src="../assets/js/api.js?v=55"></script>
-    <script src="../assets/js/site.js?v=55" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=55"></script>
+    <script src="../assets/js/config.js?v=56"></script>
+    <script src="../assets/js/api.js?v=56"></script>
+    <script src="../assets/js/site.js?v=56" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=56"></script>
   </body>
 </html>

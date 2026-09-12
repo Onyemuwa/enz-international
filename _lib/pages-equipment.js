@@ -32,7 +32,11 @@ function specChip(label, value) {
 // and the quote CTA. `data-quote-for` is read by site.js to pre-write the
 // booking modal's message field with the product name, so the enquiry that
 // reaches ENZ already says what it is about.
-function productCard(lang, item) {
+// Exported so the homepage's featured-equipment section can render the exact
+// same card — same photo, spec chips, collapsed-specs toggle and "Request a
+// Quote" button — rather than a second, thinner card that drifts from this
+// one over time.
+export function productCard(lang, item) {
   const photo = media(
     { src: item.image, file: item.image || `${slugify(item.name)}.webp`, alt: item.use },
     { ratio: '4-3', className: 'card-media' }

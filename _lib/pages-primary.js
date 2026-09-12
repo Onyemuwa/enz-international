@@ -23,7 +23,7 @@ import { markets } from '../_content/markets.js';
 import { faqs } from '../_content/faqs.js';
 import { processSteps, qcStages, industries } from '../_content/pages.js';
 import { equipmentCategories } from '../_content/equipment.js';
-import { slugify } from './pages-equipment.js';
+import { slugify, productCard } from './pages-equipment.js';
 import { whyChina } from '../_content/pages2.js';
 
 export function homePage(lang) {
@@ -203,14 +203,11 @@ export function homePage(lang) {
     </div>
   </section>
 
-  <!-- FEATURED EQUIPMENT. One example per category (of 50 total), each
-       linking straight to that category on the full storefront rather than
-       opening a quote here — the homepage's job is to show the range exists
-       and get a visitor to the page built for browsing it, not to duplicate
-       that page's grid inline. A horizontal carousel rather than a static
-       grid: it reads as a range worth scrolling through, the way a storefront
-       shows its lineup, without every category fighting for a fixed slot in
-       a 4-column row that only lines up evenly on wide screens. -->
+  <!-- FEATURED EQUIPMENT. One example per category (of 50 total), the exact
+       same product card the full storefront uses (photo, spec chips,
+       collapsed specs, "Request a Quote") — a static grid, not a carousel,
+       so what a visitor sees here is what they'll see when they click through
+       rather than a thinner preview version. -->
   <section class="section bg-white">
     <div class="${SHELL}">
       <div class="flex flex-wrap items-end justify-between gap-6">
@@ -221,24 +218,9 @@ export function homePage(lang) {
         </div>
         <a href="equipment.html" class="link-arrow shrink-0">${t(lang, 'equipmentViewAllCta')} ${icon('chevronRight', 'w-4 h-4')}</a>
       </div>
-      <div class="carousel mt-14" data-carousel>
-        <button type="button" data-carousel-prev class="carousel-arrow carousel-arrow-prev" aria-label="${t(lang, 'carouselPrev')}">${icon('chevronLeft', 'w-4.5 h-4.5')}</button>
-        <div class="carousel-track" data-carousel-track>
-          ${equipmentCategories
-            .map((cat) => {
-              const item = cat.items[0];
-              return `<a href="equipment.html#${slugify(cat.industry)}" class="${CARD} carousel-item block group">
-            ${media({ src: item.image, file: item.image, alt: item.use }, { ratio: '4-3', className: 'card-media' })}
-            <span class="pill mono-tag">${cat.industry}</span>
-            <h3 class="text-[1.0625rem] font-medium text-ink mt-3 leading-snug">${item.name}</h3>
-            <p class="text-slate text-sm mt-2 leading-relaxed">${item.use}</p>
-          </a>`;
-            })
-            .join('')}
-        </div>
-        <button type="button" data-carousel-next class="carousel-arrow carousel-arrow-next" aria-label="${t(lang, 'carouselNext')}">${icon('chevronRight', 'w-4.5 h-4.5')}</button>
+      <div data-reveal-group class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
+        ${equipmentCategories.map((cat) => productCard(lang, cat.items[0])).join('')}
       </div>
-      <div class="carousel-dots" data-carousel-dots></div>
     </div>
   </section>
 

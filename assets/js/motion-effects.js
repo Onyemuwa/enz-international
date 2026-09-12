@@ -169,35 +169,7 @@
   });
 
   // -------------------------------------------------------------------------
-  // 4. Image wipes
-  // -------------------------------------------------------------------------
-  // Photographs are uncovered rather than faded in. Armed inside the observer
-  // for the same reason, so an image that is never scrolled to is never
-  // clipped in the first place.
-  document.querySelectorAll('.media > img').forEach(function (img) {
-    var frame = img.parentElement;
-    var run = false;
-    inView(
-      frame,
-      function () {
-        if (run) return;
-        run = true;
-        frame.classList.add('is-armed');
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            frame.classList.add('is-revealed');
-          });
-        });
-        setTimeout(function () {
-          frame.classList.remove('is-armed', 'is-revealed');
-        }, 1600);
-      },
-      { amount: 0.2 }
-    );
-  });
-
-  // -------------------------------------------------------------------------
-  // 5. Magnetic primary button
+  // 4. Magnetic primary button
   // -------------------------------------------------------------------------
   // Transform only, so it can never move anything around it. Pointer-fine only
   // — on a touch screen there is no cursor to lean toward, and the listeners
