@@ -105,7 +105,7 @@ const dict = {
     equipmentShopByCategory: 'Browse by category',
     equipmentHomeEyebrow: 'Equipment',
     equipmentHomeTitle: 'Equipment we help you source',
-    equipmentHomeLead: 'One example per category — 50 in total, sourced against your brief, not stocked.',
+    equipmentHomeLead: 'One example per category — 29 in total, sourced against your brief, not stocked.',
     equipmentViewAllCta: 'Browse all equipment',
     equipmentSearchPlaceholder: 'Search for a machine type — "tile press", "cnc", "cold storage"…',
     heroSearchPlaceholder: 'Search equipment — "cnc", "cold storage", "tile press"…',
