@@ -986,6 +986,27 @@
       }
     ]
   },
+  "plastic-recycling-pelletizing-line.webp": {
+    "width": 1200,
+    "height": 798,
+    "variants": [
+      {
+        "w": 400,
+        "file": "plastic-recycling-pelletizing-line-400w.webp",
+        "kb": 32
+      },
+      {
+        "w": 800,
+        "file": "plastic-recycling-pelletizing-line-800w.webp",
+        "kb": 93
+      },
+      {
+        "w": 1200,
+        "file": "plastic-recycling-pelletizing-line-1200w.webp",
+        "kb": 202
+      }
+    ]
+  },
   "pouch-sachet-forming-line.webp": {
     "width": 1200,
     "height": 800,

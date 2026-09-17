@@ -9,7 +9,7 @@
  "en/contact.html": "3ea0a2c5689f84f2",
  "en/drc/index.html": "44cd704ef65068d0",
  "en/drc.html": "422d5c0bc7cfecd3",
- "en/equipment/index.html": "70300d38fe7183b6",
+ "en/equipment/index.html": "cfa6bba2fee788cd",
  "en/equipment.html": "bea17631540a2780",
  "en/factory-setup/index.html": "1ae1eb17fc7a64af",
  "en/factory-setup.html": "8336124136053f67",
@@ -59,6 +59,6 @@
  "index.html": "01cc1d987ad622fe",
  "robots.txt": "ca4157fac345ec91",
  "site.webmanifest": "45a9fff23c324f2f",
- "sitemap.xml": "436de2017b658ced",
+ "sitemap.xml": "0c37c1a1784626c4",
  "vercel.json": "b8606a39a9c1d73c"
 }

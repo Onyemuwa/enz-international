@@ -56,12 +56,14 @@
 // '' renders a branded placeholder block (icon + a filename hint) instead of a
 // photo, the same convention every other unfilled image on this site uses —
 // see _content/images.js. Most items below carry a real, licensed stock photo
-// (Pexels, commercial-use, no attribution required — same basis as every
-// other photo on this site) as a placeholder until real factory-floor or
-// product photography replaces it. The four newest additions (sachet/bottled
-// water, tissue paper, polythene bag, plastic recycling) ship with '' for
-// now — sourcing their stock photos, not writing their content, is the one
-// step still pending.
+// as a placeholder until real factory-floor or product photography replaces
+// it — either Pexels (commercial-use, no attribution required, the basis for
+// every other photo on this site) or, where noted inline, a Wikimedia Commons
+// file explicitly tagged public domain (also attribution-free). Three of the
+// four newest additions (sachet/bottled water, tissue paper, polythene bag)
+// still ship with '' — sourcing a genuinely on-topic, cleanly-licensed photo
+// for those specific niches is the one step still pending; their content
+// (use/power/capacity/lead-time/specs) is already complete.
 //
 // TO REPLACE A STOCK PHOTO WITH A REAL ONE
 //   1. Export at roughly 1000x750px, .webp if you can.
@@ -213,8 +215,13 @@ export const equipmentCategories = [
         ],
       },
       {
+        // Photo: Wikimedia Commons, "Greenville Public Works, ECVC Recycling
+        // Sorting facility - 17.jpg" — tagged public domain (US municipal
+        // government work), no attribution required. Shows baled PET
+        // recyclables rather than the line itself, which is the honest
+        // reason it's a placeholder rather than a final photo.
         name: 'Plastic recycling & pelletizing line',
-        image: '',
+        image: 'plastic-recycling-pelletizing-line.webp',
         use: 'Washes, shreds and re-pelletises plastic waste into reusable raw-material granules.',
         power: '40–160 kW',
         capacity: '300–1,500 kg/hour',
