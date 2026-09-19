@@ -7,5 +7,11 @@
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   Cache-Control: public, max-age=0, must-revalidate
 
-/assets/*
+/assets/css/*
   Cache-Control: public, max-age=31536000, immutable
+
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/images/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

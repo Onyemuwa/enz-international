@@ -5,3 +5,17 @@ Thumbs.db
 # stylesheet at assets/css/site.css is committed on purpose — it is what the
 # site actually loads, and committing it is what keeps deploying build-free.
 _build/node_modules/
+
+# ---- Backend (server/) -------------------------------------------------------
+# Dependencies are installed on the host (Railway runs `npm ci`).
+node_modules/
+# Local SQLite database and uploaded CVs from running the server on this machine.
+# Never commit these: they hold real people's enquiries and CVs.
+/data/
+*.db
+*.db-wal
+*.db-shm
+# Secrets.
+.env
+.env.*
+!.env.example

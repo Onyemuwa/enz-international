@@ -1,0 +1,25 @@
+{
+  "name": "enz-international",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ENZ INTERNATIONAL website: pre-generated static pages plus a small SQLite-backed API for enquiries, served by one Node process.",
+  "type": "module",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test \"server/test/*.test.mjs\"",
+    "generate": "node _generate-static.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "compression": "^1.8.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "multer": "^2.4.0"
+  }
+}

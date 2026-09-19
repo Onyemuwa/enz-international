@@ -14,7 +14,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SKIP = new Set(['node_modules', '.git', '_build', '_lib', '_content', 'assets', '.vercel']);
+const SKIP = new Set(['node_modules', '.git', '_build', '_lib', '_content', 'assets', '.vercel', 'server', 'data']);
 
 const pages = [];
 (function walk(dir) {

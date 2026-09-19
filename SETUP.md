@@ -1,36 +1,36 @@
 # SETUP.md — Setup, SEO Audit, Performance Checklist, Deployment Guide
 
-The entire stack is HTML, CSS, and JavaScript — no React, no Node backend, no build step, ever. This
-document covers what's real vs. placeholder, the SEO/performance state, and how to deploy.
+The front end is plain HTML, CSS, and JavaScript — no React, no bundler, no build step to deploy. Enquiries
+are handled by a small Node + SQLite backend in `server/` (see [server/README.md](./server/README.md)).
+This document covers what's real vs. placeholder, the SEO/performance state, and how to deploy.
 
 ---
 
 ## 0. How form submissions reach you
 
-**Forms deliver automatically right now.** A visitor presses Submit and the enquiry arrives at
-`CONTACT_EMAIL` with nothing further for them to do. Delivery is chosen in `assets/js/config.js`,
-first configured option wins:
+**The site has its own backend.** A visitor presses Submit and the enquiry is saved in a SQLite database
+(readable at `/admin/`) and emailed to `CONTACT_EMAIL`. Delivery is chosen in `assets/js/config.js`;
+the paths are tried in order, and if one fails the next is tried:
 
-| | needs | automatic |
+| order | path | needs |
 |---|---|---|
-| `API_BASE_URL` | your own backend | yes |
-| `WEB3FORMS_ACCESS_KEY` | a free key, no account | yes — **recommended** |
-| `FORMSUBMIT_EMAIL` | nothing | yes — **live now** |
-| nothing set | — | no, opens the visitor's mail app |
+| 1 | own backend (`API_SAME_ORIGIN` / `API_BASE_URL`) | the Railway deploy in `server/README.md` |
+| 2 | `WEB3FORMS_ACCESS_KEY` | a free key, no account (optional) |
+| 3 | `FORMSUBMIT_EMAIL` | nothing (**live backup**) |
+| 4 | the visitor's mail app | nothing — always available |
 
-**Every automatic path falls back to the mail-app handoff if the send fails** — offline visitor, ad
-blocker eating a third-party POST, relay down. A form must never show success and drop the enquiry;
-when it falls back the copy changes to "press send", so we only claim what we can actually know.
+**Every path fails over to the next, and the last is the mail-app handoff** — offline visitor, ad
+blocker, backend restarting, relay down. A form must never show success and drop the enquiry; when it
+falls back to the mail app the copy changes to "press send", so we only claim what we can actually know.
 
-### Two things to do
+### To do after the Railway deploy
 
-1. **Activate FormSubmit** (required while it is the live path). It holds mail until the address is
-   confirmed. Submit one test enquiry on the live site, then click the activation link it emails to
-   `info@enzinternational.co` — **check spam**. Until you do, submissions are held, not delivered.
-2. **Then move to Web3Forms.** Free key in ~30s at [web3forms.com](https://web3forms.com), no account.
-   Paste it into `WEB3FORMS_ACCESS_KEY`. It is checked *before* FormSubmit, so it takes over with no
-   code change. You gain 250 submissions/month, a 30-day submission archive (an email lost to a spam
-   filter stops being a lost lead) and a published DPA you can name in the privacy policy.
+1. **Confirm email alerts work.** Submit a test enquiry from the live site; it should appear in
+   `/admin/` and arrive by email. If the admin shows a "notifications are off" banner, `RESEND_API_KEY`
+   is missing.
+2. **Retire FormSubmit.** Once (1) is confirmed, set `FORMSUBMIT_EMAIL` to `''` in `assets/js/config.js`
+   (bump `ASSET_VERSION`, regenerate, push). Until then it is only used when the backend is down.
+3. **Take a backup now and then** (`/admin/` -> Download backup) — see server/README.md.
 
 After changing `config.js`: bump `ASSET_VERSION` in `_lib/site-config.js`, run
 `node _generate-static.mjs`, redeploy. Otherwise browsers keep serving the cached config.
@@ -86,21 +86,13 @@ claims on a live company site, which isn't something to guess on your behalf.
   Consultation", never unprompted.
 - **Fonts**: Google Fonts (Inter) via `<link>`, with `preconnect` for performance.
 
-## 3. Real email on form submit — no backend required
+## 3. Form submissions
 
-`assets/js/api.js` tries three things in order, controlled entirely from `assets/js/config.js`:
-
-1. **`API_BASE_URL`** — if you stand up a real backend somewhere, point at it here for full persistence
-   of submissions. (Not included in this repo — ask if you want one built; it would be a
-   separate service you host, since "no other stack" means it can't live in this repo.)
-2. **`WEB3FORMS_ACCESS_KEY`** — no backend at all. Get a free key at [web3forms.com](https://web3forms.com)
-   (no account/password — the key is emailed to you). Forms POST straight to Web3Forms, which relays the
-   submission to your inbox. This is the recommended path given the all-static constraint — it directly
-   answers "the form should arrive by email automatically" with zero infrastructure to run or pay for.
-   It is a mail relay, so it delivers submissions but does not store them anywhere you can query.
-3. **Neither set** — the submission opens the visitor's own email client with the enquiry pre-written:
-   recipient, subject and every field filled in. Works everywhere with no configuration; the visitor
-   presses send. This is what runs today. See section 0.
+`assets/js/api.js` tries the delivery paths in section 0 in order, controlled from `assets/js/config.js`.
+The bundled backend (`server/`) is path 1: it validates the submission, saves it to SQLite, emails the
+team through Resend's HTTPS API, and serves the admin page. Web3Forms and FormSubmit remain as optional
+relays, and the visitor's own mail client is the final fallback. Full backend documentation, environment
+variables and the Railway steps: [server/README.md](./server/README.md).
 
 ## 4. SEO audit — current state
 
@@ -135,6 +127,10 @@ domain age/authority, and content velocity (3 blog posts is a start, not a full 
 - [ ] Lighthouse CI budget — add once deployed to a stable URL
 
 ## 6. Deployment guide
+
+**Railway (recommended)** runs the static site and the backend together — see
+[server/README.md](./server/README.md). Everything below still works for a static-only deploy; the forms
+then fail over to a relay and the visitor's mail app, and there is no admin or database.
 
 **Any static host, zero configuration**:
 

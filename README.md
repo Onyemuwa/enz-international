@@ -1,7 +1,9 @@
 # ENZ INTERNATIONAL — Corporate Website
 
-Plain HTML, CSS, and JavaScript. No React, no Node backend, no bundler, and **no build step to deploy** —
-point any static web server at this folder and it works.
+Plain HTML, CSS, and JavaScript on the front end — no React, no bundler, and **no build step to deploy**.
+The pages are pre-generated and committed, so any static web server can still serve this folder. A small
+Node + SQLite server (`server/`) sits alongside it: it serves the same files and stores the enquiries the
+forms send, with an admin page to read them. See [server/README.md](./server/README.md).
 
 Multi-language (`/en/`, `/sw/`, `/fr/`, `/zh/`, real per-language URLs), multi-page, responsive,
 SEO-optimized, and animated with [Motion](https://motion.dev) — the same team and engine behind Framer
@@ -32,8 +34,16 @@ Then open **http://localhost:5500/en/**. Nothing to install — `preview.mjs` is
 
 ## Deploy it
 
-Any static host works — there is no build command to configure. Push this repo and point Vercel, Netlify,
-GitHub Pages, S3, or any web server at the root. Done.
+**Railway (recommended — runs the site and the enquiry database together).** Push this repo to GitHub,
+create a Railway project from it, attach a Volume at `/data`, set `ADMIN_PASSWORD` and
+`RESEND_API_KEY`. Step-by-step in **[server/README.md](./server/README.md)**.
+
+**Static-only** still works: the pages need no build, so Vercel, Netlify, GitHub Pages or any web server
+pointed at the root will serve the site. Without the backend the forms fall back to a relay and then to
+the visitor's mail app (see `assets/js/config.js`), and there is no admin or database.
+
+Run it locally with the backend: `npm install` then `npm start` (http://localhost:3000, admin at
+`/admin/` once `ADMIN_PASSWORD` is set). `npm test` runs the backend tests.
 
 ## Structure
 
@@ -93,12 +103,11 @@ sitewide section), `_generate-static.mjs` can regenerate everything from the str
 `_content/` — see `_content/README.md`. Neither file is loaded by the live site; they're optional
 maintenance tooling, kept only so large content passes don't mean hand-editing every page by hand.
 
-## Real email on form submit (no backend required)
+## Where form submissions go
 
-Open `assets/js/config.js` and set `WEB3FORMS_ACCESS_KEY` to a free key from
-[web3forms.com](https://web3forms.com) (no account/password — just an emailed key, ready in under a
-minute). Every form (booking, newsletter, CV upload) then emails its submission straight to your inbox.
-Leave it empty to keep forms in mock mode — they work locally, nothing is sent.
+Every form (consultation and quote requests, newsletter, CV upload) posts to the bundled backend, which
+saves it to SQLite and emails the team. Read them at `/admin/`. If the backend is unreachable, forms fail
+over to a relay and then to the visitor's mail app, so an enquiry is never silently lost — the order and
+the switches are documented at the top of `assets/js/config.js`.
 
-Full details, including the alternative of running a real backend, plus the SEO audit and performance
-checklist: **[SETUP.md](./SETUP.md)**.
+Full details, plus the SEO audit and performance checklist: **[SETUP.md](./SETUP.md)**.

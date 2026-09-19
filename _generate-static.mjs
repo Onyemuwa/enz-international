@@ -300,10 +300,18 @@ writeFileSync(
 // inert on a host that doesn't read them, so shipping both costs nothing and
 // means the site is correctly configured wherever it lands.
 //
-// The split that matters: HTML must stay revalidated (so a content fix goes
-// live immediately), while /assets/ is immutable for a year — safe because
-// every asset URL carries ?v=ASSET_VERSION and changes when the file does.
+// The split that matters:
+//   HTML         revalidated, so a content fix goes live immediately.
+//   CSS and JS   immutable for a year — safe because their URLs carry
+//                ?v=ASSET_VERSION and change when the file does.
+//   photos       ONE DAY, then revalidate. Photo URLs do NOT carry a version:
+//                replacing assets/images/x.webp keeps the URL "x.webp". This used
+//                to say "immutable for a year" for all of /assets/, on the
+//                mistaken premise that every asset was versioned — which would
+//                have kept showing visitors the old stock photo for a year after
+//                a real one was uploaded. server/site.js applies the same rule.
 const CACHE_LONG = 'public, max-age=31536000, immutable';
+const CACHE_IMAGES = 'public, max-age=86400, stale-while-revalidate=604800';
 const CACHE_HTML = 'public, max-age=0, must-revalidate';
 const SECURITY_HEADERS = [
   ['X-Content-Type-Options', 'nosniff'],
@@ -338,8 +346,14 @@ writeFileSync(
 ${SECURITY_HEADERS.map(([k, v]) => `  ${k}: ${v}`).join('\n')}
   Cache-Control: ${CACHE_HTML}
 
-/assets/*
+/assets/css/*
   Cache-Control: ${CACHE_LONG}
+
+/assets/js/*
+  Cache-Control: ${CACHE_LONG}
+
+/assets/images/*
+  Cache-Control: ${CACHE_IMAGES}
 `
 );
 
@@ -351,6 +365,10 @@ writeFileSync(
       // No framework, no build step: Vercel serves this folder as-is.
       framework: null,
       buildCommand: null,
+      // The repo root also holds package.json for the Railway backend (server/).
+      // Vercel would otherwise run npm install — compiling SQLite — to deploy a
+      // folder of static files.
+      installCommand: null,
       outputDirectory: '.',
       cleanUrls: false,
       // MUST be true, and this is not cosmetic.
@@ -403,7 +421,8 @@ writeFileSync(
       ],
       headers: [
         { source: '/(.*)', headers: SECURITY_HEADERS.map(([key, value]) => ({ key, value })) },
-        { source: '/assets/(.*)', headers: [{ key: 'Cache-Control', value: CACHE_LONG }] },
+        { source: '/assets/(css|js)/(.*)', headers: [{ key: 'Cache-Control', value: CACHE_LONG }] },
+        { source: '/assets/images/(.*)', headers: [{ key: 'Cache-Control', value: CACHE_IMAGES }] },
         { source: '/(.*).html', headers: [{ key: 'Cache-Control', value: CACHE_HTML }] },
       ],
     },
