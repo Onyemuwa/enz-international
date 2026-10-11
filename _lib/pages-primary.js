@@ -354,24 +354,52 @@ export function aboutPage(lang) {
   ];
 
   const body = `
-  <section class="section section-feature">
-    <div class="${SHELL} grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+  <section class="about-hero section section-feature">
+    <div class="${SHELL} grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
       <div class="lg:col-span-7">
-        <h1 class="h1-display">${t(lang, 'aboutTitle')}</h1>
-        <p class="lead mt-7">${t(lang, 'aboutDesc')}</p>
-        <p class="lead mt-4">We work as an extension of your team on the ground in China and East Africa, vetting suppliers, managing quality control, and coordinating the logistics that turn a purchase order or a factory blueprint into a delivered, working result. One point of contact owns your project from first call to final delivery, so nothing gets lost between departments or vendors.</p>
+        <p class="eyebrow">${t(lang, 'navAbout')} · China to East Africa</p>
+        <h1 class="h1-display mt-5">${t(lang, 'aboutTitle')}</h1>
+        <p class="lead mt-7 max-w-2xl">${t(lang, 'aboutDesc')}</p>
+        <p class="text-slate text-lg leading-relaxed mt-5 max-w-2xl">We work as an extension of your team on the ground in China and East Africa, turning a purchase order or a factory blueprint into a delivered, working result. One point of contact owns the details from first call to final delivery.</p>
+        <div class="flex flex-col sm:flex-row gap-3 mt-9">
+          <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
+          <a href="#how-we-work" class="${BTN_SECONDARY} btn-lg">See how we work</a>
+        </div>
+        <div class="about-signal-row mt-12" aria-label="ENZ operating model">
+          <div><strong>China</strong><span>Supplier access</span></div>
+          <div><strong>4 stages</strong><span>Quality control</span></div>
+          <div><strong>1 lead</strong><span>Clear ownership</span></div>
+        </div>
       </div>
-      <div class="lg:col-span-5">
-        ${media('about', { ratio: '16-10' })}
+      <div class="lg:col-span-5 about-hero-visual">
+        ${media('about', { ratio: '4-5', className: 'about-hero-image' })}
+        <div class="about-hero-note"><span class="status-dot status-done">${icon('check', 'w-3.5 h-3.5')}</span><span><strong>Built for the handover</strong><small>From factory floor to final mile</small></span></div>
       </div>
     </div>
   </section>
 
-  <section class="section bg-white">
+  <section class="section bg-white" id="how-we-work">
+    <div class="${SHELL}">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-end">
+        <div class="lg:col-span-5"><p class="eyebrow">The ENZ model</p><h2 class="h2-section mt-4">One operating layer between you and the complexity.</h2></div>
+        <p class="lead lg:col-span-7">Buying across borders is not one task. It is a chain of decisions where a missed detail at the factory becomes a cost at the port. We keep that chain visible, owned, and moving.</p>
+      </div>
+      <div class="about-flow mt-14" data-reveal-group>
+        ${[
+          ['01', 'Brief', 'Your product, volume, target market, timeline, and tolerance become one shared scope.', 'mail'],
+          ['02', 'Source', 'The right manufacturing cluster and a shortlist of suppliers are identified for the brief.', 'globe'],
+          ['03', 'Control', 'Samples, production, packing, and loading are checked while corrections are still possible.', 'check'],
+          ['04', 'Deliver', 'Freight, documents, customs, and the next order stay connected through one accountable lead.', 'mapPin'],
+        ].map(([n, ttl, desc, ic]) => `<article class="about-flow-step"><span class="about-flow-number">${n}</span><span class="icon-chip">${icon(ic, 'w-5 h-5')}</span><h3 class="text-xl font-semibold text-ink mt-6">${ttl}</h3><p class="text-slate text-sm leading-relaxed mt-3">${desc}</p></article>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-gray-bg">
     <div class="shell">
-      <div class="text-center max-w-2xl mx-auto"><h2 class="h2-section">What We Handle End-to-End</h2><p class="lead mt-4">Six capabilities that cover the full path from a first product brief to a shipped, working result.</p></div>
+      <div class="grid lg:grid-cols-12 gap-8 items-end"><div class="lg:col-span-5"><p class="eyebrow">What we own</p><h2 class="h2-section mt-4">What We Handle End-to-End</h2></div><p class="lead lg:col-span-7">Six capabilities that cover the full path from a first product brief to a shipped, working result.</p></div>
       <div data-reveal-group class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14 max-w-6xl mx-auto">
-        ${capabilities.map(([ttl, desc, ic]) => `<div class="${CARD_MUTED}">${icon(ic, 'w-8 h-8 text-brand mb-4')}<h3 class="font-semibold text-ink">${ttl}</h3><p class="text-slate text-sm mt-2.5 leading-relaxed">${desc}</p></div>`).join('')}
+        ${capabilities.map(([ttl, desc, ic], idx) => `<div class="${CARD_MUTED} card-lg about-capability"><span class="about-capability-index">0${idx + 1}</span>${icon(ic, 'w-8 h-8 text-brand mb-5')}<h3 class="font-semibold text-ink">${ttl}</h3><p class="text-slate text-sm mt-2.5 leading-relaxed">${desc}</p><span class="link-arrow text-sm mt-6">Explore capability ${icon('chevronRight', 'w-4 h-4')}</span></div>`).join('')}
       </div>
     </div>
   </section>

@@ -414,6 +414,7 @@
   .media-16-9 { aspect-ratio: 16 / 9; }
   .media-16-10 { aspect-ratio: 16 / 10; }
   .media-4-3 { aspect-ratio: 4 / 3; }
+  .media-4-5 { aspect-ratio: 4 / 5; }
   .media-3-2 { aspect-ratio: 3 / 2; }
 
   /* The placeholder state: a subtle diagonal weave over the brand gradient,
@@ -574,6 +575,41 @@
   .section-wash {
     position: relative; isolation: isolate;
     background: #fff;
+  }
+
+  /* About page: a more editorial introduction than the standard page split. */
+  .about-hero { min-height: 42rem; }
+  .about-hero-visual { position: relative; }
+  .about-hero-image { border-radius: 1rem; box-shadow: 0 24px 60px -28px rgba(11,26,36,.32); }
+  .about-hero-note {
+    position: absolute; left: -2rem; bottom: 2rem; display: flex; align-items: center; gap: .75rem;
+    max-width: 16rem; padding: 1rem 1.125rem; background: #fff; border: 1px solid #E4E9ED;
+    border-radius: .75rem; box-shadow: 0 14px 34px -18px rgba(11,26,36,.35); color: #1E2E40;
+  }
+  .about-hero-note .status-dot { width: 1.75rem; height: 1.75rem; }
+  .about-hero-note strong, .about-hero-note small { display: block; }
+  .about-hero-note strong { font-size: .8125rem; }
+  .about-hero-note small { color: #5A6A75; font-size: .6875rem; margin-top: .2rem; }
+  .about-signal-row { display: flex; flex-wrap: wrap; gap: 2rem; }
+  .about-signal-row div { display: grid; gap: .2rem; }
+  .about-signal-row strong { color: #0171BA; font-size: 1.125rem; }
+  .about-signal-row span { color: #5A6A75; font-size: .6875rem; letter-spacing: .08em; text-transform: uppercase; }
+  .about-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #D3DBE1; border: 1px solid #D3DBE1; }
+  .about-flow-step { position: relative; min-height: 15rem; padding: 2rem; background: #fff; }
+  .about-flow-number { color: #0171BA; font: 600 .75rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; }
+  .about-capability { position: relative; }
+  .about-capability-index { position: absolute; top: 1.5rem; right: 1.5rem; color: #D3DBE1; font: 600 1.5rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  @media (max-width: 1023px) {
+    .about-hero { min-height: 0; }
+    .about-flow { grid-template-columns: repeat(2, 1fr); }
+    .about-hero-note { left: 1rem; }
+  }
+  @media (max-width: 639px) {
+    .about-hero-image { aspect-ratio: 16 / 11; }
+    .about-hero-note { position: relative; left: auto; bottom: auto; margin: -1.5rem 1rem 0; z-index: 1; }
+    .about-signal-row { gap: 1.25rem; }
+    .about-flow { grid-template-columns: 1fr; }
+    .about-flow-step { min-height: 0; padding: 1.5rem; }
   }
 
   /* ---------- Header ---------------------------------------------------- */

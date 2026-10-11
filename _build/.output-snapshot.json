@@ -1,7 +1,7 @@
 {
  ".claude/launch.json": "eeb772a33240344b",
  "404.html": "1e9d82f4237ab344",
- "en/about/index.html": "10f1f26a946a5eae",
+ "en/about/index.html": "df0a04dd4d0951d2",
  "en/about.html": "bf5a821314c09866",
  "en/careers/index.html": "694758fd464611a6",
  "en/careers.html": "83bec30a46b2a5e3",
@@ -63,6 +63,6 @@
  "robots.txt": "ca4157fac345ec91",
  "server/admin/index.html": "9ff25b59e2a5b6d0",
  "site.webmanifest": "45a9fff23c324f2f",
- "sitemap.xml": "ab98888f0c89ca56",
+ "sitemap.xml": "e3d47582222342af",
  "vercel.json": "7750bc83898fc465"
 }
