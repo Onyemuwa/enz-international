@@ -52,7 +52,7 @@ export function homePage(lang) {
        a QC-tracker panel). The tracker is real, useful content, so it isn't
        cut — it moves to its own centred strip below the fold, still inside
        the dark hero band, once the search has had the first move. -->
-  <section class="hero hero-photo hero-centered${images.hero.src ? '' : ' is-empty'}">
+  <section class="hero home-hero${images.hero.src ? '' : ' is-empty'}">
     ${heroMedia()}
     <div class="${SHELL}">
 
@@ -117,7 +117,7 @@ export function homePage(lang) {
            is no product to screenshot. The stage codes and timings are the
            real ones from _content/pages.js. -->
       <div class="max-w-2xl mx-auto mt-16">
-        <div class="glass-panel p-6 md:p-7">
+        <div class="home-qc-panel p-6 md:p-7">
             <div class="flex items-center justify-between gap-4 pb-5 border-b border-line">
               <div>
                 <p class="text-ink font-medium">${t(lang, 'qcTitle')}</p>
