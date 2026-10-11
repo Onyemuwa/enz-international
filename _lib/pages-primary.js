@@ -8,7 +8,7 @@ import { SITE_URL, WHATSAPP_NUMBER, CONTACT_PHONE, CONTACT_EMAIL } from './site-
 import { t } from './i18n.js';
 import { icon } from './icons.js';
 import { CARD, CARD_MUTED, CARD_FEATURE, BTN_PRIMARY, BTN_SECONDARY, EYEBROW, H2, LEAD, SHELL } from './tokens.js';
-import { sectionHead, media, heroMedia, founderSection, proofSection } from './components.js';
+import { sectionHead, media, founderSection, proofSection } from './components.js';
 import { bookingSuccessBlock } from './chrome.js';
 import { pageShell } from './page-shell.js';
 import { closingCta } from './page-parts.js';
@@ -52,66 +52,41 @@ export function homePage(lang) {
        a QC-tracker panel). The tracker is real, useful content, so it isn't
        cut — it moves to its own centred strip below the fold, still inside
        the dark hero band, once the search has had the first move. -->
-  <section class="hero home-hero${images.hero.src ? '' : ' is-empty'}">
-    ${heroMedia()}
+  <section class="hero landing-hero">
     <div class="${SHELL}">
-
-      <div class="h1-copy max-w-3xl mx-auto text-center">
-        <a href="markets.html" class="pill hover:border-brand-300 transition-colors">
-          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
-          ${t(lang, 'heroOrigin')}
-        </a>
-
-        <!-- Two short sentences, the second in the brand gradient. The old
-             headline was "Global Sourcing & Industrial Excellence", which told
-             a first-time visitor nothing about what actually gets done. -->
-        <h1 class="h1-display text-ink mt-7">
-          <span class="line">${t(lang, 'heroTitleA')}</span>
-          <span class="line text-gradient">${t(lang, 'heroTitleB')}</span>
-        </h1>
-
-        <p class="lead mt-7 max-w-xl mx-auto">${t(lang, 'heroSub')}</p>
-
-        <!-- The search box is the hero's primary action, not an afterthought
-             below it — Equipment is the one page on this site that is
-             genuinely searchable, so it earns the spot. Submits as a plain
-             GET to equipment/?q=..., which the equipment page reads on load
-             and feeds into the same client-side filter the page's own search
-             box already uses — one filter, two entry points. -->
-        <form action="equipment.html" method="get" role="search" class="hero-search mt-8">
-          <label for="hero-search-input" class="sr-only">${t(lang, 'equipmentSearchPlaceholder')}</label>
-          <span class="hero-search-icon">${icon('search', 'w-4 h-4')}</span>
-          <input type="search" id="hero-search-input" name="q" autocomplete="off" class="hero-search-input" placeholder="${t(lang, 'heroSearchPlaceholder')}" />
-          <button type="submit" class="hero-search-btn" aria-label="${t(lang, 'equipmentSearchPlaceholder')}">${icon('chevronRight', 'w-4 h-4')}</button>
-        </form>
-
-        <!-- Category shortcuts — the catalogue one tap away without typing. -->
-        <div class="mt-5 flex flex-wrap justify-center gap-2.5">
-          ${equipmentCategories
-            .slice(0, 4)
-            .map((cat) => `<a href="equipment.html#${slugify(cat.industry)}" class="hero-cat-chip">${cat.industry}</a>`)
-            .join('')}
-          <a href="equipment.html" class="hero-cat-chip hero-cat-chip-all">${t(lang, 'equipmentViewAllCta')} →</a>
-        </div>
-
-        <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
-          <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
-          <a href="#how-it-works" class="${BTN_SECONDARY} btn-lg">${t(lang, 'navProcess')}</a>
-        </div>
-
-        <!-- The three service lines moved here from directly under the
-             headline — a trust row under the primary action, same position
-             this pattern uses on the sibling site, rather than crowding the
-             search box out of the first thing a visitor reads. -->
-        <div class="mt-7 flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs text-slate">
-          <span class="inline-flex items-center gap-2">${icon('globe', 'w-3.5 h-3.5 text-brand')}${t(lang, 'heroBadge1')}</span>
-          <span class="inline-flex items-center gap-2">${icon('check', 'w-3.5 h-3.5 text-brand')}${t(lang, 'heroBadge2')}</span>
-          <span class="inline-flex items-center gap-2">${icon('calendar', 'w-3.5 h-3.5 text-brand')}${t(lang, 'heroBadge3')}</span>
-        </div>
-
-        <p class="text-sm text-slate mt-4">${t(lang, 'bookingDisclaimer')}</p>
+      <div class="landing-hero-top">
+        <p class="eyebrow">ENZ INTERNATIONAL</p>
+        <span class="landing-hero-route">GUANGZHOU <span aria-hidden="true">/</span> EAST AFRICA <span aria-hidden="true">/</span> WORLDWIDE</span>
       </div>
-
+      <div class="landing-hero-grid">
+        <div class="landing-hero-copy">
+          <p class="landing-kicker">Sourcing, quality, delivery</p>
+          <h1 class="landing-title">The right factory.<br /><span class="text-gradient">The right result.</span></h1>
+          <p class="landing-lead">We help ambitious businesses buy from China with clarity: the right supplier, quality checked before shipment, and one accountable lead from first brief to final delivery.</p>
+          <div class="landing-actions">
+            <button data-open-booking class="${BTN_PRIMARY} btn-lg">Start a conversation ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
+            <a href="about.html" class="${BTN_SECONDARY} btn-lg">How we work ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
+          </div>
+          <form action="equipment.html" method="get" role="search" class="hero-search landing-search">
+            <label for="hero-search-input" class="sr-only">${t(lang, 'equipmentSearchPlaceholder')}</label>
+            <span class="hero-search-icon">${icon('search', 'w-4 h-4')}</span>
+            <input type="search" id="hero-search-input" name="q" autocomplete="off" class="hero-search-input" placeholder="Search equipment or a product brief" />
+            <button type="submit" class="hero-search-btn" aria-label="Search equipment">${icon('chevronRight', 'w-4 h-4')}</button>
+          </form>
+          <div class="landing-proof-rail">
+            <span><strong>01</strong> Supplier sourcing</span>
+            <span><strong>02</strong> Quality control</span>
+            <span><strong>03</strong> Freight and setup</span>
+          </div>
+        </div>
+        <div class="landing-hero-visual">
+          <div class="landing-image-frame">
+            ${media('hero', { ratio: '4-5', className: 'landing-hero-image', eager: true })}
+            <div class="landing-image-caption"><span class="status-dot status-done">${icon('check', 'w-3.5 h-3.5')}</span><span><strong>On the ground in China</strong><small>Built for the details between the quote and the shipment.</small></span></div>
+          </div>
+          <div class="landing-hero-note"><span class="mono-tag">ENZ / 01</span><span>From product brief<br />to delivered result.</span></div>
+        </div>
+      </div>
     </div>
   </section>
 

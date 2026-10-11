@@ -113,66 +113,45 @@
        a QC-tracker panel). The tracker is real, useful content, so it isn't
        cut — it moves to its own centred strip below the fold, still inside
        the dark hero band, once the search has had the first move. -->
-  <section class="hero home-hero">
-    
-    <div class="hero-media" aria-hidden="true">
-      <img src="../assets/images/hero-factory.webp" alt="" loading="eager" decoding="async" fetchpriority="high" width="1920" height="907" srcset="../assets/images/hero-factory-400w.webp 400w, ../assets/images/hero-factory-800w.webp 800w, ../assets/images/hero-factory-1200w.webp 1200w, ../assets/images/hero-factory-1600w.webp 1600w, ../assets/images/hero-factory-1920w.webp 1920w" sizes="100vw" />
-    </div>
+  <section class="hero landing-hero">
     <div class="shell">
-
-      <div class="h1-copy max-w-3xl mx-auto text-center">
-        <a href="markets/" class="pill hover:border-brand-300 transition-colors">
-          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulseDot"></span>
-          Sourced in Guangzhou, China — shipped worldwide
-        </a>
-
-        <!-- Two short sentences, the second in the brand gradient. The old
-             headline was "Global Sourcing & Industrial Excellence", which told
-             a first-time visitor nothing about what actually gets done. -->
-        <h1 class="h1-display text-ink mt-7">
-          <span class="line">We find your factory in China.</span>
-          <span class="line text-gradient">And make sure it delivers.</span>
-        </h1>
-
-        <p class="lead mt-7 max-w-xl mx-auto">Verified suppliers, four inspection stages, freight to your port. One contact throughout.</p>
-
-        <!-- The search box is the hero's primary action, not an afterthought
-             below it — Equipment is the one page on this site that is
-             genuinely searchable, so it earns the spot. Submits as a plain
-             GET to equipment/?q=..., which the equipment page reads on load
-             and feeds into the same client-side filter the page's own search
-             box already uses — one filter, two entry points. -->
-        <form action="equipment/" method="get" role="search" class="hero-search mt-8">
-          <label for="hero-search-input" class="sr-only">Search for a machine type — "tile press", "cnc", "cold storage"…</label>
-          <span class="hero-search-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-          <input type="search" id="hero-search-input" name="q" autocomplete="off" class="hero-search-input" placeholder="Search equipment — "cnc", "cold storage", "tile press"…" />
-          <button type="submit" class="hero-search-btn" aria-label="Search for a machine type — "tile press", "cnc", "cold storage"…"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
-        </form>
-
-        <!-- Category shortcuts — the catalogue one tap away without typing. -->
-        <div class="mt-5 flex flex-wrap justify-center gap-2.5">
-          <a href="equipment/#construction-building-materials" class="hero-cat-chip">Construction & building materials</a><a href="equipment/#industrial-equipment-machinery" class="hero-cat-chip">Industrial equipment & machinery</a><a href="equipment/#consumer-goods-retail" class="hero-cat-chip">Consumer goods & retail</a><a href="equipment/#commodities-raw-materials" class="hero-cat-chip">Commodities & raw materials</a>
-          <a href="equipment/" class="hero-cat-chip hero-cat-chip-all">Browse all equipment →</a>
-        </div>
-
-        <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
-          <button data-open-booking class="btn btn-primary btn-lg">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
-          <a href="#how-it-works" class="btn btn-secondary btn-lg">Process</a>
-        </div>
-
-        <!-- The three service lines moved here from directly under the
-             headline — a trust row under the primary action, same position
-             this pattern uses on the sibling site, rather than crowding the
-             search box out of the first thing a visitor reads. -->
-        <div class="mt-7 flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs text-slate">
-          <span class="inline-flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Sourcing</span>
-          <span class="inline-flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Quality control</span>
-          <span class="inline-flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-brand" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Factory setup</span>
-        </div>
-
-        <p class="text-sm text-slate mt-4">We'll respond within 24h. No payment is required to request a consultation.</p>
+      <div class="landing-hero-top">
+        <p class="eyebrow">ENZ INTERNATIONAL</p>
+        <span class="landing-hero-route">GUANGZHOU <span aria-hidden="true">/</span> EAST AFRICA <span aria-hidden="true">/</span> WORLDWIDE</span>
       </div>
-
+      <div class="landing-hero-grid">
+        <div class="landing-hero-copy">
+          <p class="landing-kicker">Sourcing, quality, delivery</p>
+          <h1 class="landing-title">The right factory.<br /><span class="text-gradient">The right result.</span></h1>
+          <p class="landing-lead">We help ambitious businesses buy from China with clarity: the right supplier, quality checked before shipment, and one accountable lead from first brief to final delivery.</p>
+          <div class="landing-actions">
+            <button data-open-booking class="btn btn-primary btn-lg">Start a conversation <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+            <a href="about/" class="btn btn-secondary btn-lg">How we work <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+          </div>
+          <form action="equipment/" method="get" role="search" class="hero-search landing-search">
+            <label for="hero-search-input" class="sr-only">Search for a machine type — "tile press", "cnc", "cold storage"…</label>
+            <span class="hero-search-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+            <input type="search" id="hero-search-input" name="q" autocomplete="off" class="hero-search-input" placeholder="Search equipment or a product brief" />
+            <button type="submit" class="hero-search-btn" aria-label="Search equipment"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
+          </form>
+          <div class="landing-proof-rail">
+            <span><strong>01</strong> Supplier sourcing</span>
+            <span><strong>02</strong> Quality control</span>
+            <span><strong>03</strong> Freight and setup</span>
+          </div>
+        </div>
+        <div class="landing-hero-visual">
+          <div class="landing-image-frame">
+            <div class="media media-4-5 landing-hero-image">
+            <img src="../assets/images/hero-factory.webp" alt="Production line inside a Chinese manufacturing facility"
+                 loading="eager" decoding="async"
+                 fetchpriority="high" width="1920" height="907" srcset="../assets/images/hero-factory-400w.webp 400w, ../assets/images/hero-factory-800w.webp 800w, ../assets/images/hero-factory-1200w.webp 1200w, ../assets/images/hero-factory-1600w.webp 1600w, ../assets/images/hero-factory-1920w.webp 1920w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+          </div>
+            <div class="landing-image-caption"><span class="status-dot status-done"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span><strong>On the ground in China</strong><small>Built for the details between the quote and the shipment.</small></span></div>
+          </div>
+          <div class="landing-hero-note"><span class="mono-tag">ENZ / 01</span><span>From product brief<br />to delivered result.</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
