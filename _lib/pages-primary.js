@@ -112,49 +112,6 @@ export function homePage(lang) {
         <p class="text-sm text-slate mt-4">${t(lang, 'bookingDisclaimer')}</p>
       </div>
 
-      <!-- An ILLUSTRATION of the four-stage inspection process documented on
-           quality-control.html — not a screenshot of a product, because there
-           is no product to screenshot. The stage codes and timings are the
-           real ones from _content/pages.js. -->
-      <div class="max-w-2xl mx-auto mt-16">
-        <div class="home-qc-panel p-6 md:p-7">
-            <div class="flex items-center justify-between gap-4 pb-5 border-b border-line">
-              <div>
-                <p class="text-ink font-medium">${t(lang, 'qcTitle')}</p>
-                <p class="text-xs text-slate mt-1">${t(lang, 'qcEyebrow')}</p>
-              </div>
-              <span class="pill mono-tag">${qcStages.length} ${t(lang, 'qcStagesLabel')}</span>
-            </div>
-
-            <div class="tracker mt-5" data-tracker>
-              <span class="tracker-rail" aria-hidden="true"></span>
-              ${qcStages
-                .map((st, i) => {
-                  const state = i < 2 ? 'done' : i === 2 ? 'active' : 'idle';
-                  const mark =
-                    state === 'done'
-                      ? icon('check', 'w-3.5 h-3.5')
-                      : state === 'active'
-                        ? '<span class="status-pulse w-2 h-2 rounded-full bg-current"></span>'
-                        : '<span class="w-2 h-2 rounded-full border border-current"></span>';
-                  return `<div class="status-row">
-                <span class="status-dot status-${state}">${mark}</span>
-                <span class="min-w-0 flex-1">
-                  <span class="flex flex-wrap items-baseline gap-x-2.5">
-                    <span class="mono-tag text-brand">${st.code}</span>
-                    <span class="text-sm font-medium text-ink">${st.title}</span>
-                  </span>
-                  <span class="status-when block text-xs text-slate mt-1">${st.when}</span>
-                </span>
-              </div>`;
-                })
-                .join('')}
-            </div>
-
-            <p class="text-xs text-slate leading-relaxed mt-5 pt-5 border-t border-line">${t(lang, 'qcLead')}</p>
-            <a href="quality-control.html" class="link-arrow text-sm mt-4">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
-        </div>
-      </div>
     </div>
   </section>
 
