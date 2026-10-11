@@ -249,14 +249,17 @@ export function homePage(lang) {
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-7">
               ${regions
                 .map(
-                  (r) => `<a href="markets.html" class="flex items-center gap-2.5 rounded-lg border border-line bg-gray-bg px-3.5 py-3 hover:border-brand-200 hover:bg-white transition-colors">
+                  (r) => {
+                    const market = markets.find((item) => item.region === r.code);
+                    return `<a href="${market ? `${market.slug}.html` : 'markets.html'}" class="flex items-center gap-2.5 rounded-lg border border-line bg-gray-bg px-3.5 py-3 hover:border-brand-200 hover:bg-white transition-colors">
                 <span class="step-badge">${r.code}</span><span class="text-sm font-medium text-ink">${r.name}</span>
-              </a>`
+              </a>`;
+                  }
                 )
                 .join('')}
             </div>
             <p class="text-sm text-slate mt-6 pt-5 border-t border-line">${t(lang, 'footprintHubsLabel')}: ${hubs.join(' · ')}</p>
-            <div class="mt-7"><a href="markets.html" class="${BTN_SECONDARY}">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
+            <div class="mt-7"><a href="markets.html" class="${BTN_SECONDARY} w-full sm:w-auto justify-center">View all markets ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
           </div>
         </div>
       </div>
