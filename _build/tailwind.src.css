@@ -773,6 +773,47 @@
     font-size: .6875rem; text-transform: uppercase; opacity: .6;
   }
 
+
+  /* ---------- Sitewide polish ----------------------------------------- */
+  .site-header { border-bottom-color: rgba(211,219,225,.72); }
+  .site-header .shell { min-height: 4.25rem; }
+  .brand-mark { transition: transform .25s var(--ease-spring), filter .25s; }
+  .brand-mark:hover { transform: translateY(-1px); filter: drop-shadow(0 5px 10px rgba(1,113,186,.16)); }
+
+  .section.bg-white { background: #fff; }
+  .section.bg-gray-bg { background: linear-gradient(180deg, #F7F9FB 0%, #F3F8FB 100%); }
+  .section-feature { background: linear-gradient(180deg, #F8FCFE 0%, #F4F8FA 100%); }
+  .section-feature::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .4;
+    background-image: linear-gradient(rgba(1,113,186,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(1,113,186,.035) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: linear-gradient(to bottom, #000, transparent 82%);
+  }
+  .section > .shell, .section-feature > .shell { position: relative; z-index: 1; }
+
+  .card, .card-feature {
+    box-shadow: 0 1px 2px rgba(11,26,36,.04), 0 12px 28px -24px rgba(11,26,36,.34);
+  }
+  .card:hover, .card-feature:hover {
+    box-shadow: 0 1px 2px rgba(11,26,36,.04), 0 18px 34px -24px rgba(11,26,36,.38);
+    transform: translateY(-2px);
+    transition: border-color .18s, box-shadow .25s var(--ease-spring), transform .25s var(--ease-spring);
+  }
+  .btn-primary { box-shadow: 0 8px 18px -12px rgba(1,113,186,.9); }
+  .btn-primary:hover { box-shadow: 0 12px 24px -12px rgba(1,113,186,.9); transform: translateY(-1px); }
+  .btn-secondary { background: rgba(255,255,255,.72); }
+  .eyebrow::before {
+    content: ''; display: inline-block; width: 1.75rem; height: 2px; border-radius: 2px;
+    background: #FCAE42;
+  }
+  .media:not(.media-empty) img { transition: transform .6s var(--ease-spring), filter .4s; }
+  a:hover .media:not(.media-empty) img, .card:hover .media:not(.media-empty) img { transform: scale(1.035); }
+
+  @media (max-width: 767px) {
+    .h2-section { font-size: clamp(1.875rem, 8vw, 2.75rem); line-height: 1.1; }
+    .lead { font-size: 1rem; line-height: 1.65; }
+    .section-feature::before { background-size: 24px 24px; }
+  }
   /* Inline variant for the mobile nav — see langInline() for why the dropdown
      cannot be used inside a scrolling panel. */
   .lang-inline { display: grid; grid-template-columns: repeat(2, 1fr); gap: .5rem; }
