@@ -74,6 +74,9 @@ tr:last-child td { border-bottom: 0; }
 .pill-new { background: #eaf6fd; border-color: #d2ebfa; color: var(--brand-dark); }
 .pill-contacted { background: var(--warn-bg); border-color: var(--warn-line); color: var(--warn-ink); }
 .pill-closed { background: #e7f7ee; border-color: #bce6cd; color: #157f3d; }
+.pill-pending { background: var(--warn-bg); border-color: var(--warn-line); color: var(--warn-ink); }
+.pill-approved { background: #e7f7ee; border-color: #bce6cd; color: #157f3d; }
+.pill-hidden { background: var(--bg); border-color: var(--line); color: var(--slate); }
 .pill-quote { background: #f1ecfb; border-color: #dccff5; color: #5b32a8; }
 
 tr.detail td { background: #fbfcfd; padding: 16px 18px 20px; }
@@ -91,3 +94,23 @@ tr.detail td { background: #fbfcfd; padding: 16px 18px 20px; }
   .banner { margin-left: 14px; margin-right: 14px; }
   th.hide-sm, td.hide-sm { display: none; }
 }
+
+/* Testimonials panel */
+.card-box { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px 18px; margin: 8px 0 14px; }
+.card-box h2 { font-size: 15px; margin: 0 0 6px; }
+.card-box p { margin: 0 0 12px; }
+.card-box textarea, .card-box input[type="text"], .card-box input[type="email"], .card-box select {
+  width: 100%; font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink);
+}
+.card-box textarea[readonly], .card-box input[readonly] { background: var(--bg); }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; }
+.copyrow { display: flex; gap: 10px; margin: 0 0 10px; }
+.copyrow input { flex: 1; }
+.card-box .actions { margin-top: 10px; align-items: center; }
+.addform { display: grid; gap: 12px; }
+.addform .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lbl { display: block; font-weight: 600; font-size: 13px; margin: 0 0 4px; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-weight: 500; }
+.check input { margin-top: 3px; }
+@media (max-width: 720px) { .addform .two { grid-template-columns: 1fr; } }
+.banner-flush { margin: 0 0 14px; }

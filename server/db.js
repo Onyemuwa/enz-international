@@ -8,6 +8,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 export const STATUSES = ['new', 'contacted', 'closed'];
+// Testimonials have their own life cycle: nothing is ever public until a person
+// at ENZ has moved it from 'pending' to 'approved'.
+export const TESTIMONIAL_STATUSES = ['pending', 'approved', 'hidden'];
 
 // Schema changes go here as new entries, never as edits to old ones: a
 // migration that has already run on the live database must not change.
@@ -58,6 +61,39 @@ const MIGRATIONS = [
         updated_at       TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
       );
       CREATE INDEX idx_applications_created ON applications (created_at DESC);
+    `,
+  },
+  {
+    version: 2,
+    sql: `
+      -- Client testimonials. Every row is a real person's words, kept exactly as
+      -- they were given: there is deliberately no column for an "edited" quote.
+      CREATE TABLE testimonials (
+        id         INTEGER PRIMARY KEY AUTOINCREMENT,
+        quote      TEXT NOT NULL,
+        name       TEXT NOT NULL,
+        role       TEXT NOT NULL DEFAULT '',
+        company    TEXT NOT NULL DEFAULT '',
+        country    TEXT NOT NULL DEFAULT '',
+        project    TEXT NOT NULL DEFAULT '',
+        -- Private: lets ENZ check the sender is a real client. Never published.
+        email      TEXT NOT NULL DEFAULT '',
+        -- 'named' publishes the name and company; 'anonymous' publishes only
+        -- role, country and what was sourced.
+        display    TEXT NOT NULL DEFAULT 'named' CHECK (display IN ('named', 'anonymous')),
+        -- The person agreed to publication. A row cannot exist without it.
+        consent    INTEGER NOT NULL CHECK (consent = 1),
+        -- 'form' (they submitted it) or 'admin' (ENZ typed in something a client
+        -- sent by WhatsApp or email, with their permission).
+        source     TEXT NOT NULL DEFAULT 'form' CHECK (source IN ('form', 'admin')),
+        status     TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'hidden')),
+        notes      TEXT NOT NULL DEFAULT '',
+        notify_status TEXT NOT NULL DEFAULT 'pending',
+        notify_error  TEXT NOT NULL DEFAULT '',
+        created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+        updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+      );
+      CREATE INDEX idx_testimonials_status_created ON testimonials (status, created_at DESC);
     `,
   },
 ];
@@ -119,13 +155,26 @@ export function createStore(db) {
 
     upsertSubscriber: db.prepare('INSERT OR IGNORE INTO subscribers (email) VALUES (?)'),
     deleteSubscriber: db.prepare('DELETE FROM subscribers WHERE id = ?'),
+
+    insertTestimonial: db.prepare(`
+      INSERT INTO testimonials (quote, name, role, company, country, project, email, display, consent, source, status)
+      VALUES (@quote, @name, @role, @company, @country, @project, @email, @display, 1, @source, @status)`),
+    findRecentTestimonialDuplicate: db.prepare(`
+      SELECT id FROM testimonials WHERE name = ? AND quote = ?
+        AND created_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now', '-1 day') LIMIT 1`),
+    getTestimonial: db.prepare('SELECT * FROM testimonials WHERE id = ?'),
+    setTestimonialNotify: db.prepare('UPDATE testimonials SET notify_status = ?, notify_error = ? WHERE id = ?'),
+    deleteTestimonial: db.prepare('DELETE FROM testimonials WHERE id = ?'),
+    approvedTestimonials: db.prepare(`
+      SELECT id, quote, name, role, company, country, project, display FROM testimonials
+      WHERE status = 'approved' ORDER BY created_at DESC, id DESC LIMIT ?`),
   };
 
   // Builds "WHERE ..." for the list endpoints from an optional status and search.
-  function where({ status, q }, searchColumns) {
+  function where({ status, q }, searchColumns, statuses = STATUSES) {
     const clauses = [];
     const params = {};
-    if (status && STATUSES.includes(status)) {
+    if (status && statuses.includes(status)) {
       clauses.push('status = @status');
       params.status = status;
     }
@@ -219,6 +268,61 @@ export function createStore(db) {
     },
     deleteApplication: (id) => s.deleteApplication.run(id).changes > 0,
 
+    // -- testimonials --------------------------------------------------------
+    createTestimonial(data) {
+      // Someone double-clicking Send, or a retry after a dropped connection,
+      // must not produce two copies of the same quote.
+      const dup = s.findRecentTestimonialDuplicate.get(data.name, data.quote);
+      if (dup) return { id: dup.id, duplicate: true };
+      const info = s.insertTestimonial.run(data);
+      return { id: Number(info.lastInsertRowid), duplicate: false };
+    },
+    getTestimonial: (id) => s.getTestimonial.get(id),
+    setTestimonialNotify: (id, status, error = '') => s.setTestimonialNotify.run(status, String(error).slice(0, 500), id),
+    listTestimonials(filter = {}) {
+      const cols = ['quote', 'name', 'role', 'company', 'country', 'project', 'email'];
+      const w = where(filter, cols, TESTIMONIAL_STATUSES);
+      const rows = db
+        .prepare(`SELECT * FROM testimonials ${w.sql} ORDER BY created_at DESC, id DESC LIMIT @limit OFFSET @offset`)
+        .all({ ...w.params, limit: clampLimit(filter.limit), offset: clampOffset(filter.offset) });
+      const total = db.prepare(`SELECT COUNT(*) AS n FROM testimonials ${w.sql}`).get(w.params).n;
+      return { rows, total };
+    },
+    // Exactly what the public site may show. The email, notes and consent
+    // bookkeeping never leave this method, and an anonymous testimonial loses
+    // its name and company HERE, in the data layer, rather than relying on every
+    // caller remembering to blank them.
+    listPublicTestimonials(limit = 12) {
+      return s.approvedTestimonials.all(Math.min(Math.max(limit | 0, 1), 50)).map((r) => {
+        const anonymous = r.display === 'anonymous';
+        return {
+          quote: r.quote,
+          name: anonymous ? '' : r.name,
+          role: r.role,
+          company: anonymous ? '' : r.company,
+          country: r.country,
+          project: r.project,
+        };
+      });
+    },
+    updateTestimonial(id, { status, notes }) {
+      const sets = [];
+      const params = { id };
+      if (status !== undefined) {
+        sets.push('status = @status');
+        params.status = status;
+      }
+      if (notes !== undefined) {
+        sets.push('notes = @notes');
+        params.notes = notes;
+      }
+      if (!sets.length) return s.getTestimonial.get(id);
+      sets.push("updated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')");
+      db.prepare(`UPDATE testimonials SET ${sets.join(', ')} WHERE id = @id`).run(params);
+      return s.getTestimonial.get(id);
+    },
+    deleteTestimonial: (id) => s.deleteTestimonial.run(id).changes > 0,
+
     // -- dashboard -----------------------------------------------------------
     summary() {
       const byStatus = (table) =>
@@ -228,12 +332,14 @@ export function createStore(db) {
       return {
         inquiries: byStatus('inquiries'),
         applications: byStatus('applications'),
+        testimonials: byStatus('testimonials'),
         subscribers: db.prepare('SELECT COUNT(*) AS n FROM subscribers').get().n,
         notifyFailures: db
           .prepare(
             `SELECT
                (SELECT COUNT(*) FROM inquiries WHERE notify_status = 'failed') +
-               (SELECT COUNT(*) FROM applications WHERE notify_status = 'failed') AS n`
+               (SELECT COUNT(*) FROM applications WHERE notify_status = 'failed') +
+               (SELECT COUNT(*) FROM testimonials WHERE notify_status = 'failed') AS n`
           )
           .get().n,
       };

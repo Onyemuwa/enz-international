@@ -67,6 +67,9 @@ export const seoDescriptions = {
   'careers.html':
     'Work with ENZ INTERNATIONAL on China sourcing, quality inspection and factory-setup projects across East Africa, the DRC, the US and the UK. Open applications.',
 
+  'feedback.html':
+    'Worked with ENZ INTERNATIONAL on a China sourcing, inspection or factory-setup project? Share how it went. Nothing is published without your written consent.',
+
   'privacy.html':
     'How ENZ INTERNATIONAL handles what you submit through this website. No cookies, no analytics and no third-party tracking — only the enquiry you choose to send.',
 

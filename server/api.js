@@ -13,9 +13,10 @@ import {
   parseApplication,
   parseBooking,
   parseSubscriber,
+  parseTestimonial,
   safeDisplayName,
 } from './validate.js';
-import { applicationEmail, inquiryEmail } from './notify.js';
+import { applicationEmail, inquiryEmail, testimonialEmail } from './notify.js';
 
 class HttpError extends Error {
   constructor(status, message) {
@@ -92,6 +93,36 @@ export function createApiRouter({ config, store, notifier, adminRouter, track })
     // endpoint cannot be used to find out who is on the list.
     store.addSubscriber(value);
     res.status(201).json({ status: 'subscribed' });
+  });
+
+  // ---- Testimonials ----------------------------------------------------------
+  // Submitting is public; publishing is not. A submission is stored 'pending'
+  // and appears nowhere until a person approves it in the admin.
+  router.post('/testimonials', limiter(config.rateLimits.testimonials), json, (req, res) => {
+    const { errors, value } = parseTestimonial(req.body, { source: 'form' });
+    if (errors.length) throw new HttpError(400, errors.join(' '));
+
+    const { id, duplicate } = store.createTestimonial(value);
+    res.status(201).json({ id, status: 'received' });
+
+    if (!duplicate) {
+      const row = store.getTestimonial(id);
+      track(
+        notifier.send(testimonialEmail(row, adminUrl)).then((r) => store.setTestimonialNotify(id, r.status, r.error))
+      );
+    }
+  });
+
+  // Only approved testimonials, and only the fields safe to show.
+  //
+  // Revalidated on every request (an ETag makes an unchanged answer a tiny 304)
+  // rather than cached for a while: approving or hiding one in the admin must
+  // show on the site immediately, otherwise "I approved it and nothing
+  // happened" is the first thing anyone concludes. Hiding one matters even
+  // more — if a client asks for theirs to come down it must actually go.
+  router.get('/testimonials', (req, res) => {
+    res.set('Cache-Control', 'public, max-age=0, must-revalidate');
+    res.json({ testimonials: store.listPublicTestimonials(Number(req.query.limit) || 12) });
   });
 
   // ---- Career applications (multipart, optional CV) -------------------------

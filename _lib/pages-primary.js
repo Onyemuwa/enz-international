@@ -8,7 +8,7 @@ import { SITE_URL, WHATSAPP_NUMBER, CONTACT_PHONE, CONTACT_EMAIL } from './site-
 import { t } from './i18n.js';
 import { icon } from './icons.js';
 import { CARD, CARD_MUTED, CARD_FEATURE, BTN_PRIMARY, BTN_SECONDARY, EYEBROW, H2, LEAD, SHELL } from './tokens.js';
-import { sectionHead, media, founderSection, proofSection } from './components.js';
+import { sectionHead, media, founderSection, proofSection, testimonialsSlot } from './components.js';
 import { bookingSuccessBlock } from './chrome.js';
 import { pageShell } from './page-shell.js';
 import { closingCta } from './page-parts.js';
@@ -175,7 +175,7 @@ export function homePage(lang) {
           )
           .join('')}
       </ol>
-      <div class="text-center mt-10"><a href="process.html" class="${BTN_SECONDARY}">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
+      <div class="text-center mt-10"><a href="process.html" class="${BTN_SECONDARY}">${t(lang, 'ctaLearnMore')}<span class="sr-only"> — ${t(lang, 'navProcess')}</span> ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
     </div>
   </section>
 
@@ -195,13 +195,15 @@ export function homePage(lang) {
           )
           .join('')}
       </div>
-      <div class="text-center mt-10"><a href="about.html" class="${BTN_SECONDARY}">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
+      <div class="text-center mt-10"><a href="about.html" class="${BTN_SECONDARY}">${t(lang, 'ctaLearnMore')}<span class="sr-only"> — ${t(lang, 'navAbout')}</span> ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
     </div>
   </section>
 
   ${founderSection(lang, { compact: true })}
 
   ${proofSection(lang)}
+
+  ${testimonialsSlot(lang)}
 
   <!-- WHO AND WHERE, trimmed to markets. The industries grid that used to
        open this section duplicated the equipment section above almost
@@ -455,7 +457,7 @@ export function servicesPage(lang) {
           <p class="text-slate mt-5 leading-relaxed">${t(lang, service.descKey)}</p>
           <ul class="mt-7 space-y-3.5">${service.features.map((f) => `<li class="flex items-start gap-2.5 text-sm text-slate"><span class="mt-0.5">${icon('check', 'w-4 h-4')}</span><span>${f}</span></li>`).join('')}</ul>
           <div class="mt-9 flex flex-wrap gap-3">
-            <a href="${service.slug}.html" class="${BTN_PRIMARY} px-7 py-3.5 inline-flex items-center gap-2">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
+            <a href="${service.slug}.html" class="${BTN_PRIMARY} px-7 py-3.5 inline-flex items-center gap-2">${t(lang, 'ctaLearnMore')}<span class="sr-only"> about ${t(lang, service.titleKey)}</span> ${icon('chevronRight', 'w-4 h-4')}</a>
             <button data-open-booking class="btn btn-secondary px-7 py-3.5 inline-flex items-center gap-2">${icon('calendar', 'w-4 h-4')} ${t(lang, 'ctaBooking')}</button>
           </div>
         </div>
@@ -517,7 +519,7 @@ export function marketsPage(lang) {
         <h2 class="h2-section mt-5">${m.heroLine}</h2>
         <p class="text-slate mt-5 leading-relaxed">${m.intro}</p>
         <div class="mt-7 flex flex-wrap gap-3 justify-center">
-          <a href="${m.slug}.html" class="${BTN_PRIMARY} px-7 py-3.5 inline-flex items-center gap-2">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</a>
+          <a href="${m.slug}.html" class="${BTN_PRIMARY} px-7 py-3.5 inline-flex items-center gap-2">${t(lang, 'ctaLearnMore')}<span class="sr-only"> about ${m.fullName || m.name}</span> ${icon('chevronRight', 'w-4 h-4')}</a>
           <button data-open-booking class="btn btn-secondary px-7 py-3.5 inline-flex items-center gap-2">${icon('calendar', 'w-4 h-4')} ${t(lang, 'ctaBooking')}</button>
         </div>
       </div>
@@ -762,6 +764,83 @@ export function contactPage(lang) {
   };
 
   return pageShell({ lang, page: 'contact.html', title: t(lang, 'contactTitle'), description: t(lang, 'contactSubtitle'), jsonLd, crumbs: [{ label: t(lang, 'navContact') }], bodyHTML: body });
+}
+
+// A page for people ENZ has already worked with. Linked from messages we send
+// to clients (see the "Ask a client" box in the admin), never from the site's
+// own navigation, and noindex.
+export function feedbackPage(lang) {
+  const field = (id, name, labelKey, extra = '') =>
+    `<div><label for="${id}" class="field-label">${t(lang, labelKey)}</label><input id="${id}" name="${name}" type="text" class="field" ${extra} /></div>`;
+
+  const body = `
+  <section class="section bg-white">
+    <div class="shell max-w-3xl text-center">
+      <h1 class="h1-display text-ink">${t(lang, 'feedbackTitle')}</h1>
+      <p class="lead mt-6">${t(lang, 'feedbackSubtitle')}</p>
+    </div>
+  </section>
+  <section class="section pt-0 bg-white">
+    <div class="shell max-w-xl">
+      <form data-feedback-form class="card card-lg space-y-5">
+        <h2 class="font-semibold text-ink">${t(lang, 'feedbackFormTitle')}</h2>
+        <div><label for="fb-name" class="field-label" data-required>${t(lang, 'bookingName')}</label><input id="fb-name" name="name" type="text" required autocomplete="name" class="field" /></div>
+        <div>
+          <label for="fb-email" class="field-label" data-required>${t(lang, 'bookingEmail')}</label>
+          <input id="fb-email" name="email" type="email" required autocomplete="email" class="field" aria-describedby="fb-email-hint" />
+          <p id="fb-email-hint" class="text-xs text-slate mt-1.5">${t(lang, 'feedbackEmailHint')}</p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          ${field('fb-role', 'role', 'feedbackRole', 'autocomplete="organization-title"')}
+          ${field('fb-company', 'company', 'feedbackCompany', 'autocomplete="organization"')}
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          ${field('fb-country', 'country', 'feedbackCountry', 'autocomplete="country-name"')}
+          <div>
+            <label for="fb-project" class="field-label">${t(lang, 'feedbackProject')}</label>
+            <input id="fb-project" name="project" type="text" class="field" aria-describedby="fb-project-hint" />
+          </div>
+        </div>
+        <p id="fb-project-hint" class="text-xs text-slate -mt-3">${t(lang, 'feedbackProjectHint')}</p>
+        <div>
+          <label for="fb-quote" class="field-label" data-required>${t(lang, 'feedbackQuote')}</label>
+          <textarea id="fb-quote" name="quote" rows="6" required minlength="30" maxlength="1500" class="field" aria-describedby="fb-quote-hint"></textarea>
+          <p id="fb-quote-hint" class="text-xs text-slate mt-1.5">${t(lang, 'feedbackQuoteHint')}</p>
+        </div>
+        <fieldset class="space-y-2.5">
+          <legend class="sr-only">${t(lang, 'feedbackShowNamed')} / ${t(lang, 'feedbackShowAnon')}</legend>
+          <label class="flex items-start gap-3 text-sm text-ink cursor-pointer"><input type="radio" name="display" value="named" checked class="mt-1" /><span>${t(lang, 'feedbackShowNamed')}</span></label>
+          <label class="flex items-start gap-3 text-sm text-ink cursor-pointer"><input type="radio" name="display" value="anonymous" class="mt-1" /><span>${t(lang, 'feedbackShowAnon')}</span></label>
+        </fieldset>
+        <label class="flex items-start gap-3 text-sm text-slate cursor-pointer pt-1"><input type="checkbox" name="consent" required class="mt-1" /><span>${t(lang, 'feedbackConsent')}</span></label>
+        <p data-error-slot role="alert" hidden class="text-sm text-red-600">${t(lang, 'bookingErrorTitle')} — ${t(lang, 'bookingErrorDesc')}</p>
+        <button type="submit" data-submitting-label="${t(lang, 'bookingSubmitting')}" class="w-full ${BTN_PRIMARY} py-4">${t(lang, 'feedbackSubmit')}</button>
+      </form>
+      <div data-feedback-success role="status" hidden class="card card-lg text-center">
+        <div class="icon-chip w-12 h-12 rounded-full mx-auto">${icon('check', 'w-6 h-6')}</div>
+        <p class="text-lg font-semibold text-ink mt-4">${t(lang, 'feedbackThanksTitle')}</p>
+        <p class="text-sm text-slate mt-2">${t(lang, 'feedbackThanksDesc')}</p>
+        <div data-handoff-note hidden>
+          <p class="text-sm text-slate mt-2">${t(lang, 'bookingHandoffDesc')}</p>
+        </div>
+      </div>
+      <div class="mt-8">
+        <p class="eyebrow text-slate">${t(lang, 'feedbackNoteTitle')}</p>
+        <ol class="mt-3 space-y-2 text-sm text-slate list-decimal pl-5">
+          <li>${t(lang, 'feedbackNote1')}</li><li>${t(lang, 'feedbackNote2')}</li><li>${t(lang, 'feedbackNote3')}</li>
+        </ol>
+      </div>
+    </div>
+  </section>`;
+  return pageShell({
+    lang,
+    page: 'feedback.html',
+    title: t(lang, 'feedbackNavTitle'),
+    description: t(lang, 'feedbackSubtitle'),
+    crumbs: [{ label: t(lang, 'feedbackNavTitle') }],
+    bodyHTML: body,
+    robots: 'noindex, follow',
+  });
 }
 
 export function careersPage(lang) {

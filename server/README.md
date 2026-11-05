@@ -132,6 +132,8 @@ All JSON. Errors are `{ "message": "…" }` with a non-2xx status — the shape 
 | `POST /api/bookings` | `name`, `email`, `phone`, `company`, `date`, `service`, `message` | `201 { id, status: "received" }` |
 | `POST /api/newsletter` | `email` | `201 { status: "subscribed" }` (identical if already subscribed) |
 | `POST /api/careers/applications` | multipart: `name`, `email`, `message`, optional `cv` (PDF/DOC/DOCX, ≤ 5 MB) | `201 { id, status: "received" }` |
+| `POST /api/testimonials` | `name`, `email`, `quote` (30-1500 chars), `consent: true`, optional `role`, `company`, `country`, `project`, `display` (`named`/`anonymous`) | `201 { id, status: "received" }`, stored **pending** |
+| `GET /api/testimonials` | — | `200 { testimonials: [...] }`, approved only, no email |
 | `GET /api/health` | — | `200 { status: "ok" }` (Railway's healthcheck) |
 
 A message that starts `Quote request: <product>` (what the equipment page's buttons produce) is stored as
@@ -141,6 +143,38 @@ a **quote** with the product in its own column.
 strict server-side validation and length caps, an identical enquiry within 10 minutes is stored once,
 and uploaded files are checked by their first bytes (not their name) and stored under random names.
 The page's own JavaScript spam trap (`assets/js/site.js`) is unchanged.
+
+## Testimonials
+
+There are no testimonials on the site until a real client's words are in the database. Nothing is
+invented, and nothing appears automatically.
+
+**How one gets onto the site**
+
+1. **Ask a client.** Admin → *Testimonials* → *Ask a client* gives you the link
+   (`/en/feedback/`) and a short message to send by WhatsApp or email. Ask what happened, not for
+   praise, and never send them a draft to approve: real testimonials sound like the person who wrote them.
+2. **They submit the form.** It needs their name, email, their words (30 to 1,500 characters) and a ticked
+   permission box. Saved as *pending*; you get an email. The page is `noindex` and not in the sitemap.
+3. **You check they were a real client** (their email is on the entry, visible only to you), then press
+   *Approve and publish*. Anyone can submit the form, which is why nothing is automatic.
+4. **It appears on the home page** straight away. Hide or delete it at any time; a hidden one disappears
+   on the next page load.
+
+**Already have one?** A client's WhatsApp message or email can be entered with *Add one I already have*.
+It requires you to confirm you have their permission, and is published immediately.
+
+**Rules the code enforces**
+
+- A quote is stored and shown **exactly as written**. There is no edit field, on purpose: tidied-up
+  wording is what makes a testimonial read as marketing copy.
+- Permission is mandatory, in the form, in the API, and in the database schema itself (a row with no
+  consent cannot be inserted).
+- The sender's email, your notes and the consent bookkeeping never leave the server. An *anonymous*
+  testimonial loses its name and company in the data layer, so a template can't leak them.
+- With none approved, the section is simply absent: hidden by default, never an empty box or a placeholder.
+- `_content/proof.js` still works for hand-written entries, but only add one there with the same
+  written permission.
 
 ## Things worth knowing
 

@@ -54,9 +54,16 @@ export const ALL_PAGES = [
   'resources.html',
   'contact.html',
   'careers.html',
+  'feedback.html',
   'privacy.html',
   'terms.html',
 ];
+
+// Generated, linked from messages we send to clients, but not for search
+// engines: a form for people we already worked with has nothing to rank for, and
+// an indexed "leave a testimonial" page invites exactly the submissions we do
+// not want. Excluded from the sitemap; the page itself carries noindex.
+export const NOINDEX_PAGES = new Set(['feedback.html']);
 
 // Inside the mobile nav the dropdown is the wrong shape: the panel is
 // absolutely positioned but the nav scrolls (`overflow-y: auto`), so an open

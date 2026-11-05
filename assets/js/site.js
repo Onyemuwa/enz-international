@@ -21,6 +21,10 @@
         '<a href="mailto:' + email + '" style="text-decoration:underline">' + email + '</a>' +
         (phone ? ' or call <a href="tel:' + phone.replace(/\s/g, '') + '" style="text-decoration:underline">' + phone + '</a>' : '') +
         ' and we will come straight back to you.';
+    } else if (err && err.validation) {
+      // The server's own reason ("Please write at least 30 characters…"), as
+      // text — never as markup.
+      el.textContent = err.message;
     }
     el.hidden = false;
   }
@@ -257,6 +261,99 @@
       return window.ENZ_API.submitCvApplication(new FormData(form));
     },
   });
+
+  wireForm('[data-feedback-form]', {
+    successSelector: '[data-feedback-success]',
+    submit: function (form) {
+      var shown = form.querySelector('input[name="display"]:checked');
+      return window.ENZ_API.submitTestimonial({
+        name: form.name.value,
+        email: form.email.value,
+        role: form.role.value,
+        company: form.company.value,
+        country: form.country.value,
+        project: form.project.value,
+        quote: form.quote.value,
+        display: shown ? shown.value : 'named',
+        consent: form.consent.checked,
+      });
+    },
+  });
+
+  // ---------- Client testimonials ----------
+  // The section is rendered empty and hidden (see testimonialsSlot() in
+  // _lib/components.js) and only shown if the server has approved testimonials.
+  // Fails toward showing nothing: no backend (e.g. a static host), a network
+  // error or an empty list all leave the page exactly as if the section did not
+  // exist, which is the right outcome — there is no honest placeholder for a
+  // client's words.
+  //
+  // Everything is inserted with textContent. These are strings a stranger typed
+  // into a public form, so none of them may ever be parsed as HTML.
+  (function loadTestimonials() {
+    var slot = document.querySelector('[data-testimonials]');
+    if (!slot || !window.fetch) return;
+    var cfg = window.ENZ_CONFIG || {};
+    if (!cfg.API_SAME_ORIGIN && !cfg.API_BASE_URL) return;
+    var tpl = slot.querySelector('template[data-testimonial-template]');
+    var list = slot.querySelector('[data-testimonial-list]');
+    if (!tpl || !list || !tpl.content) return;
+    var base = String(cfg.API_BASE_URL || '').replace(/\/+$/, '');
+
+    fetch(base + '/api/testimonials?limit=6')
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (data) {
+        var items = data && Array.isArray(data.testimonials) ? data.testimonials : [];
+        if (!items.length) return;
+
+        items.forEach(function (it) {
+          if (!it || typeof it.quote !== 'string' || !it.quote) return;
+          var card = tpl.content.cloneNode(true);
+          var set = function (sel, value) {
+            var node = card.querySelector(sel);
+            if (node) node.textContent = value;
+            return node;
+          };
+
+          set('[data-t-quote]', '“' + it.quote + '”');
+
+          // Named: "Amina Hassan" over "Director, Hassan Building Supplies, Tanzania".
+          // Anonymous (the server has already removed name and company): the
+          // role leads, over the country.
+          var named = typeof it.name === 'string' && it.name !== '';
+          var meta = (named ? [it.role, it.company, it.country] : [it.country])
+            .filter(function (v) { return typeof v === 'string' && v !== ''; })
+            .join(', ');
+          set('[data-t-name]', named ? it.name : (it.role || 'ENZ client'));
+          set('[data-t-meta]', meta);
+
+          var chip = card.querySelector('[data-t-initials]');
+          if (chip) {
+            if (named) {
+              chip.textContent = it.name.split(/\s+/).filter(Boolean).slice(0, 2)
+                .map(function (w) { return w.charAt(0).toUpperCase(); }).join('');
+            } else {
+              chip.hidden = true;
+            }
+          }
+
+          if (typeof it.project === 'string' && it.project) {
+            var pill = set('[data-t-project]', it.project);
+            if (pill) pill.hidden = false;
+          }
+          list.appendChild(card);
+        });
+
+        // One or two testimonials in a three-column grid look like a mistake
+        // (a lone card hugging the left edge), so the grid fits the count.
+        var n = list.children.length;
+        if (n === 1) list.className = 'grid gap-5 mt-14 max-w-2xl mx-auto';
+        else if (n === 2) list.className = 'grid md:grid-cols-2 gap-5 mt-14 max-w-4xl mx-auto';
+
+        if (n) slot.hidden = false;
+      })
+      .catch(function () { /* leave the section hidden */ });
+  })();
 
   // ---------- FAQ accordion ----------
   document.querySelectorAll('.faq-question').forEach(function (btn) {

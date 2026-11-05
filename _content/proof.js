@@ -9,6 +9,12 @@
 // but they render NOTHING until there is something true to put in them.
 //
 // To turn them on: add real entries below and re-run `node _generate-static.mjs`.
+//
+// THE EASIER ROUTE, once the backend is live: collect them through the database
+// instead. Admin -> Testimonials gives you a link to send clients and a place to
+// approve what comes back; approved ones appear on the home page with no code
+// change. See "Testimonials" in server/README.md. Entries below are for anything
+// you would rather hard-code.
 // The homepage and about page pick them up automatically — no markup to touch.
 //
 // Get permission in writing before publishing a client's name or logo. If a

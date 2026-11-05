@@ -21,8 +21,8 @@ import { OUT, SITE_URL, ASSET_VERSION, FONT_HREF } from './_lib/site-config.js';
 import { slugOf, isHome, urlPath } from './_lib/urls.js';
 import { t } from './_lib/i18n.js';
 import { icon } from './_lib/icons.js';
-import { ALL_PAGES } from './_lib/nav.js';
-import { aboutPage, careersPage, contactPage, homePage, insightPostPage, insightsListPage, marketsPage, servicesPage } from './_lib/pages-primary.js';
+import { ALL_PAGES, NOINDEX_PAGES } from './_lib/nav.js';
+import { aboutPage, careersPage, contactPage, feedbackPage, homePage, insightPostPage, insightsListPage, marketsPage, servicesPage } from './_lib/pages-primary.js';
 import { faqPage, industriesPage, legalPage, logisticsPage, pricingPage, processPage, qualityControlPage, resourcesPage } from './_lib/pages-detail.js';
 import { equipmentPage } from './_lib/pages-equipment.js';
 import { servicePage, marketPage } from './_lib/pages-landing.js';
@@ -91,6 +91,7 @@ for (const lang of SUPPORTED_LANGUAGES) {
     ['insights.html', insightsListPage],
     ['contact.html', contactPage],
     ['careers.html', careersPage],
+    ['feedback.html', feedbackPage],
     ['process.html', processPage],
     ['industries.html', industriesPage],
     ['equipment.html', equipmentPage],
@@ -444,7 +445,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 `
 );
 
-const sitemapPages = ALL_PAGES;
+const sitemapPages = ALL_PAGES.filter((p) => !NOINDEX_PAGES.has(p));
 const TODAY = new Date().toISOString().slice(0, 10);
 
 // Per-page <lastmod>, derived from git rather than from the clock.

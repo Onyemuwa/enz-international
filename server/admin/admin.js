@@ -12,9 +12,10 @@
   var TABS = [
     { id: 'inquiries', label: 'Enquiries' },
     { id: 'applications', label: 'Applications' },
+    { id: 'testimonials', label: 'Testimonials' },
     { id: 'subscribers', label: 'Subscribers' },
   ];
-  var state = { tab: 'inquiries', status: '', q: '', rows: [], total: 0, openId: null, summary: null, flash: null };
+  var state = { tab: 'inquiries', status: '', q: '', rows: [], total: 0, openId: null, summary: null, flash: null, showAdd: false };
 
   var $tabs = document.getElementById('tabs');
   var $banners = document.getElementById('banners');
@@ -24,7 +25,11 @@
   var $tools = el('div', { class: 'tools' });
   var $list = el('div');
   var $count = el('span', { class: 'count' });
+  // Above the list on the Testimonials tab only: how to ask a client, and the
+  // form for adding one a client already sent by WhatsApp or email.
+  var $panel = el('div');
   $view.appendChild($tools);
+  $view.appendChild($panel);
   $view.appendChild($list);
 
   // ---- tiny DOM helper ------------------------------------------------------
@@ -89,6 +94,7 @@
       var news = 0;
       if (s && t.id === 'inquiries') news = s.inquiries.new || 0;
       if (s && t.id === 'applications') news = s.applications.new || 0;
+      if (s && t.id === 'testimonials') news = (s.testimonials && s.testimonials.pending) || 0;
       $tabs.appendChild(
         el('button', {
           class: 'tab',
@@ -131,8 +137,10 @@
     state.status = '';
     state.q = '';
     state.openId = null;
+    state.showAdd = false;
     renderTabs();
     buildTools();
+    buildPanel();
     load(true);
   }
 
@@ -160,11 +168,12 @@
   function buildTools() {
     var statusSel = null;
     if (state.tab !== 'subscribers') {
+      var opts = state.tab === 'testimonials'
+        ? [['pending', 'Waiting for approval'], ['approved', 'Published'], ['hidden', 'Hidden']]
+        : [['new', 'New'], ['contacted', 'Contacted'], ['closed', 'Closed']];
       statusSel = el('select', { 'aria-label': 'Filter by status', onchange: function (e) { state.status = e.target.value; load(true); } },
         el('option', { value: '', text: 'All statuses' }),
-        el('option', { value: 'new', text: 'New' }),
-        el('option', { value: 'contacted', text: 'Contacted' }),
-        el('option', { value: 'closed', text: 'Closed' }));
+        opts.map(function (o) { return el('option', { value: o[0], text: o[1] }); }));
       statusSel.value = state.status;
     }
     var timer;
@@ -175,7 +184,7 @@
         timer = setTimeout(function () { state.q = v.trim(); load(true); }, 300);
       } });
     // The export honours whatever filters are active at the moment of the click.
-    var csv = state.tab === 'applications' ? null
+    var csv = (state.tab === 'applications' || state.tab === 'testimonials') ? null
       : el('a', { class: 'btn btn-quiet', href: '/api/admin/' + state.tab + '.csv', text: 'Export CSV',
           onclick: function (e) {
             e.currentTarget.href = '/api/admin/' + state.tab + '.csv?' + new URLSearchParams({ status: state.status, q: state.q });
@@ -188,11 +197,12 @@
     $count.textContent = state.total + ' total';
     $list.textContent = '';
     if (!state.rows.length) {
-      $list.appendChild(el('div', { class: 'empty', text: state.q || state.status ? 'Nothing matches those filters.' : 'Nothing here yet.' }));
+      $list.appendChild(el('div', { class: 'empty', text: state.q || state.status ? 'Nothing matches those filters.'
+        : state.tab === 'testimonials' ? 'No testimonials yet. Use the box above to ask a client, or add one you already have.' : 'Nothing here yet.' }));
       return;
     }
     var table = el('table');
-    var cols = { inquiries: ['Received', 'Name', 'Contact', 'About', 'Status'], applications: ['Received', 'Name', 'Email', 'CV', 'Status'], subscribers: ['Subscribed', 'Email', ''] }[state.tab];
+    var cols = { inquiries: ['Received', 'Name', 'Contact', 'About', 'Status'], applications: ['Received', 'Name', 'Email', 'CV', 'Status'], testimonials: ['Received', 'Name', 'From', 'What they said', 'Status'], subscribers: ['Subscribed', 'Email', ''] }[state.tab];
     table.appendChild(el('thead', {}, el('tr', {}, cols.map(function (c, i) { return el('th', { class: i === 2 || i === 3 ? 'hide-sm' : '', text: c }); }))));
     var body = el('tbody');
     state.rows.forEach(function (row) {
@@ -221,7 +231,16 @@
           api('/subscribers/' + row.id, { method: 'DELETE' }).then(function () { return load(true); }).then(loadSummary);
         } })));
     }
-    var cls = 'row' + (row.status === 'new' ? ' is-new' : '');
+    var cls = 'row' + (row.status === 'new' || row.status === 'pending' ? ' is-new' : '');
+    if (state.tab === 'testimonials') {
+      var snippet = row.quote.length > 90 ? row.quote.slice(0, 90).trim() + '\u2026' : row.quote;
+      return el('tr', { class: cls, onclick: toggle },
+        el('td', { class: 'muted', text: fmtDate(row.created_at) }),
+        el('td', {}, row.name, row.role ? el('div', { class: 'muted', text: row.role }) : null),
+        el('td', { class: 'hide-sm', text: [row.company, row.country].filter(Boolean).join(', ') }),
+        el('td', { class: 'hide-sm muted', text: snippet }),
+        el('td', {}, pill(row.status === 'pending' ? 'waiting' : row.status === 'approved' ? 'published' : 'hidden', 'pill-' + row.status)));
+    }
     if (state.tab === 'applications') {
       return el('tr', { class: cls, onclick: toggle },
         el('td', { class: 'muted', text: fmtDate(row.created_at) }),
@@ -246,6 +265,7 @@
   }
 
   function detailFor(row) {
+    if (state.tab === 'testimonials') return testimonialDetail(row);
     var isInquiry = state.tab === 'inquiries';
     var dl = el('dl', { class: 'grid' });
     field(dl, 'Name', row.name);
@@ -307,6 +327,159 @@
 
     return el('tr', { class: 'detail' },
       el('td', { colspan: '5' }, dl, row.message ? el('div', { class: 'message', text: row.message }) : null, actions));
+  }
+
+  // ---- testimonials ---------------------------------------------------------
+  function setTestimonialStatus(row, status) {
+    return api('/testimonials/' + row.id, { method: 'PATCH', body: { status: status } })
+      .then(function (updated) { Object.assign(row, updated); return loadSummary(); })
+      .then(function () { return load(true); });
+  }
+
+  function testimonialDetail(row) {
+    var dl = el('dl', { class: 'grid' });
+    field(dl, 'Name', row.name);
+    field(dl, 'Email (private)', row.email);
+    field(dl, 'Role', row.role);
+    field(dl, 'Company', row.company);
+    field(dl, 'Country', row.country);
+    field(dl, 'Sourced', row.project);
+    field(dl, 'Will publish as', row.display === 'anonymous'
+      ? (row.role || 'ENZ client') + (row.country ? ', ' + row.country : '') + ' \u2014 name and company withheld'
+      : 'Named');
+    field(dl, 'Permission', row.consent ? 'Given' + (row.source === 'admin' ? ' (confirmed by ENZ when added)' : ' (ticked on the form)') : 'MISSING');
+    field(dl, 'Came from', row.source === 'admin' ? 'Added by ENZ' : 'Submitted by the client');
+    field(dl, 'Received', fmtDate(row.created_at));
+    if (row.source === 'form') field(dl, 'Email alert', row.notify_status + (row.notify_error ? ' \u2014 ' + row.notify_error : ''));
+
+    var notes = el('textarea', { placeholder: 'Private notes \u2014 e.g. how you checked they were a client', 'aria-label': 'Private notes' });
+    notes.value = row.notes || '';
+    var flash = el('span', { class: 'notice' });
+    if (state.flash && state.flash.id === row.id) { flash.textContent = state.flash.text; state.flash = null; }
+
+    var busy = function (btn, work) {
+      btn.disabled = true;
+      work().catch(function (err) { flash.textContent = err.message; btn.disabled = false; });
+    };
+
+    var buttons = [];
+    if (row.status !== 'approved') {
+      buttons.push(el('button', { class: 'btn', type: 'button', text: 'Approve and publish', onclick: function (e) {
+        busy(e.target, function () { state.flash = { id: row.id, text: 'Published' }; return setTestimonialStatus(row, 'approved'); });
+      } }));
+    }
+    if (row.status === 'approved') {
+      buttons.push(el('button', { class: 'btn btn-quiet', type: 'button', text: 'Unpublish', onclick: function (e) {
+        busy(e.target, function () { state.flash = { id: row.id, text: 'Hidden from the site' }; return setTestimonialStatus(row, 'hidden'); });
+      } }));
+    } else if (row.status === 'pending') {
+      buttons.push(el('button', { class: 'btn btn-quiet', type: 'button', text: 'Hide', onclick: function (e) {
+        busy(e.target, function () { return setTestimonialStatus(row, 'hidden'); });
+      } }));
+    }
+    buttons.push(el('button', { class: 'btn btn-quiet', type: 'button', text: 'Save notes', onclick: function (e) {
+      busy(e.target, function () {
+        return api('/testimonials/' + row.id, { method: 'PATCH', body: { notes: notes.value } }).then(function (u) {
+          Object.assign(row, u); flash.textContent = 'Notes saved'; e.target.disabled = false;
+        });
+      });
+    } }));
+
+    var children = [];
+    if (row.email) {
+      children.push(el('a', { class: 'btn btn-quiet', text: 'Email them to confirm',
+        href: 'mailto:' + encodeURIComponent(row.email) + '?subject=' + encodeURIComponent('Your feedback on ENZ INTERNATIONAL') }));
+    }
+    children = children.concat(buttons, [notes, flash,
+      el('button', { class: 'btn btn-danger', type: 'button', text: 'Delete', onclick: function () {
+        if (!confirm('Permanently delete this testimonial? This cannot be undone.')) return;
+        api('/testimonials/' + row.id, { method: 'DELETE' }).then(function () { state.openId = null; return load(true); }).then(loadSummary);
+      } })]);
+
+    return el('tr', { class: 'detail' }, el('td', { colspan: '5' },
+      row.status === 'pending'
+        ? el('div', { class: 'banner banner-warn banner-flush', text: 'Not public yet. Before approving, check this person really was a client \u2014 anyone can submit the form.' })
+        : null,
+      dl,
+      el('div', { class: 'message', text: row.quote }),
+      el('div', { class: 'actions' }, children)));
+  }
+
+  function copyText(value, btn) {
+    var done = function () {
+      var old = btn.textContent;
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = old; }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(value).then(done, function () {});
+    else done();
+  }
+
+  function addTestimonialForm() {
+    var f = {};
+    var input = function (key, label, type, attrs) {
+      f[key] = el(type === 'textarea' ? 'textarea' : 'input', Object.assign({ id: 'add-' + key, type: type === 'textarea' ? null : (type || 'text') }, attrs || {}));
+      return el('div', {}, el('label', { for: 'add-' + key, class: 'lbl', text: label }), f[key]);
+    };
+    f.display = el('select', { id: 'add-display' },
+      el('option', { value: 'named', text: 'Show their name and company' }),
+      el('option', { value: 'anonymous', text: 'Anonymous \u2014 role and country only' }));
+    f.consent = el('input', { type: 'checkbox', id: 'add-consent' });
+    var msg = el('span', { class: 'notice' });
+    var submit = el('button', { class: 'btn', type: 'submit', text: 'Add and publish' });
+
+    var form = el('form', { class: 'addform', onsubmit: function (e) {
+      e.preventDefault();
+      submit.disabled = true;
+      msg.textContent = '';
+      var body = {};
+      ['quote', 'name', 'role', 'company', 'country', 'project'].forEach(function (k) { body[k] = f[k].value; });
+      body.display = f.display.value;
+      body.consent = f.consent.checked;
+      api('/testimonials', { method: 'POST', body: body })
+        .then(function () { state.showAdd = false; buildPanel(); return loadSummary(); })
+        .then(function () { return load(true); })
+        .catch(function (err) { msg.textContent = err.message; submit.disabled = false; });
+    } },
+      el('p', { class: 'muted', text: 'Paste what they actually sent, word for word. Do not tidy it up \u2014 uneven, specific wording is what makes it believable.' }),
+      input('quote', 'Their words', 'textarea', { rows: '5', required: true }),
+      el('div', { class: 'two' }, input('name', 'Name', 'text', { required: true }), input('role', 'Role', 'text')),
+      el('div', { class: 'two' }, input('company', 'Company', 'text'), input('country', 'Country', 'text')),
+      input('project', 'What they sourced (optional)', 'text'),
+      el('div', {}, el('label', { for: 'add-display', class: 'lbl', text: 'How to show them' }), f.display),
+      el('label', { class: 'check' }, f.consent, el('span', { text: 'I have this person\u2019s permission to publish this.' })),
+      el('div', { class: 'actions' }, submit,
+        el('button', { class: 'btn btn-quiet', type: 'button', text: 'Cancel', onclick: function () { state.showAdd = false; buildPanel(); } }), msg));
+    return form;
+  }
+
+  function buildPanel() {
+    $panel.textContent = '';
+    if (state.tab !== 'testimonials') return;
+
+    var link = location.origin + '/en/feedback/';
+    var template =
+      'Hi [name], I hope the [what they bought] arrived well.\n\n' +
+      'I would really value your honest feedback on how we did \u2014 what went well, and anything that did not. ' +
+      'If you are happy for us to share it, there is a short form here: ' + link + '\n\n' +
+      'It takes a couple of minutes and nothing is published without your OK. Thank you.';
+
+    var linkInput = el('input', { type: 'text', readonly: true, value: link, 'aria-label': 'Feedback link', class: 'mono' });
+    var tplBox = el('textarea', { rows: '6', readonly: true, 'aria-label': 'Suggested message' });
+    tplBox.value = template;
+
+    var ask = el('div', { class: 'card-box' },
+      el('h2', { text: 'Ask a client' }),
+      el('p', { class: 'muted', text: 'Send this to people you have genuinely worked with, by WhatsApp or email. Ask for what happened \u2014 not for praise \u2014 and do not send them a draft to sign off: real testimonials sound like the person who wrote them.' }),
+      el('div', { class: 'copyrow' }, linkInput, el('button', { class: 'btn btn-quiet', type: 'button', text: 'Copy link', onclick: function (e) { copyText(link, e.target); } })),
+      tplBox,
+      el('div', { class: 'actions' },
+        el('button', { class: 'btn btn-quiet', type: 'button', text: 'Copy message', onclick: function (e) { copyText(template, e.target); } }),
+        el('a', { class: 'btn btn-quiet', href: link, target: '_blank', rel: 'noopener', text: 'Preview the form' }),
+        el('button', { class: 'btn', type: 'button', text: state.showAdd ? 'Close' : 'Add one I already have', onclick: function () { state.showAdd = !state.showAdd; buildPanel(); } })));
+
+    $panel.appendChild(ask);
+    if (state.showAdd) $panel.appendChild(el('div', { class: 'card-box' }, el('h2', { text: 'Add a testimonial you already have' }), addTestimonialForm()));
   }
 
   // ---- boot -----------------------------------------------------------------

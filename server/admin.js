@@ -13,8 +13,8 @@ import os from 'node:os';
 import path from 'node:path';
 import express from 'express';
 import { rateLimit } from 'express-rate-limit';
-import { STATUSES } from './db.js';
-import { text } from './validate.js';
+import { STATUSES, TESTIMONIAL_STATUSES } from './db.js';
+import { parseTestimonial, text } from './validate.js';
 
 // SHA-256 first so timingSafeEqual always compares equal-length buffers and
 // the comparison time does not depend on how much of a guess was right.
@@ -145,12 +145,12 @@ export function createAdmin({ config, store, notifier, adminDir }) {
     res.type('text/csv; charset=utf-8').attachment('enz-inquiries.csv').send(toCsv(INQUIRY_COLUMNS, rows));
   });
 
-  const patchHandler = (getRow, update) => (req, res) => {
+  const patchHandler = (getRow, update, allowed = STATUSES) => (req, res) => {
     const id = parseId(req);
     if (!id || !getRow(id)) return res.status(404).json({ message: 'Not found.' });
     const patch = {};
     if (req.body?.status !== undefined) {
-      if (!STATUSES.includes(req.body.status)) return res.status(400).json({ message: 'Unknown status.' });
+      if (!allowed.includes(req.body.status)) return res.status(400).json({ message: 'Unknown status.' });
       patch.status = req.body.status;
     }
     if (req.body?.notes !== undefined) patch.notes = text(req.body.notes, 5000);
@@ -162,6 +162,27 @@ export function createAdmin({ config, store, notifier, adminDir }) {
   api.delete('/inquiries/:id', guard, (req, res) => {
     const id = parseId(req);
     if (!id || !store.deleteInquiry(id)) return res.status(404).json({ message: 'Not found.' });
+    res.status(204).end();
+  });
+
+  // ---- Testimonials ------------------------------------------------------------
+  api.get('/testimonials', guard, (req, res) => res.json(store.listTestimonials(req.query)));
+
+  // A testimonial ENZ already has — a client's WhatsApp message or email. It
+  // must carry an explicit confirmation of permission, and the client's words
+  // go in exactly as sent.
+  api.post('/testimonials', guard, json, (req, res) => {
+    const { errors, value } = parseTestimonial(req.body, { source: 'admin' });
+    if (errors.length) return res.status(400).json({ message: errors.join(' ') });
+    const { id } = store.createTestimonial(value);
+    res.status(201).json(store.getTestimonial(id));
+  });
+
+  api.patch('/testimonials/:id', guard, json, patchHandler(store.getTestimonial, store.updateTestimonial, TESTIMONIAL_STATUSES));
+
+  api.delete('/testimonials/:id', guard, (req, res) => {
+    const id = parseId(req);
+    if (!id || !store.deleteTestimonial(id)) return res.status(404).json({ message: 'Not found.' });
     res.status(204).end();
   });
 

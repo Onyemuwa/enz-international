@@ -73,6 +73,7 @@ export function loadConfig(env = process.env, overrides = {}) {
       bookings: { windowMs: 15 * 60 * 1000, limit: 8 },
       newsletter: { windowMs: 60 * 60 * 1000, limit: 10 },
       careers: { windowMs: 60 * 60 * 1000, limit: 5 },
+      testimonials: { windowMs: 60 * 60 * 1000, limit: 4 },
       adminFailures: { windowMs: 15 * 60 * 1000, limit: 10 },
     },
   };

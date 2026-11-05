@@ -29,6 +29,10 @@ const pages = [];
 const fail = [];
 const warn = [];
 let checked = 0;
+// Pages that deliberately carry noindex (e.g. the client feedback form). They
+// are generated and linked, but must stay OUT of the sitemap.
+let noindexPages = 0;
+const noindexRels = [];
 
 for (const file of pages) {
   const rel = path.relative(ROOT, file).replace(/\\/g, '/');
@@ -57,7 +61,13 @@ for (const file of pages) {
     const expected = '/' + rel.replace(/index\.html$/, '');
     if (!canonical.endsWith(expected)) fail.push(`${rel}: canonical points elsewhere -> ${canonical}`);
   }
-  if (!/<meta name="robots" content="[^"]*index/.test(html)) fail.push(`${rel}: no indexable robots meta`);
+  const isNoindex = /<meta name="robots" content="[^"]*noindex/.test(html);
+  if (isNoindex) {
+    noindexPages++;
+    noindexRels.push('/' + rel.replace(/index\.html$/, ''));
+  } else if (!/<meta name="robots" content="[^"]*index/.test(html)) {
+    fail.push(`${rel}: no indexable robots meta`);
+  }
   if (!/rel="alternate" hreflang="x-default"/.test(html)) fail.push(`${rel}: no x-default hreflang`);
 
   // ---- social cards -----------------------------------------------------
@@ -101,10 +111,14 @@ for (const file of pages) {
 const sitemap = readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
 const robots = readFileSync(path.join(ROOT, 'robots.txt'), 'utf8');
 const locs = (sitemap.match(/<loc>/g) || []).length;
-if (locs !== checked) fail.push(`sitemap has ${locs} URLs but ${checked} pages were generated`);
+const expectedLocs = checked - noindexPages;
+if (locs !== expectedLocs) fail.push(`sitemap has ${locs} URLs but ${expectedLocs} indexable pages were generated`);
+for (const rel of noindexRels) {
+  if (sitemap.includes(rel + '</loc>')) fail.push(`${rel} is noindex but is listed in the sitemap`);
+}
 if (!/Sitemap:\s*https?:\/\/\S+sitemap\.xml/.test(robots)) fail.push('robots.txt does not reference the sitemap');
 
-console.log(`Checked ${checked} pages, ${locs} sitemap URLs\n`);
+console.log(`Checked ${checked} pages (${noindexPages} noindex), ${locs} sitemap URLs\n`);
 const show = (label, list) => {
   if (!list.length) return;
   console.log(`${label} (${list.length}):`);

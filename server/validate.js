@@ -47,6 +47,57 @@ export function parseBooking(body) {
   return { errors, value };
 }
 
+// A checkbox arrives as true, "true", "on" or "1" depending on who sent it.
+const truthy = (v) => v === true || v === 1 || /^(true|on|1|yes)$/i.test(String(v ?? '').trim());
+
+export const TESTIMONIAL_MIN = 30;
+export const TESTIMONIAL_MAX = 1500;
+
+/**
+ * A testimonial from the public form, or one ENZ types in from a client's
+ * WhatsApp/email. Consent is not optional in either case: a quote with no
+ * recorded permission to publish it is not accepted at all.
+ *
+ * The quote is stored exactly as given — trimmed and length-capped, nothing
+ * else. Rewording a client's words is how a testimonial starts to read as
+ * marketing copy, and is the opposite of what makes one believable.
+ */
+export function parseTestimonial(body, { source = 'form' } = {}) {
+  const errors = [];
+  const quote = text(body?.quote, TESTIMONIAL_MAX + 1);
+  const name = text(body?.name, 120);
+  const email = text(body?.email, 254).toLowerCase();
+
+  if (quote.length < TESTIMONIAL_MIN) errors.push(`Please write at least ${TESTIMONIAL_MIN} characters, so it says something specific.`);
+  if (quote.length > TESTIMONIAL_MAX) errors.push(`Please keep it under ${TESTIMONIAL_MAX} characters.`);
+  if (!name) errors.push('Your name is required.');
+  // A public submission needs an email so ENZ can confirm the sender is a real
+  // client before anything is published. ENZ's own entries may omit it.
+  if (source === 'form' && !isEmail(email)) errors.push('A valid email address is required so we can confirm it was you.');
+  if (source === 'admin' && email && !isEmail(email)) errors.push('That email address is not valid.');
+  if (!truthy(body?.consent)) {
+    errors.push(source === 'admin' ? 'Confirm you have the client\'s permission to publish this.' : 'Please tick the box to confirm we may publish this.');
+  }
+
+  return {
+    errors,
+    value: {
+      quote,
+      name,
+      role: text(body?.role, 120),
+      company: text(body?.company, 160),
+      country: text(body?.country, 80),
+      project: text(body?.project, 160),
+      email,
+      display: body?.display === 'anonymous' ? 'anonymous' : 'named',
+      source,
+      // Entries ENZ types in are already vetted by the person typing them.
+      // Anything arriving from the public form waits for a human.
+      status: source === 'admin' ? 'approved' : 'pending',
+    },
+  };
+}
+
 export function parseSubscriber(body) {
   const email = text(body?.email, 254).toLowerCase();
   return isEmail(email) ? { errors: [], value: email } : { errors: ['A valid email address is required.'], value: '' };

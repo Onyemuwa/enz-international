@@ -53,6 +53,24 @@ export function inquiryEmail(row, adminUrl) {
   return { subject: `${isQuote ? 'Quote request' : 'Consultation request'} — ${row.name}`, text, html, replyTo: row.email };
 }
 
+export function testimonialEmail(row, adminUrl) {
+  const { text, html } = rowsToMessage(
+    'New testimonial waiting for your approval',
+    [
+      ['Name', row.name],
+      ['Role', row.role],
+      ['Company', row.company],
+      ['Country', row.country],
+      ['Sourced', row.project],
+      ['Email', row.email],
+      ['Publish as', row.display === 'anonymous' ? 'anonymous (role and country only)' : 'named'],
+      ['Their words', row.quote],
+    ],
+    `It is NOT public yet. Check they are a real client, then approve it in the admin: ${adminUrl}`
+  );
+  return { subject: `Testimonial to approve — ${row.name}`, text, html, replyTo: row.email };
+}
+
 export function applicationEmail(row, adminUrl) {
   const { text, html } = rowsToMessage(
     'New career application',

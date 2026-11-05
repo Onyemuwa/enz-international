@@ -241,6 +241,43 @@ export function engagementCard(lang, m, { detailed = false } = {}) {
 // _content/proof.js. Both arrays ship empty, so this returns an empty string
 // and the page simply doesn't have the section — rather than shipping invented
 // quotes to real visitors. Add entries and it appears, no markup to touch.
+// Client testimonials that are fetched, not baked in.
+//
+// Approved testimonials live in the database and are published from the admin,
+// so a new one appears on the site without anyone editing code or redeploying.
+// This renders an EMPTY, HIDDEN section plus a template; assets/js/site.js asks
+// the server for approved testimonials and, only if there are some, fills the
+// template and un-hides it.
+//
+// Hidden-by-default is the safe direction here, unlike the scroll reveals: if
+// the script fails, the host has no backend, or there are no testimonials yet,
+// the visitor sees no section at all — never an empty box with a heading over
+// nothing, and never a placeholder that reads as a real quote.
+//
+// Everything a visitor wrote goes in through textContent, never innerHTML.
+export function testimonialsSlot(lang) {
+  return `
+  <section class="section bg-white" data-testimonials hidden>
+    <div class="${SHELL}">
+      ${sectionHead(t(lang, 'testimonialsEyebrow'), t(lang, 'testimonialsTitle'), t(lang, 'testimonialsLead'))}
+      <div data-testimonial-list class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-14"></div>
+      <template data-testimonial-template>
+        <figure class="${CARD} card-lg flex flex-col">
+          <span data-t-project class="pill pill-neutral self-start mb-4" hidden></span>
+          <blockquote data-t-quote class="text-ink text-[1.0625rem] leading-relaxed flex-1 whitespace-pre-line"></blockquote>
+          <figcaption class="flex items-center gap-3 mt-6 pt-5 border-t border-line">
+            <span data-t-initials class="icon-chip w-10 h-10 shrink-0 rounded-full bg-brand-50 text-sm font-semibold"></span>
+            <span class="text-sm">
+              <span data-t-name class="block font-medium text-ink"></span>
+              <span data-t-meta class="block text-slate"></span>
+            </span>
+          </figcaption>
+        </figure>
+      </template>
+    </div>
+  </section>`;
+}
+
 export function proofSection(lang) {
   if (!testimonials.length && !caseStudies.length) return '';
 

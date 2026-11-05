@@ -107,26 +107,33 @@ window.ENZ_API = (function () {
   }
 
   // ---- path 1: own backend --------------------------------------------------
+  // A 400 from our own backend means "this input is not acceptable", and it has
+  // a readable reason. Trying the next delivery path with the same input would
+  // just send the visitor's mistake somewhere else, so it is marked and shown
+  // to them instead. Every other failure (404 from a static host, 5xx, 429,
+  // timeout, offline) still fails over, because those are not the visitor's fault.
+  function backendResult(res) {
+    return readJson(res).then(function (body) {
+      if (res.status === 400) {
+        var invalid = new Error(body.message || 'Please check what you entered.');
+        invalid.validation = true;
+        throw invalid;
+      }
+      if (!res.ok) throw new Error(body.message || 'Request failed (' + res.status + ')');
+      return body;
+    });
+  }
+
   function backendJson(path, payload) {
     return fetchWithTimeout(
       BASE + path,
       { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) },
       BACKEND_TIMEOUT_MS
-    ).then(function (res) {
-      return readJson(res).then(function (body) {
-        if (!res.ok) throw new Error(body.message || 'Request failed (' + res.status + ')');
-        return body;
-      });
-    });
+    ).then(backendResult);
   }
 
   function backendForm(path, formData) {
-    return fetchWithTimeout(BASE + path, { method: 'POST', body: formData }, BACKEND_TIMEOUT_MS * 2).then(function (res) {
-      return readJson(res).then(function (body) {
-        if (!res.ok) throw new Error(body.message || 'Request failed (' + res.status + ')');
-        return body;
-      });
-    });
+    return fetchWithTimeout(BASE + path, { method: 'POST', body: formData }, BACKEND_TIMEOUT_MS * 2).then(backendResult);
   }
 
   // ---- path 2: Web3Forms ----------------------------------------------------
@@ -189,10 +196,16 @@ window.ENZ_API = (function () {
   function deliver(senders, subject, fields) {
     function attempt(i) {
       if (i >= senders.length) return Promise.reject(new Error('All delivery paths failed'));
-      return senders[i]().catch(function () { return attempt(i + 1); });
+      return senders[i]().catch(function (err) {
+        if (err && err.validation) throw err; // the visitor's input, not a delivery problem
+        return attempt(i + 1);
+      });
     }
     if (!senders.length) return openMailClient(subject, fields);
-    return attempt(0).catch(function () { return openMailClient(subject, fields); });
+    return attempt(0).catch(function (err) {
+      if (err && err.validation) throw err;
+      return openMailClient(subject, fields);
+    });
   }
 
   return {
@@ -254,6 +267,31 @@ window.ENZ_API = (function () {
             return { status: 'subscribed' };
           });
         });
+      }
+      return deliver(senders, subject, fields);
+    },
+
+    // Only the own backend can take a testimonial: it needs moderation, a
+    // recorded consent, and somewhere to keep the sender's email private, none
+    // of which an email relay provides. If the backend is unreachable the words
+    // are handed to the visitor's mail app so they are not lost, and ENZ can
+    // enter them from the admin with the permission the email itself records.
+    submitTestimonial: function (data) {
+      var subject = 'Testimonial — ' + (data.name || 'client');
+      var fields = {
+        Name: data.name,
+        Email: data.email,
+        Role: data.role,
+        Company: data.company,
+        Country: data.country,
+        Sourced: data.project,
+        'Publish as': data.display === 'anonymous' ? 'anonymous (role and country only)' : 'named',
+        'Permission to publish': data.consent ? 'yes, I agree' : '',
+        'Their words': data.quote,
+      };
+      var senders = [];
+      if (OWN_BACKEND) {
+        senders.push(function () { return backendJson('/api/testimonials', data); });
       }
       return deliver(senders, subject, fields);
     },

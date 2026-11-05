@@ -25,7 +25,7 @@ before(async () => {
   const config = loadConfig({}, {
     dbPath: path.join(dir, 'c.db'),
     uploadDir: path.join(dir, 'u'),
-    rateLimits: { bookings: HIGH, newsletter: HIGH, careers: HIGH, adminFailures: HIGH },
+    rateLimits: { bookings: HIGH, newsletter: HIGH, careers: HIGH, testimonials: HIGH, adminFailures: HIGH },
   });
   const built = createApp(config, { notifier: { configured: false, async send() { return { status: 'skipped' }; } }, log: quiet });
   store = built.store;
@@ -204,5 +204,55 @@ describe('static-only hosting (no backend configured)', () => {
     const result = await api.submitBooking(booking);
     assert.equal(result.id, 7);
     assert.deepEqual(seen, ['https://api.example.com/api/bookings'], 'trailing slash on the base is normalised');
+  });
+});
+
+describe('client testimonials', () => {
+  const words = 'The second inspection caught a glaze fault that would have cost me the whole order. Straight answers throughout.';
+  const t = { name: 'Amina Hassan', email: 'amina.client@example.com', role: 'Director', company: 'Hassan Supplies', country: 'Tanzania', project: 'Tile line', quote: words, display: 'named', consent: true };
+
+  test('saved by the backend as pending, and nothing goes to a third party', async () => {
+    const { api, calls, win } = loadClient({});
+    const result = await api.submitTestimonial(t);
+    assert.equal(result.status, 'received');
+    assert.equal(win.location.href, '');
+    assert.deepEqual(calls.map((c) => c.url), ['/api/testimonials'], 'never sent to FormSubmit or Web3Forms');
+    const row = store.getTestimonial(result.id);
+    assert.equal(row.status, 'pending');
+    assert.equal(row.quote, words);
+  });
+
+  test('a validation error is SHOWN, not failed over to another channel', async () => {
+    const seen = [];
+    const { api, win } = loadClient({}, (url) => { seen.push(url); return null; });
+    await assert.rejects(
+      api.submitTestimonial({ ...t, quote: 'too short', name: 'Short Quote Sam' }),
+      (err) => err.validation === true && /at least 30/.test(err.message)
+    );
+    assert.equal(win.location.href, '', 'mail app was not opened for a fixable mistake');
+    assert.ok(!seen.some((u) => u.includes('formsubmit')), 'not relayed anywhere else');
+  });
+
+  test('a missing consent tick is also surfaced as a validation error', async () => {
+    const { api } = loadClient({});
+    await assert.rejects(api.submitTestimonial({ ...t, name: 'No Tick Tom', consent: false }), (err) => err.validation === true && /tick the box/.test(err.message));
+  });
+
+  test('backend down -> the words are handed to the mail app (never to FormSubmit), saying so', async () => {
+    const seen = [];
+    const { api, win } = loadClient({}, (url) => { seen.push(url); throw new TypeError('offline'); });
+    const result = await api.submitTestimonial(t);
+    assert.equal(result.handedOffToMailClient, true);
+    assert.ok(!seen.some((u) => u.includes('formsubmit')), 'a testimonial needs consent and moderation, which a relay cannot provide');
+    const body = decodeURIComponent(win.location.href.split('&body=')[1]);
+    assert.match(body, /Their words: The second inspection/);
+    assert.match(body, /Permission to publish: yes, I agree/);
+  });
+
+  test('other forms now surface a 400 instead of relaying bad input elsewhere', async () => {
+    const seen = [];
+    const { api } = loadClient({}, (url) => { seen.push(url); return null; });
+    await assert.rejects(api.submitBooking({ ...booking, name: '', email: 'nope' }), (err) => err.validation === true);
+    assert.ok(!seen.some((u) => u.includes('formsubmit')));
   });
 });
