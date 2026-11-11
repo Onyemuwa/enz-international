@@ -37,10 +37,16 @@ function specChip(label, value) {
 // Quote" button — rather than a second, thinner card that drifts from this
 // one over time.
 export function productCard(lang, item) {
-  const photo = media(
-    { src: item.image, file: item.image || `${slugify(item.name)}.webp`, alt: item.use },
-    { ratio: '4-3', className: 'card-media' }
-  );
+  // No photo yet -> no photo box. A grey placeholder repeated across a ~160
+  // item catalogue reads as broken; a clean text card does not.
+  const photo = item.image
+    ? media({ src: item.image, file: item.image, alt: item.use }, { ratio: '4-3', className: 'card-media' })
+    : '';
+  const chips = [
+    item.power && specChip(t(lang, 'equipmentSpecPower'), item.power),
+    item.capacity && specChip(t(lang, 'equipmentSpecCapacity'), item.capacity),
+    item.leadTime && specChip(t(lang, 'equipmentSpecLeadTime'), item.leadTime),
+  ].filter(Boolean);
   // data-search holds a plain-text haystack (name + description + every spec
   // line) that assets/js/site.js filters against as the visitor types. Built
   // here, once, rather than re-read from rendered text on every keystroke —
@@ -60,11 +66,7 @@ export function productCard(lang, item) {
     ${photo}
     <h3 class="font-semibold text-ink leading-snug">${item.name}</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">${item.use}</p>
-    <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-line">
-      ${specChip(t(lang, 'equipmentSpecPower'), item.power)}
-      ${specChip(t(lang, 'equipmentSpecCapacity'), item.capacity)}
-      ${specChip(t(lang, 'equipmentSpecLeadTime'), item.leadTime)}
-    </div>
+    ${chips.length ? `<div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-line">${chips.join('')}</div>` : ''}
     ${specsList ? `<details class="mt-3 group">
       <summary class="text-xs font-semibold text-brand cursor-pointer list-none inline-flex items-center gap-1">${t(lang, 'equipmentSpecsToggle')} ${icon('chevronDown', 'w-3.5 h-3.5 transition-transform group-open:rotate-180')}</summary>
       <ul class="mt-3 space-y-2 text-sm text-slate leading-snug">${specsList}</ul>

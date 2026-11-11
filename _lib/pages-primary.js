@@ -151,7 +151,7 @@ export function homePage(lang) {
         <a href="equipment.html" class="link-arrow shrink-0">${t(lang, 'equipmentViewAllCta')} ${icon('chevronRight', 'w-4 h-4')}</a>
       </div>
       <div data-reveal-group class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
-        ${equipmentCategories.map((cat) => productCard(lang, cat.items[0])).join('')}
+        ${equipmentCategories.map((cat) => cat.items.find((i) => i.image)).filter(Boolean).map((item) => productCard(lang, item)).join('')}
       </div>
     </div>
   </section>

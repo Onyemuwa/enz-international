@@ -1,555 +1,295 @@
-// Equipment ENZ helps buyers source — organised the way a production-line
-// directory organises itself: by industry, then by machine type, then by a
-// short spec table. That structure is the useful part of that pattern and is
-// what this borrows.
+// Equipment ENZ helps buyers source, grouped by industry.
 //
 // ===========================================================================
-// WHAT THIS IS NOT
+// WHAT THIS IS (AND IS NOT)
 // ===========================================================================
-// This is not a catalogue of specific machines from named, verified factories,
-// and it is not an inventory ENZ holds or resells. ENZ sources against a
-// buyer's brief; there is no fixed stock. A page structured like a product
-// listing but describing units nobody has actually inspected would be the
-// same category of problem this project has refused everywhere else on this
-// site — see the empty arrays in proof.js and the "confirmed" gate in
-// stats.js. So every entry here is a TYPE of equipment and a TYPICAL spec
-// range for that type, not a claim about one specific unit.
+// This is not a list of specific machines from named, verified factories and
+// not stock ENZ holds. ENZ sources against a buyer's brief. Every entry is a
+// TYPE of production line or machine with a one-line description of what it
+// does. There are deliberately NO power, capacity or lead-time figures here any
+// more: the previous catalogue had them for 29 machines researched one by one;
+// this one has ~160 lines, and a wrong number on a spec sheet is worse for
+// trust than no number. Ask us for the figures for the line you want and we
+// quote them against your site, voltage and output target.
 //
-// Ranges are ordinary-knowledge figures for each machine category — the same
-// kind of fact as an AQL table or an Incoterm in pages.js — not a measurement
-// of anything ENZ has sourced. Keep it that way: a specific number here reads
-// as a claim, and a wrong one is worse for trust than a wide, honest range.
+// The product LINES were taken from a production-line directory the founder
+// chose as a reference (kichuguu.com): names of machine types are facts, not
+// expression. Their photographs and their descriptions were NOT copied: the
+// descriptions below are written from scratch, and photographs are either an
+// ENZ-licensed stock photo already on disk (see assets/images/CREDITS.md) or
+// empty until the founder supplies real ones. Cards with no image render
+// without a photo box rather than with a grey placeholder.
 //
-// `industry` matches a key in _content/pages.js `industries` and in
-// _content/images.js `industryImages`, so the equipment page reuses the same
-// photography (or the same deliberate empty-slot placeholder) and the same
-// taxonomy already published on industries.html — one list, not a second one
-// that can drift from it. Adding a category here means adding it there too.
+// Near-duplicates in the source list (e.g. "toilet tissue line" and "toilet
+// tissue line, cheaper") are merged into one entry; a price tier is a quote
+// conversation, not a separate machine.
 //
-// ===========================================================================
-// WHY 29 PRODUCTS, NOT 50
-// ===========================================================================
-// This used to be a wide 50-item catalogue — every machine a buyer might
-// plausibly ask about, one entry per idea. That's a fine way to prove range,
-// but it's a poor way to prove judgement: half of those 50 were things ENZ's
-// actual buyer rarely asks for (a copper electro-refining line is a real
-// machine, but the person who buys one is a mining company doing a
-// nine-figure capital project, not the audience this storefront is written
-// for), and a visitor can't tell a considered recommendation from padding.
+// `industry` must match a name in _content/pages.js `industries` and a key in
+// _content/images.js `industryImages`. Add a category in all three places.
 //
-// This list was cut down against actual demand data — what Chinese suppliers
-// specifically market at Nigerian/East African buyers, what shows up
-// repeatedly as "popular small-business machine" imports, not a guess. Ore
-// flotation, copper electro-refining and gold CIL/CIP plants were removed
-// entirely on that basis (real machines, wrong audience for a page whose job
-// is generating inquiries from people about to place an order). Four
-// products were added because the same research surfaced them as genuine,
-// currently-unmet demand: sachet/bottled water lines, tissue paper lines,
-// polythene bag machines and plastic recycling lines. If you're deciding
-// whether to add a 30th, ask whether it's something people are actually
-// searching for and buying, not whether ENZ is capable of sourcing it — ENZ
-// can source almost anything; this page is not obligated to list all of it.
-//
+// TO ADD A PHOTO
+//   1. Export about 1000x750px, .webp.
+//   2. Save in assets/images/ and set the item's image to that filename.
+//   3. `node _generate-static.mjs`
 // ===========================================================================
-// EACH ITEM'S `image` FIELD
-// ===========================================================================
-// '' renders a branded placeholder block (icon + a filename hint) instead of a
-// photo, the same convention every other unfilled image on this site uses —
-// see _content/images.js. Most items below carry a real, licensed stock photo
-// as a placeholder until real factory-floor or product photography replaces
-// it — either Pexels (commercial-use, no attribution required, the basis for
-// every other photo on this site) or, where noted inline, a Wikimedia Commons
-// file explicitly tagged public domain (also attribution-free). Three of the
-// four newest additions (sachet/bottled water, tissue paper, polythene bag)
-// still ship with '' — sourcing a genuinely on-topic, cleanly-licensed photo
-// for those specific niches is the one step still pending; their content
-// (use/power/capacity/lead-time/specs) is already complete.
-//
-// TO REPLACE A STOCK PHOTO WITH A REAL ONE
-//   1. Export at roughly 1000x750px, .webp if you can.
-//   2. Save it into assets/images/ under the SAME filename already set below
-//      (or update the `image` field to a new filename).
-//   3. Run `node _generate-static.mjs`.
-// No other file needs to change — pages-equipment.js reads this field
-// directly.
-//
-// ===========================================================================
-// SEVEN CATEGORIES, NOT FOUR
-// ===========================================================================
-// The first version of this page matched only the four industries already on
-// industries.html. Agriculture & food processing, Packaging & printing and
-// Textiles & apparel were added after that — a genuine expansion of what ENZ
-// is claiming to source, done deliberately rather than by just widening this
-// file: they were added to industries.html and images.js too, so the two
-// pages stay in agreement. If you add an eighth category, do the same in all
-// three places. (Categories are NOT cut when their item count drops — see
-// Commodities & raw materials below, trimmed to three items rather than
-// removed, because removing it here would mean removing ENZ's stated
-// commodities-trading industry from industries.html too, which is a real
-// service line, not a leftover.)
-// ===========================================================================
+
+const it = (name, use, image = '') => ({ name, use, image });
 
 export const equipmentCategories = [
   {
     industry: 'Construction & building materials',
-    intro:
-      'Block, profile and fabrication lines are what buyers in this category most often ask us to source and commission.',
+    intro: 'Brick, board, roofing and profile lines for builders and building-materials manufacturers.',
     items: [
-      {
-        name: 'Concrete block & paver making machine',
-        image: 'concrete-block-paver-making-machine.webp',
-        use: 'Forms and cures concrete into blocks, pavers and kerbstones.',
-        power: '15–60 kW',
-        capacity: '3,000–12,000 blocks/day',
-        leadTime: '45–75 days',
-        specs: [
-          'Vibration-pressed forming head, mould interchangeable for block, kerb or paver profiles',
-          'Automatic pallet feed and stacking to cut labour per shift',
-          'Batching-plant integration for a consistent mix ratio',
-          'Curing chamber or yard-curing option, depending on site space',
-        ],
-      },
-      {
-        name: 'Steel door & window fabrication line',
-        image: 'steel-door-window-fabrication-line.webp',
-        use: 'Cuts, welds and finishes steel sections into doors and window frames.',
-        power: '20–80 kW',
-        capacity: '200–600 units/day',
-        leadTime: '60–90 days',
-        specs: [
-          'CNC punching and cutting stations sized to standard door/window gauges',
-          'Automated welding jigs for corner and frame joints',
-          'Powder-coat or galvanising line integration for finishing',
-          'Hardware-fitting station for locks, hinges and closers',
-        ],
-      },
-      {
-        name: 'Aluminium profile extrusion line',
-        image: 'aluminium-profile-extrusion-line.webp',
-        use: 'Extrudes aluminium billet into window, door and structural profile.',
-        power: '150–800 kW',
-        capacity: '1,500–4,000 t/year',
-        leadTime: '90–150 days',
-        specs: [
-          'Extrusion press rated 800–2,600 tonnes, matched to profile complexity',
-          'Billet-heating furnace, induction or gas-fired',
-          'In-line quench, stretch and cut-to-length stations',
-          'Ageing oven for T5/T6 temper, sized to daily extrusion volume',
-        ],
-      },
-      {
-        name: 'Ceramic tile press & kiln line',
-        image: 'ceramic-tile-press-kiln-line.webp',
-        use: 'Forms and fires clay or porcelain body into finished floor or wall tile.',
-        power: '40–180 kW',
-        capacity: '3,000–8,000 m²/day',
-        leadTime: '75–120 days',
-        specs: [
-          'Hydraulic press cycle down to single-digit seconds per tile, tuned to body thickness',
-          'Roller-hearth or shuttle kiln firing, matched to porcelain or ceramic body',
-          'Automatic glaze line for single-fire or double-fire production',
-          'PLC-controlled firing curve with temperature-log traceability',
-        ],
-      },
+      it('Hollow, solid & paving brick production line', 'Presses and cures concrete or cement bricks, hollow blocks and paving stones.', 'concrete-block-paver-making-machine.webp'),
+      it('Interlocking brick making machine', 'Forms interlocking earth or cement bricks that stack without mortar.'),
+      it('Brick-making plant', 'Turns clay or cement mix into bricks, from mixing through forming and drying.'),
+      it('Cement panel machinery', 'Forms and finishes cement-based wall and floor panels.'),
+      it('Gypsum board production line', 'Makes plasterboard: mixing, forming between paper liners, drying and cutting.', 'gypsum-plasterboard-production-line.webp'),
+      it('Gypsum ceiling tile production line', 'Casts and dries gypsum ceiling tiles in standard sizes.'),
+      it('Gypsum cornice production line', 'Produces gypsum cornices and ceiling mouldings.'),
+      it('Gypsum decoration production line', 'Casts decorative gypsum elements such as rosettes and wall relief.'),
+      it('Galvanized metal roof tile production line', 'Rolls galvanised steel coil into pressed roof tiles.'),
+      it('Roofing sheet forming line', 'Roll-forms coil into corrugated and trapezoidal roofing sheets.'),
+      it('Stone-coated roofing sheet line', 'Coats steel roofing tiles with stone chips for a tile-like finish.'),
+      it('Aluminium profile extrusion line', 'Extrudes aluminium billet into window, door and structural profiles.', 'aluminium-profile-extrusion-line.webp'),
+      it('Building steel rod (rebar) rolling mill', 'Rolls billet into reinforcing bar for construction.'),
+      it('Steel rolling machine', 'Hot or cold rolls steel into bar, strip and simple sections.'),
+      it('Hand steel bar cutting machine', 'Cuts reinforcing bar on site without a full workshop.'),
+      it('Steel hollow section production line', 'Forms and welds square and rectangular steel tubing.'),
+      it('Door skin production line', 'Presses wood-fibre panels into moulded door skins.'),
+      it('MDF board production plant', 'Makes medium-density fibreboard from wood fibre and resin.'),
+      it('Plywood production line', 'Peels, glues and presses veneer into plywood sheets.'),
+      it('PVC wall panel production line', 'Extrudes PVC wall and ceiling panels.'),
+      it('Wood-plastic composite production line', 'Extrudes decking, cladding and profiles from wood fibre and plastic.'),
+      it('Float glass processing line', 'Cuts, edges and processes flat glass for windows and facades.'),
+      it('Stone processing line', 'Cuts and polishes natural or artificial stone into slabs and tiles.'),
     ],
   },
   {
     industry: 'Industrial equipment & machinery',
-    intro:
-      'General-purpose production equipment, sourced for a new line or to add capacity to an existing one.',
+    intro: 'General-purpose industrial machines, power and workshop equipment.',
     items: [
-      {
-        name: 'CNC machining centre',
-        image: 'cnc-machining-centre.webp',
-        use: 'Cuts, drills and mills metal or plastic parts to specification from a digital design.',
-        power: '15–75 kW',
-        capacity: 'Varies by part geometry',
-        leadTime: '45–90 days',
-        specs: [
-          '3-, 4- or 5-axis configurations, matched to part complexity',
-          'Tool-changer capacity from 20 to 40+ stations for unattended runs',
-          'Coolant-through-spindle option for deep-hole and hard-metal work',
-          'Compatible with common CAM software — Mastercam, Fusion, SolidCAM',
-        ],
-      },
-      {
-        name: 'Plastic injection moulding machine',
-        image: 'plastic-injection-moulding-machine.webp',
-        use: 'Injects molten plastic into a mould to produce components at volume.',
-        power: '20–150 kW',
-        capacity: '500–5,000 shots/day',
-        leadTime: '60–90 days',
-        specs: [
-          'Clamping force from 80 to 1,000+ tonnes, sized to part and mould',
-          'Servo-hydraulic or all-electric drive, trading energy use against cycle time',
-          'Multi-cavity mould compatibility for high-volume small parts',
-          'Robotic take-off arm integration for unmanned cycling',
-        ],
-      },
-      {
-        name: 'Sheet metal laser cutting & bending line',
-        image: 'sheet-metal-laser-cutting-bending-line.webp',
-        use: 'Cuts and forms sheet metal to specification for fabrication and enclosures.',
-        power: '10–40 kW',
-        capacity: 'Varies by part geometry',
-        leadTime: '45–75 days',
-        specs: [
-          'Fibre laser cutting up to 20–25mm mild steel, thinner for stainless or aluminium',
-          'CNC press brake with tonnage matched to sheet gauge and bend length',
-          'Nesting software to minimise material waste per sheet',
-          'Automatic sheet loading and unloading for lights-out cutting runs',
-        ],
-      },
-      {
-        name: 'Industrial air compressor & pneumatic system',
-        image: 'industrial-air-compressor-pneumatic-system.webp',
-        use: 'Supplies compressed air for pneumatic tools, actuators and process equipment across a facility.',
-        power: '15–250 kW',
-        capacity: '1,000–15,000 L/min',
-        leadTime: '45–75 days',
-        specs: [
-          'Screw or piston compressor, matched to duty cycle and required pressure',
-          'Refrigerated or desiccant dryer for moisture-sensitive downstream equipment',
-          'Receiver tank sized to smooth demand peaks',
-          'Variable-speed drive option to cut energy use at partial load',
-        ],
-      },
-      {
-        // Photo: Wikimedia Commons, "Greenville Public Works, ECVC Recycling
-        // Sorting facility - 17.jpg" — tagged public domain (US municipal
-        // government work), no attribution required. Shows baled PET
-        // recyclables rather than the line itself, which is the honest
-        // reason it's a placeholder rather than a final photo.
-        name: 'Plastic recycling & pelletizing line',
-        image: 'plastic-recycling-pelletizing-line.webp',
-        use: 'Washes, shreds and re-pelletises plastic waste into reusable raw-material granules.',
-        power: '40–160 kW',
-        capacity: '300–1,500 kg/hour',
-        leadTime: '75–110 days',
-        specs: [
-          'Shredding and crushing stage sized to input material — PET, HDPE, LDPE or PP',
-          'Washing and de-labelling line for contaminated post-consumer waste',
-          'Single- or twin-screw extruder for re-pelletising into resaleable granules',
-          'Water-ring or strand-cut pelletising head, by output granule shape required',
-        ],
-      },
+      it('Silent diesel generator', 'Sound-attenuated diesel generator set for backup or primary power.'),
+      it('Well drilling machine', 'Rig for drilling water boreholes and shallow wells.'),
+      it('Filtering machine', 'Filters liquids or oils to remove solids in process lines and workshops.'),
+      it('Distillation & extraction equipment', 'Separates and extracts liquids and essences, from spirits to plant oils.'),
+      it('Liquid filling machine', 'Fills bottles and containers with liquids, from water to oils and sauces.'),
+      it('Crimping machine', 'Crimps fittings onto hydraulic hose and cable assemblies.'),
+      it('Pipe bending machine', 'Bends pipe and tube to a set angle for fabrication.'),
+      it('Hose skiving machine', 'Strips hose cover ahead of fitting a coupling.'),
+      it('Hose pressure test machine', 'Pressure-tests hose assemblies before they ship.'),
+      it('Laser marking machine', 'Marks logos and serial numbers onto metal, plastic and packaging.'),
+      it('Key duplicating machine', 'Cuts duplicate keys for retail and kiosk use.'),
+      it('Photovoltaic panel production line', 'Assembles, laminates and tests solar modules.'),
     ],
   },
   {
-    industry: 'Consumer goods & retail',
-    intro:
-      'Production lines for household products and daily consumables — the category with the tightest quality tolerances, because defects reach the end customer directly.',
+    industry: 'Metal, hardware & electrical',
+    intro: 'Fasteners, wire, cable and small-metalware lines for hardware makers.',
     items: [
-      {
-        name: 'Household plastics production line',
-        image: 'household-plastics-production-line.webp',
-        use: 'Moulds and finishes household plastic goods — containers, fixtures, general merchandise.',
-        power: '30–120 kW',
-        capacity: '2,000–10,000 pcs/day',
-        leadTime: '60–90 days',
-        specs: [
-          'Injection or blow-moulding, matched to product geometry — rigid vs. hollow',
-          'Multi-cavity tooling for high-volume SKUs like containers and fixtures',
-          'In-line trimming and quality-check stations',
-          'Colour-masterbatch dosing for consistent product colour across runs',
-        ],
-      },
-      {
-        name: 'Corrugated carton production line',
-        image: 'corrugated-carton-production-line.webp',
-        use: 'Converts kraft paper into corrugated board and dies it into finished cartons.',
-        power: '40–200 kW',
-        capacity: '15,000–40,000 m²/day',
-        leadTime: '75–120 days',
-        specs: [
-          'Corrugator rated to board flute type (A/B/C/E) and daily linear-metre output',
-          'Flexo printer-slotter for branded, printed cartons in one pass',
-          'Die-cutting station for custom box shapes beyond standard slotted cartons',
-          'Bundling and strapping station for palletised dispatch',
-        ],
-      },
-      {
-        name: 'PET bottle blow-moulding line',
-        image: 'pet-bottle-blow-moulding-line.webp',
-        use: 'Blows preforms into finished PET bottles for beverages and household liquids.',
-        power: '20–100 kW',
-        capacity: '3,000–15,000 bottles/hour',
-        leadTime: '60–100 days',
-        specs: [
-          'Two-stage (preform-to-bottle) or single-stage, depending on volume and SKU count',
-          'Mould-change tooling for running multiple bottle shapes on one machine',
-          'In-line leak testing before the filling-line handoff',
-          'Energy-recovery options on the preform-heating stage',
-        ],
-      },
-      {
-        name: 'Garment cut-and-sew production line',
-        image: 'garment-cut-and-sew-production-line.webp',
-        use: 'Cuts fabric and assembles finished apparel at volume.',
-        power: '5–20 kW',
-        capacity: '500–2,000 pcs/day',
-        leadTime: '60–90 days',
-        specs: [
-          'Automated or manual fabric-spreading and cutting stations',
-          'Sewing-line layout sized to garment complexity and daily unit target',
-          'Finishing stations — pressing, quality check, folding and packing',
-          'Compatible with woven and knit fabric types',
-        ],
-      },
-      {
-        name: 'Tissue paper & toilet roll production line',
-        image: '',
-        use: 'Converts jumbo paper reels into finished, packaged toilet rolls, kitchen towels or facial tissue.',
-        power: '20–75 kW',
-        capacity: '150–400 cartons/day',
-        leadTime: '60–100 days',
-        specs: [
-          'Rewinding line with embossing and perforation, sized to reel width',
-          'Automatic log-saw cutting to finished roll length',
-          'Wrapping and cartoning station for retail-ready packs',
-          'Compatible with virgin or 100% recycled base paper',
-        ],
-      },
-    ],
-  },
-  {
-    industry: 'Commodities & raw materials',
-    intro:
-      'Processing equipment for cotton, coffee, cocoa and other agricultural export commodities — where chain-of-custody and quality specification matter as much as the machine itself.',
-    items: [
-      {
-        name: 'Cotton ginning line',
-        image: 'cotton-ginning-line.webp',
-        use: 'Separates cotton fibre from seed and cleans it ahead of baling.',
-        power: '40–150 kW',
-        capacity: '10–40 bales/hour',
-        leadTime: '75–110 days',
-        specs: [
-          'Saw or roller gin stand, matched to cotton variety and fibre length',
-          'Lint cleaner stages for trash and short-fibre removal',
-          'Seed-handling system for by-product recovery',
-          'Bale press for standard export-bale density and dimensions',
-        ],
-      },
-      {
-        name: 'Coffee & cocoa wet/dry processing line',
-        image: 'coffee-cocoa-wet-dry-processing-line.webp',
-        use: 'Pulps, ferments, washes and dries coffee cherry or cocoa pod into export-grade beans.',
-        power: '20–100 kW',
-        capacity: '5–30 t/day',
-        leadTime: '75–120 days',
-        specs: [
-          'Pulping and fermentation tanks sized to daily cherry or pod intake',
-          'Mechanical or raised-bed drying, matched to climate and throughput',
-          'Hulling and grading station for export-grade bean sizing',
-          'Moisture-testing station for consistent export moisture content',
-        ],
-      },
-      {
-        name: 'Cold-chain storage & handling system',
-        image: 'cold-chain-storage-handling-system.webp',
-        use: 'Holds and moves temperature-sensitive commodities between production and port.',
-        power: '20–100 kW',
-        capacity: '200–2,000 m³ storage',
-        leadTime: '60–100 days',
-        specs: [
-          'Refrigeration capacity sized to storage volume and product turnover',
-          'Temperature-zone segregation for products with different holding requirements',
-          'Data-logging for cold-chain compliance and audit trail',
-          'Loading-dock design to minimise temperature excursion during transfer',
-        ],
-      },
+      it('Automatic nail making machine', 'Draws wire into nails at high speed, with heading and pointing.'),
+      it('Roofing nail & screw production line', 'Makes roofing nails and self-tapping screws from wire.'),
+      it('Screw & nut production line', 'Forms, threads and finishes screws, bolts and nuts.'),
+      it('Hinge production line', 'Stamps, forms and assembles door and cabinet hinges.'),
+      it('Door lock production line', 'Machines and assembles door locks and lock sets.'),
+      it('Steel wire production line', 'Draws steel wire for kitchenware, mesh and general use.'),
+      it('Fence wire production line', 'Produces chain-link and welded fence wire.'),
+      it('Electric cable production line', 'Draws, insulates and sheaths electrical cable.'),
+      it('Steel furniture making line', 'Cuts, bends and welds steel office and school furniture.'),
+      it('Steel pipe tooling', 'Tooling and fittings for cutting, threading and joining steel pipe.'),
+      it('Silverware & cutlery production line', 'Stamps, polishes and finishes spoons, forks and knives.'),
+      it('Flashlight assembly line', 'Assembles torches from housings, LEDs and switches.'),
+      it('Simple electronics assembly line', 'Assembles small electronics such as calculators, LED lamps, radios and toys.'),
     ],
   },
   {
     industry: 'Agriculture & food processing',
-    intro:
-      'Post-harvest and food production lines — from raw grain and produce to a packaged, saleable product.',
+    intro: 'Farm machinery and primary processing for grain, oil, nuts, sugar and tea.',
     items: [
-      {
-        name: 'Rice/maize milling line',
-        image: 'rice-maize-milling-line.webp',
-        use: 'Hulls, polishes and grades grain into a finished, saleable product.',
-        power: '30–150 kW',
-        capacity: '20–150 t/day',
-        leadTime: '60–100 days',
-        specs: [
-          'Pre-cleaning, husking and whitening stages in one integrated line',
-          'Colour-sorter option for export-grade product',
-          'By-product recovery — bran, husk — for secondary revenue',
-          'Packaging station sized to bag weight and daily output target',
-        ],
-      },
-      {
-        name: 'Animal feed pellet line',
-        image: 'animal-feed-pellet-line.webp',
-        use: 'Grinds and pellets grain, oilseed meal and additives into livestock feed.',
-        power: '15–90 kW',
-        capacity: '1–10 t/hour',
-        leadTime: '60–90 days',
-        specs: [
-          'Hammer mill for raw-material grinding ahead of the pellet press',
-          'Conditioner for steam treatment, improving pellet durability',
-          'Ring-die or flat-die pellet press, matched to output tonnage',
-          'Cooling and screening station before bagging',
-        ],
-      },
-      {
-        name: 'Edible oil pressing & refining line',
-        image: 'edible-oil-pressing-refining-line.webp',
-        use: 'Presses and refines oilseed into bottled cooking oil.',
-        power: '30–200 kW',
-        capacity: '10–100 t/day seed',
-        leadTime: '90–150 days',
-        specs: [
-          'Mechanical expeller press, with solvent-extraction option for higher yield',
-          'Degumming, neutralising, bleaching and deodorising stages',
-          'Filtration and polishing stage for clear, bottled-grade oil',
-          'Bottling and capping line integration for finished-goods output',
-        ],
-      },
-      {
-        name: 'Cassava/starch processing line',
-        image: 'cassava-starch-processing-line.webp',
-        use: 'Peels, grates and extracts starch from cassava roots for food or industrial use.',
-        power: '20–100 kW',
-        capacity: '5–40 t/day roots',
-        leadTime: '75–110 days',
-        specs: [
-          'Washing and peeling station ahead of grating',
-          'Grating and pulping stage to release starch from fibre',
-          'Extraction and sieving circuit for starch-milk separation',
-          'Drying and packing station for finished starch or flour product',
-        ],
-      },
-      {
-        name: 'Fruit & vegetable processing line',
-        image: 'fruit-vegetable-processing-line.webp',
-        use: 'Washes, sorts, cuts and packs fresh or frozen produce.',
-        power: '15–75 kW',
-        capacity: '2–20 t/day',
-        leadTime: '60–100 days',
-        specs: [
-          'Washing, sorting and grading stations ahead of cutting or processing',
-          'Blanching or pasteurising stage, matched to product and shelf-life target',
-          'Freezing (IQF) or canning line options for preservation method',
-          'Packaging station for retail pack or bulk export format',
-        ],
-      },
+      it('Agricultural machinery', 'Tractors and implements for tilling, planting and harvesting.'),
+      it('Wheat harvester', 'Harvests and threshes wheat and similar cereal crops.'),
+      it('Peanut seeder', 'Plants groundnuts at an even depth and spacing.'),
+      it('Knapsack weeding machine', 'Back-mounted petrol weeder for small farms.'),
+      it('Electric sprayer', 'Battery sprayer for crop protection.'),
+      it('Lawn mower', 'Petrol or electric mower for lawns and estates.'),
+      it('Animal feed pellet making machine', 'Mixes and presses feed ingredients into pellets for poultry, fish and livestock.', 'animal-feed-pellet-line.webp'),
+      it('Animal feed processing line', 'Grinds, mixes and bags compound feed.', 'animal-feed-pellet-line.webp'),
+      it('Pet food production line', 'Extrudes and dries kibble for dogs, cats and fish.'),
+      it('Aquaculture & fisheries equipment', 'Feeders, aerators and handling gear for fish and shrimp farms.'),
+      it('Maize milling production line', 'Cleans, degerms and mills maize into flour and grits.', 'grain-milling-processing-line.webp'),
+      it('Rice milling production line', 'Hulls, whitens and grades paddy into milled rice.', 'rice-maize-milling-line.webp'),
+      it('Edible oil production line', 'Presses, filters and refines vegetable oil.', 'edible-oil-pressing-refining-line.webp'),
+      it('Sunflower seed oil production line', 'Presses sunflower seed and refines the oil.', 'edible-oil-pressing-refining-line.webp'),
+      it('Cashew nut processing machinery', 'Shells, peels and grades cashew nuts.'),
+      it('Nut processing plant', 'Cleans, shells, roasts and packs mixed nuts.'),
+      it('Ginger processing machine', 'Washes, slices and dries ginger.'),
+      it('Chilli & white pepper grinding machine', 'Grinds chilli and pepper to powder.'),
+      it('Coconut fibre dryer', 'Dries coconut husk fibre for bedding, rope and briquettes.'),
+      it('Sisal production line', 'Decorticates and cleans sisal leaf into fibre.'),
+      it('Cassava residue organic fertiliser line', 'Composts cassava waste into granulated organic fertiliser.'),
+      it('Sugar processing factory', 'Crushes cane and refines it into sugar.'),
+      it('Sugar cube production line', 'Presses and dries granulated sugar into cubes.'),
+      it('Seed roasting machine', 'Roasts sunflower, pumpkin and other seeds evenly.'),
+      it('Roasted peanut machine', 'Roasts groundnuts for snacks and butter.'),
+      it('Table salt processing plant', 'Washes, dries, iodises and packs table salt.'),
+      it('Tea processing & packaging line', 'Withers, rolls, dries and packs tea.'),
+    ],
+  },
+  {
+    industry: 'Food & snack production',
+    intro: 'Bakery, snack, noodle and packaged-food lines for local food brands.',
+    items: [
+      it('Biscuit production line', 'Mixes, forms, bakes and cools biscuits and crackers.'),
+      it('Bakery workshop equipment', 'Mixers, ovens and proofers for a commercial bakery.'),
+      it('Instant noodle production line', 'Makes, steams, fries and packs instant noodles.'),
+      it('Noodle processing line', 'Produces fresh or dried noodles.'),
+      it('Pasta production line', 'Extrudes and dries pasta in common shapes.'),
+      it('Potato chips (crisps) production line', 'Washes, slices, fries and seasons potato chips.'),
+      it('Frozen french fries line', 'Peels, cuts, blanches and freezes potato fries.'),
+      it('Banana chips making plant', 'Slices, fries and seasons banana and plantain chips.'),
+      it('Dried fruit production line', 'Washes, cuts and dries fruit for packing.', 'fruit-vegetable-processing-line.webp'),
+      it('Peanut butter production line', 'Roasts, grinds and fills peanut butter.'),
+      it('Popcorn production line', 'Pops, coats and packs popcorn.'),
+      it('Egg roll production line', 'Bakes and rolls wafer-style egg rolls.'),
+      it('Lollipop & candy production line', 'Cooks, deposits and wraps hard candy and lollipops.'),
+      it('Popsicle making machine', 'Freezes and packs ice lollies and popsicles.'),
+      it('Canned food production line', 'Fills, seams and sterilises canned food.'),
+      it('Tomato paste production line', 'Extracts, concentrates and fills tomato paste.', 'fruit-vegetable-processing-line.webp'),
+      it('Cheese production line', 'Processes milk into cheese, from curding to pressing.', 'dairy-processing-packaging-line.webp'),
+      it('Tea bag production line', 'Fills and seals tea into tea bags.'),
+    ],
+  },
+  {
+    industry: 'Beverage & bottled water',
+    intro: 'Bottled water, soft drink, juice and alcohol lines from small plants to full factories.',
+    items: [
+      it('Bottled water production plant', 'Treats, bottles and caps drinking water, from raw water to packed case.'),
+      it('Mineral water production line', 'Compact water bottling line for entry-level plants.'),
+      it('Carbonated drinks production line', 'Mixes, carbonates and fills soft drinks.'),
+      it('Fruit juice production line', 'Extracts, pasteurises and fills fruit juice.'),
+      it('Brewing & beer production line', 'Brews, ferments and fills beer.'),
+      it('Whisky & gin production line', 'Distils and bottles spirits.'),
+      it('Sugarcane juice production line', 'Presses, filters and bottles sugarcane juice.'),
+      it('Ice block making factory', 'Freezes block ice for fish, drinks and cold chain.'),
     ],
   },
   {
     industry: 'Packaging & printing',
-    intro:
-      'Flexible packaging, filling and print-finishing equipment for branded goods.',
+    intro: 'Packaging, labelling and print-finishing lines for branded goods.',
     items: [
-      {
-        name: 'Flexographic printing press',
-        image: 'flexographic-printing-press.webp',
-        use: 'Prints multi-colour graphics onto flexible packaging film.',
-        power: '15–60 kW',
-        capacity: '100–300 m/min',
-        leadTime: '60–90 days',
-        specs: [
-          'In-line multi-colour stations, typically 4–8, matched to design complexity',
-          'Compatible with film, paper and light-board substrates',
-          'Anilox roller system for consistent ink lay-down',
-          'In-line slitting and rewinding for finished-roll output',
-        ],
-      },
-      {
-        name: 'Pouch & sachet forming line',
-        image: 'pouch-sachet-forming-line.webp',
-        use: 'Forms, fills and seals flexible pouches and sachets.',
-        power: '10–40 kW',
-        capacity: '60–200 pouches/min',
-        leadTime: '60–90 days',
-        specs: [
-          'Vertical or horizontal form-fill-seal, matched to product — liquid, powder or granule',
-          'Multi-lane configuration for small-sachet high-speed output',
-          'Nitrogen-flush option for oxygen-sensitive products',
-          'Date-coding and batch-printing integration',
-        ],
-      },
-      {
-        name: 'Sachet & bottled water production line',
-        image: '',
-        use: 'Purifies, fills and seals drinking water into sachets or bottles for retail sale.',
-        power: '15–60 kW',
-        capacity: '1,500–3,000 sachets/hour',
-        leadTime: '60–90 days',
-        specs: [
-          'Reverse-osmosis or multi-stage filtration and UV sterilisation train',
-          'Automatic sachet-forming, filling and sealing machine, or bottle-filling line',
-          'Date-coding and batch-printing integration',
-          'Compatible with 500ml sachet, and 50cl/75cl/1.5L bottle formats',
-        ],
-      },
-      {
-        name: 'Polythene bag making machine',
-        image: '',
-        use: 'Extrudes and heat-seals polythene film into shopping, refuse or packaging bags.',
-        power: '15–50 kW',
-        capacity: '80–250 kg film/day',
-        leadTime: '60–90 days',
-        specs: [
-          'Blown-film extrusion line feeding an in-line or offline bag-making unit',
-          'Photoelectric-tracking heat-sealing and cutting for printed film',
-          'Multi-line or single-line configuration by bag width and speed required',
-          'Compatible with HDPE, LDPE and biodegradable film stock',
-        ],
-      },
+      it('Aluminium container production line', 'Stamps aluminium foil into takeaway and baking containers.'),
+      it('Aluminium foil forming line', 'Rolls and forms aluminium foil for household and catering use.'),
+      it('Carton & box making line', 'Cuts, prints and folds corrugated boxes.', 'corrugated-carton-production-line.webp'),
+      it('Paper bag production line', 'Forms and glues paper shopping and food bags.'),
+      it('Flexo printing machine', 'Prints film, paper and bags using flexographic plates.', 'flexographic-printing-press.webp'),
+      it('Bottle label production line', 'Prints and cuts labels for bottles and cans.', 'label-printing-die-cutting-line.webp'),
+      it('PVC label production line', 'Produces shrink and PVC labels.', 'label-printing-die-cutting-line.webp'),
+      it('Printing & book-making line', 'Prints, folds and binds books and magazines.'),
+      it('Exercise book manufacturing plant', 'Makes school exercise books, from paper to finished stack.'),
+      it('PVC card printing machine', 'Prints ID, loyalty and membership cards.'),
+      it('Birthday card printing machine', 'Prints and finishes greeting cards.'),
+      it('Envelope making machine', 'Cuts, folds and glues envelopes.'),
+      it('Powder packaging plant', 'Weighs, fills and seals powders such as flour, milk and spice.', 'pouch-sachet-forming-line.webp'),
+      it('Glass bottle making line', 'Melts and moulds glass into bottles and jars.'),
+      it('PP woven bag machine', 'Weaves and converts polypropylene into woven sacks.', 'nonwoven-bag-pp-woven-sack-production-line.webp'),
+      it('Non-woven bag production line', 'Forms and sews non-woven shopping bags.', 'nonwoven-bag-pp-woven-sack-production-line.webp'),
+    ],
+  },
+  {
+    industry: 'Paper, tissue & stationery',
+    intro: 'Tissue, paper-product and stationery lines.',
+    items: [
+      it('Tissue paper jumbo roll production line', 'Makes jumbo parent rolls of tissue from pulp or waste paper.'),
+      it('Toilet roll production line', 'Rewinds, embosses and cuts jumbo rolls into toilet rolls.'),
+      it('Facial tissue production line', 'Folds, cuts and packs facial tissue.'),
+      it('Recycled paper production line', 'Pulps waste paper and forms recycled paper.'),
+      it('Pulp moulding factory', 'Moulds waste-paper pulp into trays and protective packaging.'),
+      it('Egg tray production line', 'Moulds and dries egg trays from paper pulp.'),
+      it('Paper cup making machine', 'Forms and seals paper cups for hot and cold drinks.'),
+      it('Cake paper cup making machine', 'Forms baking cups for cakes and cupcakes.'),
+      it('Paper container production line', 'Forms paper bowls and food containers.'),
+      it('Disposable lunch box production line', 'Forms disposable takeaway boxes.'),
+      it('Pencil production line', 'Cuts, grooves, glues and paints wood pencils.'),
+      it('Recycled newspaper pencil machine', 'Rolls waste newspaper into pencils.'),
+      it('Pen production line', 'Assembles ballpoint pens and refills.'),
+      it('School chalk production line', 'Moulds and dries school chalk.'),
+      it('Toothpick making machine', 'Cuts and polishes bamboo or wood toothpicks.'),
+    ],
+  },
+  {
+    industry: 'Plastics & rubber products',
+    intro: 'Moulding, extrusion and blowing lines for plastic goods and pipe.',
+    items: [
+      it('PET bottle blowing machine', 'Blow-moulds PET preforms into drinks and water bottles.', 'pet-bottle-blow-moulding-line.webp'),
+      it('PE bottle blowing machine', 'Blow-moulds PE containers for oil, detergent and chemicals.'),
+      it('PE container production line', 'Produces PE drums, jerrycans and containers.'),
+      it('Plastic bucket production line', 'Injection-moulds buckets, lids and handles.', 'household-plastics-production-line.webp'),
+      it('Plastic cup production line', 'Thermoforms disposable plastic cups.', 'household-plastics-production-line.webp'),
+      it('Plastic cup lid production line', 'Forms lids for cups and containers.'),
+      it('PS foam container production line', 'Foams and shapes polystyrene food boxes.'),
+      it('PVC clear bottle making line', 'Forms clear PVC bottles and packs.'),
+      it('PVC injection plant', 'Injection-moulds PVC fittings and parts.'),
+      it('Plastic injection moulding plant', 'Injection-moulds plastic parts from household goods to crates.', 'plastic-injection-moulding-machine.webp'),
+      it('HDPE water pipe production line', 'Extrudes HDPE water and irrigation pipe.'),
+      it('PVC water pipe production line', 'Extrudes PVC pressure and drainage pipe.'),
+      it('Fishing net & rope extrusion line', 'Extrudes monofilament yarn and twists it into rope and netting.'),
     ],
   },
   {
     industry: 'Textiles & apparel',
-    intro:
-      'Fabric production equipment through to finishing — the machinery behind a garment or sack order.',
+    intro: 'Garment, knitting, towel and footwear production equipment.',
     items: [
-      {
-        name: 'Circular/flat knitting line',
-        image: 'circular-flat-knitting-line.webp',
-        use: 'Knits yarn into fabric for apparel and household textiles.',
-        power: '5–15 kW per machine',
-        capacity: '80–200 kg/day per machine',
-        leadTime: '45–75 days',
-        specs: [
-          'Gauge range matched to fabric-weight target — fine gauge for lightweight, coarse for heavier fabric',
-          'Multiple-feeder configuration for pattern and jacquard capability',
-          'Yarn-tension control for consistent fabric quality across the run',
-          'Compatible with cotton, synthetic and blended yarns',
-        ],
-      },
-      {
-        name: 'Denim washing & finishing line',
-        image: 'denim-washing-finishing-line.webp',
-        use: 'Washes, distresses and finishes denim garments to the required shade and hand-feel.',
-        power: '20–90 kW',
-        capacity: '500–3,000 garments/day',
-        leadTime: '60–95 days',
-        specs: [
-          'Industrial washing machines sized to batch volume and garment weight',
-          'Stone-wash, enzyme-wash or chemical-wash process options',
-          'Tumble dryer and finishing press stations',
-          'Effluent-treatment integration for wastewater compliance',
-        ],
-      },
-      {
-        name: 'Nonwoven bag (PP woven sack) production line',
-        image: 'nonwoven-bag-pp-woven-sack-production-line.webp',
-        use: 'Weaves polypropylene tape into fabric and converts it into woven sacks and bags.',
-        power: '40–150 kW',
-        capacity: '5,000–20,000 bags/day',
-        leadTime: '75–110 days',
-        specs: [
-          'Tape extrusion line to produce PP tape from resin',
-          'Circular or flat weaving looms for sack fabric',
-          'Cutting and sewing (or bottom-sealing) station for finished bags',
-          'Printing station option for branded sacks',
-        ],
-      },
+      it('Garment processing machines', 'Cutting, sewing and finishing machines for a garment workshop.', 'garment-cut-and-sew-production-line.webp'),
+      it('Fabric weaving plant', 'Looms and preparation machines that weave fabric.', 'weaving-loom-line.webp'),
+      it('Socks making machine', 'Knits socks on automatic circular machines.', 'circular-flat-knitting-line.webp'),
+      it('Towel making machine', 'Weaves and finishes bath and hand towels.'),
+      it('Disposable cotton towel making machine', 'Makes single-use cotton towels for salons and hotels.'),
+      it('Shoelace production line', 'Braids and tips shoelaces.'),
+      it('Shoe making line', 'Cuts, stitches and assembles shoes.'),
+      it('EVA shoe production line', 'Moulds EVA foam sandals and shoes.'),
+      it('Sole production line', 'Moulds rubber and PU shoe soles.'),
+      it('Sole tape making line', 'Makes adhesive tape used in shoe-sole assembly.'),
+      it('Tent production line', 'Cuts, welds and sews tents and tarpaulins.'),
+      it('Leather processing plant', 'Tans, dyes and finishes hides into leather.'),
+    ],
+  },
+  {
+    industry: 'Hygiene & personal care',
+    intro: 'Soap, detergent, hygiene-product and medical-disposable lines.',
+    items: [
+      it('Diaper & sanitary towel making line', 'Forms absorbent core, cuts and packs baby diapers and pads.'),
+      it('Fully automatic sanitary napkin machine', 'Forms and packs women\'s sanitary napkins.'),
+      it('Medical mask making machine', 'Welds nose wire and ear loops onto layered non-woven masks.', 'nonwoven-fabric-production-line.webp'),
+      it('PP non-woven mask line', 'Makes facial and medical masks from PP non-woven.', 'nonwoven-fabric-production-line.webp'),
+      it('Medical gloves production line', 'Dips, cures and strips disposable gloves.'),
+      it('IV non-PVC soft bag production line', 'Forms and fills non-PVC bags for intravenous solutions.'),
+      it('Toothpaste making machine', 'Mixes, fills and seals toothpaste tubes.'),
+      it('Toothbrush production line', 'Moulds handles and tufts bristles.'),
+      it('Bar soap production line', 'Mixes, extrudes, stamps and wraps bar soap.'),
+      it('Liquid detergent production line', 'Blends and fills liquid soap and detergent.'),
+      it('Washing powder production line', 'Mixes, dries and packs washing powder.'),
+    ],
+  },
+  {
+    industry: 'Consumer goods & retail',
+    intro: 'Small-business production lines for everyday household goods.',
+    items: [
+      it('Candle making production line', 'Melts, pours and cools candles at production scale.'),
+      it('Manual candle making machine', 'Entry-level candle moulding for small workshops.'),
+      it('Birthday candle making machine', 'Forms and cuts birthday candles.'),
+      it('Ceramic plate & cup production line', 'Presses, glazes and fires tableware.', 'sanitaryware-slip-casting-glazing-line.webp'),
+      it('Stamp making machine', 'Makes rubber and polymer stamps for offices and kiosks.'),
+    ],
+  },
+  {
+    industry: 'Recycling & waste-to-energy',
+    intro: 'Plastic and tyre recycling and fuel-briquette equipment.',
+    items: [
+      it('Plastic (PP/PE/PET) recycling line', 'Washes, shreds and pelletises waste plastic.', 'plastic-recycling-pelletizing-line.webp'),
+      it('Waste tyre recycling production line', 'Shreds tyres into rubber crumb and recovers steel.'),
+      it('Waste tyre & plastic pyrolysis plant', 'Heats waste tyre and plastic without oxygen to produce fuel oil and carbon.'),
+      it('Sawdust briquette making machine', 'Presses sawdust into fuel briquettes.'),
+      it('Coconut fibre briquette dryer', 'Dries coconut fibre ahead of briquetting.'),
     ],
   },
 ];
-
-export default equipmentCategories;

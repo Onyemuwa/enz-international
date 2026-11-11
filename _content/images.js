@@ -123,6 +123,13 @@ export const industryImages = {
     src: '', file: 'ind-packaging.webp',
     alt: 'Printed packaging coming off a converting line',
   },
+  'Metal, hardware & electrical': { src: '', file: 'ind-metal-hardware.webp', alt: 'Fasteners and wire products on a hardware production line' },
+  'Food & snack production': { src: '', file: 'ind-food-snacks.webp', alt: 'Snack food moving along a production line' },
+  'Beverage & bottled water': { src: '', file: 'ind-beverage.webp', alt: 'Bottles moving through a filling line' },
+  'Plastics & rubber products': { src: '', file: 'ind-plastics.webp', alt: 'Plastic products coming off a moulding line' },
+  'Paper, tissue & stationery': { src: '', file: 'ind-paper.webp', alt: 'Paper rolls on a tissue converting line' },
+  'Hygiene & personal care': { src: '', file: 'ind-hygiene.webp', alt: 'Packed hygiene products on a conveyor' },
+  'Recycling & waste-to-energy': { src: '', file: 'ind-recycling.webp', alt: 'Shredded plastic and rubber at a recycling plant' },
   'Textiles & apparel': {
     src: '', file: 'ind-textiles.webp',
     alt: 'Fabric on a knitting or weaving line',

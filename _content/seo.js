@@ -47,7 +47,7 @@ export const seoDescriptions = {
     'China sourcing and quality control for construction materials, industrial machinery, consumer goods and commodities including copper and cobalt procurement.',
 
   'equipment.html':
-    'Equipment ENZ helps you source across seven industries — construction, machinery, food processing, packaging, textiles, consumer goods and commodities.',
+    'Equipment ENZ helps you source across twelve categories — construction, machinery, hardware, food and beverage, packaging, paper, plastics, textiles, hygiene, consumer goods and recycling.',
 
   'quality-control.html':
     'Four-stage quality control on China orders: incoming materials, during production, pre-shipment inspection and container loading. AQL sampling explained.',
