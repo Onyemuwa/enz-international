@@ -207,45 +207,6 @@ export function homePage(lang) {
 
   ${testimonialsSlot(lang)}
 
-  <!-- WHO AND WHERE, trimmed to markets. The industries grid that used to
-       open this section duplicated the equipment section above almost
-       exactly — same categories, same photography, same "explore" link, two
-       sections apart on one page. industries.html still carries the full
-       version; the nav still links to it by name. -->
-  <section class="section bg-gray-bg border-y border-line">
-    <div class="${SHELL}">
-      ${sectionHead(t(lang, 'footprintEyebrow'), t(lang, 'footprintTitle'), t(lang, 'footprintLead'), { align: 'start', index: '04' })}
-
-      <div class="mt-14 max-w-5xl mx-auto rounded-2xl border border-line bg-white overflow-hidden">
-        <div class="grid lg:grid-cols-5 items-stretch">
-          <div class="lg:col-span-2">${media('markets', { ratio: '4-3', className: 'rounded-none h-full min-h-64' })}</div>
-          <div class="lg:col-span-3 p-6 md:p-8 lg:p-10">
-            <div class="flex items-start justify-between gap-5">
-              <div><p class="eyebrow">${t(lang, 'navMarkets')}</p><h3 class="text-2xl font-semibold text-ink mt-3">Local context, global reach.</h3></div>
-              <span class="step-badge step-badge-lg">${regions.length}</span>
-            </div>
-            <p class="text-slate text-sm leading-relaxed mt-5">Choose the market closest to your operation. Every route starts with local context and connects back to our sourcing hub in China.</p>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-7">
-              ${regions
-                .map(
-                  (r) => {
-                    const market = markets.find((item) => item.region === r.code);
-                    return `<a href="${market ? `${market.slug}.html` : 'markets.html'}" class="flex items-center gap-2.5 rounded-lg border border-line bg-gray-bg px-3.5 py-3 hover:border-brand-200 hover:bg-white transition-colors">
-                <span class="step-badge">${r.code}</span><span class="text-sm font-medium text-ink">${r.name}</span>
-              </a>`;
-                  }
-                )
-                .join('')}
-            </div>
-            <p class="text-sm text-slate mt-6 pt-5 border-t border-line">${t(lang, 'footprintHubsLabel')}: ${hubs.join(' · ')}</p>
-            <div class="mt-7"><a href="markets.html" class="${BTN_SECONDARY} w-full sm:w-auto justify-center">View all markets ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
 
   ${closingCta(lang)}`;
 
