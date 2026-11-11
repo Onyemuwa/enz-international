@@ -278,6 +278,41 @@ export function testimonialsSlot(lang) {
   </section>`;
 }
 
+// Photographs from real supplier visits, supplied by the founder. Captions say
+// only what is visible in each photo: no names, no quotes, no claims about who
+// the people are or what they said. Real client words belong in the testimonial
+// pipeline (/en/feedback/ -> admin approval), never in a caption.
+const GROUND_PHOTOS = {
+  meeting: { src: 'visit-supplier-meeting.webp', alt: 'Two men shaking hands at a desk in a supplier’s office in China, one giving a thumbs-up' },
+  floor: { src: 'visit-factory-floor.webp', alt: 'Six people in safety helmets standing in a heavy-machinery factory hall on a supplier visit' },
+  office: { src: 'visit-supplier-office.webp', alt: 'Three people posing in front of a company logo wall in a supplier’s head office in China' },
+};
+
+export function onTheGroundSection(lang) {
+  const fig = (photo, ratio, caption, sizes) => `
+        <figure class="m-0">
+          ${media(photo, { ratio, sizes })}
+          <figcaption class="text-sm text-slate mt-3">${caption}</figcaption>
+        </figure>`;
+  return `
+  <section class="section bg-gray-bg" id="on-the-ground">
+    <div class="${SHELL}">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <div>
+          <p class="${EYEBROW}">On the ground</p>
+          <h2 class="${H2} mt-3">We go to the factory, not just the catalogue</h2>
+          <p class="${LEAD} mt-5">Supplier visits are part of how we verify who you are buying from. These photos are from meetings and factory visits in China, where the licence, the production line and the people are checked in person.</p>
+        </div>
+        ${fig(GROUND_PHOTOS.meeting, '4-3', 'Meeting a supplier face to face at their office.', '(min-width: 1024px) 45vw, 100vw')}
+      </div>
+      <div class="grid md:grid-cols-3 gap-5 mt-10 lg:mt-14">
+        <div class="md:col-span-2">${fig(GROUND_PHOTOS.floor, '16-10', 'Walking a heavy-machinery factory floor with the supplier’s team.', '(min-width: 1024px) 60vw, 100vw')}</div>
+        <div>${fig(GROUND_PHOTOS.office, '4-5', 'At a supplier’s head office.', '(min-width: 1024px) 30vw, 100vw')}</div>
+      </div>
+    </div>
+  </section>`;
+}
+
 export function proofSection(lang) {
   if (!testimonials.length && !caseStudies.length) return '';
 

@@ -42,7 +42,7 @@ export const timelines = {
   title: 'Realistic timelines',
   lead: 'Typical ranges, not promises — complexity, tooling, and season all move them. The value is in planning against honest numbers rather than best-case ones.',
   rows: [
-    { phase: 'Supplier shortlisting and verification', typical: '1–2 weeks', note: 'Longer for technical or regulated products' },
+    { phase: 'Supplier shortlisting and verification', typical: '3–5 days', note: 'Longer for technical or regulated products' },
     { phase: 'Sampling and revisions', typical: '2–4 weeks', note: 'Each revision round adds roughly a week' },
     { phase: 'Production', typical: '20–45 days', note: 'Highly product-dependent; new tooling adds materially' },
     { phase: 'Inspection and freight booking', typical: '3–7 days', note: 'A failed inspection means rework and rebooking' },

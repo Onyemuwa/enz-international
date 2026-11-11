@@ -24,7 +24,7 @@ export const processSteps = [
   {
     n: '02',
     title: 'Supplier identification',
-    duration: '1–2 weeks',
+    duration: '3–5 days',
     summary: 'Factories shortlisted against your spec, and verified.',
     detail: [
       'Shortlisting across the relevant manufacturing cluster — different provinces dominate different categories, and starting in the wrong one costs weeks.',

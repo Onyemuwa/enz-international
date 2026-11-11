@@ -1259,6 +1259,69 @@
       }
     ]
   },
+  "visit-factory-floor.webp": {
+    "width": 1200,
+    "height": 900,
+    "variants": [
+      {
+        "w": 400,
+        "file": "visit-factory-floor-400w.webp",
+        "kb": 22
+      },
+      {
+        "w": 800,
+        "file": "visit-factory-floor-800w.webp",
+        "kb": 71
+      },
+      {
+        "w": 1200,
+        "file": "visit-factory-floor-1200w.webp",
+        "kb": 178
+      }
+    ]
+  },
+  "visit-supplier-meeting.webp": {
+    "width": 1200,
+    "height": 900,
+    "variants": [
+      {
+        "w": 400,
+        "file": "visit-supplier-meeting-400w.webp",
+        "kb": 14
+      },
+      {
+        "w": 800,
+        "file": "visit-supplier-meeting-800w.webp",
+        "kb": 38
+      },
+      {
+        "w": 1200,
+        "file": "visit-supplier-meeting-1200w.webp",
+        "kb": 78
+      }
+    ]
+  },
+  "visit-supplier-office.webp": {
+    "width": 1200,
+    "height": 1600,
+    "variants": [
+      {
+        "w": 400,
+        "file": "visit-supplier-office-400w.webp",
+        "kb": 18
+      },
+      {
+        "w": 800,
+        "file": "visit-supplier-office-800w.webp",
+        "kb": 55
+      },
+      {
+        "w": 1200,
+        "file": "visit-supplier-office-1200w.webp",
+        "kb": 128
+      }
+    ]
+  },
   "weaving-loom-line.webp": {
     "width": 1200,
     "height": 800,

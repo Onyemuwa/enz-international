@@ -8,7 +8,7 @@ import { SITE_URL, WHATSAPP_NUMBER, CONTACT_PHONE, CONTACT_EMAIL } from './site-
 import { t } from './i18n.js';
 import { icon } from './icons.js';
 import { CARD, CARD_MUTED, CARD_FEATURE, BTN_PRIMARY, BTN_SECONDARY, EYEBROW, H2, LEAD, SHELL } from './tokens.js';
-import { sectionHead, media, founderSection, proofSection, testimonialsSlot } from './components.js';
+import { sectionHead, media, founderSection, proofSection, testimonialsSlot, onTheGroundSection } from './components.js';
 import { bookingSuccessBlock } from './chrome.js';
 import { pageShell } from './page-shell.js';
 import { closingCta } from './page-parts.js';
@@ -200,6 +200,8 @@ export function homePage(lang) {
   </section>
 
   ${founderSection(lang, { compact: true })}
+
+  ${onTheGroundSection(lang)}
 
   ${proofSection(lang)}
 

@@ -41,7 +41,6 @@
 // Add translations for any new labelKey in _content/translations.js.
 // ===========================================================================
 
-import { markets } from './markets.js';
 import { services } from './services.js';
 import { qcStages } from './pages.js';
 
@@ -50,7 +49,8 @@ import { qcStages } from './pages.js';
  * around the site, which is the point.
  */
 export const derivedStats = [
-  { value: markets.length, suffix: '', labelKey: 'statMarkets', confirmed: true },
+  // 500+ factories: figure supplied by the founder (Nov 2026), not derivable from the repo.
+  { value: 500, suffix: '+', labelKey: 'statFactories', confirmed: true },
   { value: qcStages.length, suffix: '', labelKey: 'statStages', confirmed: true },
   { value: services.length, suffix: '', labelKey: 'statServices', confirmed: true },
   // Not derived from a count, but it is the response time the booking form and

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* The `hidden` attribute must always win. Without this, a utility such as
+   `flex` on the same element out-ranks the browser's own [hidden] rule, and
+   things meant to start hidden (the newsletter "you're on the list" message)
+   showed on every page load. */
+[hidden] { display: none !important; }
+
 /* ==========================================================================
    ENZ INTERNATIONAL — design system
    Compiled to ../assets/css/site.css. Utilities do layout; the component
