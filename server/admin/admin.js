@@ -18,6 +18,14 @@
   var state = { tab: 'inquiries', status: '', q: '', rows: [], total: 0, openId: null, summary: null, flash: null, showAdd: false };
 
   var $tabs = document.getElementById('tabs');
+  var $signout = document.getElementById('signout');
+  if ($signout) {
+    $signout.addEventListener('click', function () {
+      fetch(location.origin + '/api/admin/logout', { method: 'POST', credentials: 'same-origin', headers: { 'X-ENZ-Admin': '1' } })
+        .catch(function () {})
+        .then(function () { location.href = '/admin/login'; });
+    });
+  }
   var $banners = document.getElementById('banners');
   var $view = document.getElementById('view');
   // The toolbar (search box, filters) is built once per tab and never rebuilt
@@ -54,7 +62,7 @@
 
   function api(path, options) {
     options = options || {};
-    var init = { method: options.method || 'GET', headers: {}, credentials: 'same-origin' };
+    var init = { method: options.method || 'GET', headers: { 'X-ENZ-Admin': '1' }, credentials: 'same-origin' };
     if (options.body !== undefined) {
       init.headers['Content-Type'] = 'application/json';
       init.body = JSON.stringify(options.body);
@@ -64,7 +72,7 @@
     // fetch throw "Request cannot be constructed from a URL that includes credentials".
     return fetch(location.origin + '/api/admin' + path, init).then(function (res) {
       if (res.status === 401) {
-        location.reload();
+        location.href = '/admin/login';
         throw new Error('Signed out');
       }
       if (!res.ok) {

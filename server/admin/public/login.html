@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0b3a66" />
+  <title>Sign in · ENZ admin</title>
+  <link rel="icon" href="/assets/images/favicon-512.png" />
+  <link rel="stylesheet" href="/admin/public/login.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="panel" aria-hidden="true">
+      <div class="panel-inner">
+        <p class="kicker">ENZ INTERNATIONAL</p>
+        <h2>Every enquiry, in one place.</h2>
+        <ul>
+          <li>Quote and consultation requests</li>
+          <li>Career applications and CVs</li>
+          <li>Client testimonials to approve</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card-wrap">
+      <form class="card" id="login" method="post" action="/api/admin/login" novalidate>
+        <img class="logo" src="/admin/public/logo.png" alt="ENZ INTERNATIONAL" width="120" height="85" />
+        <h1>Sign in</h1>
+        <p class="sub">Team access to the ENZ admin.</p>
+
+        <div id="error" class="alert" role="alert" hidden></div>
+
+        <label for="user">Username</label>
+        <input id="user" name="user" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required autofocus />
+
+        <label for="password">Password</label>
+        <div class="pw">
+          <input id="password" name="password" type="password" autocomplete="current-password" required />
+          <button type="button" id="toggle" class="toggle" aria-label="Show password" aria-pressed="false">Show</button>
+        </div>
+
+        <button type="submit" id="submit" class="submit">Sign in</button>
+
+        <p class="foot">Authorised team members only. Sessions end after 12 hours.</p>
+        <a class="back" href="/en/">← Back to website</a>
+      </form>
+    </section>
+  </main>
+  <script src="/admin/public/login.js" defer></script>
+</body>
+</html>

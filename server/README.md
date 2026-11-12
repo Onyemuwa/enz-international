@@ -19,7 +19,7 @@ server/
   config.js     every environment variable, in one place
   db.js         schema, migrations, all SQL
   api.js        public API: /api/bookings, /api/newsletter, /api/careers/applications, /api/health
-  admin.js      /admin page + /api/admin/* (Basic auth, CSV, CV download, backup)
+  admin.js      /admin sign-in page + session, /api/admin/* (CSV, CV download, backup)
   notify.js     email alerts via Resend's HTTPS API
   site.js       static-site serving: redirects, headers, cache rules, the allowlist
   validate.js   input cleaning and file-type checks
@@ -112,7 +112,7 @@ your submission reaches us" paragraph in `_lib/pages-detail.js` and regenerate.
 
 ## Admin page
 
-`/admin/` — HTTP Basic auth with `ADMIN_USER` / `ADMIN_PASSWORD`. No cookies or sessions to steal.
+`/admin/` — a branded sign-in page (`ADMIN_USER` / `ADMIN_PASSWORD`) that starts a 12-hour session: a signed, HttpOnly, SameSite=Strict cookie, nothing stored on the server, and changing the password signs everyone out. HTTP Basic still works for scripts (`curl -u admin:… /api/admin/summary`).
 
 - Tabs for enquiries, career applications and newsletter subscribers; filter by status, search.
 - Set **New → Contacted → Closed**, add internal notes (never shown to visitors), reply by email.

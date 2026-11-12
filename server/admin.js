@@ -1,9 +1,13 @@
 // The admin: a page to read what came in, plus the JSON API behind it.
 //
-// Auth is HTTP Basic against ADMIN_USER / ADMIN_PASSWORD. It is deliberately
-// plain: no sessions, no cookies to steal, nothing to store. Basic auth is only
+// People sign in on a branded page (/admin/login) with ADMIN_USER / ADMIN_PASSWORD
+// and get a signed, HttpOnly, SameSite=Strict session cookie that lasts 12 hours.
+// The cookie is stateless: an HMAC over its expiry, keyed from the admin
+// credentials, so nothing is stored server-side and changing the password
+// signs everyone out. Scripts and tests can still use HTTP Basic. Either is only
 // as safe as the connection under it, which is why production redirects to
-// HTTPS before this code runs.
+// HTTPS before this code runs. State-changing requests that arrive on a cookie
+// must also carry an X-ENZ-Admin header (a cross-site form cannot set it).
 //
 // If ADMIN_PASSWORD is not set the admin is OFF (503), never open. There is no
 // default password to forget to change.
@@ -20,6 +24,9 @@ import { parseTestimonial, text } from './validate.js';
 // the comparison time does not depend on how much of a guess was right.
 const digest = (s) => crypto.createHash('sha256').update(String(s)).digest();
 const same = (a, b) => crypto.timingSafeEqual(digest(a), digest(b));
+
+const COOKIE = 'enz_admin';
+const SESSION_MS = 12 * 60 * 60 * 1000;
 
 // Spreadsheet formula injection: a cell that starts with = + - @ is executed
 // by Excel/Sheets when the export is opened. Visitors control these cells.
@@ -91,12 +98,49 @@ export function createAdmin({ config, store, notifier, adminDir }) {
     message: { message: 'Too many failed sign-in attempts. Try again later.' },
   });
 
+  // ---- session cookie ----------------------------------------------------------
+  const sessionKey = () =>
+    crypto.createHash('sha256').update(`enz-admin-session|${config.adminUser}|${config.adminPassword}`).digest();
+  const sign = (payload) => crypto.createHmac('sha256', sessionKey()).update(payload).digest('base64url');
+  const makeToken = () => {
+    const exp = String(Date.now() + SESSION_MS);
+    return `${exp}.${sign(exp)}`;
+  };
+  const readCookie = (req, name) => {
+    for (const part of String(req.headers.cookie || '').split(';')) {
+      const i = part.indexOf('=');
+      if (i > -1 && part.slice(0, i).trim() === name) return part.slice(i + 1).trim();
+    }
+    return '';
+  };
+  const hasSession = (req) => {
+    if (!config.adminPassword) return false;
+    const [exp, sig] = readCookie(req, COOKIE).split('.');
+    if (!exp || !sig || !/^\d+$/.test(exp) || Number(exp) < Date.now()) return false;
+    const a = Buffer.from(sig);
+    const b = Buffer.from(sign(exp));
+    return a.length === b.length && crypto.timingSafeEqual(a, b);
+  };
+  const cookieAttrs = (req, maxAge) =>
+    `Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${req.secure ? '; Secure' : ''}`;
+
+  const wantsHtml = (req) =>
+    (req.method === 'GET' || req.method === 'HEAD') && /text\/html/.test(req.get('accept') || '') && !req.get('x-enz-admin');
+
   const authenticate = (req, res, next) => {
     if (!config.adminPassword) {
+      if (wantsHtml(req)) return res.redirect(302, '/admin/login');
       return res
         .status(503)
         .type('text/plain')
         .send('The admin is disabled. Set the ADMIN_PASSWORD environment variable to enable it.');
+    }
+    if (hasSession(req)) {
+      const safe = req.method === 'GET' || req.method === 'HEAD' || req.method === 'OPTIONS';
+      if (!safe && req.get('x-enz-admin') !== '1') {
+        return res.status(403).json({ message: 'Missing request header.' });
+      }
+      return next();
     }
     const header = req.get('authorization') || '';
     if (header.startsWith('Basic ')) {
@@ -110,6 +154,10 @@ export function createAdmin({ config, store, notifier, adminDir }) {
         if (userOk & passOk) return next();
       }
     }
+    // A browser asking for a page goes to the login form; the admin page's own
+    // fetches get a plain 401 (no Basic challenge, so no grey browser popup).
+    if (wantsHtml(req)) return res.redirect(302, '/admin/login');
+    if (req.get('x-enz-admin')) return res.status(401).json({ message: 'Signed out.' });
     res.set('WWW-Authenticate', 'Basic realm="ENZ admin", charset="UTF-8"');
     res.status(401).type('text/plain').send('Authentication required.');
   };
@@ -121,6 +169,26 @@ export function createAdmin({ config, store, notifier, adminDir }) {
   // JSON API — mounted at /api/admin
   // ==========================================================================
   const api = express.Router();
+
+  // Sign-in. Wrong attempts count against the same limiter as Basic auth.
+  api.post('/login', noStore, failureLimiter, json, (req, res) => {
+    if (!config.adminPassword) {
+      return res.status(503).json({ message: 'The admin is disabled. Set ADMIN_PASSWORD to enable it.' });
+    }
+    const user = typeof req.body?.user === 'string' ? req.body.user : '';
+    const pass = typeof req.body?.password === 'string' ? req.body.password : '';
+    // Both comparisons always run so timing does not reveal which was wrong.
+    if (!(same(user, config.adminUser) & same(pass, config.adminPassword))) {
+      return res.status(401).json({ message: 'Incorrect username or password.' });
+    }
+    res.set('Set-Cookie', `${COOKIE}=${makeToken()}; ${cookieAttrs(req, SESSION_MS / 1000)}`);
+    res.json({ ok: true });
+  });
+
+  api.post('/logout', noStore, (req, res) => {
+    res.set('Set-Cookie', `${COOKIE}=; ${cookieAttrs(req, 0)}`);
+    res.status(204).end();
+  });
 
   api.get('/summary', guard, (req, res) => {
     let dbBytes = 0;
@@ -268,7 +336,7 @@ export function createAdmin({ config, store, notifier, adminDir }) {
   // what stops a malicious enquiry from ever becoming script execution in the
   // admin's browser.
   const ui = express.Router();
-  ui.use(guard);
+  ui.use(noStore);
   ui.use((req, res, next) => {
     res.set(
       'Content-Security-Policy',
@@ -277,6 +345,14 @@ export function createAdmin({ config, store, notifier, adminDir }) {
     );
     next();
   });
+  // The sign-in page and its assets are public; everything else needs a session.
+  const publicDir = path.join(adminDir, 'public');
+  ui.use('/public', express.static(publicDir, { dotfiles: 'ignore', index: false }));
+  ui.get('/login', (req, res) => {
+    if (hasSession(req)) return res.redirect(302, '/admin/');
+    res.sendFile(path.join(publicDir, 'login.html'));
+  });
+  ui.use(guard);
   ui.use(express.static(adminDir, { index: 'index.html', dotfiles: 'ignore', redirect: true }));
 
   return { api, ui };
