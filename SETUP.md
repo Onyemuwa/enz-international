@@ -53,7 +53,7 @@ claims on a live company site, which isn't something to guess on your behalf.
 | Client testimonials/case studies | `_content/proof.js` | Sections are built and styled but render nothing while the arrays are empty. Add real, permissioned entries and they appear automatically — nothing fabricated is shipped |
 | Certifications (e.g. "ISO 9001") | Hero trust badges say "Certifications on request" | Add a specific certification only once you can point to a real, current certificate |
 | HQ address for the embedded map | `contact.html` (all languages) | Currently centers on "Guangzhou, China" generically — swap in the real street address |
-| Contact email | `assets/js/config.js` (`CONTACT_EMAIL`) | Domain matches (`info@enzinternational.co`) but confirm that inbox actually exists and is monitored |
+| Contact email | `assets/js/config.js` (`CONTACT_EMAIL`) | Set to the company Gmail (`enzinternational.co@gmail.com`), supplied by the founder |
 | Operational hubs / markets list | `assets/js/config.js`, page content | Confirm the cities and 5 markets (Tanzania, Kenya, DRC, US, UK) are current |
 | Privacy Policy / Terms | `_lib/pages-detail.js` | Rewritten to describe what the site **actually does** — no cookies, no analytics, no tracking (verified against the shipped JS), and how the form relay works. The in-page "placeholder" banner is gone. Still worth a legal review for UK/EU obligations, but it is no longer placeholder text |
 | **Activate form delivery** | `assets/js/config.js` | **Launch blocker.** See section 0 — one test submission plus one click in your inbox. |

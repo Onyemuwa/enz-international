@@ -228,7 +228,7 @@ export function homePage(lang) {
         image: `${SITE_URL}/assets/images/og-cover.png`,
         telephone: '+86-1320-384-0456',
         email: CONTACT_EMAIL,
-        address: { '@type': 'PostalAddress', addressLocality: 'Guangzhou', addressCountry: 'CN' },
+        address: { '@type': 'PostalAddress', streetAddress: 'Unit 409-1, No. 4-6 Chuangjia Road, Baiyun District', addressLocality: 'Guangzhou', addressRegion: 'Guangdong', addressCountry: 'CN' },
         areaServed: regions.map((r) => r.name),
       },
     ],
@@ -670,7 +670,7 @@ export function contactPage(lang) {
           <p class="text-sm text-slate max-w-xs">${t(lang, 'contactAddress')}</p>
           <div class="flex flex-wrap items-center justify-center gap-2">
             <button type="button" data-map-load class="btn btn-secondary btn-sm">Show map</button>
-            <a href="https://www.google.com/maps/search/?api=1&query=Guangzhou%2C+China" target="_blank" rel="noopener noreferrer" class="btn btn-sm text-brand">Open in Google Maps</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E5%B9%BF%E4%B8%9C%E7%9C%81%E5%B9%BF%E5%B7%9E%E5%B8%82%E7%99%BD%E4%BA%91%E5%8C%BA%E5%88%9B%E4%BD%B3%E8%B7%AF4-6%E5%8F%B7" target="_blank" rel="noopener noreferrer" class="btn btn-sm text-brand">Open in Google Maps</a>
           </div>
         </div>
       </div>
@@ -711,7 +711,7 @@ export function contactPage(lang) {
         logo: `${SITE_URL}/assets/images/enz-logo.png`,
         telephone: '+86-1320-384-0456',
         email: CONTACT_EMAIL,
-        address: { '@type': 'PostalAddress', addressLocality: 'Guangzhou', addressCountry: 'CN' },
+        address: { '@type': 'PostalAddress', streetAddress: 'Unit 409-1, No. 4-6 Chuangjia Road, Baiyun District', addressLocality: 'Guangzhou', addressRegion: 'Guangdong', addressCountry: 'CN' },
         areaServed: regions.map((r) => ({ '@type': 'Country', name: r.name })),
         parentOrganization: { '@id': `${SITE_URL}/#organization` },
         contactPoint: {

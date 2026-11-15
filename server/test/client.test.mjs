@@ -158,7 +158,7 @@ describe('failover: an enquiry is never silently dropped', () => {
     const { api, win } = loadClient({}, () => { throw new TypeError('offline'); });
     const result = await api.submitBooking({ ...booking, phone: '+255 1', company: 'Acme' });
     assert.equal(result.handedOffToMailClient, true);
-    assert.match(win.location.href, /^mailto:info%40enzinternational\.co\?subject=/);
+    assert.match(win.location.href, /^mailto:enzinternational\.co%40gmail\.com\?subject=/);
     const body = decodeURIComponent(win.location.href.split('&body=')[1]);
     assert.match(body, /Name: Client Test/);
     assert.match(body, /Email: client@example\.com/);

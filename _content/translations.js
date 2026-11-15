@@ -264,7 +264,7 @@ const dict = {
     contactTitle: 'Contact & Booking',
     contactSubtitle: "Reach our team directly, or book a consultation and we'll take it from there.",
     contactDetailsTitle: 'Contact Details',
-    contactAddress: 'Guangzhou, China (HQ) · Dar es Salaam · Nairobi · Kinshasa · London · New York',
+    contactAddress: 'Chuangjia International (创加国际)<br>Unit 409-1, No. 4-6 Chuangjia Road, Baiyun District, Guangzhou, Guangdong, China',
     contactPhone: 'Phone / WhatsApp',
     contactEmail: 'Email',
 
@@ -557,7 +557,7 @@ const dict = {
     contactTitle: 'Wasiliana na Panga',
     contactSubtitle: 'Wasiliana na timu yetu moja kwa moja, au panga ushauriano.',
     contactDetailsTitle: 'Maelezo ya Mawasiliano',
-    contactAddress: 'Guangzhou, China (Makao Makuu) · Dar es Salaam · Nairobi · Kinshasa · London · New York',
+    contactAddress: 'Chuangjia International (创加国际)<br>Unit 409-1, No. 4-6 Chuangjia Road, Baiyun District, Guangzhou, Guangdong, China',
     contactPhone: 'Simu / WhatsApp',
     contactEmail: 'Barua pepe',
 
@@ -818,7 +818,7 @@ const dict = {
     contactTitle: 'Contact et réservation',
     contactSubtitle: 'Contactez notre équipe directement, ou réservez une consultation.',
     contactDetailsTitle: 'Coordonnées',
-    contactAddress: 'Guangzhou, Chine (Siège) · Dar es Salaam · Nairobi · Kinshasa · Londres · New York',
+    contactAddress: 'Chuangjia International (创加国际)<br>Unit 409-1, No. 4-6 Chuangjia Road, Baiyun District, Guangzhou, Guangdong, China',
     contactPhone: 'Téléphone / WhatsApp',
     contactEmail: 'E-mail',
 
@@ -1079,7 +1079,7 @@ const dict = {
     contactTitle: '联系与预约',
     contactSubtitle: '直接联系我们的团队，或预约咨询。',
     contactDetailsTitle: '联系方式',
-    contactAddress: '中国广州（总部）· 达累斯萨拉姆 · 内罗毕 · 金沙萨 · 伦敦 · 纽约',
+    contactAddress: '创加国际<br>广东省广州市白云区创佳路4-6号 409-1',
     contactPhone: '电话 / WhatsApp',
     contactEmail: '电子邮箱',
 

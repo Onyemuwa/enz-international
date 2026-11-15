@@ -66,7 +66,7 @@ If you forget, the server logs a loud warning at start-up and the admin page sho
 |---|---|---|
 | `ADMIN_PASSWORD` | a long random passphrase | **Required.** The admin is switched off until set. |
 | `RESEND_API_KEY` | from [resend.com](https://resend.com) | Needed for email alerts. Without it enquiries are still saved. |
-| `NOTIFY_TO` | `info@enzinternational.co` | Who gets the alert. Comma-separate for several. |
+| `NOTIFY_TO` | `enzinternational.co@gmail.com` | Who gets the alert. Comma-separate for several. |
 | `NOTIFY_FROM` | `ENZ Website <notifications@enzinternational.co>` | See "Email alerts" below. |
 | `SITE_URL` | `https://enzinternational.co` | Default. Used for the www redirect and email links. |
 | `ADMIN_USER` | `admin` | Default. Change if you like. |

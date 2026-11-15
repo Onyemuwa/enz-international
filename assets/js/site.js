@@ -594,7 +594,7 @@
     mapBtn.addEventListener('click', function () {
       var frame = document.createElement('iframe');
       frame.title = 'ENZ INTERNATIONAL — Guangzhou HQ location';
-      frame.src = 'https://www.google.com/maps?q=Guangzhou%2C+China&output=embed';
+      frame.src = 'https://www.google.com/maps?q=%E5%B9%BF%E4%B8%9C%E7%9C%81%E5%B9%BF%E5%B7%9E%E5%B8%82%E7%99%BD%E4%BA%91%E5%8C%BA%E5%88%9B%E4%BD%B3%E8%B7%AF4-6%E5%8F%B7&output=embed';
       frame.width = '100%';
       frame.height = '100%';
       frame.loading = 'lazy';

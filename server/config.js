@@ -64,7 +64,7 @@ export function loadConfig(env = process.env, overrides = {}) {
     // Email notification through Resend's HTTPS API. Railway blocks outbound
     // SMTP on its lower plans, so an HTTP API is the dependable choice.
     resendApiKey: env.RESEND_API_KEY || '',
-    notifyTo: list(env.NOTIFY_TO || env.CONTACT_EMAIL || 'info@enzinternational.co'),
+    notifyTo: list(env.NOTIFY_TO || env.CONTACT_EMAIL || 'enzinternational.co@gmail.com'),
     notifyFrom: env.NOTIFY_FROM || 'ENZ Website <onboarding@resend.dev>',
 
     maxCvBytes: 5 * 1024 * 1024,

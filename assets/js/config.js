@@ -41,8 +41,8 @@ window.ENZ_CONFIG = {
   API_SAME_ORIGIN: true,
   API_BASE_URL: '',
   WEB3FORMS_ACCESS_KEY: '',
-  FORMSUBMIT_EMAIL: 'info@enzinternational.co',
+  FORMSUBMIT_EMAIL: 'enzinternational.co@gmail.com',
   WHATSAPP_NUMBER: '8613203840456',
   CONTACT_PHONE: '+86 132 0384 0456',
-  CONTACT_EMAIL: 'info@enzinternational.co',
+  CONTACT_EMAIL: 'enzinternational.co@gmail.com',
 };

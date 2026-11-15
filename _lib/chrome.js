@@ -184,6 +184,7 @@ export function footerHTML(lang, currentPage) {
         <img src="../assets/images/enz-logo-204.png" alt="ENZ INTERNATIONAL" width="80" height="56" class="h-14 w-auto object-contain" loading="lazy" decoding="async" />
         <p class="text-sm leading-relaxed mt-5 text-slate max-w-xs">${t(lang, 'footerAbout')}</p>
         <ul class="mt-6 space-y-3 text-sm">
+          <li class="footer-contact items-start">${icon('mapPin', 'w-4 h-4 mt-0.5 shrink-0')}<span class="leading-relaxed">${t(lang, 'contactAddress')}</span></li>
           <li><a href="tel:${CONTACT_PHONE.replace(/\s/g, '')}" class="footer-contact">${icon('phone', 'w-4 h-4')}<span>${CONTACT_PHONE}</span></a></li>
           <li><a href="mailto:${CONTACT_EMAIL}" class="footer-contact">${icon('mail', 'w-4 h-4')}<span>${CONTACT_EMAIL}</span></a></li>
           <li><a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" rel="noopener noreferrer" class="footer-contact">${icon('whatsapp', 'w-4 h-4')}<span>${t(lang, 'footerWhatsapp')}</span></a></li>
