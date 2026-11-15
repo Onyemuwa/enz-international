@@ -22,13 +22,11 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=63" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=68" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" /></noscript>
+    <!-- Sora is self-hosted (SIL Open Font License): one same-origin request,
+         preloaded, no third-party connection before first paint. -->
+    <link rel="preload" href="../assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ENZ INTERNATIONAL" />
@@ -197,7 +195,7 @@
           <div class="media media-4-3 card-media">
             <img src="../assets/images/sourcing.webp" alt="Shipping containers stacked at a port terminal"
                  loading="lazy" decoding="async"
-                  width="1100" height="585" srcset="../assets/images/sourcing-400w.webp 400w, ../assets/images/sourcing-800w.webp 800w, ../assets/images/sourcing-1100w.webp 1100w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1100" height="585" srcset="../assets/images/sourcing-400w.webp 400w, ../assets/images/sourcing-800w.webp 800w, ../assets/images/sourcing-1100w.webp 1100w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
           <h3 class="text-2xl font-medium text-ink mt-5">Global Sourcing & Commodities Trading</h3>
@@ -210,7 +208,7 @@
           <div class="media media-16-9 card-media">
             <img src="../assets/images/quality-inspection.webp" alt="Inspector checking goods against a specification sheet before shipment"
                  loading="lazy" decoding="async"
-                  width="1100" height="733" srcset="../assets/images/quality-inspection-400w.webp 400w, ../assets/images/quality-inspection-800w.webp 800w, ../assets/images/quality-inspection-1100w.webp 1100w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1100" height="733" srcset="../assets/images/quality-inspection-400w.webp 400w, ../assets/images/quality-inspection-800w.webp 800w, ../assets/images/quality-inspection-1100w.webp 1100w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
           <h3 class="text-lg font-medium text-ink mt-5">Four inspection points, not one</h3>
@@ -223,7 +221,7 @@
           <div class="media media-16-9 card-media">
             <img src="../assets/images/factory-setup.webp" alt="Machinery being installed and commissioned in a new facility"
                  loading="lazy" decoding="async"
-                  width="1100" height="734" srcset="../assets/images/factory-setup-400w.webp 400w, ../assets/images/factory-setup-800w.webp 800w, ../assets/images/factory-setup-1100w.webp 1100w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1100" height="734" srcset="../assets/images/factory-setup-400w.webp 400w, ../assets/images/factory-setup-800w.webp 800w, ../assets/images/factory-setup-1100w.webp 1100w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
           <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
           <h3 class="text-lg font-medium text-ink mt-5">Turnkey Factory Establishment</h3>
@@ -258,117 +256,117 @@
     <div class="media media-4-3 card-media">
             <img src="../assets/images/concrete-block-paver-making-machine.webp" alt="Presses and cures concrete or cement bricks, hollow blocks and paving stones."
                  loading="lazy" decoding="async"
-                  width="1200" height="798" srcset="../assets/images/concrete-block-paver-making-machine-400w.webp 400w, ../assets/images/concrete-block-paver-making-machine-800w.webp 800w, ../assets/images/concrete-block-paver-making-machine-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="798" srcset="../assets/images/concrete-block-paver-making-machine-400w.webp 400w, ../assets/images/concrete-block-paver-making-machine-800w.webp 800w, ../assets/images/concrete-block-paver-making-machine-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Hollow, solid & paving brick production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Presses and cures concrete or cement bricks, hollow blocks and paving stones.</p>
     
     
-    <button data-open-booking data-quote-for="Hollow, solid &amp; paving brick production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Hollow, solid &amp; paving brick production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="animal feed pellet making machine mixes and presses feed ingredients into pellets for poultry, fish and livestock. ">
     <div class="media media-4-3 card-media">
             <img src="../assets/images/animal-feed-pellet-line.webp" alt="Mixes and presses feed ingredients into pellets for poultry, fish and livestock."
                  loading="lazy" decoding="async"
-                  width="1200" height="820" srcset="../assets/images/animal-feed-pellet-line-400w.webp 400w, ../assets/images/animal-feed-pellet-line-800w.webp 800w, ../assets/images/animal-feed-pellet-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="820" srcset="../assets/images/animal-feed-pellet-line-400w.webp 400w, ../assets/images/animal-feed-pellet-line-800w.webp 800w, ../assets/images/animal-feed-pellet-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Animal feed pellet making machine</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Mixes and presses feed ingredients into pellets for poultry, fish and livestock.</p>
     
     
-    <button data-open-booking data-quote-for="Animal feed pellet making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Animal feed pellet making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="dried fruit production line washes, cuts and dries fruit for packing. ">
     <div class="media media-4-3 card-media">
             <img src="../assets/images/fruit-vegetable-processing-line.webp" alt="Washes, cuts and dries fruit for packing."
                  loading="lazy" decoding="async"
-                  width="1200" height="1800" srcset="../assets/images/fruit-vegetable-processing-line-400w.webp 400w, ../assets/images/fruit-vegetable-processing-line-800w.webp 800w, ../assets/images/fruit-vegetable-processing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="1800" srcset="../assets/images/fruit-vegetable-processing-line-400w.webp 400w, ../assets/images/fruit-vegetable-processing-line-800w.webp 800w, ../assets/images/fruit-vegetable-processing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Dried fruit production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Washes, cuts and dries fruit for packing.</p>
     
     
-    <button data-open-booking data-quote-for="Dried fruit production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Dried fruit production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="carton &amp; box making line cuts, prints and folds corrugated boxes. ">
     <div class="media media-4-3 card-media">
             <img src="../assets/images/corrugated-carton-production-line.webp" alt="Cuts, prints and folds corrugated boxes."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../assets/images/corrugated-carton-production-line-400w.webp 400w, ../assets/images/corrugated-carton-production-line-800w.webp 800w, ../assets/images/corrugated-carton-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../assets/images/corrugated-carton-production-line-400w.webp 400w, ../assets/images/corrugated-carton-production-line-800w.webp 800w, ../assets/images/corrugated-carton-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Carton & box making line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts, prints and folds corrugated boxes.</p>
     
     
-    <button data-open-booking data-quote-for="Carton &amp; box making line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Carton &amp; box making line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pet bottle blowing machine blow-moulds pet preforms into drinks and water bottles. ">
     <div class="media media-4-3 card-media">
             <img src="../assets/images/pet-bottle-blow-moulding-line.webp" alt="Blow-moulds PET preforms into drinks and water bottles."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../assets/images/pet-bottle-blow-moulding-line-400w.webp 400w, ../assets/images/pet-bottle-blow-moulding-line-800w.webp 800w, ../assets/images/pet-bottle-blow-moulding-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../assets/images/pet-bottle-blow-moulding-line-400w.webp 400w, ../assets/images/pet-bottle-blow-moulding-line-800w.webp 800w, ../assets/images/pet-bottle-blow-moulding-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">PET bottle blowing machine</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Blow-moulds PET preforms into drinks and water bottles.</p>
     
     
-    <button data-open-booking data-quote-for="PET bottle blowing machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PET bottle blowing machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="garment processing machines cutting, sewing and finishing machines for a garment workshop. ">
     <div class="media media-4-3 card-media">
             <img src="../assets/images/garment-cut-and-sew-production-line.webp" alt="Cutting, sewing and finishing machines for a garment workshop."
                  loading="lazy" decoding="async"
-                  width="1200" height="675" srcset="../assets/images/garment-cut-and-sew-production-line-400w.webp 400w, ../assets/images/garment-cut-and-sew-production-line-800w.webp 800w, ../assets/images/garment-cut-and-sew-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="675" srcset="../assets/images/garment-cut-and-sew-production-line-400w.webp 400w, ../assets/images/garment-cut-and-sew-production-line-800w.webp 800w, ../assets/images/garment-cut-and-sew-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Garment processing machines</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cutting, sewing and finishing machines for a garment workshop.</p>
     
     
-    <button data-open-booking data-quote-for="Garment processing machines" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Garment processing machines" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="medical mask making machine welds nose wire and ear loops onto layered non-woven masks. ">
     <div class="media media-4-3 card-media">
             <img src="../assets/images/nonwoven-fabric-production-line.webp" alt="Welds nose wire and ear loops onto layered non-woven masks."
                  loading="lazy" decoding="async"
-                  width="1200" height="721" srcset="../assets/images/nonwoven-fabric-production-line-400w.webp 400w, ../assets/images/nonwoven-fabric-production-line-800w.webp 800w, ../assets/images/nonwoven-fabric-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="721" srcset="../assets/images/nonwoven-fabric-production-line-400w.webp 400w, ../assets/images/nonwoven-fabric-production-line-800w.webp 800w, ../assets/images/nonwoven-fabric-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Medical mask making machine</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Welds nose wire and ear loops onto layered non-woven masks.</p>
     
     
-    <button data-open-booking data-quote-for="Medical mask making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Medical mask making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="ceramic plate &amp; cup production line presses, glazes and fires tableware. ">
     <div class="media media-4-3 card-media">
             <img src="../assets/images/sanitaryware-slip-casting-glazing-line.webp" alt="Presses, glazes and fires tableware."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../assets/images/sanitaryware-slip-casting-glazing-line-400w.webp 400w, ../assets/images/sanitaryware-slip-casting-glazing-line-800w.webp 800w, ../assets/images/sanitaryware-slip-casting-glazing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../assets/images/sanitaryware-slip-casting-glazing-line-400w.webp 400w, ../assets/images/sanitaryware-slip-casting-glazing-line-800w.webp 800w, ../assets/images/sanitaryware-slip-casting-glazing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Ceramic plate & cup production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Presses, glazes and fires tableware.</p>
     
     
-    <button data-open-booking data-quote-for="Ceramic plate &amp; cup production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Ceramic plate &amp; cup production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="plastic (pp/pe/pet) recycling line washes, shreds and pelletises waste plastic. ">
     <div class="media media-4-3 card-media">
             <img src="../assets/images/plastic-recycling-pelletizing-line.webp" alt="Washes, shreds and pelletises waste plastic."
                  loading="lazy" decoding="async"
-                  width="1200" height="798" srcset="../assets/images/plastic-recycling-pelletizing-line-400w.webp 400w, ../assets/images/plastic-recycling-pelletizing-line-800w.webp 800w, ../assets/images/plastic-recycling-pelletizing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="798" srcset="../assets/images/plastic-recycling-pelletizing-line-400w.webp 400w, ../assets/images/plastic-recycling-pelletizing-line-800w.webp 800w, ../assets/images/plastic-recycling-pelletizing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Plastic (PP/PE/PET) recycling line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Washes, shreds and pelletises waste plastic.</p>
     
     
-    <button data-open-booking data-quote-for="Plastic (PP/PE/PET) recycling line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Plastic (PP/PE/PET) recycling line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article>
@@ -712,9 +710,9 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=63"></script>
-    <script src="../assets/js/api.js?v=63"></script>
-    <script src="../assets/js/site.js?v=63" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=63"></script>
+    <script src="../assets/js/config.js?v=68"></script>
+    <script src="../assets/js/api.js?v=68"></script>
+    <script src="../assets/js/site.js?v=68" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=68"></script>
   </body>
 </html>

@@ -119,7 +119,7 @@ export function homePage(lang) {
           .map((sv, i) => {
             const feature = i === 0;
             return `<a href="${sv.href}" class="${CARD} card-lg flex flex-col group ${feature ? 'bento-feature' : ''}">
-          ${media(sv.img, { ratio: feature ? '4-3' : '16-9', className: 'card-media' })}
+          ${media(sv.img, { ratio: feature ? '4-3' : '16-9', className: 'card-media', sizes: '(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw' })}
           <span class="icon-chip">${icon(sv.icon, feature ? 'w-6 h-6' : 'w-5 h-5')}</span>
           <h3 class="${feature ? 'text-2xl' : 'text-lg'} font-medium text-ink mt-5">${sv.title}</h3>
           <p class="text-slate ${feature ? 'text-[0.9375rem]' : 'text-sm'} mt-3 leading-relaxed">${sv.body}</p>
@@ -278,7 +278,7 @@ export function aboutPage(lang) {
         </div>
       </div>
       <div class="lg:col-span-5 about-hero-visual">
-        ${media('about', { ratio: '4-5', className: 'about-hero-image' })}
+        ${media('about', { ratio: '4-5', className: 'about-hero-image', eager: true })}
         <div class="about-hero-note"><span class="status-dot status-done">${icon('check', 'w-3.5 h-3.5')}</span><span><strong>Built for the handover</strong><small>From factory floor to final mile</small></span></div>
       </div>
     </div>
@@ -314,7 +314,7 @@ export function aboutPage(lang) {
     <div class="shell">
       <h2 class="h2-section text-center">Our Methodology</h2>
       <div data-reveal-group class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-14 max-w-5xl mx-auto">
-        ${methodology.map(([n, ttl, desc, ic]) => `<div class="${CARD} relative">${icon(ic, 'w-6 h-6 text-brand mb-3')}<span class="absolute top-6 right-6 text-line font-semibold text-4xl tabular" aria-hidden="true">${n}</span><h3 class="text-lg font-semibold text-ink mt-4">${ttl}</h3><p class="text-slate text-sm mt-2.5 leading-relaxed">${desc}</p></div>`).join('')}
+        ${methodology.map(([n, ttl, desc, ic]) => `<div class="${CARD} relative">${icon(ic, 'w-6 h-6 text-brand mb-3')}<span class="absolute top-6 right-6 deco-num font-semibold text-4xl tabular" aria-hidden="true">${n}</span><h3 class="text-lg font-semibold text-ink mt-4">${ttl}</h3><p class="text-slate text-sm mt-2.5 leading-relaxed">${desc}</p></div>`).join('')}
       </div>
     </div>
   </section>
@@ -663,8 +663,15 @@ export function contactPage(lang) {
           </ul>
           <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp w-full mt-7">${icon('whatsapp', 'w-4 h-4')} ${t(lang, 'footerWhatsapp')}</a>
         </div>
-        <div class="mt-6 rounded-2xl overflow-hidden border border-line shadow-sm h-64">
-          <iframe title="ENZ INTERNATIONAL — Guangzhou HQ location" src="https://www.google.com/maps?q=Guangzhou%2C+China&output=embed" width="100%" height="100%" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!-- Click to load: the Google map is heavy and sets Google cookies, so it
+             only loads when a visitor asks for it. The link works without script. -->
+        <div data-map class="mt-6 rounded-2xl overflow-hidden border border-line shadow-sm h-64 bg-gray-bg flex flex-col items-center justify-center text-center gap-3 p-6">
+          ${icon('mapPin', 'w-7 h-7 text-brand')}
+          <p class="text-sm text-slate max-w-xs">${t(lang, 'contactAddress')}</p>
+          <div class="flex flex-wrap items-center justify-center gap-2">
+            <button type="button" data-map-load class="btn btn-secondary btn-sm">Show map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Guangzhou%2C+China" target="_blank" rel="noopener noreferrer" class="btn btn-sm text-brand">Open in Google Maps</a>
+          </div>
         </div>
       </div>
       <div class="card card-lg">

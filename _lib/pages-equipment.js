@@ -40,7 +40,7 @@ export function productCard(lang, item) {
   // No photo yet -> no photo box. A grey placeholder repeated across a ~160
   // item catalogue reads as broken; a clean text card does not.
   const photo = item.image
-    ? media({ src: item.image, file: item.image, alt: item.use }, { ratio: '4-3', className: 'card-media' })
+    ? media({ src: item.image, file: item.image, alt: item.use }, { ratio: '4-3', className: 'card-media', sizes: '(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw' })
     : '';
   const chips = [
     item.power && specChip(t(lang, 'equipmentSpecPower'), item.power),
@@ -71,7 +71,7 @@ export function productCard(lang, item) {
       <summary class="text-xs font-semibold text-brand cursor-pointer list-none inline-flex items-center gap-1">${t(lang, 'equipmentSpecsToggle')} ${icon('chevronDown', 'w-3.5 h-3.5 transition-transform group-open:rotate-180')}</summary>
       <ul class="mt-3 space-y-2 text-sm text-slate leading-snug">${specsList}</ul>
     </details>` : ''}
-    <button data-open-booking data-quote-for="${escapeAttr(item.name)}" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="${escapeAttr(item.name)}" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       ${t(lang, 'equipmentRequestCta')} ${icon('chevronRight', 'w-4 h-4')}
     </button>
   </article>`;
@@ -90,7 +90,7 @@ export function equipmentPage(lang) {
     .map((cat, idx) => {
       const cards = cat.items.map((item) => productCard(lang, item)).join('');
       return `
-    <section id="${slugify(cat.industry)}" data-equipment-section class="section scroll-mt-24 ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-bg'}">
+    <section id="${slugify(cat.industry)}" data-equipment-section class="section scroll-mt-32 ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-bg'}">
       <div class="${SHELL} max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -121,10 +121,17 @@ export function equipmentPage(lang) {
                data-of-label="${t(lang, 'equipmentCountOf')}" data-type-label="${t(lang, 'equipmentCountType')}" data-types-label="${t(lang, 'equipmentCountTypes')}"
                placeholder="${t(lang, 'equipmentSearchPlaceholder')}" aria-label="${t(lang, 'equipmentSearchPlaceholder')}" class="field w-full pl-11" />
       </div>
-
-      <nav aria-label="${t(lang, 'equipmentShopByCategory')}" data-equipment-tabs class="equipment-tabs">${categoryNav}</nav>
     </div>
   </section>
+
+  <!-- Category tabs sit outside the intro section so they can stay stuck under
+       the header for the whole catalogue (position: sticky only works inside
+       a parent as tall as the thing it should follow). -->
+  <div class="equipment-sticky">
+    <div class="${SHELL} max-w-6xl">
+      <nav aria-label="${t(lang, 'equipmentShopByCategory')}" data-equipment-tabs class="equipment-tabs">${categoryNav}</nav>
+    </div>
+  </div>
   <p data-equipment-empty hidden class="text-center text-slate max-w-md mx-auto py-16 px-4">${t(lang, 'equipmentSearchNoResults')}</p>
   ${sections}
   ${closingCta(lang)}`;

@@ -22,13 +22,11 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../../assets/css/site.css?v=63" />
+    <link rel="stylesheet" href="../../assets/css/site.css?v=68" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" /></noscript>
+    <!-- Sora is self-hosted (SIL Open Font License): one same-origin request,
+         preloaded, no third-party connection before first paint. -->
+    <link rel="preload" href="../../assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ENZ INTERNATIONAL" />
@@ -133,13 +131,20 @@
                data-of-label="of" data-type-label="type" data-types-label="types"
                placeholder="Search for a machine type — "tile press", "cnc", "cold storage"…" aria-label="Search for a machine type — "tile press", "cnc", "cold storage"…" class="field w-full pl-11" />
       </div>
-
-      <nav aria-label="Browse by category" data-equipment-tabs class="equipment-tabs"><a href="#construction-building-materials" class="equipment-tab">Construction & building materials</a><a href="#industrial-equipment-machinery" class="equipment-tab">Industrial equipment & machinery</a><a href="#metal-hardware-electrical" class="equipment-tab">Metal, hardware & electrical</a><a href="#agriculture-food-processing" class="equipment-tab">Agriculture & food processing</a><a href="#food-snack-production" class="equipment-tab">Food & snack production</a><a href="#beverage-bottled-water" class="equipment-tab">Beverage & bottled water</a><a href="#packaging-printing" class="equipment-tab">Packaging & printing</a><a href="#paper-tissue-stationery" class="equipment-tab">Paper, tissue & stationery</a><a href="#plastics-rubber-products" class="equipment-tab">Plastics & rubber products</a><a href="#textiles-apparel" class="equipment-tab">Textiles & apparel</a><a href="#hygiene-personal-care" class="equipment-tab">Hygiene & personal care</a><a href="#consumer-goods-retail" class="equipment-tab">Consumer goods & retail</a><a href="#recycling-waste-to-energy" class="equipment-tab">Recycling & waste-to-energy</a></nav>
     </div>
   </section>
+
+  <!-- Category tabs sit outside the intro section so they can stay stuck under
+       the header for the whole catalogue (position: sticky only works inside
+       a parent as tall as the thing it should follow). -->
+  <div class="equipment-sticky">
+    <div class="shell max-w-6xl">
+      <nav aria-label="Browse by category" data-equipment-tabs class="equipment-tabs"><a href="#construction-building-materials" class="equipment-tab">Construction & building materials</a><a href="#industrial-equipment-machinery" class="equipment-tab">Industrial equipment & machinery</a><a href="#metal-hardware-electrical" class="equipment-tab">Metal, hardware & electrical</a><a href="#agriculture-food-processing" class="equipment-tab">Agriculture & food processing</a><a href="#food-snack-production" class="equipment-tab">Food & snack production</a><a href="#beverage-bottled-water" class="equipment-tab">Beverage & bottled water</a><a href="#packaging-printing" class="equipment-tab">Packaging & printing</a><a href="#paper-tissue-stationery" class="equipment-tab">Paper, tissue & stationery</a><a href="#plastics-rubber-products" class="equipment-tab">Plastics & rubber products</a><a href="#textiles-apparel" class="equipment-tab">Textiles & apparel</a><a href="#hygiene-personal-care" class="equipment-tab">Hygiene & personal care</a><a href="#consumer-goods-retail" class="equipment-tab">Consumer goods & retail</a><a href="#recycling-waste-to-energy" class="equipment-tab">Recycling & waste-to-energy</a></nav>
+    </div>
+  </div>
   <p data-equipment-empty hidden class="text-center text-slate max-w-md mx-auto py-16 px-4">No matches. Tell us what you need instead — we source things that aren’t on this page too.</p>
   
-    <section id="construction-building-materials" data-equipment-section class="section scroll-mt-24 bg-white">
+    <section id="construction-building-materials" data-equipment-section class="section scroll-mt-32 bg-white">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -152,13 +157,13 @@
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/concrete-block-paver-making-machine.webp" alt="Presses and cures concrete or cement bricks, hollow blocks and paving stones."
                  loading="lazy" decoding="async"
-                  width="1200" height="798" srcset="../../assets/images/concrete-block-paver-making-machine-400w.webp 400w, ../../assets/images/concrete-block-paver-making-machine-800w.webp 800w, ../../assets/images/concrete-block-paver-making-machine-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="798" srcset="../../assets/images/concrete-block-paver-making-machine-400w.webp 400w, ../../assets/images/concrete-block-paver-making-machine-800w.webp 800w, ../../assets/images/concrete-block-paver-making-machine-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Hollow, solid & paving brick production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Presses and cures concrete or cement bricks, hollow blocks and paving stones.</p>
     
     
-    <button data-open-booking data-quote-for="Hollow, solid &amp; paving brick production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Hollow, solid &amp; paving brick production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="interlocking brick making machine forms interlocking earth or cement bricks that stack without mortar. ">
@@ -167,7 +172,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms interlocking earth or cement bricks that stack without mortar.</p>
     
     
-    <button data-open-booking data-quote-for="Interlocking brick making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Interlocking brick making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="brick-making plant turns clay or cement mix into bricks, from mixing through forming and drying. ">
@@ -176,7 +181,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Turns clay or cement mix into bricks, from mixing through forming and drying.</p>
     
     
-    <button data-open-booking data-quote-for="Brick-making plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Brick-making plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="cement panel machinery forms and finishes cement-based wall and floor panels. ">
@@ -185,20 +190,20 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms and finishes cement-based wall and floor panels.</p>
     
     
-    <button data-open-booking data-quote-for="Cement panel machinery" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Cement panel machinery" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="gypsum board production line makes plasterboard: mixing, forming between paper liners, drying and cutting. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/gypsum-plasterboard-production-line.webp" alt="Makes plasterboard: mixing, forming between paper liners, drying and cutting."
                  loading="lazy" decoding="async"
-                  width="1200" height="900" srcset="../../assets/images/gypsum-plasterboard-production-line-400w.webp 400w, ../../assets/images/gypsum-plasterboard-production-line-800w.webp 800w, ../../assets/images/gypsum-plasterboard-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="900" srcset="../../assets/images/gypsum-plasterboard-production-line-400w.webp 400w, ../../assets/images/gypsum-plasterboard-production-line-800w.webp 800w, ../../assets/images/gypsum-plasterboard-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Gypsum board production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Makes plasterboard: mixing, forming between paper liners, drying and cutting.</p>
     
     
-    <button data-open-booking data-quote-for="Gypsum board production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Gypsum board production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="gypsum ceiling tile production line casts and dries gypsum ceiling tiles in standard sizes. ">
@@ -207,7 +212,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Casts and dries gypsum ceiling tiles in standard sizes.</p>
     
     
-    <button data-open-booking data-quote-for="Gypsum ceiling tile production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Gypsum ceiling tile production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="gypsum cornice production line produces gypsum cornices and ceiling mouldings. ">
@@ -216,7 +221,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Produces gypsum cornices and ceiling mouldings.</p>
     
     
-    <button data-open-booking data-quote-for="Gypsum cornice production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Gypsum cornice production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="gypsum decoration production line casts decorative gypsum elements such as rosettes and wall relief. ">
@@ -225,7 +230,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Casts decorative gypsum elements such as rosettes and wall relief.</p>
     
     
-    <button data-open-booking data-quote-for="Gypsum decoration production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Gypsum decoration production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="galvanized metal roof tile production line rolls galvanised steel coil into pressed roof tiles. ">
@@ -234,7 +239,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Rolls galvanised steel coil into pressed roof tiles.</p>
     
     
-    <button data-open-booking data-quote-for="Galvanized metal roof tile production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Galvanized metal roof tile production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="roofing sheet forming line roll-forms coil into corrugated and trapezoidal roofing sheets. ">
@@ -243,7 +248,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Roll-forms coil into corrugated and trapezoidal roofing sheets.</p>
     
     
-    <button data-open-booking data-quote-for="Roofing sheet forming line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Roofing sheet forming line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="stone-coated roofing sheet line coats steel roofing tiles with stone chips for a tile-like finish. ">
@@ -252,20 +257,20 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Coats steel roofing tiles with stone chips for a tile-like finish.</p>
     
     
-    <button data-open-booking data-quote-for="Stone-coated roofing sheet line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Stone-coated roofing sheet line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="aluminium profile extrusion line extrudes aluminium billet into window, door and structural profiles. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/aluminium-profile-extrusion-line.webp" alt="Extrudes aluminium billet into window, door and structural profiles."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../../assets/images/aluminium-profile-extrusion-line-400w.webp 400w, ../../assets/images/aluminium-profile-extrusion-line-800w.webp 800w, ../../assets/images/aluminium-profile-extrusion-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../../assets/images/aluminium-profile-extrusion-line-400w.webp 400w, ../../assets/images/aluminium-profile-extrusion-line-800w.webp 800w, ../../assets/images/aluminium-profile-extrusion-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Aluminium profile extrusion line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Extrudes aluminium billet into window, door and structural profiles.</p>
     
     
-    <button data-open-booking data-quote-for="Aluminium profile extrusion line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Aluminium profile extrusion line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="building steel rod (rebar) rolling mill rolls billet into reinforcing bar for construction. ">
@@ -274,7 +279,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Rolls billet into reinforcing bar for construction.</p>
     
     
-    <button data-open-booking data-quote-for="Building steel rod (rebar) rolling mill" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Building steel rod (rebar) rolling mill" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="steel rolling machine hot or cold rolls steel into bar, strip and simple sections. ">
@@ -283,7 +288,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Hot or cold rolls steel into bar, strip and simple sections.</p>
     
     
-    <button data-open-booking data-quote-for="Steel rolling machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Steel rolling machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="hand steel bar cutting machine cuts reinforcing bar on site without a full workshop. ">
@@ -292,7 +297,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts reinforcing bar on site without a full workshop.</p>
     
     
-    <button data-open-booking data-quote-for="Hand steel bar cutting machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Hand steel bar cutting machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="steel hollow section production line forms and welds square and rectangular steel tubing. ">
@@ -301,7 +306,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms and welds square and rectangular steel tubing.</p>
     
     
-    <button data-open-booking data-quote-for="Steel hollow section production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Steel hollow section production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="door skin production line presses wood-fibre panels into moulded door skins. ">
@@ -310,7 +315,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Presses wood-fibre panels into moulded door skins.</p>
     
     
-    <button data-open-booking data-quote-for="Door skin production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Door skin production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="mdf board production plant makes medium-density fibreboard from wood fibre and resin. ">
@@ -319,7 +324,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Makes medium-density fibreboard from wood fibre and resin.</p>
     
     
-    <button data-open-booking data-quote-for="MDF board production plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="MDF board production plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="plywood production line peels, glues and presses veneer into plywood sheets. ">
@@ -328,7 +333,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Peels, glues and presses veneer into plywood sheets.</p>
     
     
-    <button data-open-booking data-quote-for="Plywood production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Plywood production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pvc wall panel production line extrudes pvc wall and ceiling panels. ">
@@ -337,7 +342,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Extrudes PVC wall and ceiling panels.</p>
     
     
-    <button data-open-booking data-quote-for="PVC wall panel production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PVC wall panel production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="wood-plastic composite production line extrudes decking, cladding and profiles from wood fibre and plastic. ">
@@ -346,7 +351,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Extrudes decking, cladding and profiles from wood fibre and plastic.</p>
     
     
-    <button data-open-booking data-quote-for="Wood-plastic composite production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Wood-plastic composite production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="float glass processing line cuts, edges and processes flat glass for windows and facades. ">
@@ -355,7 +360,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts, edges and processes flat glass for windows and facades.</p>
     
     
-    <button data-open-booking data-quote-for="Float glass processing line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Float glass processing line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="stone processing line cuts and polishes natural or artificial stone into slabs and tiles. ">
@@ -364,13 +369,13 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts and polishes natural or artificial stone into slabs and tiles.</p>
     
     
-    <button data-open-booking data-quote-for="Stone processing line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Stone processing line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
       </div>
     </section>
-    <section id="industrial-equipment-machinery" data-equipment-section class="section scroll-mt-24 bg-gray-bg">
+    <section id="industrial-equipment-machinery" data-equipment-section class="section scroll-mt-32 bg-gray-bg">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -385,7 +390,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Sound-attenuated diesel generator set for backup or primary power.</p>
     
     
-    <button data-open-booking data-quote-for="Silent diesel generator" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Silent diesel generator" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="well drilling machine rig for drilling water boreholes and shallow wells. ">
@@ -394,7 +399,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Rig for drilling water boreholes and shallow wells.</p>
     
     
-    <button data-open-booking data-quote-for="Well drilling machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Well drilling machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="filtering machine filters liquids or oils to remove solids in process lines and workshops. ">
@@ -403,7 +408,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Filters liquids or oils to remove solids in process lines and workshops.</p>
     
     
-    <button data-open-booking data-quote-for="Filtering machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Filtering machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="distillation &amp; extraction equipment separates and extracts liquids and essences, from spirits to plant oils. ">
@@ -412,7 +417,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Separates and extracts liquids and essences, from spirits to plant oils.</p>
     
     
-    <button data-open-booking data-quote-for="Distillation &amp; extraction equipment" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Distillation &amp; extraction equipment" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="liquid filling machine fills bottles and containers with liquids, from water to oils and sauces. ">
@@ -421,7 +426,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Fills bottles and containers with liquids, from water to oils and sauces.</p>
     
     
-    <button data-open-booking data-quote-for="Liquid filling machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Liquid filling machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="crimping machine crimps fittings onto hydraulic hose and cable assemblies. ">
@@ -430,7 +435,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Crimps fittings onto hydraulic hose and cable assemblies.</p>
     
     
-    <button data-open-booking data-quote-for="Crimping machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Crimping machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pipe bending machine bends pipe and tube to a set angle for fabrication. ">
@@ -439,7 +444,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Bends pipe and tube to a set angle for fabrication.</p>
     
     
-    <button data-open-booking data-quote-for="Pipe bending machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Pipe bending machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="hose skiving machine strips hose cover ahead of fitting a coupling. ">
@@ -448,7 +453,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Strips hose cover ahead of fitting a coupling.</p>
     
     
-    <button data-open-booking data-quote-for="Hose skiving machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Hose skiving machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="hose pressure test machine pressure-tests hose assemblies before they ship. ">
@@ -457,7 +462,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Pressure-tests hose assemblies before they ship.</p>
     
     
-    <button data-open-booking data-quote-for="Hose pressure test machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Hose pressure test machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="laser marking machine marks logos and serial numbers onto metal, plastic and packaging. ">
@@ -466,7 +471,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Marks logos and serial numbers onto metal, plastic and packaging.</p>
     
     
-    <button data-open-booking data-quote-for="Laser marking machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Laser marking machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="key duplicating machine cuts duplicate keys for retail and kiosk use. ">
@@ -475,7 +480,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts duplicate keys for retail and kiosk use.</p>
     
     
-    <button data-open-booking data-quote-for="Key duplicating machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Key duplicating machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="photovoltaic panel production line assembles, laminates and tests solar modules. ">
@@ -484,13 +489,13 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Assembles, laminates and tests solar modules.</p>
     
     
-    <button data-open-booking data-quote-for="Photovoltaic panel production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Photovoltaic panel production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
       </div>
     </section>
-    <section id="metal-hardware-electrical" data-equipment-section class="section scroll-mt-24 bg-white">
+    <section id="metal-hardware-electrical" data-equipment-section class="section scroll-mt-32 bg-white">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -505,7 +510,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Draws wire into nails at high speed, with heading and pointing.</p>
     
     
-    <button data-open-booking data-quote-for="Automatic nail making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Automatic nail making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="roofing nail &amp; screw production line makes roofing nails and self-tapping screws from wire. ">
@@ -514,7 +519,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Makes roofing nails and self-tapping screws from wire.</p>
     
     
-    <button data-open-booking data-quote-for="Roofing nail &amp; screw production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Roofing nail &amp; screw production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="screw &amp; nut production line forms, threads and finishes screws, bolts and nuts. ">
@@ -523,7 +528,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms, threads and finishes screws, bolts and nuts.</p>
     
     
-    <button data-open-booking data-quote-for="Screw &amp; nut production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Screw &amp; nut production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="hinge production line stamps, forms and assembles door and cabinet hinges. ">
@@ -532,7 +537,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Stamps, forms and assembles door and cabinet hinges.</p>
     
     
-    <button data-open-booking data-quote-for="Hinge production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Hinge production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="door lock production line machines and assembles door locks and lock sets. ">
@@ -541,7 +546,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Machines and assembles door locks and lock sets.</p>
     
     
-    <button data-open-booking data-quote-for="Door lock production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Door lock production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="steel wire production line draws steel wire for kitchenware, mesh and general use. ">
@@ -550,7 +555,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Draws steel wire for kitchenware, mesh and general use.</p>
     
     
-    <button data-open-booking data-quote-for="Steel wire production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Steel wire production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="fence wire production line produces chain-link and welded fence wire. ">
@@ -559,7 +564,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Produces chain-link and welded fence wire.</p>
     
     
-    <button data-open-booking data-quote-for="Fence wire production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Fence wire production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="electric cable production line draws, insulates and sheaths electrical cable. ">
@@ -568,7 +573,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Draws, insulates and sheaths electrical cable.</p>
     
     
-    <button data-open-booking data-quote-for="Electric cable production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Electric cable production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="steel furniture making line cuts, bends and welds steel office and school furniture. ">
@@ -577,7 +582,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts, bends and welds steel office and school furniture.</p>
     
     
-    <button data-open-booking data-quote-for="Steel furniture making line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Steel furniture making line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="steel pipe tooling tooling and fittings for cutting, threading and joining steel pipe. ">
@@ -586,7 +591,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Tooling and fittings for cutting, threading and joining steel pipe.</p>
     
     
-    <button data-open-booking data-quote-for="Steel pipe tooling" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Steel pipe tooling" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="silverware &amp; cutlery production line stamps, polishes and finishes spoons, forks and knives. ">
@@ -595,7 +600,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Stamps, polishes and finishes spoons, forks and knives.</p>
     
     
-    <button data-open-booking data-quote-for="Silverware &amp; cutlery production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Silverware &amp; cutlery production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="flashlight assembly line assembles torches from housings, leds and switches. ">
@@ -604,7 +609,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Assembles torches from housings, LEDs and switches.</p>
     
     
-    <button data-open-booking data-quote-for="Flashlight assembly line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Flashlight assembly line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="simple electronics assembly line assembles small electronics such as calculators, led lamps, radios and toys. ">
@@ -613,13 +618,13 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Assembles small electronics such as calculators, LED lamps, radios and toys.</p>
     
     
-    <button data-open-booking data-quote-for="Simple electronics assembly line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Simple electronics assembly line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
       </div>
     </section>
-    <section id="agriculture-food-processing" data-equipment-section class="section scroll-mt-24 bg-gray-bg">
+    <section id="agriculture-food-processing" data-equipment-section class="section scroll-mt-32 bg-gray-bg">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -634,7 +639,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Tractors and implements for tilling, planting and harvesting.</p>
     
     
-    <button data-open-booking data-quote-for="Agricultural machinery" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Agricultural machinery" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="wheat harvester harvests and threshes wheat and similar cereal crops. ">
@@ -643,7 +648,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Harvests and threshes wheat and similar cereal crops.</p>
     
     
-    <button data-open-booking data-quote-for="Wheat harvester" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Wheat harvester" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="peanut seeder plants groundnuts at an even depth and spacing. ">
@@ -652,7 +657,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Plants groundnuts at an even depth and spacing.</p>
     
     
-    <button data-open-booking data-quote-for="Peanut seeder" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Peanut seeder" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="knapsack weeding machine back-mounted petrol weeder for small farms. ">
@@ -661,7 +666,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Back-mounted petrol weeder for small farms.</p>
     
     
-    <button data-open-booking data-quote-for="Knapsack weeding machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Knapsack weeding machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="electric sprayer battery sprayer for crop protection. ">
@@ -670,7 +675,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Battery sprayer for crop protection.</p>
     
     
-    <button data-open-booking data-quote-for="Electric sprayer" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Electric sprayer" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="lawn mower petrol or electric mower for lawns and estates. ">
@@ -679,33 +684,33 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Petrol or electric mower for lawns and estates.</p>
     
     
-    <button data-open-booking data-quote-for="Lawn mower" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Lawn mower" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="animal feed pellet making machine mixes and presses feed ingredients into pellets for poultry, fish and livestock. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/animal-feed-pellet-line.webp" alt="Mixes and presses feed ingredients into pellets for poultry, fish and livestock."
                  loading="lazy" decoding="async"
-                  width="1200" height="820" srcset="../../assets/images/animal-feed-pellet-line-400w.webp 400w, ../../assets/images/animal-feed-pellet-line-800w.webp 800w, ../../assets/images/animal-feed-pellet-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="820" srcset="../../assets/images/animal-feed-pellet-line-400w.webp 400w, ../../assets/images/animal-feed-pellet-line-800w.webp 800w, ../../assets/images/animal-feed-pellet-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Animal feed pellet making machine</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Mixes and presses feed ingredients into pellets for poultry, fish and livestock.</p>
     
     
-    <button data-open-booking data-quote-for="Animal feed pellet making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Animal feed pellet making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="animal feed processing line grinds, mixes and bags compound feed. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/animal-feed-pellet-line.webp" alt="Grinds, mixes and bags compound feed."
                  loading="lazy" decoding="async"
-                  width="1200" height="820" srcset="../../assets/images/animal-feed-pellet-line-400w.webp 400w, ../../assets/images/animal-feed-pellet-line-800w.webp 800w, ../../assets/images/animal-feed-pellet-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="820" srcset="../../assets/images/animal-feed-pellet-line-400w.webp 400w, ../../assets/images/animal-feed-pellet-line-800w.webp 800w, ../../assets/images/animal-feed-pellet-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Animal feed processing line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Grinds, mixes and bags compound feed.</p>
     
     
-    <button data-open-booking data-quote-for="Animal feed processing line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Animal feed processing line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pet food production line extrudes and dries kibble for dogs, cats and fish. ">
@@ -714,7 +719,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Extrudes and dries kibble for dogs, cats and fish.</p>
     
     
-    <button data-open-booking data-quote-for="Pet food production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Pet food production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="aquaculture &amp; fisheries equipment feeders, aerators and handling gear for fish and shrimp farms. ">
@@ -723,59 +728,59 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Feeders, aerators and handling gear for fish and shrimp farms.</p>
     
     
-    <button data-open-booking data-quote-for="Aquaculture &amp; fisheries equipment" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Aquaculture &amp; fisheries equipment" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="maize milling production line cleans, degerms and mills maize into flour and grits. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/grain-milling-processing-line.webp" alt="Cleans, degerms and mills maize into flour and grits."
                  loading="lazy" decoding="async"
-                  width="1200" height="1600" srcset="../../assets/images/grain-milling-processing-line-400w.webp 400w, ../../assets/images/grain-milling-processing-line-800w.webp 800w, ../../assets/images/grain-milling-processing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="1600" srcset="../../assets/images/grain-milling-processing-line-400w.webp 400w, ../../assets/images/grain-milling-processing-line-800w.webp 800w, ../../assets/images/grain-milling-processing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Maize milling production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cleans, degerms and mills maize into flour and grits.</p>
     
     
-    <button data-open-booking data-quote-for="Maize milling production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Maize milling production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="rice milling production line hulls, whitens and grades paddy into milled rice. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/rice-maize-milling-line.webp" alt="Hulls, whitens and grades paddy into milled rice."
                  loading="lazy" decoding="async"
-                  width="1200" height="835" srcset="../../assets/images/rice-maize-milling-line-400w.webp 400w, ../../assets/images/rice-maize-milling-line-800w.webp 800w, ../../assets/images/rice-maize-milling-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="835" srcset="../../assets/images/rice-maize-milling-line-400w.webp 400w, ../../assets/images/rice-maize-milling-line-800w.webp 800w, ../../assets/images/rice-maize-milling-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Rice milling production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Hulls, whitens and grades paddy into milled rice.</p>
     
     
-    <button data-open-booking data-quote-for="Rice milling production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Rice milling production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="edible oil production line presses, filters and refines vegetable oil. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/edible-oil-pressing-refining-line.webp" alt="Presses, filters and refines vegetable oil."
                  loading="lazy" decoding="async"
-                  width="1200" height="1800" srcset="../../assets/images/edible-oil-pressing-refining-line-400w.webp 400w, ../../assets/images/edible-oil-pressing-refining-line-800w.webp 800w, ../../assets/images/edible-oil-pressing-refining-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="1800" srcset="../../assets/images/edible-oil-pressing-refining-line-400w.webp 400w, ../../assets/images/edible-oil-pressing-refining-line-800w.webp 800w, ../../assets/images/edible-oil-pressing-refining-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Edible oil production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Presses, filters and refines vegetable oil.</p>
     
     
-    <button data-open-booking data-quote-for="Edible oil production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Edible oil production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="sunflower seed oil production line presses sunflower seed and refines the oil. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/edible-oil-pressing-refining-line.webp" alt="Presses sunflower seed and refines the oil."
                  loading="lazy" decoding="async"
-                  width="1200" height="1800" srcset="../../assets/images/edible-oil-pressing-refining-line-400w.webp 400w, ../../assets/images/edible-oil-pressing-refining-line-800w.webp 800w, ../../assets/images/edible-oil-pressing-refining-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="1800" srcset="../../assets/images/edible-oil-pressing-refining-line-400w.webp 400w, ../../assets/images/edible-oil-pressing-refining-line-800w.webp 800w, ../../assets/images/edible-oil-pressing-refining-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Sunflower seed oil production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Presses sunflower seed and refines the oil.</p>
     
     
-    <button data-open-booking data-quote-for="Sunflower seed oil production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Sunflower seed oil production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="cashew nut processing machinery shells, peels and grades cashew nuts. ">
@@ -784,7 +789,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Shells, peels and grades cashew nuts.</p>
     
     
-    <button data-open-booking data-quote-for="Cashew nut processing machinery" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Cashew nut processing machinery" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="nut processing plant cleans, shells, roasts and packs mixed nuts. ">
@@ -793,7 +798,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cleans, shells, roasts and packs mixed nuts.</p>
     
     
-    <button data-open-booking data-quote-for="Nut processing plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Nut processing plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="ginger processing machine washes, slices and dries ginger. ">
@@ -802,7 +807,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Washes, slices and dries ginger.</p>
     
     
-    <button data-open-booking data-quote-for="Ginger processing machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Ginger processing machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="chilli &amp; white pepper grinding machine grinds chilli and pepper to powder. ">
@@ -811,7 +816,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Grinds chilli and pepper to powder.</p>
     
     
-    <button data-open-booking data-quote-for="Chilli &amp; white pepper grinding machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Chilli &amp; white pepper grinding machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="coconut fibre dryer dries coconut husk fibre for bedding, rope and briquettes. ">
@@ -820,7 +825,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Dries coconut husk fibre for bedding, rope and briquettes.</p>
     
     
-    <button data-open-booking data-quote-for="Coconut fibre dryer" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Coconut fibre dryer" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="sisal production line decorticates and cleans sisal leaf into fibre. ">
@@ -829,7 +834,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Decorticates and cleans sisal leaf into fibre.</p>
     
     
-    <button data-open-booking data-quote-for="Sisal production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Sisal production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="cassava residue organic fertiliser line composts cassava waste into granulated organic fertiliser. ">
@@ -838,7 +843,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Composts cassava waste into granulated organic fertiliser.</p>
     
     
-    <button data-open-booking data-quote-for="Cassava residue organic fertiliser line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Cassava residue organic fertiliser line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="sugar processing factory crushes cane and refines it into sugar. ">
@@ -847,7 +852,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Crushes cane and refines it into sugar.</p>
     
     
-    <button data-open-booking data-quote-for="Sugar processing factory" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Sugar processing factory" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="sugar cube production line presses and dries granulated sugar into cubes. ">
@@ -856,7 +861,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Presses and dries granulated sugar into cubes.</p>
     
     
-    <button data-open-booking data-quote-for="Sugar cube production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Sugar cube production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="seed roasting machine roasts sunflower, pumpkin and other seeds evenly. ">
@@ -865,7 +870,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Roasts sunflower, pumpkin and other seeds evenly.</p>
     
     
-    <button data-open-booking data-quote-for="Seed roasting machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Seed roasting machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="roasted peanut machine roasts groundnuts for snacks and butter. ">
@@ -874,7 +879,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Roasts groundnuts for snacks and butter.</p>
     
     
-    <button data-open-booking data-quote-for="Roasted peanut machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Roasted peanut machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="table salt processing plant washes, dries, iodises and packs table salt. ">
@@ -883,7 +888,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Washes, dries, iodises and packs table salt.</p>
     
     
-    <button data-open-booking data-quote-for="Table salt processing plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Table salt processing plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="tea processing &amp; packaging line withers, rolls, dries and packs tea. ">
@@ -892,13 +897,13 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Withers, rolls, dries and packs tea.</p>
     
     
-    <button data-open-booking data-quote-for="Tea processing &amp; packaging line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Tea processing &amp; packaging line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
       </div>
     </section>
-    <section id="food-snack-production" data-equipment-section class="section scroll-mt-24 bg-white">
+    <section id="food-snack-production" data-equipment-section class="section scroll-mt-32 bg-white">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -913,7 +918,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Mixes, forms, bakes and cools biscuits and crackers.</p>
     
     
-    <button data-open-booking data-quote-for="Biscuit production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Biscuit production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="bakery workshop equipment mixers, ovens and proofers for a commercial bakery. ">
@@ -922,7 +927,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Mixers, ovens and proofers for a commercial bakery.</p>
     
     
-    <button data-open-booking data-quote-for="Bakery workshop equipment" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Bakery workshop equipment" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="instant noodle production line makes, steams, fries and packs instant noodles. ">
@@ -931,7 +936,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Makes, steams, fries and packs instant noodles.</p>
     
     
-    <button data-open-booking data-quote-for="Instant noodle production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Instant noodle production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="noodle processing line produces fresh or dried noodles. ">
@@ -940,7 +945,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Produces fresh or dried noodles.</p>
     
     
-    <button data-open-booking data-quote-for="Noodle processing line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Noodle processing line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pasta production line extrudes and dries pasta in common shapes. ">
@@ -949,7 +954,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Extrudes and dries pasta in common shapes.</p>
     
     
-    <button data-open-booking data-quote-for="Pasta production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Pasta production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="potato chips (crisps) production line washes, slices, fries and seasons potato chips. ">
@@ -958,7 +963,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Washes, slices, fries and seasons potato chips.</p>
     
     
-    <button data-open-booking data-quote-for="Potato chips (crisps) production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Potato chips (crisps) production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="frozen french fries line peels, cuts, blanches and freezes potato fries. ">
@@ -967,7 +972,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Peels, cuts, blanches and freezes potato fries.</p>
     
     
-    <button data-open-booking data-quote-for="Frozen french fries line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Frozen french fries line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="banana chips making plant slices, fries and seasons banana and plantain chips. ">
@@ -976,20 +981,20 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Slices, fries and seasons banana and plantain chips.</p>
     
     
-    <button data-open-booking data-quote-for="Banana chips making plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Banana chips making plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="dried fruit production line washes, cuts and dries fruit for packing. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/fruit-vegetable-processing-line.webp" alt="Washes, cuts and dries fruit for packing."
                  loading="lazy" decoding="async"
-                  width="1200" height="1800" srcset="../../assets/images/fruit-vegetable-processing-line-400w.webp 400w, ../../assets/images/fruit-vegetable-processing-line-800w.webp 800w, ../../assets/images/fruit-vegetable-processing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="1800" srcset="../../assets/images/fruit-vegetable-processing-line-400w.webp 400w, ../../assets/images/fruit-vegetable-processing-line-800w.webp 800w, ../../assets/images/fruit-vegetable-processing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Dried fruit production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Washes, cuts and dries fruit for packing.</p>
     
     
-    <button data-open-booking data-quote-for="Dried fruit production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Dried fruit production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="peanut butter production line roasts, grinds and fills peanut butter. ">
@@ -998,7 +1003,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Roasts, grinds and fills peanut butter.</p>
     
     
-    <button data-open-booking data-quote-for="Peanut butter production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Peanut butter production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="popcorn production line pops, coats and packs popcorn. ">
@@ -1007,7 +1012,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Pops, coats and packs popcorn.</p>
     
     
-    <button data-open-booking data-quote-for="Popcorn production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Popcorn production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="egg roll production line bakes and rolls wafer-style egg rolls. ">
@@ -1016,7 +1021,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Bakes and rolls wafer-style egg rolls.</p>
     
     
-    <button data-open-booking data-quote-for="Egg roll production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Egg roll production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="lollipop &amp; candy production line cooks, deposits and wraps hard candy and lollipops. ">
@@ -1025,7 +1030,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cooks, deposits and wraps hard candy and lollipops.</p>
     
     
-    <button data-open-booking data-quote-for="Lollipop &amp; candy production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Lollipop &amp; candy production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="popsicle making machine freezes and packs ice lollies and popsicles. ">
@@ -1034,7 +1039,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Freezes and packs ice lollies and popsicles.</p>
     
     
-    <button data-open-booking data-quote-for="Popsicle making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Popsicle making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="canned food production line fills, seams and sterilises canned food. ">
@@ -1043,33 +1048,33 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Fills, seams and sterilises canned food.</p>
     
     
-    <button data-open-booking data-quote-for="Canned food production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Canned food production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="tomato paste production line extracts, concentrates and fills tomato paste. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/fruit-vegetable-processing-line.webp" alt="Extracts, concentrates and fills tomato paste."
                  loading="lazy" decoding="async"
-                  width="1200" height="1800" srcset="../../assets/images/fruit-vegetable-processing-line-400w.webp 400w, ../../assets/images/fruit-vegetable-processing-line-800w.webp 800w, ../../assets/images/fruit-vegetable-processing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="1800" srcset="../../assets/images/fruit-vegetable-processing-line-400w.webp 400w, ../../assets/images/fruit-vegetable-processing-line-800w.webp 800w, ../../assets/images/fruit-vegetable-processing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Tomato paste production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Extracts, concentrates and fills tomato paste.</p>
     
     
-    <button data-open-booking data-quote-for="Tomato paste production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Tomato paste production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="cheese production line processes milk into cheese, from curding to pressing. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/dairy-processing-packaging-line.webp" alt="Processes milk into cheese, from curding to pressing."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../../assets/images/dairy-processing-packaging-line-400w.webp 400w, ../../assets/images/dairy-processing-packaging-line-800w.webp 800w, ../../assets/images/dairy-processing-packaging-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../../assets/images/dairy-processing-packaging-line-400w.webp 400w, ../../assets/images/dairy-processing-packaging-line-800w.webp 800w, ../../assets/images/dairy-processing-packaging-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Cheese production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Processes milk into cheese, from curding to pressing.</p>
     
     
-    <button data-open-booking data-quote-for="Cheese production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Cheese production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="tea bag production line fills and seals tea into tea bags. ">
@@ -1078,13 +1083,13 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Fills and seals tea into tea bags.</p>
     
     
-    <button data-open-booking data-quote-for="Tea bag production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Tea bag production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
       </div>
     </section>
-    <section id="beverage-bottled-water" data-equipment-section class="section scroll-mt-24 bg-gray-bg">
+    <section id="beverage-bottled-water" data-equipment-section class="section scroll-mt-32 bg-gray-bg">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -1099,7 +1104,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Treats, bottles and caps drinking water, from raw water to packed case.</p>
     
     
-    <button data-open-booking data-quote-for="Bottled water production plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Bottled water production plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="mineral water production line compact water bottling line for entry-level plants. ">
@@ -1108,7 +1113,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Compact water bottling line for entry-level plants.</p>
     
     
-    <button data-open-booking data-quote-for="Mineral water production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Mineral water production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="carbonated drinks production line mixes, carbonates and fills soft drinks. ">
@@ -1117,7 +1122,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Mixes, carbonates and fills soft drinks.</p>
     
     
-    <button data-open-booking data-quote-for="Carbonated drinks production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Carbonated drinks production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="fruit juice production line extracts, pasteurises and fills fruit juice. ">
@@ -1126,7 +1131,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Extracts, pasteurises and fills fruit juice.</p>
     
     
-    <button data-open-booking data-quote-for="Fruit juice production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Fruit juice production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="brewing &amp; beer production line brews, ferments and fills beer. ">
@@ -1135,7 +1140,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Brews, ferments and fills beer.</p>
     
     
-    <button data-open-booking data-quote-for="Brewing &amp; beer production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Brewing &amp; beer production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="whisky &amp; gin production line distils and bottles spirits. ">
@@ -1144,7 +1149,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Distils and bottles spirits.</p>
     
     
-    <button data-open-booking data-quote-for="Whisky &amp; gin production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Whisky &amp; gin production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="sugarcane juice production line presses, filters and bottles sugarcane juice. ">
@@ -1153,7 +1158,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Presses, filters and bottles sugarcane juice.</p>
     
     
-    <button data-open-booking data-quote-for="Sugarcane juice production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Sugarcane juice production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="ice block making factory freezes block ice for fish, drinks and cold chain. ">
@@ -1162,13 +1167,13 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Freezes block ice for fish, drinks and cold chain.</p>
     
     
-    <button data-open-booking data-quote-for="Ice block making factory" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Ice block making factory" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
       </div>
     </section>
-    <section id="packaging-printing" data-equipment-section class="section scroll-mt-24 bg-white">
+    <section id="packaging-printing" data-equipment-section class="section scroll-mt-32 bg-white">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -1183,7 +1188,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Stamps aluminium foil into takeaway and baking containers.</p>
     
     
-    <button data-open-booking data-quote-for="Aluminium container production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Aluminium container production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="aluminium foil forming line rolls and forms aluminium foil for household and catering use. ">
@@ -1192,20 +1197,20 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Rolls and forms aluminium foil for household and catering use.</p>
     
     
-    <button data-open-booking data-quote-for="Aluminium foil forming line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Aluminium foil forming line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="carton &amp; box making line cuts, prints and folds corrugated boxes. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/corrugated-carton-production-line.webp" alt="Cuts, prints and folds corrugated boxes."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../../assets/images/corrugated-carton-production-line-400w.webp 400w, ../../assets/images/corrugated-carton-production-line-800w.webp 800w, ../../assets/images/corrugated-carton-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../../assets/images/corrugated-carton-production-line-400w.webp 400w, ../../assets/images/corrugated-carton-production-line-800w.webp 800w, ../../assets/images/corrugated-carton-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Carton & box making line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts, prints and folds corrugated boxes.</p>
     
     
-    <button data-open-booking data-quote-for="Carton &amp; box making line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Carton &amp; box making line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="paper bag production line forms and glues paper shopping and food bags. ">
@@ -1214,46 +1219,46 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms and glues paper shopping and food bags.</p>
     
     
-    <button data-open-booking data-quote-for="Paper bag production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Paper bag production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="flexo printing machine prints film, paper and bags using flexographic plates. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/flexographic-printing-press.webp" alt="Prints film, paper and bags using flexographic plates."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../../assets/images/flexographic-printing-press-400w.webp 400w, ../../assets/images/flexographic-printing-press-800w.webp 800w, ../../assets/images/flexographic-printing-press-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../../assets/images/flexographic-printing-press-400w.webp 400w, ../../assets/images/flexographic-printing-press-800w.webp 800w, ../../assets/images/flexographic-printing-press-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Flexo printing machine</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Prints film, paper and bags using flexographic plates.</p>
     
     
-    <button data-open-booking data-quote-for="Flexo printing machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Flexo printing machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="bottle label production line prints and cuts labels for bottles and cans. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/label-printing-die-cutting-line.webp" alt="Prints and cuts labels for bottles and cans."
                  loading="lazy" decoding="async"
-                  width="1200" height="1804" srcset="../../assets/images/label-printing-die-cutting-line-400w.webp 400w, ../../assets/images/label-printing-die-cutting-line-800w.webp 800w, ../../assets/images/label-printing-die-cutting-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="1804" srcset="../../assets/images/label-printing-die-cutting-line-400w.webp 400w, ../../assets/images/label-printing-die-cutting-line-800w.webp 800w, ../../assets/images/label-printing-die-cutting-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Bottle label production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Prints and cuts labels for bottles and cans.</p>
     
     
-    <button data-open-booking data-quote-for="Bottle label production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Bottle label production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pvc label production line produces shrink and pvc labels. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/label-printing-die-cutting-line.webp" alt="Produces shrink and PVC labels."
                  loading="lazy" decoding="async"
-                  width="1200" height="1804" srcset="../../assets/images/label-printing-die-cutting-line-400w.webp 400w, ../../assets/images/label-printing-die-cutting-line-800w.webp 800w, ../../assets/images/label-printing-die-cutting-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="1804" srcset="../../assets/images/label-printing-die-cutting-line-400w.webp 400w, ../../assets/images/label-printing-die-cutting-line-800w.webp 800w, ../../assets/images/label-printing-die-cutting-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">PVC label production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Produces shrink and PVC labels.</p>
     
     
-    <button data-open-booking data-quote-for="PVC label production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PVC label production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="printing &amp; book-making line prints, folds and binds books and magazines. ">
@@ -1262,7 +1267,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Prints, folds and binds books and magazines.</p>
     
     
-    <button data-open-booking data-quote-for="Printing &amp; book-making line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Printing &amp; book-making line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="exercise book manufacturing plant makes school exercise books, from paper to finished stack. ">
@@ -1271,7 +1276,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Makes school exercise books, from paper to finished stack.</p>
     
     
-    <button data-open-booking data-quote-for="Exercise book manufacturing plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Exercise book manufacturing plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pvc card printing machine prints id, loyalty and membership cards. ">
@@ -1280,7 +1285,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Prints ID, loyalty and membership cards.</p>
     
     
-    <button data-open-booking data-quote-for="PVC card printing machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PVC card printing machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="birthday card printing machine prints and finishes greeting cards. ">
@@ -1289,7 +1294,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Prints and finishes greeting cards.</p>
     
     
-    <button data-open-booking data-quote-for="Birthday card printing machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Birthday card printing machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="envelope making machine cuts, folds and glues envelopes. ">
@@ -1298,20 +1303,20 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts, folds and glues envelopes.</p>
     
     
-    <button data-open-booking data-quote-for="Envelope making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Envelope making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="powder packaging plant weighs, fills and seals powders such as flour, milk and spice. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/pouch-sachet-forming-line.webp" alt="Weighs, fills and seals powders such as flour, milk and spice."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../../assets/images/pouch-sachet-forming-line-400w.webp 400w, ../../assets/images/pouch-sachet-forming-line-800w.webp 800w, ../../assets/images/pouch-sachet-forming-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../../assets/images/pouch-sachet-forming-line-400w.webp 400w, ../../assets/images/pouch-sachet-forming-line-800w.webp 800w, ../../assets/images/pouch-sachet-forming-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Powder packaging plant</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Weighs, fills and seals powders such as flour, milk and spice.</p>
     
     
-    <button data-open-booking data-quote-for="Powder packaging plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Powder packaging plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="glass bottle making line melts and moulds glass into bottles and jars. ">
@@ -1320,39 +1325,39 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Melts and moulds glass into bottles and jars.</p>
     
     
-    <button data-open-booking data-quote-for="Glass bottle making line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Glass bottle making line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pp woven bag machine weaves and converts polypropylene into woven sacks. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/nonwoven-bag-pp-woven-sack-production-line.webp" alt="Weaves and converts polypropylene into woven sacks."
                  loading="lazy" decoding="async"
-                  width="1200" height="1800" srcset="../../assets/images/nonwoven-bag-pp-woven-sack-production-line-400w.webp 400w, ../../assets/images/nonwoven-bag-pp-woven-sack-production-line-800w.webp 800w, ../../assets/images/nonwoven-bag-pp-woven-sack-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="1800" srcset="../../assets/images/nonwoven-bag-pp-woven-sack-production-line-400w.webp 400w, ../../assets/images/nonwoven-bag-pp-woven-sack-production-line-800w.webp 800w, ../../assets/images/nonwoven-bag-pp-woven-sack-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">PP woven bag machine</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Weaves and converts polypropylene into woven sacks.</p>
     
     
-    <button data-open-booking data-quote-for="PP woven bag machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PP woven bag machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="non-woven bag production line forms and sews non-woven shopping bags. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/nonwoven-bag-pp-woven-sack-production-line.webp" alt="Forms and sews non-woven shopping bags."
                  loading="lazy" decoding="async"
-                  width="1200" height="1800" srcset="../../assets/images/nonwoven-bag-pp-woven-sack-production-line-400w.webp 400w, ../../assets/images/nonwoven-bag-pp-woven-sack-production-line-800w.webp 800w, ../../assets/images/nonwoven-bag-pp-woven-sack-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="1800" srcset="../../assets/images/nonwoven-bag-pp-woven-sack-production-line-400w.webp 400w, ../../assets/images/nonwoven-bag-pp-woven-sack-production-line-800w.webp 800w, ../../assets/images/nonwoven-bag-pp-woven-sack-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Non-woven bag production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms and sews non-woven shopping bags.</p>
     
     
-    <button data-open-booking data-quote-for="Non-woven bag production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Non-woven bag production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
       </div>
     </section>
-    <section id="paper-tissue-stationery" data-equipment-section class="section scroll-mt-24 bg-gray-bg">
+    <section id="paper-tissue-stationery" data-equipment-section class="section scroll-mt-32 bg-gray-bg">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -1367,7 +1372,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Makes jumbo parent rolls of tissue from pulp or waste paper.</p>
     
     
-    <button data-open-booking data-quote-for="Tissue paper jumbo roll production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Tissue paper jumbo roll production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="toilet roll production line rewinds, embosses and cuts jumbo rolls into toilet rolls. ">
@@ -1376,7 +1381,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Rewinds, embosses and cuts jumbo rolls into toilet rolls.</p>
     
     
-    <button data-open-booking data-quote-for="Toilet roll production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Toilet roll production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="facial tissue production line folds, cuts and packs facial tissue. ">
@@ -1385,7 +1390,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Folds, cuts and packs facial tissue.</p>
     
     
-    <button data-open-booking data-quote-for="Facial tissue production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Facial tissue production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="recycled paper production line pulps waste paper and forms recycled paper. ">
@@ -1394,7 +1399,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Pulps waste paper and forms recycled paper.</p>
     
     
-    <button data-open-booking data-quote-for="Recycled paper production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Recycled paper production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pulp moulding factory moulds waste-paper pulp into trays and protective packaging. ">
@@ -1403,7 +1408,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Moulds waste-paper pulp into trays and protective packaging.</p>
     
     
-    <button data-open-booking data-quote-for="Pulp moulding factory" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Pulp moulding factory" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="egg tray production line moulds and dries egg trays from paper pulp. ">
@@ -1412,7 +1417,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Moulds and dries egg trays from paper pulp.</p>
     
     
-    <button data-open-booking data-quote-for="Egg tray production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Egg tray production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="paper cup making machine forms and seals paper cups for hot and cold drinks. ">
@@ -1421,7 +1426,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms and seals paper cups for hot and cold drinks.</p>
     
     
-    <button data-open-booking data-quote-for="Paper cup making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Paper cup making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="cake paper cup making machine forms baking cups for cakes and cupcakes. ">
@@ -1430,7 +1435,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms baking cups for cakes and cupcakes.</p>
     
     
-    <button data-open-booking data-quote-for="Cake paper cup making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Cake paper cup making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="paper container production line forms paper bowls and food containers. ">
@@ -1439,7 +1444,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms paper bowls and food containers.</p>
     
     
-    <button data-open-booking data-quote-for="Paper container production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Paper container production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="disposable lunch box production line forms disposable takeaway boxes. ">
@@ -1448,7 +1453,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms disposable takeaway boxes.</p>
     
     
-    <button data-open-booking data-quote-for="Disposable lunch box production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Disposable lunch box production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pencil production line cuts, grooves, glues and paints wood pencils. ">
@@ -1457,7 +1462,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts, grooves, glues and paints wood pencils.</p>
     
     
-    <button data-open-booking data-quote-for="Pencil production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Pencil production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="recycled newspaper pencil machine rolls waste newspaper into pencils. ">
@@ -1466,7 +1471,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Rolls waste newspaper into pencils.</p>
     
     
-    <button data-open-booking data-quote-for="Recycled newspaper pencil machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Recycled newspaper pencil machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pen production line assembles ballpoint pens and refills. ">
@@ -1475,7 +1480,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Assembles ballpoint pens and refills.</p>
     
     
-    <button data-open-booking data-quote-for="Pen production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Pen production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="school chalk production line moulds and dries school chalk. ">
@@ -1484,7 +1489,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Moulds and dries school chalk.</p>
     
     
-    <button data-open-booking data-quote-for="School chalk production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="School chalk production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="toothpick making machine cuts and polishes bamboo or wood toothpicks. ">
@@ -1493,13 +1498,13 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts and polishes bamboo or wood toothpicks.</p>
     
     
-    <button data-open-booking data-quote-for="Toothpick making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Toothpick making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
       </div>
     </section>
-    <section id="plastics-rubber-products" data-equipment-section class="section scroll-mt-24 bg-white">
+    <section id="plastics-rubber-products" data-equipment-section class="section scroll-mt-32 bg-white">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -1512,13 +1517,13 @@
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/pet-bottle-blow-moulding-line.webp" alt="Blow-moulds PET preforms into drinks and water bottles."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../../assets/images/pet-bottle-blow-moulding-line-400w.webp 400w, ../../assets/images/pet-bottle-blow-moulding-line-800w.webp 800w, ../../assets/images/pet-bottle-blow-moulding-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../../assets/images/pet-bottle-blow-moulding-line-400w.webp 400w, ../../assets/images/pet-bottle-blow-moulding-line-800w.webp 800w, ../../assets/images/pet-bottle-blow-moulding-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">PET bottle blowing machine</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Blow-moulds PET preforms into drinks and water bottles.</p>
     
     
-    <button data-open-booking data-quote-for="PET bottle blowing machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PET bottle blowing machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pe bottle blowing machine blow-moulds pe containers for oil, detergent and chemicals. ">
@@ -1527,7 +1532,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Blow-moulds PE containers for oil, detergent and chemicals.</p>
     
     
-    <button data-open-booking data-quote-for="PE bottle blowing machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PE bottle blowing machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pe container production line produces pe drums, jerrycans and containers. ">
@@ -1536,33 +1541,33 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Produces PE drums, jerrycans and containers.</p>
     
     
-    <button data-open-booking data-quote-for="PE container production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PE container production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="plastic bucket production line injection-moulds buckets, lids and handles. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/household-plastics-production-line.webp" alt="Injection-moulds buckets, lids and handles."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../../assets/images/household-plastics-production-line-400w.webp 400w, ../../assets/images/household-plastics-production-line-800w.webp 800w, ../../assets/images/household-plastics-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../../assets/images/household-plastics-production-line-400w.webp 400w, ../../assets/images/household-plastics-production-line-800w.webp 800w, ../../assets/images/household-plastics-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Plastic bucket production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Injection-moulds buckets, lids and handles.</p>
     
     
-    <button data-open-booking data-quote-for="Plastic bucket production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Plastic bucket production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="plastic cup production line thermoforms disposable plastic cups. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/household-plastics-production-line.webp" alt="Thermoforms disposable plastic cups."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../../assets/images/household-plastics-production-line-400w.webp 400w, ../../assets/images/household-plastics-production-line-800w.webp 800w, ../../assets/images/household-plastics-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../../assets/images/household-plastics-production-line-400w.webp 400w, ../../assets/images/household-plastics-production-line-800w.webp 800w, ../../assets/images/household-plastics-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Plastic cup production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Thermoforms disposable plastic cups.</p>
     
     
-    <button data-open-booking data-quote-for="Plastic cup production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Plastic cup production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="plastic cup lid production line forms lids for cups and containers. ">
@@ -1571,7 +1576,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms lids for cups and containers.</p>
     
     
-    <button data-open-booking data-quote-for="Plastic cup lid production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Plastic cup lid production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="ps foam container production line foams and shapes polystyrene food boxes. ">
@@ -1580,7 +1585,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Foams and shapes polystyrene food boxes.</p>
     
     
-    <button data-open-booking data-quote-for="PS foam container production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PS foam container production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pvc clear bottle making line forms clear pvc bottles and packs. ">
@@ -1589,7 +1594,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms clear PVC bottles and packs.</p>
     
     
-    <button data-open-booking data-quote-for="PVC clear bottle making line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PVC clear bottle making line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pvc injection plant injection-moulds pvc fittings and parts. ">
@@ -1598,20 +1603,20 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Injection-moulds PVC fittings and parts.</p>
     
     
-    <button data-open-booking data-quote-for="PVC injection plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PVC injection plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="plastic injection moulding plant injection-moulds plastic parts from household goods to crates. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/plastic-injection-moulding-machine.webp" alt="Injection-moulds plastic parts from household goods to crates."
                  loading="lazy" decoding="async"
-                  width="1200" height="1800" srcset="../../assets/images/plastic-injection-moulding-machine-400w.webp 400w, ../../assets/images/plastic-injection-moulding-machine-800w.webp 800w, ../../assets/images/plastic-injection-moulding-machine-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="1800" srcset="../../assets/images/plastic-injection-moulding-machine-400w.webp 400w, ../../assets/images/plastic-injection-moulding-machine-800w.webp 800w, ../../assets/images/plastic-injection-moulding-machine-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Plastic injection moulding plant</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Injection-moulds plastic parts from household goods to crates.</p>
     
     
-    <button data-open-booking data-quote-for="Plastic injection moulding plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Plastic injection moulding plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="hdpe water pipe production line extrudes hdpe water and irrigation pipe. ">
@@ -1620,7 +1625,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Extrudes HDPE water and irrigation pipe.</p>
     
     
-    <button data-open-booking data-quote-for="HDPE water pipe production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="HDPE water pipe production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pvc water pipe production line extrudes pvc pressure and drainage pipe. ">
@@ -1629,7 +1634,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Extrudes PVC pressure and drainage pipe.</p>
     
     
-    <button data-open-booking data-quote-for="PVC water pipe production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PVC water pipe production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="fishing net &amp; rope extrusion line extrudes monofilament yarn and twists it into rope and netting. ">
@@ -1638,13 +1643,13 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Extrudes monofilament yarn and twists it into rope and netting.</p>
     
     
-    <button data-open-booking data-quote-for="Fishing net &amp; rope extrusion line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Fishing net &amp; rope extrusion line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
       </div>
     </section>
-    <section id="textiles-apparel" data-equipment-section class="section scroll-mt-24 bg-gray-bg">
+    <section id="textiles-apparel" data-equipment-section class="section scroll-mt-32 bg-gray-bg">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -1657,39 +1662,39 @@
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/garment-cut-and-sew-production-line.webp" alt="Cutting, sewing and finishing machines for a garment workshop."
                  loading="lazy" decoding="async"
-                  width="1200" height="675" srcset="../../assets/images/garment-cut-and-sew-production-line-400w.webp 400w, ../../assets/images/garment-cut-and-sew-production-line-800w.webp 800w, ../../assets/images/garment-cut-and-sew-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="675" srcset="../../assets/images/garment-cut-and-sew-production-line-400w.webp 400w, ../../assets/images/garment-cut-and-sew-production-line-800w.webp 800w, ../../assets/images/garment-cut-and-sew-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Garment processing machines</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cutting, sewing and finishing machines for a garment workshop.</p>
     
     
-    <button data-open-booking data-quote-for="Garment processing machines" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Garment processing machines" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="fabric weaving plant looms and preparation machines that weave fabric. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/weaving-loom-line.webp" alt="Looms and preparation machines that weave fabric."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../../assets/images/weaving-loom-line-400w.webp 400w, ../../assets/images/weaving-loom-line-800w.webp 800w, ../../assets/images/weaving-loom-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../../assets/images/weaving-loom-line-400w.webp 400w, ../../assets/images/weaving-loom-line-800w.webp 800w, ../../assets/images/weaving-loom-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Fabric weaving plant</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Looms and preparation machines that weave fabric.</p>
     
     
-    <button data-open-booking data-quote-for="Fabric weaving plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Fabric weaving plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="socks making machine knits socks on automatic circular machines. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/circular-flat-knitting-line.webp" alt="Knits socks on automatic circular machines."
                  loading="lazy" decoding="async"
-                  width="1200" height="1600" srcset="../../assets/images/circular-flat-knitting-line-400w.webp 400w, ../../assets/images/circular-flat-knitting-line-800w.webp 800w, ../../assets/images/circular-flat-knitting-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="1600" srcset="../../assets/images/circular-flat-knitting-line-400w.webp 400w, ../../assets/images/circular-flat-knitting-line-800w.webp 800w, ../../assets/images/circular-flat-knitting-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Socks making machine</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Knits socks on automatic circular machines.</p>
     
     
-    <button data-open-booking data-quote-for="Socks making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Socks making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="towel making machine weaves and finishes bath and hand towels. ">
@@ -1698,7 +1703,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Weaves and finishes bath and hand towels.</p>
     
     
-    <button data-open-booking data-quote-for="Towel making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Towel making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="disposable cotton towel making machine makes single-use cotton towels for salons and hotels. ">
@@ -1707,7 +1712,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Makes single-use cotton towels for salons and hotels.</p>
     
     
-    <button data-open-booking data-quote-for="Disposable cotton towel making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Disposable cotton towel making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="shoelace production line braids and tips shoelaces. ">
@@ -1716,7 +1721,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Braids and tips shoelaces.</p>
     
     
-    <button data-open-booking data-quote-for="Shoelace production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Shoelace production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="shoe making line cuts, stitches and assembles shoes. ">
@@ -1725,7 +1730,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts, stitches and assembles shoes.</p>
     
     
-    <button data-open-booking data-quote-for="Shoe making line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Shoe making line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="eva shoe production line moulds eva foam sandals and shoes. ">
@@ -1734,7 +1739,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Moulds EVA foam sandals and shoes.</p>
     
     
-    <button data-open-booking data-quote-for="EVA shoe production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="EVA shoe production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="sole production line moulds rubber and pu shoe soles. ">
@@ -1743,7 +1748,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Moulds rubber and PU shoe soles.</p>
     
     
-    <button data-open-booking data-quote-for="Sole production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Sole production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="sole tape making line makes adhesive tape used in shoe-sole assembly. ">
@@ -1752,7 +1757,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Makes adhesive tape used in shoe-sole assembly.</p>
     
     
-    <button data-open-booking data-quote-for="Sole tape making line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Sole tape making line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="tent production line cuts, welds and sews tents and tarpaulins. ">
@@ -1761,7 +1766,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts, welds and sews tents and tarpaulins.</p>
     
     
-    <button data-open-booking data-quote-for="Tent production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Tent production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="leather processing plant tans, dyes and finishes hides into leather. ">
@@ -1770,13 +1775,13 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Tans, dyes and finishes hides into leather.</p>
     
     
-    <button data-open-booking data-quote-for="Leather processing plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Leather processing plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
       </div>
     </section>
-    <section id="hygiene-personal-care" data-equipment-section class="section scroll-mt-24 bg-white">
+    <section id="hygiene-personal-care" data-equipment-section class="section scroll-mt-32 bg-white">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -1791,7 +1796,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms absorbent core, cuts and packs baby diapers and pads.</p>
     
     
-    <button data-open-booking data-quote-for="Diaper &amp; sanitary towel making line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Diaper &amp; sanitary towel making line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="fully automatic sanitary napkin machine forms and packs women's sanitary napkins. ">
@@ -1800,33 +1805,33 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms and packs women's sanitary napkins.</p>
     
     
-    <button data-open-booking data-quote-for="Fully automatic sanitary napkin machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Fully automatic sanitary napkin machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="medical mask making machine welds nose wire and ear loops onto layered non-woven masks. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/nonwoven-fabric-production-line.webp" alt="Welds nose wire and ear loops onto layered non-woven masks."
                  loading="lazy" decoding="async"
-                  width="1200" height="721" srcset="../../assets/images/nonwoven-fabric-production-line-400w.webp 400w, ../../assets/images/nonwoven-fabric-production-line-800w.webp 800w, ../../assets/images/nonwoven-fabric-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="721" srcset="../../assets/images/nonwoven-fabric-production-line-400w.webp 400w, ../../assets/images/nonwoven-fabric-production-line-800w.webp 800w, ../../assets/images/nonwoven-fabric-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Medical mask making machine</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Welds nose wire and ear loops onto layered non-woven masks.</p>
     
     
-    <button data-open-booking data-quote-for="Medical mask making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Medical mask making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="pp non-woven mask line makes facial and medical masks from pp non-woven. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/nonwoven-fabric-production-line.webp" alt="Makes facial and medical masks from PP non-woven."
                  loading="lazy" decoding="async"
-                  width="1200" height="721" srcset="../../assets/images/nonwoven-fabric-production-line-400w.webp 400w, ../../assets/images/nonwoven-fabric-production-line-800w.webp 800w, ../../assets/images/nonwoven-fabric-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="721" srcset="../../assets/images/nonwoven-fabric-production-line-400w.webp 400w, ../../assets/images/nonwoven-fabric-production-line-800w.webp 800w, ../../assets/images/nonwoven-fabric-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">PP non-woven mask line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Makes facial and medical masks from PP non-woven.</p>
     
     
-    <button data-open-booking data-quote-for="PP non-woven mask line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="PP non-woven mask line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="medical gloves production line dips, cures and strips disposable gloves. ">
@@ -1835,7 +1840,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Dips, cures and strips disposable gloves.</p>
     
     
-    <button data-open-booking data-quote-for="Medical gloves production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Medical gloves production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="iv non-pvc soft bag production line forms and fills non-pvc bags for intravenous solutions. ">
@@ -1844,7 +1849,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms and fills non-PVC bags for intravenous solutions.</p>
     
     
-    <button data-open-booking data-quote-for="IV non-PVC soft bag production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="IV non-PVC soft bag production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="toothpaste making machine mixes, fills and seals toothpaste tubes. ">
@@ -1853,7 +1858,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Mixes, fills and seals toothpaste tubes.</p>
     
     
-    <button data-open-booking data-quote-for="Toothpaste making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Toothpaste making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="toothbrush production line moulds handles and tufts bristles. ">
@@ -1862,7 +1867,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Moulds handles and tufts bristles.</p>
     
     
-    <button data-open-booking data-quote-for="Toothbrush production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Toothbrush production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="bar soap production line mixes, extrudes, stamps and wraps bar soap. ">
@@ -1871,7 +1876,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Mixes, extrudes, stamps and wraps bar soap.</p>
     
     
-    <button data-open-booking data-quote-for="Bar soap production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Bar soap production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="liquid detergent production line blends and fills liquid soap and detergent. ">
@@ -1880,7 +1885,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Blends and fills liquid soap and detergent.</p>
     
     
-    <button data-open-booking data-quote-for="Liquid detergent production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Liquid detergent production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="washing powder production line mixes, dries and packs washing powder. ">
@@ -1889,13 +1894,13 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Mixes, dries and packs washing powder.</p>
     
     
-    <button data-open-booking data-quote-for="Washing powder production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Washing powder production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
       </div>
     </section>
-    <section id="consumer-goods-retail" data-equipment-section class="section scroll-mt-24 bg-gray-bg">
+    <section id="consumer-goods-retail" data-equipment-section class="section scroll-mt-32 bg-gray-bg">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -1910,7 +1915,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Melts, pours and cools candles at production scale.</p>
     
     
-    <button data-open-booking data-quote-for="Candle making production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Candle making production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="manual candle making machine entry-level candle moulding for small workshops. ">
@@ -1919,7 +1924,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Entry-level candle moulding for small workshops.</p>
     
     
-    <button data-open-booking data-quote-for="Manual candle making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Manual candle making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="birthday candle making machine forms and cuts birthday candles. ">
@@ -1928,20 +1933,20 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Forms and cuts birthday candles.</p>
     
     
-    <button data-open-booking data-quote-for="Birthday candle making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Birthday candle making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="ceramic plate &amp; cup production line presses, glazes and fires tableware. ">
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/sanitaryware-slip-casting-glazing-line.webp" alt="Presses, glazes and fires tableware."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../../assets/images/sanitaryware-slip-casting-glazing-line-400w.webp 400w, ../../assets/images/sanitaryware-slip-casting-glazing-line-800w.webp 800w, ../../assets/images/sanitaryware-slip-casting-glazing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="800" srcset="../../assets/images/sanitaryware-slip-casting-glazing-line-400w.webp 400w, ../../assets/images/sanitaryware-slip-casting-glazing-line-800w.webp 800w, ../../assets/images/sanitaryware-slip-casting-glazing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Ceramic plate & cup production line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Presses, glazes and fires tableware.</p>
     
     
-    <button data-open-booking data-quote-for="Ceramic plate &amp; cup production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Ceramic plate &amp; cup production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="stamp making machine makes rubber and polymer stamps for offices and kiosks. ">
@@ -1950,13 +1955,13 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Makes rubber and polymer stamps for offices and kiosks.</p>
     
     
-    <button data-open-booking data-quote-for="Stamp making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Stamp making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
       </div>
     </section>
-    <section id="recycling-waste-to-energy" data-equipment-section class="section scroll-mt-24 bg-white">
+    <section id="recycling-waste-to-energy" data-equipment-section class="section scroll-mt-32 bg-white">
       <div class="shell max-w-6xl">
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-2xl">
@@ -1969,13 +1974,13 @@
     <div class="media media-4-3 card-media">
             <img src="../../assets/images/plastic-recycling-pelletizing-line.webp" alt="Washes, shreds and pelletises waste plastic."
                  loading="lazy" decoding="async"
-                  width="1200" height="798" srcset="../../assets/images/plastic-recycling-pelletizing-line-400w.webp 400w, ../../assets/images/plastic-recycling-pelletizing-line-800w.webp 800w, ../../assets/images/plastic-recycling-pelletizing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                  width="1200" height="798" srcset="../../assets/images/plastic-recycling-pelletizing-line-400w.webp 400w, ../../assets/images/plastic-recycling-pelletizing-line-800w.webp 800w, ../../assets/images/plastic-recycling-pelletizing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
           </div>
     <h3 class="font-semibold text-ink leading-snug">Plastic (PP/PE/PET) recycling line</h3>
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Washes, shreds and pelletises waste plastic.</p>
     
     
-    <button data-open-booking data-quote-for="Plastic (PP/PE/PET) recycling line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Plastic (PP/PE/PET) recycling line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="waste tyre recycling production line shreds tyres into rubber crumb and recovers steel. ">
@@ -1984,7 +1989,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Shreds tyres into rubber crumb and recovers steel.</p>
     
     
-    <button data-open-booking data-quote-for="Waste tyre recycling production line" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Waste tyre recycling production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="waste tyre &amp; plastic pyrolysis plant heats waste tyre and plastic without oxygen to produce fuel oil and carbon. ">
@@ -1993,7 +1998,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Heats waste tyre and plastic without oxygen to produce fuel oil and carbon.</p>
     
     
-    <button data-open-booking data-quote-for="Waste tyre &amp; plastic pyrolysis plant" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Waste tyre &amp; plastic pyrolysis plant" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="sawdust briquette making machine presses sawdust into fuel briquettes. ">
@@ -2002,7 +2007,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Presses sawdust into fuel briquettes.</p>
     
     
-    <button data-open-booking data-quote-for="Sawdust briquette making machine" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Sawdust briquette making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article><article class="card flex flex-col" data-equipment-card data-search="coconut fibre briquette dryer dries coconut fibre ahead of briquetting. ">
@@ -2011,7 +2016,7 @@
     <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Dries coconut fibre ahead of briquetting.</p>
     
     
-    <button data-open-booking data-quote-for="Coconut fibre briquette dryer" class="mt-5 w-full btn btn-primary btn-sm justify-center">
+    <button data-open-booking data-quote-for="Coconut fibre briquette dryer" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
   </article></div>
@@ -2165,9 +2170,9 @@
       </div>
     </div>
   </div>
-    <script src="../../assets/js/config.js?v=63"></script>
-    <script src="../../assets/js/api.js?v=63"></script>
-    <script src="../../assets/js/site.js?v=63" defer></script>
-    <script type="module" src="../../assets/js/motion-effects.js?v=63"></script>
+    <script src="../../assets/js/config.js?v=68"></script>
+    <script src="../../assets/js/api.js?v=68"></script>
+    <script src="../../assets/js/site.js?v=68" defer></script>
+    <script type="module" src="../../assets/js/motion-effects.js?v=68"></script>
   </body>
 </html>

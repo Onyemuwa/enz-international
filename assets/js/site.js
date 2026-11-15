@@ -557,6 +557,55 @@
     });
   }
 
+  // Equipment page: highlight the category tab for the section on screen, and
+  // keep that tab visible inside the horizontally scrolling tab row.
+  var eqTabs = Array.prototype.slice.call(document.querySelectorAll('.equipment-tab'));
+  if (eqTabs.length && 'IntersectionObserver' in window) {
+    var tabFor = {};
+    eqTabs.forEach(function (tab) { tabFor[tab.getAttribute('href').slice(1)] = tab; });
+    var visible = {};
+    var spy = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+        var current = null;
+        document.querySelectorAll('[data-equipment-section]').forEach(function (sec) {
+          if (!current && visible[sec.id] && !sec.hidden) current = sec.id;
+        });
+        if (!current) return;
+        eqTabs.forEach(function (tab) {
+          var on = tab === tabFor[current];
+          if (on) tab.setAttribute('aria-current', 'true');
+          else tab.removeAttribute('aria-current');
+          if (on && tab.parentNode) {
+            var box = tab.parentNode;
+            box.scrollTo({ left: Math.max(0, tab.offsetLeft - box.offsetLeft - 24), behavior: 'smooth' });
+          }
+        });
+      },
+      { rootMargin: '-140px 0px -55% 0px' }
+    );
+    document.querySelectorAll('[data-equipment-section]').forEach(function (sec) { spy.observe(sec); });
+  }
+
+  // Contact page map: loaded only when the visitor asks for it.
+  var mapBox = document.querySelector('[data-map]');
+  var mapBtn = mapBox && mapBox.querySelector('[data-map-load]');
+  if (mapBox && mapBtn) {
+    mapBtn.addEventListener('click', function () {
+      var frame = document.createElement('iframe');
+      frame.title = 'ENZ INTERNATIONAL — Guangzhou HQ location';
+      frame.src = 'https://www.google.com/maps?q=Guangzhou%2C+China&output=embed';
+      frame.width = '100%';
+      frame.height = '100%';
+      frame.loading = 'lazy';
+      frame.referrerPolicy = 'no-referrer-when-downgrade';
+      frame.className = 'w-full h-full border-0';
+      mapBox.textContent = '';
+      mapBox.className = 'mt-6 rounded-2xl overflow-hidden border border-line shadow-sm h-64';
+      mapBox.appendChild(frame);
+    });
+  }
+
   // Animated counters, entrance reveals, and the hero parallax are handled by
   // motion-effects.js (Motion — motion.dev), loaded separately as a module.
 })();

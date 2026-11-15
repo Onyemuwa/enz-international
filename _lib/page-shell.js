@@ -8,7 +8,7 @@
 // Canonical, hreflang and the JSON-LD graph are emitted together because they
 // have to agree with each other. Splitting them is how a canonical ends up
 // pointing at a URL the hreflang set does not contain.
-import { SITE_URL, CONTACT_EMAIL, ASSET_VERSION, FONT_HREF } from './site-config.js';
+import { SITE_URL, CONTACT_EMAIL, ASSET_VERSION } from './site-config.js';
 import { depthOf, urlPath, toCleanUrls } from './urls.js';
 import { t } from './i18n.js';
 import { icon } from './icons.js';
@@ -83,11 +83,9 @@ export function seoHead({ lang, title, description, page, jsonLd, robots }) {
          compiler to every visitor and repaints the page after first paint.) -->
     <link rel="stylesheet" href="../assets/css/site.css?v=${ASSET_VERSION}" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="${FONT_HREF}" />
-    <link rel="stylesheet" href="${FONT_HREF}" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="${FONT_HREF}" /></noscript>
+    <!-- Sora is self-hosted (SIL Open Font License): one same-origin request,
+         preloaded, no third-party connection before first paint. -->
+    <link rel="preload" href="../assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content="${page.startsWith('insight-') ? 'article' : 'website'}" />
     <meta property="og:site_name" content="ENZ INTERNATIONAL" />

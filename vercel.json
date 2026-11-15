@@ -60,7 +60,7 @@
       ]
     },
     {
-      "source": "/assets/(css|js)/(.*)",
+      "source": "/assets/(css|js|fonts)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

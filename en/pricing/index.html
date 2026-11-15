@@ -22,13 +22,11 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../../assets/css/site.css?v=63" />
+    <link rel="stylesheet" href="../../assets/css/site.css?v=68" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" /></noscript>
+    <!-- Sora is self-hosted (SIL Open Font License): one same-origin request,
+         preloaded, no third-party connection before first paint. -->
+    <link rel="preload" href="../../assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ENZ INTERNATIONAL" />
@@ -425,9 +423,9 @@
       </div>
     </div>
   </div>
-    <script src="../../assets/js/config.js?v=63"></script>
-    <script src="../../assets/js/api.js?v=63"></script>
-    <script src="../../assets/js/site.js?v=63" defer></script>
-    <script type="module" src="../../assets/js/motion-effects.js?v=63"></script>
+    <script src="../../assets/js/config.js?v=68"></script>
+    <script src="../../assets/js/api.js?v=68"></script>
+    <script src="../../assets/js/site.js?v=68" defer></script>
+    <script type="module" src="../../assets/js/motion-effects.js?v=68"></script>
   </body>
 </html>

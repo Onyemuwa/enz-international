@@ -17,7 +17,7 @@ import { images } from './_content/images.js';
 // Extracted build modules. These were all inline in this file, which had grown
 // to ~2,600 lines and mixed constants, URL rewriting, translation lookup,
 // components, page builders and the file writer in one scroll.
-import { OUT, SITE_URL, ASSET_VERSION, FONT_HREF } from './_lib/site-config.js';
+import { OUT, SITE_URL, ASSET_VERSION } from './_lib/site-config.js';
 import { slugOf, isHome, urlPath } from './_lib/urls.js';
 import { t } from './_lib/i18n.js';
 import { icon } from './_lib/icons.js';
@@ -228,9 +228,7 @@ writeFileSync(
       @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms !important}}
     </style>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="${FONT_HREF}" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=${ASSET_VERSION}" />
   </head>
   <body>
     <main class="wrap">
@@ -353,6 +351,9 @@ ${SECURITY_HEADERS.map(([k, v]) => `  ${k}: ${v}`).join('\n')}
 /assets/js/*
   Cache-Control: ${CACHE_LONG}
 
+/assets/fonts/*
+  Cache-Control: ${CACHE_LONG}
+
 /assets/images/*
   Cache-Control: ${CACHE_IMAGES}
 `
@@ -422,7 +423,7 @@ writeFileSync(
       ],
       headers: [
         { source: '/(.*)', headers: SECURITY_HEADERS.map(([key, value]) => ({ key, value })) },
-        { source: '/assets/(css|js)/(.*)', headers: [{ key: 'Cache-Control', value: CACHE_LONG }] },
+        { source: '/assets/(css|js|fonts)/(.*)', headers: [{ key: 'Cache-Control', value: CACHE_LONG }] },
         { source: '/assets/images/(.*)', headers: [{ key: 'Cache-Control', value: CACHE_IMAGES }] },
         { source: '/(.*).html', headers: [{ key: 'Cache-Control', value: CACHE_HTML }] },
       ],
