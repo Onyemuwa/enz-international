@@ -61,7 +61,7 @@ export function homePage(lang) {
         </div>
         <div class="rh-visual">
           ${media('hero', { ratio: '4-3', eager: true, sizes: '(min-width: 900px) 48vw, 100vw' })}
-          <div class="rh-tag"><strong>On the ground in China</strong>Built for the details between the quote and the shipment.</div>
+          <div class="rh-tag"><strong>Brief to delivery</strong>Supplier shortlist, inspection and freight, handled by one team.</div>
         </div>
       </div>
     </div>
@@ -254,8 +254,8 @@ export function aboutPage(lang) {
         </div>
       </div>
       <div class="lg:col-span-5 about-hero-visual">
-        ${media('about', { ratio: '4-5', className: 'about-hero-image', eager: true })}
-        <div class="about-hero-note"><span class="status-dot status-done">${icon('check', 'w-3.5 h-3.5')}</span><span><strong>Built for the handover</strong><small>From factory floor to final mile</small></span></div>
+        ${media('about', { ratio: '4-3', className: 'about-hero-image', eager: true })}
+        <div class="about-hero-note"><span class="status-dot status-done">${icon('check', 'w-3.5 h-3.5')}</span><span><strong>On a supplier visit</strong><small>Factory floor, China</small></span></div>
       </div>
     </div>
   </section>

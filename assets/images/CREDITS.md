@@ -11,7 +11,6 @@ because knowing where a file came from matters when you want to replace it.
 | `sourcing.webp` | Timelab | `photo-1590497008432-598f04441de8` | Shipping port, stacked containers and cranes |
 | `quality-inspection.webp` | TECNIC Bioprocess Solutions | `photo-1747999827332-163aa33cd597` | A man measuring a metal component |
 | `factory-setup.webp` | Homa Appliances | `photo-1716194583732-0b9874234218` | Large machine in a factory with people working on it |
-| `about-team.webp` | Andreea Avramescu | `photo-1630487656049-6db93a53a7e9` | Four people reviewing documents at a table |
 | `markets-port.webp` | Timelab | `photo-1590496793907-4d66e2994b4d` | Container ship being loaded by cranes |
 | `ind-construction.webp` | Zoshua Colah | `photo-1763950865873-41f63536825b` | Metal pipes and tubes stacked indoors |
 | `ind-machinery.webp` | Homa Appliances | `photo-1716191299980-a6e8827ba10b` | Blue industrial robot arm in a factory |
@@ -43,3 +42,21 @@ container terminal, whoever took it. A stock photograph of a *person* placed
 beside a real founder's name shows a stranger and asserts that it is them.
 That is a different claim, and not one to ship on a live company site. Set
 `photo` in that file to a real portrait and the monogram is replaced.
+
+## Equipment photos
+
+The product photographs on the equipment page (`concrete-block-paver-making-machine`,
+`animal-feed-pellet-line`, `pet-bottle-blow-moulding-line` and the other files named
+after a production line) are free-to-use stock chosen as stand-ins: from Pexels
+(Pexels License: free for commercial use, no attribution required) and, for
+`plastic-recycling-pelletizing-line`, a Wikimedia Commons file tagged public domain.
+The individual photographer for each was not recorded when they were chosen.
+They show a machine of that type, not a unit ENZ has inspected. Replace them with
+supplier or site photographs when you have them (see `_content/equipment.js`).
+
+## Photographs supplied by the founder
+
+`visit-supplier-meeting`, `visit-factory-floor` and `visit-supplier-office` are the
+founder's own photographs from supplier visits in China, supplied for use on this site.
+They show identifiable people. Make sure each person shown is happy for their
+photograph to be published before the site goes public.

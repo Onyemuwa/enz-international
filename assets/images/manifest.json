@@ -1,30 +1,4 @@
 {
-  "about-team.webp": {
-    "width": 1400,
-    "height": 933,
-    "variants": [
-      {
-        "w": 400,
-        "file": "about-team-400w.webp",
-        "kb": 17
-      },
-      {
-        "w": 800,
-        "file": "about-team-800w.webp",
-        "kb": 44
-      },
-      {
-        "w": 1200,
-        "file": "about-team-1200w.webp",
-        "kb": 76
-      },
-      {
-        "w": 1400,
-        "file": "about-team-1400w.webp",
-        "kb": 102
-      }
-    ]
-  },
   "aluminium-profile-extrusion-line.webp": {
     "width": 1200,
     "height": 800,

@@ -72,9 +72,9 @@ export const images = {
   },
 
   about: {
-    src: 'about-team.webp',
-    file: 'about-team.webp',
-    alt: 'ENZ INTERNATIONAL staff at work',
+    src: 'visit-factory-floor.webp',
+    file: 'visit-factory-floor.webp',
+    alt: 'A group in safety helmets on a supplier visit inside a heavy-machinery factory in China',
     size: '1600×1000 (16:10)',
     brief:
       'Ideally your own team, since this is the page where a real photograph does the most work. A supplier meeting or a site visit both work. If you use stock here, keep it unposed.',
