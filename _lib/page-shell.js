@@ -13,7 +13,7 @@ import { depthOf, urlPath, toCleanUrls } from './urls.js';
 import { t } from './i18n.js';
 import { icon } from './icons.js';
 import { media } from './components.js';
-import { headerHTML, footerHTML, bookingModalHTML, whatsappButtonHTML, breadcrumbsHTML, breadcrumbJsonLd } from './chrome.js';
+import { headerHTML, footerHTML, whatsappButtonHTML, breadcrumbsHTML, breadcrumbJsonLd } from './chrome.js';
 import { SUPPORTED_LANGUAGES, LOCALE_MAP } from '../_content/translations.js';
 import { regions } from '../_content/regions.js';
 import { seoDescriptionFor } from '../_content/seo.js';
@@ -155,7 +155,6 @@ export function pageShell({ lang, page, title, description, jsonLd, crumbs, body
     </main>
     ${footerHTML(lang, page)}
     ${whatsappButtonHTML(lang)}
-    ${bookingModalHTML(lang)}
     <script src="../assets/js/config.js?v=${ASSET_VERSION}"></script>
     <script src="../assets/js/api.js?v=${ASSET_VERSION}"></script>
     <script src="../assets/js/site.js?v=${ASSET_VERSION}" defer></script>

@@ -152,7 +152,7 @@ export function servicePage(lang, service) {
         <p class="${LEAD}">${desc}</p>
         <h2 class="h2-section text-2xl mt-10">What is included</h2>
         <ul class="mt-6 space-y-3.5 text-sm">${features}</ul>
-        <button data-open-booking class="mt-9 ${BTN_PRIMARY} px-7 py-3.5 inline-flex items-center gap-2">${icon('calendar', 'w-4 h-4')} ${t(lang, 'ctaBooking')}</button>
+        <a href="contact.html#contact-form" class="mt-9 ${BTN_PRIMARY} px-7 py-3.5 inline-flex items-center gap-2">${icon('calendar', 'w-4 h-4')} ${t(lang, 'ctaBooking')}</a>
       </div>
       <div>
         <h2 class="h2-section text-2xl mb-6">How it works</h2>

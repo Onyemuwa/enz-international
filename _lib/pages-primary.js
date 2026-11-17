@@ -55,7 +55,7 @@ export function homePage(lang) {
           <h1 class="rh-title">The right factory.<br /><em>The right result.</em></h1>
           <p class="rh-lead">We help ambitious businesses buy from China with clarity: the right supplier, quality checked before shipment, and one accountable lead from first brief to final delivery.</p>
           <div class="rh-actions">
-            <button data-open-booking class="${BTN_PRIMARY} btn-lg">Start a conversation ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
+            <a href="contact.html#contact-form" class="${BTN_PRIMARY} btn-lg">Start a conversation ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
             <a href="equipment.html" class="${BTN_SECONDARY} btn-lg">Explore equipment ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
           </div>
         </div>
@@ -176,7 +176,6 @@ export function homePage(lang) {
     </div>
   </section>
 
-  ${founderSection(lang, { compact: true })}
 
   ${onTheGroundSection(lang)}
 
@@ -245,7 +244,7 @@ export function aboutPage(lang) {
         <p class="lead mt-7 max-w-2xl">${t(lang, 'aboutDesc')}</p>
         <p class="text-slate text-lg leading-relaxed mt-5 max-w-2xl">We work as an extension of your team on the ground in China and East Africa, turning a purchase order or a factory blueprint into a delivered, working result. One point of contact owns the details from first call to final delivery.</p>
         <div class="flex flex-col sm:flex-row gap-3 mt-9">
-          <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
+          <a href="contact.html#contact-form" class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
           <a href="#how-we-work" class="${BTN_SECONDARY} btn-lg">See how we work</a>
         </div>
         <div class="about-signal-row mt-12" aria-label="ENZ operating model">
@@ -367,7 +366,7 @@ export function aboutPage(lang) {
       <h2 class="h2-section">Speak to someone directly</h2>
       <p class="${LEAD} mt-5">Individual team profiles are still being written. In the meantime, an enquiry reaches a named person — not a shared inbox — and they stay with your project from the first call onward.</p>
       <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
-        <button data-open-booking class="${BTN_PRIMARY}">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
+        <a href="contact.html#contact-form" class="${BTN_PRIMARY}">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
         <a href="contact.html" class="${BTN_SECONDARY}">${t(lang, 'navContact')}</a>
       </div>
     </div>
@@ -398,7 +397,7 @@ export function servicesPage(lang) {
           <ul class="mt-7 space-y-3.5">${service.features.map((f) => `<li class="flex items-start gap-2.5 text-sm text-slate"><span class="mt-0.5">${icon('check', 'w-4 h-4')}</span><span>${f}</span></li>`).join('')}</ul>
           <div class="mt-9 flex flex-wrap gap-3">
             <a href="${service.slug}.html" class="${BTN_PRIMARY} px-7 py-3.5 inline-flex items-center gap-2">${t(lang, 'ctaLearnMore')}<span class="sr-only"> about ${t(lang, service.titleKey)}</span> ${icon('chevronRight', 'w-4 h-4')}</a>
-            <button data-open-booking class="btn btn-secondary px-7 py-3.5 inline-flex items-center gap-2">${icon('calendar', 'w-4 h-4')} ${t(lang, 'ctaBooking')}</button>
+            <a href="contact.html#contact-form" class="btn btn-secondary px-7 py-3.5 inline-flex items-center gap-2">${icon('calendar', 'w-4 h-4')} ${t(lang, 'ctaBooking')}</a>
           </div>
         </div>
         <ol class="card card-lg space-y-6">
@@ -430,7 +429,7 @@ export function servicesPage(lang) {
           .join('')}
       </div>
       <div class="text-center mt-14">
-        <button data-open-booking class="${BTN_PRIMARY} px-9 py-4 inline-flex items-center gap-2">${icon('calendar', 'w-5 h-5')} ${t(lang, 'ctaBooking')}</button>
+        <a href="contact.html#contact-form" class="${BTN_PRIMARY} px-9 py-4 inline-flex items-center gap-2">${icon('calendar', 'w-5 h-5')} ${t(lang, 'ctaBooking')}</a>
         <p class="text-slate text-sm mt-5">Have questions first? <a href="contact.html" class="text-brand hover:underline underline-offset-4">See our FAQ</a></p>
       </div>
     </div>
@@ -460,7 +459,7 @@ export function marketsPage(lang) {
         <p class="text-slate mt-5 leading-relaxed">${m.intro}</p>
         <div class="mt-7 flex flex-wrap gap-3 justify-center">
           <a href="${m.slug}.html" class="${BTN_PRIMARY} px-7 py-3.5 inline-flex items-center gap-2">${t(lang, 'ctaLearnMore')}<span class="sr-only"> about ${m.fullName || m.name}</span> ${icon('chevronRight', 'w-4 h-4')}</a>
-          <button data-open-booking class="btn btn-secondary px-7 py-3.5 inline-flex items-center gap-2">${icon('calendar', 'w-4 h-4')} ${t(lang, 'ctaBooking')}</button>
+          <a href="contact.html#contact-form" class="btn btn-secondary px-7 py-3.5 inline-flex items-center gap-2">${icon('calendar', 'w-4 h-4')} ${t(lang, 'ctaBooking')}</a>
         </div>
       </div>
     </section>`
@@ -651,7 +650,7 @@ export function contactPage(lang) {
           </div>
         </div>
       </div>
-      <div class="card card-lg">
+      <div id="contact-form" class="card card-lg">
         <form data-booking-form class="space-y-5">
           <p class="text-sm text-slate">${t(lang, 'bookingIntro')}</p>
           <div><label for="cf-name" class="field-label">${t(lang, 'bookingName')}</label><input id="cf-name" name="name" type="text" required class="field" /></div>

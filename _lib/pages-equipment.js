@@ -71,9 +71,9 @@ export function productCard(lang, item) {
       <summary class="text-xs font-semibold text-brand cursor-pointer list-none inline-flex items-center gap-1">${t(lang, 'equipmentSpecsToggle')} ${icon('chevronDown', 'w-3.5 h-3.5 transition-transform group-open:rotate-180')}</summary>
       <ul class="mt-3 space-y-2 text-sm text-slate leading-snug">${specsList}</ul>
     </details>` : ''}
-    <button data-open-booking data-quote-for="${escapeAttr(item.name)}" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
+    <a href="contact.html?quote=${encodeURIComponent(item.name)}#contact-form" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
       ${t(lang, 'equipmentRequestCta')} ${icon('chevronRight', 'w-4 h-4')}
-    </button>
+    </a>
   </article>`;
 }
 

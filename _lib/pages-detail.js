@@ -348,7 +348,7 @@ export function resourcesPage(lang) {
           <span class="icon-chip">${icon(r.icon, 'w-5 h-5')}</span>
           <h3 class="text-lg font-medium text-ink mt-4">${r.title}</h3>
           <p class="text-slate text-sm mt-2.5 leading-relaxed flex-1">${r.body}</p>
-          <button data-open-booking class="${BTN_SECONDARY} btn-sm mt-5 self-start">${r.cta}${icon('chevronRight', 'w-3.5 h-3.5 btn-arrow')}</button>
+          <a href="contact.html#contact-form" class="${BTN_SECONDARY} btn-sm mt-5 self-start">${r.cta}${icon('chevronRight', 'w-3.5 h-3.5 btn-arrow')}</a>
         </article>`
           )
           .join('')}

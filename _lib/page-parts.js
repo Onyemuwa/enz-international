@@ -17,7 +17,7 @@ export function pageHero(lang, { eyebrow, title, lead }) {
       <h1 class="page-title text-ink mt-3">${title}</h1>
       <p class="${LEAD} mt-5">${lead}</p>
       <div class="flex flex-col sm:flex-row justify-center gap-3 mt-8">
-        <button data-open-booking class="${BTN_PRIMARY} px-6 py-3 text-[0.9375rem]">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4')}</button>
+        <a href="contact.html#contact-form" class="${BTN_PRIMARY} px-6 py-3 text-[0.9375rem]">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4')}</a>
         <a href="contact.html" class="${BTN_SECONDARY} px-6 py-3 text-[0.9375rem]">${t(lang, 'navContact')}</a>
       </div>
     </div>
@@ -37,7 +37,7 @@ export function closingCta(lang) {
           <h2>${t(lang, 'ctaBannerTitle')}</h2>
           <p>${t(lang, 'ctaBannerDesc')}</p>
           <div class="rc-actions">
-            <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
+            <a href="contact.html#contact-form" class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
             <a href="contact.html" class="${BTN_SECONDARY} btn-lg">${t(lang, 'ctaTalkToUs')}</a>
           </div>
         </div>

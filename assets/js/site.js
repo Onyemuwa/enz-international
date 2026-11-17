@@ -4,7 +4,6 @@
 (function () {
   'use strict';
 
-  var FOCUSABLE = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
   // Renders a submission failure into an element. When the cause is that no
   // form backend is configured (see api.js), the message becomes a working
@@ -58,85 +57,18 @@
     });
   }
 
-  // ---------- Generic modal open/close with focus trap ----------
-  // The booking modal is only ever opened by an explicit click on "Book
-  // Consultation", never shown unprompted.
-  var lastFocused = null;
-
-  function openModal(modal) {
-    if (!modal) return;
-    lastFocused = document.activeElement;
-    // style.display, not the `hidden` attribute: these overlays also carry
-    // Tailwind display classes (flex/grid), which tie `[hidden]` on CSS
-    // specificity and win on source order. Only an inline style reliably wins.
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    var focusable = modal.querySelectorAll(FOCUSABLE);
-    if (focusable[0]) focusable[0].focus();
-
-    function handleKeydown(e) {
-      if (e.key === 'Escape') {
-        closeModal(modal);
-        return;
-      }
-      if (e.key === 'Tab' && focusable.length) {
-        var first = focusable[0];
-        var last = focusable[focusable.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    }
-    modal._keydownHandler = handleKeydown;
-    document.addEventListener('keydown', handleKeydown);
-  }
-
-  function closeModal(modal) {
-    if (!modal || modal.style.display === 'none') return;
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-    if (modal._keydownHandler) document.removeEventListener('keydown', modal._keydownHandler);
-    if (lastFocused && lastFocused.focus) lastFocused.focus();
-  }
-
-  // A booking trigger can carry data-quote-for="<product name>" — the
-  // equipment page's "Request a Quote" buttons do this — so the enquiry
-  // arrives already saying which product it is about instead of a generic
-  // "I'd like a consultation" with the visitor left to type the name
-  // themselves from memory two clicks later.
-  //
-  // It only ever PREPENDS to whatever the visitor goes on to type; it never
-  // overwrites a message they already started, and a second click with a
-  // different product replaces its own line rather than stacking duplicates.
-  document.querySelectorAll('[data-open-booking]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var modal = document.getElementById('booking-modal');
-      var product = btn.getAttribute('data-quote-for');
-      if (product) {
-        var msg = modal && modal.querySelector('#booking-message, [name="message"]');
-        if (msg) {
-          var line = 'Quote request: ' + product;
-          var rest = msg.value.replace(/^Quote request: .*(\r?\n)?/, '');
-          msg.value = rest ? line + '\n' + rest : line;
-        }
-      }
-      openModal(modal);
-    });
-  });
-  document.querySelectorAll('[data-close-modal]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      closeModal(btn.closest('[role="dialog"]'));
-    });
-  });
-  document.querySelectorAll('[data-modal-backdrop]').forEach(function (backdrop) {
-    backdrop.addEventListener('click', function (e) {
-      if (e.target === backdrop) closeModal(backdrop);
-    });
-  });
+  // ---------- Quote links ----------
+  // The equipment page's "Request a Quote" buttons link to
+  // contact.html?quote=<product>. The contact form opens with that product
+  // already written as its first line, so the enquiry says what it is about
+  // (the server stores a message starting "Quote request: " as a quote).
+  (function () {
+    var product = '';
+    try { product = new URLSearchParams(location.search).get('quote') || ''; } catch (e) { /* old browser */ }
+    if (!product) return;
+    var msg = document.querySelector('[data-booking-form] [name="message"]');
+    if (msg && !msg.value) msg.value = 'Quote request: ' + product.slice(0, 200) + '\n';
+  })();
 
   // ---------- Forms ----------
   // Every form is wired per INSTANCE, not by id. contact.html renders the

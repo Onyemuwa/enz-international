@@ -71,14 +71,14 @@ export function toCleanUrls(html, depth) {
       .replace(/(["'])\.\.\/([a-z]{2})\/([a-z0-9-]+)\.html(#[^"']*)?\1/g,
         (m, q, lang, page, hash) => `${q}${up}${lang}/${page === 'index' ? '' : page + '/'}${hash || ''}${q}`)
       // same-language page links: about.html, insight-foo.html#bar
-      .replace(/(["'])([a-z0-9-]+)\.html(#[^"']*)?\1/g,
-        (m, q, page, hash) => {
+      .replace(/(["'])([a-z0-9-]+)\.html(\?[^"'#]*)?(#[^"']*)?\1/g,
+        (m, q, page, query, hash) => {
           // At depth 1 a link to index.html resolves to the empty string,
           // which is not a valid href — browsers treat it as "reload the
           // current document" but validators reject it. './' says the same
           // thing properly.
           const target = `${sideways}${page === 'index' ? '' : page + '/'}` || './';
-          return `${q}${target}${hash || ''}${q}`;
+          return `${q}${target}${query || ''}${hash || ''}${q}`;
         })
   );
 }

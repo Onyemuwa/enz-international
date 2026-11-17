@@ -23,7 +23,7 @@ export const CONTACT_EMAIL = 'enzinternational.co@gmail.com';
 // filename, so a fixed script can keep losing to a stale copy already sitting
 // in someone's cache — which is exactly how a since-fixed bug keeps "coming
 // back" for a viewer. BUMP THIS whenever a file in assets/js/ changes.
-export const ASSET_VERSION = '73';
+export const ASSET_VERSION = '75';
 
 // Sora is self-hosted: assets/fonts/sora-latin.woff2 (SIL Open Font License),
 // declared in _build/tailwind.src.css and preloaded in the page head.

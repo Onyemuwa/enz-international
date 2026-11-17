@@ -113,10 +113,10 @@ export function headerHTML(lang, currentPage) {
       </nav>
       <div class="hidden xl:flex items-center gap-2 2xl:gap-2.5 shrink-0">
         ${langSwitcher(lang, currentPage)}
-        <button data-open-booking class="${BTN_PRIMARY} btn-sm">${t(lang, 'ctaBookingShort')}${icon('chevronRight', 'w-3.5 h-3.5 btn-arrow')}</button>
+        <a href="contact.html#contact-form" class="${BTN_PRIMARY} btn-sm">${t(lang, 'ctaBookingShort')}${icon('chevronRight', 'w-3.5 h-3.5 btn-arrow')}</a>
       </div>
       <div class="flex xl:hidden items-center gap-2">
-        <button data-open-booking class="${BTN_PRIMARY} btn-sm hidden sm:inline-flex">${t(lang, 'ctaBookingShort')}</button>
+        <a href="contact.html#contact-form" class="${BTN_PRIMARY} btn-sm hidden sm:inline-flex">${t(lang, 'ctaBookingShort')}</a>
         <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav" class="inline-flex items-center justify-center w-10 h-10 -mr-2 rounded-lg text-ink hover:bg-gray-bg transition-colors" aria-label="Toggle menu">
           ${icon('menu', 'w-6 h-6')}
         </button>
@@ -140,7 +140,7 @@ export function headerHTML(lang, currentPage) {
         </form>
         ${mobileLinks}
         <div class="pt-5 space-y-3">
-          <button data-open-booking class="${BTN_PRIMARY} w-full">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
+          <a href="contact.html#contact-form" class="${BTN_PRIMARY} w-full">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
           <div class="pt-4 mt-2 border-t border-line">
             <span class="block text-[0.6875rem] font-semibold tracking-[0.14em] uppercase text-slate mb-3">${LANG_LABEL[lang] || 'Language'}</span>
             ${langInline(lang, currentPage)}
@@ -299,61 +299,6 @@ export function nextStepsHTML(lang) {
               .join('')}
           </ol>
         </div>`;
-}
-
-export function bookingModalHTML(lang) {
-  const opts = [
-    ['sourcing', 'bookingServiceOptSourcing'],
-    ['factory', 'bookingServiceOptFactory'],
-    ['market', 'bookingServiceOptMarket'],
-    ['other', 'bookingServiceOptOther'],
-  ]
-    .map(([v, k]) => `<option value="${v}">${t(lang, k)}</option>`)
-    .join('');
-  return `
-  <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" style="display:none" data-modal-backdrop class="modal-backdrop">
-    <div class="modal-panel">
-      <button data-close-modal aria-label="Close dialog" class="modal-close">${icon('close', 'w-6 h-6')}</button>
-      <h2 id="booking-modal-title" class="text-[1.375rem] font-semibold text-ink pr-8">${t(lang, 'bookingTitle')}</h2>
-      <form data-booking-form class="space-y-5">
-        <p class="text-sm text-slate">${t(lang, 'bookingIntro')}</p>
-        <div>
-          <label for="booking-name" class="field-label">${t(lang, 'bookingName')}</label>
-          <input id="booking-name" name="name" type="text" required class="field" />
-        </div>
-        <div>
-          <label for="booking-email" class="field-label">${t(lang, 'bookingEmail')}</label>
-          <input id="booking-email" name="email" type="email" required class="field" />
-        </div>
-        <div data-reveal-group class="grid grid-cols-2 gap-4">
-          <div>
-            <label for="booking-phone" class="field-label">${t(lang, 'bookingPhone')}</label>
-            <input id="booking-phone" name="phone" type="tel" class="field" />
-          </div>
-          <div>
-            <label for="booking-company" class="field-label">${t(lang, 'bookingCompany')}</label>
-            <input id="booking-company" name="company" type="text" class="field" />
-          </div>
-        </div>
-        <div>
-          <label for="booking-date" class="field-label">${t(lang, 'bookingDate')}</label>
-          <input id="booking-date" name="date" type="date" class="field" />
-        </div>
-        <div>
-          <label for="booking-service" class="field-label">${t(lang, 'bookingService')}</label>
-          <select id="booking-service" name="service" class="field"><option value="">—</option>${opts}</select>
-        </div>
-        <div>
-          <label for="booking-message" class="field-label">${t(lang, 'bookingMessage')}</label>
-          <textarea id="booking-message" name="message" rows="3" class="field"></textarea>
-        </div>
-        <p data-booking-error data-error-slot role="alert" hidden class="text-sm text-red-600">${t(lang, 'bookingErrorTitle')} — ${t(lang, 'bookingErrorDesc')}</p>
-        <button type="submit" data-submitting-label="${t(lang, 'bookingSubmitting')}" class="w-full ${BTN_PRIMARY} py-4">${t(lang, 'bookingSubmit')}</button>
-        <p class="text-xs text-slate text-center">${t(lang, 'bookingDisclaimer')}</p>
-      </form>
-      ${bookingSuccessBlock(lang)}
-    </div>
-  </div>`;
 }
 
 export function whatsappButtonHTML(lang) {

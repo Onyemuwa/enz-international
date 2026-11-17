@@ -233,7 +233,7 @@ export function engagementCard(lang, m, { detailed = false } = {}) {
             <p class="text-[0.6875rem] font-semibold tracking-[0.14em] uppercase text-slate">${t(lang, 'engageBestFor')}</p>
             <p class="text-sm text-ink mt-1.5">${m.bestFor}</p>
           </div>
-          ${detailed ? `<button data-open-booking class="${m.featured ? BTN_PRIMARY : BTN_SECONDARY} w-full mt-6">${t(lang, 'ctaBooking')}</button>` : ''}
+          ${detailed ? `<a href="contact.html#contact-form" class="${m.featured ? BTN_PRIMARY : BTN_SECONDARY} w-full mt-6">${t(lang, 'ctaBooking')}</a>` : ''}
         </div>`;
 }
 
