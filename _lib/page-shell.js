@@ -83,9 +83,10 @@ export function seoHead({ lang, title, description, page, jsonLd, robots }) {
          compiler to every visitor and repaints the page after first paint.) -->
     <link rel="stylesheet" href="../assets/css/site.css?v=${ASSET_VERSION}" />
 
-    <!-- Sora is self-hosted (SIL Open Font License): one same-origin request,
+    <!-- Manrope and Barlow Condensed are self-hosted (SIL Open Font License): one same-origin request,
          preloaded, no third-party connection before first paint. -->
-    <link rel="preload" href="../assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content="${page.startsWith('insight-') ? 'article' : 'website'}" />
     <meta property="og:site_name" content="ENZ INTERNATIONAL" />

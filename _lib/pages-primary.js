@@ -46,116 +46,93 @@ export function homePage(lang) {
   ];
 
   const body = `
-  <!-- Full-bleed, single-column and centred — headline then search then
-       nothing else competing for the first look, the storefront-style shape
-       asked for in place of the old two-column hero (headline+search beside
-       a QC-tracker panel). The tracker is real, useful content, so it isn't
-       cut — it moves to its own centred strip below the fold, still inside
-       the dark hero band, once the search has had the first move. -->
-  <section class="hero landing-hero">
+  <!-- HERO. Headline and calls to action on the left, a real factory photo on
+       the right. Search lives in the header on every page, as on the reference. -->
+  <section class="rh">
     <div class="${SHELL}">
-      <div class="landing-hero-top">
-        <p class="eyebrow">ENZ INTERNATIONAL</p>
-        <span class="landing-hero-route">GUANGZHOU <span aria-hidden="true">/</span> EAST AFRICA <span aria-hidden="true">/</span> WORLDWIDE</span>
-      </div>
-      <div class="landing-hero-grid">
-        <div class="landing-hero-copy">
-          <p class="landing-kicker">Sourcing, quality, delivery</p>
-          <h1 class="landing-title">The right factory.<br /><span class="text-gradient">The right result.</span></h1>
-          <p class="landing-lead">We help ambitious businesses buy from China with clarity: the right supplier, quality checked before shipment, and one accountable lead from first brief to final delivery.</p>
-          <div class="landing-actions">
+      <div class="rh-grid">
+        <div>
+          <h1 class="rh-title">The right factory.<br /><em>The right result.</em></h1>
+          <p class="rh-lead">We help ambitious businesses buy from China with clarity: the right supplier, quality checked before shipment, and one accountable lead from first brief to final delivery.</p>
+          <div class="rh-actions">
             <button data-open-booking class="${BTN_PRIMARY} btn-lg">Start a conversation ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
-            <a href="about.html" class="${BTN_SECONDARY} btn-lg">How we work ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
-          </div>
-          <form action="equipment.html" method="get" role="search" class="hero-search landing-search">
-            <label for="hero-search-input" class="sr-only">${t(lang, 'equipmentSearchPlaceholder')}</label>
-            <span class="hero-search-icon">${icon('search', 'w-4 h-4')}</span>
-            <input type="search" id="hero-search-input" name="q" autocomplete="off" class="hero-search-input" placeholder="Search equipment or a product brief" />
-            <button type="submit" class="hero-search-btn" aria-label="Search equipment">${icon('chevronRight', 'w-4 h-4')}</button>
-          </form>
-          <div class="landing-proof-rail">
-            <span><strong>01</strong> Supplier sourcing</span>
-            <span><strong>02</strong> Quality control</span>
-            <span><strong>03</strong> Freight and setup</span>
+            <a href="equipment.html" class="${BTN_SECONDARY} btn-lg">Explore equipment ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
           </div>
         </div>
-        <div class="landing-hero-visual">
-          <div class="landing-image-frame">
-            ${media('hero', { ratio: '4-5', className: 'landing-hero-image', eager: true })}
-            <div class="landing-image-caption"><span class="status-dot status-done">${icon('check', 'w-3.5 h-3.5')}</span><span><strong>On the ground in China</strong><small>Built for the details between the quote and the shipment.</small></span></div>
-          </div>
-          <div class="landing-hero-note"><span class="mono-tag">ENZ / 01</span><span>From product brief<br />to delivered result.</span></div>
+        <div class="rh-visual">
+          ${media('hero', { ratio: '4-3', eager: true, sizes: '(min-width: 900px) 48vw, 100vw' })}
+          <div class="rh-tag"><strong>On the ground in China</strong>Built for the details between the quote and the shipment.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stat strip, lifted over the seam between the dark hero and the page. -->
-  <section class="bg-white">
+  <!-- STAT STRIP: gold icon, number, label — the same four derived/confirmed
+       figures as before (see _content/stats.js), laid out as in the reference. -->
+  <section class="rs">
     <div class="${SHELL}">
-      <div class="-mt-16 md:-mt-20 relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-2xl border border-line border overflow-hidden">
+      <div class="rs-grid">
         ${stats
-          .map(
-            ([key, value, suffix]) => `<div class="bg-white p-6 md:p-8 text-center">
-          <div class="stat-value text-ink"><span data-counter="${value}" data-counter-suffix="${suffix}">${value}${suffix}</span></div>
-          <div class="text-sm text-slate mt-2.5">${t(lang, key)}</div>
-        </div>`
-          )
+          .map(([key, value, suffix]) => {
+            const ic = { statFactories: 'factory', statStages: 'shield', statServices: 'cog', statResponse: 'clock', statYears: 'award', statProjects: 'briefcase', statSatisfaction: 'users', statMarkets: 'globe' }[key] || 'check';
+            return `<div class="rs-item">
+          <span class="rs-icon">${icon(ic, 'w-7 h-7')}</span>
+          <span><span class="rs-value"><span data-counter="${value}" data-counter-suffix="${suffix}">${value}${suffix}</span></span><span class="rs-label">${t(lang, key)}</span></span>
+        </div>`;
+          })
           .join('')}
       </div>
     </div>
   </section>
 
-  <!-- 1. WHAT WE DO. Three lines, all visible at once. -->
-  <section class="section bg-gray-bg border-y border-line">
+  <!-- THREE SERVICE PILLARS: colour-topped cards, one per service line. -->
+  <section id="pillars" class="section bg-gray-bg">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'navServices'), t(lang, 'servicesTitle'), t(lang, 'servicesSubtitle'), { align: 'start', index: '01' })}
-      <!-- Bento rather than a fourth identical three-up grid: the first
-           service gets a tall feature tile, the other two stack beside it. The
-           asymmetry is what stops the page reading as a list of equivalent
-           tiles, which is exactly how it read before. -->
-      <div data-reveal-group class="bento mt-14">
+      <h2 class="r-title">What we do for you</h2>
+      <p class="r-sub">${t(lang, 'servicesSubtitle')}</p>
+      <div data-reveal-group class="rp-grid">
         ${coreServices
           .map((sv, i) => {
-            const feature = i === 0;
-            return `<a href="${sv.href}" class="${CARD} card-lg flex flex-col group ${feature ? 'bento-feature' : ''}">
-          ${media(sv.img, { ratio: feature ? '4-3' : '16-9', className: 'card-media', sizes: '(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw' })}
-          <span class="icon-chip">${icon(sv.icon, feature ? 'w-6 h-6' : 'w-5 h-5')}</span>
-          <h3 class="${feature ? 'text-2xl' : 'text-lg'} font-medium text-ink mt-5">${sv.title}</h3>
-          <p class="text-slate ${feature ? 'text-[0.9375rem]' : 'text-sm'} mt-3 leading-relaxed">${sv.body}</p>
-          <ul class="mt-6 space-y-2.5 flex-1">
-            ${sv.points.map((pt) => `<li class="check-item text-[0.8125rem]">${icon('check', 'w-3.5 h-3.5')}<span>${pt}</span></li>`).join('')}
+            const tone = ['', 'rp-blue', 'rp-green'][i];
+            const ic = ['box', 'shield', 'cog'][i];
+            const label = ['Sourcing', 'Quality control', 'Factory setup'][i];
+            return `<a href="${sv.href}" class="rp ${tone}">
+          <span class="rp-head">${icon(ic, '')}<span><span class="rp-label">${label}</span><span class="rp-title">${sv.title}</span></span></span>
+          <p class="rp-body">${sv.body}</p>
+          <ul class="rp-list">
+            ${sv.points.map((pt) => `<li>${icon('check', '')}<span>${pt}</span></li>`).join('')}
           </ul>
-          <span class="link-arrow text-sm mt-6">${t(lang, 'ctaLearnMore')} ${icon('chevronRight', 'w-4 h-4')}</span>
+          <span class="rp-link">${t(lang, 'ctaLearnMore')} →</span>
         </a>`;
           })
           .join('')}
       </div>
-      <div class="text-center mt-10"><a href="services.html" class="${BTN_SECONDARY}">${t(lang, 'ctaViewAll')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
     </div>
   </section>
 
-  <!-- FEATURED EQUIPMENT. One example per category (of 50 total), the exact
-       same product card the full storefront uses (photo, spec chips,
-       collapsed specs, "Request a Quote") — a static grid, not a carousel,
-       so what a visitor sees here is what they'll see when they click through
-       rather than a thinner preview version. -->
-  <section class="section bg-white">
+  <!-- EQUIPMENT TILES: one photographed example per category, coloured label
+       band as in the reference. Every tile links to its category on the full
+       catalogue, which carries every line. -->
+  <section id="machines" class="section bg-white">
     <div class="${SHELL}">
-      <div class="flex flex-wrap items-end justify-between gap-6">
-        <div class="max-w-xl">
-          <p class="${EYEBROW}">${t(lang, 'equipmentHomeEyebrow')}</p>
-          <h2 class="${H2} mt-5">${t(lang, 'equipmentHomeTitle')}</h2>
-          <p class="${LEAD} mt-4">${t(lang, 'equipmentHomeLead')}</p>
-        </div>
-        <a href="equipment.html" class="link-arrow shrink-0">${t(lang, 'equipmentViewAllCta')} ${icon('chevronRight', 'w-4 h-4')}</a>
+      <h2 class="r-title">Machines we source</h2>
+      <p class="r-sub">${t(lang, 'equipmentHomeLead')}</p>
+      <div data-reveal-group class="rt-grid">
+        ${equipmentCategories
+          .map((cat) => [cat, cat.items.find((i) => i.image)])
+          .filter(([, item]) => item)
+          .slice(0, 8)
+          .map(
+            ([cat, item]) => `<a href="equipment.html#${slugify(cat.industry)}" class="rt">
+          ${media({ src: item.image, file: item.image, alt: item.use }, { ratio: '4-3', sizes: '(min-width: 900px) 22vw, 46vw' })}
+          <span class="rt-label">${icon('bolt', '')}<span>${item.name}</span></span>
+        </a>`
+          )
+          .join('')}
       </div>
-      <div data-reveal-group class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
-        ${equipmentCategories.map((cat) => cat.items.find((i) => i.image)).filter(Boolean).map((item) => productCard(lang, item)).join('')}
-      </div>
+      <a href="equipment.html" class="${BTN_PRIMARY} r-more">${t(lang, 'equipmentViewAllCta')} ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a>
     </div>
   </section>
-
 
   <!-- 2. HOW IT WORKS. Anchor target for the hero's secondary CTA. -->
   <section id="how-it-works" class="section bg-white">
@@ -181,21 +158,21 @@ export function homePage(lang) {
 
   <!-- 3. COMMITMENTS. Stands in for testimonials until there are real ones:
        every line is a promise that can be checked, not a claim about quality. -->
-  <section class="section section-feature">
+  <section id="why" class="section bg-gray-bg">
     <div class="${SHELL}">
-      ${sectionHead(t(lang, 'commitEyebrow'), t(lang, 'commitTitle'), t(lang, 'commitLead'), { index: '03' })}
-      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
+      <h2 class="r-title">${t(lang, 'commitTitle')}</h2>
+      <p class="r-sub">${t(lang, 'commitLead')}</p>
+      <div data-reveal-group class="rw-grid">
         ${commitments
           .map(
-            (c) => `<div class="${CARD_FEATURE}">
-          <span class="icon-chip">${icon(c.icon, 'w-5 h-5')}</span>
-          <h3 class="font-medium text-[1.0625rem] mt-4">${c.title}</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">${c.body}</p>
+            (c) => `<div class="rw">
+          ${icon(c.icon, '')}
+          <h3>${c.title}</h3>
+          <p>${c.body}</p>
         </div>`
           )
           .join('')}
       </div>
-      <div class="text-center mt-10"><a href="about.html" class="${BTN_SECONDARY}">${t(lang, 'ctaLearnMore')}<span class="sr-only"> — ${t(lang, 'navAbout')}</span> ${icon('chevronRight', 'w-4 h-4 btn-arrow')}</a></div>
     </div>
   </section>
 

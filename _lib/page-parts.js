@@ -7,13 +7,14 @@
 import { t } from './i18n.js';
 import { icon } from './icons.js';
 import { BTN_PRIMARY, BTN_SECONDARY, EYEBROW, LEAD, SHELL } from './tokens.js';
+import { media } from './components.js';
 
 export function pageHero(lang, { eyebrow, title, lead }) {
   return `
-  <section class="bg-white border-b border-line">
-    <div class="shell max-w-3xl text-center pt-16 pb-14 md:pt-20 md:pb-16">
+  <section class="ph">
+    <div class="shell max-w-3xl text-center pt-14 pb-12 md:pt-20 md:pb-16">
       <p class="${EYEBROW}">${eyebrow}</p>
-      <h1 class="text-[2.25rem] leading-[1.1] md:text-[3.25rem] md:leading-[1.06] font-semibold text-ink mt-3">${title}</h1>
+      <h1 class="page-title text-ink mt-3">${title}</h1>
       <p class="${LEAD} mt-5">${lead}</p>
       <div class="flex flex-col sm:flex-row justify-center gap-3 mt-8">
         <button data-open-booking class="${BTN_PRIMARY} px-6 py-3 text-[0.9375rem]">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4')}</button>
@@ -28,22 +29,23 @@ export function pageHero(lang, { eyebrow, title, lead }) {
 // send the form — free, no obligation, answered by a person within a day.
 export function closingCta(lang) {
   return `
-  <section class="section section-feature">
-    <div class="${SHELL}">
-      <div class="gradient-border max-w-5xl mx-auto">
-        <div class="bg-white px-6 py-14 md:px-16 md:py-20 text-center">
-          <h2 class="h2-section">${t(lang, 'ctaBannerTitle')}</h2>
-          <p class="lead mt-5 max-w-2xl mx-auto">${t(lang, 'ctaBannerDesc')}</p>
-          <div class="flex flex-col sm:flex-row justify-center gap-3 mt-10">
+  <section class="rc">
+    <div class="rc-grid">
+      <div class="rc-photo">${media('sourcing', { ratio: '16-10', sizes: '(min-width: 900px) 30vw, 100vw' })}</div>
+      <div class="rc-body">
+        <div>
+          <h2>${t(lang, 'ctaBannerTitle')}</h2>
+          <p>${t(lang, 'ctaBannerDesc')}</p>
+          <div class="rc-actions">
             <button data-open-booking class="${BTN_PRIMARY} btn-lg">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>
             <a href="contact.html" class="${BTN_SECONDARY} btn-lg">${t(lang, 'ctaTalkToUs')}</a>
           </div>
-          <ul class="flex flex-wrap justify-center gap-x-7 gap-y-3 mt-10 text-sm list-none">
-            ${[t(lang, 'bookingNext2'), t(lang, 'bookingDisclaimer')]
-              .map((r) => `<li class="check-item">${icon('check', 'w-4 h-4')}<span>${r}</span></li>`)
-              .join('')}
-          </ul>
         </div>
+        <ul class="rc-points list-none">
+          <li>${icon('users', '')}One point of contact</li>
+          <li>${icon('shield', '')}Inspected before shipping</li>
+          <li>${icon('clock', '')}Reply within 24 hours</li>
+        </ul>
       </div>
     </div>
   </section>`;

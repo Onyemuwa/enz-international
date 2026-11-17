@@ -22,11 +22,12 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../../assets/css/site.css?v=69" />
+    <link rel="stylesheet" href="../../assets/css/site.css?v=73" />
 
-    <!-- Sora is self-hosted (SIL Open Font License): one same-origin request,
+    <!-- Manrope and Barlow Condensed are self-hosted (SIL Open Font License): one same-origin request,
          preloaded, no third-party connection before first paint. -->
-    <link rel="preload" href="../../assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ENZ INTERNATIONAL" />
@@ -81,8 +82,22 @@
         </button>
       </div>
     </div>
-    <nav id="mobile-nav" hidden aria-label="Primary" class="xl:hidden bg-white border-t border-line shadow-lg max-h-[calc(100vh-4.25rem)] overflow-y-auto">
+    <div class="header-search">
+      <div class="shell">
+        <form action="../equipment/" method="get" role="search">
+          <label for="header-search-input" class="sr-only">Search for a machine type — "tile press", "cnc", "cold storage"…</label>
+          <input type="search" id="header-search-input" name="q" autocomplete="off" placeholder="Search machines and production lines, e.g. bottled water, tissue, bricks" />
+          <button type="submit" aria-label="Search equipment"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        </form>
+      </div>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Primary" class="xl:hidden bg-white border-t border-line shadow-lg max-h-[calc(100vh-7.75rem)] overflow-y-auto">
       <div class="shell py-5 text-[0.9375rem]">
+        <form action="../equipment/" method="get" role="search" class="flex mb-4 border border-line">
+          <label for="mobile-search-input" class="sr-only">Search for a machine type — "tile press", "cnc", "cold storage"…</label>
+          <input type="search" id="mobile-search-input" name="q" autocomplete="off" placeholder="Search machines" class="flex-1 min-w-0 px-3 h-11 bg-transparent text-[0.9375rem] outline-none" />
+          <button type="submit" aria-label="Search equipment" class="w-12 grid place-items-center text-white bg-red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        </form>
         <a href="../" class="nav-link-mobile">Home<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
 <a href="../equipment/" class="nav-link-mobile">Equipment<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
 <a href="../services/" class="nav-link-mobile">Services<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
@@ -106,10 +121,10 @@
     <main id="main-content">
       
   
-  <section class="bg-white border-b border-line">
-    <div class="shell max-w-3xl text-center pt-16 pb-14 md:pt-20 md:pb-16">
+  <section class="ph">
+    <div class="shell max-w-3xl text-center pt-14 pb-12 md:pt-20 md:pb-16">
       <p class="eyebrow">FAQ</p>
-      <h1 class="text-[2.25rem] leading-[1.1] md:text-[3.25rem] md:leading-[1.06] font-semibold text-ink mt-3">Questions buyers ask us</h1>
+      <h1 class="page-title text-ink mt-3">Questions buyers ask us</h1>
       <p class="lead mt-5">Straight answers about how we work, what it costs, and what we will not do.</p>
       <div class="flex flex-col sm:flex-row justify-center gap-3 mt-8">
         <button data-open-booking class="btn btn-primary px-6 py-3 text-[0.9375rem]">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
@@ -147,20 +162,27 @@
     </div>
   </section>
   
-  <section class="section section-feature">
-    <div class="shell">
-      <div class="gradient-border max-w-5xl mx-auto">
-        <div class="bg-white px-6 py-14 md:px-16 md:py-20 text-center">
-          <h2 class="h2-section">Tell us what you need to source</h2>
-          <p class="lead mt-5 max-w-2xl mx-auto">A free 30-minute call. If it is not a fit, we say so.</p>
-          <div class="flex flex-col sm:flex-row justify-center gap-3 mt-10">
+  <section class="rc">
+    <div class="rc-grid">
+      <div class="rc-photo"><div class="media media-16-10 ">
+            <img src="../../assets/images/sourcing.webp" alt="Shipping containers stacked at a port terminal"
+                 loading="lazy" decoding="async"
+                  width="1100" height="585" srcset="../../assets/images/sourcing-400w.webp 400w, ../../assets/images/sourcing-800w.webp 800w, ../../assets/images/sourcing-1100w.webp 1100w" sizes="(min-width: 900px) 30vw, 100vw" />
+          </div></div>
+      <div class="rc-body">
+        <div>
+          <h2>Tell us what you need to source</h2>
+          <p>A free 30-minute call. If it is not a fit, we say so.</p>
+          <div class="rc-actions">
             <button data-open-booking class="btn btn-primary btn-lg">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
             <a href="../contact/" class="btn btn-secondary btn-lg">Talk to us</a>
           </div>
-          <ul class="flex flex-wrap justify-center gap-x-7 gap-y-3 mt-10 text-sm list-none">
-            <li class="check-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>You get a reply within one business day — no automated drip sequence.</span></li><li class="check-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>We'll respond within 24h. No payment is required to request a consultation.</span></li>
-          </ul>
         </div>
+        <ul class="rc-points list-none">
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>One point of contact</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Inspected before shipping</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Reply within 24 hours</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -295,9 +317,9 @@
       </div>
     </div>
   </div>
-    <script src="../../assets/js/config.js?v=69"></script>
-    <script src="../../assets/js/api.js?v=69"></script>
-    <script src="../../assets/js/site.js?v=69" defer></script>
-    <script type="module" src="../../assets/js/motion-effects.js?v=69"></script>
+    <script src="../../assets/js/config.js?v=73"></script>
+    <script src="../../assets/js/api.js?v=73"></script>
+    <script src="../../assets/js/site.js?v=73" defer></script>
+    <script type="module" src="../../assets/js/motion-effects.js?v=73"></script>
   </body>
 </html>

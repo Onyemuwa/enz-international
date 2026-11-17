@@ -22,11 +22,12 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../../assets/css/site.css?v=69" />
+    <link rel="stylesheet" href="../../assets/css/site.css?v=73" />
 
-    <!-- Sora is self-hosted (SIL Open Font License): one same-origin request,
+    <!-- Manrope and Barlow Condensed are self-hosted (SIL Open Font License): one same-origin request,
          preloaded, no third-party connection before first paint. -->
-    <link rel="preload" href="../../assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ENZ INTERNATIONAL" />
@@ -81,8 +82,22 @@
         </button>
       </div>
     </div>
-    <nav id="mobile-nav" hidden aria-label="Primary" class="xl:hidden bg-white border-t border-line shadow-lg max-h-[calc(100vh-4.25rem)] overflow-y-auto">
+    <div class="header-search">
+      <div class="shell">
+        <form action="../equipment/" method="get" role="search">
+          <label for="header-search-input" class="sr-only">Search for a machine type — "tile press", "cnc", "cold storage"…</label>
+          <input type="search" id="header-search-input" name="q" autocomplete="off" placeholder="Search machines and production lines, e.g. bottled water, tissue, bricks" />
+          <button type="submit" aria-label="Search equipment"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        </form>
+      </div>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Primary" class="xl:hidden bg-white border-t border-line shadow-lg max-h-[calc(100vh-7.75rem)] overflow-y-auto">
       <div class="shell py-5 text-[0.9375rem]">
+        <form action="../equipment/" method="get" role="search" class="flex mb-4 border border-line">
+          <label for="mobile-search-input" class="sr-only">Search for a machine type — "tile press", "cnc", "cold storage"…</label>
+          <input type="search" id="mobile-search-input" name="q" autocomplete="off" placeholder="Search machines" class="flex-1 min-w-0 px-3 h-11 bg-transparent text-[0.9375rem] outline-none" />
+          <button type="submit" aria-label="Search equipment" class="w-12 grid place-items-center text-white bg-red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        </form>
         <a href="../" class="nav-link-mobile">Home<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
 <a href="../equipment/" class="nav-link-mobile">Equipment<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
 <a href="../services/" class="nav-link-mobile">Services<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
@@ -249,9 +264,9 @@
       </div>
     </div>
   </div>
-    <script src="../../assets/js/config.js?v=69"></script>
-    <script src="../../assets/js/api.js?v=69"></script>
-    <script src="../../assets/js/site.js?v=69" defer></script>
-    <script type="module" src="../../assets/js/motion-effects.js?v=69"></script>
+    <script src="../../assets/js/config.js?v=73"></script>
+    <script src="../../assets/js/api.js?v=73"></script>
+    <script src="../../assets/js/site.js?v=73" defer></script>
+    <script type="module" src="../../assets/js/motion-effects.js?v=73"></script>
   </body>
 </html>

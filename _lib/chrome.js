@@ -122,8 +122,22 @@ export function headerHTML(lang, currentPage) {
         </button>
       </div>
     </div>
-    <nav id="mobile-nav" hidden aria-label="Primary" class="xl:hidden bg-white border-t border-line shadow-lg max-h-[calc(100vh-4.25rem)] overflow-y-auto">
+    <div class="header-search">
+      <div class="${SHELL}">
+        <form action="equipment.html" method="get" role="search">
+          <label for="header-search-input" class="sr-only">${t(lang, 'equipmentSearchPlaceholder')}</label>
+          <input type="search" id="header-search-input" name="q" autocomplete="off" placeholder="Search machines and production lines, e.g. bottled water, tissue, bricks" />
+          <button type="submit" aria-label="Search equipment">${icon('search', 'w-4 h-4')}</button>
+        </form>
+      </div>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Primary" class="xl:hidden bg-white border-t border-line shadow-lg max-h-[calc(100vh-7.75rem)] overflow-y-auto">
       <div class="${SHELL} py-5 text-[0.9375rem]">
+        <form action="equipment.html" method="get" role="search" class="flex mb-4 border border-line">
+          <label for="mobile-search-input" class="sr-only">${t(lang, 'equipmentSearchPlaceholder')}</label>
+          <input type="search" id="mobile-search-input" name="q" autocomplete="off" placeholder="Search machines" class="flex-1 min-w-0 px-3 h-11 bg-transparent text-[0.9375rem] outline-none" />
+          <button type="submit" aria-label="Search equipment" class="w-12 grid place-items-center text-white bg-red">${icon('search', 'w-4 h-4')}</button>
+        </form>
         ${mobileLinks}
         <div class="pt-5 space-y-3">
           <button data-open-booking class="${BTN_PRIMARY} w-full">${t(lang, 'ctaBooking')}${icon('chevronRight', 'w-4 h-4 btn-arrow')}</button>

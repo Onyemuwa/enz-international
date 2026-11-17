@@ -22,11 +22,12 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=69" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=73" />
 
-    <!-- Sora is self-hosted (SIL Open Font License): one same-origin request,
+    <!-- Manrope and Barlow Condensed are self-hosted (SIL Open Font License): one same-origin request,
          preloaded, no third-party connection before first paint. -->
-    <link rel="preload" href="../assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ENZ INTERNATIONAL" />
@@ -81,8 +82,22 @@
         </button>
       </div>
     </div>
-    <nav id="mobile-nav" hidden aria-label="Primary" class="xl:hidden bg-white border-t border-line shadow-lg max-h-[calc(100vh-4.25rem)] overflow-y-auto">
+    <div class="header-search">
+      <div class="shell">
+        <form action="equipment/" method="get" role="search">
+          <label for="header-search-input" class="sr-only">Search for a machine type — "tile press", "cnc", "cold storage"…</label>
+          <input type="search" id="header-search-input" name="q" autocomplete="off" placeholder="Search machines and production lines, e.g. bottled water, tissue, bricks" />
+          <button type="submit" aria-label="Search equipment"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        </form>
+      </div>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Primary" class="xl:hidden bg-white border-t border-line shadow-lg max-h-[calc(100vh-7.75rem)] overflow-y-auto">
       <div class="shell py-5 text-[0.9375rem]">
+        <form action="equipment/" method="get" role="search" class="flex mb-4 border border-line">
+          <label for="mobile-search-input" class="sr-only">Search for a machine type — "tile press", "cnc", "cold storage"…</label>
+          <input type="search" id="mobile-search-input" name="q" autocomplete="off" placeholder="Search machines" class="flex-1 min-w-0 px-3 h-11 bg-transparent text-[0.9375rem] outline-none" />
+          <button type="submit" aria-label="Search equipment" class="w-12 grid place-items-center text-white bg-red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        </form>
         <a href="./" class="nav-link-mobile" aria-current="page">Home<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
 <a href="equipment/" class="nav-link-mobile">Equipment<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
 <a href="services/" class="nav-link-mobile">Services<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 opacity-40" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
@@ -105,275 +120,154 @@
     
     <main id="main-content">
       
-  <!-- Full-bleed, single-column and centred — headline then search then
-       nothing else competing for the first look, the storefront-style shape
-       asked for in place of the old two-column hero (headline+search beside
-       a QC-tracker panel). The tracker is real, useful content, so it isn't
-       cut — it moves to its own centred strip below the fold, still inside
-       the dark hero band, once the search has had the first move. -->
-  <section class="hero landing-hero">
+  <!-- HERO. Headline and calls to action on the left, a real factory photo on
+       the right. Search lives in the header on every page, as on the reference. -->
+  <section class="rh">
     <div class="shell">
-      <div class="landing-hero-top">
-        <p class="eyebrow">ENZ INTERNATIONAL</p>
-        <span class="landing-hero-route">GUANGZHOU <span aria-hidden="true">/</span> EAST AFRICA <span aria-hidden="true">/</span> WORLDWIDE</span>
-      </div>
-      <div class="landing-hero-grid">
-        <div class="landing-hero-copy">
-          <p class="landing-kicker">Sourcing, quality, delivery</p>
-          <h1 class="landing-title">The right factory.<br /><span class="text-gradient">The right result.</span></h1>
-          <p class="landing-lead">We help ambitious businesses buy from China with clarity: the right supplier, quality checked before shipment, and one accountable lead from first brief to final delivery.</p>
-          <div class="landing-actions">
+      <div class="rh-grid">
+        <div>
+          <h1 class="rh-title">The right factory.<br /><em>The right result.</em></h1>
+          <p class="rh-lead">We help ambitious businesses buy from China with clarity: the right supplier, quality checked before shipment, and one accountable lead from first brief to final delivery.</p>
+          <div class="rh-actions">
             <button data-open-booking class="btn btn-primary btn-lg">Start a conversation <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
-            <a href="about/" class="btn btn-secondary btn-lg">How we work <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
-          </div>
-          <form action="equipment/" method="get" role="search" class="hero-search landing-search">
-            <label for="hero-search-input" class="sr-only">Search for a machine type — "tile press", "cnc", "cold storage"…</label>
-            <span class="hero-search-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-            <input type="search" id="hero-search-input" name="q" autocomplete="off" class="hero-search-input" placeholder="Search equipment or a product brief" />
-            <button type="submit" class="hero-search-btn" aria-label="Search equipment"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
-          </form>
-          <div class="landing-proof-rail">
-            <span><strong>01</strong> Supplier sourcing</span>
-            <span><strong>02</strong> Quality control</span>
-            <span><strong>03</strong> Freight and setup</span>
+            <a href="equipment/" class="btn btn-secondary btn-lg">Explore equipment <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
           </div>
         </div>
-        <div class="landing-hero-visual">
-          <div class="landing-image-frame">
-            <div class="media media-4-5 landing-hero-image">
+        <div class="rh-visual">
+          <div class="media media-4-3 ">
             <img src="../assets/images/hero-factory.webp" alt="Production line inside a Chinese manufacturing facility"
                  loading="eager" decoding="async"
-                 fetchpriority="high" width="1920" height="907" srcset="../assets/images/hero-factory-400w.webp 400w, ../assets/images/hero-factory-800w.webp 800w, ../assets/images/hero-factory-1200w.webp 1200w, ../assets/images/hero-factory-1600w.webp 1600w, ../assets/images/hero-factory-1920w.webp 1920w" sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw" />
+                 fetchpriority="high" width="1920" height="907" srcset="../assets/images/hero-factory-400w.webp 400w, ../assets/images/hero-factory-800w.webp 800w, ../assets/images/hero-factory-1200w.webp 1200w, ../assets/images/hero-factory-1600w.webp 1600w, ../assets/images/hero-factory-1920w.webp 1920w" sizes="(min-width: 900px) 48vw, 100vw" />
           </div>
-            <div class="landing-image-caption"><span class="status-dot status-done"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span><strong>On the ground in China</strong><small>Built for the details between the quote and the shipment.</small></span></div>
-          </div>
-          <div class="landing-hero-note"><span class="mono-tag">ENZ / 01</span><span>From product brief<br />to delivered result.</span></div>
+          <div class="rh-tag"><strong>On the ground in China</strong>Built for the details between the quote and the shipment.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stat strip, lifted over the seam between the dark hero and the page. -->
-  <section class="bg-white">
+  <!-- STAT STRIP: gold icon, number, label — the same four derived/confirmed
+       figures as before (see _content/stats.js), laid out as in the reference. -->
+  <section class="rs">
     <div class="shell">
-      <div class="-mt-16 md:-mt-20 relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-2xl border border-line border overflow-hidden">
-        <div class="bg-white p-6 md:p-8 text-center">
-          <div class="stat-value text-ink"><span data-counter="500" data-counter-suffix="+">500+</span></div>
-          <div class="text-sm text-slate mt-2.5">Factories</div>
-        </div><div class="bg-white p-6 md:p-8 text-center">
-          <div class="stat-value text-ink"><span data-counter="4" data-counter-suffix="">4</span></div>
-          <div class="text-sm text-slate mt-2.5">Inspection Stages</div>
-        </div><div class="bg-white p-6 md:p-8 text-center">
-          <div class="stat-value text-ink"><span data-counter="3" data-counter-suffix="">3</span></div>
-          <div class="text-sm text-slate mt-2.5">Service Lines</div>
-        </div><div class="bg-white p-6 md:p-8 text-center">
-          <div class="stat-value text-ink"><span data-counter="24" data-counter-suffix="h">24h</span></div>
-          <div class="text-sm text-slate mt-2.5">Response Time</div>
+      <div class="rs-grid">
+        <div class="rs-item">
+          <span class="rs-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><path d="M2 20V9l6 4V9l6 4V4h4v16z"/><line x1="2" y1="20" x2="22" y2="20"/></svg></span>
+          <span><span class="rs-value"><span data-counter="500" data-counter-suffix="+">500+</span></span><span class="rs-label">Factories</span></span>
+        </div><div class="rs-item">
+          <span class="rs-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <span><span class="rs-value"><span data-counter="4" data-counter-suffix="">4</span></span><span class="rs-label">Inspection Stages</span></span>
+        </div><div class="rs-item">
+          <span class="rs-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+          <span><span class="rs-value"><span data-counter="3" data-counter-suffix="">3</span></span><span class="rs-label">Service Lines</span></span>
+        </div><div class="rs-item">
+          <span class="rs-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+          <span><span class="rs-value"><span data-counter="24" data-counter-suffix="h">24h</span></span><span class="rs-label">Response Time</span></span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 1. WHAT WE DO. Three lines, all visible at once. -->
-  <section class="section bg-gray-bg border-y border-line">
+  <!-- THREE SERVICE PILLARS: colour-topped cards, one per service line. -->
+  <section id="pillars" class="section bg-gray-bg">
     <div class="shell">
-      
-      <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end">
-        <div class="lg:col-span-6">
-          <span class="section-index">01</span>
-          <p class="eyebrow">Services</p>
-          <h2 class="h2-section mt-4">Our Core Services</h2>
-        </div>
-        <div class="lg:col-span-6"><p class="lead">Three integrated service lines that take you from first shipment to full production.</p></div>
-      </div>
-      <!-- Bento rather than a fourth identical three-up grid: the first
-           service gets a tall feature tile, the other two stack beside it. The
-           asymmetry is what stops the page reading as a list of equivalent
-           tiles, which is exactly how it read before. -->
-      <div data-reveal-group class="bento mt-14">
-        <a href="services/#sourcing" class="card card-lg flex flex-col group bento-feature">
-          <div class="media media-4-3 card-media">
-            <img src="../assets/images/sourcing.webp" alt="Shipping containers stacked at a port terminal"
-                 loading="lazy" decoding="async"
-                  width="1100" height="585" srcset="../assets/images/sourcing-400w.webp 400w, ../assets/images/sourcing-800w.webp 800w, ../assets/images/sourcing-1100w.webp 1100w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
-          </div>
-          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-          <h3 class="text-2xl font-medium text-ink mt-5">Global Sourcing & Commodities Trading</h3>
-          <p class="text-slate text-[0.9375rem] mt-3 leading-relaxed">Direct access to vetted Chinese manufacturers, quality control, and commodity procurement.</p>
-          <ul class="mt-6 space-y-2.5 flex-1">
-            <li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Verified-supplier shortlisting</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Price benchmarking and negotiation</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Freight and customs documentation</span></li>
+      <h2 class="r-title">What we do for you</h2>
+      <p class="r-sub">Three integrated service lines that take you from first shipment to full production.</p>
+      <div data-reveal-group class="rp-grid">
+        <a href="services/#sourcing" class="rp ">
+          <span class="rp-head"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span><span class="rp-label">Sourcing</span><span class="rp-title">Global Sourcing & Commodities Trading</span></span></span>
+          <p class="rp-body">Direct access to vetted Chinese manufacturers, quality control, and commodity procurement.</p>
+          <ul class="rp-list">
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Verified-supplier shortlisting</span></li><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Price benchmarking and negotiation</span></li><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Freight and customs documentation</span></li>
           </ul>
-          <span class="link-arrow text-sm mt-6">Learn more <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
-        </a><a href="quality-control/" class="card card-lg flex flex-col group ">
-          <div class="media media-16-9 card-media">
-            <img src="../assets/images/quality-inspection.webp" alt="Inspector checking goods against a specification sheet before shipment"
-                 loading="lazy" decoding="async"
-                  width="1100" height="733" srcset="../assets/images/quality-inspection-400w.webp 400w, ../assets/images/quality-inspection-800w.webp 800w, ../assets/images/quality-inspection-1100w.webp 1100w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
-          </div>
-          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <h3 class="text-lg font-medium text-ink mt-5">Four inspection points, not one</h3>
-          <p class="text-slate text-sm mt-3 leading-relaxed">Catch a defect while it can still be fixed, not after it ships.</p>
-          <ul class="mt-6 space-y-2.5 flex-1">
-            <li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Incoming materials check</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>During-production inspection</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Pre-shipment and loading checks</span></li>
+          <span class="rp-link">Learn more →</span>
+        </a><a href="quality-control/" class="rp rp-blue">
+          <span class="rp-head"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><span class="rp-label">Quality control</span><span class="rp-title">Four inspection points, not one</span></span></span>
+          <p class="rp-body">Catch a defect while it can still be fixed, not after it ships.</p>
+          <ul class="rp-list">
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Incoming materials check</span></li><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>During-production inspection</span></li><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Pre-shipment and loading checks</span></li>
           </ul>
-          <span class="link-arrow text-sm mt-6">Learn more <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
-        </a><a href="services/#factory-setup" class="card card-lg flex flex-col group ">
-          <div class="media media-16-9 card-media">
-            <img src="../assets/images/factory-setup.webp" alt="Machinery being installed and commissioned in a new facility"
-                 loading="lazy" decoding="async"
-                  width="1100" height="734" srcset="../assets/images/factory-setup-400w.webp 400w, ../assets/images/factory-setup-800w.webp 800w, ../assets/images/factory-setup-1100w.webp 1100w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
-          </div>
-          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-          <h3 class="text-lg font-medium text-ink mt-5">Turnkey Factory Establishment</h3>
-          <p class="text-slate text-sm mt-3 leading-relaxed">End-to-end consulting, machinery sourcing, assembly line planning, and factory setup.</p>
-          <ul class="mt-6 space-y-2.5 flex-1">
-            <li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Site selection and feasibility</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Machinery sourcing</span></li><li class="check-item text-[0.8125rem]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Commissioning support</span></li>
+          <span class="rp-link">Learn more →</span>
+        </a><a href="services/#factory-setup" class="rp rp-green">
+          <span class="rp-head"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span><span class="rp-label">Factory setup</span><span class="rp-title">Turnkey Factory Establishment</span></span></span>
+          <p class="rp-body">End-to-end consulting, machinery sourcing, assembly line planning, and factory setup.</p>
+          <ul class="rp-list">
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Site selection and feasibility</span></li><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Machinery sourcing</span></li><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Commissioning support</span></li>
           </ul>
-          <span class="link-arrow text-sm mt-6">Learn more <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></span>
+          <span class="rp-link">Learn more →</span>
         </a>
       </div>
-      <div class="text-center mt-10"><a href="services/" class="btn btn-secondary">View all <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
     </div>
   </section>
 
-  <!-- FEATURED EQUIPMENT. One example per category (of 50 total), the exact
-       same product card the full storefront uses (photo, spec chips,
-       collapsed specs, "Request a Quote") — a static grid, not a carousel,
-       so what a visitor sees here is what they'll see when they click through
-       rather than a thinner preview version. -->
-  <section class="section bg-white">
+  <!-- EQUIPMENT TILES: one photographed example per category, coloured label
+       band as in the reference. Every tile links to its category on the full
+       catalogue, which carries every line. -->
+  <section id="machines" class="section bg-white">
     <div class="shell">
-      <div class="flex flex-wrap items-end justify-between gap-6">
-        <div class="max-w-xl">
-          <p class="eyebrow">Equipment</p>
-          <h2 class="h2-section mt-5">Equipment we help you source</h2>
-          <p class="lead mt-4">One example from each category — 178 production lines on the equipment page, sourced against your brief, not stocked.</p>
-        </div>
-        <a href="equipment/" class="link-arrow shrink-0">Browse all equipment <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
-      </div>
-      <div data-reveal-group class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
-        <article class="card flex flex-col" data-equipment-card data-search="hollow, solid &amp; paving brick production line presses and cures concrete or cement bricks, hollow blocks and paving stones. ">
-    <div class="media media-4-3 card-media">
+      <h2 class="r-title">Machines we source</h2>
+      <p class="r-sub">One example from each category — 178 production lines on the equipment page, sourced against your brief, not stocked.</p>
+      <div data-reveal-group class="rt-grid">
+        <a href="equipment/#construction-building-materials" class="rt">
+          <div class="media media-4-3 ">
             <img src="../assets/images/concrete-block-paver-making-machine.webp" alt="Presses and cures concrete or cement bricks, hollow blocks and paving stones."
                  loading="lazy" decoding="async"
-                  width="1200" height="798" srcset="../assets/images/concrete-block-paver-making-machine-400w.webp 400w, ../assets/images/concrete-block-paver-making-machine-800w.webp 800w, ../assets/images/concrete-block-paver-making-machine-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
+                  width="1200" height="798" srcset="../assets/images/concrete-block-paver-making-machine-400w.webp 400w, ../assets/images/concrete-block-paver-making-machine-800w.webp 800w, ../assets/images/concrete-block-paver-making-machine-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
           </div>
-    <h3 class="font-semibold text-ink leading-snug">Hollow, solid & paving brick production line</h3>
-    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Presses and cures concrete or cement bricks, hollow blocks and paving stones.</p>
-    
-    
-    <button data-open-booking data-quote-for="Hollow, solid &amp; paving brick production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
-      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-    </button>
-  </article><article class="card flex flex-col" data-equipment-card data-search="animal feed pellet making machine mixes and presses feed ingredients into pellets for poultry, fish and livestock. ">
-    <div class="media media-4-3 card-media">
+          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Hollow, solid & paving brick production line</span></span>
+        </a><a href="equipment/#agriculture-food-processing" class="rt">
+          <div class="media media-4-3 ">
             <img src="../assets/images/animal-feed-pellet-line.webp" alt="Mixes and presses feed ingredients into pellets for poultry, fish and livestock."
                  loading="lazy" decoding="async"
-                  width="1200" height="820" srcset="../assets/images/animal-feed-pellet-line-400w.webp 400w, ../assets/images/animal-feed-pellet-line-800w.webp 800w, ../assets/images/animal-feed-pellet-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
+                  width="1200" height="820" srcset="../assets/images/animal-feed-pellet-line-400w.webp 400w, ../assets/images/animal-feed-pellet-line-800w.webp 800w, ../assets/images/animal-feed-pellet-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
           </div>
-    <h3 class="font-semibold text-ink leading-snug">Animal feed pellet making machine</h3>
-    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Mixes and presses feed ingredients into pellets for poultry, fish and livestock.</p>
-    
-    
-    <button data-open-booking data-quote-for="Animal feed pellet making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
-      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-    </button>
-  </article><article class="card flex flex-col" data-equipment-card data-search="dried fruit production line washes, cuts and dries fruit for packing. ">
-    <div class="media media-4-3 card-media">
+          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Animal feed pellet making machine</span></span>
+        </a><a href="equipment/#food-snack-production" class="rt">
+          <div class="media media-4-3 ">
             <img src="../assets/images/fruit-vegetable-processing-line.webp" alt="Washes, cuts and dries fruit for packing."
                  loading="lazy" decoding="async"
-                  width="1200" height="1800" srcset="../assets/images/fruit-vegetable-processing-line-400w.webp 400w, ../assets/images/fruit-vegetable-processing-line-800w.webp 800w, ../assets/images/fruit-vegetable-processing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
+                  width="1200" height="1800" srcset="../assets/images/fruit-vegetable-processing-line-400w.webp 400w, ../assets/images/fruit-vegetable-processing-line-800w.webp 800w, ../assets/images/fruit-vegetable-processing-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
           </div>
-    <h3 class="font-semibold text-ink leading-snug">Dried fruit production line</h3>
-    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Washes, cuts and dries fruit for packing.</p>
-    
-    
-    <button data-open-booking data-quote-for="Dried fruit production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
-      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-    </button>
-  </article><article class="card flex flex-col" data-equipment-card data-search="carton &amp; box making line cuts, prints and folds corrugated boxes. ">
-    <div class="media media-4-3 card-media">
+          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Dried fruit production line</span></span>
+        </a><a href="equipment/#packaging-printing" class="rt">
+          <div class="media media-4-3 ">
             <img src="../assets/images/corrugated-carton-production-line.webp" alt="Cuts, prints and folds corrugated boxes."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../assets/images/corrugated-carton-production-line-400w.webp 400w, ../assets/images/corrugated-carton-production-line-800w.webp 800w, ../assets/images/corrugated-carton-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
+                  width="1200" height="800" srcset="../assets/images/corrugated-carton-production-line-400w.webp 400w, ../assets/images/corrugated-carton-production-line-800w.webp 800w, ../assets/images/corrugated-carton-production-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
           </div>
-    <h3 class="font-semibold text-ink leading-snug">Carton & box making line</h3>
-    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cuts, prints and folds corrugated boxes.</p>
-    
-    
-    <button data-open-booking data-quote-for="Carton &amp; box making line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
-      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-    </button>
-  </article><article class="card flex flex-col" data-equipment-card data-search="pet bottle blowing machine blow-moulds pet preforms into drinks and water bottles. ">
-    <div class="media media-4-3 card-media">
+          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Carton & box making line</span></span>
+        </a><a href="equipment/#plastics-rubber-products" class="rt">
+          <div class="media media-4-3 ">
             <img src="../assets/images/pet-bottle-blow-moulding-line.webp" alt="Blow-moulds PET preforms into drinks and water bottles."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../assets/images/pet-bottle-blow-moulding-line-400w.webp 400w, ../assets/images/pet-bottle-blow-moulding-line-800w.webp 800w, ../assets/images/pet-bottle-blow-moulding-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
+                  width="1200" height="800" srcset="../assets/images/pet-bottle-blow-moulding-line-400w.webp 400w, ../assets/images/pet-bottle-blow-moulding-line-800w.webp 800w, ../assets/images/pet-bottle-blow-moulding-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
           </div>
-    <h3 class="font-semibold text-ink leading-snug">PET bottle blowing machine</h3>
-    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Blow-moulds PET preforms into drinks and water bottles.</p>
-    
-    
-    <button data-open-booking data-quote-for="PET bottle blowing machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
-      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-    </button>
-  </article><article class="card flex flex-col" data-equipment-card data-search="garment processing machines cutting, sewing and finishing machines for a garment workshop. ">
-    <div class="media media-4-3 card-media">
+          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>PET bottle blowing machine</span></span>
+        </a><a href="equipment/#textiles-apparel" class="rt">
+          <div class="media media-4-3 ">
             <img src="../assets/images/garment-cut-and-sew-production-line.webp" alt="Cutting, sewing and finishing machines for a garment workshop."
                  loading="lazy" decoding="async"
-                  width="1200" height="675" srcset="../assets/images/garment-cut-and-sew-production-line-400w.webp 400w, ../assets/images/garment-cut-and-sew-production-line-800w.webp 800w, ../assets/images/garment-cut-and-sew-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
+                  width="1200" height="675" srcset="../assets/images/garment-cut-and-sew-production-line-400w.webp 400w, ../assets/images/garment-cut-and-sew-production-line-800w.webp 800w, ../assets/images/garment-cut-and-sew-production-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
           </div>
-    <h3 class="font-semibold text-ink leading-snug">Garment processing machines</h3>
-    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Cutting, sewing and finishing machines for a garment workshop.</p>
-    
-    
-    <button data-open-booking data-quote-for="Garment processing machines" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
-      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-    </button>
-  </article><article class="card flex flex-col" data-equipment-card data-search="medical mask making machine welds nose wire and ear loops onto layered non-woven masks. ">
-    <div class="media media-4-3 card-media">
+          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Garment processing machines</span></span>
+        </a><a href="equipment/#hygiene-personal-care" class="rt">
+          <div class="media media-4-3 ">
             <img src="../assets/images/nonwoven-fabric-production-line.webp" alt="Welds nose wire and ear loops onto layered non-woven masks."
                  loading="lazy" decoding="async"
-                  width="1200" height="721" srcset="../assets/images/nonwoven-fabric-production-line-400w.webp 400w, ../assets/images/nonwoven-fabric-production-line-800w.webp 800w, ../assets/images/nonwoven-fabric-production-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
+                  width="1200" height="721" srcset="../assets/images/nonwoven-fabric-production-line-400w.webp 400w, ../assets/images/nonwoven-fabric-production-line-800w.webp 800w, ../assets/images/nonwoven-fabric-production-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
           </div>
-    <h3 class="font-semibold text-ink leading-snug">Medical mask making machine</h3>
-    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Welds nose wire and ear loops onto layered non-woven masks.</p>
-    
-    
-    <button data-open-booking data-quote-for="Medical mask making machine" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
-      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-    </button>
-  </article><article class="card flex flex-col" data-equipment-card data-search="ceramic plate &amp; cup production line presses, glazes and fires tableware. ">
-    <div class="media media-4-3 card-media">
+          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Medical mask making machine</span></span>
+        </a><a href="equipment/#consumer-goods-retail" class="rt">
+          <div class="media media-4-3 ">
             <img src="../assets/images/sanitaryware-slip-casting-glazing-line.webp" alt="Presses, glazes and fires tableware."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../assets/images/sanitaryware-slip-casting-glazing-line-400w.webp 400w, ../assets/images/sanitaryware-slip-casting-glazing-line-800w.webp 800w, ../assets/images/sanitaryware-slip-casting-glazing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
+                  width="1200" height="800" srcset="../assets/images/sanitaryware-slip-casting-glazing-line-400w.webp 400w, ../assets/images/sanitaryware-slip-casting-glazing-line-800w.webp 800w, ../assets/images/sanitaryware-slip-casting-glazing-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
           </div>
-    <h3 class="font-semibold text-ink leading-snug">Ceramic plate & cup production line</h3>
-    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Presses, glazes and fires tableware.</p>
-    
-    
-    <button data-open-booking data-quote-for="Ceramic plate &amp; cup production line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
-      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-    </button>
-  </article><article class="card flex flex-col" data-equipment-card data-search="plastic (pp/pe/pet) recycling line washes, shreds and pelletises waste plastic. ">
-    <div class="media media-4-3 card-media">
-            <img src="../assets/images/plastic-recycling-pelletizing-line.webp" alt="Washes, shreds and pelletises waste plastic."
-                 loading="lazy" decoding="async"
-                  width="1200" height="798" srcset="../assets/images/plastic-recycling-pelletizing-line-400w.webp 400w, ../assets/images/plastic-recycling-pelletizing-line-800w.webp 800w, ../assets/images/plastic-recycling-pelletizing-line-1200w.webp 1200w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 100vw" />
-          </div>
-    <h3 class="font-semibold text-ink leading-snug">Plastic (PP/PE/PET) recycling line</h3>
-    <p class="text-slate text-sm mt-2 leading-relaxed flex-1">Washes, shreds and pelletises waste plastic.</p>
-    
-    
-    <button data-open-booking data-quote-for="Plastic (PP/PE/PET) recycling line" class="mt-5 w-full btn btn-secondary btn-sm justify-center">
-      Request a Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-    </button>
-  </article>
+          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Ceramic plate & cup production line</span></span>
+        </a>
       </div>
+      <a href="equipment/" class="btn btn-primary r-more">Browse all equipment <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
     </div>
   </section>
-
 
   <!-- 2. HOW IT WORKS. Anchor target for the hero's secondary CTA. -->
   <section id="how-it-works" class="section bg-white">
@@ -431,35 +325,29 @@
 
   <!-- 3. COMMITMENTS. Stands in for testimonials until there are real ones:
        every line is a promise that can be checked, not a claim about quality. -->
-  <section class="section section-feature">
+  <section id="why" class="section bg-gray-bg">
     <div class="shell">
-      
-      <div class="max-w-3xl mx-auto text-center">
-        <span class="section-index">03</span>
-        <p class="eyebrow">Our commitments</p>
-        <h2 class="h2-section mt-4">What you can hold us to</h2>
-        <p class="lead mt-5">Specific things we do on every engagement, that you can check.</p>
-      </div>
-      <div data-reveal-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
-        <div class="card-feature">
-          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-          <h3 class="font-medium text-[1.0625rem] mt-4">A reply within one business day</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">Read by a person, answered within one working day.</p>
-        </div><div class="card-feature">
-          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
-          <h3 class="font-medium text-[1.0625rem] mt-4">One named point of contact</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">The same person from first call to delivery. No handoffs, no re-explaining.</p>
-        </div><div class="card-feature">
-          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-          <h3 class="font-medium text-[1.0625rem] mt-4">A written scope before anything is signed</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">Scope, cost and timeline in writing, before you commit.</p>
-        </div><div class="card-feature">
-          <span class="icon-chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <h3 class="font-medium text-[1.0625rem] mt-4">Inspection reports you can actually read</h3>
-          <p class="text-slate text-sm mt-2 leading-relaxed">Photographed findings against your spec, not a pass/fail stamp.</p>
+      <h2 class="r-title">What you can hold us to</h2>
+      <p class="r-sub">Specific things we do on every engagement, that you can check.</p>
+      <div data-reveal-group class="rw-grid">
+        <div class="rw">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <h3>A reply within one business day</h3>
+          <p>Read by a person, answered within one working day.</p>
+        </div><div class="rw">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          <h3>One named point of contact</h3>
+          <p>The same person from first call to delivery. No handoffs, no re-explaining.</p>
+        </div><div class="rw">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h3>A written scope before anything is signed</h3>
+          <p>Scope, cost and timeline in writing, before you commit.</p>
+        </div><div class="rw">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <h3>Inspection reports you can actually read</h3>
+          <p>Photographed findings against your spec, not a pass/fail stamp.</p>
         </div>
       </div>
-      <div class="text-center mt-10"><a href="about/" class="btn btn-secondary">Learn more<span class="sr-only"> — About</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
     </div>
   </section>
 
@@ -563,20 +451,27 @@
 
 
   
-  <section class="section section-feature">
-    <div class="shell">
-      <div class="gradient-border max-w-5xl mx-auto">
-        <div class="bg-white px-6 py-14 md:px-16 md:py-20 text-center">
-          <h2 class="h2-section">Tell us what you need to source</h2>
-          <p class="lead mt-5 max-w-2xl mx-auto">A free 30-minute call. If it is not a fit, we say so.</p>
-          <div class="flex flex-col sm:flex-row justify-center gap-3 mt-10">
+  <section class="rc">
+    <div class="rc-grid">
+      <div class="rc-photo"><div class="media media-16-10 ">
+            <img src="../assets/images/sourcing.webp" alt="Shipping containers stacked at a port terminal"
+                 loading="lazy" decoding="async"
+                  width="1100" height="585" srcset="../assets/images/sourcing-400w.webp 400w, ../assets/images/sourcing-800w.webp 800w, ../assets/images/sourcing-1100w.webp 1100w" sizes="(min-width: 900px) 30vw, 100vw" />
+          </div></div>
+      <div class="rc-body">
+        <div>
+          <h2>Tell us what you need to source</h2>
+          <p>A free 30-minute call. If it is not a fit, we say so.</p>
+          <div class="rc-actions">
             <button data-open-booking class="btn btn-primary btn-lg">Book Consultation<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button>
             <a href="contact/" class="btn btn-secondary btn-lg">Talk to us</a>
           </div>
-          <ul class="flex flex-wrap justify-center gap-x-7 gap-y-3 mt-10 text-sm list-none">
-            <li class="check-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>You get a reply within one business day — no automated drip sequence.</span></li><li class="check-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>We'll respond within 24h. No payment is required to request a consultation.</span></li>
-          </ul>
         </div>
+        <ul class="rc-points list-none">
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>One point of contact</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Inspected before shipping</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Reply within 24 hours</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -711,9 +606,9 @@
       </div>
     </div>
   </div>
-    <script src="../assets/js/config.js?v=69"></script>
-    <script src="../assets/js/api.js?v=69"></script>
-    <script src="../assets/js/site.js?v=69" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=69"></script>
+    <script src="../assets/js/config.js?v=73"></script>
+    <script src="../assets/js/api.js?v=73"></script>
+    <script src="../assets/js/site.js?v=73" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=73"></script>
   </body>
 </html>
