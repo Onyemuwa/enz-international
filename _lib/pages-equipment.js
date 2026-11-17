@@ -99,7 +99,7 @@ export function equipmentPage(lang) {
           </div>
           <span data-equipment-count class="pill mono-tag shrink-0">${cat.items.length} ${cat.items.length === 1 ? 'type' : 'types'}</span>
         </div>
-        <div data-reveal-group class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">${cards}</div>
+        <div data-reveal-group class="grid grid-cols-1 sm:grid-cols-2 ${cat.items.length % 4 === 0 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-6">${cards}</div>
       </div>
     </section>`;
     })

@@ -118,10 +118,15 @@ export function homePage(lang) {
       <h2 class="r-title">Machines we source</h2>
       <p class="r-sub">${t(lang, 'equipmentHomeLead')}</p>
       <div data-reveal-group class="rt-grid">
-        ${equipmentCategories
-          .map((cat) => [cat, cat.items.find((i) => i.image)])
-          .filter(([, item]) => item)
-          .slice(0, 8)
+        ${(() => {
+          // Round-robin so the eight tiles cover every category before any repeats.
+          const pools = equipmentCategories.map((cat) => cat.items.filter((i) => i.image).map((item) => [cat, item]));
+          const picked = [];
+          for (let round = 0; picked.length < 8 && pools.some((p) => p[round]); round++) {
+            for (const p of pools) if (p[round] && picked.length < 8) picked.push(p[round]);
+          }
+          return picked;
+        })()
           .map(
             ([cat, item]) => `<a href="equipment.html#${slugify(cat.industry)}" class="rt">
           ${media({ src: item.image, file: item.image, alt: item.use }, { ratio: '4-3', sizes: '(min-width: 900px) 22vw, 46vw' })}

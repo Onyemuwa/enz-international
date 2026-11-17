@@ -22,7 +22,7 @@
          site itself still needs no build step to deploy. (The Tailwind Play
          CDN that used to sit here is explicitly not for production: it ships a
          compiler to every visitor and repaints the page after first paint.) -->
-    <link rel="stylesheet" href="../assets/css/site.css?v=77" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=80" />
 
     <!-- Manrope and Barlow Condensed are self-hosted (SIL Open Font License): one same-origin request,
          preloaded, no third-party connection before first paint. -->
@@ -86,7 +86,7 @@
       <div class="shell">
         <form action="equipment/" method="get" role="search">
           <label for="header-search-input" class="sr-only">Search for a machine type — "tile press", "cnc", "cold storage"…</label>
-          <input type="search" id="header-search-input" name="q" autocomplete="off" placeholder="Search machines and production lines, e.g. bottled water, tissue, bricks" />
+          <input type="search" id="header-search-input" name="q" autocomplete="off" placeholder="Search machines and production lines, e.g. rice mill, bricks, packaging" />
           <button type="submit" aria-label="Search equipment"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
         </form>
       </div>
@@ -205,7 +205,7 @@
   <section id="machines" class="section bg-white">
     <div class="shell">
       <h2 class="r-title">Machines we source</h2>
-      <p class="r-sub">One example from each category — 178 production lines on the equipment page, sourced against your brief, not stocked.</p>
+      <p class="r-sub">A selection of the production lines we source, from brick plants to rice mills. Tell us the machine and we quote it against your brief, not from stock.</p>
       <div data-reveal-group class="rt-grid">
         <a href="equipment/#construction-building-materials" class="rt">
           <div class="media media-4-3 ">
@@ -221,13 +221,6 @@
                   width="1200" height="820" srcset="../assets/images/animal-feed-pellet-line-400w.webp 400w, ../assets/images/animal-feed-pellet-line-800w.webp 800w, ../assets/images/animal-feed-pellet-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
           </div>
           <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Animal feed pellet making machine</span></span>
-        </a><a href="equipment/#food-snack-production" class="rt">
-          <div class="media media-4-3 ">
-            <img src="../assets/images/fruit-vegetable-processing-line.webp" alt="Washes, cuts and dries fruit for packing."
-                 loading="lazy" decoding="async"
-                  width="1200" height="1800" srcset="../assets/images/fruit-vegetable-processing-line-400w.webp 400w, ../assets/images/fruit-vegetable-processing-line-800w.webp 800w, ../assets/images/fruit-vegetable-processing-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
-          </div>
-          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Dried fruit production line</span></span>
         </a><a href="equipment/#packaging-printing" class="rt">
           <div class="media media-4-3 ">
             <img src="../assets/images/corrugated-carton-production-line.webp" alt="Cuts, prints and folds corrugated boxes."
@@ -249,20 +242,27 @@
                   width="1200" height="675" srcset="../assets/images/garment-cut-and-sew-production-line-400w.webp 400w, ../assets/images/garment-cut-and-sew-production-line-800w.webp 800w, ../assets/images/garment-cut-and-sew-production-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
           </div>
           <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Garment processing machines</span></span>
-        </a><a href="equipment/#hygiene-personal-care" class="rt">
+        </a><a href="equipment/#construction-building-materials" class="rt">
           <div class="media media-4-3 ">
-            <img src="../assets/images/nonwoven-fabric-production-line.webp" alt="Welds nose wire and ear loops onto layered non-woven masks."
+            <img src="../assets/images/gypsum-plasterboard-production-line.webp" alt="Makes plasterboard: mixing, forming between paper liners, drying and cutting."
                  loading="lazy" decoding="async"
-                  width="1200" height="721" srcset="../assets/images/nonwoven-fabric-production-line-400w.webp 400w, ../assets/images/nonwoven-fabric-production-line-800w.webp 800w, ../assets/images/nonwoven-fabric-production-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
+                  width="1200" height="900" srcset="../assets/images/gypsum-plasterboard-production-line-400w.webp 400w, ../assets/images/gypsum-plasterboard-production-line-800w.webp 800w, ../assets/images/gypsum-plasterboard-production-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
           </div>
-          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Medical mask making machine</span></span>
-        </a><a href="equipment/#consumer-goods-retail" class="rt">
+          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Gypsum board production line</span></span>
+        </a><a href="equipment/#agriculture-food-processing" class="rt">
           <div class="media media-4-3 ">
-            <img src="../assets/images/sanitaryware-slip-casting-glazing-line.webp" alt="Presses, glazes and fires tableware."
+            <img src="../assets/images/grain-milling-processing-line.webp" alt="Cleans, degerms and mills maize into flour and grits."
                  loading="lazy" decoding="async"
-                  width="1200" height="800" srcset="../assets/images/sanitaryware-slip-casting-glazing-line-400w.webp 400w, ../assets/images/sanitaryware-slip-casting-glazing-line-800w.webp 800w, ../assets/images/sanitaryware-slip-casting-glazing-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
+                  width="1200" height="1600" srcset="../assets/images/grain-milling-processing-line-400w.webp 400w, ../assets/images/grain-milling-processing-line-800w.webp 800w, ../assets/images/grain-milling-processing-line-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
           </div>
-          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Ceramic plate & cup production line</span></span>
+          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Maize milling production line</span></span>
+        </a><a href="equipment/#packaging-printing" class="rt">
+          <div class="media media-4-3 ">
+            <img src="../assets/images/flexographic-printing-press.webp" alt="Prints film, paper and bags using flexographic plates."
+                 loading="lazy" decoding="async"
+                  width="1200" height="800" srcset="../assets/images/flexographic-printing-press-400w.webp 400w, ../assets/images/flexographic-printing-press-800w.webp 800w, ../assets/images/flexographic-printing-press-1200w.webp 1200w" sizes="(min-width: 900px) 22vw, 46vw" />
+          </div>
+          <span class="rt-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Flexo printing machine</span></span>
         </a>
       </div>
       <a href="equipment/" class="btn btn-primary r-more">Browse all equipment <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 btn-arrow" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
@@ -519,9 +519,9 @@
   <button type="button" data-to-top hidden class="to-top no-print" aria-label="Back to top">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
   </button>
-    <script src="../assets/js/config.js?v=77"></script>
-    <script src="../assets/js/api.js?v=77"></script>
-    <script src="../assets/js/site.js?v=77" defer></script>
-    <script type="module" src="../assets/js/motion-effects.js?v=77"></script>
+    <script src="../assets/js/config.js?v=80"></script>
+    <script src="../assets/js/api.js?v=80"></script>
+    <script src="../assets/js/site.js?v=80" defer></script>
+    <script type="module" src="../assets/js/motion-effects.js?v=80"></script>
   </body>
 </html>

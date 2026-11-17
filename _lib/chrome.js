@@ -126,7 +126,7 @@ export function headerHTML(lang, currentPage) {
       <div class="${SHELL}">
         <form action="equipment.html" method="get" role="search">
           <label for="header-search-input" class="sr-only">${t(lang, 'equipmentSearchPlaceholder')}</label>
-          <input type="search" id="header-search-input" name="q" autocomplete="off" placeholder="Search machines and production lines, e.g. bottled water, tissue, bricks" />
+          <input type="search" id="header-search-input" name="q" autocomplete="off" placeholder="Search machines and production lines, e.g. rice mill, bricks, packaging" />
           <button type="submit" aria-label="Search equipment">${icon('search', 'w-4 h-4')}</button>
         </form>
       </div>

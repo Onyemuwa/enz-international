@@ -105,7 +105,7 @@ const dict = {
     equipmentShopByCategory: 'Browse by category',
     equipmentHomeEyebrow: 'Equipment',
     equipmentHomeTitle: 'Equipment we help you source',
-    equipmentHomeLead: 'One example from each category — 178 production lines on the equipment page, sourced against your brief, not stocked.',
+    equipmentHomeLead: 'A selection of the production lines we source, from brick plants to rice mills. Tell us the machine and we quote it against your brief, not from stock.',
     equipmentViewAllCta: 'Browse all equipment',
     equipmentSearchPlaceholder: 'Search for a machine type — "tile press", "cnc", "cold storage"…',
     heroSearchPlaceholder: 'Search equipment — "cnc", "cold storage", "tile press"…',
