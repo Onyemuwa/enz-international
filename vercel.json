@@ -8,28 +8,33 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/:lang(en)/index.html",
-      "destination": "/:lang/",
+      "source": "/en/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
-      "source": "/:lang(en)/:page.html",
-      "destination": "/:lang/:page/",
+      "source": "/en/:page.html",
+      "destination": "/:page/",
+      "permanent": true
+    },
+    {
+      "source": "/en/:path(.*)",
+      "destination": "/:path",
       "permanent": true
     },
     {
       "source": "/sw/:path(.*)",
-      "destination": "/en/:path",
+      "destination": "/:path",
       "permanent": true
     },
     {
       "source": "/fr/:path(.*)",
-      "destination": "/en/:path",
+      "destination": "/:path",
       "permanent": true
     },
     {
       "source": "/zh/:path(.*)",
-      "destination": "/en/:path",
+      "destination": "/:path",
       "permanent": true
     }
   ],

@@ -205,7 +205,7 @@ export function homePage(lang) {
       {
         '@type': 'LocalBusiness',
         name: 'ENZ INTERNATIONAL',
-        url: `${SITE_URL}/${lang}/`,
+        url: `${SITE_URL}/`,
         image: `${SITE_URL}/assets/images/og-cover.png`,
         telephone: '+86-1320-384-0456',
         email: CONTACT_EMAIL,
@@ -606,7 +606,7 @@ export function insightPostPage(lang, post) {
     dateModified: post.updatedDate || post.publishedDate,
     inLanguage: lang,
     isAccessibleForFree: true,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/${lang}/insight-${post.slug}/` },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/insight-${post.slug}/` },
     publisher: { '@id': `${SITE_URL}/#organization` },
     author: authorEntity,
   };
@@ -685,9 +685,9 @@ export function contactPage(lang) {
     '@graph': [
       {
         '@type': 'LocalBusiness',
-        '@id': `${SITE_URL}/${lang}/contact/#localbusiness`,
+        '@id': `${SITE_URL}/contact/#localbusiness`,
         name: 'ENZ INTERNATIONAL',
-        url: `${SITE_URL}/${lang}/contact/`,
+        url: `${SITE_URL}/contact/`,
         image: `${SITE_URL}/assets/images/og-cover.png`,
         logo: `${SITE_URL}/assets/images/enz-logo.png`,
         telephone: '+86-1320-384-0456',

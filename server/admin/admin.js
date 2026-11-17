@@ -465,7 +465,7 @@
     $panel.textContent = '';
     if (state.tab !== 'testimonials') return;
 
-    var link = location.origin + '/en/feedback/';
+    var link = location.origin + '/feedback/';
     var template =
       'Hi [name], I hope the [what they bought] arrived well.\n\n' +
       'I would really value your honest feedback on how we did \u2014 what went well, and anything that did not. ' +

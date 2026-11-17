@@ -327,7 +327,7 @@ export function breadcrumbsHTML(lang, items) {
 // BreadcrumbList markup so Google renders the trail under the result instead
 // of a bare URL. Built from the same items rendered above.
 export function breadcrumbJsonLd(lang, page, items) {
-  const list = [{ name: t(lang, 'breadcrumbHome'), url: `${SITE_URL}/${lang}/` }];
+  const list = [{ name: t(lang, 'breadcrumbHome'), url: `${SITE_URL}/` }];
   items.forEach((item, i) => {
     list.push({ name: item.label, url: `${SITE_URL}/${urlPath(lang, item.href || page)}` });
     void i;

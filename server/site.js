@@ -5,13 +5,29 @@
 // THE SITE IS THE REPO ROOT, so the one thing this file must get right is what
 // it refuses to serve. A naive express.static('.') would hand out server/,
 // package.json, _content/, .git/ and the SQLite database itself. Instead
-// nothing is reachable unless it is on an explicit allowlist: the /en and
-// /assets trees plus a fixed set of root files.
+// nothing is reachable unless it is on an explicit allowlist: the /assets tree,
+// a fixed set of root files, and the page directories named in site-pages.json
+// (written by the generator, one entry per page).
 import fs from 'node:fs';
 import path from 'node:path';
 import express from 'express';
 
 const ROOT_FILES = new Set(['index.html', '404.html', 'robots.txt', 'sitemap.xml', 'site.webmanifest']);
+
+// A page slug is only ever served if it is a plain lowercase word AND is not one
+// of the names this server uses for something else.
+const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const RESERVED = new Set(['assets', 'api', 'admin', 'server', 'data', 'node_modules', 'en', 'sw', 'fr', 'zh']);
+
+/** The page slugs from site-pages.json; an unreadable file means no pages, never "everything". */
+export function loadPageSlugs(root) {
+  try {
+    const list = JSON.parse(fs.readFileSync(path.join(root, 'site-pages.json'), 'utf8'));
+    return list.filter((s) => typeof s === 'string' && SLUG.test(s) && !RESERVED.has(s));
+  } catch {
+    return [];
+  }
+}
 
 const HTML = 'public, max-age=0, must-revalidate';
 // CSS and JS are cache-busted by ?v=ASSET_VERSION in the generated HTML, so a
@@ -64,16 +80,19 @@ export function legacyRedirects() {
     return i === -1 ? '' : req.originalUrl.slice(i);
   };
   return (req, res, next) => {
-    // Retired languages: /sw/x, /fr/x, /zh/x -> /en/x
-    let m = /^\/(?:sw|fr|zh)(\/.*)?$/.exec(req.path);
-    if (m) return res.redirect(301, `/en${m[1] || '/'}${search(req)}`);
+    // English used to live under /en/, and three retired languages redirected
+    // to it. All of those addresses now map onto the same path at the site root:
+    //   /en/services/  /sw/services/  /fr/  ->  /services/  /
+    //   /en/index.html ->  /        /en/page.html -> /page/
+    const m = /^\/(?:en|sw|fr|zh)(\/.*)?$/.exec(req.path);
+    if (m) {
+      let rest = m[1] || '/';
+      rest = rest.replace(/index\.html$/, '').replace(/^\/([^/]+)\.html$/, '/$1/');
+      return res.redirect(301, `${rest}${search(req)}`);
+    }
 
-    // /en/index.html -> /en/
-    if (req.path === '/en/index.html') return res.redirect(301, `/en/${search(req)}`);
-
-    // /en/page.html -> /en/page/
-    m = /^\/en\/([^/]+)\.html$/.exec(req.path);
-    if (m) return res.redirect(301, `/en/${m[1]}/${search(req)}`);
+    // /index.html -> /
+    if (req.path === '/index.html') return res.redirect(301, `/${search(req)}`);
 
     next();
   };
@@ -81,16 +100,17 @@ export function legacyRedirects() {
 
 export function createSiteRouter({ root }) {
   const router = express.Router();
+  const pageSlugs = loadPageSlugs(root);
 
   const staticOptions = {
     dotfiles: 'ignore',
     index: 'index.html',
-    redirect: true, // /en/services -> /en/services/
+    redirect: true, // /services -> /services/
     cacheControl: false, // set per file type below
     setHeaders: (res, filePath) => res.set('Cache-Control', cacheControlFor(filePath)),
   };
 
-  router.use('/en', express.static(path.join(root, 'en'), staticOptions));
+  for (const slug of pageSlugs) router.use(`/${slug}`, express.static(path.join(root, slug), staticOptions));
   router.use('/assets', express.static(path.join(root, 'assets'), staticOptions));
 
   const sendRoot = (file) => (req, res, next) => {

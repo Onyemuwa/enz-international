@@ -144,7 +144,7 @@ export function equipmentPage(lang) {
   // exist.
   const graph = equipmentCategories.map((cat) => ({
     '@type': 'Service',
-    '@id': `${SITE_URL}/${lang}/equipment/#${slugify(cat.industry)}`,
+    '@id': `${SITE_URL}/equipment/#${slugify(cat.industry)}`,
     name: `Equipment sourcing — ${cat.industry}`,
     description: cat.intro,
     provider: { '@id': `${SITE_URL}/#organization` },

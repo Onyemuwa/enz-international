@@ -21,7 +21,7 @@ const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SNAPSHOT = path.join(ROOT, '_build', '.output-snapshot.json');
 
 // Everything the generator is responsible for, and nothing it is not.
-const SKIP_DIRS = new Set(['node_modules', '.git', '_build', '_content', 'assets', '.vercel']);
+const SKIP_DIRS = new Set(['node_modules', '.git', '_build', '_content', '_lib', 'assets', '.vercel', 'server', 'data']);
 
 function collect(dir, acc = {}) {
   for (const entry of readdirSync(dir)) {

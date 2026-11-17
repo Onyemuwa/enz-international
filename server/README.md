@@ -152,7 +152,7 @@ invented, and nothing appears automatically.
 **How one gets onto the site**
 
 1. **Ask a client.** Admin → *Testimonials* → *Ask a client* gives you the link
-   (`/en/feedback/`) and a short message to send by WhatsApp or email. Ask what happened, not for
+   (`/feedback/`) and a short message to send by WhatsApp or email. Ask what happened, not for
    praise, and never send them a draft to approve: real testimonials sound like the person who wrote them.
 2. **They submit the form.** It needs their name, email, their words (30 to 1,500 characters) and a ticked
    permission box. Saved as *pending*; you get an email. The page is `noindex` and not in the sitemap.
@@ -181,7 +181,7 @@ It requires you to confirm you have their permission, and is published immediate
 - **One instance only.** SQLite is a single-writer file; `railway.json` pins `numReplicas: 1`. That is
   far more than this site's traffic needs. If you ever outgrow it, that's the moment to move to Postgres.
 - **Nothing is served that isn't allowlisted.** The site *is* the repo root, so `site.js` serves only
-  `/en`, `/assets` and five named root files — never `server/`, `package.json`, `_content/` or the
+  the page folders listed in `site-pages.json`, `/assets` and five named root files — never `server/`, `package.json`, `_content/` or the
   database. The tests check this explicitly, including path-traversal attempts.
 - **Image caching.** CSS/JS are cache-busted by `?v=ASSET_VERSION` and cached for a year. Photos keep
   their filename when replaced, so they are cached for one day, not a year — swap a stock photo for a

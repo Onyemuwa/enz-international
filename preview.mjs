@@ -52,7 +52,7 @@ async function resolveFile(urlPath) {
     if (info.isDirectory()) return resolveFile(join(clean, 'index.html'));
     return candidate;
   } catch {
-    // /en/about -> /en/about/index.html, so a missing trailing slash still works
+    // /about -> /about/index.html, so a missing trailing slash still works
     if (!clean.endsWith('/') && !extname(clean)) return resolveFile(clean + '/');
     return null;
   }
@@ -86,9 +86,9 @@ const server = createServer(async (req, res) => {
 
 server.listen(PORT, () => {
   console.log(`\n  ENZ INTERNATIONAL — local preview\n`);
-  console.log(`  Open:  http://localhost:${PORT}/en/\n`);
+  console.log(`  Open:  http://localhost:${PORT}/\n`);
   console.log(`  Do NOT open the .html files directly from the folder: the site`);
-  console.log(`  uses clean URLs (/en/services/), which need a server to resolve.\n`);
+  console.log(`  uses clean URLs (/services/), which need a server to resolve.\n`);
   console.log(`  Stop with Ctrl+C.\n`);
 });
 

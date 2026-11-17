@@ -53,7 +53,7 @@
       @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms !important}}
     </style>
 
-    <link rel="stylesheet" href="/assets/css/site.css?v=80" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=81" />
   </head>
   <body>
     <main class="wrap">
@@ -62,32 +62,22 @@
         <h1 class="page-title">This page <span class="accent">isn't here</span></h1>
         <p class="lead">The page you're looking for doesn't exist, or it may have moved. The links below will get you back on track.</p>
         <div class="actions">
-          <a href="/en/" data-to="" class="btn btn-primary">Back to homepage</a>
-          <a href="/en/contact/" data-to="contact/" class="btn btn-secondary">Contact us</a>
+          <a href="/" data-to="" class="btn btn-primary">Back to homepage</a>
+          <a href="/contact/" data-to="contact/" class="btn btn-secondary">Contact us</a>
         </div>
         <div class="more">
-          <a href="/en/services/" data-to="services/">services</a><a href="/en/process/" data-to="process/">process</a><a href="/en/markets/" data-to="markets/">markets</a><a href="/en/insights/" data-to="insights/">insights</a><a href="/en/faq/" data-to="faq/">faq</a>
+          <a href="/services/" data-to="services/">services</a><a href="/process/" data-to="process/">process</a><a href="/markets/" data-to="markets/">markets</a><a href="/insights/" data-to="insights/">insights</a><a href="/faq/" data-to="faq/">faq</a>
         </div>
       </div>
     </main>
 
-    <!-- Root-relative hrefs above are correct for a domain-root deployment and
-         are what a crawler and a no-script visitor follow. This repoints them
-         if the site turns out to be served from a subpath, which the markup
-         alone cannot know. Everything still works without it. -->
+    <!-- Visitors arriving on an old /en/... address (this file is the fallback on
+         hosts with no redirect config, e.g. GitHub Pages) are sent to the same page
+         without the /en prefix. -->
     <script>
       (function () {
-        var path = location.pathname;
-        // /repo/en/nonsense -> "/repo"; /en/nonsense -> ""
-        var m = path.match(/^(.*?)\/(?:en|sw|fr|zh)\//);
-        var base = m ? m[1] : '';
-        // A 404 under a subpath with no language segment, e.g. /repo/nope
-        if (!m && path.lastIndexOf('/') > 0) base = path.slice(0, path.indexOf('/', 1));
-        if (!base) return;
-        var links = document.querySelectorAll('[data-to]');
-        for (var i = 0; i < links.length; i++) {
-          links[i].setAttribute('href', base + '/en/' + links[i].getAttribute('data-to'));
-        }
+        var m = location.pathname.match(/^(.*?)/en(/.*)?$/);
+        if (m) location.replace((m[1] || '') + (m[2] || '/') + location.search + location.hash);
       })();
     </script>
   </body>

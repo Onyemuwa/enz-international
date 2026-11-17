@@ -4,7 +4,7 @@
 // solely so this script has something to read — see _content/README).
 // Run with: node _generate-static.mjs
 
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { SUPPORTED_LANGUAGES } from './_content/translations.js';
@@ -33,12 +33,19 @@ import { media } from './_lib/components.js';
 // Write files
 // ============================================================================
 
+// The old /en/ tree is removed: English now lives at the site root. Requests for
+// /en/... are redirected by the host config and by server/site.js.
+rmSync(path.join(OUT, 'en'), { recursive: true, force: true });
+const pageSlugs = new Set();
+
 for (const lang of SUPPORTED_LANGUAGES) {
-  const dir = path.join(OUT, lang);
+  // Only one language exists, so it is served from the site root. If a second
+  // language ever returns it would need its own subfolder AND a deeper depthOf().
+  const dir = lang === 'en' ? OUT : path.join(OUT, lang);
   mkdirSync(dir, { recursive: true });
 
-  // index.html stays at the language root; everything else becomes its own
-  // directory, so /en/services/ serves /en/services/index.html.
+  // index.html stays at the site root; everything else becomes its own
+  // directory, so /services/ serves /services/index.html.
   const emit = (page, html) => {
     if (isHome(page)) {
       writeFileSync(path.join(dir, 'index.html'), html);
@@ -49,38 +56,7 @@ for (const lang of SUPPORTED_LANGUAGES) {
     mkdirSync(sub, { recursive: true });
     writeFileSync(path.join(sub, 'index.html'), html);
 
-    // A stub at the OLD address, pointing at the new one.
-    //
-    // Moving to clean URLs deleted en/services.html and created
-    // en/services/index.html. Every bookmark, search result and remembered
-    // URL pointing at the old address would otherwise 404 — a local dev
-    // server that auto-redirects .html hides this completely, which is how it
-    // shipped unnoticed.
-    //
-    // Host config (_redirects, vercel.json) issues a real 301 where it is
-    // supported and takes precedence. This file is the floor: it works on
-    // GitHub Pages and anywhere else with no configuration at all.
-    //
-    // noindex, because the stub must never compete with the page it points to;
-    // the canonical names the real URL for anything that does look.
-    writeFileSync(
-      path.join(dir, `${slug}.html`),
-      `<!DOCTYPE html>
-<html lang="${lang}">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="robots" content="noindex" />
-    <meta http-equiv="refresh" content="0; url=${slug}/" />
-    <link rel="canonical" href="${SITE_URL}/${lang}/${slug}/" />
-    <title>Moved</title>
-  </head>
-  <body>
-    <script>location.replace('${slug}/');</script>
-    <p>This page has moved to <a href="${slug}/">/${lang}/${slug}/</a>.</p>
-  </body>
-</html>
-`
-    );
+    pageSlugs.add(slug);
   };
 
   const pages = [
@@ -125,49 +101,15 @@ for (const lang of SUPPORTED_LANGUAGES) {
   console.log(`Wrote ${lang}/ (${pages.length + insights.length + services.length + markets.length + 2} pages)`);
 }
 
+// The page directories the Node server is allowed to serve (server/site.js reads this).
+writeFileSync(path.join(OUT, 'site-pages.json'), JSON.stringify([...pageSlugs].sort(), null, 2) + '\n');
+
 // ---------------------------------------------------------------------------
 // Root files: language redirect, 404, manifest, host config, robots, sitemap
 // ---------------------------------------------------------------------------
 
-// Root visitors land on English. A <meta refresh> is the fallback for the rare
-// client that runs no script; the script path is instant and, unlike the meta
-// tag, uses replace() so Back doesn't bounce the visitor straight back here.
-// Note the paths are one level shallower than in a language folder.
-writeFileSync(
-  path.join(OUT, 'index.html'),
-  `<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=en/index.html" />
-    <link rel="canonical" href="${SITE_URL}/en/" />
-    <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512.png" />
-    <title>ENZ INTERNATIONAL — Global Sourcing &amp; Industrial Excellence</title>
-    <meta name="description" content="${t('en', 'heroSub')}" />
-    <link rel="stylesheet" href="assets/css/site.css?v=${ASSET_VERSION}" />
-  </head>
-  <body class="bg-white text-ink">
-    <script>
-      // On a server, 'en/' is the clean URL and resolves to en/index.html.
-      // Opened straight off disk it is a DIRECTORY, and file:// has no index
-      // resolution — the browser shows a file listing instead of the site.
-      // So from disk, go to the file itself.
-      location.replace(location.protocol === 'file:' ? 'en/index.html' : 'en/');
-    </script>
-    <main class="min-h-screen flex items-center justify-center px-4 text-center">
-      <div>
-        <p class="lead">Redirecting to <a href="en/index.html" class="link-arrow">ENZ INTERNATIONAL</a>…</p>
-        <p class="text-sm text-slate mt-6 max-w-md mx-auto">
-          Opening these files directly shows the landing page, but its links will not work:
-          the site uses clean URLs, which need a server. Run <strong>preview.bat</strong>
-          (or <code>node preview.mjs</code>) and open <strong>localhost:5500/en/</strong> instead.
-        </p>
-      </div>
-    </main>
-  </body>
-</html>`
-);
+// The home page is written to /index.html by emit() above; there is no longer a
+// language-redirect stub at the root.
 
 // Static hosts serve this for any unmatched path, so it is a real page with
 // real navigation — a dead end here is a lost visitor, not just a 404.
@@ -237,34 +179,24 @@ writeFileSync(
         <h1 class="page-title">This page <span class="accent">isn't here</span></h1>
         <p class="lead">The page you're looking for doesn't exist, or it may have moved. The links below will get you back on track.</p>
         <div class="actions">
-          <a href="/en/" data-to="" class="btn btn-primary">Back to homepage</a>
-          <a href="/en/contact/" data-to="contact/" class="btn btn-secondary">Contact us</a>
+          <a href="/" data-to="" class="btn btn-primary">Back to homepage</a>
+          <a href="/contact/" data-to="contact/" class="btn btn-secondary">Contact us</a>
         </div>
         <div class="more">
           ${['services', 'process', 'markets', 'insights', 'faq']
-            .map((slug) => `<a href="/en/${slug}/" data-to="${slug}/">${slug}</a>`)
+            .map((slug) => `<a href="/${slug}/" data-to="${slug}/">${slug}</a>`)
             .join('')}
         </div>
       </div>
     </main>
 
-    <!-- Root-relative hrefs above are correct for a domain-root deployment and
-         are what a crawler and a no-script visitor follow. This repoints them
-         if the site turns out to be served from a subpath, which the markup
-         alone cannot know. Everything still works without it. -->
+    <!-- Visitors arriving on an old /en/... address (this file is the fallback on
+         hosts with no redirect config, e.g. GitHub Pages) are sent to the same page
+         without the /en prefix. -->
     <script>
       (function () {
-        var path = location.pathname;
-        // /repo/en/nonsense -> "/repo"; /en/nonsense -> ""
-        var m = path.match(/^(.*?)\\/(?:en|sw|fr|zh)\\//);
-        var base = m ? m[1] : '';
-        // A 404 under a subpath with no language segment, e.g. /repo/nope
-        if (!m && path.lastIndexOf('/') > 0) base = path.slice(0, path.indexOf('/', 1));
-        if (!base) return;
-        var links = document.querySelectorAll('[data-to]');
-        for (var i = 0; i < links.length; i++) {
-          links[i].setAttribute('href', base + '/en/' + links[i].getAttribute('data-to'));
-        }
+        var m = location.pathname.match(/^(.*?)\/en(\/.*)?$/);
+        if (m) location.replace((m[1] || '') + (m[2] || '/') + location.search + location.hash);
       })();
     </script>
   </body>
@@ -280,7 +212,7 @@ writeFileSync(
       name: 'ENZ INTERNATIONAL',
       short_name: 'ENZ',
       description: t('en', 'heroSub'),
-      start_url: '/en/',
+      start_url: '/',
       scope: '/',
       display: 'standalone',
       background_color: '#FFFFFF',
@@ -323,18 +255,18 @@ const SECURITY_HEADERS = [
 // Netlify and Cloudflare Pages. One rule covers every old .html address.
 writeFileSync(
   path.join(OUT, '_redirects'),
-  `# Clean-URL migration: /en/services.html -> /en/services/
-# 301 so search engines move their index across rather than keeping both.
-/en/index.html   /en/       301
-/en/:page.html   /en/:page/ 301
+  `# English moved from /en/ to the site root. 301 so search engines move their
+# index across rather than keeping both.
+/en/index.html   /          301
+/en/:page.html   /:page/    301
+/en              /          301
+/en/*            /:splat    301
 
-# Retired languages. /sw/, /fr/ and /zh/ served English body copy while
-# claiming to be translated, so they were withdrawn - see the header of
-# _content/translations.js. These 301s carry indexed URLs to the English
-# equivalent instead of 404ing them.
-/sw/*   /en/:splat   301
-/fr/*   /en/:splat   301
-/zh/*   /en/:splat   301
+# Retired languages (see the header of _content/translations.js): carry their
+# indexed URLs to the English equivalent instead of 404ing them.
+/sw/*   /:splat   301
+/fr/*   /:splat   301
+/zh/*   /:splat   301
 `
 );
 
@@ -392,8 +324,10 @@ writeFileSync(
       // Clean-URL migration: the old /en/services.html addresses must 301 to
       // /en/services/ or every existing bookmark and search result 404s.
       redirects: [
-        { source: '/:lang(en)/index.html', destination: '/:lang/', permanent: true },
-        { source: '/:lang(en)/:page.html', destination: '/:lang/:page/', permanent: true },
+        // English moved from /en/ to the site root.
+        { source: '/en/index.html', destination: '/', permanent: true },
+        { source: '/en/:page.html', destination: '/:page/', permanent: true },
+        { source: '/en/:path(.*)', destination: '/:path', permanent: true },
         // Retired languages. /sw/, /fr/ and /zh/ served English body copy while
         // claiming to be translated, so they were withdrawn — see the header of
         // _content/translations.js. These 301s mean every URL Google already
@@ -417,7 +351,7 @@ writeFileSync(
         // where :path is empty and the destination is just /en/.
         ...['sw', 'fr', 'zh'].map((l) => ({
           source: `/${l}/:path(.*)`,
-          destination: '/en/:path',
+          destination: '/:path',
           permanent: true,
         })),
       ],
@@ -497,7 +431,7 @@ const lastmodFor = (() => {
 
 // The repo-relative file that serves a given page, matching what emit() writes.
 const outFileFor = (lang, page) =>
-  isHome(page) ? `${lang}/index.html` : `${lang}/${slugOf(page)}/index.html`;
+  isHome(page) ? 'index.html' : `${slugOf(page)}/index.html`;
 // Home outranks a legal page; a hub outranks a leaf.
 const priorityFor = (page) => {
   if (page === 'index.html') return '1.0';

@@ -31,11 +31,12 @@ export const slugOf = (page) => page.replace(/\.html$/, '');
 
 export const isHome = (page) => slugOf(page) === 'index';
 
-/** How deep the page sits below the site root: /en/ is 1, /en/about/ is 2. */
-export const depthOf = (page) => (isHome(page) ? 1 : 2);
+/** How deep the page sits below the site root: / is 0, /about/ is 1. */
+export const depthOf = (page) => (isHome(page) ? 0 : 1);
 
 /** Site-root-relative path, used for canonicals, hreflang and the sitemap. */
-export const urlPath = (lang, page) => (isHome(page) ? `${lang}/` : `${lang}/${slugOf(page)}/`);
+// English is the only language, so it lives at the site root (no /en/ prefix).
+export const urlPath = (lang, page) => (isHome(page) ? '' : `${slugOf(page)}/`);
 
 /**
  * Rewrites a whole document's links for the depth it will be written at.
@@ -45,8 +46,8 @@ export const urlPath = (lang, page) => (isHome(page) ? `${lang}/` : `${lang}/${s
  * the plain `about.html` form and this is what makes it correct everywhere.
  */
 export function toCleanUrls(html, depth) {
-  const up = '../'.repeat(depth); // page -> site root
-  const sideways = '../'.repeat(depth - 1); // page -> its own language root
+  const up = '../'.repeat(depth); // page -> site root ('' for the home page)
+  const sideways = up; // pages are siblings at the site root
 
   return (
     html
@@ -69,7 +70,7 @@ export function toCleanUrls(html, depth) {
       .replace(/(["'(]|\s)\.\.\/(assets|sitemap\.xml|site\.webmanifest)/g, (m, q, tail) => `${q}${up}${tail}`)
       // language switcher: ../<lang>/<page>.html
       .replace(/(["'])\.\.\/([a-z]{2})\/([a-z0-9-]+)\.html(#[^"']*)?\1/g,
-        (m, q, lang, page, hash) => `${q}${up}${lang}/${page === 'index' ? '' : page + '/'}${hash || ''}${q}`)
+        (m, q, lang, page, hash) => `${q}${`${up}${page === 'index' ? '' : page + '/'}` || './'}${hash || ''}${q}`)
       // same-language page links: about.html, insight-foo.html#bar
       .replace(/(["'])([a-z0-9-]+)\.html(\?[^"'#]*)?(#[^"']*)?\1/g,
         (m, q, page, query, hash) => {

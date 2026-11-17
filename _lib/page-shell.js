@@ -120,7 +120,7 @@ export function pageShell({ lang, page, title, description, jsonLd, crumbs, body
     '@type': 'Organization',
     '@id': `${SITE_URL}/#organization`,
     name: 'ENZ INTERNATIONAL',
-    url: `${SITE_URL}/${lang}/`,
+    url: `${SITE_URL}/`,
     logo: `${SITE_URL}/assets/images/enz-logo.png`,
     email: CONTACT_EMAIL,
     telephone: '+86-132-0384-0456',
@@ -133,7 +133,7 @@ export function pageShell({ lang, page, title, description, jsonLd, crumbs, body
   graph.push({
     '@type': 'WebSite',
     '@id': `${SITE_URL}/#website`,
-    url: `${SITE_URL}/${lang}/`,
+    url: `${SITE_URL}/`,
     name: 'ENZ INTERNATIONAL',
     inLanguage: lang,
     publisher: { '@id': `${SITE_URL}/#organization` },

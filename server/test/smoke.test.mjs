@@ -105,31 +105,50 @@ describe('static site', () => {
   });
 
   test('directory URLs need the trailing slash, and get it by redirect', async () => {
-    const bare = await t.get('/en/equipment');
+    const bare = await t.get('/equipment');
     assert.equal(bare.status, 301);
-    assert.equal(new URL(bare.headers.get('location'), t.base).pathname, '/en/equipment/');
-    assert.equal((await t.get('/en/equipment/')).status, 200);
+    assert.equal(new URL(bare.headers.get('location'), t.base).pathname, '/equipment/');
+    assert.equal((await t.get('/equipment/')).status, 200);
   });
 
-  test('old .html URLs redirect to the clean URL', async () => {
-    const page = await t.get('/en/equipment.html');
-    assert.equal(page.status, 301);
-    assert.equal(page.headers.get('location'), '/en/equipment/');
-    const index = await t.get('/en/index.html');
-    assert.equal(index.headers.get('location'), '/en/');
+  test('old /en/ addresses redirect to the same page at the site root', async () => {
+    const cases = [
+      ['/en/', '/'],
+      ['/en', '/'],
+      ['/en/index.html', '/'],
+      ['/en/equipment.html', '/equipment/'],
+      ['/en/equipment/', '/equipment/'],
+      ['/en/equipment', '/equipment'],
+      ['/en/equipment/?a=1', '/equipment/?a=1'],
+      ['/index.html', '/'],
+    ];
+    for (const [from, to] of cases) {
+      const res = await t.get(from);
+      assert.equal(res.status, 301, from);
+      assert.equal(res.headers.get('location'), to, from);
+    }
+  });
+
+  test('every page in site-pages.json is served, and nothing else is', async () => {
+    const slugs = JSON.parse(fs.readFileSync(path.join(ROOT, 'site-pages.json'), 'utf8'));
+    assert.ok(slugs.length > 20, 'the page list is not empty');
+    for (const slug of slugs) assert.equal((await t.get(`/${slug}/`)).status, 200, slug);
+    for (const p of ['/en/equipment/index.html.bak', '/site-pages.json', '/_lib/', '/_content/', '/_build/']) {
+      assert.equal((await t.get(p)).status === 200, false, p);
+    }
   });
 
   test('retired languages redirect to English, keeping the path and query', async () => {
     for (const lang of ['sw', 'fr', 'zh']) {
       const res = await t.get(`/${lang}/services/?x=1`);
       assert.equal(res.status, 301);
-      assert.equal(res.headers.get('location'), '/en/services/?x=1');
+      assert.equal(res.headers.get('location'), '/services/?x=1');
     }
-    assert.equal((await t.get('/sw')).headers.get('location'), '/en/');
+    assert.equal((await t.get('/sw')).headers.get('location'), '/');
   });
 
   test('sends the security headers and correct cache rules', async () => {
-    const html = await t.get('/en/equipment/');
+    const html = await t.get('/equipment/');
     assert.equal(html.headers.get('x-content-type-options'), 'nosniff');
     assert.equal(html.headers.get('x-frame-options'), 'SAMEORIGIN');
     assert.match(html.headers.get('cache-control'), /must-revalidate/);
@@ -170,9 +189,9 @@ describe('static site', () => {
       '/SETUP.md',
       '/vercel.json',
       '/%2e%2e/package.json',
-      '/en/%2e%2e/package.json',
+      '/equipment/%2e%2e/package.json',
       '/assets/%2e%2e/package.json',
-      '/en/..%2fpackage.json',
+      '/equipment/..%2fpackage.json',
       '/assets/..%5c..%5cpackage.json',
     ];
     for (const p of secrets) {
@@ -612,20 +631,20 @@ describe('platform behaviour', () => {
   test('production redirects http to https and www to the apex domain', async () => {
     const t = await boot({ forceHttps: true, redirectWww: true, isProd: true });
     try {
-      const plain = await rawGet(t.base, '/en/equipment/', { 'X-Forwarded-Proto': 'http', Host: 'enzinternational.co' });
+      const plain = await rawGet(t.base, '/equipment/', { 'X-Forwarded-Proto': 'http', Host: 'enzinternational.co' });
       assert.equal(plain.status, 308);
-      assert.equal(plain.headers.location, 'https://enzinternational.co/en/equipment/');
+      assert.equal(plain.headers.location, 'https://enzinternational.co/equipment/');
 
-      const www = await rawGet(t.base, '/en/equipment/?a=1', { 'X-Forwarded-Proto': 'https', Host: 'www.enzinternational.co' });
+      const www = await rawGet(t.base, '/equipment/?a=1', { 'X-Forwarded-Proto': 'https', Host: 'www.enzinternational.co' });
       assert.equal(www.status, 301);
-      assert.equal(www.headers.location, 'https://enzinternational.co/en/equipment/?a=1');
+      assert.equal(www.headers.location, 'https://enzinternational.co/equipment/?a=1');
 
       // http on the www host: one hop straight to the final https apex URL.
       const both = await rawGet(t.base, '/', { 'X-Forwarded-Proto': 'http', Host: 'www.enzinternational.co' });
       assert.equal(both.status, 308);
       assert.equal(both.headers.location, 'https://enzinternational.co/');
 
-      const hsts = await rawGet(t.base, '/en/', { 'X-Forwarded-Proto': 'https', Host: 'enzinternational.co' });
+      const hsts = await rawGet(t.base, '/', { 'X-Forwarded-Proto': 'https', Host: 'enzinternational.co' });
       assert.equal(hsts.status, 200);
       assert.match(hsts.headers['strict-transport-security'], /max-age=63072000/);
 

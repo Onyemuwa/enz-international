@@ -5,7 +5,7 @@ The pages are pre-generated and committed, so any static web server can still se
 Node + SQLite server (`server/`) sits alongside it: it serves the same files and stores the enquiries the
 forms send, with an admin page to read them. See [server/README.md](./server/README.md).
 
-Multi-language (`/en/`, `/sw/`, `/fr/`, `/zh/`, real per-language URLs), multi-page, responsive,
+English-only (pages live at the site root, e.g. `/equipment/`; old `/en/` URLs redirect), multi-page, responsive,
 SEO-optimized, and animated with [Motion](https://motion.dev) — the same team and engine behind Framer
 Motion, vendored locally as a framework-free ES module so it works without React and without a CDN.
 
@@ -20,11 +20,11 @@ small scripts, and the Motion bundle. Nothing is compiled, fetched, or generated
 node preview.mjs
 ```
 
-Then open **http://localhost:5500/en/**. Nothing to install — `preview.mjs` is a
+Then open **http://localhost:5500/**. Nothing to install — `preview.mjs` is a
 ~40-line zero-dependency Node server, so it works offline.
 
 > **Do not open the files directly from the folder.** The site uses clean URLs
-> (`/en/services/`, no `.html`), which are real directories containing an
+> (`/services/`, no `.html`), which are real directories containing an
 > `index.html`. `file://` has no directory-index resolution, so a browser opening
 > the folder shows a *file listing* instead of the page, and every link lands on
 > another listing. Any web server resolves this correctly; the one above is the
@@ -75,7 +75,7 @@ en/                  The published site — 27 pages:
 ```
 
 Each page is a genuinely separate, real file — not client-rendered from a template. That's what makes
-`/en/services.html` and `/fr/services.html` crawlable at their own URLs, and what makes this deployable
+every page crawlable at its own URL (`/services/`), and what makes this deployable
 anywhere with zero configuration.
 
 ## Changing the design

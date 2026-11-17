@@ -1,12 +1,12 @@
-# Clean-URL migration: /en/services.html -> /en/services/
-# 301 so search engines move their index across rather than keeping both.
-/en/index.html   /en/       301
-/en/:page.html   /en/:page/ 301
+# English moved from /en/ to the site root. 301 so search engines move their
+# index across rather than keeping both.
+/en/index.html   /          301
+/en/:page.html   /:page/    301
+/en              /          301
+/en/*            /:splat    301
 
-# Retired languages. /sw/, /fr/ and /zh/ served English body copy while
-# claiming to be translated, so they were withdrawn - see the header of
-# _content/translations.js. These 301s carry indexed URLs to the English
-# equivalent instead of 404ing them.
-/sw/*   /en/:splat   301
-/fr/*   /en/:splat   301
-/zh/*   /en/:splat   301
+# Retired languages (see the header of _content/translations.js): carry their
+# indexed URLs to the English equivalent instead of 404ing them.
+/sw/*   /:splat   301
+/fr/*   /:splat   301
+/zh/*   /:splat   301

@@ -7,11 +7,10 @@
  */
 module.exports = {
   content: [
-    '../en/**/*.html',
-    '../sw/**/*.html',
-    '../fr/**/*.html',
-    '../zh/**/*.html',
-    '../*.html',
+    // Pages live at the site root: / and /<slug>/ (see _generate-static.mjs).
+    '../index.html',
+    '../404.html',
+    '../*/index.html',
     '../assets/js/**/*.js',
   ],
   theme: {

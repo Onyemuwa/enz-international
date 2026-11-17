@@ -184,7 +184,7 @@ export function servicePage(lang, service) {
   const graph = [
     {
       '@type': 'Service',
-      '@id': `${SITE_URL}/${lang}/${service.slug}/#service`,
+      '@id': `${SITE_URL}/${service.slug}/#service`,
       name,
       description: desc,
       serviceType: name,
@@ -308,7 +308,7 @@ export function marketPage(lang, market) {
   const graph = [
     {
       '@type': 'Service',
-      '@id': `${SITE_URL}/${lang}/${market.slug}/#service`,
+      '@id': `${SITE_URL}/${market.slug}/#service`,
       name: `China sourcing and factory setup in ${full}`,
       description: market.intro,
       provider: { '@id': `${SITE_URL}/#organization` },
